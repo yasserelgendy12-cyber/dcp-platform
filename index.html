@@ -377,7 +377,7 @@ en: {
   consultant_rev: 'Consultant actual', owner_rev: 'Owner actual',
   upd_ctr: 'Updated by contractor', upd_cons: 'Updated by consultant', upd_own: 'Updated by owner', r_ctr_s: 'Contractor', r_cons_s: 'Consultant', r_own_s: 'Owner',
   c_bl: 'BL', c_notbl: 'Not in baseline', c_bls: 'BL start', c_blf: 'BL finish', need_date: 'Required for this status – enter the date',
-  pl_at_dd: 'P6 data date', pl_at_cut: 'Cut-off date', rev_n: 'reviewed', rev_none: 'No reviews yet – equals the P6 %', f_upd_lbl: 'Updated in this cut-off by:',
+  pl_at_dd: 'P6 data date', pl_at_cut: 'Cut-off date', rev_n: 'reviewed', rev_none: 'No reviews yet – equals the P6 %', rev_none_o: 'No owner entries yet', f_upd_lbl: 'Updated in this cut-off by:',
   e_pct: 'Progress must be between 0% and 100%.', e_as_cut: 'Actual start must be on or before the cut-off date', e_af_cut: 'Actual finish must be on or before the cut-off date',
   e_as_0: 'Actual start is allowed only when the contractor % is above 0.', e_af_100: 'Actual finish is allowed only when the contractor % is 100.', e_bulk_skip: '{n} date(s) skipped: start needs a % above 0, finish needs 100%',
   v_as_np: 'Actual start entered but progress is 0%', v_rd_np: 'Remaining duration applies to activities in progress only',
@@ -517,7 +517,7 @@ en: {
   consultant_rev: 'فعلي الاستشاري', owner_rev: 'فعلي المالك',
   upd_ctr: 'محدَّث من المقاول', upd_cons: 'محدَّث من الاستشاري', upd_own: 'محدَّث من المالك', r_ctr_s: 'المقاول', r_cons_s: 'الاستشاري', r_own_s: 'المالك',
   c_bl: 'الأساسي', c_notbl: 'ليس في الأساسي', c_bls: 'البدء الأساسي', c_blf: 'الانتهاء الأساسي', need_date: 'مطلوب لهذه الحالة – أدخل التاريخ',
-  pl_at_dd: 'تاريخ بيانات ⁦P6⁩', pl_at_cut: 'تاريخ القطع', rev_n: 'مراجعة', rev_none: 'لا توجد مراجعات – تساوي نسبة ⁦P6⁩', f_upd_lbl: 'تم تحديثه في هذا القطع من:',
+  pl_at_dd: 'تاريخ بيانات ⁦P6⁩', pl_at_cut: 'تاريخ القطع', rev_n: 'مراجعة', rev_none: 'لا توجد مراجعات – تساوي نسبة ⁦P6⁩', rev_none_o: 'لا توجد مدخلات من المالك', f_upd_lbl: 'تم تحديثه في هذا القطع من:',
   e_pct: 'نسبة الإنجاز يجب أن تكون بين 0% و 100%.', e_as_cut: 'تاريخ البدء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع', e_af_cut: 'تاريخ الانتهاء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع',
   e_as_0: 'تاريخ البدء الفعلي يُدخل فقط عندما تكون نسبة المقاول أكبر من 0.', e_af_100: 'تاريخ الانتهاء الفعلي يُدخل فقط عندما تكون نسبة المقاول 100.', e_bulk_skip: 'تم تخطي {n} تاريخ: البدء يحتاج نسبة أكبر من 0 والانتهاء يحتاج 100%',
   v_as_np: 'تم إدخال بدء فعلي والنسبة 0%', v_rd_np: 'المدة المتبقية للأنشطة الجارية فقط',
@@ -1762,8 +1762,9 @@ const PROG = {
   summary(cid) {
     const rows = PROG.rows(cid); const { w } = PROG.weights();
     const m = SCH() || {}, cdate = (S.db.cutoffs.find(c => c._id === cid) || {}).date || reportDate(), ddate = m.asOf || m.dataDate || '';   // plan at the cut-off date and at the P6 data date of the latest XER
+    // consultant: own review where given, else the P6 %. Owner: owner entries only – an activity the owner has not entered counts 0 (decision 11-Nov-2026)
     let pl = 0, plD = 0, ctr = 0, cons = 0, own = 0, hasOwn = false;
-    rows.forEach(r => { const wt = w(r.a); pl += wt * N(PROG.planRaw(r.a, cdate)); if (ddate) plD += wt * N(PROG.planRaw(r.a, ddate)); ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : N(r.a.pct)) / 100; });
+    rows.forEach(r => { const wt = w(r.a); pl += wt * N(PROG.planRaw(r.a, cdate)); if (ddate) plD += wt * N(PROG.planRaw(r.a, ddate)); ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : 0) / 100; });
     const c = s => rows.filter(r => r.e.status === s).length;
     return { rows, planned: pl, plannedDD: ddate ? plD : null, cdate, ddate: m.dataDate || '', basis: PROG.planBasis() === 'bl' && m.bl ? 'bl' : 'upd', ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.u)).length, updCo: rows.filter(r => PROG.byCo(r.u)).length, updO: rows.filter(r => PROG.byO(r.u)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
   }
@@ -2246,12 +2247,12 @@ PAGES.progress = v => {
     // planned: two figures on the chosen basis – at the P6 data date of the latest XER (= P6 "Schedule % Complete") and at the cut-off date (the one the actuals are compared with)
     const plRow = (val, lbl, date) => `<div class="plr"><b>${(val * 100).toFixed(2)}%</b><span>${lbl} · ${D.fmt(date)}</span></div>`;
     // consultant / owner: smaller boxes in one colour – the contractor figure is the one the update is driven by
-    const rev = (lbl, val, n) => `<div class="kpi mini"><div class="k">${lbl}</div><div class="v">${fmtP(val)}</div><div class="s">${n ? `${gap(val - sm.planned)} · ${fmtN(n)} ${T('rev_n')}` : T('rev_none')}</div></div>`;
+    const rev = (lbl, val, n, none) => `<div class="kpi mini"><div class="k">${lbl}</div><div class="v">${fmtP(val)}</div><div class="s">${n ? `${gap(val - sm.planned)} · ${fmtN(n)} ${T('rev_n')}` : T(none)}</div></div>`;
     v.querySelector('[data-k]').innerHTML =
       kpi(T('activities'), fmtN(sm.n), `${T('completed')} ${fmtN(sm.comp)} · ${T('in_progress')} ${fmtN(sm.inprog)}`) +
       `<div class="kpi pl2" data-plk><div class="k">${T('planned')} <span class="bas">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}</span></div>${sm.plannedDD !== null && sch.upd ? plRow(sm.plannedDD, T('pl_at_dd'), sm.ddate) : ''}${plRow(sm.planned, T('pl_at_cut'), sm.cdate)}</div>` +
       `<div class="kpi main ${sm.ctr >= sm.planned ? 'ok' : 'warn'}" data-ctrk><div class="k">${T('contractor_act')}</div><div class="v">${fmtP(sm.ctr)}</div><div class="s">${gap(sm.ctr - sm.planned)}</div></div>` +
-      `<div class="revs">${rev(T('consultant_rev'), sm.cons, sm.updCo)}${rev(T('owner_rev'), sm.own, sm.updO)}</div>` +
+      `<div class="revs">${rev(T('consultant_rev'), sm.cons, sm.updCo, 'rev_none')}${rev(T('owner_rev'), sm.own, sm.updO, 'rev_none_o')}</div>` +
       kpi(T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok') + kpi(T('f_issues'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok');
     v.querySelectorAll('[data-uc]').forEach(b => { b.textContent = fmtN(sm[b.dataset.uc]); });
   };

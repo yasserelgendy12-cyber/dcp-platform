@@ -222,7 +222,27 @@ select.fsel.on{border-color:var(--pri);background:var(--pri-l);color:var(--navy)
 @media(max-width:1200px){.g5{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:800px){.g5{grid-template-columns:1fr 1fr}}
 .kc .kpi{padding:8px 12px}.kc .kpi .v{font-size:18px;margin-top:1px}
-.in.p6v{color:var(--ink2);font-weight:400;background:#F7F9FC}
+.in.need{border-color:var(--ok);background:var(--ok-l);box-shadow:inset 0 0 0 1px var(--ok)}
+/* progress page: KPI row (contractor figure dominant, consultant / owner smaller in one colour, planned with two figures) */
+.pk{display:grid;grid-template-columns:.9fr 1.45fr 1.2fr 1.3fr .85fr .85fr;gap:12px;align-items:stretch}
+@media(max-width:1250px){.pk{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.pk{grid-template-columns:1fr 1fr}}
+.pk .kpi{padding:9px 13px}.pk .kpi .v{font-size:19px;margin-top:1px}
+.kpi.main{border:2px solid var(--pri);background:var(--pri-l);display:flex;flex-direction:column;justify-content:center}.pk .kpi.main .v{font-size:30px;line-height:1.15}.kpi.main .k{color:var(--navy);font-size:12px}
+.kpi.pl2 .bas{font-size:10px;font-weight:600;background:var(--line2);color:var(--ink2);border-radius:9px;padding:1px 7px;margin-inline-start:4px;text-transform:none;letter-spacing:0}
+.kpi.pl2 .plr{display:flex;align-items:baseline;gap:8px;margin-top:4px;white-space:nowrap}.kpi.pl2 .plr b{font-size:17px;color:var(--navy);font-variant-numeric:tabular-nums;min-width:66px}.kpi.pl2 .plr span{font-size:11px;color:var(--ink3);overflow:hidden;text-overflow:ellipsis}
+.kpi.pl2 .plr+.plr{border-top:1px dashed var(--line);padding-top:4px}
+.revs{display:grid;grid-template-rows:1fr 1fr;gap:6px;min-width:0}
+.pk .kpi.mini{padding:4px 11px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:8px;box-shadow:none;background:#FAFBFD}
+.kpi.mini .k{font-size:10.5px}.pk .kpi.mini .v{font-size:15px;color:var(--info);grid-column:2;grid-row:1/3;margin:0}.kpi.mini .s{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* progress page: focus filters */
+.fsep{width:1px;align-self:stretch;background:#C9D2DF;margin:2px 4px}
+.lad{display:inline-flex;align-items:center;border:1px solid #D3DAE5;border-radius:7px;background:#fff;height:28px;overflow:hidden}
+.lad .in{border:0;height:26px;width:46px;padding:2px 4px;text-align:center;border-radius:0}.lad i{font-style:normal;font-weight:700;color:var(--ink3);padding:0 7px 0 2px;font-size:12px}
+.updf{margin-inline-start:14px;padding:3px 8px 3px 10px;border:1px dashed #9FB3CC;border-radius:16px;background:#F2F6FC;align-items:center}
+.updf .ul{font-size:11.5px;font-weight:700;color:var(--navy)}
+.updf .bdg{background:#fff;border:1px solid #B9C7DA;color:var(--navy)}.updf .bdg b{display:inline-block;min-width:18px;text-align:center;background:var(--pri-l);color:var(--pri);border-radius:9px;padding:0 5px;margin-inline-start:3px;font-size:11px}
+.updf .bdg.on{background:var(--pri);border-color:var(--pri);color:#fff}.updf .bdg.on b{background:#fff;color:var(--pri)}
 .blt{color:var(--navy);font-weight:700}
 .chip svg,.sec-t svg{width:14px;height:14px;flex:0 0 14px}
 .bdg .dot{width:6px;height:6px;vertical-align:1px}
@@ -307,7 +327,7 @@ en: {
   login_sub_u: 'Select the project and your name, then enter your personal PIN.', u_select: 'User', u_emergency: 'Emergency access (master planner PIN)', u_emergency_d: 'Use only if no planner can sign in (e.g. forgotten PIN). The access is recorded in the activity log.',
   pins_note_u: 'Named users are active: these role PINs are no longer used for sign-in. The Planner / Admin PIN remains the master emergency PIN (full access incl. User management) – this tab is visible only to User management holders.',
   print_rpt: 'Print report', clear_filters: 'Clear all filters', edit_cutoff: 'Edit cut-off', cut_exists: 'this cut-off date already exists', cut_before_closed: 'Date must be after the last closed cut-off:', edit_cut_hint: 'All {n} progress entries stay under this cut-off. Overdue days, delays and the planned % are recalculated on the new date.', f_focus: 'Focus', f_due: 'Due this period', f_all: 'All activities', f_inprog: 'In progress', f_ns: 'Not started', f_comp: 'Completed', f_behind: 'Behind plan',
-  f_updated: 'Updated', f_issues: 'With issues', group_by: 'Filter by code', lookahead: 'Look-ahead (days)',
+  f_updated: 'Updated', f_issues: 'With issues', group_by: 'Filter by code', lookahead: 'Look-ahead window in days',
   c_id: 'Activity ID', c_name: 'Activity name', c_p6: 'P6 % / status', c_plan: 'Plan %', c_ctr: 'Contractor %', c_cons: 'Consultant %', c_own: 'Owner %',
   c_as: 'Actual start', c_af: 'Actual finish', c_rd: 'Rem. dur. (d)', c_cb: 'Caused by', c_rsn: 'Reason for delay', c_mit: 'Mitigation', c_flags: 'Check',
   c_od: 'Orig. dur.', c_ps: 'Planned start', c_pf: 'Planned finish', c_wbs: 'WBS',
@@ -315,7 +335,7 @@ en: {
   no_open_cutoff: 'There is no open cut-off. The Planner must open a cut-off before progress can be entered.',
   v_range: 'Progress must be 0–100', v_lower: 'Lower than P6 % – P6 value is kept', v_as: 'Actual start required', v_af: 'Actual finish required at 100%',
   v_order: 'Actual finish before actual start', v_future: 'Date after the cut-off', v_rd: 'Remaining duration must be a whole number > 0',
-  v_rev: 'Review % higher than contractor %', v_reason: 'Behind plan – reason for delay required', v_af_np: 'Actual finish entered but progress < 100%',
+  v_rev: 'Review % higher than contractor %', v_reason: 'Behind plan – reason for delay required', v_af_np: 'Actual finish is allowed only at 100%',
   // p6
   active_cutoff: 'Active cut-off', open_cutoff: 'Open new cut-off', close_cutoff: 'Close cut-off', reopen: 'Re-open', cutoff_hist: 'Cut-off history',
   import_xer: 'Import P6 schedule (XER)', 
@@ -356,10 +376,14 @@ en: {
   // --- XER sources (baseline + updates), progress split, presence ---
   consultant_rev: 'Consultant actual', owner_rev: 'Owner actual',
   upd_ctr: 'Updated by contractor', upd_cons: 'Updated by consultant', upd_own: 'Updated by owner', r_ctr_s: 'Contractor', r_cons_s: 'Consultant', r_own_s: 'Owner',
-  c_bl: 'BL', c_notbl: 'Not in baseline', c_bls: 'BL start', c_blf: 'BL finish', from_p6: 'Date held by P6 (latest XER) – change it to enter a different date',
+  c_bl: 'BL', c_notbl: 'Not in baseline', c_bls: 'BL start', c_blf: 'BL finish', need_date: 'Required for this status – enter the date',
+  pl_at_dd: 'P6 data date', pl_at_cut: 'Cut-off date', rev_n: 'reviewed', rev_none: 'No reviews yet – equals the P6 %', f_upd_lbl: 'Updated in this cut-off by:',
+  e_pct: 'Progress must be between 0% and 100%.', e_as_cut: 'Actual start must be on or before the cut-off date', e_af_cut: 'Actual finish must be on or before the cut-off date',
+  e_as_0: 'Actual start is allowed only when the contractor % is above 0.', e_af_100: 'Actual finish is allowed only when the contractor % is 100.', e_bulk_skip: '{n} date(s) skipped: start needs a % above 0, finish needs 100%',
+  v_as_np: 'Actual start entered but progress is 0%', v_rd_np: 'Remaining duration applies to activities in progress only',
   pl_upd: 'Latest update XER', pl_bl: 'Baseline XER', pl_basis: 'Plan % basis', pl_basis_upd: 'Planned dates of the latest update XER', pl_basis_bl: 'Baseline XER dates (update dates for activities not in the baseline)',
-  pl_basis_d: 'Plan % of an activity = position of the cut-off date between its start and finish. P6 moves the planned dates of delayed activities that have not started to the data date at every re-schedule, so the update XER shows a lower plan than the baseline.',
-  prog_desc: 'Site progress per P6 activity for the active cut-off. Activity data come from the baseline XER, P6 status and actual dates from the latest update XER; your entries override them in the P6 export.',
+  pl_basis_d: 'Plan % is counted like P6 “Schedule % Complete”: days elapsed between the start and finish of each activity, weighted by cost. The Progress page shows it at the P6 data date and at the cut-off date. P6 moves the planned dates of delayed activities that have not started at every re-schedule, so the update XER gives a lower plan than the baseline.',
+  prog_desc: 'Site progress per P6 activity for the active cut-off. Activity data come from the baseline XER and the P6 status from the latest update XER. Actual dates are entered by the team: start once the contractor % is above 0, finish at 100%, remaining duration while in progress.',
   no_schedule: 'No schedule loaded. The Planner must upload the baseline XER or the latest update XER in "Cut-off & P6 Export".',
   p6_desc: 'Manage the reporting cut-off dates, load the project schedules from P6 – the approved baseline and the weekly updates (XER) – and generate the update file for Primavera P6.',
   xer_upd: 'Schedule update (latest XER)', xer_bl: 'Baseline schedule (XER)', not_loaded: 'Not loaded', xer_loaded: 'Update loaded', xer_bl_loaded: 'Baseline loaded',
@@ -449,7 +473,7 @@ en: {
   login_sub_u: 'اختر المشروع واسمك ثم اكتب رمزك الخاص.', u_select: 'المستخدم', u_emergency: 'دخول طوارئ (رمز التخطيط الرئيسي)', u_emergency_d: 'يُستخدم فقط إذا لم يتمكن أي مهندس تخطيط من الدخول (مثل نسيان الرمز). يُسجَّل الدخول في سجل النشاط.',
   pins_note_u: 'نظام المستخدمين بالاسم مفعّل: رموز الأدوار هذه لم تعد تُستخدم للدخول. رمز التخطيط يبقى رمز الطوارئ الرئيسي (صلاحية كاملة تشمل إدارة المستخدمين) – هذا التبويب يظهر فقط لمن لديه صلاحية إدارة المستخدمين.',
   print_rpt: 'طباعة تقرير', clear_filters: 'مسح كل الفلاتر', edit_cutoff: 'تعديل تاريخ القطع', cut_exists: 'تاريخ القطع هذا موجود مسبقاً', cut_before_closed: 'يجب أن يكون التاريخ بعد آخر تاريخ قطع مغلق:', edit_cut_hint: 'تبقى كل الإدخالات ({n}) تحت هذا التاريخ، وتُعاد حسابات أيام التأخير والنسبة المخططة على التاريخ الجديد.', f_focus: 'التركيز', f_due: 'المطلوب في هذه الفترة', f_all: 'كل الأنشطة', f_inprog: 'جارٍ', f_ns: 'لم يبدأ', f_comp: 'مكتمل', f_behind: 'متأخر عن الخطة',
-  f_updated: 'تم تحديثه', f_issues: 'به ملاحظات', group_by: 'تصفية حسب الأكواد', lookahead: 'النظرة المستقبلية (يوم)',
+  f_updated: 'تم تحديثه', f_issues: 'به ملاحظات', group_by: 'تصفية حسب الأكواد', lookahead: 'النظرة المستقبلية بالأيام',
   c_id: 'رقم النشاط', c_name: 'اسم النشاط', c_p6: 'نسبة / حالة P6', c_plan: 'المخطط %', c_ctr: 'المقاول %', c_cons: 'الاستشاري %', c_own: 'المالك %',
   c_as: 'البدء الفعلي', c_af: 'الانتهاء الفعلي', c_rd: 'المدة المتبقية', c_cb: 'المتسبب', c_rsn: 'سبب التأخير', c_mit: 'الإجراء التصحيحي', c_flags: 'فحص',
   c_od: 'المدة الأصلية', c_ps: 'البدء المخطط', c_pf: 'الانتهاء المخطط', c_wbs: 'هيكل تجزئة العمل',
@@ -457,7 +481,7 @@ en: {
   no_open_cutoff: 'لا يوجد تاريخ قطع مفتوح. على مهندس التخطيط فتح تاريخ قطع قبل إدخال الإنجاز.',
   v_range: 'النسبة يجب أن تكون بين 0 و 100', v_lower: 'أقل من نسبة P6 – سيتم الإبقاء على قيمة P6', v_as: 'تاريخ البدء الفعلي مطلوب', v_af: 'تاريخ الانتهاء الفعلي مطلوب عند 100%',
   v_order: 'الانتهاء الفعلي قبل البدء الفعلي', v_future: 'التاريخ بعد تاريخ القطع', v_rd: 'المدة المتبقية يجب أن تكون عدداً صحيحاً أكبر من صفر',
-  v_rev: 'نسبة المراجعة أعلى من نسبة المقاول', v_reason: 'متأخر عن الخطة – يجب إدخال سبب التأخير', v_af_np: 'تم إدخال انتهاء فعلي والنسبة أقل من 100%',
+  v_rev: 'نسبة المراجعة أعلى من نسبة المقاول', v_reason: 'متأخر عن الخطة – يجب إدخال سبب التأخير', v_af_np: 'الانتهاء الفعلي يُدخل فقط عند 100%',
   active_cutoff: 'تاريخ القطع الحالي', open_cutoff: 'فتح تاريخ قطع جديد', close_cutoff: 'إغلاق تاريخ القطع', reopen: 'إعادة فتح', cutoff_hist: 'سجل تواريخ القطع',
   import_xer: 'استيراد البرنامج الزمني (XER)', 
   gen_p6: 'إنشاء ملف “Last Updates TO P6 From Platform.xlsx”', p6_opts: 'خيارات التصدير', p6_all: 'كل الأنشطة (قائمة الاستيراد الكاملة)', p6_changed: 'الأنشطة المتغيرة فقط',
@@ -492,10 +516,14 @@ en: {
   // --- مصادر XER (الأساسي + التحديثات)، تقسيم الإنجاز، المتواجدون ---
   consultant_rev: 'فعلي الاستشاري', owner_rev: 'فعلي المالك',
   upd_ctr: 'محدَّث من المقاول', upd_cons: 'محدَّث من الاستشاري', upd_own: 'محدَّث من المالك', r_ctr_s: 'المقاول', r_cons_s: 'الاستشاري', r_own_s: 'المالك',
-  c_bl: 'الأساسي', c_notbl: 'ليس في الأساسي', c_bls: 'البدء الأساسي', c_blf: 'الانتهاء الأساسي', from_p6: 'تاريخ مسجل في ⁦P6⁩ (آخر ملف ⁦XER⁩) – عدّله لإدخال تاريخ مختلف',
+  c_bl: 'الأساسي', c_notbl: 'ليس في الأساسي', c_bls: 'البدء الأساسي', c_blf: 'الانتهاء الأساسي', need_date: 'مطلوب لهذه الحالة – أدخل التاريخ',
+  pl_at_dd: 'تاريخ بيانات ⁦P6⁩', pl_at_cut: 'تاريخ القطع', rev_n: 'مراجعة', rev_none: 'لا توجد مراجعات – تساوي نسبة ⁦P6⁩', f_upd_lbl: 'تم تحديثه في هذا القطع من:',
+  e_pct: 'نسبة الإنجاز يجب أن تكون بين 0% و 100%.', e_as_cut: 'تاريخ البدء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع', e_af_cut: 'تاريخ الانتهاء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع',
+  e_as_0: 'تاريخ البدء الفعلي يُدخل فقط عندما تكون نسبة المقاول أكبر من 0.', e_af_100: 'تاريخ الانتهاء الفعلي يُدخل فقط عندما تكون نسبة المقاول 100.', e_bulk_skip: 'تم تخطي {n} تاريخ: البدء يحتاج نسبة أكبر من 0 والانتهاء يحتاج 100%',
+  v_as_np: 'تم إدخال بدء فعلي والنسبة 0%', v_rd_np: 'المدة المتبقية للأنشطة الجارية فقط',
   pl_upd: 'آخر تحديث ⁦XER⁩', pl_bl: 'الجدول الأساسي ⁦XER⁩', pl_basis: 'أساس حساب النسبة المخططة', pl_basis_upd: 'التواريخ المخططة في آخر ملف تحديث ⁦XER⁩', pl_basis_bl: 'تواريخ الجدول الأساسي ⁦XER⁩ (وتواريخ التحديث للأنشطة غير الموجودة في الأساسي)',
-  pl_basis_d: 'النسبة المخططة للنشاط = موضع تاريخ القطع بين بدايته ونهايته. برنامج ⁦P6⁩ يرحّل التواريخ المخططة للأنشطة المتأخرة التي لم تبدأ إلى تاريخ البيانات مع كل إعادة جدولة، لذلك يُظهر ملف التحديث نسبة مخططة أقل من الجدول الأساسي.',
-  prog_desc: 'تحديث إنجاز الموقع لكل نشاط في ⁦P6⁩ لتاريخ القطع الحالي. بيانات النشاط من ملف ⁦XER⁩ للجدول الأساسي، وحالة ⁦P6⁩ والتواريخ الفعلية من آخر ملف تحديث ⁦XER⁩، وإدخالاتك تُعتمد في ملف التصدير إلى ⁦P6⁩.',
+  pl_basis_d: 'النسبة المخططة تُحسب مثل ⁦Schedule % Complete⁩ في ⁦P6⁩: الأيام المنقضية بين بداية ونهاية كل نشاط مرجحة بالتكلفة. صفحة تحديث الإنجاز تعرضها عند تاريخ بيانات ⁦P6⁩ وعند تاريخ القطع. برنامج ⁦P6⁩ يرحّل التواريخ المخططة للأنشطة المتأخرة التي لم تبدأ مع كل إعادة جدولة، لذلك يعطي ملف التحديث نسبة مخططة أقل من الجدول الأساسي.',
+  prog_desc: 'تحديث إنجاز الموقع لكل نشاط في ⁦P6⁩ لتاريخ القطع الحالي. بيانات النشاط من ملف ⁦XER⁩ للجدول الأساسي، وحالة ⁦P6⁩ من آخر ملف تحديث. التواريخ الفعلية يُدخلها الفريق: البدء عندما تكون نسبة المقاول أكبر من 0، والانتهاء عند 100%، والمدة المتبقية للنشاط الجاري.',
   no_schedule: 'لم يتم تحميل البرنامج الزمني. على مهندس التخطيط رفع ملف ⁦XER⁩ للجدول الأساسي أو لآخر تحديث من صفحة "تاريخ القطع وتصدير ⁦P6⁩".',
   p6_desc: 'إدارة تواريخ القطع، وتحميل جداول المشروع من ⁦P6⁩ – الجدول الأساسي المعتمد والتحديثات الأسبوعية (⁦XER⁩) – وإنشاء ملف التحديث لبريمافيرا ⁦P6⁩.',
   xer_upd: 'تحديث البرنامج الزمني (آخر ملف ⁦XER⁩)', xer_bl: 'الجدول الزمني الأساسي (⁦XER⁩)', not_loaded: 'غير محمّل', xer_loaded: 'تم تحميل التحديث', xer_bl_loaded: 'تم تحميل الجدول الأساسي',
@@ -647,6 +675,9 @@ const XER = (() => {
       });
     }
     const codeTypes = Array.from(new Set(Object.values(types))).sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
+    // the data date counts as a full day when its time is in the afternoon (P6 default 16:00/17:00); a morning time means the end of the previous day
+    const ddRaw = proj.last_recalc_date || proj.next_data_date || '', ddHour = parseInt((ddRaw.split(' ')[1] || '').slice(0, 2), 10);
+    const asOf = (d10(ddRaw) && isFinite(ddHour) && ddHour < 12) ? new Date(Date.parse(d10(ddRaw) + 'T00:00:00Z') - 86400000).toISOString().slice(0, 10) : d10(ddRaw);
     return {
       fileName: fileName || '',
       projShort: proj.proj_short_name || '',
@@ -658,7 +689,7 @@ const XER = (() => {
       labUnits: r2(labUnits),
       currency: hdr[0] === 'ERMHDR' && hdr.length >= 9 ? hdr[hdr.length - 1] : '',
       codeMeta,
-      dataDate: d10(proj.last_recalc_date || proj.next_data_date),
+      dataDate: d10(ddRaw), asOf,
       planStart: d10(proj.plan_start_date),
       planEnd: d10(proj.scd_end_date || proj.plan_end_date),
       mustFinish: d10(proj.plan_end_date),
@@ -1665,14 +1696,17 @@ const PROG = {
   upd: cid => (cid && S.db.updates[cid]) || {},
   // baseline dates of an activity (from the baseline XER); null when the activity is not in the baseline
   blDates: a => a.bl ? { s: a.bl.ps || a.bl.es || '', f: a.bl.pf || a.bl.ef || '', od: a.bl.od } : null,
-  // dates the plan % is measured on: parameter planBasis = 'upd' (planned dates of the latest update XER, default) or 'bl' (baseline XER dates where available)
-  planDates(a) { const b = (S.db.params.planBasis === 'bl') ? PROG.blDates(a) : null; return (b && b.s && b.f) ? b : { s: a.ps, f: a.pf }; },
-  planned(a, date) {
+  // dates the plan % is measured on: parameter planBasis = 'bl' (baseline XER dates where available – default) or 'upd' (planned dates of the latest update XER)
+  planBasis: () => (S.db.params.planBasis === 'upd' ? 'upd' : 'bl'),
+  planDates(a) { const b = PROG.planBasis() === 'bl' ? PROG.blDates(a) : null; return (b && b.s && b.f) ? b : { s: a.ps, f: a.pf }; },
+  // planned fraction (0–1) at the end of a day, counted like P6 "Schedule % Complete": days elapsed incl. that day / duration in days
+  planRaw(a, date) {
     const { s, f } = PROG.planDates(a);
     if (!s || !f || !date) return null;
-    if (date < s) return 0; if (date >= f) return 100;
-    const tot = D.diff(f, s); return tot > 0 ? Math.round(D.diff(date, s) / tot * 1000) / 10 : 100;
+    if (date < s) return 0; if (date >= f) return 1;
+    return (D.diff(date, s) + 1) / (D.diff(f, s) + 1);
   },
+  planned(a, date) { const x = PROG.planRaw(a, date); return x === null ? null : Math.round(x * 1000) / 10; },
   // who updated an activity in a cut-off: contractor fields / consultant review / owner review
   byC: u => !!u && ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].some(k => u[k] !== undefined && u[k] !== ''),
   byCo: u => !!u && isNum(u.cons), byO: u => !!u && isNum(u.own),
@@ -1709,7 +1743,9 @@ const PROG = {
     if (isNum(u.ctr) && N(u.ctr) < N(a.pct) - 0.01) add('v_lower', 'warn', 'ctr');
     if (e.status !== 'Not Started' && !e.as && a.type !== 'TT_FinMile') add('v_as', 'bad', 'as');
     if (e.status === 'Completed' && !e.af && a.type !== 'TT_Mile') add('v_af', 'bad', 'af');
-    if (u.af && e.status !== 'Completed') add('v_af_np', 'warn', 'af');
+    if (u.af && e.status !== 'Completed') add('v_af_np', 'bad', 'af');
+    if (u.as && e.status === 'Not Started') add('v_as_np', 'bad', 'as');
+    if (isNum(u.rd) && e.status !== 'In Progress') add('v_rd_np', 'warn', 'rd');
     if (e.as && e.af && e.af < e.as) add('v_order', 'bad', 'af');
     if (cut && ((u.as && u.as > cut) || (u.af && u.af > cut))) add('v_future', 'bad', u.af && u.af > cut ? 'af' : 'as');
     if (isNum(u.rd) && (N(u.rd) <= 0 || N(u.rd) !== Math.round(N(u.rd))) && e.status === 'In Progress') add('v_rd', 'bad', 'rd');
@@ -1725,10 +1761,11 @@ const PROG = {
   weights() { const acts = PROG.acts(); const tc = sum(acts, a => a.cost); return { tc, w: a => tc > 0 ? N(a.cost) / tc : (N(a.od) / (sum(acts, x => x.od) || 1)) }; },
   summary(cid) {
     const rows = PROG.rows(cid); const { w } = PROG.weights();
-    let pl = 0, ctr = 0, cons = 0, own = 0, hasOwn = false;
-    rows.forEach(r => { const wt = w(r.a); pl += wt * N(r.pl) / 100; ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : N(r.a.pct)) / 100; });
+    const m = SCH() || {}, cdate = (S.db.cutoffs.find(c => c._id === cid) || {}).date || reportDate(), ddate = m.asOf || m.dataDate || '';   // plan at the cut-off date and at the P6 data date of the latest XER
+    let pl = 0, plD = 0, ctr = 0, cons = 0, own = 0, hasOwn = false;
+    rows.forEach(r => { const wt = w(r.a); pl += wt * N(PROG.planRaw(r.a, cdate)); if (ddate) plD += wt * N(PROG.planRaw(r.a, ddate)); ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : N(r.a.pct)) / 100; });
     const c = s => rows.filter(r => r.e.status === s).length;
-    return { rows, planned: pl, ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.u)).length, updCo: rows.filter(r => PROG.byCo(r.u)).length, updO: rows.filter(r => PROG.byO(r.u)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
+    return { rows, planned: pl, plannedDD: ddate ? plD : null, cdate, ddate: m.dataDate || '', basis: PROG.planBasis() === 'bl' && m.bl ? 'bl' : 'upd', ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.u)).length, updCo: rows.filter(r => PROG.byCo(r.u)).length, updO: rows.filter(r => PROG.byO(r.u)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
   }
 };
 
@@ -1756,7 +1793,7 @@ async function buildTablesWorkbook() {
   const proj = db.project, P = db.params;
   const sc = SCH(db) || {}, ub = sc.upd || {}, bb = sc.bl || {};
   const info = [['Project Num.', 'Project Code', 'Project Name', 'Country', 'Owner Name', 'Consultant Name', 'Contractor Name', 'Report Code', 'Date Of Report', 'Contract Sign Date', 'Project Commencement date', 'Site Handover Date', 'Down payment Data', 'Project completion date', 'Land Area m2', 'Contract Value', 'Total V.O', 'Down payment', 'BAC', '% General Retention', '% Down payment Retention', 'Total Retention Value', 'BUA m2', 'Project Overview', 'Update XER', 'P6 Data Date', 'Baseline XER', 'Baseline Data Date', 'Plan % Basis'],
-    [proj.number, proj.code, proj.name, proj.location, proj.owner, proj.consultant, proj.contractor, reportCode(), { d: reportDate() }, proj.signDate ? { d: proj.signDate } : null, proj.commencement ? { d: proj.commencement } : null, proj.handoverDate ? { d: proj.handoverDate } : null, proj.dpDate ? { d: proj.dpDate } : null, proj.completion ? { d: proj.completion } : null, N(proj.landArea), N(proj.contractValue), N(proj.totalVO), N(proj.contractValue) * N(proj.dpPct), N(proj.contractValue) + N(proj.totalVO), N(proj.retPct), N(proj.dpPct), (N(proj.contractValue) + N(proj.totalVO)) * (N(proj.retPct) + N(proj.dpPct)), proj.bua ? N(proj.bua) : null, proj.overview || null, ub.fileName || null, ub.dataDate ? { d: ub.dataDate } : null, bb.fileName || null, bb.dataDate ? { d: bb.dataDate } : null, P.planBasis === 'bl' ? 'Baseline XER' : 'Update XER']];
+    [proj.number, proj.code, proj.name, proj.location, proj.owner, proj.consultant, proj.contractor, reportCode(), { d: reportDate() }, proj.signDate ? { d: proj.signDate } : null, proj.commencement ? { d: proj.commencement } : null, proj.handoverDate ? { d: proj.handoverDate } : null, proj.dpDate ? { d: proj.dpDate } : null, proj.completion ? { d: proj.completion } : null, N(proj.landArea), N(proj.contractValue), N(proj.totalVO), N(proj.contractValue) * N(proj.dpPct), N(proj.contractValue) + N(proj.totalVO), N(proj.retPct), N(proj.dpPct), (N(proj.contractValue) + N(proj.totalVO)) * (N(proj.retPct) + N(proj.dpPct)), proj.bua ? N(proj.bua) : null, proj.overview || null, ub.fileName || null, ub.dataDate ? { d: ub.dataDate } : null, bb.fileName || null, bb.dataDate ? { d: bb.dataDate } : null, PROG.planBasis() === 'bl' && sc.bl ? 'Baseline XER' : 'Update XER']];
   const cut = [['Cut-off ID', 'Cut-off Date', 'Report No', 'Status', 'P6 Data Date', 'XER File', 'Opened At', 'Opened By', 'Closed At', 'Closed By', 'Exports', 'Project Num.']];
   live(db.cutoffs).sort((a, b) => a.date.localeCompare(b.date)).forEach(c => cut.push([c._id, { d: c.date }, c.reportNo || null, c.status, c.dataDate ? { d: c.dataDate } : null, c.xer || '', c.openedAt || '', c.openedBy || '', c.closedAt || '', c.closedBy || '', (c.exports || []).length, pn]));
   const upd = [['Cut-off Date', 'Activity ID', 'Activity Name', 'By Contractor (%) Complete', 'By Consultant (%) Complete', 'By Owner (%) Complete', 'Actual Start Date', 'Actual Finish Date', 'Remaining Duration', 'Caused By', 'Reasons For Delay', 'Mitigation', 'Updated By', 'Project Num.']];
@@ -2158,6 +2195,7 @@ PAGES.home = v => {
       <div class="card"><div class="ch">${ic('list')}<h3>${T('your_tasks')}</h3></div><div class="cb steps">${tasks.join('') || '<span class="muted">—</span>'}</div></div>
       <div class="card"><div class="ch">${ic('chart')}<h3>${T('kpi_prog')}</h3>${sm ? `<span class="chip" style="margin-inline-start:auto">${T('cutoff')} ${D.fmt(cut.date)}</span>` : ''}</div><div class="cb">
         ${sm ? `<div class="prog-row"><span>${T('planned')}</span><div class="bar"><i class="pl" style="width:${sm.planned * 100}%"></i></div><b class="num">${fmtP(sm.planned)}</b></div>
+        <div class="tiny muted" style="margin:-4px 0 6px">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')} · ${T('pl_at_cut')} ${D.fmt(sm.cdate)}${sm.plannedDD !== null && sch.upd ? ` · ${T('pl_at_dd')} ${D.fmt(sm.ddate)}: <b>${(sm.plannedDD * 100).toFixed(2)}%</b>` : ''}</div>
         <div class="prog-row"><span>${T('contractor_act')}</span><div class="bar"><i style="width:${sm.ctr * 100}%"></i></div><b class="num">${fmtP(sm.ctr)}</b></div>
         <div class="prog-row"><span>${T('consultant_rev')}</span><div class="bar"><i style="width:${sm.cons * 100}%;background:#0E8A5F"></i></div><b class="num">${fmtP(sm.cons)}</b></div>
         <div class="prog-row"><span>${T('owner_rev')}</span><div class="bar"><i style="width:${sm.own * 100}%;background:#B76E00"></i></div><b class="num">${fmtP(sm.own)}</b></div>
@@ -2191,30 +2229,37 @@ PAGES.progress = v => {
   const cid = cut ? cut._id : (lastCutoff() || {})._id; const cdate = cut ? cut.date : reportDate();
   const codeKeys = sch.filterKeys;   // Global activity codes of the XER files (the latest update wins)
   Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; });
-  const usesBl = S.db.params.planBasis === 'bl' && !!sch.bl;
+  if (st.focus === 'updated') st.focus = 'updC';
+  const FO = { all: 'f_all', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', issues: 'f_issues', due: 'f_due' };
+  const pill = f => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T(FO[f])}</span>`;
   v.innerHTML = pageHead(T('progress'), T('prog_desc'), `${cut && (canC || canCo || canO) ? `<button class="btn" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn" data-xl>${ic('dl')}${T('export_xlsx')}</button>`) +
     (!cut ? `<div class="notice warn">${ic('warn')}<div>${T('no_open_cutoff')}</div></div>` : '') +
     (!sch.upd ? `<div class="notice info">${ic('info')}<div>${T('xer_upd_none')}</div></div>` : '') +
     (cut && !(canC || canCo || canO) ? roNotice('ctr') : '') +
-    `<div class="grid g5 kc" data-k style="margin-bottom:12px"></div>
-    <div class="tbar"><div class="pill-sel" data-fc>${['all', 'due', 'inprog', 'ns', 'comp', 'behind', 'updated', 'issues'].map(f => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T({ due: 'f_due', all: 'f_all', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues' }[f])}</span>`).join('')}</div>
-      <label class="small muted" style="display:flex;gap:6px;align-items:center">${T('lookahead')} <input class="in" type="number" style="width:64px" value="${st.la}" data-la></label></div>
+    `<div class="pk" data-k style="margin-bottom:12px"></div>
+    <div class="tbar"><div class="pill-sel" data-fc>${['all', 'inprog', 'ns', 'comp', 'behind', 'issues'].map(pill).join('')}<span class="fsep"></span>${pill('due')}<label class="lad" dir="ltr" title="${T('lookahead')}"><input class="in" type="number" min="0" value="${st.la}" data-la><i>d</i></label></div>
+      <div class="updf pill-sel"><span class="ul">${T('f_upd_lbl')}</span>${[['updC', 'r_ctr_s'], ['updCo', 'r_cons_s'], ['updO', 'r_own_s']].map(([f, k]) => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T(k)} <b data-uc="${f}">0</b></span>`).join('')}</div></div>
     <div class="tbar"><input class="in search" placeholder="${T('search')}" value="${h(st.q)}" data-q>${codeKeys.map(k => `<select class="in fsel" data-cd="${h(k)}"></select>`).join('')}<button class="btn" data-clr>${ic('x')}${T('clear_filters')}</button></div>
     <div data-g></div><div data-bulk></div>`;
   const kpis = () => {
-    const sm = PROG.summary(cid); const pp = x => `<span dir="ltr">${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)} pp</span> ${LBL('vs plan', 'عن المخطط')}`; const cl = x => x >= sm.planned ? 'ok' : 'warn';
+    const sm = PROG.summary(cid); const gap = x => `<span dir="ltr">${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)} pp</span> ${LBL('vs plan', 'عن المخطط')}`;
+    // planned: two figures on the chosen basis – at the P6 data date of the latest XER (= P6 "Schedule % Complete") and at the cut-off date (the one the actuals are compared with)
+    const plRow = (val, lbl, date) => `<div class="plr"><b>${(val * 100).toFixed(2)}%</b><span>${lbl} · ${D.fmt(date)}</span></div>`;
+    // consultant / owner: smaller boxes in one colour – the contractor figure is the one the update is driven by
+    const rev = (lbl, val, n) => `<div class="kpi mini"><div class="k">${lbl}</div><div class="v">${fmtP(val)}</div><div class="s">${n ? `${gap(val - sm.planned)} · ${fmtN(n)} ${T('rev_n')}` : T('rev_none')}</div></div>`;
     v.querySelector('[data-k]').innerHTML =
       kpi(T('activities'), fmtN(sm.n), `${T('completed')} ${fmtN(sm.comp)} · ${T('in_progress')} ${fmtN(sm.inprog)}`) +
-      kpi(T('planned'), fmtP(sm.planned), `${T(usesBl ? 'pl_bl' : 'pl_upd')}${sch.dataDate ? ' · ' + D.fmt(sch.dataDate) : ''}`) +
-      kpi(T('contractor_act'), fmtP(sm.ctr), pp(sm.ctr - sm.planned), cl(sm.ctr)) + kpi(T('consultant_rev'), fmtP(sm.cons), pp(sm.cons - sm.planned), cl(sm.cons)) + kpi(T('owner_rev'), fmtP(sm.own), pp(sm.own - sm.planned), cl(sm.own)) +
-      kpi(T('upd_ctr'), fmtN(sm.updC), T('updated')) + kpi(T('upd_cons'), fmtN(sm.updCo), T('updated')) + kpi(T('upd_own'), fmtN(sm.updO), T('updated')) +
+      `<div class="kpi pl2" data-plk><div class="k">${T('planned')} <span class="bas">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}</span></div>${sm.plannedDD !== null && sch.upd ? plRow(sm.plannedDD, T('pl_at_dd'), sm.ddate) : ''}${plRow(sm.planned, T('pl_at_cut'), sm.cdate)}</div>` +
+      `<div class="kpi main ${sm.ctr >= sm.planned ? 'ok' : 'warn'}" data-ctrk><div class="k">${T('contractor_act')}</div><div class="v">${fmtP(sm.ctr)}</div><div class="s">${gap(sm.ctr - sm.planned)}</div></div>` +
+      `<div class="revs">${rev(T('consultant_rev'), sm.cons, sm.updCo)}${rev(T('owner_rev'), sm.own, sm.updO)}</div>` +
       kpi(T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok') + kpi(T('f_issues'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok');
+    v.querySelectorAll('[data-uc]').forEach(b => { b.textContent = fmtN(sm[b.dataset.uc]); });
   };
   const passBase = (r, la) => {
     const a = r.a, e = r.e, upd = r.u && Object.keys(r.u).some(k => !k.startsWith('_'));
     if (st.focus === 'due' && !(upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'))) return false;
     if (st.focus === 'inprog' && e.status !== 'In Progress') return false; if (st.focus === 'ns' && e.status !== 'Not Started') return false; if (st.focus === 'comp' && e.status !== 'Completed') return false;
-    if (st.focus === 'behind' && !r.behind) return false; if (st.focus === 'updated' && !upd) return false; if (st.focus === 'issues' && !r.iss.length) return false;
+    if (st.focus === 'behind' && !r.behind) return false; if (st.focus === 'updC' && !PROG.byC(r.u)) return false; if (st.focus === 'updCo' && !PROG.byCo(r.u)) return false; if (st.focus === 'updO' && !PROG.byO(r.u)) return false; if (st.focus === 'issues' && !r.iss.length) return false;
     if (st.q) { const q = st.q.toLowerCase(); if (!(a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.wbs.toLowerCase().includes(q) || (a.bl && a.bl.name.toLowerCase().includes(q)))) return false; }
     return true;
   };
@@ -2237,20 +2282,24 @@ PAGES.progress = v => {
       sel.classList.toggle('on', !!cur); sel.disabled = !vals.length && !cur;
     });
   };
-  // actual dates already held by P6 (latest XER) are shown in the date boxes until the team enters its own
-  const p6d = (a, f) => f === 'as' ? (a.type !== 'TT_FinMile' ? a.as || '' : '') : f === 'af' ? (a.type !== 'TT_Mile' ? a.af || '' : '') : '';
-  const cell = (r, f, cls, type, en) => { const u = r.u || {}; let val = u[f] ?? ''; const pv = type === 'date' && !val ? p6d(r.a, f) : ''; if (pv) { val = pv; cls += ' p6v'; } const isErr = r.iss.some(i => i.f === f && i.sev === 'bad'), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
+  // actual dates and remaining duration are entered by the team only (nothing is pre-filled from the XER files). A box opens when the contractor % allows it:
+  // actual start above 0 %, actual finish at 100 %, remaining duration while in progress; a box that already holds a value stays open so it can be corrected.
+  const MISS = ['v_as', 'v_af'];   // "date missing" issues: shown as a green box to fill, still listed in the Check column
+  const openFor = (a, u, e) => { u = u || {}; return { as: canC && a.type !== 'TT_FinMile' && (e.pct > 0 || !!u.as), af: canC && a.type !== 'TT_Mile' && (e.pct >= 100 || !!u.af), rd: canC && !PROG.isMs(a) && (e.status === 'In Progress' || isNum(u.rd)) }; };
+  const needFor = (a, u, e) => { u = u || {}; return { as: e.pct > 0 && a.type !== 'TT_FinMile' && !u.as, af: e.pct >= 100 && a.type !== 'TT_Mile' && !u.af }; };   // green = the date is due for this status and not entered yet
+  const cell = (r, f, cls, type, en, need) => { const u = r.u || {}; const val = u[f] ?? ''; const isErr = r.iss.some(i => i.f === f && i.sev === 'bad' && !(need && en && MISS.includes(i.k))), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
     if (type === 'sel') return `<select class="in ${isErr ? 'err' : isW ? 'wrn' : ''}" data-u="${f}" ${en ? '' : 'disabled'} style="width:118px"><option value=""></option>${['Contractor', 'Consultant', 'Client', 'Concurrent'].map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${E(o)}</option>`).join('')}</select>`;
-    return `<input class="in ${cls} ${isErr ? 'err' : isW ? 'wrn' : ''}" type="${type}" ${type === 'number' ? 'min="0" step="any"' : ''} data-u="${f}" value="${h(val)}" ${pv ? `title="${T('from_p6')}"` : ''} ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${['ctr', 'cons', 'own'].includes(f) && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
+    const pc = ['ctr', 'cons', 'own'].includes(f);
+    return `<input class="in ${cls} ${isErr ? 'err' : isW ? 'wrn' : ''} ${need && en && !isErr ? 'need' : ''}" type="${type}" ${type === 'number' ? `min="0" ${pc ? 'max="100"' : ''} step="any"` : ''} ${type === 'date' ? `max="${cdate}"` : ''} data-u="${f}" value="${h(val)}" ${need && en ? `title="${T('need_date')}"` : ''} ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${pc && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
   const resCell = r => `${bdg(r.e.status)} <b class="num">${r.e.pctR}%</b><div class="tiny muted">${r.e.as ? 'AS ' + D.fmt(r.e.as) : ''} ${r.e.af ? '· AF ' + D.fmt(r.e.af) : ''} ${r.e.status === 'In Progress' ? '· RD ' + r.e.rd : ''}</div>`;
   const flagCell = r => r.iss.length ? r.iss.map(i => `<span class="bdg ${i.sev === 'bad' ? 'bad' : 'warn'}" title="${h(T(i.k))}">${i.sev === 'bad' ? '!' : '?'}</span>`).join(' ') + `<div class="tiny" style="color:${r.iss.some(i => i.sev === 'bad') ? 'var(--bad)' : 'var(--warn)'};line-height:1.3;margin-top:2px">${h(T(r.iss[0].k))}</div>` : (r.e.changed ? `<span class="bdg ok">→ P6</span>` : '');
-  const rowHtml = r => { const a = r.a; const ctrEn = canC, consEn = canCo, ownEn = canO; const b = PROG.blDates(a), nm = a.bl ? a.bl.name : a.name, od = b ? N(b.od) : N(a.od);   // activity cell = baseline schedule data when the baseline XER is loaded
+  const rowHtml = r => { const a = r.a; const ctrEn = canC, consEn = canCo, ownEn = canO, op = openFor(a, r.u, r.e), nd = needFor(a, r.u, r.e); const b = PROG.blDates(a), nm = a.bl ? a.bl.name : a.name, od = b ? N(b.od) : N(a.od);   // activity cell = baseline schedule data when the baseline XER is loaded
     return `<td class="stk"><input type="checkbox" data-sel ${st.sel.has(a.id) ? 'checked' : ''}></td>
     <td class="stk" style="inset-inline-start:34px;min-width:300px;max-width:340px;white-space:normal"><span class="mono muted">${h(a.id)}</span>${PROG.isMs(a) ? ' <span class="bdg navy">◆</span>' : ''}${sch.bl && !a.bl ? ` <span class="bdg warn">${T('c_notbl')}</span>` : ''}<span class="an" title="${h(nm)}${nm !== a.name ? '\nP6: ' + h(a.name) : ''}\n${h(a.wbs)}">${h(nm)}</span><span class="tiny muted">${b ? `<b class="blt">${T('c_bl')}</b> ` : ''}${D.fmt(b ? b.s : a.ps)} → ${D.fmt(b ? b.f : a.pf)} · ${T('c_od')} ${fmtN(od, od % 1 ? 1 : 0)}d${a.tf !== null && a.tf !== undefined ? ' · TF ' + fmtN(a.tf, 0) : ''}</span></td>
     <td>${bdg(a.status)}<div class="num small"><b>${Math.round(a.pct)}%</b> ${a.as ? '<span class="tiny muted">AS ' + D.fmt(a.as) + '</span>' : ''}</div></td>
     <td class="n" data-pl>${r.pl === null ? '' : r.pl.toFixed(0) + '%'}</td>
     <td>${cell(r, 'ctr', 'pct', 'number', ctrEn)}</td><td>${cell(r, 'cons', 'pct', 'number', consEn)}</td><td>${cell(r, 'own', 'pct', 'number', ownEn)}</td>
-    <td>${cell(r, 'as', 'dt', 'date', ctrEn && a.type !== 'TT_FinMile')}</td><td>${cell(r, 'af', 'dt', 'date', ctrEn && a.type !== 'TT_Mile')}</td><td>${cell(r, 'rd', 'rd', 'number', ctrEn && !PROG.isMs(a))}</td>
+    <td>${cell(r, 'as', 'dt', 'date', op.as, nd.as)}</td><td>${cell(r, 'af', 'dt', 'date', op.af, nd.af)}</td><td>${cell(r, 'rd', 'rd', 'number', op.rd)}</td>
     <td>${cell(r, 'causedBy', '', 'sel', ctrEn)}</td><td>${cell(r, 'reason', 'tx', 'text', ctrEn)}</td><td>${cell(r, 'mitigation', 'tx', 'text', ctrEn)}</td>
     <td data-res style="min-width:150px">${resCell(r)}</td><td data-fl style="min-width:230px;white-space:normal">${flagCell(r)}</td>`; };
   const PS = 50;
@@ -2269,13 +2318,24 @@ PAGES.progress = v => {
     const id = tr.dataset.a; const a = sch.byId.get(id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate);
     const r = { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate);
     tr.classList.toggle('beh', r.behind); tr.querySelector('[data-res]').innerHTML = resCell(r); tr.querySelector('[data-fl]').innerHTML = flagCell(r);
-    tr.querySelectorAll('[data-u]').forEach(i => { const f = i.dataset.u; i.classList.toggle('err', r.iss.some(x => x.f === f && x.sev === 'bad')); i.classList.toggle('wrn', r.iss.some(x => x.f === f && x.sev === 'warn')); if (f === 'rd') i.placeholder = (r.e.status === 'In Progress' && !isNum((u || {}).rd)) ? r.e.rd : ''; if (f === 'as' || f === 'af') { const pv = (u || {})[f] ? '' : p6d(a, f); if (pv) i.value = pv; i.classList.toggle('p6v', !!pv); i.title = pv ? T('from_p6') : ''; } });
+    const op = openFor(a, u, e), nd = needFor(a, u, e);
+    tr.querySelectorAll('[data-u]').forEach(i => { const f = i.dataset.u, bad = r.iss.some(x => x.f === f && x.sev === 'bad' && !(nd[f] && op[f] && MISS.includes(x.k))); i.classList.toggle('err', bad); i.classList.toggle('wrn', r.iss.some(x => x.f === f && x.sev === 'warn'));
+      if (f === 'rd') i.placeholder = (r.e.status === 'In Progress' && !isNum((u || {}).rd)) ? r.e.rd : '';
+      if (f in op) { i.disabled = !op[f]; const need = !!nd[f] && op[f]; i.classList.toggle('need', need && !bad); i.title = need ? T('need_date') : ''; } });
+    return r;
   };
   const drawBulk = () => {
     const b = v.querySelector('[data-bulk]'); if (!st.sel.size || !canC) { b.innerHTML = ''; return; }
     b.innerHTML = `<div class="bulk"><b>${st.sel.size} ${T('selected')}</b><span>${T('bulk_pct')}</span><input class="in" type="number" min="0" max="100" style="width:80px" data-bp><span>${T('bulk_as')}</span><input class="in" type="date" data-bas><span>${T('bulk_af')}</span><input class="in" type="date" data-baf><button class="btn ok sm" data-ba>${T('bulk_apply')}</button><button class="btn sm" data-bc>${T('bulk_clear')}</button><span style="flex:1"></span><button class="btn sm ghost" style="color:#fff" data-bx>×</button></div>`;
     b.querySelector('[data-bx]').onclick = () => { st.sel.clear(); draw(); };
-    b.querySelector('[data-ba]').onclick = () => { const p = b.querySelector('[data-bp]').value, as = b.querySelector('[data-bas]').value, af = b.querySelector('[data-baf]').value; st.sel.forEach(id => { if (p !== '') setUpd(cid, id, 'ctr', Number(p), true); if (as) setUpd(cid, id, 'as', as, true); if (af) setUpd(cid, id, 'af', af, true); }); touch('bulk update', `${st.sel.size} activities`); toast(T('saved'), 'ok'); draw(); };
+    b.querySelector('[data-ba]').onclick = () => { const p = b.querySelector('[data-bp]').value, as = b.querySelector('[data-bas]').value, af = b.querySelector('[data-baf]').value;
+      if (p !== '' && !(Number(p) >= 0 && Number(p) <= 100)) return toast(T('e_pct'), 'bad');
+      if (as && as > cdate) return toast(`${T('e_as_cut')} (${D.fmt(cdate)})`, 'bad'); if (af && af > cdate) return toast(`${T('e_af_cut')} (${D.fmt(cdate)})`, 'bad');
+      let skip = 0;   // the same rules as typing in the grid: start above 0 %, finish at 100 %
+      st.sel.forEach(id => { const a = sch.byId.get(id); if (p !== '') setUpd(cid, id, 'ctr', Number(p), true); const e = PROG.eff(a, (S.db.updates[cid] || {})[id]);
+        if (as) { if (e.pct > 0 && a.type !== 'TT_FinMile') setUpd(cid, id, 'as', as, true); else skip++; }
+        if (af) { if (e.pct >= 100 && a.type !== 'TT_Mile') setUpd(cid, id, 'af', af, true); else skip++; } });
+      touch('bulk update', `${st.sel.size} activities`); toast(skip ? `${T('saved')} – ${T('e_bulk_skip').replace('{n}', skip)}` : T('saved'), skip ? 'warn' : 'ok'); draw(); };
     b.querySelector('[data-bc]').onclick = async () => { if (!(await confirmBox(`${T('bulk_clear')} (${st.sel.size})?`, T('clear'), true))) return; st.sel.forEach(id => ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].forEach(f => setUpd(cid, id, f, '', true))); touch('bulk clear', `${st.sel.size} activities`); draw(); };
   };
   const g = v.querySelector('[data-g]');
@@ -2284,8 +2344,14 @@ PAGES.progress = v => {
     if (t.matches('[data-sel]')) { t.checked ? st.sel.add(tr.dataset.a) : st.sel.delete(tr.dataset.a); tr.classList.toggle('sel', t.checked); drawBulk(); return; }
     if (!t.matches('[data-u]')) return;
     let val = t.value; const f = t.dataset.u; if (['ctr', 'cons', 'own', 'rd'].includes(f) && val !== '') val = Number(val);
-    if (val === '' && t.classList.contains('p6v')) { refreshRow(tr); return; }   // a P6 date cannot be cleared here – it comes back from the XER
-    setUpd(cid, tr.dataset.a, f, val); refreshRow(tr); kpis();
+    // entry limits: a value that breaks one is not saved – the box goes back to what it held and a short message says why
+    const no = msg => { const cur = ((S.db.updates[cid] || {})[tr.dataset.a] || {})[f]; t.value = cur ?? ''; toast(msg, 'bad'); };
+    if (['ctr', 'cons', 'own'].includes(f) && val !== '' && !(val >= 0 && val <= 100)) return no(T('e_pct'));
+    if (f === 'as' && val && val > cdate) return no(`${T('e_as_cut')} (${D.fmt(cdate)})`);
+    if (f === 'af' && val && val > cdate) return no(`${T('e_af_cut')} (${D.fmt(cdate)})`);
+    if (f === 'rd' && val !== '' && !(val > 0 && Number.isInteger(val))) return no(T('v_rd'));
+    setUpd(cid, tr.dataset.a, f, val); const r = refreshRow(tr); kpis();
+    if (f === 'ctr') { const u = r.u || {}; if (u.af && r.e.pct < 100) toast(T('e_af_100'), 'bad'); else if (u.as && r.e.pct <= 0) toast(T('e_as_0'), 'bad'); }   // lowering the % left a date that is no longer allowed
   });
   v.querySelectorAll('[data-fo]').forEach(p => p.onclick = () => { st.focus = p.dataset.fo; st.page = 0; v.querySelectorAll('[data-fo]').forEach(x => x.classList.toggle('on', x === p)); draw(); });
   v.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
@@ -2631,7 +2697,7 @@ PAGES.lists = v => {
   } else if (tab === 'params') {
     const P = S.db.params; const prm = [['designWeight', 'Design drawings weight in engineering progress', 'وزن المخططات التصميمية في الإنجاز الهندسي'], ['shopWeight', 'Shop drawings weight in engineering progress', 'وزن المخططات التنفيذية في الإنجاز الهندسي'], ['creditURShop', 'Credit – shop drawing submitted, review pending', 'نسبة احتساب المخطط التنفيذي المقدم قيد المراجعة'], ['creditURDesign', 'Credit – design drawing submitted', 'نسبة احتساب المخطط التصميمي المقدم'], ['drwReviewDays', 'Drawing review period (calendar days)', 'مدة مراجعة المخططات (يوم تقويمي)'], ['lookahead', 'Progress look-ahead window (days)', 'نافذة النظرة المستقبلية للإنجاز (يوم)']];
     c.innerHTML = `<div class="fsec"><div class="fgrid">${prm.map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<input class="in" type="number" step="any" data-pp="${k}" value="${h(P[k] ?? '')}" ${dis}></label>`).join('')}
-      <label class="f" style="grid-column:1/-1;max-width:560px">${T('pl_basis')}<select class="in" data-pb ${dis}><option value="upd" ${P.planBasis !== 'bl' ? 'selected' : ''}>${T('pl_basis_upd')}</option><option value="bl" ${P.planBasis === 'bl' ? 'selected' : ''}>${T('pl_basis_bl')}</option></select><span class="tiny muted">${T('pl_basis_d')}</span></label></div></div>`;
+      <label class="f" style="grid-column:1/-1;max-width:560px">${T('pl_basis')}<select class="in" data-pb ${dis}><option value="bl" ${P.planBasis !== 'upd' ? 'selected' : ''}>${T('pl_basis_bl')}</option><option value="upd" ${P.planBasis === 'upd' ? 'selected' : ''}>${T('pl_basis_upd')}</option></select><span class="tiny muted">${T('pl_basis_d')}</span></label></div></div>`;
     const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const np = clone(P); c.querySelectorAll('[data-pp]').forEach(i => np[i.dataset.pp] = Number(i.value)); np.planBasis = c.querySelector('[data-pb]').value; S.db.params = stamp(np); touch('parameters'); toast(T('saved'), 'ok'); render(true); };
   } else {
     const pins = S.db.security.pins;
@@ -3160,19 +3226,25 @@ const IMP = (() => {
         if (d.k === 'rd' && v < 0) { row.err.push(`${label(d.k)}: ${T('v_rd')}`); return; }
         const cur = u[d.k];
         if (cur !== undefined && String(cur) === String(v)) return;
-        if (cur === undefined) {   // equal to what P6 already holds → nothing new
+        // the same limits as typing in the grid; the % the dates are checked against = this row's contractor % (or the one already entered), never below P6
+        const pctNow = () => { let p = Math.max(N(a.pct), isNum(row.rec.ctr) ? N(row.rec.ctr) : isNum(u.ctr) ? N(u.ctr) : 0); if (PROG.isMs(a) && p > 0) p = 100; return p; };
+        if (d.k === 'as' || d.k === 'af') {
+          if (v > cut.date) { row.err.push(`${label(d.k)}: ${T(d.k === 'as' ? 'e_as_cut' : 'e_af_cut')} (${D.fmt(cut.date)})`); return; }
+          if (d.k === 'as' && pctNow() <= 0) { row.err.push(`${label(d.k)}: ${T('e_as_0')}`); return; }
+          if (d.k === 'af' && pctNow() < 100) { row.err.push(`${label(d.k)}: ${T('e_af_100')}`); return; }
+          if ((d.k === 'as' && a.type === 'TT_FinMile') || (d.k === 'af' && a.type === 'TT_Mile')) return;
+        }
+        if (d.k === 'rd') { const p = pctNow(); if (!(p > 0 && p < 100) || PROG.isMs(a)) return; }   // remaining duration is kept for activities in progress only
+        if (cur === undefined) {   // equal to what P6 already holds → nothing new (actual dates are always taken: the grid shows only what the team entered)
           if (d.k === 'ctr' && Math.round(v) === p6.pct) return;
-          if (d.k === 'as' && v === (a.as || '')) return;
-          if (d.k === 'af' && v === (a.af || '')) return;
           if (d.k === 'rd' && Math.round(v) === p6.rd) return;
         }
         row.rec[d.k] = v; row.ch.push(`${label(d.k)}: ${show(cur)} → ${show(v)}`);
-        if ((d.k === 'as' || d.k === 'af') && v > cut.date) row.warn = T('v_future');
       });
       if (row.err.length) { row.st = 'err'; row.msg = row.err.join(' · '); return; }
       if (seen.has(id)) { const prev = seen.get(id); prev.st = 'skip'; prev.msg = T('imp_dup'); }
       seen.set(id, row);
-      row.st = row.ch.length ? 'upd' : 'same'; row.msg = row.ch.join(' · ') + (row.warn ? ` ⚠ ${row.warn}` : '');
+      row.st = row.ch.length ? 'upd' : 'same'; row.msg = row.ch.join(' · ');
     });
     return { tables, rows, frac: Object.keys(frac).filter(k => frac[k]).map(label), noPerm: noPerm.map(label), dropped, cid };
   }
@@ -3223,8 +3295,8 @@ const IMP = (() => {
   async function templateProgress(rowsList) {
     const cut = activeCutoff(); const U = PROG.upd(cut._id);
     const head = [T('c_id'), T('c_name'), T('c_wbs'), T('c_ps'), T('c_pf'), 'P6 Status', 'P6 %', T('c_ctr'), T('c_cons'), T('c_own'), T('c_as'), T('c_af'), T('c_rd'), T('c_cb'), T('c_rsn'), T('c_mit')];
-    const data = rowsList.map(a => { const u = U[a.id] || {}; const as = u.as || (a.type !== 'TT_FinMile' ? a.as : ''), af = u.af || (a.type !== 'TT_Mile' ? a.af : '');   // actual dates already in P6 are pre-filled
-      return [a.id, a.name, a.wbs, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, E(a.status), Math.round(a.pct), isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, as ? { d: as } : null, af ? { d: af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy ? E(u.causedBy) : null, u.reason || null, u.mitigation || null]; });
+    const data = rowsList.map(a => { const u = U[a.id] || {};   // only what the team entered – no dates are pre-filled from the XER files
+      return [a.id, a.name, a.wbs, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, E(a.status), Math.round(a.pct), isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, u.as ? { d: u.as } : null, u.af ? { d: u.af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy ? E(u.causedBy) : null, u.reason || null, u.mitigation || null]; });
     const blob = await XLSXW.build([
       { name: 'Progress', rows: [head, ...data], styles: { headerRows: [0] }, widths: [24, 55, 30, 12, 12, 12, 8, 13, 13, 13, 13, 13, 12, 14, 40, 40], freeze: 'C2', autoFilter: 1, validations: [{ sqref: `N2:N${data.length + 1}`, ref: `Lists!$A$2:$A$5` }], rtl: S.lang === 'ar' },
       { name: 'Lists', rows: [[T('c_cb')], ...['Contractor', 'Consultant', 'Client', 'Concurrent'].map(x => [E(x)])], styles: { headerRows: [0] }, widths: [24] },
@@ -3419,9 +3491,9 @@ tfoot td{background:#E8EEF6;font-weight:700}
       { h: '→ P6', v: r => `${bdg(r.e.status)} <b>${r.e.pctR}%</b>${r.behind ? ' ' + bdg('Behind') : ''}` },
       { h: T('c_cb'), v: r => esc(E((r.u || {}).causedBy || '')) }, { h: T('c_rsn'), v: r => esc((r.u || {}).reason || '') }, { h: T('c_mit'), v: r => esc((r.u || {}).mitigation || '') }];
     const cols = cols0.map((c, i) => Object.assign({}, c, { w: W[i] }));
-    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (v) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(v)}`); });
+    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues', updC: 'upd_ctr', updCo: 'upd_cons', updO: 'upd_own' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (v) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(v)}`); });
     const behind = sm.rows.filter(r => r.behind && r.u && r.u.reason);
-    return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned), T(S.db.params.planBasis === 'bl' && sch.bl ? 'pl_bl' : 'pl_upd')], [T('contractor_act'), fmtP(sm.ctr), `${((sm.ctr - sm.planned) * 100).toFixed(1)} pp · SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('owner_rev'), fmtP(sm.own)], [T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
+    return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned), `${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}${sm.plannedDD !== null && sch.upd ? ` · ${T('pl_at_dd')} ${(sm.plannedDD * 100).toFixed(2)}%` : ''}`], [T('contractor_act'), fmtP(sm.ctr), `${((sm.ctr - sm.planned) * 100).toFixed(1)} pp · SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('owner_rev'), fmtP(sm.own)], [T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
       `<div class="note">${T('activities')}: ${fmtN(sm.n)} · ${T('completed')}: ${fmtN(sm.comp)} · ${T('in_progress')}: ${fmtN(sm.inprog)} · ${T('not_started')}: ${fmtN(sm.ns)}${fl.length ? ` — ${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fl.join(' · ')}` : ''}</div>` +
       sec(LBL('Activities', 'الأنشطة'), table(cols, rows, null, 'fx'), rows.length));
   };

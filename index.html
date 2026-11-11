@@ -959,6 +959,8 @@ function emptyDB(p) {
    SCH() = the schedule the platform works on: the activities of the latest update (or of the baseline while no update is loaded),
    each with its baseline activity (a.bl) and its activity codes merged from both files (the update wins on conflict). */
 let _sch = null;
+// code types never used as page filters (decision 11-Nov-2026: L3- Work Type / L4- Sub Work Type add no value)
+const NOFILT = /^L[34]-\s/i;
 const DB_SCHEMA = 2;   // 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
 /* activity codes are stored packed (about half the size of a schedule): schedule.cd = {t: [code type names], v: [[values of type 0], …]}
    and activity.c = [index of the value per type, -1 = none]. activity.codes stays as an empty object for pages still running the previous tool. */
@@ -993,7 +995,7 @@ function SCH(db = S.db) {
   const glob = codeTypes.filter(k => meta[k] && meta[k][0] === 'G').sort((x, y) => (meta[x][1] - meta[y][1]) || num(x, y));
   // filters = the Global activity codes of the XER files (files imported before code scopes were read keep the former numbered-code rule)
   const cand = glob.length ? glob : Object.keys(meta).length ? codeTypes : codeTypes.filter(k => /^0[2-9] /.test(k) || /^1\d /.test(k)).slice(0, 7);
-  return (_sch = Object.assign({}, src, { upd: u, bl: b, src, activities, byId: new Map(activities.map(a => [a.id, a])), codeTypes, codeMeta: meta, codeVals: vals, globalCodes: glob, filterKeys: cand.filter(k => vals[k].size > 1), codeScoped: Object.keys(meta).length > 0,
+  return (_sch = Object.assign({}, src, { upd: u, bl: b, src, activities, byId: new Map(activities.map(a => [a.id, a])), codeTypes, codeMeta: meta, codeVals: vals, globalCodes: glob, filterKeys: cand.filter(k => vals[k].size > 1 && !NOFILT.test(k)), codeScoped: Object.keys(meta).length > 0,
     newIds: b && u ? activities.filter(a => !a.bl).length : 0, goneIds: b && u ? b.activities.filter(a => !ids.has(a.id)).length : 0 }));
 }
 /* ---------- presence: who is on the platform (shown to User-management holders) ---------- */

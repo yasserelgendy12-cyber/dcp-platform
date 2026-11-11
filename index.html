@@ -218,6 +218,15 @@ select.fsel.on{border-color:var(--pri);background:var(--pri-l);color:var(--navy)
 .sigbar.dk .sigc{background:transparent;border-color:#3E5F8A;color:#C9D6E8}.sigbar.dk .sigc.nm{border-color:#7FB3F0;color:#fff}.sigbar.dk a.sigc.ln{color:#7FB3F0}.sigbar.dk .sigcp{color:#8FA6C4}
 @media print{#sig{display:none}}
 
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:1200px){.g5{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:800px){.g5{grid-template-columns:1fr 1fr}}
+.kc .kpi{padding:8px 12px}.kc .kpi .v{font-size:18px;margin-top:1px}
+.in.p6v{color:var(--ink2);font-weight:400;background:#F7F9FC}
+.blt{color:var(--navy);font-weight:700}
+.chip svg,.sec-t svg{width:14px;height:14px;flex:0 0 14px}
+.bdg .dot{width:6px;height:6px;vertical-align:1px}
+
 </style>
 </head>
 <body>
@@ -268,7 +277,7 @@ en: {
   kpi_hse: 'Safety (HSE)', kpi_mp: 'Manpower (latest day)', kpi_dc: 'Document control', kpi_drw: 'Engineering',
   commencement: 'Commencement', completion: 'Contract completion', elapsed: 'Elapsed days', remaining: 'Remaining days', time_elapsed: 'Time elapsed',
   contract_value: 'Contract value', vo: 'Variation orders', bac: 'BAC', net_invoiced: 'Net invoiced', released: 'Released / paid', outstanding: 'Outstanding',
-  planned: 'Planned', contractor_act: 'Contractor actual', consultant_rev: 'Consultant reviewed', owner_rev: 'Owner reviewed', variance: 'Variance', spi: 'SPI',
+  planned: 'Planned', contractor_act: 'Contractor actual', variance: 'Variance', spi: 'SPI',
   manhours: 'Man-hours', lti_free: 'Without LTI', incidents: 'Incidents', open_obs: 'Open observations', permits: 'Permits issued',
   direct: 'Direct labor', indirect: 'Indirect labor', equip_working: 'Equipment working', peak_direct: 'Peak direct', avg7: 'Avg direct (7 days)', last_day: 'Last reported day',
   total_subm: 'Total submissions', awaiting: 'Awaiting reply', overdue: 'Overdue', code_a: 'Code A', code_b: 'Code B', code_c: 'Code C',
@@ -276,7 +285,6 @@ en: {
   activities: 'Activities', completed: 'Completed', in_progress: 'In progress', not_started: 'Not started', behind: 'Behind plan', updated: 'Updated this cut-off',
   task_ok: 'Up to date', task_todo: 'To do', go: 'Open',
   // progress
-  prog_desc: 'Site progress per P6 activity for the active cut-off. P6 values come from the latest XER; your entries override them in the P6 export.',
   imp_btn: 'Import Excel', imp_title: 'Import from Excel', imp_step1: 'Download the template (optional)', imp_tpl: 'Download template', imp_tpl_hint: 'Ready-made sheet with this page’s columns, drop-down lists and instructions.',
   imp_tpl_n: 'activities as currently filtered on the page, pre-filled with this cut-off’s entries', imp_step2: 'Choose the Excel file',
   imp_accept: 'Accepted: this template, any Excel exported from the platform, the old workbook tables (same column names) and P6 / UPD sheets for progress. Column order does not matter; titles above the header row are skipped.',
@@ -304,15 +312,13 @@ en: {
   c_as: 'Actual start', c_af: 'Actual finish', c_rd: 'Rem. dur. (d)', c_cb: 'Caused by', c_rsn: 'Reason for delay', c_mit: 'Mitigation', c_flags: 'Check',
   c_od: 'Orig. dur.', c_ps: 'Planned start', c_pf: 'Planned finish', c_wbs: 'WBS',
   selected: 'selected', bulk_pct: 'Set contractor %', bulk_as: 'Actual start', bulk_af: 'Actual finish', bulk_apply: 'Apply to selected', bulk_clear: 'Clear entries',
-  no_schedule: 'No schedule loaded. The Planner must import the latest P6 XER in "Cut-off & P6 Export".',
   no_open_cutoff: 'There is no open cut-off. The Planner must open a cut-off before progress can be entered.',
   v_range: 'Progress must be 0–100', v_lower: 'Lower than P6 % – P6 value is kept', v_as: 'Actual start required', v_af: 'Actual finish required at 100%',
   v_order: 'Actual finish before actual start', v_future: 'Date after the cut-off', v_rd: 'Remaining duration must be a whole number > 0',
   v_rev: 'Review % higher than contractor %', v_reason: 'Behind plan – reason for delay required', v_af_np: 'Actual finish entered but progress < 100%',
   // p6
-  p6_desc: 'Manage the reporting cut-off dates, load the latest P6 schedule (XER) and generate the update file for Primavera P6.',
   active_cutoff: 'Active cut-off', open_cutoff: 'Open new cut-off', close_cutoff: 'Close cut-off', reopen: 'Re-open', cutoff_hist: 'Cut-off history',
-  import_xer: 'Import P6 schedule (XER)', xer_drop: 'Drop the latest P6 XER here or click to browse', xer_loaded: 'Schedule loaded',
+  import_xer: 'Import P6 schedule (XER)', 
   gen_p6: 'Generate “Last Updates TO P6 From Platform.xlsx”', p6_opts: 'Export options', p6_all: 'All activities (full P6 import list)', p6_changed: 'Changed activities only',
   p6_ready: 'Ready for P6', p6_changed_n: 'Changed vs P6', p6_blockers: 'Issues to fix before export', p6_export_anyway: 'Export anyway',
   p6_done: 'P6 update file generated', p6_hint: 'In P6: File › Import › Spreadsheet (XLS) › Activities. The file keeps the P6 field codes (row 1) and headers (row 2).',
@@ -347,6 +353,32 @@ en: {
   newproj_title: 'Create new project', proj_number: 'Project number', proj_code: 'Project code', proj_name: 'Project name',
   create: 'Create', welcome_empty: 'Get started',
   install_hint: 'Open the tool from https://yasserelgendy12-cyber.github.io/dcp-platform/ (always the latest version), or from the shared “000 Data Collection Platform/App” folder. Project data is kept in each project’s own OneDrive file.',
+  // --- XER sources (baseline + updates), progress split, presence ---
+  consultant_rev: 'Consultant actual', owner_rev: 'Owner actual',
+  upd_ctr: 'Updated by contractor', upd_cons: 'Updated by consultant', upd_own: 'Updated by owner', r_ctr_s: 'Contractor', r_cons_s: 'Consultant', r_own_s: 'Owner',
+  c_bl: 'BL', c_notbl: 'Not in baseline', c_bls: 'BL start', c_blf: 'BL finish', from_p6: 'Date held by P6 (latest XER) – change it to enter a different date',
+  pl_upd: 'Latest update XER', pl_bl: 'Baseline XER', pl_basis: 'Plan % basis', pl_basis_upd: 'Planned dates of the latest update XER', pl_basis_bl: 'Baseline XER dates (update dates for activities not in the baseline)',
+  pl_basis_d: 'Plan % of an activity = position of the cut-off date between its start and finish. P6 moves the planned dates of delayed activities that have not started to the data date at every re-schedule, so the update XER shows a lower plan than the baseline.',
+  prog_desc: 'Site progress per P6 activity for the active cut-off. Activity data come from the baseline XER, P6 status and actual dates from the latest update XER; your entries override them in the P6 export.',
+  no_schedule: 'No schedule loaded. The Planner must upload the baseline XER or the latest update XER in "Cut-off & P6 Export".',
+  p6_desc: 'Manage the reporting cut-off dates, load the project schedules from P6 – the approved baseline and the weekly updates (XER) – and generate the update file for Primavera P6.',
+  xer_upd: 'Schedule update (latest XER)', xer_bl: 'Baseline schedule (XER)', not_loaded: 'Not loaded', xer_loaded: 'Update loaded', xer_bl_loaded: 'Baseline loaded',
+  xer_drop: 'Drop the latest update XER here or click to browse', xer_bl_drop: 'Drop the approved baseline XER here or click to browse',
+  xer_upd_hint: 'After every P6 update and re-schedule, add the new XER here. It gives the P6 status, % complete, actual dates, remaining duration, planned dates, weights and activity codes.',
+  xer_bl_hint: 'The baseline gives the activity ID, name, baseline start, finish and duration shown on the Progress page. If the two files disagree on an activity code, the update file wins.',
+  xer_none: 'No XER file loaded yet.', xer_bl_none: 'No baseline loaded yet.', xer_upd_none: 'No update XER loaded yet – the platform works on the baseline schedule until the first update is added.',
+  xer_info: 'Information read from the XER files', xer_proj: 'P6 project', xer_dates: 'Start → finish', xer_mf: 'must finish by', xer_sf: 'scheduled finish', xer_cost: 'Budgeted cost', xer_units: 'Labour units', xer_struct: 'Structure',
+  xer_rel: 'Relationships', xer_wbs: 'WBS elements', xer_cal: 'Calendar', xer_cmp: 'Baseline ↔ update', xer_cmp_v: '{a} activities in both · {b} new in the update · {c} not in the update', xer_fin: 'Finish',
+  xer_gcodes: 'Global activity codes (page filters)', xer_ocodes: 'Other activity codes', xer_single: 'One value only – not shown as a filter', xer_nog: 'No Global activity codes in the file – all codes are used as filters.',
+  xer_reimport: 'This file was loaded before the platform read code scopes. Add the XER again to read the Global activity codes; until then the numbered codes are used.',
+  xer_apply: 'Update Project setup from XER', xer_apply_d: 'Tick the fields to copy from the XER files to Project setup. Fields that already hold a different value are left unticked.', xer_cur: 'Current', xer_new: 'From XER', xer_applied: 'Project setup updated from the XER files',
+  xer_hist: 'XER files register', xer_kind: 'Type', xer_k_bl: 'Baseline', xer_k_upd: 'Update',
+  xer_mismatch: 'Only {n} activity IDs of this file exist in the other loaded schedule – it may belong to another project. Use it anyway?',
+  xer_bl_prog: 'This file has {n} activities with progress; a baseline normally has none. Load it as the baseline anyway?',
+  need_reload: 'This project was saved by a newer version of the tool. Reload the page (Ctrl+Shift+R) to continue – syncing is paused on this page until then.',
+  pr_title: 'Who is on the platform', pr_online: 'online now', pr_chip: 'online', pr_on: 'Online now', pr_idle: 'Signed in – idle', pr_off: 'Offline', pr_never: 'Never signed in', pr_out: 'signed out',
+  pr_last: 'Last activity', pr_login: 'Signed in at', pr_page: 'Page', pr_dev: 'Device', pr_refresh: 'Refresh',
+  pr_note: 'Online now = worked on the platform in the last 15 minutes. Signed in – idle = signed in but no activity for more than 15 minutes. The list updates with every sync (about every 5 minutes) or with Refresh.',
 }, ar: {
   appName: 'منصة جمع بيانات المشروع', appSub: 'بيانات الموقع الأسبوعية • تحديثات P6 • قاعدة بيانات التقارير',
   nav_g_main: 'نظرة عامة', nav_g_input: 'جمع البيانات', nav_g_ctrl: 'التحكم و P6', nav_g_admin: 'الإدارة',
@@ -388,14 +420,13 @@ en: {
   kpi_hse: 'السلامة والصحة المهنية', kpi_mp: 'العمالة (آخر يوم)', kpi_dc: 'التحكم بالوثائق', kpi_drw: 'الأعمال الهندسية',
   commencement: 'تاريخ البدء', completion: 'تاريخ الانتهاء التعاقدي', elapsed: 'الأيام المنقضية', remaining: 'الأيام المتبقية', time_elapsed: 'نسبة المدة المنقضية',
   contract_value: 'قيمة العقد', vo: 'الأوامر التغييرية', bac: 'الميزانية عند الإنجاز', net_invoiced: 'صافي المستخلصات', released: 'المحصّل / المدفوع', outstanding: 'المتبقي',
-  planned: 'المخطط', contractor_act: 'فعلي المقاول', consultant_rev: 'مراجعة الاستشاري', owner_rev: 'مراجعة المالك', variance: 'الانحراف', spi: 'مؤشر أداء الجدول',
+  planned: 'المخطط', contractor_act: 'فعلي المقاول', variance: 'الانحراف', spi: 'مؤشر أداء الجدول',
   manhours: 'ساعات العمل', lti_free: 'بدون إصابة مضيعة للوقت', incidents: 'الحوادث', open_obs: 'ملاحظات مفتوحة', permits: 'تصاريح العمل',
   direct: 'عمالة مباشرة', indirect: 'عمالة غير مباشرة', equip_working: 'معدات عاملة', peak_direct: 'أعلى عمالة مباشرة', avg7: 'متوسط المباشرة (7 أيام)', last_day: 'آخر يوم مُسجّل',
   total_subm: 'إجمالي التقديمات', awaiting: 'بانتظار الرد', overdue: 'متأخر', code_a: 'كود A', code_b: 'كود B', code_c: 'كود C',
   design_prog: 'إنجاز التصميم', shop_prog: 'إنجاز المخططات التنفيذية', eng_prog: 'الإنجاز الهندسي',
   activities: 'الأنشطة', completed: 'مكتمل', in_progress: 'جارٍ', not_started: 'لم يبدأ', behind: 'متأخر عن الخطة', updated: 'تم تحديثه في هذا القطع',
   task_ok: 'مكتمل', task_todo: 'مطلوب', go: 'فتح',
-  prog_desc: 'تحديث إنجاز الموقع لكل نشاط في P6 لتاريخ القطع الحالي. قيم P6 مأخوذة من آخر ملف XER، وإدخالاتك تُعتمد في ملف التصدير إلى P6.',
   imp_btn: 'استيراد Excel', imp_title: 'استيراد من Excel', imp_step1: 'تنزيل النموذج (اختياري)', imp_tpl: 'تنزيل النموذج', imp_tpl_hint: 'شيت جاهز بأعمدة هذه الصفحة مع قوائم منسدلة وتعليمات.',
   imp_tpl_n: 'نشاط حسب الفلتر الحالي في الصفحة، مع إدخالات تاريخ القطع الحالي', imp_step2: 'اختيار ملف Excel',
   imp_accept: 'يقبل: هذا النموذج، أي ملف Excel مُصدَّر من المنصة، جداول ملف الإكسل القديم (بنفس أسماء الأعمدة)، وشيتات P6 / UPD للإنجاز. ترتيب الأعمدة غير مهم، والعناوين أعلى صف الأعمدة يتم تخطيها.',
@@ -423,14 +454,12 @@ en: {
   c_as: 'البدء الفعلي', c_af: 'الانتهاء الفعلي', c_rd: 'المدة المتبقية', c_cb: 'المتسبب', c_rsn: 'سبب التأخير', c_mit: 'الإجراء التصحيحي', c_flags: 'فحص',
   c_od: 'المدة الأصلية', c_ps: 'البدء المخطط', c_pf: 'الانتهاء المخطط', c_wbs: 'هيكل تجزئة العمل',
   selected: 'محدد', bulk_pct: 'نسبة المقاول', bulk_as: 'البدء الفعلي', bulk_af: 'الانتهاء الفعلي', bulk_apply: 'تطبيق على المحدد', bulk_clear: 'مسح الإدخالات',
-  no_schedule: 'لم يتم تحميل البرنامج الزمني. على مهندس التخطيط استيراد آخر ملف XER من صفحة "تاريخ القطع وتصدير P6".',
   no_open_cutoff: 'لا يوجد تاريخ قطع مفتوح. على مهندس التخطيط فتح تاريخ قطع قبل إدخال الإنجاز.',
   v_range: 'النسبة يجب أن تكون بين 0 و 100', v_lower: 'أقل من نسبة P6 – سيتم الإبقاء على قيمة P6', v_as: 'تاريخ البدء الفعلي مطلوب', v_af: 'تاريخ الانتهاء الفعلي مطلوب عند 100%',
   v_order: 'الانتهاء الفعلي قبل البدء الفعلي', v_future: 'التاريخ بعد تاريخ القطع', v_rd: 'المدة المتبقية يجب أن تكون عدداً صحيحاً أكبر من صفر',
   v_rev: 'نسبة المراجعة أعلى من نسبة المقاول', v_reason: 'متأخر عن الخطة – يجب إدخال سبب التأخير', v_af_np: 'تم إدخال انتهاء فعلي والنسبة أقل من 100%',
-  p6_desc: 'إدارة تواريخ القطع، وتحميل آخر برنامج زمني من P6 (XER)، وإنشاء ملف التحديث لبريمافيرا P6.',
   active_cutoff: 'تاريخ القطع الحالي', open_cutoff: 'فتح تاريخ قطع جديد', close_cutoff: 'إغلاق تاريخ القطع', reopen: 'إعادة فتح', cutoff_hist: 'سجل تواريخ القطع',
-  import_xer: 'استيراد البرنامج الزمني (XER)', xer_drop: 'اسحب آخر ملف XER هنا أو اضغط للاختيار', xer_loaded: 'تم تحميل البرنامج الزمني',
+  import_xer: 'استيراد البرنامج الزمني (XER)', 
   gen_p6: 'إنشاء ملف “Last Updates TO P6 From Platform.xlsx”', p6_opts: 'خيارات التصدير', p6_all: 'كل الأنشطة (قائمة الاستيراد الكاملة)', p6_changed: 'الأنشطة المتغيرة فقط',
   p6_ready: 'جاهز لـ P6', p6_changed_n: 'متغير عن P6', p6_blockers: 'ملاحظات يجب معالجتها قبل التصدير', p6_export_anyway: 'تصدير على أي حال',
   p6_done: 'تم إنشاء ملف تحديث P6', p6_hint: 'في P6: File › Import › Spreadsheet (XLS) › Activities. يحافظ الملف على أكواد حقول P6 (الصف 1) والعناوين (الصف 2).',
@@ -460,6 +489,32 @@ en: {
   newproj_title: 'إنشاء مشروع جديد', proj_number: 'رقم المشروع', proj_code: 'كود المشروع', proj_name: 'اسم المشروع',
   create: 'إنشاء', welcome_empty: 'البدء',
   install_hint: 'افتح الأداة من ⁦https://yasserelgendy12-cyber.github.io/dcp-platform/⁩ (آخر نسخة دائماً)، أو من المجلد المشترك "⁦000 Data Collection Platform/App⁩". بيانات كل مشروع محفوظة في ملفه الخاص على ⁦OneDrive⁩.',
+  // --- مصادر XER (الأساسي + التحديثات)، تقسيم الإنجاز، المتواجدون ---
+  consultant_rev: 'فعلي الاستشاري', owner_rev: 'فعلي المالك',
+  upd_ctr: 'محدَّث من المقاول', upd_cons: 'محدَّث من الاستشاري', upd_own: 'محدَّث من المالك', r_ctr_s: 'المقاول', r_cons_s: 'الاستشاري', r_own_s: 'المالك',
+  c_bl: 'الأساسي', c_notbl: 'ليس في الأساسي', c_bls: 'البدء الأساسي', c_blf: 'الانتهاء الأساسي', from_p6: 'تاريخ مسجل في ⁦P6⁩ (آخر ملف ⁦XER⁩) – عدّله لإدخال تاريخ مختلف',
+  pl_upd: 'آخر تحديث ⁦XER⁩', pl_bl: 'الجدول الأساسي ⁦XER⁩', pl_basis: 'أساس حساب النسبة المخططة', pl_basis_upd: 'التواريخ المخططة في آخر ملف تحديث ⁦XER⁩', pl_basis_bl: 'تواريخ الجدول الأساسي ⁦XER⁩ (وتواريخ التحديث للأنشطة غير الموجودة في الأساسي)',
+  pl_basis_d: 'النسبة المخططة للنشاط = موضع تاريخ القطع بين بدايته ونهايته. برنامج ⁦P6⁩ يرحّل التواريخ المخططة للأنشطة المتأخرة التي لم تبدأ إلى تاريخ البيانات مع كل إعادة جدولة، لذلك يُظهر ملف التحديث نسبة مخططة أقل من الجدول الأساسي.',
+  prog_desc: 'تحديث إنجاز الموقع لكل نشاط في ⁦P6⁩ لتاريخ القطع الحالي. بيانات النشاط من ملف ⁦XER⁩ للجدول الأساسي، وحالة ⁦P6⁩ والتواريخ الفعلية من آخر ملف تحديث ⁦XER⁩، وإدخالاتك تُعتمد في ملف التصدير إلى ⁦P6⁩.',
+  no_schedule: 'لم يتم تحميل البرنامج الزمني. على مهندس التخطيط رفع ملف ⁦XER⁩ للجدول الأساسي أو لآخر تحديث من صفحة "تاريخ القطع وتصدير ⁦P6⁩".',
+  p6_desc: 'إدارة تواريخ القطع، وتحميل جداول المشروع من ⁦P6⁩ – الجدول الأساسي المعتمد والتحديثات الأسبوعية (⁦XER⁩) – وإنشاء ملف التحديث لبريمافيرا ⁦P6⁩.',
+  xer_upd: 'تحديث البرنامج الزمني (آخر ملف ⁦XER⁩)', xer_bl: 'الجدول الزمني الأساسي (⁦XER⁩)', not_loaded: 'غير محمّل', xer_loaded: 'تم تحميل التحديث', xer_bl_loaded: 'تم تحميل الجدول الأساسي',
+  xer_drop: 'اسحب آخر ملف تحديث ⁦XER⁩ هنا أو اضغط للاختيار', xer_bl_drop: 'اسحب ملف ⁦XER⁩ للجدول الأساسي المعتمد هنا أو اضغط للاختيار',
+  xer_upd_hint: 'بعد كل تحديث وإعادة جدولة في ⁦P6⁩ أضف ملف ⁦XER⁩ الجديد هنا. تُقرأ منه حالة ⁦P6⁩ ونسبة الإنجاز والتواريخ الفعلية والمدة المتبقية والتواريخ المخططة والأوزان وأكواد الأنشطة.',
+  xer_bl_hint: 'يُقرأ من الجدول الأساسي كود النشاط واسمه وتاريخ بدايته ونهايته ومدته المعروضة في صفحة تحديث الإنجاز. عند اختلاف كود نشاط بين الملفين يُعتمد ملف التحديث.',
+  xer_none: 'لم يُحمّل أي ملف ⁦XER⁩ بعد.', xer_bl_none: 'لم يُحمّل الجدول الأساسي بعد.', xer_upd_none: 'لم يُحمّل ملف تحديث ⁦XER⁩ بعد – تعمل المنصة على الجدول الأساسي حتى إضافة أول تحديث.',
+  xer_info: 'المعلومات المقروءة من ملفات ⁦XER⁩', xer_proj: 'مشروع ⁦P6⁩', xer_dates: 'البداية ← النهاية', xer_mf: 'الانتهاء الملزم', xer_sf: 'الانتهاء المجدول', xer_cost: 'التكلفة المخططة', xer_units: 'ساعات العمالة', xer_struct: 'الهيكل',
+  xer_rel: 'العلاقات', xer_wbs: 'عناصر ⁦WBS⁩', xer_cal: 'التقويم', xer_cmp: 'الأساسي ↔ التحديث', xer_cmp_v: '{a} نشاط في الملفين · {b} جديد في التحديث · {c} غير موجود في التحديث', xer_fin: 'النهاية',
+  xer_gcodes: 'الأكواد العامة ⁦Global Activity Codes⁩ (فلاتر الصفحات)', xer_ocodes: 'أكواد أخرى', xer_single: 'قيمة واحدة فقط – لا يظهر كفلتر', xer_nog: 'لا توجد أكواد عامة ⁦Global⁩ في الملف – تُستخدم كل الأكواد كفلاتر.',
+  xer_reimport: 'هذا الملف حُمّل قبل أن تقرأ المنصة نطاق الأكواد. أضف ملف ⁦XER⁩ مرة أخرى لقراءة الأكواد العامة ⁦Global⁩، وحتى ذلك تُستخدم الأكواد المرقّمة.',
+  xer_apply: 'تحديث إعداد المشروع من ⁦XER⁩', xer_apply_d: 'اختر الحقول التي تُنسخ من ملفات ⁦XER⁩ إلى إعداد المشروع. الحقول التي بها قيمة مختلفة حالياً غير محددة افتراضياً.', xer_cur: 'الحالي', xer_new: 'من ⁦XER⁩', xer_applied: 'تم تحديث إعداد المشروع من ملفات ⁦XER⁩',
+  xer_hist: 'سجل ملفات ⁦XER⁩', xer_kind: 'النوع', xer_k_bl: 'أساسي', xer_k_upd: 'تحديث',
+  xer_mismatch: 'عدد {n} فقط من أكواد الأنشطة في هذا الملف موجود في الجدول المحمّل الآخر – قد يكون لمشروع آخر. هل تريد استخدامه؟',
+  xer_bl_prog: 'هذا الملف به {n} نشاط عليه إنجاز، والجدول الأساسي عادةً بدون إنجاز. هل تريد تحميله كجدول أساسي؟',
+  need_reload: 'تم حفظ هذا المشروع بنسخة أحدث من الأداة. أعد تحميل الصفحة (⁦Ctrl+Shift+R⁩) للمتابعة – المزامنة متوقفة في هذه الصفحة حتى ذلك.',
+  pr_title: 'المتواجدون على المنصة', pr_online: 'متصل الآن', pr_chip: 'متصل', pr_on: 'متصل الآن', pr_idle: 'داخل المنصة – بدون نشاط', pr_off: 'غير متصل', pr_never: 'لم يدخل بعد', pr_out: 'سجّل الخروج',
+  pr_last: 'آخر نشاط', pr_login: 'وقت الدخول', pr_page: 'الصفحة', pr_dev: 'الجهاز', pr_refresh: 'تحديث',
+  pr_note: 'متصل الآن = عمل على المنصة خلال آخر 15 دقيقة. داخل المنصة – بدون نشاط = سجّل الدخول ولم يعمل منذ أكثر من 15 دقيقة. تتحدث القائمة مع كل مزامنة (كل 5 دقائق تقريباً) أو بزر تحديث.',
 }};
 /* fixed enumerations (stored in English, displayed per language) */
 const ENUM_AR = {
@@ -527,7 +582,15 @@ const XER = (() => {
       }
       return (pathCache[id] = parts.reverse().join('.'));
     };
-    const types = {}; recs(T, 'ACTVTYPE').forEach(a => types[a.actv_code_type_id] = a.actv_code_type);
+    // activity code types: Global / EPS / Project scope (project-level types of other projects are ignored)
+    const types = {}, codeMeta = {};
+    recs(T, 'ACTVTYPE').forEach(a => {
+      const sc = { AS_Global: 'G', AS_EPS: 'E', AS_Project: 'P' }[a.actv_code_type_scope] || '';
+      if (sc === 'P' && a.proj_id && a.proj_id !== projId) return;
+      const name = (a.actv_code_type || '').trim(); if (!name) return;
+      types[a.actv_code_type_id] = name;
+      if (!codeMeta[name] || (sc === 'G' && codeMeta[name][0] !== 'G')) codeMeta[name] = [sc, num(a.seq_num)];
+    });
     const codes = {}; recs(T, 'ACTVCODE').forEach(c => codes[c.actv_code_id] = (c.actv_code_name || c.short_name || '').trim());
     const tcodes = {};
     recs(T, 'TASKACTV').forEach(a => {
@@ -535,8 +598,11 @@ const XER = (() => {
       const tn = types[a.actv_code_type_id]; if (!tn) return;
       (tcodes[a.task_id] = tcodes[a.task_id] || {})[tn] = codes[a.actv_code_id] || '';
     });
-    const cost = {};
-    recs(T, 'TASKRSRC').forEach(r => { if (r.proj_id && r.proj_id !== projId) return; cost[r.task_id] = (cost[r.task_id] || 0) + num(r.target_cost); });
+    const cost = {}; let labUnits = 0;
+    recs(T, 'TASKRSRC').forEach(r => { if (r.proj_id && r.proj_id !== projId) return; cost[r.task_id] = (cost[r.task_id] || 0) + num(r.target_cost); if (r.rsrc_type === 'RT_Labor') labUnits += num(r.target_qty); });
+    const root = Object.values(wbs).find(w => w.proj_id === projId && w.proj_node_flag === 'Y') || {};
+    const calRec = recs(T, 'CALENDAR').find(c => c.clndr_id === proj.clndr_id) || {};
+    const hdr = (text.split(/\r?\n/, 1)[0] || '').split('\t').map(x => x.trim());   // ERMHDR: version, export date, …, base currency (last field)
 
     const acts = [];
     for (const t of tasksAll) {
@@ -584,6 +650,14 @@ const XER = (() => {
     return {
       fileName: fileName || '',
       projShort: proj.proj_short_name || '',
+      projName: (root.wbs_name || '').trim(),
+      calName: (calRec.clndr_name || '').trim(),
+      dayHr: defHr,
+      wbsCount: Object.values(wbs).filter(w => w.proj_id === projId).length,
+      relCount: recs(T, 'TASKPRED').filter(r => !r.proj_id || r.proj_id === projId).length,
+      labUnits: r2(labUnits),
+      currency: hdr[0] === 'ERMHDR' && hdr.length >= 9 ? hdr[hdr.length - 1] : '',
+      codeMeta,
       dataDate: d10(proj.last_recalc_date || proj.next_data_date),
       planStart: d10(proj.plan_start_date),
       planEnd: d10(proj.scd_end_date || proj.plan_end_date),
@@ -739,6 +813,7 @@ const XLSXR = (() => {
     const ssX = await z.get('xl/sharedStrings.xml');
     const ss = ssX ? Array.from(xml(ssX).getElementsByTagName('si')).map(texts) : [];
     const wb = xml(await z.get('xl/workbook.xml'));
+    const pr = wb.getElementsByTagName('workbookPr')[0]; const date1904 = !!pr && /^(1|true)$/i.test(pr.getAttribute('date1904') || '');   // workbooks using the 1904 date system (older Excel for Mac)
     const relsX = xml(await z.get('xl/_rels/workbook.xml.rels'));
     const rels = {}; Array.from(relsX.getElementsByTagName('Relationship')).forEach(r => rels[r.getAttribute('Id')] = r.getAttribute('Target'));
     const sheets = [];
@@ -765,7 +840,7 @@ const XLSXR = (() => {
       for (let i = 0; i < rows.length; i++) rows[i] = rows[i] || [];
       sheets.push({ name: s.getAttribute('name'), rows });
     }
-    return { sheets };
+    return { sheets, date1904 };
   }
   function readCsv(text) {
     const first = text.split(/\r?\n/)[0] || ''; const sep = (first.match(/;/g) || []).length > (first.match(/,/g) || []).length ? ';' : (first.includes('\t') ? '\t' : ',');
@@ -842,13 +917,80 @@ const IDB = (() => {
 const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users'];
 function emptyDB(p) {
   return {
-    schema: 1, id: `${p.number}-${p.code}`, createdAt: nowISO(), _at: nowISO(),
+    schema: DB_SCHEMA, id: `${p.number}-${p.code}`, createdAt: nowISO(), _at: nowISO(),
     project: Object.assign({ number: '', code: '', name: '', nameAr: '', location: '', owner: '', consultant: '', contractor: '', reportPrefix: '', contractValue: 0, totalVO: 0, landArea: '', dpPct: 0.05, retPct: 0.05, signDate: '', dpDate: '', handoverDate: '', commencement: '', completion: '', stdHours: 8, preparedBy: '', logos: {}, _at: nowISO() }, p),
     params: { designWeight: 0.25, shopWeight: 0.75, creditURShop: 0.3, creditURDesign: 1, drwReviewDays: 14, manpowerFirstDate: '', lookahead: 14, _at: nowISO() },
     lists: clone(DEFAULT_LISTS), security: { pins: { admin: 'admin', contractor: 'contractor', consultant: 'consultant', owner: 'owner' }, _at: nowISO() },
-    schedule: null, cutoffs: [], users: [], updates: {}, hse: [], dc: [], manpower: [], drawings: [], targets: [], invoices: [], audit: []
+    schedule: null, baseline: null, presence: {}, cutoffs: [], users: [], updates: {}, hse: [], dc: [], manpower: [], drawings: [], targets: [], invoices: [], audit: []
   };
 }
+/* ---------- schedule sources (XER): the approved baseline + the latest update ----------
+   SCH() = the schedule the platform works on: the activities of the latest update (or of the baseline while no update is loaded),
+   each with its baseline activity (a.bl) and its activity codes merged from both files (the update wins on conflict). */
+let _sch = null;
+const DB_SCHEMA = 2;   // 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
+/* activity codes are stored packed (about half the size of a schedule): schedule.cd = {t: [code type names], v: [[values of type 0], …]}
+   and activity.c = [index of the value per type, -1 = none]. activity.codes stays as an empty object for pages still running the previous tool. */
+function packSched(s) {
+  if (!s || s.cd || !Array.isArray(s.activities)) return s;
+  const t = [], ti = new Map(), v = [], vi = [];
+  s.activities.forEach(a => {
+    const c = [];
+    for (const k in (a.codes || {})) { const val = a.codes[k]; if (!val) continue; let i = ti.get(k); if (i === undefined) { i = t.length; ti.set(k, i); t.push(k); v.push([]); vi.push(new Map()); } let j = vi[i].get(val); if (j === undefined) { j = v[i].length; vi[i].set(val, j); v[i].push(val); } c[i] = j; }
+    for (let i = 0; i < c.length; i++) if (c[i] === undefined) c[i] = -1;
+    a.c = c; a.codes = {};
+  });
+  s.cd = { t, v }; return s;
+}
+const actCodes = (s, a) => { if (!a.c || !s || !s.cd) return a.codes || {}; const o = {}; a.c.forEach((j, i) => { if (j >= 0) o[s.cd.t[i]] = s.cd.v[i][j]; }); return o; };
+function SCH(db = S.db) {
+  if (!db) return null;
+  const u = db.schedule || null, b = db.baseline || null, src = u || b;
+  if (!src) return null;
+  if (_sch && _sch.upd === u && _sch.bl === b) return _sch;
+  const bm = new Map(); if (b) b.activities.forEach(a => bm.set(a.id, a));
+  const ids = new Set();
+  const activities = src.activities.map(a => {
+    ids.add(a.id); const bl = bm.get(a.id) || null; let codes = actCodes(src, a);
+    if (bl && bl !== a) { const uc = codes; codes = Object.assign({}, actCodes(b, bl)); for (const k in uc) if (uc[k]) codes[k] = uc[k]; }   // the update file wins on conflict
+    return Object.assign({}, a, { codes, bl });
+  });
+  const meta = Object.assign({}, b && b.codeMeta, u && u.codeMeta);
+  const num = (x, y) => x.localeCompare(y, 'en', { numeric: true });
+  const codeTypes = Array.from(new Set([...(src.codeTypes || []), ...((b && b.codeTypes) || [])])).sort(num);
+  const vals = {}; codeTypes.forEach(k => vals[k] = new Set()); activities.forEach(a => { for (const k in a.codes) if (a.codes[k] && vals[k]) vals[k].add(a.codes[k]); });
+  const glob = codeTypes.filter(k => meta[k] && meta[k][0] === 'G').sort((x, y) => (meta[x][1] - meta[y][1]) || num(x, y));
+  // filters = the Global activity codes of the XER files (files imported before code scopes were read keep the former numbered-code rule)
+  const cand = glob.length ? glob : Object.keys(meta).length ? codeTypes : codeTypes.filter(k => /^0[2-9] /.test(k) || /^1\d /.test(k)).slice(0, 7);
+  return (_sch = Object.assign({}, src, { upd: u, bl: b, src, activities, byId: new Map(activities.map(a => [a.id, a])), codeTypes, codeMeta: meta, codeVals: vals, globalCodes: glob, filterKeys: cand.filter(k => vals[k].size > 1), codeScoped: Object.keys(meta).length > 0,
+    newIds: b && u ? activities.filter(a => !a.bl).length : 0, goneIds: b && u ? b.activities.filter(a => !ids.has(a.id)).length : 0 }));
+}
+/* ---------- presence: who is on the platform (shown to User-management holders) ---------- */
+const PRES = {
+  ON: 15, IDLE: 720, BEAT: 9,   // minutes: online window, signed-in window, minimum gap between heartbeats
+  key: (u = S.user) => u ? (u.id || `r:${u.role}:${u.name}`) : '',
+  dev() { const ua = navigator.userAgent || ''; const br = /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera' : /Chrome\//.test(ua) ? 'Chrome' : /Firefox\//.test(ua) ? 'Firefox' : /Safari\//.test(ua) ? 'Safari' : 'Browser'; const os = /Android/.test(ua) ? 'Android' : /iPhone|iPad|iPod/.test(ua) ? 'iOS' : /Windows/.test(ua) ? 'Windows' : /Mac OS X/.test(ua) ? 'Mac' : /Linux/.test(ua) ? 'Linux' : ''; return br + (os ? ' · ' + os : ''); },
+  stamp(ev) { // ev: 'in' (sign in) | 'out' (sign out) | undefined (activity / heartbeat)
+    if (!S.db || !S.user) return; const P = S.db.presence = S.db.presence || {}; const k = PRES.key(), now = nowISO();
+    const e = P[k] = Object.assign({}, P[k], { id: S.user.id || '', name: S.user.name, title: userLabel(), page: S.page, dev: PRES.dev(), at: now });
+    if (ev === 'in') { e.login = now; delete e.out; Object.keys(P).forEach(x => { if (D.diff(now.slice(0, 10), String(P[x].at || '').slice(0, 10)) > 120) delete P[x]; }); }
+    if (ev === 'out') e.out = now;
+  },
+  status(e, now = Date.now()) { if (!e || !e.at || (e.out && e.out >= e.at)) return 'off'; const m = (now - Date.parse(e.at)) / 60000; return m <= PRES.ON ? 'on' : m <= PRES.IDLE ? 'idle' : 'off'; },
+  list(db = S.db) { // one row per user / signed-in name, online first
+    const P = db.presence || {}, rows = [], seen = new Set();
+    live(db.users || []).forEach(u => { const e = P[u._id] || {}; seen.add(u._id); rows.push({ k: u._id, name: u.name, title: u.title || '', active: u.active !== false, login: [e.login, u.lastLogin].filter(Boolean).sort().pop() || '', at: e.at || '', out: e.out || '', page: e.page || '', dev: e.dev || '', st: u.active === false ? 'off' : PRES.status(e) }); });
+    Object.entries(P).forEach(([k, e]) => { if (!seen.has(k) && !e.id) rows.push({ k, name: e.name, title: e.title || '', active: true, login: e.login || '', at: e.at || '', out: e.out || '', page: e.page || '', dev: e.dev || '', st: PRES.status(e) }); });
+    const o = { on: 0, idle: 1, off: 2 }; return rows.sort((a, b) => o[a.st] - o[b.st] || (b.at || '').localeCompare(a.at || '') || a.name.localeCompare(b.name));
+  },
+  beat() { // heartbeat while the user is really working (input since the last stamp), at most every BEAT minutes
+    if (!S.db || !S.user || document.visibilityState !== 'visible') return false;
+    const e = (S.db.presence || {})[PRES.key()], last = e && e.at ? Date.parse(e.at) : 0;
+    if (!(S.ui.lastInput > last) || Date.now() - last < PRES.BEAT * 60000) return false;
+    PRES.stamp(); S.ui.cloudDirty = true; IDB.put('projects', S.db.id, S.db).catch(() => { }); return true;
+  }
+};
+const coreSig = db => { const p = db.presence; db.presence = undefined; const s = JSON.stringify(db); db.presence = p; return s; }; // database content without the presence stamps
 const DEFAULT_LISTS = {"resources": [{"v": "Project Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير المشروع"}, {"v": "Construction Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير الإنشاءات"}, {"v": "HSE Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير السلامة والصحة المهنية"}, {"v": "Managers (Other)", "cat": "Labor", "type": "Indirect", "ar": "مديرون (أخرى)"}, {"v": "Engineers", "cat": "Labor", "type": "Indirect", "ar": "مهندسون"}, {"v": "QA/QC Engineers / Inspectors", "cat": "Labor", "type": "Indirect", "ar": "مهندسو / مفتشو الجودة"}, {"v": "Planning Engineer", "cat": "Labor", "type": "Indirect", "ar": "مهندس تخطيط"}, {"v": "Quantity Surveyor / Commercial", "cat": "Labor", "type": "Indirect", "ar": "مهندس كميات / تجاري"}, {"v": "Surveyor", "cat": "Labor", "type": "Indirect", "ar": "مسّاح"}, {"v": "Safety", "cat": "Labor", "type": "Indirect", "ar": "مسؤول سلامة"}, {"v": "Time Keeper", "cat": "Labor", "type": "Indirect", "ar": "مراقب دوام"}, {"v": "Storekeeper", "cat": "Labor", "type": "Indirect", "ar": "أمين مخزن"}, {"v": "Commercial / Coordinator", "cat": "Labor", "type": "Indirect", "ar": "تجاري / منسّق"}, {"v": "DC / Admin / Draftsman", "cat": "Labor", "type": "Indirect", "ar": "مراقب وثائق / إداري / رسّام"}, {"v": "Foremen / Supervisors / Engineers", "cat": "Labor", "type": "Indirect", "ar": "ملاحظون / مشرفون / مهندسون"}, {"v": "Safety Helper", "cat": "Labor", "type": "Direct", "ar": "مساعد سلامة"}, {"v": "Surveyor Helper", "cat": "Labor", "type": "Direct", "ar": "مساعد مسّاح"}, {"v": "Mason", "cat": "Labor", "type": "Direct", "ar": "بنّاء"}, {"v": "Carpenter", "cat": "Labor", "type": "Direct", "ar": "نجّار مسلح"}, {"v": "Steel Fixer", "cat": "Labor", "type": "Direct", "ar": "حدّاد مسلح"}, {"v": "Post Tension Worker", "cat": "Labor", "type": "Direct", "ar": "عامل شدّ لاحق"}, {"v": "Waterproofing Membrane", "cat": "Labor", "type": "Direct", "ar": "عامل عزل مائي"}, {"v": "Riggers", "cat": "Labor", "type": "Direct", "ar": "عامل ربط أحمال (Rigger)"}, {"v": "Scaffolder", "cat": "Labor", "type": "Direct", "ar": "عامل سقالات"}, {"v": "Concrete Crew / Finisher", "cat": "Labor", "type": "Direct", "ar": "طاقم خرسانة / تشطيب خرسانة"}, {"v": "Equipment Operator", "cat": "Labor", "type": "Direct", "ar": "مشغّل معدات"}, {"v": "Crane Operator", "cat": "Labor", "type": "Direct", "ar": "مشغّل رافعة"}, {"v": "Bus / Pick-up Driver", "cat": "Labor", "type": "Direct", "ar": "سائق حافلة / بيك أب"}, {"v": "Trailer Driver", "cat": "Labor", "type": "Direct", "ar": "سائق تريلا"}, {"v": "Technician / Labor / Cleaner", "cat": "Labor", "type": "Direct", "ar": "فني / عامل / عامل نظافة"}, {"v": "Security Guard", "cat": "Labor", "type": "Direct", "ar": "حارس أمن"}, {"v": "Plumber", "cat": "Labor", "type": "Direct", "ar": "سبّاك"}, {"v": "Electrician", "cat": "Labor", "type": "Direct", "ar": "كهربائي"}, {"v": "HVAC Technician", "cat": "Labor", "type": "Direct", "ar": "فني تكييف"}, {"v": "Fire Fighting Technician", "cat": "Labor", "type": "Direct", "ar": "فني مكافحة حريق"}, {"v": "Welder", "cat": "Labor", "type": "Direct", "ar": "لحّام"}, {"v": "Painter", "cat": "Labor", "type": "Direct", "ar": "دهّان"}, {"v": "Plasterer", "cat": "Labor", "type": "Direct", "ar": "ليّاس"}, {"v": "Tiler", "cat": "Labor", "type": "Direct", "ar": "مبلّط"}, {"v": "Gypsum / Ceiling Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب جبس / أسقف"}, {"v": "Aluminium & Glazing Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب ألمنيوم وزجاج"}, {"v": "Insulation Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب عزل"}, {"v": "Asphalt / Road Crew", "cat": "Labor", "type": "Direct", "ar": "طاقم أسفلت / طرق"}, {"v": "Other Direct Labor", "cat": "Labor", "type": "Direct", "ar": "عمالة مباشرة أخرى"}, {"v": "Dump Truck", "cat": "Equipment", "type": "Equipment", "ar": "قلّاب"}, {"v": "Excavator Liebherr (100 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار ليبهر (100 طن)"}, {"v": "Excavator with Bucket (40 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بجردل (40 طن)"}, {"v": "Excavator with Jack Hammer (40 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بمطرقة هيدروليكية (40 طن)"}, {"v": "Excavator with Bucket (20 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بجردل (20 طن)"}, {"v": "Excavator with Jack Hammer (20 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بمطرقة هيدروليكية (20 طن)"}, {"v": "Wheel Loader", "cat": "Equipment", "type": "Equipment", "ar": "لودر بعجلات"}, {"v": "Bulldozer (D11)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D11)"}, {"v": "Bulldozer (D375)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D375)"}, {"v": "Bulldozer (D8)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D8)"}, {"v": "Water Tanker", "cat": "Equipment", "type": "Equipment", "ar": "صهريج مياه"}, {"v": "Diesel Tanker", "cat": "Equipment", "type": "Equipment", "ar": "صهريج ديزل"}, {"v": "Grader", "cat": "Equipment", "type": "Equipment", "ar": "ممهّدة (جريدر)"}, {"v": "Bobcat", "cat": "Equipment", "type": "Equipment", "ar": "بوبكات"}, {"v": "Bobcat Sweeper", "cat": "Equipment", "type": "Equipment", "ar": "بوبكات كنّاسة"}, {"v": "Man Lift / Scissor Lift / Spider Lift", "cat": "Equipment", "type": "Equipment", "ar": "رافعة أفراد / مقصّية / عنكبوتية"}, {"v": "Fork Lift", "cat": "Equipment", "type": "Equipment", "ar": "رافعة شوكية"}, {"v": "Mobile Crane", "cat": "Equipment", "type": "Equipment", "ar": "رافعة متحركة"}, {"v": "Single Mast Aerial (12 m)", "cat": "Equipment", "type": "Equipment", "ar": "رافعة صاري مفرد (12 م)"}, {"v": "Drum Roller / Flat Compactor", "cat": "Equipment", "type": "Equipment", "ar": "هرّاس أسطواني / دكّاك"}, {"v": "Ambulance", "cat": "Equipment", "type": "Equipment", "ar": "سيارة إسعاف"}, {"v": "Concrete Pump / Stationary Pump & Mixers", "cat": "Equipment", "type": "Equipment", "ar": "مضخة خرسانة / مضخة ثابتة وخلاطات"}, {"v": "Boom Truck", "cat": "Equipment", "type": "Equipment", "ar": "شاحنة بذراع (Boom Truck)"}, {"v": "Pick-up", "cat": "Equipment", "type": "Equipment", "ar": "بيك أب"}, {"v": "Generator", "cat": "Equipment", "type": "Equipment", "ar": "مولّد كهربائي"}, {"v": "Road Sweeper", "cat": "Equipment", "type": "Equipment", "ar": "كنّاسة طرق"}, {"v": "Cutter Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة قص"}, {"v": "Bar Bending Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة ثني حديد"}, {"v": "Compressor", "cat": "Equipment", "type": "Equipment", "ar": "ضاغط هواء"}, {"v": "Trailer", "cat": "Equipment", "type": "Equipment", "ar": "تريلا"}, {"v": "Dyna Truck", "cat": "Equipment", "type": "Equipment", "ar": "دينّا"}, {"v": "Telehandler", "cat": "Equipment", "type": "Equipment", "ar": "رافعة تلسكوبية (Telehandler)"}, {"v": "Monorail with Hoist", "cat": "Equipment", "type": "Equipment", "ar": "مونوريل مع ونش"}, {"v": "Cranes (Tower / Fixed)", "cat": "Equipment", "type": "Equipment", "ar": "رافعات (برجية / ثابتة)"}, {"v": "Transit Mixer", "cat": "Equipment", "type": "Equipment", "ar": "خلاطة خرسانة متنقلة"}, {"v": "Concrete Vibrator Set", "cat": "Equipment", "type": "Equipment", "ar": "طقم هزّاز خرسانة"}, {"v": "Welding Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة لحام"}, {"v": "Core Cutting Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة أخذ عينات (Core)"}, {"v": "Light Tower", "cat": "Equipment", "type": "Equipment", "ar": "برج إنارة"}, {"v": "Other Equipment", "cat": "Equipment", "type": "Equipment", "ar": "معدات أخرى"}, {"v": "Historical Summary - Direct Labor", "cat": "Labor", "type": "Direct", "ar": "ملخص تاريخي - عمالة مباشرة"}, {"v": "Historical Summary - Indirect Labor", "cat": "Labor", "type": "Indirect", "ar": "ملخص تاريخي - عمالة غير مباشرة"}, {"v": "Historical Summary - Equipment", "cat": "Equipment", "type": "Equipment", "ar": "ملخص تاريخي - معدات"}], "docTypes": [{"v": "Material Submittal (MAS)", "code": "MAS", "resp": "Yes", "days": 14, "ar": "اعتماد مواد (MAS)"}, {"v": "Request For Information (RFI)", "code": "RFI", "resp": "Yes", "days": 7, "ar": "طلب استيضاح (RFI)"}, {"v": "Material Inspection Request (MIR)", "code": "MIR", "resp": "Yes", "days": 2, "ar": "طلب فحص مواد (MIR)"}, {"v": "Work Inspection Request (WIR)", "code": "WIR", "resp": "Yes", "days": 2, "ar": "طلب فحص أعمال (WIR)"}, {"v": "Non-Conformance Report (NCR)", "code": "NCR", "resp": "Yes", "days": 7, "ar": "تقرير عدم مطابقة (NCR)"}, {"v": "NCR - Safety", "code": "NCR-S", "resp": "Yes", "days": 7, "ar": "عدم مطابقة - سلامة (NCR-S)"}, {"v": "Site Observation Report (SOR)", "code": "SOR", "resp": "Yes", "days": 7, "ar": "تقرير ملاحظة موقع (SOR)"}, {"v": "Method Statement (MST)", "code": "MST", "resp": "Yes", "days": 14, "ar": "طريقة تنفيذ (MST)"}, {"v": "Pre-Qualification (PRQ)", "code": "PRQ", "resp": "Yes", "days": 21, "ar": "تأهيل مسبق (PRQ)"}, {"v": "Inspection & Test Plan (ITP)", "code": "ITP", "resp": "Yes", "days": 14, "ar": "خطة الفحص والاختبار (ITP)"}, {"v": "Technical Query (TQ)", "code": "TQ", "resp": "Yes", "days": 7, "ar": "استفسار فني (TQ)"}, {"v": "Variation / Change Request (VOR)", "code": "VOR", "resp": "Yes", "days": 21, "ar": "طلب تغيير / أمر تغييري (VOR)"}, {"v": "Notice / Claim (EOT)", "code": "NOT", "resp": "Yes", "days": 14, "ar": "إشعار / مطالبة (تمديد مدة) (NOT)"}, {"v": "Programme / Schedule Submission (SCH)", "code": "SCH", "resp": "Yes", "days": 14, "ar": "تقديم برنامج زمني (SCH)"}, {"v": "Test / Commissioning Report (TST)", "code": "TST", "resp": "Yes", "days": 7, "ar": "تقرير اختبار / تشغيل (TST)"}, {"v": "Sample Submission (SMP)", "code": "SMP", "resp": "Yes", "days": 7, "ar": "تقديم عينات (SMP)"}, {"v": "O&M Manual / Handover Document (OAM)", "code": "OAM", "resp": "Yes", "days": 21, "ar": "كتيبات التشغيل والصيانة / وثائق التسليم (OAM)"}, {"v": "Insurance / Bond / Guarantee (INS)", "code": "INS", "resp": "Yes", "days": 14, "ar": "تأمين / ضمان / كفالة (INS)"}, {"v": "Letter / Correspondence (LTR)", "code": "LTR", "resp": "Yes", "days": 7, "ar": "خطاب / مراسلة (LTR)"}, {"v": "Minutes of Meeting (MOM)", "code": "MOM", "resp": "No", "ar": "محضر اجتماع (MOM)"}, {"v": "Progress / Status Report (RPT)", "code": "RPT", "resp": "No", "ar": "تقرير تقدم / حالة (RPT)"}, {"v": "Transmittal / Other (OTH)", "code": "OTH", "resp": "No", "ar": "خطاب إرسال / أخرى (OTH)"}], "invTypes": [{"v": "Advance Payment", "ret": "No", "adv": "No", "basis": "Submittal Date", "days": 14, "ar": "دفعة مقدمة"}, {"v": "Interim Monthly Payment", "ret": "Yes", "adv": "Yes", "basis": "Tax Invoice Date", "days": 14, "ar": "مستخلص شهري جاري"}, {"v": "Variation Order Invoice", "ret": "Yes", "adv": "Yes", "basis": "Tax Invoice Date", "days": 14, "ar": "مستخلص أمر تغييري"}, {"v": "Retention Release", "ret": "No", "adv": "No", "basis": "Client Approval Date", "days": 14, "ar": "الإفراج عن المحتجزات"}, {"v": "Final Account", "ret": "Yes", "adv": "Yes", "basis": "Client Approval Date", "days": 14, "ar": "المستخلص الختامي"}], "reviewCodes": [{"v": "Code A", "status": "Approved", "shop": 1, "design": 1, "statusAr": "معتمد"}, {"v": "Code B", "status": "Approved as Noted", "shop": 0.7, "design": 1, "statusAr": "معتمد مع ملاحظات"}, {"v": "Code C", "status": "Revise & Resubmit", "shop": 0.3, "design": 1, "statusAr": "يُعدَّل ويُعاد تقديمه"}, {"v": "Code D", "status": "Rejected", "shop": 0, "design": 0, "statusAr": "مرفوض"}, {"v": "Closed / Info", "status": "Closed", "shop": 1, "design": 1, "statusAr": "مغلق"}], "disciplines": [{"v": "Civil / Structural", "ar": "مدني / إنشائي"}, {"v": "Architectural", "ar": "معماري"}, {"v": "Mechanical (HVAC)", "ar": "ميكانيكا (تكييف)"}, {"v": "Electrical", "ar": "كهرباء"}, {"v": "Plumbing & Drainage", "ar": "صحي وصرف"}, {"v": "Fire Fighting & Fire Alarm", "ar": "مكافحة وإنذار حريق"}, {"v": "ELV / Low Current", "ar": "تيار خفيف"}, {"v": "Infrastructure & Roads", "ar": "بنية تحتية وطرق"}, {"v": "Landscape", "ar": "تنسيق مواقع"}, {"v": "Facade", "ar": "واجهات"}, {"v": "Elevators", "ar": "مصاعد"}, {"v": "Interior / Fit-out", "ar": "تشطيبات داخلية"}, {"v": "QA/QC", "ar": "ضبط الجودة"}, {"v": "HSE", "ar": "السلامة"}, {"v": "Planning", "ar": "التخطيط"}, {"v": "Commercial / Contracts", "ar": "تجاري / عقود"}, {"v": "General", "ar": "عام"}], "contractors": [{"v": "Main Contractor", "ar": "المقاول الرئيسي"}, {"v": "Subcontractor A", "ar": "مقاول باطن A"}, {"v": "Subcontractor B", "ar": "مقاول باطن B"}, {"v": "Subcontractor C", "ar": "مقاول باطن C"}], "elements": [{"v": "General Drawings", "ar": "مخططات عامة"}, {"v": "Temporary Drawings", "ar": "مخططات أعمال مؤقتة"}, {"v": "Foundation", "ar": "أساسات"}, {"v": "Slabs", "ar": "بلاطات"}, {"v": "Columns", "ar": "أعمدة"}, {"v": "Shear Walls & Cores", "ar": "جدران قص وأنوية"}, {"v": "Beams", "ar": "كمرات"}, {"v": "Walls", "ar": "جدران"}, {"v": "Stairs", "ar": "سلالم"}, {"v": "Roof", "ar": "سطح"}, {"v": "Facade / Cladding", "ar": "واجهات / تكسيات"}, {"v": "Waterproofing", "ar": "عزل مائي"}, {"v": "Finishes", "ar": "تشطيبات"}, {"v": "Doors & Windows", "ar": "أبواب ونوافذ"}, {"v": "Ceilings", "ar": "أسقف"}, {"v": "Flooring", "ar": "أرضيات"}, {"v": "Electrical", "ar": "كهرباء"}, {"v": "HVAC", "ar": "تكييف"}, {"v": "Plumbing", "ar": "أعمال صحية"}, {"v": "Fire Fighting", "ar": "مكافحة حريق"}, {"v": "ELV / Low Current", "ar": "تيار خفيف"}, {"v": "Elevators", "ar": "مصاعد"}, {"v": "Landscape", "ar": "تنسيق مواقع"}, {"v": "Infrastructure", "ar": "بنية تحتية"}, {"v": "Fit-out", "ar": "تشطيبات داخلية"}], "phases": [{"v": "ALL", "ar": "الكل"}], "zones": [{"v": "ALL", "ar": "الكل"}], "_at": ""};
 
 function activeCutoff(db = S.db) { return live(db.cutoffs).filter(c => c.status === 'open').sort((a, b) => b.date.localeCompare(a.date))[0] || null; }
@@ -867,6 +1009,7 @@ function stamp(rec) { rec._at = nowISO(); rec._by = S.user ? `${S.user.name} (${
 let saveTimer = null, syncTimer = null;
 function touch(action, detail) {
   if (action) audit(action, detail);
+  PRES.stamp();
   S.db._at = nowISO();
   setSync('pending');
   clearTimeout(saveTimer);
@@ -884,6 +1027,9 @@ function mergeDB(A, B) { // returns merged copy (A = local, B = remote)
   const M = clone(A);
   ['project', 'params', 'lists', 'security'].forEach(k => { M[k] = clone(newer(A[k], B[k])); });
   if (B.schedule && (!A.schedule || (B.schedule.importedAt || '') > (A.schedule.importedAt || ''))) M.schedule = clone(B.schedule);
+  if (B.baseline && (!A.baseline || (B.baseline.importedAt || '') > (A.baseline.importedAt || ''))) M.baseline = clone(B.baseline);
+  M.schema = Math.max(A.schema || 1, B.schema || 1);
+  M.presence = M.presence || {}; Object.entries(B.presence || {}).forEach(([k, e]) => { const a = M.presence[k]; if (!a || (e.at || '') > (a.at || '')) M.presence[k] = clone(e); });
   COLLS.forEach(k => {
     const map = new Map(); (A[k] || []).forEach(r => map.set(r._id, r));
     (B[k] || []).forEach(r => { const a = map.get(r._id); if (!a || (r._at || '') > (a._at || '')) map.set(r._id, r); });
@@ -992,17 +1138,21 @@ async function listFolderDBs() {
 }
 async function syncFolder(verbose) {
   if (!S.dir || !S.db) return;
+  const dir = S.dir, gone = () => S.dir !== dir || !S.db;   // signed out / relinked while a file operation was running
   try {
     setSync('pending');
     const { dbDir } = await FS.base();
-    const txt = await FS.read(dbDir, FS.dbName(S.db.id));
+    const txt = await FS.read(dbDir, FS.dbName(S.db.id)); if (gone()) return;
     if (!txt) { const tomb = await FS.read(dbDir, `${S.db.id}.deleted.json`); if (tomb) { let t = {}; try { t = JSON.parse(tomb); } catch (e) { } setSync('err', T('pd_tomb')); if (verbose || !S.ui.tombShown) { S.ui.tombShown = true; toast(`${T('pd_tomb')} (${(t.deletedAt || '').slice(0, 10)} · ${t.by || ''})`, 'bad'); } return; } }
-    if (txt) { const remote = JSON.parse(txt); if (remote.id === S.db.id) S.db = mergeDB(S.db, remote); }
-    await FS.write(dbDir, FS.dbName(S.db.id), new Blob([JSON.stringify(S.db)], { type: 'application/json' }));
-    await IDB.put('projects', S.db.id, S.db);
+    const before = coreSig(S.db); let changed = false;
+    if (txt) { const remote = JSON.parse(txt); if ((remote.schema || 1) > DB_SCHEMA) { setSync('err', T('need_reload')); if (verbose || !S.ui.newerShown) { S.ui.newerShown = true; toast(T('need_reload'), 'warn'); } return; }
+      if (remote.id === S.db.id) { S.db = mergeDB(S.db, remote); changed = coreSig(S.db) !== before; } }
+    const db = S.db, out = JSON.stringify(db);
+    if (out !== txt) await FS.write(dbDir, FS.dbName(db.id), new Blob([out], { type: 'application/json' }));   // written only when something changed
+    await IDB.put('projects', db.id, db); if (gone()) return;
     S.sync.at = nowISO(); setSync('shared');
     if (verbose) { toast(T('sync_shared'), 'ok'); }
-    if (txt) render(true);
+    if (changed) render(true); else presRefresh();
   } catch (e) { setSync('err', e.message); if (verbose) toast(T('sync_err') + ': ' + e.message, 'bad'); }
 }
 async function saveOutput(name, blob, sub) { // writes to shared folder if connected, else download
@@ -1202,7 +1352,7 @@ const CLK = id => 'cloud:' + id;
 const projCloud = async id => (await IDB.get('meta', CLK(id)).catch(() => null)) || null;
 const bindCloud = async (id, ref) => { await IDB.put('meta', CLK(id), { driveId: ref.driveId, itemId: ref.itemId, name: ref.name, webUrl: ref.webUrl, link: ref.link }); await IDB.del('meta', DIRK(id)).catch(() => { }); };
 function cloudMsg(e) {
-  const k = { auth_required: 'cl_e_auth', denied: 'cl_e_denied', readonly: 'cl_e_readonly', notfound: 'cl_e_notfound', conflict: 'cl_e_busy', busy: 'cl_e_busy', offline: 'cl_e_offline', popup: 'cl_e_popup', cancel: 'cl_e_cancel', unavailable: 'cl_e_unavail', notfile: 'cl_e_notfile', nodb: 'cl_e_nodb', manydb: 'cl_e_manydb', consent: 'cl_e_consent', redirect: 'cl_e_unavail', json: 'cl_e_json', other: 'cl_e_other' }[e && e.code];
+  const k = { auth_required: 'cl_e_auth', denied: 'cl_e_denied', readonly: 'cl_e_readonly', notfound: 'cl_e_notfound', conflict: 'cl_e_busy', busy: 'cl_e_busy', offline: 'cl_e_offline', popup: 'cl_e_popup', cancel: 'cl_e_cancel', unavailable: 'cl_e_unavail', notfile: 'cl_e_notfile', nodb: 'cl_e_nodb', manydb: 'cl_e_manydb', consent: 'cl_e_consent', redirect: 'cl_e_unavail', json: 'cl_e_json', other: 'cl_e_other', newer: 'need_reload' }[e && e.code];
   if (!k) return (e && e.message) || String(e);
   let m = T(k);
   if (e.code === 'denied' || e.code === 'readonly') { const a = CLOUD.account(); m += a && a.username ? ` (${a.username})` : ''; }
@@ -1213,29 +1363,31 @@ function cloudMsg(e) {
 async function syncCloud(verbose, interactive, force) { // download → merge → upload with If-Match; retries on concurrent writes
   if (!S.cloud || !S.db) return;
   if (S.ui.cloudBusy) { S.ui.cloudAgain = true; return; }
+  const cl = S.cloud, gone = () => S.cloud !== cl || !S.db;   // signed out / relinked while a request was running
   S.ui.cloudBusy = true; setSync('pending');
   try {
     for (let i = 0; ; i++) {
-      const meta = await CLOUD.meta(S.cloud, interactive);
-      if (!force && !S.ui.cloudDirty && meta.eTag && meta.eTag === S.cloud.eTag) break; // nothing new on either side
-      const text = await CLOUD.download(S.cloud, meta, interactive);
+      const meta = await CLOUD.meta(cl, interactive); if (gone()) return;
+      if (!force && !S.ui.cloudDirty && meta.eTag && meta.eTag === cl.eTag) break; // nothing new on either side
+      const text = await CLOUD.download(cl, meta, interactive); if (gone()) return;
       let remote = null;
-      if (text) { try { remote = JSON.parse(text); } catch (e) { throw cerr('json'); } if (!remote || !remote.id || !remote.project) throw cerr('json'); if (remote.id !== S.db.id) throw cerr('other', remote.id); }
-      const before = JSON.stringify(S.db);
+      if (text) { try { remote = JSON.parse(text); } catch (e) { throw cerr('json'); } if (!remote || !remote.id || !remote.project) throw cerr('json'); if (remote.id !== S.db.id) throw cerr('other', remote.id); if ((remote.schema || 1) > DB_SCHEMA) throw cerr('newer'); }
+      const before = coreSig(S.db);
       const merged = remote ? mergeDB(S.db, remote) : S.db; const out = JSON.stringify(merged);
       S.db = merged; S.ui.cloudDirty = false;
       if (out !== text) {
-        try { S.cloud.eTag = (await CLOUD.upload(S.cloud, out, meta.eTag, interactive)).eTag; }
+        try { cl.eTag = (await CLOUD.upload(cl, out, meta.eTag, interactive)).eTag; }
         catch (e) { if (e.code === 'conflict' && i < 4) { S.ui.cloudDirty = true; continue; } throw e; }
-      } else S.cloud.eTag = meta.eTag;
-      await IDB.put('projects', S.db.id, S.db);
-      if (remote && out !== before) render(true);
+      } else cl.eTag = meta.eTag;
+      await IDB.put('projects', merged.id, merged); if (gone()) return;
+      if (remote && coreSig(merged) !== before) render(true); else presRefresh();   // presence stamps alone never redraw the page
       break;
     }
     S.sync.at = nowISO(); S.ui.cloudAuth = false; setSync('shared'); if (verbose) toast(T('sync_shared'), 'ok');
   } catch (e) {
     const msg = cloudMsg(e); setSync('err', msg);
     if (e.code === 'auth_required') { S.ui.cloudAuth = true; if (verbose || !S.ui.cloudAuthShown) { S.ui.cloudAuthShown = true; toast(msg, 'warn'); } }
+    else if (e.code === 'newer') { if (verbose || !S.ui.newerShown) { S.ui.newerShown = true; toast(msg, 'warn'); } }
     else if (verbose) toast(`${T('sync_err')}: ${msg}`, 'bad');
     if (e.code !== 'json' && e.code !== 'other') S.ui.cloudDirty = true;
   } finally {
@@ -1244,7 +1396,8 @@ async function syncCloud(verbose, interactive, force) { // download → merge �
   }
 }
 const syncShared = (verbose, interactive) => S.cloud ? syncCloud(verbose, interactive, !!verbose) : syncFolder(verbose);
-setInterval(() => { if (S.cloud && S.db && document.visibilityState === 'visible' && !S.ui.cloudAuth) syncCloud(false); }, 300000);
+// every 5 minutes while the page is visible: presence heartbeat (only if the user worked since the last one) + pull of the shared database
+setInterval(() => { if (!S.db || !S.user || document.visibilityState !== 'visible') return; const hb = PRES.beat(); if (S.cloud) { if (!S.ui.cloudAuth) syncCloud(false); } else if (S.dir) syncFolder(false); else if (hb) presRefresh(); }, 300000);
 /* link dialog: paste a OneDrive sharing link of a database file → sign in → read → merge → bind */
 function cloudLinkDialog(forId, onDone, intro) {
   if (!CLOUD.available()) return modal({ title: T('cl_title'), size: 'sm', body: `<div class="notice warn">${ic('warn')}<div>${T('cl_e_unavail')}<br><a href="${CLOUD.homeUrl}" target="_blank" rel="noopener" dir="ltr">${CLOUD.homeUrl}</a></div></div>`, foot: `<span class="sp"></span><a class="btn pri" href="${CLOUD.homeUrl}" target="_blank" rel="noopener">${T('cl_open_web')}</a>` });
@@ -1446,7 +1599,7 @@ const MOD = {
   invoices: {
     key: 'invoices', edit: 'invoices', sortKey: 'submittal', icon: 'cash',
     desc: { en: 'Invoices register: amounts, deductions, approval dates, payment due date, delay and status.', ar: 'سجل المستخلصات: القيم، الاستقطاعات، تواريخ الاعتماد، تاريخ استحقاق الدفع، التأخير والحالة.' },
-    defaults: () => ({ type: 'Interim Monthly Payment', no: live(S.db.invoices).length }),
+    defaults: () => ({ type: 'Interim Monthly Payment', no: Math.max(-1, ...live(S.db.invoices).map(r => N(r.no))) + 1 }),   // next number after the highest one in use
     fields: [
       F('no', 'Inv No', 'رقم المستخلص', 'int', { req: 1, tbl: 1, sec: 0 }),
       F('type', 'Invoice Type', 'نوع المستخلص', 'list', { list: 'invTypes', req: 1, tbl: 1, sec: 0 }),
@@ -1508,13 +1661,21 @@ function tgtAgg(t) {
 
 /* ===== PROGRESS ENGINE ===== */
 const PROG = {
-  acts: () => (S.db.schedule ? S.db.schedule.activities : []),
+  acts: () => { const m = SCH(); return m ? m.activities : []; },
   upd: cid => (cid && S.db.updates[cid]) || {},
+  // baseline dates of an activity (from the baseline XER); null when the activity is not in the baseline
+  blDates: a => a.bl ? { s: a.bl.ps || a.bl.es || '', f: a.bl.pf || a.bl.ef || '', od: a.bl.od } : null,
+  // dates the plan % is measured on: parameter planBasis = 'upd' (planned dates of the latest update XER, default) or 'bl' (baseline XER dates where available)
+  planDates(a) { const b = (S.db.params.planBasis === 'bl') ? PROG.blDates(a) : null; return (b && b.s && b.f) ? b : { s: a.ps, f: a.pf }; },
   planned(a, date) {
-    if (!a.ps || !a.pf || !date) return null;
-    if (date < a.ps) return 0; if (date >= a.pf) return 100;
-    const tot = D.diff(a.pf, a.ps); return tot > 0 ? Math.round(D.diff(date, a.ps) / tot * 1000) / 10 : 100;
+    const { s, f } = PROG.planDates(a);
+    if (!s || !f || !date) return null;
+    if (date < s) return 0; if (date >= f) return 100;
+    const tot = D.diff(f, s); return tot > 0 ? Math.round(D.diff(date, s) / tot * 1000) / 10 : 100;
   },
+  // who updated an activity in a cut-off: contractor fields / consultant review / owner review
+  byC: u => !!u && ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].some(k => u[k] !== undefined && u[k] !== ''),
+  byCo: u => !!u && isNum(u.cons), byO: u => !!u && isNum(u.own),
   isMs: a => a.type === 'TT_Mile' || a.type === 'TT_FinMile',
   eff(a, u) {
     u = u || {};
@@ -1567,7 +1728,7 @@ const PROG = {
     let pl = 0, ctr = 0, cons = 0, own = 0, hasOwn = false;
     rows.forEach(r => { const wt = w(r.a); pl += wt * N(r.pl) / 100; ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : N(r.a.pct)) / 100; });
     const c = s => rows.filter(r => r.e.status === s).length;
-    return { rows, planned: pl, ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
+    return { rows, planned: pl, ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.u)).length, updCo: rows.filter(r => PROG.byCo(r.u)).length, updO: rows.filter(r => PROG.byO(r.u)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
   }
 };
 
@@ -1593,8 +1754,9 @@ async function buildTablesWorkbook() {
   };
   _tgtCache = null;
   const proj = db.project, P = db.params;
-  const info = [['Project Num.', 'Project Code', 'Project Name', 'Country', 'Owner Name', 'Consultant Name', 'Contractor Name', 'Report Code', 'Date Of Report', 'Contract Sign Date', 'Project Commencement date', 'Site Handover Date', 'Down payment Data', 'Project completion date', 'Land Area m2', 'Contract Value', 'Total V.O', 'Down payment', 'BAC', '% General Retention', '% Down payment Retention', 'Total Retention Value', 'BUA m2', 'Project Overview'],
-    [proj.number, proj.code, proj.name, proj.location, proj.owner, proj.consultant, proj.contractor, reportCode(), { d: reportDate() }, proj.signDate ? { d: proj.signDate } : null, proj.commencement ? { d: proj.commencement } : null, proj.handoverDate ? { d: proj.handoverDate } : null, proj.dpDate ? { d: proj.dpDate } : null, proj.completion ? { d: proj.completion } : null, N(proj.landArea), N(proj.contractValue), N(proj.totalVO), N(proj.contractValue) * N(proj.dpPct), N(proj.contractValue) + N(proj.totalVO), N(proj.retPct), N(proj.dpPct), (N(proj.contractValue) + N(proj.totalVO)) * (N(proj.retPct) + N(proj.dpPct)), proj.bua ? N(proj.bua) : null, proj.overview || null]];
+  const sc = SCH(db) || {}, ub = sc.upd || {}, bb = sc.bl || {};
+  const info = [['Project Num.', 'Project Code', 'Project Name', 'Country', 'Owner Name', 'Consultant Name', 'Contractor Name', 'Report Code', 'Date Of Report', 'Contract Sign Date', 'Project Commencement date', 'Site Handover Date', 'Down payment Data', 'Project completion date', 'Land Area m2', 'Contract Value', 'Total V.O', 'Down payment', 'BAC', '% General Retention', '% Down payment Retention', 'Total Retention Value', 'BUA m2', 'Project Overview', 'Update XER', 'P6 Data Date', 'Baseline XER', 'Baseline Data Date', 'Plan % Basis'],
+    [proj.number, proj.code, proj.name, proj.location, proj.owner, proj.consultant, proj.contractor, reportCode(), { d: reportDate() }, proj.signDate ? { d: proj.signDate } : null, proj.commencement ? { d: proj.commencement } : null, proj.handoverDate ? { d: proj.handoverDate } : null, proj.dpDate ? { d: proj.dpDate } : null, proj.completion ? { d: proj.completion } : null, N(proj.landArea), N(proj.contractValue), N(proj.totalVO), N(proj.contractValue) * N(proj.dpPct), N(proj.contractValue) + N(proj.totalVO), N(proj.retPct), N(proj.dpPct), (N(proj.contractValue) + N(proj.totalVO)) * (N(proj.retPct) + N(proj.dpPct)), proj.bua ? N(proj.bua) : null, proj.overview || null, ub.fileName || null, ub.dataDate ? { d: ub.dataDate } : null, bb.fileName || null, bb.dataDate ? { d: bb.dataDate } : null, P.planBasis === 'bl' ? 'Baseline XER' : 'Update XER']];
   const cut = [['Cut-off ID', 'Cut-off Date', 'Report No', 'Status', 'P6 Data Date', 'XER File', 'Opened At', 'Opened By', 'Closed At', 'Closed By', 'Exports', 'Project Num.']];
   live(db.cutoffs).sort((a, b) => a.date.localeCompare(b.date)).forEach(c => cut.push([c._id, { d: c.date }, c.reportNo || null, c.status, c.dataDate ? { d: c.dataDate } : null, c.xer || '', c.openedAt || '', c.openedBy || '', c.closedAt || '', c.closedBy || '', (c.exports || []).length, pn]));
   const upd = [['Cut-off Date', 'Activity ID', 'Activity Name', 'By Contractor (%) Complete', 'By Consultant (%) Complete', 'By Owner (%) Complete', 'Actual Start Date', 'Actual Finish Date', 'Remaining Duration', 'Caused By', 'Reasons For Delay', 'Mitigation', 'Updated By', 'Project Num.']];
@@ -1604,15 +1766,19 @@ async function buildTablesWorkbook() {
   });
   const snap = [['Cut-off Date', 'Activity ID', 'Status', '% Complete', 'Actual Start', 'Actual Finish', 'Remaining Duration', 'Planned %', 'Project Num.']];
   live(db.cutoffs).forEach(c => (c.snapshot || []).forEach(s => snap.push([{ d: c.date }, s[0], s[1], s[2], s[3] ? { d: s[3] } : null, s[4] ? { d: s[4] } : null, s[5], s[6], pn])));
-  const ct = (db.schedule && db.schedule.codeTypes) || [];
-  const acts = [['Activity ID', 'Activity Name', 'WBS Code', 'WBS Name', 'Activity Type', 'Activity Status', 'Activity % Complete', 'Original Duration(d)', 'Remaining Duration(d)', 'Planned Start', 'Planned Finish', 'Early Start', 'Early Finish', 'Actual Start', 'Actual Finish', 'Total Float(d)', 'Budgeted Total Cost', ...ct, 'Data Date', 'Project Num.']];
-  PROG.acts().forEach(a => acts.push([a.id, a.name, a.wbs, a.wbsName, a.type, a.status, a.pct, a.od, a.rd, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, a.es ? { d: a.es } : null, a.ef ? { d: a.ef } : null, a.as ? { d: a.as } : null, a.af ? { d: a.af } : null, a.tf, a.cost, ...ct.map(k => a.codes[k] || null), db.schedule.dataDate ? { d: db.schedule.dataDate } : null, pn]));
+  const ct = sc.codeTypes || [];
+  const dd = x => x ? { d: x } : null;
+  const acts = [['Activity ID', 'Activity Name', 'WBS Code', 'WBS Name', 'Activity Type', 'Activity Status', 'Activity % Complete', 'Original Duration(d)', 'Remaining Duration(d)', 'Planned Start', 'Planned Finish', 'Early Start', 'Early Finish', 'Actual Start', 'Actual Finish', 'Total Float(d)', 'Budgeted Total Cost', 'In Baseline', 'BL Start', 'BL Finish', 'BL Duration(d)', 'BL Budgeted Cost', ...ct, 'Data Date', 'Project Num.']];
+  PROG.acts().forEach(a => { const b = PROG.blDates(a); acts.push([a.id, a.name, a.wbs, a.wbsName, a.type, a.status, a.pct, a.od, a.rd, dd(a.ps), dd(a.pf), dd(a.es), dd(a.ef), dd(a.as), dd(a.af), a.tf, a.cost, sc.bl ? (b ? 'Yes' : 'No') : null, b ? dd(b.s) : null, b ? dd(b.f) : null, b ? b.od : null, b ? a.bl.cost : null, ...ct.map(k => a.codes[k] || null), dd(sc.dataDate), pn]); });
+  const bct = bb.codeTypes || [];
+  const blActs = [['Activity ID', 'Activity Name', 'WBS Code', 'WBS Name', 'Activity Type', 'Original Duration(d)', 'BL Start', 'BL Finish', 'BL Budgeted Cost', 'In Latest Update', ...bct, 'Baseline Data Date', 'Project Num.']];
+  (bb.activities || []).forEach(a => blActs.push([a.id, a.name, a.wbs, a.wbsName, a.type, a.od, dd(a.ps || a.es), dd(a.pf || a.ef), a.cost, sc.byId.has(a.id) ? 'Yes' : 'No', ...(c => bct.map(k => c[k] || null))(actCodes(bb, a)), dd(bb.dataDate), pn]));
   const lst = (name, rows) => ({ name, rows, styles: { headerRows: [0] }, freeze: 'A2' });
   return XLSXW.build([
     lst('Informations', info), lst('Cutoffs', cut),
     modSheet(MOD.hse, 'HSE_Daily'), modSheet(MOD.dc, 'DC_Log'), modSheet(MOD.manpower, 'Manpower_Log'),
     modSheet(MOD.drawings, 'Drawing_Log'), modSheet(MOD.targets, 'Drawing_Targets'), modSheet(MOD.invoices, 'Invoice_Log'),
-    lst('Progress_Updates', upd), lst('Progress_Snapshots', snap), lst('Schedule_Activities', acts)
+    lst('Progress_Updates', upd), lst('Progress_Snapshots', snap), lst('Schedule_Activities', acts), lst('Baseline_Activities', blActs)
   ].map(s => Object.assign({ autoFilter: 1 }, s)));
 }
 
@@ -1650,8 +1816,9 @@ function runChecks() {
   add('Drawings', 'Drawings not matching any summary row (phase / building / element)', 'مخططات لا تطابق أي صف في الملخص', () => DR.filter(r => r.no && !TG.some(t => t.phase === r.phase && t.zone === r.zone && t.element === r.element)).length, 'Add the missing row to the Drawings summary.', 'أضف الصف الناقص إلى ملخص المخططات.', 'drawings');
   add('Drawings', 'Late submissions (planned date passed)', 'تقديمات متأخرة (تجاوز التاريخ المخطط)', () => DR.filter(r => MOD.drawings.F.status.calc(r) === 'Late - Not Submitted').length, 'Submit the drawings or revise the planned date.', 'قدّم المخططات أو عدّل التاريخ المخطط.', 'drawings');
   add('Drawings', 'Overdue consultant reviews', 'مراجعات استشاري متأخرة', () => DR.filter(r => MOD.drawings.F.status.calc(r) === 'Overdue Review').length, 'Follow up the review with the consultant.', 'تابع المراجعة مع الاستشاري.', 'drawings');
-  const sched = db.schedule;
-  add('P6 link', 'P6 schedule (XER) loaded', 'تم تحميل البرنامج الزمني (XER)', () => sched ? 0 : 1, 'Import the latest XER in Cut-off & P6 Export.', 'استورد آخر ملف XER.', 'p6');
+  const sched = SCH(db);
+  add('P6 link', 'Baseline schedule (XER) loaded', 'تم تحميل الجدول الزمني الأساسي (XER)', () => db.baseline ? 0 : 1, 'Upload the approved baseline XER in Cut-off & P6 Export.', 'ارفع ملف XER للجدول الزمني الأساسي المعتمد من صفحة تاريخ القطع وتصدير P6.', 'p6');
+  add('P6 link', 'P6 schedule update (XER) loaded', 'تم تحميل تحديث البرنامج الزمني (XER)', () => db.schedule ? 0 : 1, 'Import the latest update XER in Cut-off & P6 Export.', 'استورد آخر ملف XER للتحديث.', 'p6');
   add('P6 link', 'XER data date not later than the cut-off', 'تاريخ بيانات XER لا يتجاوز تاريخ القطع', () => (sched && cut) ? (sched.dataDate <= cut.date ? 0 : 1) : 'n/a', 'Check the cut-off date or the XER file.', 'راجع تاريخ القطع أو ملف XER.', 'p6');
   add('P6 link', 'Duplicate Activity IDs in the schedule', 'أرقام أنشطة مكررة في البرنامج', () => { const s = new Set(); let d = 0; PROG.acts().forEach(a => { if (s.has(a.id)) d++; s.add(a.id); }); return d; }, 'Fix them in Primavera P6 and re-export.', 'صححها في بريمافيرا وأعد التصدير.', 'p6');
   if (cut && sched) {
@@ -1780,17 +1947,23 @@ function renderShell() {
       <div style="display:flex;gap:6px;margin-top:8px"><button class="btn sm ghost" style="color:#C9D6E8" data-lang>${ic('globe')}${T('switch_lang')}</button>${S.user.id ? `<button class="btn sm ghost" style="color:#C9D6E8" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" style="color:#C9D6E8" data-out>${ic('out')}</button></div></div></aside>
   <main id="main"><header id="top"><div class="ttl">${T(S.page)}</div><span class="sp"></span>
     ${cut ? `<span class="chip co">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span><span class="chip">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span>` : `<span class="chip sync-err">${T('no_cutoff')}</span>`}
-    ${S.db.schedule ? `<span class="chip">${T('data_date')}: <b>${D.fmt(S.db.schedule.dataDate)}</b></span>` : ''}
-    <button class="btn sm" data-print title="${T('print_rpt')}">${ic('print')}${T('print_rpt')}</button><span class="chip" id="syncChip"></span><div class="logos">${['owner', 'consultant', 'contractor'].map(k => p.logos && p.logos[k] ? `<img src="${p.logos[k]}" alt="${k}">` : '').join('')}</div></header>
+    ${SCH() ? `<span class="chip">${T('data_date')}: <b>${D.fmt(SCH().dataDate)}</b></span>` : ''}
+    <button class="btn sm" data-print title="${T('print_rpt')}">${ic('print')}${T('print_rpt')}</button>${canUsers() ? `<span class="chip" id="presChip" style="cursor:pointer" title="${T('pr_title')}"></span>` : ''}<span class="chip" id="syncChip"></span><div class="logos">${['owner', 'consultant', 'contractor'].map(k => p.logos && p.logos[k] ? `<img src="${p.logos[k]}" alt="${k}">` : '').join('')}</div></header>
   <section id="view"></section><footer id="sig">${sigHTML(false)}</footer></main>`;
   document.querySelectorAll('[data-nav]').forEach(a => a.onclick = () => { if (a.dataset.nav === 'progress' && S.ui.prog) { S.ui.prog.focus = 'all'; S.ui.prog.page = 0; } go(a.dataset.nav); });
   document.querySelector('[data-lang]').onclick = () => { S.lang = S.lang === 'ar' ? 'en' : 'ar'; savePrefs(); render(); };
   document.querySelector('[data-print]').onclick = () => RPT.print(S.page);
   const mp_ = document.querySelector('[data-mypin]'); if (mp_) mp_.onclick = changeMyPin;
-  document.querySelector('[data-out]').onclick = () => { S.user = null; S.db = null; S.dir = null; S.cloud = null; S.ui.pendingDir = null; showLogin(); };
-  setSync(S.sync.state, S.sync.msg);
+  document.querySelector('[data-out]').onclick = signOut;
+  setSync(S.sync.state, S.sync.msg); presRefresh();
 }
-function go(page) { if (!canSee(page)) page = 'home'; S.page = page; render(); document.getElementById('view').scrollTop = 0; }
+async function signOut() { // record the sign-out for the presence register, push it to the shared database (max 6 s), then leave
+  const b = document.querySelector('[data-out]'); if (b) b.disabled = true;
+  try { PRES.stamp('out'); audit('sign out', S.user.name); clearTimeout(saveTimer); clearTimeout(syncTimer); await IDB.put('projects', S.db.id, S.db); S.ui.cloudDirty = true;
+    await Promise.race([S.cloud ? syncCloud(false) : S.dir ? syncFolder(false) : 0, new Promise(r => setTimeout(r, 6000))]); } catch (e) { }
+  S.user = null; S.db = null; S.dir = null; S.cloud = null; S.ui.pendingDir = null; showLogin();
+}
+function go(page) { if (!canSee(page)) page = 'home'; S.page = page; const pe = S.db && (S.db.presence || {})[PRES.key()]; if (pe) pe.page = page; render(); document.getElementById('view').scrollTop = 0; }
 function render(keepScroll) {
   if (!S.db || !S.user) return;
   _tgtCache = null;
@@ -1937,7 +2110,7 @@ function drwStats() {
   return { dT, sT, dP, sP, O: (wD + wS) ? (wD * dP + wS * sP) / (wD + wS) : 0, late: DR.filter(r => MOD.drawings.F.status.calc(r) === 'Late - Not Submitted').length, ovr: DR.filter(r => MOD.drawings.F.status.calc(r) === 'Overdue Review').length, ur: sum(T_, t => tgtAgg(t).UR) };
 }
 function invStats() {
-  const I = live(S.db.invoices).filter(r => r.type !== 'Advance Payment' || true); const f = MOD.invoices.F;
+  const I = live(S.db.invoices); const f = MOD.invoices.F;
   const interim = I.filter(r => ['Interim Monthly Payment', 'Variation Order Invoice', 'Final Account'].includes(r.type));
   return { net: sum(I, r => f.net.calc(r)), rel: sum(I, r => f.releasedAmt.calc(r)), out: sum(I, r => f.outstandingAmt.calc(r)), n: I.length, overdue: I.filter(r => f.status.calc(r) === 'Overdue').length, gross: sum(interim, r => r.amount), due30: sum(I.filter(r => { const d = f.dueDate.calc(r); return !r.releaseDate && d && d >= reportDate() && d <= D.add(reportDate(), 30); }), r => f.outstandingAmt.calc(r)) };
 }
@@ -1949,13 +2122,14 @@ PAGES.home = v => {
   const bac = N(p.contractValue) + N(p.totalVO), inv = invStats(), hs = hseStats(), mp = mpDaily(), dc = dcStats(), dr = drwStats();
   const lastMp = [...mp].reverse().find(d => d.direct + d.indirect > 0) || {};
   const last7 = mp.filter(d => d.date > D.add(lastMp.date || rd, -7) && d.direct > 0);
-  const sm = (cut && S.db.schedule) ? PROG.summary(cut._id) : null;
+  const sch = SCH(); const sm = (cut && sch) ? PROG.summary(cut._id) : null;
   const checks = runChecks(); const rev = checks.filter(c => c.v !== 0 && c.v !== 'n/a').length;
   // routine
   const tasks = []; const anyPerm = ['admin', 'ctr', 'cons', 'own', 'hse', 'dc', 'manpower', 'drawings', 'invoices'].some(can);
   const tk = (icn, title, sub, ok, page) => tasks.push(`<div class="step"><div class="ic">${ic(icn)}</div><div class="bd"><b>${title}</b><span>${sub}</span></div>${ok ? `<span class="bdg ok">${T('task_ok')}</span>` : `<span class="bdg warn">${T('task_todo')}</span>`}<button class="btn sm" data-go="${page}">${T('go')}</button></div>`);
   if (hasPerm('p6')) {
     tk('p6', LBL('Open the weekly cut-off', 'فتح تاريخ القطع الأسبوعي'), cut ? `${D.fmt(cut.date)} · ${T('report_no')} ${cut.reportNo}` : T('no_cutoff'), !!cut, 'p6');
+    tk('layers', LBL('Upload the baseline schedule (XER)', 'رفع الجدول الزمني الأساسي (XER)'), S.db.baseline ? `${S.db.baseline.fileName} · ${fmtN(S.db.baseline.activities.length)} ${T('activities')}` : '—', !!S.db.baseline, 'p6');
     tk('up', LBL('Import the latest P6 XER', 'استيراد آخر ملف XER من P6'), S.db.schedule ? `${S.db.schedule.fileName} · ${D.fmt(S.db.schedule.dataDate)}` : T('no_schedule'), !!S.db.schedule && (!cut || !lastClosedBefore(cut) || S.db.schedule.dataDate >= lastClosedBefore(cut).date), 'p6');
     tk('check', LBL('Clear all data checks', 'معالجة جميع ملاحظات فحص البيانات'), `${checks.length - rev} / ${checks.length} OK`, rev === 0, 'checks');
     tk('dl', LBL('Generate the P6 update file', 'إنشاء ملف تحديث P6'), cut && (cut.exports || []).length ? `${(cut.exports || []).length} × · ${D.fmt(TS(cut.exports.slice(-1)[0].at, 10))}` : '—', !!(cut && (cut.exports || []).length), 'p6');
@@ -1972,7 +2146,7 @@ PAGES.home = v => {
   // progress by life cycle
   let lc = '';
   if (sm) {
-    const key = (S.db.schedule.codeTypes || []).find(k => /life cycle/i.test(k)) || (S.db.schedule.codeTypes || [])[0];
+    const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || (sch.codeTypes || [])[0];
     const grp = {}; const { w } = PROG.weights();
     sm.rows.forEach(r => { const g = (r.a.codes[key] || '—'); const o = grp[g] = grp[g] || { n: 0, c: 0, ip: 0, ns: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; o[r.e.status === 'Completed' ? 'c' : r.e.status === 'In Progress' ? 'ip' : 'ns']++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
     lc = `<div class="tw" style="max-height:none"><table class="t"><thead><tr><th>${h(key || '')}</th><th class="n">${T('activities')}</th><th class="n">${T('completed')}</th><th class="n">${T('in_progress')}</th><th class="n">${T('not_started')}</th><th style="min-width:200px">${T('planned')} / ${T('contractor_act')}</th><th class="n">${T('behind')}</th></tr></thead><tbody>
@@ -1987,14 +2161,14 @@ PAGES.home = v => {
         <div class="prog-row"><span>${T('contractor_act')}</span><div class="bar"><i style="width:${sm.ctr * 100}%"></i></div><b class="num">${fmtP(sm.ctr)}</b></div>
         <div class="prog-row"><span>${T('consultant_rev')}</span><div class="bar"><i style="width:${sm.cons * 100}%;background:#0E8A5F"></i></div><b class="num">${fmtP(sm.cons)}</b></div>
         <div class="prog-row"><span>${T('owner_rev')}</span><div class="bar"><i style="width:${sm.own * 100}%;background:#B76E00"></i></div><b class="num">${fmtP(sm.own)}</b></div>
-        <div class="grid g3" style="margin-top:12px">${kpi(T('variance'), ((sm.ctr - sm.planned) * 100).toFixed(1) + ' pp', '', sm.ctr >= sm.planned ? 'ok' : 'bad')}${kpi(T('spi'), sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—', '', sm.ctr >= sm.planned ? 'ok' : 'warn')}${kpi(T('behind'), sm.behind, `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok')}</div>` : `<div class="muted">${S.db.schedule ? T('no_open_cutoff') : T('no_schedule')}</div>`}
+        <div class="grid g3" style="margin-top:12px">${kpi(T('variance'), ((sm.ctr - sm.planned) * 100).toFixed(1) + ' pp', '', sm.ctr >= sm.planned ? 'ok' : 'bad')}${kpi(T('spi'), sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—', '', sm.ctr >= sm.planned ? 'ok' : 'warn')}${kpi(T('behind'), sm.behind, `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok')}</div>` : `<div class="muted">${sch ? T('no_open_cutoff') : T('no_schedule')}</div>`}
       </div></div>
     </div>
     <div class="sec-t">${T('kpi_time')}</div>
     <div class="grid g6">${kpi(T('commencement'), D.fmt(p.commencement))}${kpi(T('completion'), D.fmt(p.completion))}${kpi(T('report_date'), D.fmt(rd))}${kpi(T('elapsed'), fmtN(el))}${kpi(T('remaining'), fmtN(rem), '', rem < 0 ? 'bad' : '')}${kpi(T('time_elapsed'), tot > 0 ? fmtP(el / tot) : '—')}</div>
     <div class="sec-t">${T('kpi_comm')} (SAR)</div>
     <div class="grid g6">${kpi(T('contract_value'), fmtM(p.contractValue))}${kpi(T('vo'), fmtM(p.totalVO || 0))}${kpi(T('bac'), fmtM(bac))}${kpi(T('net_invoiced'), fmtM(inv.net), bac ? fmtP(inv.gross / bac) + ' ' + LBL('of BAC (gross)', 'من الميزانية (إجمالي)') : '')}${kpi(T('released'), fmtM(inv.rel), inv.net ? fmtP(inv.rel / inv.net) : '', 'ok')}${kpi(T('outstanding'), fmtM(inv.out), `${T('overdue')}: ${inv.overdue}`, inv.overdue ? 'bad' : '')}</div>
-    ${sm ? `<div class="sec-t">${T('activities')}</div><div class="grid g6">${kpi(T('activities'), fmtN(sm.n))}${kpi(T('completed'), fmtN(sm.comp), '', 'ok')}${kpi(T('in_progress'), fmtN(sm.inprog))}${kpi(T('not_started'), fmtN(sm.ns))}${kpi(T('updated'), fmtN(sm.updated))}${kpi(T('p6_changed_n'), fmtN(sm.changed))}</div><div style="margin-top:12px">${lc}</div>` : ''}
+    ${sm ? `<div class="sec-t">${T('activities')}</div><div class="grid g6">${kpi(T('activities'), fmtN(sm.n))}${kpi(T('completed'), fmtN(sm.comp), '', 'ok')}${kpi(T('in_progress'), fmtN(sm.inprog))}${kpi(T('not_started'), fmtN(sm.ns))}${kpi(T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`)}${kpi(T('p6_changed_n'), fmtN(sm.changed))}</div><div style="margin-top:12px">${lc}</div>` : ''}
     <div class="sec-t">${T('kpi_hse')}</div>
     <div class="grid g6">${kpi(T('manhours') + ' (PTD)', fmtN(hs.mh))}${kpi(T('lti_free'), fmtN(hs.ltiFree), '', 'ok')}${kpi(LBL('Fatalities + LTI', 'الوفيات + LTI'), hs.fatLti, '', hs.fatLti ? 'bad' : 'ok')}${kpi(T('incidents') + ' (PTD)', hs.inc, '', hs.inc ? 'warn' : 'ok')}${kpi(T('open_obs'), hs.openObs, '', hs.openObs > 0 ? 'warn' : 'ok')}${kpi(T('permits') + ' (PTD)', fmtN(hs.permits))}</div>
     <div class="sec-t">${T('kpi_mp')}</div>
@@ -2010,28 +2184,38 @@ function lastClosedBefore(cut) { return live(S.db.cutoffs).filter(c => c.status 
 
 /* ---------- PROGRESS ---------- */
 PAGES.progress = v => {
-  const cut = activeCutoff(), sch = S.db.schedule;
+  const cut = activeCutoff(), sch = SCH();
   const st = S.ui.prog = S.ui.prog || { focus: 'all', q: '', codes: {}, page: 0, sel: new Set(), la: N(S.db.params.lookahead) || 14 };
   const canC = can('ctr') && !!cut, canCo = can('cons') && !!cut, canO = can('own') && !!cut;
   if (!sch) { v.innerHTML = pageHead(T('progress'), T('prog_desc')) + `<div class="notice warn">${ic('warn')}<div>${T('no_schedule')}</div></div>`; return; }
   const cid = cut ? cut._id : (lastCutoff() || {})._id; const cdate = cut ? cut.date : reportDate();
-  const codeKeys = (sch.codeTypes || []).filter(k => /^0[2-9] /.test(k) || /^1\d /.test(k)).slice(0, 7);
-  const codeVals = {}; codeKeys.forEach(k => codeVals[k] = Array.from(new Set(sch.activities.map(a => a.codes[k]).filter(Boolean))).sort());
+  const codeKeys = sch.filterKeys;   // Global activity codes of the XER files (the latest update wins)
+  Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; });
+  const usesBl = S.db.params.planBasis === 'bl' && !!sch.bl;
   v.innerHTML = pageHead(T('progress'), T('prog_desc'), `${cut && (canC || canCo || canO) ? `<button class="btn" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn" data-xl>${ic('dl')}${T('export_xlsx')}</button>`) +
     (!cut ? `<div class="notice warn">${ic('warn')}<div>${T('no_open_cutoff')}</div></div>` : '') +
+    (!sch.upd ? `<div class="notice info">${ic('info')}<div>${T('xer_upd_none')}</div></div>` : '') +
     (cut && !(canC || canCo || canO) ? roNotice('ctr') : '') +
-    `<div class="grid g6" data-k style="margin-bottom:12px"></div>
+    `<div class="grid g5 kc" data-k style="margin-bottom:12px"></div>
     <div class="tbar"><div class="pill-sel" data-fc>${['all', 'due', 'inprog', 'ns', 'comp', 'behind', 'updated', 'issues'].map(f => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T({ due: 'f_due', all: 'f_all', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues' }[f])}</span>`).join('')}</div>
       <label class="small muted" style="display:flex;gap:6px;align-items:center">${T('lookahead')} <input class="in" type="number" style="width:64px" value="${st.la}" data-la></label></div>
     <div class="tbar"><input class="in search" placeholder="${T('search')}" value="${h(st.q)}" data-q>${codeKeys.map(k => `<select class="in fsel" data-cd="${h(k)}"></select>`).join('')}<button class="btn" data-clr>${ic('x')}${T('clear_filters')}</button></div>
     <div data-g></div><div data-bulk></div>`;
-  const kpis = () => { const sm = PROG.summary(cid); v.querySelector('[data-k]').innerHTML = kpi(T('activities'), fmtN(sm.n)) + kpi(T('planned'), fmtP(sm.planned)) + kpi(T('contractor_act'), fmtP(sm.ctr), '', sm.ctr >= sm.planned ? 'ok' : 'warn') + kpi(T('updated'), fmtN(sm.updated)) + kpi(T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok') + kpi(T('f_issues'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok'); };
+  const kpis = () => {
+    const sm = PROG.summary(cid); const pp = x => `<span dir="ltr">${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)} pp</span> ${LBL('vs plan', 'عن المخطط')}`; const cl = x => x >= sm.planned ? 'ok' : 'warn';
+    v.querySelector('[data-k]').innerHTML =
+      kpi(T('activities'), fmtN(sm.n), `${T('completed')} ${fmtN(sm.comp)} · ${T('in_progress')} ${fmtN(sm.inprog)}`) +
+      kpi(T('planned'), fmtP(sm.planned), `${T(usesBl ? 'pl_bl' : 'pl_upd')}${sch.dataDate ? ' · ' + D.fmt(sch.dataDate) : ''}`) +
+      kpi(T('contractor_act'), fmtP(sm.ctr), pp(sm.ctr - sm.planned), cl(sm.ctr)) + kpi(T('consultant_rev'), fmtP(sm.cons), pp(sm.cons - sm.planned), cl(sm.cons)) + kpi(T('owner_rev'), fmtP(sm.own), pp(sm.own - sm.planned), cl(sm.own)) +
+      kpi(T('upd_ctr'), fmtN(sm.updC), T('updated')) + kpi(T('upd_cons'), fmtN(sm.updCo), T('updated')) + kpi(T('upd_own'), fmtN(sm.updO), T('updated')) +
+      kpi(T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok') + kpi(T('f_issues'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok');
+  };
   const passBase = (r, la) => {
     const a = r.a, e = r.e, upd = r.u && Object.keys(r.u).some(k => !k.startsWith('_'));
     if (st.focus === 'due' && !(upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'))) return false;
     if (st.focus === 'inprog' && e.status !== 'In Progress') return false; if (st.focus === 'ns' && e.status !== 'Not Started') return false; if (st.focus === 'comp' && e.status !== 'Completed') return false;
     if (st.focus === 'behind' && !r.behind) return false; if (st.focus === 'updated' && !upd) return false; if (st.focus === 'issues' && !r.iss.length) return false;
-    if (st.q) { const q = st.q.toLowerCase(); if (!(a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.wbs.toLowerCase().includes(q))) return false; }
+    if (st.q) { const q = st.q.toLowerCase(); if (!(a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.wbs.toLowerCase().includes(q) || (a.bl && a.bl.name.toLowerCase().includes(q)))) return false; }
     return true;
   };
   const passCodes = (r, except) => { for (const [k, val] of Object.entries(st.codes)) if (val && k !== except && r.a.codes[k] !== val) return false; return true; };
@@ -2053,14 +2237,16 @@ PAGES.progress = v => {
       sel.classList.toggle('on', !!cur); sel.disabled = !vals.length && !cur;
     });
   };
-  const cell = (r, f, cls, type, en) => { const u = r.u || {}; const val = u[f] ?? ''; const isErr = r.iss.some(i => i.f === f && i.sev === 'bad'), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
+  // actual dates already held by P6 (latest XER) are shown in the date boxes until the team enters its own
+  const p6d = (a, f) => f === 'as' ? (a.type !== 'TT_FinMile' ? a.as || '' : '') : f === 'af' ? (a.type !== 'TT_Mile' ? a.af || '' : '') : '';
+  const cell = (r, f, cls, type, en) => { const u = r.u || {}; let val = u[f] ?? ''; const pv = type === 'date' && !val ? p6d(r.a, f) : ''; if (pv) { val = pv; cls += ' p6v'; } const isErr = r.iss.some(i => i.f === f && i.sev === 'bad'), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
     if (type === 'sel') return `<select class="in ${isErr ? 'err' : isW ? 'wrn' : ''}" data-u="${f}" ${en ? '' : 'disabled'} style="width:118px"><option value=""></option>${['Contractor', 'Consultant', 'Client', 'Concurrent'].map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${E(o)}</option>`).join('')}</select>`;
-    return `<input class="in ${cls} ${isErr ? 'err' : isW ? 'wrn' : ''}" type="${type}" ${type === 'number' ? 'min="0" step="any"' : ''} data-u="${f}" value="${h(val)}" ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${['ctr', 'cons', 'own'].includes(f) && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
+    return `<input class="in ${cls} ${isErr ? 'err' : isW ? 'wrn' : ''}" type="${type}" ${type === 'number' ? 'min="0" step="any"' : ''} data-u="${f}" value="${h(val)}" ${pv ? `title="${T('from_p6')}"` : ''} ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${['ctr', 'cons', 'own'].includes(f) && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
   const resCell = r => `${bdg(r.e.status)} <b class="num">${r.e.pctR}%</b><div class="tiny muted">${r.e.as ? 'AS ' + D.fmt(r.e.as) : ''} ${r.e.af ? '· AF ' + D.fmt(r.e.af) : ''} ${r.e.status === 'In Progress' ? '· RD ' + r.e.rd : ''}</div>`;
   const flagCell = r => r.iss.length ? r.iss.map(i => `<span class="bdg ${i.sev === 'bad' ? 'bad' : 'warn'}" title="${h(T(i.k))}">${i.sev === 'bad' ? '!' : '?'}</span>`).join(' ') + `<div class="tiny" style="color:${r.iss.some(i => i.sev === 'bad') ? 'var(--bad)' : 'var(--warn)'};line-height:1.3;margin-top:2px">${h(T(r.iss[0].k))}</div>` : (r.e.changed ? `<span class="bdg ok">→ P6</span>` : '');
-  const rowHtml = r => { const a = r.a; const ctrEn = canC, consEn = canCo, ownEn = canO;
+  const rowHtml = r => { const a = r.a; const ctrEn = canC, consEn = canCo, ownEn = canO; const b = PROG.blDates(a), nm = a.bl ? a.bl.name : a.name, od = b ? N(b.od) : N(a.od);   // activity cell = baseline schedule data when the baseline XER is loaded
     return `<td class="stk"><input type="checkbox" data-sel ${st.sel.has(a.id) ? 'checked' : ''}></td>
-    <td class="stk" style="inset-inline-start:34px;min-width:300px;max-width:340px;white-space:normal"><span class="mono muted">${h(a.id)}</span>${PROG.isMs(a) ? ' <span class="bdg navy">◆</span>' : ''}<span class="an" title="${h(a.name)}\n${h(a.wbs)}">${h(a.name)}</span><span class="tiny muted">${D.fmt(a.ps)} → ${D.fmt(a.pf)} · ${T('c_od')} ${fmtN(a.od, a.od % 1 ? 1 : 0)}d${a.tf !== null && a.tf !== undefined ? ' · TF ' + fmtN(a.tf, 0) : ''}</span></td>
+    <td class="stk" style="inset-inline-start:34px;min-width:300px;max-width:340px;white-space:normal"><span class="mono muted">${h(a.id)}</span>${PROG.isMs(a) ? ' <span class="bdg navy">◆</span>' : ''}${sch.bl && !a.bl ? ` <span class="bdg warn">${T('c_notbl')}</span>` : ''}<span class="an" title="${h(nm)}${nm !== a.name ? '\nP6: ' + h(a.name) : ''}\n${h(a.wbs)}">${h(nm)}</span><span class="tiny muted">${b ? `<b class="blt">${T('c_bl')}</b> ` : ''}${D.fmt(b ? b.s : a.ps)} → ${D.fmt(b ? b.f : a.pf)} · ${T('c_od')} ${fmtN(od, od % 1 ? 1 : 0)}d${a.tf !== null && a.tf !== undefined ? ' · TF ' + fmtN(a.tf, 0) : ''}</span></td>
     <td>${bdg(a.status)}<div class="num small"><b>${Math.round(a.pct)}%</b> ${a.as ? '<span class="tiny muted">AS ' + D.fmt(a.as) + '</span>' : ''}</div></td>
     <td class="n" data-pl>${r.pl === null ? '' : r.pl.toFixed(0) + '%'}</td>
     <td>${cell(r, 'ctr', 'pct', 'number', ctrEn)}</td><td>${cell(r, 'cons', 'pct', 'number', consEn)}</td><td>${cell(r, 'own', 'pct', 'number', ownEn)}</td>
@@ -2071,7 +2257,7 @@ PAGES.progress = v => {
   const draw = () => {
     kpis(); const rows = filtered(); st.view = rows; updCodeSelects(); const pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
     const pr = rows.slice(st.page * PS, st.page * PS + PS);
-    v.querySelector('[data-g]').innerHTML = `<div class="tw" style="max-height:calc(100vh - 330px)"><table class="t egrid"><thead><tr><th class="stk"><input type="checkbox" data-all></th><th class="stk" style="inset-inline-start:34px">${T('c_id')} / ${T('c_name')}</th><th>${T('c_p6')}</th><th class="n">${T('c_plan')}</th><th>${T('c_ctr')}</th><th>${T('c_cons')}</th><th>${T('c_own')}</th><th>${T('c_as')}</th><th>${T('c_af')}</th><th>${T('c_rd')}</th><th>${T('c_cb')}</th><th>${T('c_rsn')}</th><th>${T('c_mit')}</th><th>→ P6</th><th>${T('c_flags')}</th></tr></thead>
+    v.querySelector('[data-g]').innerHTML = `<div class="tw" style="max-height:max(300px,calc(100vh - 400px))"><table class="t egrid"><thead><tr><th class="stk"><input type="checkbox" data-all></th><th class="stk" style="inset-inline-start:34px">${T('c_id')} / ${T('c_name')}</th><th>${T('c_p6')}</th><th class="n">${T('c_plan')}</th><th>${T('c_ctr')}</th><th>${T('c_cons')}</th><th>${T('c_own')}</th><th>${T('c_as')}</th><th>${T('c_af')}</th><th>${T('c_rd')}</th><th>${T('c_cb')}</th><th>${T('c_rsn')}</th><th>${T('c_mit')}</th><th>→ P6</th><th>${T('c_flags')}</th></tr></thead>
       <tbody>${pr.map(r => `<tr data-a="${h(r.a.id)}" class="${r.behind ? 'beh' : ''} ${st.sel.has(r.a.id) ? 'sel' : ''}">${rowHtml(r)}</tr>`).join('') || `<tr><td colspan="15" class="empty">${T('none')}</td></tr>`}</tbody></table></div>
       <div class="pg">${rows.length} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`;
     const g = v.querySelector('[data-g]');
@@ -2080,10 +2266,10 @@ PAGES.progress = v => {
     drawBulk();
   };
   const refreshRow = tr => {
-    const id = tr.dataset.a; const a = sch.activities.find(x => x.id === id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate);
+    const id = tr.dataset.a; const a = sch.byId.get(id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate);
     const r = { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate);
     tr.classList.toggle('beh', r.behind); tr.querySelector('[data-res]').innerHTML = resCell(r); tr.querySelector('[data-fl]').innerHTML = flagCell(r);
-    tr.querySelectorAll('[data-u]').forEach(i => { const f = i.dataset.u; i.classList.toggle('err', r.iss.some(x => x.f === f && x.sev === 'bad')); i.classList.toggle('wrn', r.iss.some(x => x.f === f && x.sev === 'warn')); if (f === 'rd') i.placeholder = (r.e.status === 'In Progress' && !isNum((u || {}).rd)) ? r.e.rd : ''; });
+    tr.querySelectorAll('[data-u]').forEach(i => { const f = i.dataset.u; i.classList.toggle('err', r.iss.some(x => x.f === f && x.sev === 'bad')); i.classList.toggle('wrn', r.iss.some(x => x.f === f && x.sev === 'warn')); if (f === 'rd') i.placeholder = (r.e.status === 'In Progress' && !isNum((u || {}).rd)) ? r.e.rd : ''; if (f === 'as' || f === 'af') { const pv = (u || {})[f] ? '' : p6d(a, f); if (pv) i.value = pv; i.classList.toggle('p6v', !!pv); i.title = pv ? T('from_p6') : ''; } });
   };
   const drawBulk = () => {
     const b = v.querySelector('[data-bulk]'); if (!st.sel.size || !canC) { b.innerHTML = ''; return; }
@@ -2098,6 +2284,7 @@ PAGES.progress = v => {
     if (t.matches('[data-sel]')) { t.checked ? st.sel.add(tr.dataset.a) : st.sel.delete(tr.dataset.a); tr.classList.toggle('sel', t.checked); drawBulk(); return; }
     if (!t.matches('[data-u]')) return;
     let val = t.value; const f = t.dataset.u; if (['ctr', 'cons', 'own', 'rd'].includes(f) && val !== '') val = Number(val);
+    if (val === '' && t.classList.contains('p6v')) { refreshRow(tr); return; }   // a P6 date cannot be cleared here – it comes back from the XER
     setUpd(cid, tr.dataset.a, f, val); refreshRow(tr); kpis();
   });
   v.querySelectorAll('[data-fo]').forEach(p => p.onclick = () => { st.focus = p.dataset.fo; st.page = 0; v.querySelectorAll('[data-fo]').forEach(x => x.classList.toggle('on', x === p)); draw(); });
@@ -2107,8 +2294,8 @@ PAGES.progress = v => {
   v.querySelectorAll('[data-cd]').forEach(s => s.onchange = () => { st.codes[s.dataset.cd] = s.value; st.page = 0; draw(); });
   const ipb = v.querySelector('[data-imp]'); if (ipb) ipb.onclick = () => IMP.open('progress', null, { rows: filtered().map(r => r.a), after: () => render(true) });
   v.querySelector('[data-xl]').onclick = async () => {
-    const rows = filtered(); const head = ['Activity ID', 'Activity Name', 'WBS Code', ...codeKeys, 'Planned Start', 'Planned Finish', 'P6 Status', 'P6 %', 'Plan % @ cut-off', 'By Contractor (%)', 'By Consultant (%)', 'By Owner (%)', 'Actual Start', 'Actual Finish', 'Remaining Duration', 'Caused By', 'Reasons For Delay', 'Mitigation', 'Export Status', 'Export %', 'Issues', 'Updated By'];
-    const data = rows.map(r => { const u = r.u || {}; return [r.a.id, r.a.name, r.a.wbs, ...codeKeys.map(k => r.a.codes[k] || null), r.a.ps ? { d: r.a.ps } : null, r.a.pf ? { d: r.a.pf } : null, r.a.status, Math.round(r.a.pct), r.pl, isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, u.as ? { d: u.as } : null, u.af ? { d: u.af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy || null, u.reason || null, u.mitigation || null, r.e.status, r.e.pctR, r.iss.map(i => I18N.en[i.k]).join('; ') || null, u._by || null]; });
+    const rows = filtered(); const head = ['Activity ID', 'Activity Name', 'WBS Code', ...codeKeys, 'BL Start', 'BL Finish', 'Planned Start', 'Planned Finish', 'P6 Status', 'P6 %', 'Plan % @ cut-off', 'By Contractor (%)', 'By Consultant (%)', 'By Owner (%)', 'Actual Start', 'Actual Finish', 'Remaining Duration', 'Caused By', 'Reasons For Delay', 'Mitigation', 'Export Status', 'Export %', 'Issues', 'Updated By'];
+    const data = rows.map(r => { const u = r.u || {}; const b = PROG.blDates(r.a); return [r.a.id, r.a.name, r.a.wbs, ...codeKeys.map(k => r.a.codes[k] || null), b && b.s ? { d: b.s } : null, b && b.f ? { d: b.f } : null, r.a.ps ? { d: r.a.ps } : null, r.a.pf ? { d: r.a.pf } : null, r.a.status, Math.round(r.a.pct), r.pl, isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, u.as ? { d: u.as } : null, u.af ? { d: u.af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy || null, u.reason || null, u.mitigation || null, r.e.status, r.e.pctR, r.iss.map(i => I18N.en[i.k]).join('; ') || null, u._by || null]; });
     saveOutput(`${S.db.project.code}_Progress_${cdate}.xlsx`, await XLSXW.build([{ name: 'Progress', rows: [head, ...data], styles: { headerRows: [0] }, freeze: 'C2', autoFilter: 1 }]), 'Exports');
   };
   draw();
@@ -2207,11 +2394,38 @@ PAGES.checks = v => {
 };
 
 /* ---------- CUT-OFF & P6 ---------- */
+/* XER sources: what one loaded file holds (baseline or update) */
+const xerKV = x => `<dl class="kv" style="margin-bottom:12px"><dt>${T('xer_file')}</dt><dd class="mono">${h(x.fileName)}</dd><dt>${T('xer_proj')}</dt><dd>${h(x.projShort)}${x.projName ? ' — ' + h(x.projName) : ''}</dd><dt>${T('data_date')}</dt><dd>${D.fmt(x.dataDate)}</dd><dt>${T('activities')}</dt><dd>${fmtN(x.activities.length)}</dd><dt>${T('by')}</dt><dd>${h(x.importedBy || '')} · ${h(TS(x.importedAt, 16))}</dd></dl>`;
+/* everything the platform reads from the XER files (the update wins where both files hold a value) */
+function xerInfo() {
+  const m = SCH(); if (!m) return null; const u = m.upd, b = m.bl, x = k => (u && u[k]) || (b && b[k]) || '';
+  const A = m.activities, ms = A.filter(a => PROG.isMs(a)).length, st = s => A.filter(a => a.status === s).length;
+  return { m, u, b, projShort: x('projShort'), projName: x('projName'), planStart: x('planStart'), mustFinish: x('mustFinish'), planEnd: x('planEnd'), calName: x('calName'), dayHr: x('dayHr'), currency: x('currency'), relCount: x('relCount'), wbsCount: x('wbsCount'), labUnits: x('labUnits'),
+    n: A.length, ms, comp: st('Completed'), inprog: st('In Progress'), ns: st('Not Started'), cost: sum(A, a => a.cost), blCost: b ? sum(b.activities, a => a.cost) : 0,
+    both: b && u ? A.filter(a => a.bl).length : 0, blFinish: b ? b.activities.map(a => a.pf || a.ef).filter(Boolean).sort().pop() || '' : '', curFinish: A.map(a => a.af || a.ef || a.pf).filter(Boolean).sort().pop() || '' };
+}
+/* copy project data found in the XER files to Project setup (the user picks the fields) */
+function xerApplyDialog() {
+  const xi = xerInfo(); if (!xi) return; const p = S.db.project;
+  const rows = [['name', LBL('Project Name', 'اسم المشروع'), xi.projName, 't'], ['commencement', LBL('Project Commencement Date', 'تاريخ بدء المشروع'), xi.planStart, 'd'], ['completion', LBL('Project Completion Date', 'تاريخ انتهاء المشروع'), xi.mustFinish || xi.planEnd, 'd'], ['stdHours', LBL('Working Hours / Man-Day', 'ساعات العمل / يوم-عامل'), xi.dayHr, 'n']].filter(r => r[2] !== '' && r[2] !== undefined && r[2] !== null);
+  const show = (v, t) => v === '' || v === undefined || v === null ? '—' : t === 'd' ? D.fmt(v) : h(v);
+  modal({ title: T('xer_apply'), size: 'sm', body: `<div class="small muted" style="margin-bottom:10px">${T('xer_apply_d')}</div><div class="tw" style="max-height:none"><table class="t"><thead><tr><th></th><th>${LBL('Field', 'الحقل')}</th><th>${T('xer_cur')}</th><th>${T('xer_new')}</th></tr></thead><tbody>${rows.map(([k, l, v, t]) => { const same = String(p[k] ?? '') === String(v); return `<tr><td><input type="checkbox" data-xa="${k}" ${same ? 'disabled' : (p[k] === '' || p[k] === undefined || p[k] === null ? 'checked' : '')}></td><td>${l}</td><td>${show(p[k], t)}</td><td><b>${show(v, t)}</b>${same ? ' <span class="bdg ok">=</span>' : ''}</td></tr>`; }).join('')}</tbody></table></div>`,
+    foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-o>${T('save')}</button>`,
+    onMount: (el, close) => { el.querySelector('[data-c]').onclick = close; el.querySelector('[data-o]').onclick = () => {
+      const ks = Array.from(el.querySelectorAll('[data-xa]:checked')).map(c => c.dataset.xa); if (!ks.length) return close();
+      const np = clone(p); rows.forEach(([k, , v]) => { if (ks.includes(k)) np[k] = v; }); S.db.project = stamp(np);
+      touch('project setup from XER', ks.join(', ')); toast(T('xer_applied'), 'ok'); close(); render(true); }; } });
+}
 PAGES.p6 = v => {
-  const adm = hasPerm('p6'); const cut = activeCutoff(), sch = S.db.schedule;
+  const adm = hasPerm('p6'); const cut = activeCutoff(), sch = SCH(), upd = S.db.schedule, bl = S.db.baseline;
   const cuts = live(S.db.cutoffs).sort((a, b) => b.date.localeCompare(a.date));
   const sm = cut && sch ? PROG.summary(cut._id) : null;
   const blockers = sm ? sm.rows.filter(r => r.iss.some(i => i.sev === 'bad')) : [];
+  const xi = xerInfo();
+  const drop = (kind, txt) => adm ? `<div class="drop" data-drop="${kind}">${ic('file')}<div style="margin-top:6px">${txt}</div><input type="file" accept=".xer" hidden></div>` : '';
+  const hist = [...((bl && (bl.history || [{ fileName: bl.fileName, dataDate: bl.dataDate, n: bl.activities.length, at: bl.importedAt, by: bl.importedBy }])) || []).map(x => Object.assign({ k: 'bl' }, x)), ...((upd && (upd.history || [{ fileName: upd.fileName, dataDate: upd.dataDate, n: upd.activities.length, at: upd.importedAt, by: upd.importedBy }])) || []).map(x => Object.assign({ k: 'upd' }, x))].sort((a, b) => (b.at || '').localeCompare(a.at || ''));
+  const codeChip = k => { const n = sch.codeVals[k].size; return `<span class="bdg ${sch.filterKeys.includes(k) ? 'info' : ''}" dir="ltr" title="${n <= 1 ? T('xer_single') : ''}">${h(k)} · ${n}</span>`; };
+  const other = sch ? sch.codeTypes.filter(k => !sch.globalCodes.includes(k)) : [];
   v.innerHTML = pageHead(T('p6'), T('p6_desc')) + (adm ? '' : roNotice('p6')) + `
   <div class="grid g2">
     <div class="card"><div class="ch">${ic('p6')}<h3>${T('active_cutoff')}</h3>${cut ? bdg('open') : ''}</div><div class="cb">
@@ -2219,9 +2433,26 @@ PAGES.p6 = v => {
         <div style="display:flex;gap:8px;margin-top:14px">${adm ? `<button class="btn" data-edc>${ic('p6')}${T('edit_cutoff')}</button><button class="btn danger" data-close>${T('close_cutoff')}</button>` : ''}</div><div class="tiny muted" style="margin-top:8px">${T('close_hint')}</div>`
       : `<div class="muted" style="margin-bottom:12px">${T('no_cutoff')}</div>${adm ? `<button class="btn pri" data-open>${ic('plus')}${T('open_cutoff')}</button><div class="tiny muted" style="margin-top:8px">${T('cut_new_hint')}</div>` : ''}`}
     </div></div>
-    <div class="card"><div class="ch">${ic('up')}<h3>${T('import_xer')}</h3>${sch ? `<span class="bdg ok" style="margin-inline-start:auto">${T('xer_loaded')}</span>` : ''}</div><div class="cb">
-      ${sch ? `<dl class="kv" style="margin-bottom:12px"><dt>${T('xer_file')}</dt><dd class="mono">${h(sch.fileName)}</dd><dt>P6 project</dt><dd>${h(sch.projShort)}</dd><dt>${T('data_date')}</dt><dd>${D.fmt(sch.dataDate)}</dd><dt>${T('activities')}</dt><dd>${fmtN(sch.activities.length)}</dd><dt>${T('by')}</dt><dd>${h(sch.importedBy || '')} · ${h(TS(sch.importedAt, 16))}</dd></dl>` : ''}
-      ${adm ? `<div class="drop" data-drop>${ic('file')}<div style="margin-top:6px">${T('xer_drop')}</div><input type="file" accept=".xer" hidden data-xf></div>` : ''}
+    <div class="card" data-xc="update"><div class="ch">${ic('up')}<h3>${T('xer_upd')}</h3><span class="bdg ${upd ? 'ok' : 'warn'}" style="margin-inline-start:auto">${upd ? T('xer_loaded') : T('not_loaded')}</span></div><div class="cb">
+      ${upd ? xerKV(upd) : `<div class="muted" style="margin-bottom:12px">${T(bl ? 'xer_upd_none' : 'xer_none')}</div>`}
+      ${drop('update', T('xer_drop'))}<div class="tiny muted" style="margin-top:8px">${T('xer_upd_hint')}</div>
+    </div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card" data-xc="baseline"><div class="ch">${ic('layers')}<h3>${T('xer_bl')}</h3><span class="bdg ${bl ? 'ok' : 'warn'}" style="margin-inline-start:auto">${bl ? T('xer_bl_loaded') : T('not_loaded')}</span></div><div class="cb">
+      ${bl ? xerKV(bl) : `<div class="muted" style="margin-bottom:12px">${T('xer_bl_none')}</div>`}
+      ${drop('baseline', T('xer_bl_drop'))}<div class="tiny muted" style="margin-top:8px">${T('xer_bl_hint')}</div>
+    </div></div>
+    <div class="card" data-xc="info"><div class="ch">${ic('info')}<h3>${T('xer_info')}</h3></div><div class="cb">
+      ${xi ? `<dl class="kv"><dt>${T('xer_proj')}</dt><dd>${h(xi.projShort)}${xi.projName ? ' — ' + h(xi.projName) : ''}</dd>
+        <dt>${T('xer_dates')}</dt><dd>${D.fmt(xi.planStart) || '—'} → ${D.fmt(xi.mustFinish) || '—'} <span class="muted small">(${T('xer_mf')})</span> · ${D.fmt(xi.planEnd) || '—'} <span class="muted small">(${T('xer_sf')})</span></dd>
+        <dt>${T('activities')}</dt><dd>${fmtN(xi.n)} <span class="muted small">(${fmtN(xi.ms)} ${LBL('milestones', 'معلم')})</span> · ${T('completed')} ${fmtN(xi.comp)} · ${T('in_progress')} ${fmtN(xi.inprog)} · ${T('not_started')} ${fmtN(xi.ns)}</dd>
+        <dt>${T('xer_cost')}</dt><dd><span dir="ltr">${fmtN(xi.cost)} ${h(xi.currency)}</span>${xi.b && xi.u ? ` <span class="muted small">(${T('c_bl')} ${fmtN(xi.blCost)})</span>` : ''}${xi.labUnits ? ` · ${T('xer_units')} ${fmtN(xi.labUnits)}` : ''}</dd>
+        ${xi.relCount !== '' ? `<dt>${T('xer_struct')}</dt><dd>${T('xer_rel')} ${fmtN(xi.relCount)} · ${T('xer_wbs')} ${fmtN(xi.wbsCount)}${xi.calName ? ` · ${T('xer_cal')} <bdi>${h(xi.calName)} (${fmtN(xi.dayHr)}h)</bdi>` : ''}</dd>` : ''}
+        ${xi.b && xi.u ? `<dt>${T('xer_cmp')}</dt><dd>${T('xer_cmp_v').replace('{a}', fmtN(xi.both)).replace('{b}', fmtN(sch.newIds)).replace('{c}', fmtN(sch.goneIds))}${xi.blFinish && xi.curFinish ? `<br><span class="small">${T('xer_fin')}: ${D.fmt(xi.blFinish)} → ${D.fmt(xi.curFinish)} <span class="bdg ${D.diff(xi.curFinish, xi.blFinish) > 0 ? 'bad' : 'ok'}" dir="ltr">${D.diff(xi.curFinish, xi.blFinish) > 0 ? '+' : ''}${fmtN(D.diff(xi.curFinish, xi.blFinish))}d</span></span>` : ''}</dd>` : ''}
+        <dt>${T('xer_gcodes')}</dt><dd style="white-space:normal;line-height:1.9">${sch.globalCodes.length ? sch.globalCodes.map(codeChip).join(' ') : `<span class="muted small">${T(sch.codeScoped ? 'xer_nog' : 'xer_reimport')}</span><br>${sch.filterKeys.map(codeChip).join(' ')}`}</dd>
+        ${sch.globalCodes.length && other.length ? `<dt>${T('xer_ocodes')}</dt><dd style="white-space:normal;line-height:1.9">${other.map(codeChip).join(' ')}</dd>` : ''}</dl>
+        ${hasPerm('project') ? `<div style="margin-top:12px"><button class="btn" data-xap>${ic('building')}${T('xer_apply')}</button></div>` : ''}` : `<div class="muted">${T('xer_none')}</div>`}
     </div></div>
   </div>
   <div class="card" style="margin-top:14px"><div class="ch">${ic('dl')}<h3>${T('gen_p6')}</h3></div><div class="cb">
@@ -2232,22 +2463,25 @@ PAGES.p6 = v => {
       ${(cut.exports || []).length ? `<div class="small" style="margin-top:10px">${T('exports')}: ${cut.exports.slice(-5).reverse().map(x => `<span class="chip">${h(TS(x.at, 16))} · ${h(x.by)} · ${x.rows} ${T('rows')} (${x.changed} Δ)</span>`).join(' ')}</div>` : ''}`
     : `<div class="muted">${!sch ? T('no_schedule') : T('no_open_cutoff')}</div>`}
   </div></div>
+  ${hist.length ? `<div class="sec-t">${T('xer_hist')}</div>
+  <div class="tw" style="max-height:260px" data-xh><table class="t"><thead><tr><th>${T('xer_kind')}</th><th>${T('xer_file')}</th><th>${T('data_date')}</th><th class="n">${T('activities')}</th><th>${T('by')}</th><th>${T('date')}</th></tr></thead><tbody>
+  ${hist.map(x => `<tr><td><span class="bdg ${x.k === 'bl' ? 'navy' : 'info'}">${T(x.k === 'bl' ? 'xer_k_bl' : 'xer_k_upd')}</span></td><td class="mono">${h(x.fileName)}</td><td>${D.fmt(x.dataDate)}</td><td class="n">${fmtN(x.n)}</td><td class="small">${h(x.by || '')}</td><td class="small muted">${h(TS(x.at, 16))}</td></tr>`).join('')}</tbody></table></div>` : ''}
   <div class="sec-t">${T('cutoff_hist')}</div>
   <div class="tw" style="max-height:none"><table class="t"><thead><tr><th>${T('cut_date')}</th><th>${T('report_no')}</th><th>${T('status')}</th><th>${T('data_date')}</th><th>${T('xer_file')}</th><th class="n">${T('entries')}</th><th class="n">${T('exports')}</th><th class="n">${T('snapshot')}</th><th>${T('by')}</th><th></th></tr></thead><tbody>
   ${cuts.map(c => `<tr><td><b>${D.fmt(c.date)}</b></td><td>${h(c.reportNo || '')}</td><td>${bdg(c.status)}</td><td>${D.fmt(c.dataDate)}</td><td class="mono">${h(c.xer || '')}</td><td class="n">${Object.keys(S.db.updates[c._id] || {}).length}</td><td class="n">${(c.exports || []).length}</td><td class="n">${(c.snapshot || []).length || ''}</td><td class="small muted">${h(c.closedBy || c.openedBy || '')}</td><td>${adm && c.status === 'closed' && !cut ? `<button class="btn sm" data-reo="${c._id}">${T('reopen')}</button>` : ''}</td></tr>`).join('') || `<tr><td colspan="10" class="empty">—</td></tr>`}</tbody></table></div>`;
-  const drop = v.querySelector('[data-drop]');
-  if (drop) {
-    const fi = drop.querySelector('[data-xf]'); drop.onclick = () => fi.click();
+  v.querySelectorAll('[data-drop]').forEach(drop => {
+    const fi = drop.querySelector('input'), kind = drop.dataset.drop; drop.onclick = () => fi.click();
     drop.ondragover = e => { e.preventDefault(); drop.classList.add('ov2'); }; drop.ondragleave = () => drop.classList.remove('ov2');
-    drop.ondrop = e => { e.preventDefault(); drop.classList.remove('ov2'); if (e.dataTransfer.files[0]) importXER(e.dataTransfer.files[0]); };
-    fi.onchange = () => fi.files[0] && importXER(fi.files[0]);
-  }
+    drop.ondrop = e => { e.preventDefault(); drop.classList.remove('ov2'); if (e.dataTransfer.files[0]) importXER(e.dataTransfer.files[0], kind); };
+    fi.onchange = () => fi.files[0] && importXER(fi.files[0], kind);
+  });
+  const xap = v.querySelector('[data-xap]'); if (xap) xap.onclick = xerApplyDialog;
   const op = v.querySelector('[data-open]'); if (op) op.onclick = openCutoffDialog;
   const ed = v.querySelector('[data-edc]'); if (ed) ed.onclick = () => editCutoffDialog(cut._id);
   const cl = v.querySelector('[data-close]'); if (cl) cl.onclick = async () => {
     if (!(await confirmBox(`${T('confirm_close')}<br><br><b>${D.fmt(cut.date)}</b>`, T('close_cutoff'), true))) return;
     const c = S.db.cutoffs.find(x => x._id === cut._id);
-    if (S.db.schedule) c.snapshot = PROG.rows(c._id).map(r => [r.a.id, r.e.status, r.e.pctR, r.e.as, r.e.af, r.e.rd, r.pl]);
+    if (SCH()) c.snapshot = PROG.rows(c._id).map(r => [r.a.id, r.e.status, r.e.pctR, r.e.as, r.e.af, r.e.rd, r.pl]);
     c.status = 'closed'; c.closedAt = nowISO(); c.closedBy = S.user.name; stamp(c); touch('close cut-off', c.date); render();
   };
   v.querySelectorAll('[data-reo]').forEach(b => b.onclick = () => { const c = S.db.cutoffs.find(x => x._id === b.dataset.reo); c.status = 'open'; stamp(c); touch('reopen cut-off', c.date); render(); });
@@ -2269,7 +2503,7 @@ function openCutoffDialog() {
     foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-o>${T('open_cutoff')}</button>`,
     onMount: (el, close) => { el.querySelector('[data-c]').onclick = close; el.querySelector('[data-o]').onclick = () => {
       const d = el.querySelector('[data-d]').value; if (!D.valid(d)) return; if (live(S.db.cutoffs).some(c => c.date === d)) { toast(d + ' – duplicate', 'bad'); return; }
-      S.db.cutoffs.push(stamp({ _id: S.db.cutoffs.some(c => c._id === 'C' + d.replace(/-/g, '')) ? 'C' + d.replace(/-/g, '') + '-' + uid() : 'C' + d.replace(/-/g, ''), date: d, reportNo: N(el.querySelector('[data-n]').value), status: 'open', dataDate: S.db.schedule ? S.db.schedule.dataDate : '', xer: S.db.schedule ? S.db.schedule.fileName : '', openedAt: nowISO(), openedBy: S.user.name, exports: [] }));
+      S.db.cutoffs.push(stamp({ _id: S.db.cutoffs.some(c => c._id === 'C' + d.replace(/-/g, '')) ? 'C' + d.replace(/-/g, '') + '-' + uid() : 'C' + d.replace(/-/g, ''), date: d, reportNo: N(el.querySelector('[data-n]').value), status: 'open', dataDate: SCH() ? SCH().dataDate : '', xer: SCH() ? SCH().fileName : '', openedAt: nowISO(), openedBy: S.user.name, exports: [] }));
       touch('open cut-off', d); close(); render(); } } });
 }
 function editCutoffDialog(cid) {
@@ -2287,16 +2521,26 @@ function editCutoffDialog(cid) {
       touch('edit cut-off', `${old} → ${d} #${no}`); toast(T('saved'), 'ok'); close(); render();
     } } });
 }
-async function importXER(file) {
+async function importXER(file, kind) { // kind: 'baseline' (approved baseline schedule) | 'update' (latest progress update, default)
+  const isBl = kind === 'baseline';
   try {
     toast(LBL('Reading XER…', 'جارٍ قراءة ملف XER…'));
     const buf = await file.arrayBuffer(); const sch = XER.parse(XER.decode(buf), file.name);
     if (!sch.activities.length) throw new Error('No activities');
-    if (S.db.schedule && sch.dataDate < S.db.schedule.dataDate && !(await confirmBox(T('xer_older'), 'OK'))) return;
-    sch.importedAt = nowISO(); sch.importedBy = S.user.name; S.db.schedule = sch;
-    const cut = activeCutoff(); if (cut) { const c = S.db.cutoffs.find(x => x._id === cut._id); c.dataDate = sch.dataDate; c.xer = sch.fileName; stamp(c); }
-    if (!S.db.project.commencement && sch.planStart) S.db.project.commencement = sch.planStart;
-    touch('import XER', `${file.name} (${sch.activities.length})`); toast(`${T('xer_loaded')}: ${sch.activities.length} ${T('activities')} · ${D.fmt(sch.dataDate)}`, 'ok'); render(true);
+    const other = isBl ? S.db.schedule : S.db.baseline;
+    if (other) { const ids = new Set(other.activities.map(a => a.id)); const common = sch.activities.filter(a => ids.has(a.id)).length; if (common < Math.min(ids.size, sch.activities.length) * 0.3 && !(await confirmBox(T('xer_mismatch').replace('{n}', fmtN(common)), T('pf_use_anyway'), true))) return; }
+    if (isBl) { const prog = sch.activities.filter(a => a.status !== 'Not Started').length; if (prog && !(await confirmBox(T('xer_bl_prog').replace('{n}', fmtN(prog)), T('pf_use_anyway')))) return; }
+    else if (S.db.schedule && sch.dataDate < S.db.schedule.dataDate && !(await confirmBox(T('xer_older'), 'OK'))) return;
+    sch.importedAt = nowISO(); sch.importedBy = S.user.name; packSched(sch);
+    const ent = x => ({ fileName: x.fileName, dataDate: x.dataDate, n: x.activities.length, at: x.importedAt, by: x.importedBy });
+    const old = isBl ? S.db.baseline : S.db.schedule;
+    sch.history = [...((old && (old.history || [ent(old)])) || []), ent(sch)].slice(-60);   // register of the files loaded so far
+    if (isBl) S.db.baseline = sch;
+    else { S.db.schedule = sch; const cut = activeCutoff(); if (cut) { const c = S.db.cutoffs.find(x => x._id === cut._id); c.dataDate = sch.dataDate; c.xer = sch.fileName; stamp(c); } }
+    // project data found in the XER fills Project setup only where it is still empty
+    const xi = xerInfo(), p = S.db.project, fill = {}; if (!p.name && xi.projName) fill.name = xi.projName; if (!p.commencement && xi.planStart) fill.commencement = xi.planStart; if (!p.completion && (xi.mustFinish || xi.planEnd)) fill.completion = xi.mustFinish || xi.planEnd;
+    if (Object.keys(fill).length) S.db.project = stamp(Object.assign(clone(p), fill));
+    touch(isBl ? 'import baseline XER' : 'import XER', `${file.name} (${sch.activities.length})`); toast(`${T(isBl ? 'xer_bl_loaded' : 'xer_loaded')}: ${sch.activities.length} ${T('activities')} · ${D.fmt(sch.dataDate)}`, 'ok'); render(true);
   } catch (e) { toast('XER: ' + e.message, 'bad'); }
 }
 
@@ -2386,8 +2630,9 @@ PAGES.lists = v => {
     const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const L = clone(S.db.lists); L[tab] = items.filter(x => String(x.v || '').trim()).map(x => { Object.keys(x).forEach(k => { if (x[k] === '') delete x[k]; }); x.v = String(x.v).trim(); return x; }); S.db.lists = stamp(L); touch('lists', tab); toast(T('saved'), 'ok'); render(true); };
   } else if (tab === 'params') {
     const P = S.db.params; const prm = [['designWeight', 'Design drawings weight in engineering progress', 'وزن المخططات التصميمية في الإنجاز الهندسي'], ['shopWeight', 'Shop drawings weight in engineering progress', 'وزن المخططات التنفيذية في الإنجاز الهندسي'], ['creditURShop', 'Credit – shop drawing submitted, review pending', 'نسبة احتساب المخطط التنفيذي المقدم قيد المراجعة'], ['creditURDesign', 'Credit – design drawing submitted', 'نسبة احتساب المخطط التصميمي المقدم'], ['drwReviewDays', 'Drawing review period (calendar days)', 'مدة مراجعة المخططات (يوم تقويمي)'], ['lookahead', 'Progress look-ahead window (days)', 'نافذة النظرة المستقبلية للإنجاز (يوم)']];
-    c.innerHTML = `<div class="fsec"><div class="fgrid">${prm.map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<input class="in" type="number" step="any" data-pp="${k}" value="${h(P[k] ?? '')}" ${dis}></label>`).join('')}</div></div>`;
-    const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const np = clone(P); c.querySelectorAll('[data-pp]').forEach(i => np[i.dataset.pp] = Number(i.value)); S.db.params = stamp(np); touch('parameters'); toast(T('saved'), 'ok'); render(true); };
+    c.innerHTML = `<div class="fsec"><div class="fgrid">${prm.map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<input class="in" type="number" step="any" data-pp="${k}" value="${h(P[k] ?? '')}" ${dis}></label>`).join('')}
+      <label class="f" style="grid-column:1/-1;max-width:560px">${T('pl_basis')}<select class="in" data-pb ${dis}><option value="upd" ${P.planBasis !== 'bl' ? 'selected' : ''}>${T('pl_basis_upd')}</option><option value="bl" ${P.planBasis === 'bl' ? 'selected' : ''}>${T('pl_basis_bl')}</option></select><span class="tiny muted">${T('pl_basis_d')}</span></label></div></div>`;
+    const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const np = clone(P); c.querySelectorAll('[data-pp]').forEach(i => np[i.dataset.pp] = Number(i.value)); np.planBasis = c.querySelector('[data-pb]').value; S.db.params = stamp(np); touch('parameters'); toast(T('saved'), 'ok'); render(true); };
   } else {
     const pins = S.db.security.pins;
     c.innerHTML = `<div class="notice ${userMode() ? 'warn' : 'info'}">${ic('info')}<div>${userMode() ? T('pins_note_u') : T('pins_note')}</div></div><div class="fsec"><div class="fgrid">${['admin', 'contractor', 'consultant', 'owner'].map(k => `<label class="f">${T('pin_' + k)}<input class="in" type="text" data-pin="${k}" value="${h(ed ? pins[k] : '••••')}" ${dis}></label>`).join('')}</div></div>`;
@@ -2459,7 +2704,7 @@ async function showLogin() {
       el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-a]').value.trim(), b = el.querySelector('[data-b]').value.trim(), c = el.querySelector('[data-c]').value.trim(); if (!a || !b) { toast(T('required'), 'bad'); return; } const d = emptyDB({ number: a, code: b, name: c }); d.lists = clone(DEFAULT_LISTS); d.security.pins = { admin: 'admin', contractor: 'contractor', consultant: 'consultant', owner: 'owner' }; if (await IDB.get('projects', d.id)) { toast(`${d.id} – ${T('np_exists')}`, 'bad'); return; } await IDB.put('projects', d.id, d); if (pf) await bindFolder(d.id, pf); S.ui.lproj = d.id; S.ui.lrole = 'admin'; close(); await showLogin(); if (WEB()) cloudLinkDialog(d.id, id => { S.ui.lproj = id; showLogin(); }, T('np_web_link')); }; } });
   const enter = async (db, user, audAction) => {
     S.db = db; S.user = user; S.page = 'home'; lg.remove();
-    if (user.id) { const u = S.db.users.find(x => x._id === user.id); if (u) { u.lastLogin = nowISO(); u._at = nowISO(); } }
+    PRES.stamp('in');   // sign-in time is kept in the presence register (the user record is not re-stamped, so a manager's newer edit of it is never overridden)
     audit(audAction || 'sign in', `${user.name} (${user.title || user.role})`);
     S.cloud = null; S.dir = null; S.ui.cloudAuth = false; S.ui.cloudAuthShown = false; S.ui.cloudDirty = true;
     const cl = await projCloud(db.id);
@@ -2531,7 +2776,7 @@ async function deleteProjectDialog(id) {
       };
     } });
 }
-function migrate(db) { if (!db) return db; COLLS.forEach(k => db[k] = db[k] || []); db.updates = db.updates || {}; db.audit = db.audit || []; db.params = db.params || {}; db.security = db.security || { pins: {} }; return migrateUsers(db); }
+function migrate(db) { if (!db) return db; COLLS.forEach(k => db[k] = db[k] || []); db.presence = db.presence || {}; packSched(db.schedule); packSched(db.baseline); db.schema = Math.max(db.schema || 1, DB_SCHEMA); db.updates = db.updates || {}; db.audit = db.audit || []; db.params = db.params || {}; db.security = db.security || { pins: {} }; return migrateUsers(db); }
 async function boot() {
   if (window.__DCP_POPUP) return; // Microsoft sign-in window
   const prefs = await IDB.get('meta', 'prefs').catch(() => null);
@@ -2544,6 +2789,7 @@ async function boot() {
 }
 window.addEventListener('beforeunload', e => { if (S.sync.state === 'pending') { saveLocal(); } });
 document.addEventListener('DOMContentLoaded', boot);
+['pointerdown', 'keydown'].forEach(ev => document.addEventListener(ev, () => { S.ui.lastInput = Date.now(); }, true));   // real user input drives the presence heartbeat
 
 /* ===== USERS & PERMISSIONS ===== */
 const PERM_AREAS = [
@@ -2579,6 +2825,27 @@ function migrateUsers(db) {
 }
 const userLabel = (u = S.user) => u ? (u.title || T('r_' + u.role)) : '';
 
+/* ---------- presence: who is on the platform (User-management holders only) ---------- */
+const agoTxt = iso => { if (!iso) return ''; const m = Math.max(0, Math.round((Date.now() - Date.parse(iso)) / 60000)); return m < 1 ? LBL('just now', 'الآن') : m < 60 ? LBL(`${m} min ago`, `منذ ${m} دقيقة`) : m < 1440 ? LBL(`${Math.floor(m / 60)} h ago`, `منذ ${Math.floor(m / 60)} ساعة`) : LBL(`${Math.floor(m / 1440)} d ago`, `منذ ${Math.floor(m / 1440)} يوم`); };
+const presBadge = r => r.st === 'on' ? `<span class="bdg ok"><span class="dot"></span> ${T('pr_on')}</span>` : r.st === 'idle' ? `<span class="bdg warn">${T('pr_idle')}</span>` : !r.active ? `<span class="bdg">${T('u_inactive')}</span>` : `<span class="bdg">${T(r.at || r.login ? 'pr_off' : 'pr_never')}</span>`;
+function presTable(rows) {
+  return `<table class="t"><thead><tr><th>${T('u_name')}</th><th>${T('status')}</th><th>${T('pr_last')}</th><th>${T('pr_login')}</th><th>${T('pr_page')}</th><th>${T('pr_dev')}</th></tr></thead><tbody>${rows.map(r => `<tr data-pk="${h(r.k)}" data-st="${r.st}"><td><b>${h(r.name)}</b>${r.k === PRES.key() ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}${r.title ? `<div class="tiny muted">${h(r.title)}</div>` : ''}</td><td>${presBadge(r)}</td><td>${r.at ? `${h(agoTxt(r.out && r.out >= r.at ? r.out : r.at))}<div class="tiny muted"><bdi>${h(TS(r.at, 16))}</bdi>${r.out && r.out >= r.at ? ' · ' + T('pr_out') : ''}</div>` : '<span class="muted">—</span>'}</td><td class="small"><bdi>${h(TS(r.login, 16)) || '—'}</bdi></td><td class="small">${r.page && r.st !== 'off' ? h(T(r.page)) : ''}</td><td class="small muted">${h(r.dev)}</td></tr>`).join('') || `<tr><td colspan="6" class="empty">—</td></tr>`}</tbody></table>`;
+}
+const presSync = () => (S.cloud ? syncCloud(false, true, true) : syncFolder(false));   // pull the latest presence stamps now
+function presRefresh() { // top-bar chip + the open presence tables
+  const el = document.getElementById('presChip'); if (!S.db || !S.user) return;
+  const rows = PRES.list(), on = rows.filter(r => r.st === 'on').length;
+  if (el) { el.className = 'chip ' + (on > 1 ? 'sync-ok' : ''); el.innerHTML = `${ic('users')}<b>${on}</b> ${T('pr_chip')}`; el.onclick = presenceDialog; }
+  document.querySelectorAll('[data-pres]').forEach(x => { x.innerHTML = presTable(rows); });
+  document.querySelectorAll('[data-pron]').forEach(x => { x.textContent = fmtN(on); });
+}
+function presenceDialog() {
+  if (!canUsers()) return;
+  modal({ title: `${T('pr_title')}`, body: `<div class="tw" style="max-height:none" data-pres></div><div class="tiny muted" style="margin-top:8px">${T('pr_note')}</div>`,
+    foot: `<span class="sp"></span><button class="btn" data-prs>${ic('sync')}${T('pr_refresh')}</button><button class="btn" data-pu>${ic('user')}${T('users')}</button><button class="btn pri" data-c>${T('close')}</button>`,
+    onMount: (el, close) => { el.querySelector('[data-c]').onclick = close; el.querySelector('[data-pu]').onclick = () => { close(); go('users'); }; el.querySelector('[data-prs]').onclick = () => presSync().then(presRefresh); presRefresh(); } });
+}
+
 /* ---------- SHA-256 (crypto.subtle, with a pure-JS fallback) ---------- */
 const SHA256 = (() => {
   const K = new Uint32Array([0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2]);
@@ -2612,16 +2879,21 @@ PAGES.users = v => {
   const chips = u => { const ps = u.perms || []; const b = (k, c) => `<span class="bdg ${c}">${k === 'users' ? ic('key') : ''}${LBL(...PERM_SHORT[k])}</span>`;
     const out = [...(ps.includes('users') ? [b('users', 'warn')] : []), ...(ps.includes('admin') ? [b('admin', 'navy')] : ps.filter(p => p !== 'users' && !PAGE_PERMS.includes(p)).map(p => b(p, 'info'))), ...PAGE_PERMS.filter(p => ps.includes(p)).map(p => b(p, 'ok'))];
     return out.join(' ') || `<span class="bdg">${T('readonly')}</span>`; };
-  v.innerHTML = pageHead(T('users'), T('users_desc'), `<button class="btn pri" data-add>${ic('plus')}${T('user_add')}</button>`) +
+  const pl = PRES.list(), login = {}; pl.forEach(r => login[r.k] = r.login);
+  v.innerHTML = pageHead(T('users'), T('users_desc'), `<button class="btn" data-prs>${ic('sync')}${T('pr_refresh')}</button><button class="btn pri" data-add>${ic('plus')}${T('user_add')}</button>`) +
     `<div class="notice ${mode ? 'ok' : 'warn'}">${ic(mode ? 'ok' : 'info')}<div><b>${mode ? T('um_named') : T('um_role')}</b><br>${mode ? T('um_named_d') : T('um_role_d')}</div></div>
     <div class="grid g4" style="margin-bottom:14px">${kpi(T('users'), fmtN(us.length))}${kpi(T('u_active'), fmtN(us.filter(u => u.active !== false).length), '', 'ok')}${kpi(T('u_inactive'), fmtN(us.filter(u => u.active === false).length))}${kpi(LBL(...PERM_SHORT.users), fmtN(usersActive().filter(isMgr).length), '', 'warn')}</div>
+    <div class="sec-t">${ic('users')}${T('pr_title')} — <span data-pron>${fmtN(pl.filter(r => r.st === 'on').length)}</span> ${T('pr_online')}</div>
+    <div class="tw" style="max-height:340px" data-pres>${presTable(pl)}</div><div class="tiny muted" style="margin:8px 0 4px">${T('pr_note')}</div>
+    <div class="sec-t">${T('users')}</div>
     ${us.length ? `<div class="tw" style="max-height:none"><table class="t"><thead><tr><th>${T('u_name')}</th><th>${T('u_title')}</th><th>${T('u_template')}</th><th>${T('u_perms')}</th><th>${T('status')}</th><th>${T('u_last')}</th><th></th></tr></thead><tbody>
-      ${us.map(u => `<tr class="${ed ? 'cl' : ''}" data-id="${u._id}"><td><b>${h(u.name)}</b>${u.contact ? `<div class="tiny muted">${h(u.contact)}</div>` : ''}${S.user.id === u._id ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}</td><td>${h(u.title || '')}</td><td class="small">${h(T('r_' + (u.role || 'viewer')))}</td><td style="white-space:normal;max-width:360px">${chips(u)}</td><td>${u.active === false ? `<span class="bdg">${T('u_inactive')}</span>` : `<span class="bdg ok">${T('u_active')}</span>`}</td><td class="small muted">${h(TS(u.lastLogin, 16)) || '—'}</td><td>${ed ? `<button class="btn sm" data-ed="${u._id}">${T('edit')}</button>` : ''}</td></tr>`).join('')}</tbody></table></div>` : `<div class="card empty">${T('u_none')}</div>`}
+      ${us.map(u => `<tr class="${ed ? 'cl' : ''}" data-id="${u._id}"><td><b>${h(u.name)}</b>${u.contact ? `<div class="tiny muted">${h(u.contact)}</div>` : ''}${S.user.id === u._id ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}</td><td>${h(u.title || '')}</td><td class="small">${h(T('r_' + (u.role || 'viewer')))}</td><td style="white-space:normal;max-width:360px">${chips(u)}</td><td>${u.active === false ? `<span class="bdg">${T('u_inactive')}</span>` : `<span class="bdg ok">${T('u_active')}</span>`}</td><td class="small muted">${h(TS(login[u._id] || u.lastLogin, 16)) || '—'}</td><td>${ed ? `<button class="btn sm" data-ed="${u._id}">${T('edit')}</button>` : ''}</td></tr>`).join('')}</tbody></table></div>` : `<div class="card empty">${T('u_none')}</div>`}
     <div class="sec-t">${T('u_matrix')}</div>
     <div class="tw" style="max-height:none"><table class="t"><thead><tr><th>${T('u_template')}</th>${PERM_AREAS.map(p => `<th class="c" style="text-align:center">${LBL(...PERM_SHORT[p.k])}</th>`).join('')}</tr></thead><tbody>${Object.keys(ROLE_PERMS).map(r => `<tr><td><b>${T('r_' + r)}</b></td>${PERM_AREAS.map(p => `<td style="text-align:center">${ROLE_PERMS[r].includes(p.k) || (ROLE_PERMS[r].includes('admin') && p.k !== 'users' && !PAGE_PERMS.includes(p.k)) ? '<span style="color:var(--ok);font-weight:700">✓</span>' : '<span class="muted">—</span>'}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
     <div class="tiny muted" style="margin-top:8px">${T('u_matrix_note')}</div>`;
   if (!ed) return;
   v.querySelector('[data-add]').onclick = () => userDialog(null);
+  v.querySelector('[data-prs]').onclick = () => presSync().then(() => render(true));
   v.querySelectorAll('tr[data-id]').forEach(tr => tr.onclick = () => userDialog(S.db.users.find(x => x._id === tr.dataset.id)));
 };
 function userDialog(u) {
@@ -2713,13 +2985,18 @@ const IMP = (() => {
   const MON = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12, 'يناير': 1, 'فبراير': 2, 'مارس': 3, 'ابريل': 4, 'أبريل': 4, 'مايو': 5, 'يونيو': 6, 'يوليو': 7, 'اغسطس': 8, 'أغسطس': 8, 'سبتمبر': 9, 'اكتوبر': 10, 'أكتوبر': 10, 'نوفمبر': 11, 'ديسمبر': 12 };
   const pad = n => String(n).padStart(2, '0');
   const iso = (y, m, d) => { if (y < 100) y += 2000; const dt = new Date(Date.UTC(y, m - 1, d)); return (dt.getUTCFullYear() === y && dt.getUTCMonth() === m - 1 && dt.getUTCDate() === d) ? `${y}-${pad(m)}-${pad(d)}` : null; };
+  let D1904 = 0;   // day offset of the workbook being read (1462 for the 1904 date system)
+  const mon = x => MON[String(x).toLowerCase().replace(/\./g, '').slice(0, 3)] || MON[x];
   function toDate(v) {
     if (v === null || v === undefined || v === '') return { v: '' };
-    if (typeof v === 'number') { if (v > 20000 && v < 80000) return { v: new Date(Date.UTC(1899, 11, 30) + Math.floor(v) * 86400000).toISOString().slice(0, 10) }; return { e: 'date' }; }
-    const s = String(v).trim().replace(/[‏‎]/g, ''); let m;
+    if (typeof v === 'number') { v += D1904; if (v > 20000 && v < 80000) return { v: new Date(Date.UTC(1899, 11, 30) + Math.floor(v) * 86400000).toISOString().slice(0, 10) }; return { e: 'date' }; }
+    const s = String(v).trim().replace(/[\u200e\u200f\u202a-\u202e\u2066-\u2069]/g, '').replace(/[\u0660-\u0669]/g, c => c.charCodeAt(0) - 0x660).replace(/[\u06f0-\u06f9]/g, c => c.charCodeAt(0) - 0x6f0); let m;
+    if (s === '') return { v: '' };
     if ((m = s.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/))) { const r = iso(+m[1], +m[2], +m[3]); return r ? { v: r } : { e: 'date' }; }
-    if ((m = s.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2,4})/))) { const r = iso(+m[3], +m[2], +m[1]); return r ? { v: r } : { e: 'date' }; }
-    if ((m = s.match(/^(\d{1,2})[-\s]+([^\d\s-]+)[-\s]+(\d{2,4})/))) { const mo = MON[m[2].toLowerCase().slice(0, 3)] || MON[m[2]]; const r = mo && iso(+m[3], mo, +m[1]); return r ? { v: r } : { e: 'date' }; }
+    if ((m = s.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2,4})/))) { const r = iso(+m[3], +m[2], +m[1]) || iso(+m[3], +m[1], +m[2]); return r ? { v: r } : { e: 'date' }; }   // day/month/year; month/day/year when that is the only valid reading
+    if ((m = s.match(/^(\d{1,2})[-\s\/.]+([^\d\s\-\/.,]+)[-\s\/.,]+(\d{2,4})/))) { const mo = mon(m[2]); const r = mo && iso(+m[3], mo, +m[1]); return r ? { v: r } : { e: 'date' }; }   // 5-Nov-26, 5 November 2026
+    if ((m = s.match(/^([^\d\s\-\/.,]+)[-\s\/.]+(\d{1,2})(?:st|nd|rd|th)?[-\s\/.,]+(\d{2,4})/))) { const mo = mon(m[1]); const r = mo && iso(+m[3], mo, +m[2]); return r ? { v: r } : { e: 'date' }; }   // Nov 5, 2026
+    if (/^\d{5}(\.\d+)?$/.test(s)) return toDate(Number(s));   // Excel serial stored as text
     return { e: 'date' };
   }
   function toNum(v) {
@@ -2946,7 +3223,8 @@ const IMP = (() => {
   async function templateProgress(rowsList) {
     const cut = activeCutoff(); const U = PROG.upd(cut._id);
     const head = [T('c_id'), T('c_name'), T('c_wbs'), T('c_ps'), T('c_pf'), 'P6 Status', 'P6 %', T('c_ctr'), T('c_cons'), T('c_own'), T('c_as'), T('c_af'), T('c_rd'), T('c_cb'), T('c_rsn'), T('c_mit')];
-    const data = rowsList.map(a => { const u = U[a.id] || {}; return [a.id, a.name, a.wbs, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, E(a.status), Math.round(a.pct), isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, u.as ? { d: u.as } : null, u.af ? { d: u.af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy ? E(u.causedBy) : null, u.reason || null, u.mitigation || null]; });
+    const data = rowsList.map(a => { const u = U[a.id] || {}; const as = u.as || (a.type !== 'TT_FinMile' ? a.as : ''), af = u.af || (a.type !== 'TT_Mile' ? a.af : '');   // actual dates already in P6 are pre-filled
+      return [a.id, a.name, a.wbs, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, E(a.status), Math.round(a.pct), isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, as ? { d: as } : null, af ? { d: af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy ? E(u.causedBy) : null, u.reason || null, u.mitigation || null]; });
     const blob = await XLSXW.build([
       { name: 'Progress', rows: [head, ...data], styles: { headerRows: [0] }, widths: [24, 55, 30, 12, 12, 12, 8, 13, 13, 13, 13, 13, 12, 14, 40, 40], freeze: 'C2', autoFilter: 1, validations: [{ sqref: `N2:N${data.length + 1}`, ref: `Lists!$A$2:$A$5` }], rtl: S.lang === 'ar' },
       { name: 'Lists', rows: [[T('c_cb')], ...['Contractor', 'Consultant', 'Client', 'Concurrent'].map(x => [E(x)])], styles: { headerRows: [0] }, widths: [24] },
@@ -2995,7 +3273,7 @@ const IMP = (() => {
             ${shown.length ? `<div class="tw" style="max-height:320px"><table class="t"><thead><tr><th>${T('imp_row')}</th><th>${T('status')}</th><th>${T('imp_key')}</th><th>${T('imp_detail')}</th></tr></thead><tbody>${shown.map(r => `<tr><td class="small muted">${res.tables.length > 1 ? h(r.sheet) + ' · ' : ''}${r.rowNo}</td><td><span class="bdg ${STB[r.st][0]}">${T(STB[r.st][1])}</span></td><td class="mono">${h(r.key || '')}</td><td class="wrap small" style="max-width:560px">${h(r.msg || '')}</td></tr>`).join('')}</tbody></table></div>${res.rows.filter(r => r.st !== 'same').length > 200 ? `<div class="tiny muted">${T('imp_first200')}</div>` : ''}` : ''}`;
           run.disabled = !(c.new + c.upd); run.textContent = `${T('imp_run')} (${fmtN(c.new + c.upd)})`;
         };
-        const load = async f => { try { fileName = f.name; prev.innerHTML = `<div class="muted">${T('imp_reading')}</div>`; book = await XLSXR.read(f); analyse(); } catch (e) { prev.innerHTML = `<div class="notice bad">${ic('warn')}<div>${h(e.message)}</div></div>`; run.disabled = true; } };
+        const load = async f => { try { fileName = f.name; prev.innerHTML = `<div class="muted">${T('imp_reading')}</div>`; book = await XLSXR.read(f); D1904 = book.date1904 ? 1462 : 0; analyse(); } catch (e) { prev.innerHTML = `<div class="notice bad">${ic('warn')}<div>${h(e.message)}</div></div>`; run.disabled = true; } };
         const drop = el.querySelector('[data-drop]'), fi = el.querySelector('[data-file]');
         drop.onclick = () => fi.click(); fi.onchange = () => fi.files[0] && load(fi.files[0]);
         drop.ondragover = e => { e.preventDefault(); drop.classList.add('ov2'); }; drop.ondragleave = () => drop.classList.remove('ov2');
@@ -3058,7 +3336,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const p = P(), cut = activeCutoff() || lastCutoff(), lg = p.logos || {};
     const img = k => lg[k] ? `<img src="${lg[k]}">` : '';
     return `<div class="hd"><div class="lg">${img('owner')}${img('consultant')}</div><div class="c"><div class="p">${esc(p.number)} · ${esc(p.code)} — ${esc(S.lang === 'ar' && p.nameAr ? p.nameAr : p.name)}</div><h1>${esc(title)}</h1>${sub ? `<div class="p" style="font-weight:400">${sub}</div>` : ''}</div><div class="lg e">${img('contractor')}</div></div>
-      <div class="meta"><div><span>${T('cutoff')}</span><b>${D.fmt(reportDate())}</b></div><div><span>${T('report_no')}</span><b>${esc(reportNo() || '—')}</b></div><div><span>${LBL('Report code', 'كود التقرير')}</span><b>${esc(reportCode())}</b></div><div><span>${T('data_date')}</span><b>${S.db.schedule ? D.fmt(S.db.schedule.dataDate) : '—'}</b></div><div><span>${LBL('Owner', 'المالك')} / ${LBL('Consultant', 'الاستشاري')}</span><b>${esc(p.owner || '')}<br>${esc(p.consultant || '')}</b></div><div><span>${LBL('Contractor', 'المقاول')}</span><b>${esc(p.contractor || '')}</b></div></div>`;
+      <div class="meta"><div><span>${T('cutoff')}</span><b>${D.fmt(reportDate())}</b></div><div><span>${T('report_no')}</span><b>${esc(reportNo() || '—')}</b></div><div><span>${LBL('Report code', 'كود التقرير')}</span><b>${esc(reportCode())}</b></div><div><span>${T('data_date')}</span><b>${SCH() ? D.fmt(SCH().dataDate) : '—'}</b></div><div><span>${LBL('Owner', 'المالك')} / ${LBL('Consultant', 'الاستشاري')}</span><b>${esc(p.owner || '')}<br>${esc(p.consultant || '')}</b></div><div><span>${LBL('Contractor', 'المقاول')}</span><b>${esc(p.contractor || '')}</b></div></div>`;
   }
   const kp = list => `<div class="kp">${list.map(([k, v, s, c]) => `<div><span>${esc(k)}</span><b class="${c || ''}">${v}</b>${s ? `<i>${s}</i>` : ''}</div>`).join('')}</div>`;
   const sec = (t, html, cnt) => `<h2>${esc(t)}${cnt !== undefined ? ` <span class="cnt">(${fmtN(cnt)})</span>` : ''}</h2>${html}`;
@@ -3129,11 +3407,12 @@ tfoot td{background:#E8EEF6;font-weight:700}
       sec(`${T('daily_summary')} — ${D.fmt(pr.from)} → ${D.fmt(pr.to)}${fb ? ' (' + LBL('last 7 days with data', 'آخر 7 أيام بها بيانات') + ')' : ''}`, sumT, per.length) + sec(`${LBL('Breakdown by resource', 'التفصيل حسب المورد')} — ${D.fmt(lastMp.date)}`, byRes, dayRows.length), 'portrait');
   };
   R.progress = () => {
-    const cut = activeCutoff() || lastCutoff(); if (!S.db.schedule || !cut) return doc(T('progress'), '', `<div class="note">${T('no_schedule')}</div>`);
+    const cut = activeCutoff() || lastCutoff(); const sch = SCH(); if (!sch || !cut) return doc(T('progress'), '', `<div class="note">${T('no_schedule')}</div>`);
     const sm = PROG.summary(cut._id); const st = S.ui.prog || {}; const byId = new Map(sm.rows.map(r => [r.a.id, r])); const rows = st.view ? st.view.map(v => byId.get(v.a.id)).filter(Boolean) : sm.rows;
     const pct = v => isNum(v) ? fmtN(v, 0) + '%' : '';
     const W = ['8.5%', '14%', '5.6%', '5.6%', '6.2%', '4%', '4.6%', '4.6%', '4.6%', '5.6%', '5.6%', '3.6%', '7.3%', '5%', '8%', '7.2%'];
-    const cols0 = [{ h: T('c_id'), cls: 'nw', v: r => `<span class="mono">${esc(r.a.id)}</span>` }, { h: T('c_name'), cls: 'w', v: r => esc(r.a.name) }, { h: T('c_ps'), cls: 'nw', v: r => D.fmt(r.a.ps) }, { h: T('c_pf'), cls: 'nw', v: r => D.fmt(r.a.pf) },
+    const bd = r => PROG.blDates(r.a);   // baseline dates when the baseline XER is loaded, else the planned dates of the update
+    const cols0 = [{ h: T('c_id'), cls: 'nw', v: r => `<span class="mono">${esc(r.a.id)}</span>` }, { h: T('c_name'), cls: 'w', v: r => esc(r.a.bl ? r.a.bl.name : r.a.name) }, { h: T(sch.bl ? 'c_bls' : 'c_ps'), cls: 'nw', v: r => D.fmt(bd(r) ? bd(r).s : r.a.ps) }, { h: T(sch.bl ? 'c_blf' : 'c_pf'), cls: 'nw', v: r => D.fmt(bd(r) ? bd(r).f : r.a.pf) },
       { h: T('c_p6'), v: r => `${bdg(r.a.status)} ${fmtN(r.a.pct, 0)}%` }, { h: T('c_plan'), n: 1, v: r => r.pl === null ? '' : fmtN(r.pl, 0) + '%' },
       { h: T('c_ctr'), n: 1, v: r => pct((r.u || {}).ctr) }, { h: T('c_cons'), n: 1, v: r => pct((r.u || {}).cons) }, { h: T('c_own'), n: 1, v: r => pct((r.u || {}).own) },
       { h: T('c_as'), cls: 'nw', v: r => D.fmt(r.e.as) }, { h: T('c_af'), cls: 'nw', v: r => D.fmt(r.e.af) }, { h: T('c_rd'), n: 1, v: r => r.e.status === 'In Progress' ? r.e.rd : '' },
@@ -3142,7 +3421,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const cols = cols0.map((c, i) => Object.assign({}, c, { w: W[i] }));
     const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (v) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(v)}`); });
     const behind = sm.rows.filter(r => r.behind && r.u && r.u.reason);
-    return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned)], [T('contractor_act'), fmtP(sm.ctr), '', sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('variance'), ((sm.ctr - sm.planned) * 100).toFixed(1) + ' pp', `SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'bad'], [T('updated'), fmtN(sm.updated), `${T('p6_changed_n')}: ${fmtN(sm.changed)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
+    return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned), T(S.db.params.planBasis === 'bl' && sch.bl ? 'pl_bl' : 'pl_upd')], [T('contractor_act'), fmtP(sm.ctr), `${((sm.ctr - sm.planned) * 100).toFixed(1)} pp · SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('owner_rev'), fmtP(sm.own)], [T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
       `<div class="note">${T('activities')}: ${fmtN(sm.n)} · ${T('completed')}: ${fmtN(sm.comp)} · ${T('in_progress')}: ${fmtN(sm.inprog)} · ${T('not_started')}: ${fmtN(sm.ns)}${fl.length ? ` — ${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fl.join(' · ')}` : ''}</div>` +
       sec(LBL('Activities', 'الأنشطة'), table(cols, rows, null, 'fx'), rows.length));
   };
@@ -3151,10 +3430,10 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const el = Math.max(0, D.diff(rd, p.commencement)), tot = D.diff(p.completion, p.commencement), rem = D.diff(p.completion, rd);
     const bac = N(p.contractValue) + N(p.totalVO), inv = invStats(), hs = hseStats(), mp = mpDaily(), dc = dcStats(), dr = drwStats();
     const lastMp = [...mp].reverse().find(d => d.direct + d.indirect > 0) || {};
-    const sm = (cut && S.db.schedule) ? PROG.summary(cut._id) : null;
+    const sch = SCH(); const sm = (cut && sch) ? PROG.summary(cut._id) : null;
     let lc = '';
     if (sm) {
-      const key = (S.db.schedule.codeTypes || []).find(k => /life cycle/i.test(k)) || ''; const grp = {}; const { w } = PROG.weights();
+      const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || ''; const grp = {}; const { w } = PROG.weights();
       sm.rows.forEach(r => { const g = r.a.codes[key] || '—'; const o = grp[g] = grp[g] || { g, n: 0, c: 0, ip: 0, ns: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; o[r.e.status === 'Completed' ? 'c' : r.e.status === 'In Progress' ? 'ip' : 'ns']++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
       const G = Object.values(grp).sort((a, b) => b.w - a.w);
       lc = table([{ h: key.replace(/^\d\d /, ''), v: o => `<b>${esc(o.g)}</b>` }, { h: T('activities'), n: 1, v: o => o.n }, { h: T('completed'), n: 1, v: o => o.c }, { h: T('in_progress'), n: 1, v: o => o.ip }, { h: T('not_started'), n: 1, v: o => o.ns }, { h: T('planned'), n: 1, v: o => fmtN(o.w ? o.pl / o.w : 0, 1) + '%' }, { h: T('contractor_act'), n: 1, v: o => fmtN(o.w ? o.ac / o.w : 0, 1) + '%' }, { h: '', v: o => `<div class="bar"><i class="pl" style="width:${o.w ? o.pl / o.w : 0}%"></i></div><div class="bar" style="margin-top:.6mm"><i style="width:${o.w ? o.ac / o.w : 0}%"></i></div>` }, { h: T('behind'), n: 1, v: o => o.beh }], G);
@@ -3171,9 +3450,9 @@ tfoot td{background:#E8EEF6;font-weight:700}
   };
   R.checks = () => { const cs = runChecks(); const rev = cs.filter(c => c.v !== 0 && c.v !== 'n/a').length; return doc(T('checks'), '', kp([[T('passed'), `${cs.length - rev} / ${cs.length}`, '', rev ? '' : 'ok'], [T('to_review'), rev, '', rev ? 'warn' : 'ok']]) + table([{ h: '#', v: (c) => cs.indexOf(c) + 1 }, { h: T('area'), v: c => esc(c.area) }, { h: T('check'), cls: 'w', v: c => esc(S.lang === 'ar' ? c.ar : c.en) }, { h: T('result'), n: 1, v: c => esc(c.v) }, { h: T('status'), v: c => c.v === 0 ? bdg('OK') : c.v === 'n/a' ? 'n/a' : bdg('REVIEW') }, { h: T('how'), cls: 'w', v: c => c.v === 0 ? '' : esc(S.lang === 'ar' ? c.fixAr : c.fixEn) }], cs), 'portrait'); };
   R.p6 = () => {
-    const cut = activeCutoff(), sch = S.db.schedule, sm = cut && sch ? PROG.summary(cut._id) : null; const cuts = live(S.db.cutoffs).sort((a, b) => b.date.localeCompare(a.date));
+    const cut = activeCutoff(), sch = SCH(), bl = S.db.baseline, sm = cut && sch ? PROG.summary(cut._id) : null; const cuts = live(S.db.cutoffs).sort((a, b) => b.date.localeCompare(a.date));
     return doc(T('p6'), '', (sm ? kp([[T('p6_ready'), fmtN(sm.n)], [T('p6_changed_n'), fmtN(sm.changed), '', 'ok'], [T('completed'), fmtN(sm.comp)], [T('in_progress'), fmtN(sm.inprog)], [T('not_started'), fmtN(sm.ns)], [T('p6_blockers'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok']]) : '') +
-      (sch ? `<div class="kv"><span>${T('xer_file')}</span><b class="mono">${esc(sch.fileName)}</b><span>${T('data_date')}</span><b>${D.fmt(sch.dataDate)}</b><span>P6 project</span><b>${esc(sch.projShort)}</b><span>${T('activities')}</span><b>${fmtN(sch.activities.length)}</b></div>` : '') +
+      (sch ? `<div class="kv"><span>${T('xer_file')}</span><b class="mono">${esc(sch.fileName)}</b><span>${T('data_date')}</span><b>${D.fmt(sch.dataDate)}</b><span>P6 project</span><b>${esc(sch.projShort)}</b><span>${T('activities')}</span><b>${fmtN(sch.activities.length)}</b>${bl ? `<span>${T('xer_bl')}</span><b class="mono">${esc(bl.fileName)}</b><span>${T('data_date')} (${T('c_bl')})</span><b>${D.fmt(bl.dataDate)}</b>` : ''}</div>` : '') +
       sec(T('cutoff_hist'), table([{ h: T('cut_date'), cls: 'nw', v: c => `<b>${D.fmt(c.date)}</b>` }, { h: T('report_no'), n: 1, v: c => esc(c.reportNo) }, { h: T('status'), v: c => bdg(c.status) }, { h: T('data_date'), cls: 'nw', v: c => D.fmt(c.dataDate) }, { h: T('xer_file'), v: c => `<span class="mono">${esc(c.xer || '')}</span>` }, { h: T('entries'), n: 1, v: c => Object.keys(S.db.updates[c._id] || {}).length }, { h: T('exports'), n: 1, v: c => (c.exports || []).length }, { h: T('snapshot'), n: 1, v: c => (c.snapshot || []).length || '' }], cuts), cuts.length), 'portrait');
   };
   R.project = () => {

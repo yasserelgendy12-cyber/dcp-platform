@@ -2228,14 +2228,14 @@ PAGES.progress = v => {
   const cut = activeCutoff(), sch = SCH();
   const st = S.ui.prog = S.ui.prog || { focus: 'all', q: '', codes: {}, page: 0, sel: new Set(), la: N(S.db.params.lookahead) || 14 };
   const canC = can('ctr') && !!cut, canCo = can('cons') && !!cut, canO = can('own') && !!cut;
-  if (!sch) { v.innerHTML = pageHead(T('progress'), T('prog_desc')) + `<div class="notice warn">${ic('warn')}<div>${T('no_schedule')}</div></div>`; return; }
+  if (!sch) { v.innerHTML = pageHead(T('progress'), '') + `<div class="notice warn">${ic('warn')}<div>${T('no_schedule')}</div></div>`; return; }
   const cid = cut ? cut._id : (lastCutoff() || {})._id; const cdate = cut ? cut.date : reportDate();
   const codeKeys = sch.filterKeys;   // Global activity codes of the XER files (the latest update wins)
   Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; });
   if (st.focus === 'updated') st.focus = 'updC';
   const FO = { all: 'f_all', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', issues: 'f_issues', due: 'f_due' };
   const pill = f => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T(FO[f])}</span>`;
-  v.innerHTML = pageHead(T('progress'), T('prog_desc'), `${cut && (canC || canCo || canO) ? `<button class="btn" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn" data-xl>${ic('dl')}${T('export_xlsx')}</button>`) +
+  v.innerHTML = pageHead(T('progress'), '', `${cut && (canC || canCo || canO) ? `<button class="btn" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn" data-xl>${ic('dl')}${T('export_xlsx')}</button>`) +
     (!cut ? `<div class="notice warn">${ic('warn')}<div>${T('no_open_cutoff')}</div></div>` : '') +
     (!sch.upd ? `<div class="notice info">${ic('info')}<div>${T('xer_upd_none')}</div></div>` : '') +
     (cut && !(canC || canCo || canO) ? roNotice('ctr') : '') +

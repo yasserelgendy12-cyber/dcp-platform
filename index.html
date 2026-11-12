@@ -390,6 +390,30 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
 .t.dl td{vertical-align:top}.t.dl .tiny{max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6B6360}
 .hs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;overflow:auto}
 .hs-r{display:flex;justify-content:space-between;gap:10px;padding:6px 4px;border-bottom:1px solid #F1ECE4;font-size:13px}.hs-r b{font-size:14px}
+.sm{position:relative;height:100%;background:#EDE8E0}
+.sm-v{position:absolute;inset:0}.sm-v canvas{display:block;cursor:grab}
+.sm-load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:16px;color:#5E5552}
+.sm-hud{position:absolute;top:16px;inset-inline-start:16px;background:rgba(255,255,255,.92);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:250px;box-shadow:0 4px 18px rgba(40,25,25,.12)}
+.sm-t{font-weight:700;color:#5B4444;font-size:18px}.sm-d{font-size:22px;font-weight:700}
+.sm-k{display:flex;gap:16px}.sm-k div{display:flex;flex-direction:column}.sm-k span{font-size:11.5px;color:#7A706C}.sm-k b{font-size:20px}
+.sm-lg{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:#4A4442}.sm-lg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-inline-end:6px;vertical-align:-2px}
+.sm-bar{position:absolute;inset-inline:16px;bottom:14px;background:rgba(255,255,255,.94);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:10px;box-shadow:0 4px 18px rgba(40,25,25,.12)}
+.sm-bar input[type=range]{flex:1;accent-color:#5B4444}
+.sm-bar .seg{display:flex;border:1px solid #DDD5C9;border-radius:8px;overflow:hidden}.sm-bar .seg button{border:0;background:#fff;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer;color:#4A4442}.sm-bar .seg button.on{background:#5B4444;color:#fff}
+/* report print: one A4 landscape sheet per page */
+#rpPrint{display:none}
+@media print{
+  @page{size:A4 landscape;margin:0}
+  body.printing>*:not(#rpPrint){display:none!important}
+  body.printing #rpPrint{display:block}
+  .rpp{width:297mm;height:210mm;box-sizing:border-box;padding:6mm 8mm;display:flex;flex-direction:column;gap:3mm;page-break-after:always;break-after:page;overflow:hidden;background:#fff}
+  .rpp:last-child{page-break-after:auto;break-after:auto}
+  .rpp header{display:flex;gap:6mm;align-items:baseline;font-size:9pt;color:#5B4444;border-bottom:.4mm solid #AF9F58;padding-bottom:1.5mm}.rpp header b{font-size:11pt;flex:1}
+  .rpp .rp-page{zoom:.86;box-shadow:none;transform:none!important;margin:0 auto;flex:0 0 auto}
+  .rpp footer{font-size:7pt;color:#7A706C;text-align:center;margin-top:auto}
+  .rpp .np{pointer-events:none}.rpp .up-tw,.rpp .hb,.rpp .gb{overflow:hidden!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 
 </style>
 </head>
@@ -1202,7 +1226,7 @@ const newer = (a, b) => ((a && a._at) || '') >= ((b && b._at) || '') ? a : b;
 function mergeDB(A, B) { // returns merged copy (A = local, B = remote)
   if (!B) return A; if (!A) return B;
   const M = clone(A);
-  ['project', 'params', 'lists', 'security', 'rsrc', 'xhist'].forEach(k => { if (A[k] || B[k]) M[k] = clone(newer(A[k], B[k])); });
+  ['project', 'params', 'lists', 'security', 'rsrc', 'xhist', 'model4d'].forEach(k => { if (A[k] || B[k]) M[k] = clone(newer(A[k], B[k])); });
   Object.keys(B).forEach(k => { if (!(k in M)) M[k] = clone(B[k]); else if (M[k] && B[k] && typeof B[k] === 'object' && !Array.isArray(B[k]) && B[k]._at && !['presence', 'updates', 'schedule', 'baseline'].includes(k)) M[k] = clone(newer(M[k], B[k])); });   // keys added by newer tools are carried, never dropped
   if (B.schedule && (!A.schedule || (B.schedule.importedAt || '') > (A.schedule.importedAt || ''))) M.schedule = clone(B.schedule);
   if (B.baseline && (!A.baseline || (B.baseline.importedAt || '') > (A.baseline.importedAt || ''))) M.baseline = clone(B.baseline);
@@ -3829,7 +3853,7 @@ const RP = {
       <header class="rp-h">${id.logo ? `<span class="rp-logo"><img src="${id.logo}" alt=""></span>` : ''}<div class="rp-pt"><b dir="auto">${h(projTitle(p))}</b><span><bdi>${h(p.number)} · ${h(p.code)}</bdi> · ${LBL('Reports & 4D', 'التقارير و4D')}</span></div><span class="sp"></span>
         ${cut ? `<span class="chip co">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span><span class="chip">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="chip">${T('data_date')}: <b>${D.fmt(sch.dataDate)}</b></span>` : ''}
         <span class="chip" id="syncChip"></span><span class="rp-u">${ic('user')}<b>${h(S.user.name)}</b></span>
-        <button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
+        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – all report pages', 'طباعة / PDF – كل صفحات التقرير')}">${ic('print')}${LBL('Print', 'طباعة')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
       <nav class="rp-nav"><button class="rp-ar" data-prev ${i <= 0 ? 'disabled' : ''} aria-label="previous">‹</button><div class="rp-tabs">${pgs.map(x => `<button class="rp-tab ${x.k === S.ui.rpPage ? 'on' : ''} ${x.admin ? 'adm' : ''}" data-rp="${x.k}">${x.admin ? ic('user') : ''}${rpLbl(x)}</button>`).join('')}</div><button class="rp-ar" data-next ${i < 0 || i >= pgs.length - 1 ? 'disabled' : ''} aria-label="next">›</button><span class="rp-cnt" dir="ltr">${i + 1} / ${pgs.length}</span></nav>
       <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage"></div></div>
       <footer class="rp-f" dir="ltr">${h(sigLine())}</footer></div>`;
@@ -3839,6 +3863,7 @@ const RP = {
     app.querySelector('[data-lang]').onclick = () => { S.lang = S.lang === 'ar' ? 'en' : 'ar'; savePrefs(); RP.render(); };
     const mp = app.querySelector('[data-mypin]'); if (mp) mp.onclick = RP.changeMyPin;
     app.querySelector('[data-out]').onclick = signOut;
+    app.querySelector('[data-rpprint]').onclick = () => RP.print();
     const pg = document.getElementById('rpPage');
     if (!S.ui.rpPage) pg.innerHTML = `<div class="rp-ph"><h2>${LBL('No report page is open for this user.', 'لا توجد صفحات تقرير متاحة لهذا المستخدم.')}</h2></div>`;
     else { try { (RP.P[S.ui.rpPage] || RP.P._plan)(pg, pgs[i]); } catch (e) { console.error(e); pg.innerHTML = `<div class="notice bad" style="margin:30px">${ic('warn')}<div>${h(e.stack || e.message)}</div></div>`; } }
@@ -4185,6 +4210,144 @@ RP.P.hse = el => {
     <div class="up-kpis">${rpK(LBL('Man-hours', 'ساعات العمل'), fmtN(s.mh))}${rpK(LBL('Safe man-hours since last LTI', 'ساعات آمنة منذ آخر إصابة'), fmtN(s.ltiFree), '', 'ok')}${rpK(LBL('Fatalities + LTI', 'وفيات + إصابات مضيعة للوقت'), fmtN(s.fatLti), '', s.fatLti ? 'bad' : 'ok')}${rpK(LBL('Total incidents', 'إجمالي الحوادث'), fmtN(s.inc))}${rpK(LBL('Open observations', 'ملاحظات مفتوحة'), fmtN(s.openObs), '', s.openObs > 0 ? 'bad' : 'ok')}${rpK(LBL('Permits issued', 'تصاريح صادرة'), fmtN(s.permits))}</div>
     <div class="up-b"><div class="up-c" style="flex:0 0 560px"><div class="up-ct">${LBL('Man-hours per week and peak manpower', 'ساعات العمل أسبوعياً وأعلى عمالة')}</div>${svgCols({ w: 548, h: 400, cats: wks.map(k => D.fmt(k).slice(0, 6)), bars: [{ v: wks.map(k => wk[k].mh), c: '#C9BBB2' }], lines: [{ v: wks.map(k => wk[k].mp * (Math.max(...wks.map(x => wk[x].mh)) / Math.max(1, ...wks.map(x => wk[x].mp)))), c: '#5B4444' }] })}<div class="up-lg"><span><i style="background:#C9BBB2"></i>${LBL('Man-hours', 'ساعات العمل')}</span><span><i style="background:#5B4444"></i>${LBL('Peak manpower (scaled)', 'أعلى عمالة (بمقياس نسبي)')}</span></div></div>
       <div class="up-t"><div class="hs"><div><div class="up-ct">${LBL('Incidents', 'الحوادث')}</div>${inc.map(([k, l]) => `<div class="hs-r"><span>${l}</span><b dir="ltr" class="${sm(k) && ['fatal', 'lti'].includes(k) ? 'neg' : ''}">${fmtN(sm(k))}</b></div>`).join('')}</div><div><div class="up-ct">${LBL('Activities', 'الأنشطة')}</div>${act.map(([k, l]) => `<div class="hs-r"><span>${l}</span><b dir="ltr">${fmtN(sm(k))}</b></div>`).join('')}</div></div></div></div></div>`;
+};
+
+/* ===== 4D SIMULATION – generic engine driven by the platform database =====
+   The project model (db.model4d) is prepared once per project (site, zones, building footprints / heights, and the rules that map an activity ID + name to building · level · element).
+   Everything else comes from the database: activities and dates (latest update XER + baseline), progress (P6 % and the team's entries of the report cut-off).
+   Modes: planned (baseline dates) · actual / forecast (actual dates and progress up to the data date, planned dates after it) · compare (actual coloured against planned). three.js r128 is loaded on demand. */
+const SIM = { three: null };
+const M4 = () => (S.db.model4d && !S.db.model4d.removed) ? S.db.model4d : null;   // removal keeps a stamped tombstone so it syncs
+SIM.lib = () => SIM.three || (SIM.three = new Promise((res, rej) => { if (window.THREE) return res(window.THREE); const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'; s.onload = () => res(window.THREE); s.onerror = () => { SIM.three = null; rej(new Error(LBL('The 3D library could not be loaded (internet needed).', 'تعذر تحميل مكتبة العرض ثلاثي الأبعاد (يحتاج اتصال إنترنت).'))); }; document.head.appendChild(s); }));
+SIM.classify = (M, a) => { // activity → {k: target (building or zone), lv, el}
+  const mp = M.map || {}; const g = new RegExp(mp.id || '^$').exec(a.id); if (!g) return null;
+  const [, pre, ph, b, l] = g; const zone = (mp.phase || {})[ph] || ph;
+  let k = (mp.building || {})[b] || b; if (k === '@phase') k = zone; if (!(M.buildings || {})[k] && !(M.zones || {})[k]) k = (M.zones || {})[zone] ? zone : null; if (!k) return null;
+  let lv = (mp.prefixLevel || {})[pre] || null; if (!lv) for (const [re, to] of (mp.level || [])) { const m = new RegExp(re).exec(l); if (m) { lv = to.replace(/\$(\d)/g, (_, i) => m[+i]); break; } }
+  if (/^L\d+$/.test(lv || '')) lv = 'L' + String(+lv.slice(1)).padStart(2, '0');
+  let el = 'misc'; for (const [re, to] of (mp.element || [])) if (new RegExp(re, 'i').test(a.name)) { el = to; break; }
+  if (lv === 'RAFT') el = 'raft'; if (lv === 'EXC') el = 'exc'; if (el === 'pt') el = 'slab';
+  return { k, lv: lv || 'GF', el };
+};
+SIM.prepare = () => { // cells with their activities, weights and date data
+  const M = M4(), X = rpRows(); if (!M || !X) return null; const bl = new Map(((S.db.baseline || {}).activities || []).map(a => [a.id, a])); const dd = (SCH().asOf || SCH().dataDate);
+  const cells = new Map(); let W = 0;
+  X.rows.forEach(r => { const c = SIM.classify(M, r.a); if (!c || c.el === 'misc') return; const key = `${c.k}|${c.lv}|${c.el}`; const w = N(r.a.cost) || N(r.a.od) || 1; const b = bl.get(r.a.id) || r.a;
+    const it = { w, ps: b.ps || r.a.ps, pf: b.pf || r.a.pf, as: r.e.as || r.a.as, af: r.e.af || r.a.af, pct: r.e.pct / 100, fs: r.a.ps, ff: r.a.pf || r.a.ef };
+    const o = cells.get(key) || { ...c, key, items: [], W: 0 }; o.items.push(it); o.W += w; W += w; cells.set(key, o); });
+  const lo = [...cells.values()].flatMap(c => c.items.map(i => i.as || i.ps)).filter(Boolean).sort()[0], hi = [...cells.values()].flatMap(c => c.items.map(i => i.ff || i.pf)).filter(Boolean).sort().pop();
+  return { M, cells: [...cells.values()], W, dd, d0: lo, d1: hi };
+};
+SIM.fPlan = (i, d) => planFrac(i.ps, i.pf, d);
+SIM.fAct = (i, d, dd) => { // actual up to the data date, forecast after it
+  if (d <= dd) { if (i.af && d >= i.af) return 1; if (!i.as || d < i.as) return 0; return Math.min(i.pct, i.pct * (D.diff(d, i.as) + 1) / Math.max(1, D.diff(dd, i.as) + 1)); }
+  if (i.pct >= 1) return 1; const s = dd, f = i.ff && i.ff > dd ? i.ff : D.add(dd, 1); if (!i.as && i.fs && d < i.fs) return 0; return i.pct + (1 - i.pct) * planFrac(i.as ? s : (i.fs > dd ? i.fs : s), f, d);
+};
+SIM.state = (P, d, mode) => { let pl = 0, ac = 0; const st = new Map();
+  P.cells.forEach(c => { let fp = 0, fa = 0; c.items.forEach(i => { fp += i.w * SIM.fPlan(i, d); fa += i.w * SIM.fAct(i, d, P.dd); }); pl += fp; ac += fa; st.set(c.key, { p: fp / c.W, a: fa / c.W }); });
+  return { st, pl: pl / P.W, ac: ac / P.W };
+};
+RP.P.sim4d = async (el, pg) => {
+  if (!M4()) return rpNeed(el, pg, LBL('Needs the project 4D model: import it once on the “Report sources” page (prepared once per project).', 'تحتاج موديل 4D للمشروع: استورده مرة واحدة من صفحة "مصادر التقرير" (يُعد مرة واحدة لكل مشروع).'));
+  const P = SIM.prepare(); if (!P) return rpNeed(el, pg, needSch());
+  const ui = S.ui.sim = S.ui.sim || { d: P.dd, mode: 'act', play: false, speed: 7 };
+  if (ui.d < P.d0 || ui.d > P.d1) ui.d = P.dd;
+  el.innerHTML = `<div class="sm"><div class="sm-v" data-v><div class="sm-load">${LBL('Loading the 3D model…', 'جارٍ تحميل الموديل ثلاثي الأبعاد…')}</div></div>
+    <div class="sm-hud"><div class="sm-t">${LBL('4D simulation', 'محاكاة 4D')}</div><div class="sm-d" data-dt dir="ltr"></div><div class="sm-k"><div><span>${LBL('Planned', 'المخطط')}</span><b data-kp dir="ltr"></b></div><div><span>${LBL('Actual / forecast', 'الفعلي / المتوقع')}</span><b data-ka dir="ltr"></b></div></div>
+      <div class="sm-lg">${[['#A9ADB2', LBL('Completed', 'مكتمل')], ['#F2B705', LBL('In progress', 'جارٍ')], ['#C8313F', LBL('Behind plan (compare)', 'متأخر (مقارنة)')], ['#2E8B57', LBL('Ahead (compare)', 'متقدم (مقارنة)')], ['#2F6FD6', LBL('Not started (outline)', 'لم يبدأ (إطار)')]].map(([c, l]) => `<span><i style="background:${c}"></i>${l}</span>`).join('')}</div></div>
+    <div class="sm-bar"><button class="btn sm" data-play>${ui.play ? '❚❚' : '▶'}</button><div class="seg">${[['plan', LBL('Planned', 'المخطط')], ['act', LBL('Actual / forecast', 'الفعلي / المتوقع')], ['cmp', LBL('Compare', 'مقارنة')]].map(([k, l]) => `<button class="${ui.mode === k ? 'on' : ''}" data-md="${k}">${l}</button>`).join('')}</div>
+      <input type="range" min="0" max="${D.diff(P.d1, P.d0)}" value="${D.diff(ui.d, P.d0)}" data-rg aria-label="date"><button class="btn sm" data-dd title="${T('data_date')}">${T('data_date')}</button><div class="seg">${[1, 7, 30].map(s => `<button class="${ui.speed === s ? 'on' : ''}" data-sp="${s}">${s}${LBL('d', 'ي')}</button>`).join('')}</div></div></div>`;
+  let THREE_; try { THREE_ = await SIM.lib(); } catch (e) { el.querySelector('[data-v]').innerHTML = `<div class="sm-load neg">${h(e.message)}</div>`; return; }
+  if (!el.isConnected) return; const view = el.querySelector('[data-v]'); view.innerHTML = '';
+  const V = SIM.build(THREE_, P, view);
+  const show = () => { const s = SIM.state(P, ui.d, ui.mode); V.paint(s.st, ui.mode); el.querySelector('[data-dt]').innerHTML = `<bdi>${D.fmt(ui.d)}</bdi>${ui.d === P.dd ? ' · ' + T('data_date') : ui.d > P.dd ? ' · ' + LBL('forecast', 'متوقع') : ''}`; el.querySelector('[data-kp]').textContent = fmtPct(s.pl); el.querySelector('[data-ka]').textContent = fmtPct(s.ac); el.querySelector('[data-rg]').value = D.diff(ui.d, P.d0); };
+  show();
+  el.querySelectorAll('[data-md]').forEach(b => b.onclick = () => { ui.mode = b.dataset.md; el.querySelectorAll('[data-md]').forEach(x => x.classList.toggle('on', x === b)); show(); });
+  el.querySelectorAll('[data-sp]').forEach(b => b.onclick = () => { ui.speed = +b.dataset.sp; el.querySelectorAll('[data-sp]').forEach(x => x.classList.toggle('on', x === b)); });
+  el.querySelector('[data-rg]').oninput = e => { ui.d = D.add(P.d0, +e.target.value); show(); };
+  el.querySelector('[data-dd]').onclick = () => { ui.d = P.dd; show(); };
+  const pb = el.querySelector('[data-play]'); clearInterval(SIM.timer);
+  const tick = () => { if (!el.isConnected || S.ui.rpPage !== 'sim4d') { clearInterval(SIM.timer); ui.play = false; return; } ui.d = D.add(ui.d, ui.speed); if (ui.d >= P.d1) { ui.d = P.d1; ui.play = false; clearInterval(SIM.timer); pb.textContent = '▶'; } show(); };
+  pb.onclick = () => { ui.play = !ui.play; pb.textContent = ui.play ? '❚❚' : '▶'; clearInterval(SIM.timer); if (ui.play) { if (ui.d >= P.d1) ui.d = P.d0; SIM.timer = setInterval(tick, 120); } };
+  if (ui.play) SIM.timer = setInterval(tick, 120);
+};
+SIM.build = (T3, P, host) => {
+  const M = P.M, L = M.levels || {}, BH = L.basementH || 3.6, GFH = L.groundH || 6, area = p => { let s = 0; for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length]; s += a[0] * b[1] - b[0] * a[1]; } return Math.abs(s) / 2; };
+  const SC = Math.sqrt((M.units.siteArea || 10000) / area(M.site)), [CX, CY] = M.units.center || [0, 0], W = p => [(p[0] - CX) * SC, (p[1] - CY) * SC];
+  const w = host.clientWidth || 1280, hgt = host.clientHeight || 600;
+  const R = new T3.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true }); R.setPixelRatio(Math.min(2, window.devicePixelRatio || 1)); R.setSize(w, hgt); R.setClearColor(0xEDE8E0); host.appendChild(R.domElement);
+  const scene = new T3.Scene(), cam = new T3.PerspectiveCamera(38, w / hgt, 1, 6000);
+  scene.add(new T3.HemisphereLight(0xffffff, 0x9a8f80, 0.85)); const sun = new T3.DirectionalLight(0xffffff, 0.75); sun.position.set(-300, 500, 260); scene.add(sun);
+  const shape = (poly, inset) => { const c = poly.map(W); let cx = 0, cz = 0; c.forEach(p => { cx += p[0]; cz += p[1]; }); cx /= c.length; cz /= c.length; const k = 1 - (inset || 0); const s = new T3.Shape(); c.forEach((p, i) => { const x = cx + (p[0] - cx) * k, z = cz + (p[1] - cz) * k; i ? s.lineTo(x, -z) : s.moveTo(x, -z); }); return s; };
+  const prism = (poly, y0, hh, inset, mat) => { const g = new T3.ExtrudeGeometry(shape(poly, inset), { depth: hh, bevelEnabled: false }); g.rotateX(-Math.PI / 2); const m = new T3.Mesh(g, mat); m.position.y = y0; scene.add(m); return m; };
+  const ground = prism(M.site, -0.2, 0.2, 0, new T3.MeshLambertMaterial({ color: 0xD9CBB0 }));
+  const mat = { done: new T3.MeshLambertMaterial({ color: 0xA9ADB2 }), prog: new T3.MeshLambertMaterial({ color: 0xE3A72F }), late: new T3.MeshLambertMaterial({ color: 0xC8313F }), ahead: new T3.MeshLambertMaterial({ color: 0x2E8B57 }), wall: new T3.MeshLambertMaterial({ color: 0xC7BCA9 }), ghost: new T3.MeshBasicMaterial({ color: 0x2F6FD6, transparent: true, opacity: 0.07, depthWrite: false }) };
+  const edge = new T3.LineBasicMaterial({ color: 0x2F6FD6, transparent: true, opacity: 0.25 });
+  // geometry of each cell: buildings stack floors above ground, zones stack basements below
+  const nB = (L.basement || ['B3', 'B2', 'B1']).length, lvY = lv => lv === 'RAFT' ? -(nB * BH) - (L.raftT || 2.5) : /^B\d/.test(lv) ? -(+lv.slice(1)) * BH : 0;
+  const maxL = {}; P.cells.forEach(c => { const n = c.lv === 'RF' ? 999 : /^L\d+$/.test(c.lv) ? +c.lv.slice(1) : 0; if (M.buildings[c.k] && n < 999) maxL[c.k] = Math.max(maxL[c.k] || 0, n); });
+  const fh = k => { const b = M.buildings[k]; const n = maxL[k] || 1; return b && b.H > 0 ? Math.max(3, Math.min(6, (b.H - GFH) / (n + 1))) : (L.floorH || 4.4); };
+  const yOf = (k, lv) => { if (!M.buildings[k]) return lvY(lv); if (lv === 'GF') return 0; const h = fh(k); if (lv === 'RF') return GFH + (maxL[k] || 0) * h; return GFH + (+lv.slice(1) - 1) * h; };
+  const hOf = (k, lv) => !M.buildings[k] ? (lv === 'RAFT' ? (L.raftT || 2.5) : lv === 'GF' ? GFH : BH) : lv === 'GF' ? GFH : lv === 'RF' ? 2 : fh(k);
+  const polys = k => M.buildings[k] ? [M.buildings[k].poly, ...(M.buildings[k].podium && false ? [M.buildings[k].podium] : [])] : ((M.zones[k] || {}).polys || []);
+  const meshes = []; let top = 0;
+  P.cells.forEach(c => { const y = yOf(c.k, c.lv), hh = hOf(c.k, c.lv); top = Math.max(top, y + hh);
+    polys(c.k).forEach(poly => { let m; if (c.el === 'slab') m = prism(poly, y + hh - 0.5, 0.5, 0, mat.done); else if (c.el === 'cols') m = prism(poly, y, hh - 0.5, 0.06, mat.done); else if (c.el === 'walls') m = prism(poly, y, hh - 0.5, 0.01, mat.wall); else if (c.el === 'raft') m = prism(poly, y, hh, 0, mat.done); else if (c.el === 'exc') m = prism(poly, -nB * BH - 2.5, nB * BH + 2.5, 0.001, mat.ghost); else return;
+      m.userData = { key: c.key, el: c.el, base: m.position.y, hh: c.el === 'slab' ? 0.5 : hh };
+      if (c.el !== 'exc') { const g = new T3.Mesh(m.geometry, mat.ghost); g.position.y = m.position.y; scene.add(g); if (c.el === 'slab') { const e = new T3.LineSegments(new T3.EdgesGeometry(m.geometry), edge); e.position.y = m.position.y; scene.add(e); } }
+      meshes.push(m); }); });
+  // camera: simple orbit (drag = rotate, wheel = zoom)
+  let th = -0.9, ph = 0.95, dist = 520; const tgt = new T3.Vector3(0, top * 0.2, 0);
+  const place = () => { cam.position.set(tgt.x + dist * Math.sin(ph) * Math.sin(th), tgt.y + dist * Math.cos(ph), tgt.z + dist * Math.sin(ph) * Math.cos(th)); cam.lookAt(tgt); R.render(scene, cam); };
+  let drag = null; R.domElement.onpointerdown = e => { drag = [e.clientX, e.clientY, th, ph]; R.domElement.setPointerCapture(e.pointerId); };
+  R.domElement.onpointermove = e => { if (!drag) return; th = drag[2] - (e.clientX - drag[0]) * 0.006; ph = Math.max(0.15, Math.min(1.45, drag[3] - (e.clientY - drag[1]) * 0.005)); place(); };
+  R.domElement.onpointerup = () => { drag = null; }; R.domElement.onwheel = e => { e.preventDefault(); dist = Math.max(120, Math.min(1600, dist * (e.deltaY > 0 ? 1.1 : 0.9))); place(); };
+  place();
+  return { canvas: R.domElement, paint(st, mode) {
+    meshes.forEach(m => { const s = st.get(m.userData.key) || { p: 0, a: 0 }; const f = mode === 'plan' ? s.p : s.a;
+      if (m.userData.el === 'exc') { m.visible = f > 0; m.material = mat.prog; m.material.opacity = 1; return; }
+      if (f <= 0.001) { m.visible = false; return; } m.visible = true;
+      let mt = f >= 0.999 ? (m.userData.el === 'walls' ? mat.wall : mat.done) : mat.prog;
+      if (mode === 'cmp') mt = s.a + 0.05 < s.p ? mat.late : s.a > s.p + 0.05 ? mat.ahead : mt;
+      m.material = mt; const k = m.userData.el === 'slab' ? 1 : Math.max(0.08, Math.min(1, f)); m.scale.y = k; });
+    R.render(scene, cam); } };
+};
+/* 4D model card on the Report sources page: the model is prepared once per project and imported here (stored in db.model4d) */
+{ const base = RP.P.rsrc; RP.P.rsrc = el => { base(el); const M = M4();
+  el.querySelector('.rs-g').insertAdjacentHTML('afterend', `<div class="rs-c" style="margin-top:14px"><div class="rs-h"><b>${LBL('4D model of the project', 'موديل 4D للمشروع')}</b><span class="muted small">${LBL('Prepared once per project (site, zones, buildings and the rules linking activities to building · level · element). The simulation then follows the database.', 'يُعد مرة واحدة لكل مشروع (الموقع، المناطق، المباني، وقواعد ربط الأنشطة بالمبنى · الدور · العنصر). بعدها تتبع المحاكاة قاعدة البيانات.')}</span></div>
+    <div class="rs-s">${ic(M ? 'ok' : 'warn')}<div><b>${M ? `${h(M.project || '')} · ${Object.keys(M.buildings || {}).length} ${LBL('buildings', 'مبنى')} · ${Object.keys(M.zones || {}).length} ${LBL('zones', 'منطقة')}` : LBL('No model imported', 'لم يُستورد موديل')}</b>${M ? `<span class="small muted">${h(M.preparedBy || '')} · ${h(M.preparedAt || '')}${SIM.prepare() ? ` · ${LBL('linked activities', 'أنشطة مرتبطة')}: ${fmtN(sum(SIM.prepare().cells, c => c.items.length))}` : ''}</span>` : ''}</div></div>
+    <div class="rs-a"><button class="btn sm pri" data-m4i>${ic('up')}${LBL('Import model (.json)', 'استيراد الموديل (.json)')}</button><input type="file" accept=".json" hidden data-m4f>${M ? `<button class="btn sm" data-m4x>${ic('dl')}${LBL('Download model', 'تنزيل الموديل')}</button><button class="btn sm ghost danger" data-m4r>${ic('x')}${LBL('Remove', 'إزالة')}</button>` : ''}</div></div>`);
+  const f = el.querySelector('[data-m4f]'); el.querySelector('[data-m4i]').onclick = () => f.click();
+  f.onchange = async () => { try { const m = JSON.parse(await f.files[0].text()); if (!m.site || !m.buildings || !m.map) throw new Error(LBL('Not a 4D model file', 'ليس ملف موديل 4D')); if (m.project && m.project !== S.db.id && !(await confirmBox(`${LBL('This model is for', 'هذا الموديل لمشروع')} <b>${h(m.project)}</b> – ${LBL('use it for', 'استخدامه لمشروع')} <b>${h(S.db.id)}</b>?`, LBL('Use', 'استخدام')))) return; S.db.model4d = stamp(m); touch('4D model imported', m.project || ''); toast(T('saved'), 'ok'); RP.render(); } catch (e) { toast(e.message, 'bad'); } };
+  const x = el.querySelector('[data-m4x]'); if (x) x.onclick = () => { const a = document.createElement('a'); const m = { ...S.db.model4d }; delete m._at; delete m._by; a.href = URL.createObjectURL(new Blob([JSON.stringify(m, null, 1)], { type: 'application/json' })); a.download = `${S.db.id}_4D_Model.json`; a.click(); };
+  const r = el.querySelector('[data-m4r]'); if (r) r.onclick = async () => { if (await confirmBox(LBL('Remove the 4D model?', 'إزالة موديل 4D؟'), LBL('Remove', 'إزالة'), true)) { S.db.model4d = stamp({ removed: true }); touch('4D model removed'); RP.render(); } };
+}; }
+
+/* ===== PRINT / PDF: every report page the user may open, one A4 landscape sheet each (the 4D page as a still at the data date) ===== */
+RP.print = async () => {
+  if (RP.printing) return; RP.printing = true; toast(LBL('Preparing the report for printing…', 'جارٍ تجهيز التقرير للطباعة…'));
+  const pgs = RP.pages().filter(p => !p.admin), cut = rpCut(), p = S.db.project; const code = (p.reportPrefix || '').replace(/\d{3}$/, '') + String((cut && cut.reportNo) || '').padStart(3, '0');
+  const box = document.createElement('div'); box.id = 'rpPrint'; box.dir = document.documentElement.dir; document.body.appendChild(box);
+  try {
+    let n = 0;
+    for (const pg of pgs) { n++;
+      const sh = document.createElement('section'); sh.className = 'rpp'; sh.innerHTML = `<header><b dir="auto">${h(projTitle(p))}</b><span dir="ltr">${h(code)}</span><span>${rpLbl(pg)}</span><span dir="ltr">${n} / ${pgs.length}</span></header><div class="rp-page"></div><footer dir="ltr">${h(sigLine())}</footer>`; box.appendChild(sh);
+      const el = sh.querySelector('.rp-page');
+      if (pg.k === 'sim4d') { await RP.print4d(el, pg); continue; }
+      try { await (RP.P[pg.k] || RP.P._plan)(el, pg); } catch (e) { el.innerHTML = `<div class="rp-ph"><div class="rp-phs">${h(e.message)}</div></div>`; }
+      el.querySelectorAll('select,button,input').forEach(x => x.classList.add('np'));
+    }
+    await Promise.race([Promise.all([...box.querySelectorAll('img')].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))), new Promise(r => setTimeout(r, 8000))]);
+    document.body.classList.add('printing'); await new Promise(r => setTimeout(r, 300));
+    window.print();
+  } finally { document.body.classList.remove('printing'); box.remove(); RP.printing = false; }
+};
+RP.print4d = async (el, pg) => { // still image of the model at the data date (actual / forecast)
+  const P = M4() ? SIM.prepare() : null; if (!P) { RP.P._plan(el, pg); return; }
+  try { const T3 = await SIM.lib(); const host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-3000px;top:0;width:1280px;height:720px'; document.body.appendChild(host);
+    const V = SIM.build(T3, P, host); const s = SIM.state(P, P.dd, 'act'); V.paint(s.st, 'act'); const url = V.canvas.toDataURL('image/jpeg', 0.9); host.remove();
+    el.innerHTML = `<div class="sm"><img src="${url}" alt="" style="width:100%;height:100%;object-fit:cover"><div class="sm-hud"><div class="sm-t">${LBL('4D simulation', 'محاكاة 4D')}</div><div class="sm-d"><bdi>${D.fmt(P.dd)}</bdi> · ${T('data_date')}</div><div class="sm-k"><div><span>${LBL('Planned', 'المخطط')}</span><b dir="ltr">${fmtPct(s.pl)}</b></div><div><span>${LBL('Actual', 'الفعلي')}</span><b dir="ltr">${fmtPct(s.ac)}</b></div></div></div></div>`;
+  } catch (e) { RP.P._plan(el, pg); }
 };
 
 </script>

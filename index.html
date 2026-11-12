@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Data Collection Platform</title>
+<title>Projects Control Platform – منصة التحكم بالمشاريع</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -246,6 +246,112 @@ select.fsel.on{border-color:var(--pri);background:var(--pri-l);color:var(--navy)
 .blt{color:var(--navy);font-weight:700}
 .chip svg,.sec-t svg{width:14px;height:14px;flex:0 0 14px}
 .bdg .dot{width:6px;height:6px;vertical-align:1px}
+/* ---------- portal: front screen + gate sign-in (design A, approved 12-Nov-2026) ---------- */
+#login.ptm{background:#1D2026;padding:0;display:block;overflow:hidden}
+.pt{height:100vh;min-height:600px;display:flex;flex-direction:column;color:#fff;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",system-ui,sans-serif}
+html[lang=en] .pt{font-family:"Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif}
+.pt-h{display:flex;align-items:center;gap:14px;padding:12px 44px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.pt-h .sp{flex:1}
+.pt-logo{background:#fff;border-radius:10px;padding:6px 12px;display:flex;align-items:center}.pt-logo img{height:32px;max-width:220px;object-fit:contain;display:block}
+.pt-co{display:flex;flex-direction:column;line-height:1.35}.pt-co b{font-size:15.5px}.pt-co span{font-size:12px;color:#A9B0BB}
+.pt-lang{display:flex;border:1px solid rgba(255,255,255,.3);border-radius:999px;overflow:hidden}
+.pt-lang button{background:transparent;color:#fff;border:0;padding:7px 15px;font-weight:600;font-size:12.5px;cursor:pointer;min-height:34px;font-family:inherit}.pt-lang button.on{background:#fff;color:#1D2026}
+.pt-back{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;min-height:34px;font-family:inherit}
+.pt-back svg{width:16px;height:16px}html[dir=rtl] .pt-back svg{transform:scaleX(-1)}
+.pt-m{flex:1;min-height:0;width:100%;max-width:1280px;margin:0 auto;box-sizing:border-box;padding:18px 44px 16px;display:flex;flex-direction:column;gap:14px}
+.pt-t{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.pt-t h1{margin:0;font-size:27px;font-weight:700}.pt-t span{font-size:14px;color:#A9B0BB}
+.pt-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.pt-pj{flex:1 1 320px;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px 12px}
+.pt-add{flex:0 1 auto;display:flex;flex-wrap:wrap;align-items:center;gap:7px;border:1px dashed rgba(255,255,255,.22);border-radius:12px;padding:8px 10px}
+.pt-lb{font-size:12.5px;font-weight:600;color:#A9B0BB;margin-inline-end:2px}
+.pt-empty{font-size:12.5px;color:#C3C8D0}
+.pt-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:4px 14px 4px 5px;min-height:40px;cursor:pointer;color:#fff;font-family:inherit;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12)}
+html[dir=rtl] .pt-pill{padding:4px 5px 4px 14px}
+.pt-pill.on{background:rgba(175,159,88,.18);border-color:#AF9F58}
+.pt-pill .cd{font-size:11.5px;font-weight:700;color:#E3D49A}.pt-pill .nm{font-size:13px;font-weight:600;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pt-th{width:40px;height:30px;border-radius:7px;object-fit:cover;flex:0 0 40px;display:inline-flex}
+.pt-th.none,.gth.none{background:#4A505A;color:#E3D49A;font-size:11px;font-weight:700;align-items:center;justify-content:center;letter-spacing:.5px}
+.pt-st{display:inline-flex}.pt-st svg{width:15px;height:15px}.pt-st.ok{color:#7FD6A8}.pt-st.warn{color:#F2C46B}
+.pt-ib{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;cursor:pointer}.pt-ib svg{width:16px;height:16px}
+.pt-ab{display:inline-flex;align-items:center;gap:6px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:9px;padding:7px 11px;min-height:38px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit}
+.pt-ab:hover,.pt-ib:hover,.pt-back:hover{background:rgba(255,255,255,.08)}.pt-ab svg{width:15px;height:15px}
+.pt-hint{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#F2D9A0;line-height:1.5;margin-top:-4px}.pt-hint span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.pt-hint svg{width:15px;height:15px;flex:0 0 15px;margin-top:2px}
+.pt-gates{flex:1;min-height:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));grid-template-rows:minmax(0,1fr);gap:22px}
+.pt-gate{border:0;color:#fff;text-align:start;font-family:inherit;cursor:pointer;border-radius:18px;padding:24px 34px;display:flex;flex-direction:column;gap:12px;min-height:0;align-self:stretch;box-sizing:border-box;overflow:hidden;transition:transform .15s,box-shadow .15s}
+.pt-gate:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.35)}.pt-gate:disabled{opacity:.5;cursor:not-allowed}
+.pt-gate.dc{background:#0F2A4A}.pt-gate.rp{background:#4A2C2E;border-top:5px solid #AF9F58}
+.pt-gate .gi{display:flex;align-items:center;gap:16px}
+.gic{width:58px;height:58px;border-radius:15px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}.gic svg{width:30px;height:30px}
+.dc .gic{background:#1D5FA8;color:#fff}.rp .gic{background:#AF9F58;color:#2B1416}
+.gno{font-size:12px;font-weight:700;letter-spacing:2px}.dc .gno{color:#9FC0E6}.rp .gno{color:#E3D49A}
+.pt-gate .gt{display:flex;flex-direction:column;gap:2px}.pt-gate .gt b{font-size:30px;line-height:1.2}.pt-gate .gt span{font-size:15px;opacity:.75}
+.pt-gate p{margin:0;font-size:14.5px;line-height:1.7;opacity:.88;max-width:520px}
+.pt-gate ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 18px;font-size:13.5px}
+.pt-gate li{display:flex;align-items:center;gap:8px}.pt-gate li::before{content:"";width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+.dc li::before{background:#7FB4F0}.rp li::before{background:#E3D49A}
+.pt-gate .gf{margin-top:auto}
+.pt-gate .gf{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.gcta{display:inline-flex;align-items:center;gap:10px;border-radius:11px;padding:12px 22px;font-weight:700;font-size:15px}.gcta svg{width:18px;height:18px}
+html[dir=ltr] .gcta svg{transform:scaleX(-1)}
+.dc .gcta{background:#1D5FA8;color:#fff}.rp .gcta{background:#AF9F58;color:#2B1416}
+.gfor{font-size:12.5px;opacity:.8}
+.pt-f{padding:6px 20px 10px;border-top:1px solid rgba(255,255,255,.08)}.pt-f .sigbar{justify-content:center;margin:0}
+.pt-gm{flex:1;min-height:0;overflow:auto;display:flex;align-items:center;justify-content:center;padding:24px}
+.gc{width:min(540px,100%);background:#fff;color:var(--ink);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.gch{display:flex;align-items:center;gap:14px;padding:18px 24px;color:#fff}.gch .gic{width:46px;height:46px;border-radius:12px}.gch .gic svg{width:24px;height:24px}
+.gch b{display:block;font-size:19px}.gch span{font-size:12.5px;opacity:.8}
+.gc.dc .gch{background:#0F2A4A;border-bottom:4px solid #1D5FA8}.gc.rp .gch{background:#4A2C2E;border-bottom:4px solid #AF9F58}
+.gcb{padding:20px 24px 22px;display:flex;flex-direction:column;gap:14px}
+.gpj{display:flex;align-items:center;gap:12px;background:var(--bg);border-radius:12px;padding:9px 11px}.gc.rp .gpj{background:#F7F5F1}
+.gth{width:60px;height:44px;border-radius:8px;object-fit:cover;flex:0 0 60px;display:inline-flex}
+.gpn{display:flex;flex-direction:column;flex:1;min-width:0}.gpn span{font-size:11.5px;font-weight:700;color:var(--pri)}.gc.rp .gpn span{color:#8A7A3E}.gpn b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gpj a{font-size:12.5px;font-weight:600;padding:6px 4px}.gc.rp .gpj a{color:#5B4444}
+.gbtn{justify-content:center;padding:12px;font-size:14.5px}.gc.rp .gbtn{background:#5B4444;border-color:#5B4444}.gc.dc .gbtn{background:#0F2A4A;border-color:#0F2A4A}
+.gc .roles{max-height:34vh;overflow:auto}
+@media(max-width:900px){.pt-h,.pt-m{padding-left:16px;padding-right:16px}.pt{height:auto;min-height:100vh}#login.ptm{overflow:auto}.pt-gates{grid-template-columns:1fr;grid-template-rows:auto}.pt-gate{height:auto}.pt-gate .gt b{font-size:24px}}
+
+/* ---------- Reports & 4D portal: paged report (1280×720 page scaled to the window) ---------- */
+.rpo{flex:1;min-width:0;height:100vh;display:flex;flex-direction:column;background:#E9E6E1}
+.rp-h{display:flex;align-items:center;gap:10px;padding:8px 18px;background:#2B2224;color:#fff;flex-wrap:wrap}
+.rp-h .sp{flex:1}.rp-h .chip{background:rgba(255,255,255,.1);color:#E9DFD9}.rp-h .chip b{color:#fff}.rp-h .chip.co{background:#AF9F58;color:#2B1416}.rp-h .chip.co b{color:#2B1416}
+.rp-h .btn.ghost{color:#E9DFD9}.rp-h .btn.ghost:hover{background:rgba(255,255,255,.1)}
+.rp-logo{background:#fff;border-radius:8px;padding:4px 9px;display:flex}.rp-logo img{height:26px;max-width:160px;object-fit:contain}
+.rp-pt{display:flex;flex-direction:column;line-height:1.3}.rp-pt b{font-size:14px}.rp-pt span{font-size:11.5px;color:#C9BDB6}
+.rp-u{display:inline-flex;align-items:center;gap:6px;font-size:12.5px}.rp-u svg{width:15px;height:15px}
+.rp-nav{display:flex;align-items:center;gap:8px;padding:6px 14px;background:#fff;border-bottom:1px solid #DDD5C9}
+.rp-tabs{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:thin}
+.rp-tab{border:0;background:transparent;border-radius:8px;padding:8px 12px;font:inherit;font-size:12.5px;font-weight:600;color:#5E5552;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.rp-tab svg{width:14px;height:14px}.rp-tab:hover{background:#F4F0EA}.rp-tab.on{background:#5B4444;color:#fff}.rp-tab.adm{margin-inline-start:8px;border:1px dashed #CFC6B8}
+.rp-ar{width:34px;height:34px;border-radius:50%;border:1px solid #DDD5C9;background:#fff;font-size:20px;line-height:1;cursor:pointer;color:#5B4444}.rp-ar:disabled{opacity:.35;cursor:default}
+html[dir=rtl] .rp-ar{transform:scaleX(-1)}
+.rp-cnt{font-size:12px;color:#7A706C;min-width:46px;text-align:center}
+.rp-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.rp-page{width:1280px;height:720px;flex:0 0 auto;background:#fff;box-shadow:0 6px 28px rgba(40,25,25,.18);transform-origin:center center;position:relative;overflow:hidden;color:#1E1A1A}
+.rp-f{font-size:10.5px;color:#7A706C;text-align:center;padding:3px 0 5px}
+.rp-ph{height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 110px;gap:14px;background:#FBFAF7}
+.rp-pht{font-size:34px;font-weight:700;color:#5B4444}.rp-phs{font-size:16px;color:#6B6360;max-width:820px;line-height:1.7}
+.rp-ph ul{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px;font-size:16px}
+.rp-ph li{display:flex;gap:12px;align-items:center}.rp-ph li::before{content:"";width:8px;height:8px;border-radius:2px;background:#AF9F58;flex:0 0 8px}
+/* cover */
+.cv{display:flex;height:100%}
+.cv-img{flex:0 0 56%;position:relative;background:#3A2E30}.cv-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cv-band{position:absolute;inset:auto 0 0 0;background:rgba(43,22,24,.86);color:#fff;padding:22px 30px}
+.cv-band span{font-size:13px;font-weight:700;color:#E3D49A;letter-spacing:1px}.cv-band h1{margin:4px 0 2px;font-size:30px;line-height:1.25}.cv-band div{font-size:14px;color:#E6DCD8}.cv-band .loc{margin-top:4px;font-size:13px;color:#CDBFB9}
+.cv-r{flex:1;display:flex;flex-direction:column;padding:26px 34px;gap:16px}
+.cv-logos{display:flex;gap:20px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #EEE7DC;padding-bottom:14px;min-height:70px}
+.cv-logos figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}.cv-logos img{height:48px;max-width:150px;object-fit:contain}.cv-logos figcaption{font-size:11px;color:#7A706C}
+.cv-t{display:flex;flex-direction:column;gap:4px}.cv-t span{font-size:22px;font-weight:700;color:#5B4444}.cv-t b{font-size:15px;color:#4A4442;font-weight:600}
+.cv-meta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.cv-meta div{background:#F7F5F1;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}.cv-meta span{font-size:12px;color:#7A706C}.cv-meta b{font-size:18px}
+.cv-k{flex:1;display:flex;align-items:center;justify-content:space-around;gap:20px}
+.rp-ring{display:flex;flex-direction:column;align-items:center;gap:4px}.rp-ring svg{width:170px;height:170px}.rp-ring b{font-size:16px}.rp-ring span{font-size:12px;color:#7A706C}
+.cv-var{border-radius:10px;padding:10px 14px;font-size:14px;text-align:center}.cv-var.ok{background:#E3F5EE;color:#0E6B4A}.cv-var.bad{background:#FDE8E8;color:#A12424}
+.cv-prep{font-size:12.5px;color:#7A706C}
+/* report users */
+.ru{height:100%;display:flex;flex-direction:column;padding:26px 34px;gap:16px;box-sizing:border-box}
+.ru-h{display:flex;align-items:flex-start;gap:16px}.ru-h h2{margin:0 0 4px;color:#5B4444}.ru-h .sp{flex:1}
+.ru-t{flex:1;min-height:0;overflow:auto;max-height:none}
+.ru-pp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}.ru-pp label{display:flex;gap:8px;align-items:center;font-size:13px}
+.ru-qb{margin-top:10px}
 
 </style>
 </head>
@@ -945,7 +1051,7 @@ const IDB = (() => {
 })();
 
 /* ---------- DB model ---------- */
-const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users'];
+const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users', 'rusers'];   // rusers = report-portal users (separate from the data-collection users)
 function emptyDB(p) {
   return {
     schema: DB_SCHEMA, id: `${p.number}-${p.code}`, createdAt: nowISO(), _at: nowISO(),
@@ -961,7 +1067,7 @@ function emptyDB(p) {
 let _sch = null;
 // code types never used as page filters (decision 11-Nov-2026: L3- Work Type / L4- Sub Work Type add no value)
 const NOFILT = /^L[34]-\s/i;
-const DB_SCHEMA = 2;   // 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
+const DB_SCHEMA = 3;   // 3 = report-portal users (rusers) + company identity. 2 = 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
 /* activity codes are stored packed (about half the size of a schedule): schedule.cd = {t: [code type names], v: [[values of type 0], …]}
    and activity.c = [index of the value per type, -1 = none]. activity.codes stays as an empty object for pages still running the previous tool. */
 function packSched(s) {
@@ -2001,11 +2107,12 @@ async function signOut() { // record the sign-out for the presence register, pus
   const b = document.querySelector('[data-out]'); if (b) b.disabled = true;
   try { PRES.stamp('out'); audit('sign out', S.user.name); clearTimeout(saveTimer); clearTimeout(syncTimer); await IDB.put('projects', S.db.id, S.db); S.ui.cloudDirty = true;
     await Promise.race([S.cloud ? syncCloud(false) : S.dir ? syncFolder(false) : 0, new Promise(r => setTimeout(r, 6000))]); } catch (e) { }
-  S.user = null; S.db = null; S.dir = null; S.cloud = null; S.ui.pendingDir = null; showLogin();
+  S.user = null; S.db = null; S.dir = null; S.cloud = null; S.portal = null; S.ui.pendingDir = null; showLogin();   // back to the sign-in of the same gate
 }
 function go(page) { if (!canSee(page)) page = 'home'; S.page = page; const pe = S.db && (S.db.presence || {})[PRES.key()]; if (pe) pe.page = page; render(); document.getElementById('view').scrollTop = 0; }
 function render(keepScroll) {
   if (!S.db || !S.user) return;
+  if (S.portal === 'rp') return RP.render();
   _tgtCache = null;
   const sc = keepScroll && document.getElementById('view') ? document.getElementById('view').scrollTop : 0;
   try { S.ui.checkCount = runChecks().filter(c => c.v !== 0 && c.v !== 'n/a').length; } catch (e) { S.ui.checkCount = 0; }
@@ -2658,11 +2765,14 @@ PAGES.project = v => {
    <div class="fsec"><h4>${LBL('Contract', 'العقد')}</h4><div class="fgrid">${fld('contractValue', 'Contract Value (SAR)', 'قيمة العقد (ريال)', 'number')}${fld('totalVO', 'Total V.O (SAR)', 'إجمالي الأوامر التغييرية (ريال)', 'number')}${fld('landArea', 'Land Area (m²)', 'مساحة الأرض (م²)', 'number')}${fld('bua', 'BUA (m²)', 'مسطح البناء BUA (م²)', 'number')}${fld('dpPct', '% Down payment Retention (0–1)', 'نسبة استرداد الدفعة المقدمة (0–1)', 'number')}${fld('retPct', '% General Retention (0–1)', 'نسبة المحتجزات العامة (0–1)', 'number')}${fld('stdHours', 'Working Hours / Man-Day', 'ساعات العمل / يوم-عامل', 'number')}</div></div>
    <div class="fsec"><h4>${LBL('Dates', 'التواريخ')}</h4><div class="fgrid">${fld('signDate', 'Contract Sign Date', 'تاريخ توقيع العقد', 'date')}${fld('dpDate', 'Down payment Date', 'تاريخ الدفعة المقدمة', 'date')}${fld('handoverDate', 'Site Handover Date', 'تاريخ استلام الموقع', 'date')}${fld('commencement', 'Project Commencement Date', 'تاريخ بدء المشروع', 'date')}${fld('completion', 'Project Completion Date', 'تاريخ انتهاء المشروع', 'date')}</div></div>
    <div class="fsec"><h4>${LBL('Calculated (Project Informations)', 'محسوب (معلومات المشروع)')}</h4><div class="fgrid" data-calc></div></div>
+   <div class="fsec"><h4>${LBL('Company identity (platform front screen and report)', 'هوية الشركة (الواجهة الأولى للمنصة والتقرير)')}</h4><div class="tiny muted" style="margin:-4px 0 10px">${LBL('Shown on the front screen when this project is selected. Empty fields use the contracting company name and the contractor logo.', 'تظهر في الواجهة الأولى عند اختيار هذا المشروع. الحقول الفارغة تأخذ اسم شركة المقاولات وشعار المقاول.')}</div><div class="fgrid">${fld('companyName', 'Company name (English)', 'اسم الشركة (إنجليزي)')}${fld('companyNameAr', 'Company name (Arabic)', 'اسم الشركة (عربي)')}${[['companyLogo', 'Company logo', 'شعار الشركة'], ['cover', 'Project image (front screen and report cover)', 'صورة المشروع (الواجهة وغلاف التقرير)']].map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<div style="display:flex;gap:10px;align-items:center"><img src="${p[k] || ''}" style="height:54px;max-width:160px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff;${p[k] ? '' : 'display:none'}" data-ii="${k}">${ed ? `<input type="file" accept="image/*" data-im="${k}" class="small">${p[k] ? `<button class="btn sm ghost" data-imx="${k}" title="${T('del')}">${ic('x')}</button>` : ''}` : ''}</div></label>`).join('')}</div></div>
    <div class="fsec"><h4>${LBL('Stakeholder logos', 'شعارات الأطراف')}</h4><div class="fgrid">${['owner', 'consultant', 'contractor'].map(k => `<label class="f">${LBL({ owner: 'Owner', consultant: 'Consultant', contractor: 'Contractor' }[k], { owner: 'المالك', consultant: 'الاستشاري', contractor: 'المقاول' }[k])}<div style="display:flex;gap:10px;align-items:center"><img src="${(p.logos || {})[k] || ''}" style="height:44px;max-width:120px;object-fit:contain;border:1px solid var(--line);border-radius:6px;background:#fff;${(p.logos || {})[k] ? '' : 'display:none'}" data-li="${k}">${ed ? `<input type="file" accept="image/*" data-lg="${k}" class="small">` : ''}</div></label>`).join('')}</div></div>`;
   const calc = () => { const g = k => { const i = v.querySelector(`[data-p="${k}"]`); return i ? i.value : p[k]; }; const cvv = N(g('contractValue')), vo = N(g('totalVO')), bac = cvv + vo;
     v.querySelector('[data-calc]').innerHTML = [[LBL('Down payment', 'الدفعة المقدمة'), fmtN(cvv * N(g('dpPct')), 2)], ['BAC', fmtN(bac, 2)], [LBL('Total Retention Value', 'إجمالي المحتجزات'), fmtN(bac * (N(g('retPct')) + N(g('dpPct'))), 2)], [LBL('Report Code', 'كود التقرير'), h((g('reportPrefix') || '') + String(reportNo() || '').padStart(3, '0'))], [LBL('Contract duration (days)', 'مدة العقد (يوم)'), fmtN(D.diff(g('completion'), g('commencement')))]].map(([l, x]) => `<label class="f">${l}<div class="calcv">${x}</div></label>`).join(''); };
   calc(); v.querySelectorAll('[data-p]').forEach(i => i.oninput = calc);
   v.querySelectorAll('[data-lg]').forEach(inp => inp.onchange = () => { const f = inp.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { p.logos = p.logos || {}; p.logos[inp.dataset.lg] = rd.result; const im = v.querySelector(`[data-li="${inp.dataset.lg}"]`); im.src = rd.result; im.style.display = ''; }; rd.readAsDataURL(f); });
+  v.querySelectorAll('[data-im]').forEach(inp => inp.onchange = async () => { const f = inp.files[0]; if (!f) return; const k = inp.dataset.im; try { p[k] = await imgData(f, k === 'cover' ? 1200 : 500, k === 'cover' ? 'image/jpeg' : 'image/png'); const im = v.querySelector(`[data-ii="${k}"]`); im.src = p[k]; im.style.display = ''; } catch (e) { toast(e.message || 'image', 'bad'); } });
+  v.querySelectorAll('[data-imx]').forEach(b => b.onclick = () => { const k = b.dataset.imx; delete p[k]; const im = v.querySelector(`[data-ii="${k}"]`); im.style.display = 'none'; b.remove(); });
   const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { v.querySelectorAll('[data-p]').forEach(i => { p[i.dataset.p] = i.type === 'number' ? (i.value === '' ? '' : Number(i.value)) : i.value; }); S.db.project = stamp(p); touch('project setup'); toast(T('saved'), 'ok'); render(true); };
 };
 
@@ -2711,98 +2821,6 @@ PAGES.lists = v => {
 
 /* ---------- LOGIN & STARTUP ---------- */
 async function savePrefs() { try { await IDB.put('meta', 'prefs', { lang: S.lang, name: S.ui.lname, role: S.ui.lrole, user: S.ui.luser }); } catch (e) { } }
-async function showLogin() {
-  document.documentElement.lang = S.lang; document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
-  document.getElementById('app').innerHTML = '';
-  const keys = await IDB.keys('projects').catch(() => []); const last = await IDB.get('meta', 'last').catch(() => null);
-  const projs = []; for (const k of keys) { const d = await IDB.get('projects', k); if (d) projs.push({ id: k, name: d.project.name, code: d.project.code, number: d.project.number }); }
-  const sel = S.ui.lproj && keys.includes(S.ui.lproj) ? S.ui.lproj : (keys.includes(last) ? last : keys[0]);
-  const seldb = sel ? migrate(await IDB.get('projects', sel)) : null;
-  const named = seldb && userMode(seldb);
-  const selDir = sel ? await projFolder(sel) : null; const selCloud = sel ? await projCloud(sel) : null;
-  const ulist = named ? usersActive(seldb).sort((a, b) => a.name.localeCompare(b.name)) : [];
-  const role = S.ui.lrole || 'site';
-  let lg = document.getElementById('login'); if (!lg) { lg = document.createElement('div'); lg.id = 'login'; document.body.appendChild(lg); }
-  lg.innerHTML = `<div class="lg"><div class="l"><div style="display:flex;gap:10px;align-items:center">${ic('layers').replace('<svg', '<svg style="width:30px;height:30px;color:#7FB3F0"')}<div style="font-weight:700;color:#fff">${T('appName')}</div></div>
-    <h2>${T('login_h')}</h2><div class="ft"><div>${ic('users')}<span>${T('login_f1')}</span></div><div>${ic('db')}<span>${T('login_f2')}</span></div><div>${ic('p6')}<span>${T('login_f3')}</span></div><div>${ic('globe')}<span>${T('login_f4')}</span></div></div>
-    <div style="flex:1"></div>${sigHTML(true)}</div>
-    <div class="r"><div style="display:flex;align-items:center;gap:10px"><div><h3>${T('login_title')}</h3><div class="small muted">${named ? T('login_sub_u') : T('login_sub')}</div></div><span style="flex:1"></span><div class="lang"><button class="${S.lang === 'en' ? 'on' : ''}" data-l="en">EN</button><button class="${S.lang === 'ar' ? 'on' : ''}" data-l="ar">ع</button></div></div>
-    <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
-      ${projs.length ? `<label class="f">${T('project_sel')}<div style="display:flex;gap:6px"><select class="in" data-pj style="flex:1">${projs.map(p => `<option value="${h(p.id)}" ${p.id === sel ? 'selected' : ''}>${h(p.number)} · ${h(p.code)} — ${h(p.name)}</option>`).join('')}</select><button class="btn danger" data-delp title="${T('pd_title')}" style="padding:0 11px">${ic('trash')}</button></div></label>` : `<div class="notice info">${ic('info')}<div>${T(WEB() ? 'cl_no_projects' : 'no_projects')}</div></div>`}
-      <div style="display:flex;gap:6px;flex-wrap:wrap">${FS.supported() && !selCloud && !WEB() ? `<button class="btn sm" data-cf title="${T('pf_login_hint')}">${ic('folder')}${selDir ? T('pf_proj') + ': ' + h(sel) + ' ✓' : T('connect_folder')}</button>` : ''}<button class="btn sm" data-cl title="${T('cl_title')}">${ic('cloud')}${selCloud ? T('cl_short') + ': ' + h(sel) + ' ✓' : T('cl_link')}</button>${WEB() ? '' : `<button class="btn sm" data-od>${ic('up')}${T('open_db')}</button><input type="file" accept=".json" hidden data-of>`}<button class="btn sm" data-np>${ic('plus')}${T('new_project')}</button></div>
-      ${!selDir && !selCloud ? `<div class="tiny muted" data-lfh style="margin-top:-4px;line-height:1.5">${T(WEB() ? 'cl_login_hint' : 'pf_login_hint')}</div>` : ''}
-      ${!projs.length ? '' : named ? `
-      <label class="f">${T('u_select')}<select class="in" data-us>${ulist.map(u => `<option value="${u._id}" ${u._id === S.ui.luser ? 'selected' : ''}>${h(u.name)}${u.title ? ' — ' + h(u.title) : ''}</option>`).join('')}</select></label>
-      <label class="f">${T('pin')}<input class="in" type="password" data-pin autocomplete="off"></label>
-      <button class="btn pri" style="justify-content:center;padding:10px" data-go>${T('enter')}</button>
-      <a href="#" class="tiny muted" data-emg style="text-align:center">${T('u_emergency')}</a>` : `
-      <label class="f">${T('name')}<input class="in" data-nm value="${h(S.ui.lname || '')}" placeholder="${S.lang === 'ar' ? 'مثال: م. أحمد' : 'e.g. Eng. Ahmed'}"></label>
-      <div><div class="small" style="font-weight:600;color:var(--ink2)">${T('role')}</div><div class="roles">${Object.keys(ROLES).map(r => `<div class="role ${r === role ? 'on' : ''}" data-r="${r}"><b>${T('r_' + r)}</b><span>${T('r_' + r + '_d')}</span></div>`).join('')}</div></div>
-      <label class="f" data-pinw>${T('pin')}<input class="in" type="password" data-pin autocomplete="off"></label>
-      <button class="btn pri" style="justify-content:center;padding:10px" data-go>${T('enter')}</button>`}
-    </div></div></div>`;
-  let r = role;
-  const pinW = lg.querySelector('[data-pinw]'); const updPin = () => pinW && pinW.classList.toggle('hidden', !ROLES[r].pin);
-  updPin();
-  const keepForm = () => { const nm = lg.querySelector('[data-nm]'); if (nm) S.ui.lname = nm.value; S.ui.lrole = r; const us = lg.querySelector('[data-us]'); if (us) S.ui.luser = us.value; const pj = lg.querySelector('[data-pj]'); if (pj) S.ui.lproj = pj.value; };
-  lg.querySelectorAll('[data-l]').forEach(b => b.onclick = () => { S.lang = b.dataset.l; keepForm(); savePrefs(); showLogin(); });
-  const pjs = lg.querySelector('[data-pj]'); if (pjs) pjs.onchange = () => { keepForm(); S.ui.lproj = pjs.value; showLogin(); };
-  lg.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { r = b.dataset.r; lg.querySelectorAll('[data-r]').forEach(x => x.classList.toggle('on', x === b)); updPin(); });
-  const cf = lg.querySelector('[data-cf]'); if (cf) cf.onclick = async () => {
-    keepForm();
-    if (selDir && await permOK(selDir, true)) { const n = await pullFolderDBs(selDir); toast(`${T('connected')}: ${selDir.name} (${n})`, 'ok'); return showLogin(); }
-    const d = await pickFolder(); if (!d) return;
-    const ids = await peekDBs(d);
-    if (ids.length) { await pullFolderDBs(d); for (const id of ids) await bindFolder(id, d); S.ui.lproj = ids.includes(sel) ? sel : ids[0]; toast(`${T('connected')}: ${d.name} · ${ids.join(', ')}`, 'ok'); return showLogin(); }
-    if (sel && await confirmBox(`${T('pf_empty')}<br><b>${h(d.name)}</b> → <b>${h(sel)}</b>`, T('pf_bind'))) { await bindFolder(sel, d); toast(`${T('pf_bound')}: ${sel} → ${d.name}`, 'ok'); showLogin(); }
-  };
-  const clb = lg.querySelector('[data-cl]'); if (clb) clb.onclick = async () => {
-    keepForm();
-    if (selCloud) { // refresh this project from its OneDrive file
-      try { const ref = { ...selCloud }; const meta = await CLOUD.meta(ref, true); const text = await CLOUD.download(ref, meta, true); if (text) { const d = JSON.parse(text); if (d && d.id === sel) { const ex = await IDB.get('projects', sel); await IDB.put('projects', sel, ex ? mergeDB(ex, d) : d); } } toast(`${T('connected')}: ${sel} · ${ref.name}`, 'ok'); }
-      catch (e) { toast(cloudMsg(e), 'bad'); }
-      return showLogin();
-    }
-    cloudLinkDialog(null, id => { S.ui.lproj = id; showLogin(); });
-  };
-  const dp = lg.querySelector('[data-delp]'); if (dp) dp.onclick = e => { e.preventDefault(); keepForm(); deleteProjectDialog(lg.querySelector('[data-pj]').value); };
-  const of = lg.querySelector('[data-of]'); const odb = lg.querySelector('[data-od]'); if (odb) odb.onclick = () => of.click();
-  if (of) of.onchange = async () => { try { const d = JSON.parse(await of.files[0].text()); if (!d.id || !d.project) throw new Error('Invalid database file'); const ex = await IDB.get('projects', d.id); await IDB.put('projects', d.id, ex ? mergeDB(ex, d) : d); S.ui.lproj = d.id; toast(T('merged'), 'ok'); showLogin(); } catch (e) { toast(e.message, 'bad'); } };
-  lg.querySelector('[data-np]').onclick = () => modal({ title: T('newproj_title'), size: 'sm', body: `<div class="fgrid"><label class="f">${T('proj_number')}<input class="in" data-a placeholder="P012"></label><label class="f">${T('proj_code')}<input class="in" data-b placeholder="ABC"></label><label class="f" style="grid-column:1/-1">${T('proj_name')}<input class="in" data-c></label></div>${WEB() ? `<div class="notice info" style="margin-top:12px">${ic('cloud')}<div>${T('np_web_hint')}</div></div>` : FS.supported() ? `<div class="fsec" style="margin-top:12px"><h4>${T('pf_card')}</h4><button class="btn" data-pf>${ic('folder')}${T('np_folder')}</button> <span class="small" data-pfn></span><div class="tiny muted" style="margin-top:6px">${T('np_folder_hint')}</div></div>` : ''}<div class="notice info" style="margin-top:12px">${ic('key')}<div>${T('np_pins')}</div></div>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('create')}</button>`,
-    onMount: (el, close) => { let pf = null; const pb = el.querySelector('[data-pf]'); if (pb) pb.onclick = async () => { const d = await pickFolder(); if (!d) return; const ids = await peekDBs(d); if (ids.length && !(await confirmBox(`${T('pf_other')}<br><b>${h(ids.join(', '))}</b><br><span class="small muted">${T('pf_other_q')}</span>`, T('pf_use_anyway'), true))) return; pf = d; el.querySelector('[data-pfn]').innerHTML = `<span class="bdg ok">${h(d.name)}</span>`; };
-      el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-a]').value.trim(), b = el.querySelector('[data-b]').value.trim(), c = el.querySelector('[data-c]').value.trim(); if (!a || !b) { toast(T('required'), 'bad'); return; } const d = emptyDB({ number: a, code: b, name: c }); d.lists = clone(DEFAULT_LISTS); d.security.pins = { admin: 'admin', contractor: 'contractor', consultant: 'consultant', owner: 'owner' }; if (await IDB.get('projects', d.id)) { toast(`${d.id} – ${T('np_exists')}`, 'bad'); return; } await IDB.put('projects', d.id, d); if (pf) await bindFolder(d.id, pf); S.ui.lproj = d.id; S.ui.lrole = 'admin'; close(); await showLogin(); if (WEB()) cloudLinkDialog(d.id, id => { S.ui.lproj = id; showLogin(); }, T('np_web_link')); }; } });
-  const enter = async (db, user, audAction) => {
-    S.db = db; S.user = user; S.page = 'home'; lg.remove();
-    PRES.stamp('in');   // sign-in time is kept in the presence register (the user record is not re-stamped, so a manager's newer edit of it is never overridden)
-    audit(audAction || 'sign in', `${user.name} (${user.title || user.role})`);
-    S.cloud = null; S.dir = null; S.ui.cloudAuth = false; S.ui.cloudAuthShown = false; S.ui.cloudDirty = true;
-    const cl = await projCloud(db.id);
-    if (cl) S.cloud = { ...cl, eTag: '' }; else if (FS.supported() && !WEB()) await restoreFolder(true, db.id);
-    touch(); render();
-    if (S.cloud) syncCloud(false, false, true);
-    else if (S.dir) syncFolder(false);
-    else toast(S.ui.pendingDir ? `${T('pf_pending')}: ${S.ui.pendingDir.name}` : T(WEB() ? 'cl_not_linked' : 'pf_not_linked'), 'warn');
-  };
-  const pinIn = lg.querySelector('[data-pin]'); if (pinIn) pinIn.onkeydown = e => { if (e.key === 'Enter') lg.querySelector('[data-go]').click(); };
-  const gb = lg.querySelector('[data-go]');
-  if (gb) gb.onclick = async () => {
-    const id = lg.querySelector('[data-pj]').value; const db = migrate(await IDB.get('projects', id));
-    const pin = lg.querySelector('[data-pin]').value.trim();
-    if (userMode(db)) {
-      const uid_ = lg.querySelector('[data-us]').value; const u = usersActive(db).find(x => x._id === uid_);
-      if (!u || (await pinHash(u._id, pin)) !== u.pinHash) { toast(T('wrong_pin'), 'bad'); return; }
-      S.ui.luser = u._id; S.ui.lproj = id; savePrefs();
-      return enter(db, { id: u._id, name: u.name, title: u.title || '', role: u.role || 'viewer', perms: (u.perms || []).slice() });
-    }
-    const name = lg.querySelector('[data-nm]').value.trim(); if (!name) { toast(T('name_req'), 'bad'); return; }
-    const need = ROLES[r].pin; if (need && (db.security.pins[need] || '') !== pin) { toast(T('wrong_pin'), 'bad'); return; }
-    S.ui.lname = name; S.ui.lrole = r; S.ui.lproj = id; savePrefs();
-    enter(db, { name, role: r });
-  };
-  const em = lg.querySelector('[data-emg]');
-  if (em) em.onclick = e => { e.preventDefault(); modal({ title: T('u_emergency'), size: 'sm', body: `<div class="small muted" style="margin-bottom:10px">${T('u_emergency_d')}</div><label class="f">${T('pin_admin')}<input class="in" type="password" data-mpin></label>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('enter')}</button>`,
-    onMount: (el, close) => el.querySelector('[data-k]').onclick = async () => { const id = lg.querySelector('[data-pj]').value; const db = migrate(await IDB.get('projects', id)); if ((db.security.pins.admin || '') !== el.querySelector('[data-mpin]').value.trim()) { toast(T('wrong_pin'), 'bad'); return; } close(); enter(db, { name: LBL('Emergency access', 'دخول طوارئ'), role: 'admin', perms: [...FULL_PERMS] }, 'emergency sign in'); } }); };
-}
 async function pullFolderDBs(d) {
   let n = 0;
   try { const dbDir = await dbDirOf(d, false); for (const name of (await peekDBs(d)).map(FS.dbName)) { const d = JSON.parse(await FS.read(dbDir, name)); if (!d || !d.id) continue; const ex = await IDB.get('projects', d.id); await IDB.put('projects', d.id, ex ? mergeDB(ex, d) : d); n++; S.ui.lproj = S.ui.lproj || d.id; } } catch (e) { toast(e.message, 'bad'); }
@@ -2851,6 +2869,7 @@ async function boot() {
   const prefs = await IDB.get('meta', 'prefs').catch(() => null);
   if (prefs) { S.lang = prefs.lang || 'en'; S.ui.lname = prefs.name; S.ui.lrole = prefs.role; S.ui.luser = prefs.user; }
   else if ((navigator.language || '').startsWith('ar')) S.lang = 'ar';
+  const hg = (location.hash || '').slice(1).toLowerCase(); if (hg === 'dc' || hg === 'report') S.ui.gate = hg === 'dc' ? 'dc' : 'rp';   // deep link straight to a gate
   // refresh every project from its own folder (only folders the browser still has permission for)
   if (!WEB()) try { const ks = (await IDB.keys('meta')).filter(k => typeof k === 'string' && (k === 'dir' || k.startsWith('dir:'))); const seen = [];
     for (const k of ks) { const d = await IDB.get('meta', k); if (!d) continue; let dup = false; for (const x of seen) if (await x.isSameEntry(d).catch(() => false)) dup = true; if (dup) continue; seen.push(d); if (await permOK(d, false)) await pullFolderDBs(d); } } catch (e) { }
@@ -3549,6 +3568,322 @@ tfoot td{background:#E8EEF6;font-weight:700}
   }
   return { build, print };
 })();
+
+/* ===== PORTAL: front screen (company identity, projects, add project, two gates) + sign-in per gate =====
+   One platform for every project of the company. Each project = one database, read by two portals:
+   - Data Collection ('dc'): users = db.users (existing named users / role PINs)
+   - Reports & 4D ('rp'):    users = db.rusers (separate list, separate PINs, page permissions)
+   The company name / logo come from the selected project's database (Project setup), so the tool itself carries no company branding. */
+Object.assign(I18N.en, {
+  pt_title: 'Projects Control Platform', pt_title_alt: 'منصة التحكم بالمشاريع', pt_shown: 'Project shown', pt_add: 'Add project', pt_none: 'No project linked on this device yet – link one with the buttons beside.',
+  pt_gate_dc: 'Data Collection', pt_gate_dc_alt: 'بوابة جمع البيانات', pt_gate_rp: 'Reports & 4D Simulation', pt_gate_rp_alt: 'بوابة التقارير ومحاكاة 4D',
+  pt_dc_d: 'For site and office teams: weekly project data entry, review and the P6 update file.', pt_rp_d: 'For management, the owner and the consultant: the project report page by page, from the platform database and the P6 update history.',
+  pt_dc_i: 'P6 activity progress|HSE|Document control|Manpower & equipment|Drawings|Invoices', pt_rp_i: 'Executive summary|Progress & delays|Cost & invoices|HSE & documents|Photos|4D simulation',
+  pt_enter: 'Enter the portal', pt_for: 'Project', pt_back: 'Back to the front screen', pt_change: 'Change project', pt_signin: 'Sign in',
+  pt_refresh: 'Refresh this project from its database file', pt_linked_cloud: 'Linked by OneDrive link', pt_linked_dir: 'Linked to a data folder', pt_unlinked: 'Not linked – data only in this browser',
+  pt_onedrive: 'Link by OneDrive link', pt_folder: 'Link data folder', pt_file: 'Open database file', pt_new: 'New project', pt_pick_first: 'Select or link a project first.',
+  rp_user: 'User', rp_user_ph: 'Select your name', rp_enter: 'Enter the report', rp_nousers: 'No report users yet. Sign in with the master Planner PIN to create them (Report users page).', rp_emg: 'Emergency access (master Planner PIN)'
+});
+Object.assign(I18N.ar, {
+  pt_title: 'منصة التحكم بالمشاريع', pt_title_alt: 'Projects Control Platform', pt_shown: 'المشروع المعروض', pt_add: 'إضافة مشروع', pt_none: 'لا يوجد مشروع مرتبط على هذا الجهاز بعد – اربط مشروعاً من الأزرار المجاورة.',
+  pt_gate_dc: 'بوابة جمع البيانات', pt_gate_dc_alt: 'Data Collection', pt_gate_rp: 'بوابة التقارير ومحاكاة 4D', pt_gate_rp_alt: 'Reports & 4D Simulation',
+  pt_dc_d: 'لفرق الموقع والمكتب الفني: إدخال بيانات المشروع أسبوعياً، ومراجعتها، وإصدار ملف تحديث P6.', pt_rp_d: 'للإدارة والمالك والاستشاري: تقرير المشروع صفحة بصفحة من قاعدة بيانات المنصة وسجل تحديثات P6.',
+  pt_dc_i: 'تقدّم أنشطة P6|السلامة|ضبط المستندات|العمالة والمعدات|المخططات|المستخلصات', pt_rp_i: 'الملخص التنفيذي|التقدّم والتأخيرات|التكلفة والمستخلصات|السلامة والمستندات|الصور|محاكاة 4D',
+  pt_enter: 'دخول البوابة', pt_for: 'المشروع', pt_back: 'العودة للواجهة', pt_change: 'تغيير المشروع', pt_signin: 'تسجيل الدخول',
+  pt_refresh: 'تحديث المشروع من ملف قاعدة البيانات', pt_linked_cloud: 'مرتبط برابط OneDrive', pt_linked_dir: 'مرتبط بمجلد بيانات', pt_unlinked: 'غير مرتبط – البيانات في هذا المتصفح فقط',
+  pt_onedrive: 'ربط برابط OneDrive', pt_folder: 'ربط مجلد البيانات', pt_file: 'فتح ملف قاعدة بيانات', pt_new: 'مشروع جديد', pt_pick_first: 'اختر مشروعاً أو اربط مشروعاً أولاً.',
+  rp_user: 'المستخدم', rp_user_ph: 'اختر اسمك', rp_enter: 'دخول التقرير', rp_nousers: 'لا يوجد مستخدمون للتقارير بعد. ادخل بالرمز الرئيسي للتخطيط لإنشائهم (صفحة مستخدمي التقرير).', rp_emg: 'دخول طوارئ (الرمز الرئيسي للتخطيط)'
+});
+const IDENT = db => { const p = (db && db.project) || {}; return { name: p.companyName || p.contractor || '', nameAr: p.companyNameAr || '', logo: p.companyLogo || (p.logos || {}).contractor || '' }; };
+const projTitle = p => (S.lang === 'ar' && p.nameAr) ? p.nameAr : (p.name || `${p.number} · ${p.code}`);
+const coverHTML = (p, cls) => p && p.cover ? `<img class="${cls}" src="${p.cover}" alt="">` : `<span class="${cls} none">${h(String((p && p.code) || '').slice(0, 3))}</span>`;
+function ptHead(db, right) {
+  const id = IDENT(db), ar = S.lang === 'ar';
+  const pri = ar ? (id.nameAr || id.name) : (id.name || id.nameAr), sec = ar ? (id.nameAr && id.name ? id.name : '') : (id.name && id.nameAr ? id.nameAr : '');
+  return `<header class="pt-h">${id.logo ? `<div class="pt-logo"><img src="${id.logo}" alt=""></div>` : ''}<div class="pt-co">${pri ? `<b dir="auto">${h(pri)}</b>${sec ? `<span dir="auto">${h(sec)}</span>` : ''}` : `<b>${T('pt_title')}</b><span>${T('pt_title_alt')}</span>`}</div><span class="sp"></span>${right}</header>`;
+}
+const ptLang = () => `<div class="pt-lang"><button class="${S.lang === 'ar' ? 'on' : ''}" data-l="ar">عربي</button><button class="${S.lang === 'en' ? 'on' : ''}" data-l="en">EN</button></div>`;
+const GATE_IC = { dc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3M9 12l2 2 4-4M9 17h6"/>', rp: '<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>' };
+const gateIc = g => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${GATE_IC[g]}</svg>`;
+
+async function showLogin() {
+  document.documentElement.lang = S.lang; document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+  document.getElementById('app').innerHTML = ''; S.portal = null;
+  const keys = await IDB.keys('projects').catch(() => []); const last = await IDB.get('meta', 'last').catch(() => null);
+  const projs = []; for (const k of keys) { const d = await IDB.get('projects', k); if (d) projs.push({ id: k, p: d.project || {} }); }
+  const sel = S.ui.lproj && keys.includes(S.ui.lproj) ? S.ui.lproj : (keys.includes(last) ? last : keys[0]); if (sel) S.ui.lproj = sel;
+  const seldb = sel ? migrate(await IDB.get('projects', sel)) : null;
+  const selDir = sel ? await projFolder(sel) : null; const selCloud = sel ? await projCloud(sel) : null;
+  let lg = document.getElementById('login'); if (!lg) { lg = document.createElement('div'); lg.id = 'login'; document.body.appendChild(lg); }
+  lg.className = 'ptm';
+  const ctx = { lg, keys, projs, sel, seldb, selDir, selCloud };
+  if (S.ui.gate && seldb) return ptGate(ctx);
+  return ptFront(ctx);
+}
+
+/* ---------- front screen ---------- */
+function ptFront(ctx) {
+  const { lg, projs, sel, seldb, selDir, selCloud } = ctx;
+  const linkIc = selCloud ? `<span class="pt-st ok" title="${T('pt_linked_cloud')}">${ic('cloud')}</span>` : selDir ? `<span class="pt-st ok" title="${T('pt_linked_dir')}">${ic('folder')}</span>` : `<span class="pt-st warn" title="${T('pt_unlinked')}">${ic('warn')}</span>`;
+  const pills = projs.map(({ id, p }) => `<button class="pt-pill ${id === sel ? 'on' : ''}" data-pj="${h(id)}" aria-pressed="${id === sel}" title="${h(p.name || '')}">${coverHTML(p, 'pt-th')}<span class="cd" dir="ltr">${h(p.number || '')}</span><span class="nm" dir="auto">${h(projTitle(p))}</span>${id === sel ? linkIc : ''}</button>`).join('');
+  const gate = (g, n) => { const items = T(`pt_${g}_i`).split('|');
+    return `<button class="pt-gate ${g}" data-gate="${g}" ${sel ? '' : 'disabled'}>
+      <div class="gi"><span class="gic">${gateIc(g)}</span><span class="gno" dir="ltr">PORTAL 0${n}</span></div>
+      <div class="gt"><b>${T('pt_gate_' + g)}</b><span dir="auto">${T('pt_gate_' + g + '_alt')}</span></div>
+      <p>${T('pt_' + g + '_d')}</p>
+      <ul>${items.map(x => `<li>${h(x)}</li>`).join('')}</ul>
+      <div class="gf"><span class="gcta">${T('pt_enter')}${ic('out')}</span>${seldb ? `<span class="gfor">${T('pt_for')}: <b dir="auto">${h(seldb.project.number)} · ${h(projTitle(seldb.project))}</b></span>` : ''}</div></button>`; };
+  lg.innerHTML = `<div class="pt">${ptHead(seldb, ptLang())}
+    <main class="pt-m">
+      <div class="pt-t"><h1>${T('pt_title')}</h1><span dir="auto">${T('pt_title_alt')}</span></div>
+      <div class="pt-bar">
+        <section class="pt-pj"><span class="pt-lb">${T('pt_shown')}:</span>${pills || `<span class="pt-empty">${T('pt_none')}</span>`}${sel && (selCloud || selDir) ? `<button class="pt-ib" data-sync title="${T('pt_refresh')}">${ic('sync')}</button>` : ''}</section>
+        <section class="pt-add"><span class="pt-lb">${T('pt_add')}:</span>
+          <button class="pt-ab" data-cl title="${T('cl_title')}">${ic('link')}${T('pt_onedrive')}</button>
+          ${FS.supported() && !WEB() && !selCloud ? `<button class="pt-ab" data-cf title="${T('pf_login_hint')}">${ic('folder')}${selDir ? T('pf_proj') + ': ' + h(sel) + ' ✓' : T('pt_folder')}</button>` : ''}
+          ${WEB() ? '' : `<button class="pt-ab" data-od>${ic('up')}${T('pt_file')}</button><input type="file" accept=".json" hidden data-of>`}
+          <button class="pt-ab" data-np>${ic('plus')}${T('pt_new')}</button></section>
+      </div>
+      ${!selDir && !selCloud ? `<div class="pt-hint" data-lfh>${ic('info')}<span>${T(WEB() ? 'cl_login_hint' : 'pf_login_hint')}</span></div>` : ''}
+      <section class="pt-gates">${gate('dc', 1)}${gate('rp', 2)}</section>
+    </main>
+    <footer class="pt-f">${sigHTML(true)}</footer></div>`;
+  ptCommon(ctx);
+  lg.querySelectorAll('[data-pj]').forEach(b => b.onclick = () => { S.ui.lproj = b.dataset.pj; showLogin(); });
+  lg.querySelectorAll('[data-gate]').forEach(b => b.onclick = () => { if (!sel) return toast(T('pt_pick_first'), 'warn'); S.ui.gate = b.dataset.gate; showLogin(); });
+  const sy = lg.querySelector('[data-sync]'); if (sy) sy.onclick = () => ptRefresh(ctx);
+  const cf = lg.querySelector('[data-cf]'); if (cf) cf.onclick = async () => {
+    if (selDir && await permOK(selDir, true)) { const n = await pullFolderDBs(selDir); toast(`${T('connected')}: ${selDir.name} (${n})`, 'ok'); return showLogin(); }
+    const d = await pickFolder(); if (!d) return;
+    const ids = await peekDBs(d);
+    if (ids.length) { await pullFolderDBs(d); for (const id of ids) await bindFolder(id, d); S.ui.lproj = ids.includes(sel) ? sel : ids[0]; toast(`${T('connected')}: ${d.name} · ${ids.join(', ')}`, 'ok'); return showLogin(); }
+    if (sel && await confirmBox(`${T('pf_empty')}<br><b>${h(d.name)}</b> → <b>${h(sel)}</b>`, T('pf_bind'))) { await bindFolder(sel, d); toast(`${T('pf_bound')}: ${sel} → ${d.name}`, 'ok'); showLogin(); }
+  };
+  lg.querySelector('[data-cl]').onclick = () => cloudLinkDialog(null, id => { S.ui.lproj = id; showLogin(); });
+  const of = lg.querySelector('[data-of]'); const odb = lg.querySelector('[data-od]'); if (odb) odb.onclick = () => of.click();
+  if (of) of.onchange = async () => { try { const d = JSON.parse(await of.files[0].text()); if (!d.id || !d.project) throw new Error('Invalid database file'); const ex = await IDB.get('projects', d.id); await IDB.put('projects', d.id, ex ? mergeDB(ex, d) : d); S.ui.lproj = d.id; toast(T('merged'), 'ok'); showLogin(); } catch (e) { toast(e.message, 'bad'); } };
+  lg.querySelector('[data-np]').onclick = () => newProjectDialog();
+}
+async function ptRefresh(ctx) { // pull the selected project from its OneDrive file / data folder (latest users and data before signing in)
+  const { sel, selDir, selCloud } = ctx;
+  try {
+    if (selCloud) { const ref = { ...selCloud }; const meta = await CLOUD.meta(ref, true); const text = await CLOUD.download(ref, meta, true); if (text) { const d = JSON.parse(text); if (d && d.id === sel) { const ex = await IDB.get('projects', sel); await IDB.put('projects', sel, ex ? mergeDB(ex, d) : d); } } toast(`${T('connected')}: ${sel} · ${ref.name}`, 'ok'); }
+    else if (selDir && await permOK(selDir, true)) { const n = await pullFolderDBs(selDir); toast(`${T('connected')}: ${selDir.name} (${n})`, 'ok'); }
+  } catch (e) { toast(cloudMsg(e), 'bad'); }
+  showLogin();
+}
+function ptCommon(ctx) { ctx.lg.querySelectorAll('[data-l]').forEach(b => b.onclick = () => { S.lang = b.dataset.l; savePrefs(); showLogin(); }); }
+function newProjectDialog() {
+  modal({ title: T('newproj_title'), size: 'sm', body: `<div class="fgrid"><label class="f">${T('proj_number')}<input class="in" data-a placeholder="P012"></label><label class="f">${T('proj_code')}<input class="in" data-b placeholder="ABC"></label><label class="f" style="grid-column:1/-1">${T('proj_name')}<input class="in" data-c></label></div>${WEB() ? `<div class="notice info" style="margin-top:12px">${ic('cloud')}<div>${T('np_web_hint')}</div></div>` : FS.supported() ? `<div class="fsec" style="margin-top:12px"><h4>${T('pf_card')}</h4><button class="btn" data-pf>${ic('folder')}${T('np_folder')}</button> <span class="small" data-pfn></span><div class="tiny muted" style="margin-top:6px">${T('np_folder_hint')}</div></div>` : ''}<div class="notice info" style="margin-top:12px">${ic('key')}<div>${T('np_pins')}</div></div>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('create')}</button>`,
+    onMount: (el, close) => { let pf = null; const pb = el.querySelector('[data-pf]'); if (pb) pb.onclick = async () => { const d = await pickFolder(); if (!d) return; const ids = await peekDBs(d); if (ids.length && !(await confirmBox(`${T('pf_other')}<br><b>${h(ids.join(', '))}</b><br><span class="small muted">${T('pf_other_q')}</span>`, T('pf_use_anyway'), true))) return; pf = d; el.querySelector('[data-pfn]').innerHTML = `<span class="bdg ok">${h(d.name)}</span>`; };
+      el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-a]').value.trim(), b = el.querySelector('[data-b]').value.trim(), c = el.querySelector('[data-c]').value.trim(); if (!a || !b) { toast(T('required'), 'bad'); return; } const d = emptyDB({ number: a, code: b, name: c }); d.lists = clone(DEFAULT_LISTS); d.security.pins = { admin: 'admin', contractor: 'contractor', consultant: 'consultant', owner: 'owner' }; if (await IDB.get('projects', d.id)) { toast(`${d.id} – ${T('np_exists')}`, 'bad'); return; } await IDB.put('projects', d.id, d); if (pf) await bindFolder(d.id, pf); S.ui.lproj = d.id; S.ui.lrole = 'admin'; close(); await showLogin(); if (WEB()) cloudLinkDialog(d.id, id => { S.ui.lproj = id; showLogin(); }, T('np_web_link')); }; } });
+}
+
+/* ---------- sign-in of one gate ---------- */
+function ptGate(ctx) {
+  const { lg, sel, seldb } = ctx; const g = S.ui.gate, p = seldb.project;
+  const named = g === 'dc' && userMode(seldb);
+  const ulist = g === 'dc' ? (named ? usersActive(seldb).sort((a, b) => a.name.localeCompare(b.name)) : []) : live(seldb.rusers || []).filter(u => u.active !== false).sort((a, b) => a.name.localeCompare(b.name));
+  const role = S.ui.lrole || 'site';
+  const uSel = (ph) => `<label class="f">${g === 'dc' ? T('u_select') : T('rp_user')}<select class="in" data-us>${ulist.map(u => `<option value="${u._id}" ${u._id === S.ui.luser ? 'selected' : ''}>${h(u.name)}${u.title ? ' — ' + h(u.title) : ''}</option>`).join('')}</select></label>`;
+  const pinF = `<label class="f">${T('pin')}<input class="in" type="password" data-pin autocomplete="off"></label>`;
+  let form;
+  if (g === 'dc') form = named ? `${uSel()}${pinF}<button class="btn pri gbtn" data-go>${T('enter')}</button><a href="#" class="tiny muted" data-emg style="text-align:center">${T('u_emergency')}</a>` : `
+      <label class="f">${T('name')}<input class="in" data-nm value="${h(S.ui.lname || '')}" placeholder="${S.lang === 'ar' ? 'مثال: م. أحمد' : 'e.g. Eng. Ahmed'}"></label>
+      <div><div class="small" style="font-weight:600;color:var(--ink2)">${T('role')}</div><div class="roles">${Object.keys(ROLES).map(r => `<div class="role ${r === role ? 'on' : ''}" data-r="${r}"><b>${T('r_' + r)}</b><span>${T('r_' + r + '_d')}</span></div>`).join('')}</div></div>
+      <label class="f" data-pinw>${T('pin')}<input class="in" type="password" data-pin autocomplete="off"></label>
+      <button class="btn pri gbtn" data-go>${T('enter')}</button>`;
+  else form = ulist.length ? `${uSel()}${pinF}<button class="btn pri gbtn" data-go>${T('rp_enter')}</button><a href="#" class="tiny muted" data-emg style="text-align:center">${T('rp_emg')}</a>`
+    : `<div class="notice info">${ic('info')}<div>${T('rp_nousers')}</div></div><button class="btn pri gbtn" data-emg>${ic('key')}${T('rp_emg')}</button>`;
+  lg.innerHTML = `<div class="pt">${ptHead(seldb, `${ptLang()}<button class="pt-back" data-back>${ic('out')}${T('pt_back')}</button>`)}
+    <main class="pt-gm"><div class="gc ${g}">
+      <div class="gch"><span class="gic">${gateIc(g)}</span><div><b>${T('pt_gate_' + g)}</b><span dir="auto">${T('pt_gate_' + g + '_alt')} · ${T('pt_signin')}</span></div></div>
+      <div class="gcb">
+        <div class="gpj">${coverHTML(p, 'gth')}<div class="gpn"><span dir="ltr">${h(p.number)} · ${h(p.code)}</span><b dir="auto">${h(projTitle(p))}</b></div><a href="#" data-chg>${T('pt_change')}</a>${g === 'dc' ? `<button class="btn sm ghost danger" data-delp title="${T('pd_title')}">${ic('trash')}</button>` : ''}</div>
+        ${form}
+      </div></div></main>
+    <footer class="pt-f">${sigHTML(true)}</footer></div>`;
+  ptCommon(ctx);
+  lg.querySelector('[data-back]').onclick = () => { S.ui.gate = null; showLogin(); };
+  lg.querySelector('[data-chg]').onclick = e => { e.preventDefault(); S.ui.gate = null; showLogin(); };
+  const dp = lg.querySelector('[data-delp]'); if (dp) dp.onclick = e => { e.preventDefault(); deleteProjectDialog(sel); };
+  let r = role;
+  const pinW = lg.querySelector('[data-pinw]'); const updPin = () => pinW && pinW.classList.toggle('hidden', !ROLES[r].pin); updPin();
+  lg.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { r = b.dataset.r; lg.querySelectorAll('[data-r]').forEach(x => x.classList.toggle('on', x === b)); updPin(); });
+  const enter = async (db, user, audAction, portal) => {
+    S.db = db; S.user = user; S.portal = portal; S.page = 'home'; S.ui.rpPage = null; lg.remove();
+    PRES.stamp('in');   // sign-in time is kept in the presence register (the user record is not re-stamped, so a manager's newer edit of it is never overridden)
+    audit(audAction || 'sign in', `${user.name} (${user.title || user.role})${portal === 'rp' ? ' · report' : ''}`);
+    S.cloud = null; S.dir = null; S.ui.cloudAuth = false; S.ui.cloudAuthShown = false; S.ui.cloudDirty = true;
+    const cl = await projCloud(db.id);
+    if (cl) S.cloud = { ...cl, eTag: '' }; else if (FS.supported() && !WEB()) await restoreFolder(true, db.id);
+    touch(); render();
+    if (S.cloud) syncCloud(false, false, true);
+    else if (S.dir) syncFolder(false);
+    else toast(S.ui.pendingDir ? `${T('pf_pending')}: ${S.ui.pendingDir.name}` : T(WEB() ? 'cl_not_linked' : 'pf_not_linked'), 'warn');
+  };
+  const pinIn = lg.querySelector('[data-pin]'); if (pinIn) pinIn.onkeydown = e => { if (e.key === 'Enter') lg.querySelector('[data-go]').click(); };
+  const gb = lg.querySelector('[data-go]');
+  if (gb) gb.onclick = async () => {
+    const db = migrate(await IDB.get('projects', sel)); const pin = lg.querySelector('[data-pin]').value.trim();
+    if (g === 'rp') {
+      const u = live(db.rusers || []).find(x => x._id === lg.querySelector('[data-us]').value && x.active !== false);
+      if (!u || (await rpinHash(u._id, pin)) !== u.pinHash) { toast(T('wrong_pin'), 'bad'); return; }
+      S.ui.luser = u._id; savePrefs();
+      return enter(db, { id: u._id, name: u.name, title: u.title || '', role: 'viewer', perms: (u.perms || []).slice() }, 'sign in', 'rp');
+    }
+    if (userMode(db)) {
+      const uid_ = lg.querySelector('[data-us]').value; const u = usersActive(db).find(x => x._id === uid_);
+      if (!u || (await pinHash(u._id, pin)) !== u.pinHash) { toast(T('wrong_pin'), 'bad'); return; }
+      S.ui.luser = u._id; savePrefs();
+      return enter(db, { id: u._id, name: u.name, title: u.title || '', role: u.role || 'viewer', perms: (u.perms || []).slice() }, 'sign in', 'dc');
+    }
+    const name = lg.querySelector('[data-nm]').value.trim(); if (!name) { toast(T('name_req'), 'bad'); return; }
+    const need = ROLES[r].pin; if (need && (db.security.pins[need] || '') !== pin) { toast(T('wrong_pin'), 'bad'); return; }
+    S.ui.lname = name; S.ui.lrole = r; savePrefs();
+    enter(db, { name, role: r }, 'sign in', 'dc');
+  };
+  const em = lg.querySelector('[data-emg]');
+  if (em) em.onclick = e => { e.preventDefault(); modal({ title: g === 'rp' ? T('rp_emg') : T('u_emergency'), size: 'sm', body: `<div class="small muted" style="margin-bottom:10px">${T('u_emergency_d')}</div><label class="f">${T('pin_admin')}<input class="in" type="password" data-mpin></label>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('enter')}</button>`,
+    onMount: (el, close) => el.querySelector('[data-k]').onclick = async () => { const db = migrate(await IDB.get('projects', sel)); if ((db.security.pins.admin || '') !== el.querySelector('[data-mpin]').value.trim()) { toast(T('wrong_pin'), 'bad'); return; } close();
+      if (g === 'rp') enter(db, { name: LBL('Emergency access', 'دخول طوارئ'), role: 'admin', perms: [...RP_ALL] }, 'emergency sign in', 'rp');
+      else enter(db, { name: LBL('Emergency access', 'دخول طوارئ'), role: 'admin', perms: [...FULL_PERMS] }, 'emergency sign in', 'dc'); } }); };
+}
+/* compress an uploaded image (logo / project cover) before it is stored in the database */
+function imgData(file, max, type) {
+  return new Promise((res, rej) => { const rd = new FileReader(); rd.onerror = rej; rd.onload = () => { const im = new Image(); im.onerror = rej; im.onload = () => {
+    const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+    const x = c.getContext('2d'); if (type === 'image/jpeg') { x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); } x.drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL(type, 0.78)); }; im.src = rd.result; }; rd.readAsDataURL(file); });
+}
+
+/* ===== REPORTS & 4D PORTAL =====
+   Paged like the approved Power BI report: one 1280×720 page at a time, scaled to the window (no scrolling), page tabs + previous / next (also the arrow keys).
+   Users: db.rusers (separate from the data-collection users), PIN hash SHA-256('dcp-r:<id>:<pin>'), permissions = the report pages they may open + 'rusers' (report user management).
+   Data: the platform database only (S.db). The P6 update history (XER) is the one outside source – added later. */
+const RP_PAGES = [
+  { k: 'cover', en: 'Cover', ar: 'الغلاف' },
+  { k: 'baseline', en: 'Baseline programme', ar: 'البرنامج الأساسي', src: 'XER baseline', plan: ['Total budget, activities, labour units, baseline start / finish and duration', 'Programme bars by work type and phase', 'Budgeted cost by phase', 'Cash-flow S-curve and labour-units curve'], planAr: ['الميزانية، عدد الأنشطة، وحدات العمالة، بداية ونهاية البرنامج والمدة', 'أشرطة البرنامج حسب نوع العمل والمرحلة', 'التكلفة المخططة حسب المرحلة', 'منحنى التدفق النقدي ومنحنى وحدات العمالة'] },
+  { k: 'update', en: 'Update & performance', ar: 'التحديث والأداء', src: 'XER updates + progress', plan: ['Planned vs earned S-curves (cost and labour units)', 'Planned % vs actual % – this week and last week', 'Elapsed vs remaining duration', 'SPI and progress status'], planAr: ['منحنيات المخطط مقابل المكتسب (التكلفة ووحدات العمالة)', 'النسبة المخططة مقابل الفعلية – هذا الأسبوع والأسبوع السابق', 'المدة المنقضية مقابل المتبقية', 'مؤشر أداء الجدول SPI وحالة التقدم'] },
+  { k: 'executive', en: 'Executive summary', ar: 'الملخص التنفيذي', src: 'progress', plan: ['Planned % vs actual % by building / phase', 'Planned % vs actual % by sub work type', 'Filters by the Global activity codes'], planAr: ['المخطط مقابل الفعلي حسب المبنى / المرحلة', 'المخطط مقابل الفعلي حسب نوع العمل الفرعي', 'فلاتر بأكواد الأنشطة العامة'] },
+  { k: 'delays', en: 'Delays', ar: 'التأخيرات', src: 'progress + XER', plan: ['Behind-plan value and planned % vs actual %', 'Delayed activities by WBS, phase and floor: baseline vs current dates, total float', 'Delay reason, caused by and mitigation (from the platform)'], planAr: ['قيمة التأخير والمخطط مقابل الفعلي', 'الأنشطة المتأخرة حسب الهيكل والمرحلة والدور: تواريخ الأساسي مقابل الحالي، الفائض الكلي', 'سبب التأخير والمتسبب والإجراء التصحيحي (من المنصة)'] },
+  { k: 'cost', en: 'Cost & invoices', ar: 'التكلفة والمستخلصات', src: 'invoices', plan: ['Earned value vs invoiced amount', 'Net vs released amounts', 'Contract value, down payment, retention, advance recovery', 'Invoice register and review / release durations'], planAr: ['القيمة المكتسبة مقابل قيمة المستخلصات', 'الصافي مقابل المصروف', 'قيمة العقد، الدفعة المقدمة، المحتجزات، استرداد المقدمة', 'سجل المستخلصات ومدد المراجعة والصرف'] },
+  { k: 'documents', en: 'Documents', ar: 'المستندات', src: 'document control', plan: ['Total submissions, this week, codes A / B / C, under review', 'Submissions by document group', 'Review-code split'], planAr: ['إجمالي التقديمات، هذا الأسبوع، الأكواد A / B / C، قيد المراجعة', 'التقديمات حسب مجموعة المستندات', 'توزيع أكواد المراجعة'] },
+  { k: 'hse', en: 'HSE', ar: 'السلامة', src: 'HSE daily', plan: ['Man-hours and manpower', 'Incidents and observations', 'Training, inspections and permits'], planAr: ['ساعات العمل والعمالة', 'الحوادث والملاحظات', 'التدريب والتفتيش والتصاريح'] },
+  { k: 'photos', en: 'Site photos', ar: 'صور الموقع', src: 'photos', plan: ['Progress photos per phase and date'], planAr: ['صور التقدم حسب المرحلة والتاريخ'] },
+  { k: 'sim4d', en: '4D simulation', ar: 'محاكاة 4D', src: '4D model + progress', plan: ['Day-by-day 4D model: planned vs actual', 'Look-ahead and milestones'], planAr: ['نموذج 4D يومي: المخطط مقابل الفعلي', 'الخطة القادمة والمعالم الرئيسية'] }
+];
+const RP_ADMIN = [{ k: 'rusers', en: 'Report users', ar: 'مستخدمو التقرير', admin: true }];
+const RP_ALL = [...RP_PAGES.map(p => p.k), 'rusers'];
+const rpinHash = (id, pin) => SHA256(`dcp-r:${id}:${String(pin).trim()}`);
+const rpCan = k => !!S.user && (S.user.perms || []).includes(k);
+const rpLbl = p => LBL(p.en, p.ar);
+const fmtPct = (x, d = 1) => isNum(x) ? `${(x * 100).toFixed(d)}%` : '—';
+
+const RP = {
+  pages: () => [...RP_PAGES, ...RP_ADMIN].filter(p => rpCan(p.k)),
+  render() {
+    document.documentElement.lang = S.lang; document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+    const pgs = RP.pages(); if (!pgs.some(p => p.k === S.ui.rpPage)) S.ui.rpPage = pgs.length ? pgs[0].k : null;
+    const p = S.db.project, cut = activeCutoff() || lastCutoff(), sch = SCH(), id = IDENT(S.db);
+    const i = pgs.findIndex(x => x.k === S.ui.rpPage);
+    document.getElementById('app').innerHTML = `<div class="rpo">
+      <header class="rp-h">${id.logo ? `<span class="rp-logo"><img src="${id.logo}" alt=""></span>` : ''}<div class="rp-pt"><b dir="auto">${h(projTitle(p))}</b><span><bdi>${h(p.number)} · ${h(p.code)}</bdi> · ${LBL('Reports & 4D', 'التقارير و4D')}</span></div><span class="sp"></span>
+        ${cut ? `<span class="chip co">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span><span class="chip">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="chip">${T('data_date')}: <b>${D.fmt(sch.dataDate)}</b></span>` : ''}
+        <span class="chip" id="syncChip"></span><span class="rp-u">${ic('user')}<b>${h(S.user.name)}</b></span>
+        <button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
+      <nav class="rp-nav"><button class="rp-ar" data-prev ${i <= 0 ? 'disabled' : ''} aria-label="previous">‹</button><div class="rp-tabs">${pgs.map(x => `<button class="rp-tab ${x.k === S.ui.rpPage ? 'on' : ''} ${x.admin ? 'adm' : ''}" data-rp="${x.k}">${x.admin ? ic('user') : ''}${rpLbl(x)}</button>`).join('')}</div><button class="rp-ar" data-next ${i < 0 || i >= pgs.length - 1 ? 'disabled' : ''} aria-label="next">›</button><span class="rp-cnt" dir="ltr">${i + 1} / ${pgs.length}</span></nav>
+      <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage"></div></div>
+      <footer class="rp-f" dir="ltr">${h(sigLine())}</footer></div>`;
+    const app = document.getElementById('app');
+    app.querySelectorAll('[data-rp]').forEach(b => b.onclick = () => RP.go(b.dataset.rp));
+    app.querySelector('[data-prev]').onclick = () => RP.step(-1); app.querySelector('[data-next]').onclick = () => RP.step(1);
+    app.querySelector('[data-lang]').onclick = () => { S.lang = S.lang === 'ar' ? 'en' : 'ar'; savePrefs(); RP.render(); };
+    const mp = app.querySelector('[data-mypin]'); if (mp) mp.onclick = RP.changeMyPin;
+    app.querySelector('[data-out]').onclick = signOut;
+    const pg = document.getElementById('rpPage');
+    if (!S.ui.rpPage) pg.innerHTML = `<div class="rp-ph"><h2>${LBL('No report page is open for this user.', 'لا توجد صفحات تقرير متاحة لهذا المستخدم.')}</h2></div>`;
+    else { try { (RP.P[S.ui.rpPage] || RP.P._plan)(pg, pgs[i]); } catch (e) { console.error(e); pg.innerHTML = `<div class="notice bad" style="margin:30px">${ic('warn')}<div>${h(e.stack || e.message)}</div></div>`; } }
+    RP.fit(); setSync(S.sync.state, S.sync.msg);
+  },
+  go(k) { S.ui.rpPage = k; const pe = (S.db.presence || {})[PRES.key()]; if (pe) pe.page = 'rp:' + k; RP.render(); },
+  step(d) { const pgs = RP.pages(); const i = pgs.findIndex(x => x.k === S.ui.rpPage) + d; if (i >= 0 && i < pgs.length) RP.go(pgs[i].k); },
+  fit() { // scale the fixed 1280×720 page to the free space (Power BI "fit to page")
+    const st = document.getElementById('rpStage'), pg = document.getElementById('rpPage'); if (!st || !pg) return;
+    const s = Math.min((st.clientWidth - 24) / 1280, (st.clientHeight - 20) / 720); pg.style.transform = `scale(${Math.max(0.3, s)})`;
+  },
+  changeMyPin() {
+    modal({ title: T('u_change_mine'), size: 'sm', body: `<label class="f">${LBL('New PIN (min. 4)', 'الرمز الجديد (4 على الأقل)')}<input class="in" type="password" data-p1></label><label class="f" style="margin-top:8px">${LBL('Repeat', 'تأكيد')}<input class="in" type="password" data-p2></label>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('save')}</button>`,
+      onMount: (el, close) => el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-p1]').value.trim(); if (a.length < 4 || a !== el.querySelector('[data-p2]').value.trim()) return toast(LBL('PINs do not match or are too short', 'الرمزان غير متطابقين أو قصيران'), 'bad'); const u = (S.db.rusers || []).find(x => x._id === S.user.id); if (!u) return; u.pinHash = await rpinHash(u._id, a); u.pinSetAt = nowISO(); stamp(u); touch('report PIN changed', u.name); close(); toast(T('saved'), 'ok'); } });
+  },
+  P: {}
+};
+window.addEventListener('resize', () => { if (S.portal === 'rp') RP.fit(); });
+document.addEventListener('keydown', e => { if (S.portal !== 'rp' || document.querySelector('.ov') || /INPUT|SELECT|TEXTAREA/.test((e.target || {}).tagName || '')) return; const rtl = S.lang === 'ar'; if (e.key === 'ArrowRight') RP.step(rtl ? -1 : 1); if (e.key === 'ArrowLeft') RP.step(rtl ? 1 : -1); });
+
+/* ---------- page: cover ---------- */
+const ring = (v, col, lbl, sub) => { const r = 62, c = 2 * Math.PI * r, f = Math.max(0, Math.min(1, N(v))); return `<div class="rp-ring"><svg viewBox="0 0 160 160" role="img" aria-label="${h(lbl)} ${fmtPct(v)}"><circle cx="80" cy="80" r="${r}" fill="none" stroke="#ECE7DE" stroke-width="16"/><circle cx="80" cy="80" r="${r}" fill="none" stroke="${col}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${(f * c).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 80 80)"/><text x="80" y="88" text-anchor="middle" font-size="27" font-weight="700" fill="#1E1A1A">${fmtPct(v)}</text></svg><b>${lbl}</b>${sub ? `<span>${sub}</span>` : ''}</div>`; };
+RP.P.cover = el => {
+  const p = S.db.project, cut = activeCutoff() || lastCutoff(), sch = SCH(), L = p.logos || {};
+  const sm = cut && sch ? PROG.summary(cut._id) : null;
+  const code = (p.reportPrefix || '').replace(/\d{3}$/, '') + String((cut && cut.reportNo) || '').padStart(3, '0');
+  const gap = sm ? sm.ctr - sm.planned : null;
+  el.innerHTML = `<div class="cv">
+    <div class="cv-img">${p.cover ? `<img src="${p.cover}" alt="">` : ''}<div class="cv-band"><span dir="ltr">${h(p.number)} · ${h(p.code)}</span><h1 dir="auto">${h(projTitle(p))}</h1>${S.lang === 'ar' && p.nameAr && p.name ? `<div dir="ltr">${h(p.name)}</div>` : ''}${p.location ? `<div class="loc">${h(p.location)}</div>` : ''}</div></div>
+    <div class="cv-r">
+      <div class="cv-logos">${['owner', 'consultant', 'contractor'].map(k => L[k] ? `<figure><img src="${L[k]}" alt=""><figcaption>${LBL({ owner: 'Owner', consultant: 'Consultant', contractor: 'Contractor' }[k], { owner: 'المالك', consultant: 'الاستشاري', contractor: 'المقاول' }[k])}</figcaption></figure>` : '').join('')}</div>
+      <div class="cv-t"><span>${LBL('Weekly Progress Report', 'تقرير التقدم الأسبوعي')}</span><b dir="ltr">${h(code)}</b></div>
+      <div class="cv-meta"><div><span>${T('report_no')}</span><b dir="ltr">${h(String((cut && cut.reportNo) || '—'))}</b></div><div><span>${T('cutoff')}</span><b dir="ltr">${cut ? D.fmt(cut.date) : '—'}</b></div><div><span>${T('data_date')}</span><b dir="ltr">${sch ? D.fmt(sch.dataDate) : '—'}</b></div></div>
+      <div class="cv-k">${sm ? ring(sm.planned, '#5B4444', LBL('Planned', 'المخطط'), LBL('at the cut-off date', 'عند تاريخ القطع')) + ring(sm.ctr, '#AF9F58', LBL('Actual', 'الفعلي'), LBL('contractor', 'المقاول')) : `<div class="muted">${LBL('Progress appears after a cut-off and the schedule (XER) are loaded.', 'يظهر التقدم بعد فتح تاريخ قطع وتحميل الجدول الزمني (XER).')}</div>`}</div>
+      ${sm ? `<div class="cv-var ${gap < -0.005 ? 'bad' : 'ok'}">${LBL('Variance', 'الفرق')}: <b dir="ltr">${gap >= 0 ? '+' : ''}${(gap * 100).toFixed(2)} pp</b> · ${gap < -0.005 ? LBL('behind plan', 'متأخر عن المخطط') : LBL('on / ahead of plan', 'مطابق أو متقدم على المخطط')}</div>` : ''}
+      <div class="cv-prep">${p.preparedBy ? `${LBL('Prepared by', 'إعداد')}: <b dir="auto">${h(p.preparedBy)}</b>` : ''}</div>
+    </div></div>`;
+};
+/* ---------- pages being built: show what each page will hold (from the approved Power BI report) ---------- */
+RP.P._plan = (el, pg) => {
+  const items = S.lang === 'ar' ? (pg.planAr || []) : (pg.plan || []);
+  el.innerHTML = `<div class="rp-ph"><div class="rp-pht">${rpLbl(pg)}</div><div class="rp-phs">${LBL('This page is being built – it will follow the approved Power BI report and read the platform database.', 'هذه الصفحة قيد البناء – ستتبع تقرير Power BI المعتمد وتقرأ من قاعدة بيانات المنصة.')}</div>
+    <ul>${items.map(x => `<li>${h(x)}</li>`).join('')}</ul></div>`;
+};
+
+/* ---------- page: report users (separate from the data-collection users) ---------- */
+RP.P.rusers = el => {
+  const us = live(S.db.rusers || []).sort((a, b) => a.name.localeCompare(b.name));
+  el.innerHTML = `<div class="ru"><div class="ru-h"><div><h2>${LBL('Report users', 'مستخدمو التقرير')}</h2><div class="muted small">${LBL('Users of the Reports & 4D portal and the pages each one may open. They are separate from the Data Collection users.', 'مستخدمو بوابة التقارير و4D والصفحات المسموح لكل منهم بفتحها. وهم منفصلون عن مستخدمي جمع البيانات.')}</div></div><span class="sp"></span><button class="btn pri" data-add>${ic('plus')}${LBL('Add user', 'إضافة مستخدم')}</button></div>
+    <div class="tw ru-t"><table class="t"><thead><tr><th>${T('u_name')}</th><th>${LBL('Title', 'الصفة')}</th><th>${LBL('Pages', 'الصفحات')}</th><th>${T('status')}</th><th></th></tr></thead><tbody>${us.map(u => `<tr><td><b>${h(u.name)}</b>${u._id === S.user.id ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}</td><td>${h(u.title || '')}</td><td class="small">${RP_PAGES.filter(p => (u.perms || []).includes(p.k)).map(rpLbl).join(' · ')}${(u.perms || []).includes('rusers') ? ` <span class="bdg navy">${LBL('User management', 'إدارة المستخدمين')}</span>` : ''}</td><td>${u.active === false ? `<span class="bdg">${T('u_inactive')}</span>` : `<span class="bdg ok">${LBL('Active', 'نشط')}</span>`}</td><td><button class="btn sm" data-ed="${u._id}">${ic('pen')}</button></td></tr>`).join('') || `<tr><td colspan="5" class="empty">${LBL('No report users yet – add the first one (it must hold User management).', 'لا يوجد مستخدمون بعد – أضف أول مستخدم (ويجب أن يملك صلاحية إدارة المستخدمين).')}</td></tr>`}</tbody></table></div></div>`;
+  el.querySelector('[data-add]').onclick = () => RP.userDialog(null);
+  el.querySelectorAll('[data-ed]').forEach(b => b.onclick = () => RP.userDialog(b.dataset.ed));
+};
+RP.userDialog = uid_ => {
+  const all = S.db.rusers = S.db.rusers || []; const u0 = uid_ ? all.find(x => x._id === uid_) : null; const u = u0 ? clone(u0) : { _id: 'ru_' + uid(), name: '', title: '', perms: ['cover'], active: true };
+  const opts = [...RP_PAGES, ...RP_ADMIN];
+  modal({ title: u0 ? LBL('Edit report user', 'تعديل مستخدم التقرير') : LBL('New report user', 'مستخدم تقرير جديد'), body: `<div class="fgrid"><label class="f">${T('u_name')}<input class="in" data-n value="${h(u.name)}"></label><label class="f">${LBL('Title / organisation', 'الصفة / الجهة')}<input class="in" data-t value="${h(u.title || '')}"></label>
+      <label class="f">${u0 ? LBL('New PIN (leave empty to keep)', 'رمز جديد (اتركه فارغاً للإبقاء)') : LBL('PIN (min. 4)', 'الرمز (4 على الأقل)')}<input class="in" type="text" data-pn autocomplete="off"></label><label class="f" style="flex-direction:row;align-items:center;gap:8px;margin-top:22px"><input type="checkbox" data-ac ${u.active !== false ? 'checked' : ''}>${LBL('Active', 'نشط')}</label></div>
+      <div class="fsec" style="margin-top:12px"><h4>${LBL('Pages this user may open', 'الصفحات المسموح بفتحها')}</h4><div class="ru-pp">${opts.map(p => `<label><input type="checkbox" data-pm="${p.k}" ${(u.perms || []).includes(p.k) ? 'checked' : ''}>${p.admin ? `<b>${rpLbl(p)} – ${LBL('user management', 'إدارة المستخدمين')}</b>` : rpLbl(p)}</label>`).join('')}</div>
+      <div class="ru-qb"><button class="btn sm" data-allp>${LBL('All report pages', 'كل صفحات التقرير')}</button></div></div>`,
+    foot: `${u0 && u0._id !== S.user.id ? `<button class="btn danger" data-del>${ic('trash')}${T('del')}</button>` : ''}<span class="sp"></span><button class="btn pri" data-k>${T('save')}</button>`,
+    onMount: (el, close) => {
+      el.querySelector('[data-allp]').onclick = () => el.querySelectorAll('[data-pm]').forEach(c => { if (c.dataset.pm !== 'rusers') c.checked = true; });
+      const holders = list => list.filter(x => !x._del && x.active !== false && (x.perms || []).includes('rusers')).length;
+      const save = async del => {
+        const n = el.querySelector('[data-n]').value.trim(); if (!n && !del) return toast(T('name_req'), 'bad');
+        const nu = { ...u, name: n, title: el.querySelector('[data-t]').value.trim(), active: el.querySelector('[data-ac]').checked, perms: [...el.querySelectorAll('[data-pm]:checked')].map(c => c.dataset.pm) };
+        if (del) nu._del = true;
+        if (!del && live(all).some(x => x._id !== nu._id && x.name.toLowerCase() === n.toLowerCase())) return toast(LBL('This name is already used', 'هذا الاسم مستخدم بالفعل'), 'bad');
+        const pin = el.querySelector('[data-pn]').value.trim();
+        if (!u0 && pin.length < 4) return toast(LBL('PIN: at least 4 characters', 'الرمز: 4 أحرف على الأقل'), 'bad');
+        if (pin) { if (pin.length < 4) return toast(LBL('PIN: at least 4 characters', 'الرمز: 4 أحرف على الأقل'), 'bad'); nu.pinHash = await rpinHash(nu._id, pin); nu.pinSetAt = nowISO(); }
+        const after = [...all.filter(x => x._id !== nu._id), nu];
+        if (!holders(after)) return toast(LBL('At least one active user must keep Report user management.', 'يجب أن يبقى مستخدم نشط واحد على الأقل بصلاحية إدارة مستخدمي التقرير.'), 'bad');
+        if (nu._id === S.user.id && !nu.active) return toast(LBL('You cannot deactivate yourself.', 'لا يمكنك إيقاف حسابك.'), 'bad');
+        stamp(nu); const i = all.findIndex(x => x._id === nu._id); if (i >= 0) all[i] = nu; else all.push(nu);
+        touch(del ? 'report user deleted' : u0 ? 'report user changed' : 'report user added', nu.name);
+        if (nu._id === S.user.id) S.user.perms = nu.perms.slice();
+        close(); toast(T('saved'), 'ok'); RP.render();
+      };
+      el.querySelector('[data-k]').onclick = () => save(false);
+      const d = el.querySelector('[data-del]'); if (d) d.onclick = async () => { if (await confirmBox(`${T('del')}: <b>${h(u.name)}</b>?`, T('del'), true)) save(true); };
+    } });
+};
 
 </script>
 </body>

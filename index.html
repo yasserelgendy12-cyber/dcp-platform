@@ -375,6 +375,21 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
 .rs-s{display:flex;gap:10px;align-items:center;background:#F7F5F1;border-radius:9px;padding:9px 11px}.rs-s svg{width:20px;height:20px;flex:0 0 20px;color:#5B4444}.rs-s div{display:flex;flex-direction:column}
 .rs-a{display:flex;gap:6px;flex-wrap:wrap}.rs-l{flex:1;min-height:0;display:flex;flex-direction:column}
 .rs-p{float:inline-end;color:#8A7A3E;font-weight:600}
+.rp-sel{font-size:12.5px;padding:3px 8px;min-width:150px;max-width:260px}
+.hb{display:flex;flex-direction:column;gap:7px;overflow:auto;min-height:0}
+.hb-r{display:grid;grid-template-columns:170px 1fr 112px;align-items:center;gap:10px;font-size:12.5px}
+.hb-l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4A4442}
+.hb-b{position:relative;height:18px;background:#F4F0EA;border-radius:5px;overflow:hidden}
+.hb-b i{position:absolute;inset-inline-start:0;top:0;bottom:0;border-radius:5px}.hb-b i.p{background:#C9BBB2}.hb-b i.a{background:#AF9F58;top:5px;bottom:5px}
+.hb-b.st{display:flex}.hb-b.st i{position:static;border-radius:0;height:100%}
+.hb-v{font-size:12px;color:#7A706C;text-align:end}.hb-v b{color:#1E1A1A}
+.gb{display:flex;flex-direction:column;gap:9px;overflow:auto}
+.gb-r{display:grid;grid-template-columns:150px 1fr 150px;gap:10px;align-items:center;font-size:12.5px}
+.gb-t{position:relative;height:16px;background:#F4F0EA;border-radius:4px}.gb-t i{position:absolute;top:0;bottom:0;background:#5B4444;border-radius:4px}
+.gb-d{font-size:11px;color:#7A706C}
+.t.dl td{vertical-align:top}.t.dl .tiny{max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#6B6360}
+.hs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;overflow:auto}
+.hs-r{display:flex;justify-content:space-between;gap:10px;padding:6px 4px;border-bottom:1px solid #F1ECE4;font-size:13px}.hs-r b{font-size:14px}
 
 </style>
 </head>
@@ -4052,6 +4067,124 @@ RP.P.rsrc = el => {
   el.querySelectorAll('[data-lc]').forEach(b => b.onclick = async () => { const d = await SRC.pickLocal(b.dataset.lc); if (d) { toast(T('saved'), 'ok'); RP.render(); if (b.dataset.lc === 'xer') scanXER(true, true); } });
   el.querySelectorAll('[data-rm]').forEach(b => b.onclick = async () => { if (!(await confirmBox(LBL('Remove this source?', 'إزالة هذا المصدر؟'), LBL('Remove', 'إزالة'), true))) return; await SRC.set(b.dataset.rm, null); SRC.cache[b.dataset.rm] = null; RP.render(); });
   const sc = el.querySelector('[data-scan]'); if (sc) sc.onclick = () => { SRC.cache.xer = null; scanXER(true, true); };
+};
+
+/* ===== report pages from the platform database (cut-off = the open one, else the last) ===== */
+const rpK = (k, v, s, cls) => `<div class="up-k ${cls || ''}"><span>${k}</span><b dir="ltr">${v}</b>${s ? `<em>${s}</em>` : ''}</div>`;
+const rpM = x => isNum(x) ? `${fmtN(N(x) / 1e6, 2)} M` : '—';   // SAR millions
+const rpHead = (t, sub) => `<div class="up-h"><h2>${t}</h2>${sub ? `<span>${sub}</span>` : ''}</div>`;
+const rpCut = () => activeCutoff() || lastCutoff();
+const RPX = { key: '', rows: null };
+function rpRows() { // progress rows of the report cut-off (cached until the database changes)
+  const cut = rpCut(); if (!cut || !SCH()) return null; const k = S.db.id + cut._id + S.db._at;
+  if (RPX.key !== k) { RPX.key = k; RPX.rows = PROG.rows(cut._id); RPX.w = PROG.weights().w; }
+  return { rows: RPX.rows, w: RPX.w, cut };
+}
+const codeTypes = () => { const s = SCH(); return s ? (s.filterKeys || []) : []; };
+const pickCode = (re, not) => { const ks = codeTypes(); return ks.find(k => re.test(k) && k !== not) || ks.find(k => k !== not) || ''; };
+function byCode(type) { // planned (cut-off) vs actual (contractor) per value of one activity code
+  const X = rpRows(); if (!X) return []; const sch = SCH(), g = new Map();
+  X.rows.forEach(r => { const v = (actCodes(sch, r.a)[type]) || '—'; const o = g.get(v) || { v, W: 0, pl: 0, ac: 0, n: 0, cost: 0, behind: 0 }; const wt = X.w(r.a); o.W += wt; o.pl += wt * N(PROG.planRaw(r.a, X.cut.date)); o.ac += wt * r.e.pct / 100; o.n++; o.cost += N(r.a.cost); if (r.behind) o.behind++; g.set(v, o); });
+  return [...g.values()].map(o => ({ ...o, pl: o.W ? o.pl / o.W : 0, ac: o.W ? o.ac / o.W : 0 })).sort((a, b) => String(a.v).localeCompare(String(b.v), undefined, { numeric: true }));
+}
+const hbars = (rows, max = 12) => { const R = rows.length > max ? [...rows].sort((a, b) => b.W - a.W).slice(0, max).sort((a, b) => String(a.v).localeCompare(String(b.v), undefined, { numeric: true })) : rows;
+  return `<div class="hb">${R.map(r => `<div class="hb-r"><span class="hb-l" dir="auto" title="${h(r.v)}">${h(r.v)}</span><div class="hb-b"><i class="p" style="width:${(r.pl * 100).toFixed(1)}%"></i><i class="a" style="width:${(r.ac * 100).toFixed(1)}%"></i></div><span class="hb-v" dir="ltr"><b class="${r.ac + 0.005 < r.pl ? 'neg' : ''}">${fmtPct(r.ac)}</b> / ${fmtPct(r.pl)}</span></div>`).join('')}</div>${rows.length > max ? `<div class="tiny muted" style="margin-top:4px">${LBL(`Largest ${max} of ${rows.length} by weight`, `أكبر ${max} من ${rows.length} حسب الوزن`)}</div>` : ''}`; };
+const hbLeg = () => `<div class="up-lg"><span><i style="background:#C9BBB2"></i>${LBL('Planned', 'المخطط')}</span><span><i style="background:#AF9F58"></i>${LBL('Actual', 'الفعلي')}</span></div>`;
+const codeSel = (k, cur) => `<select class="in rp-sel" data-cs="${k}">${codeTypes().map(t => `<option ${t === cur ? 'selected' : ''}>${h(t)}</option>`).join('')}</select>`;
+function svgCols({ w, h: hh, cats, bars = [], lines = [], fmt = v => fmtN(v), yMax }) { // columns (+ lines) over categories
+  const L = 56, R = 12, T = 12, B = 34, n = cats.length || 1, bw = (w - L - R) / n, all = [...bars.flatMap(b => b.v), ...lines.flatMap(l => l.v)].map(N); const M = yMax || Math.max(1, ...all) * 1.08;
+  const Y = v => T + (1 - N(v) / M) * (hh - T - B), X = i => L + bw * i + bw / 2;
+  const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${L}" x2="${w - R}" y1="${Y(f * M)}" y2="${Y(f * M)}" stroke="#EEE7DC"/><text x="${L - 6}" y="${Y(f * M) + 4}" text-anchor="end" font-size="10.5" fill="#7A706C">${fmt(f * M)}</text>`).join('');
+  const nb = bars.length, gw = Math.min(46, bw * 0.72), cw = gw / Math.max(1, nb);
+  const bs = bars.map((b, j) => b.v.map((v, i) => N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${Y(v).toFixed(1)}" width="${(cw - 1).toFixed(1)}" height="${(Y(0) - Y(v)).toFixed(1)}" fill="${b.c}" rx="2"><title>${h(cats[i])}: ${fmt(v)}</title></rect>` : '').join('')).join('');
+  const ls = lines.map(l => `<polyline fill="none" stroke="${l.c}" stroke-width="2.5" points="${l.v.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}"/>${l.v.map((v, i) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3" fill="#fff" stroke="${l.c}" stroke-width="2"/>`).join('')}`).join('');
+  const step = Math.ceil(n / 12); const xl = cats.map((c, i) => i % step ? '' : `<text x="${X(i)}" y="${hh - B + 16}" text-anchor="middle" font-size="10.5" fill="#7A706C">${h(String(c).slice(0, 14))}</text>`).join('');
+  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img"><line x1="${L}" x2="${w - R}" y1="${Y(0)}" y2="${Y(0)}" stroke="#B9AFA6"/>${grid}${bs}${ls}${xl}</svg>`;
+}
+const rpNeed = (el, pg, msg) => { RP.P._plan(el, pg); el.querySelector('.rp-ph').insertAdjacentHTML('beforeend', `<div class="rp-need">${ic('info')}<span>${msg}</span></div>`); };
+const needSch = () => LBL('Needs an open cut-off and the schedule (XER) in the platform.', 'تحتاج تاريخ قطع وجدولاً زمنياً (XER) في المنصة.');
+const monthKey = d => (d || '').slice(0, 7), monthLbl = k => D.fmt(k + '-01').slice(3);
+
+/* ---------- Baseline programme ---------- */
+RP.P.baseline = (el, pg) => {
+  const B = S.db.baseline || S.db.schedule; if (!B) return rpNeed(el, pg, needSch());
+  const acts = B.activities, cost = sum(acts, a => a.cost), s0 = acts.map(a => a.ps).filter(Boolean).sort()[0], f0 = [B.mustFinish, ...acts.map(a => a.pf)].filter(Boolean).sort().pop();
+  const ct = S.ui.rpBl || pickCode(/zone|phase/i); const g = new Map();
+  acts.forEach(a => { const v = actCodes(B, a)[ct] || (actCodes(SCH(), (SCH().byId || new Map()).get(a.id) || {})[ct]) || '—'; const o = g.get(v) || { v, s: '9', f: '', cost: 0, n: 0 }; if (a.ps && a.ps < o.s) o.s = a.ps; if (a.pf && a.pf > o.f) o.f = a.pf; o.cost += N(a.cost); o.n++; g.set(v, o); });
+  const G = [...g.values()].filter(o => o.f).sort((a, b) => a.s.localeCompare(b.s)).slice(0, 14);
+  const X = d => (D.diff(d, s0) / Math.max(1, D.diff(f0, s0))) * 100;
+  const months = {}; acts.forEach(a => { if (!a.ps || !a.pf || !N(a.cost)) return; const days = D.diff(a.pf, a.ps) + 1; for (let d = a.ps; d <= a.pf; d = D.add(d, 7)) { const k = monthKey(d); months[k] = (months[k] || 0) + N(a.cost) * Math.min(7, D.diff(a.pf, d) + 1) / days; } });
+  const mk = Object.keys(months).sort(); let cum = 0; const cumV = mk.map(k => (cum += months[k]) / (cost || 1));
+  el.innerHTML = `<div class="up">${rpHead(LBL('Baseline programme', 'البرنامج الأساسي'), `<b dir="ltr">${h(B.fileName || '')}</b>`)}
+    <div class="up-kpis">${rpK(LBL('Total budget', 'الميزانية الكلية'), rpM(cost), B.currency || 'SAR')}${rpK(T('activities'), fmtN(acts.length))}${rpK(LBL('Labour units', 'وحدات العمالة'), B.labUnits ? fmtN(B.labUnits) : '—', LBL('man-days', 'يوم-عامل'))}${rpK(LBL('Baseline start', 'بداية الأساسي'), D.fmt(s0))}${rpK(LBL('Baseline finish', 'نهاية الأساسي'), D.fmt(f0))}${rpK(LBL('Duration', 'المدة'), `${fmtN(D.diff(f0, s0) + 1)} ${LBL('days', 'يوم')}`)}</div>
+    <div class="up-b"><div class="up-t" style="flex:0 0 610px"><div class="up-ct">${LBL('Programme by', 'البرنامج حسب')} ${codeSel('rpBl', ct)}</div><div class="gb">${G.map(o => `<div class="gb-r"><span class="hb-l" dir="auto" title="${h(o.v)}">${h(o.v)}</span><div class="gb-t"><i style="inset-inline-start:${X(o.s).toFixed(1)}%;width:${Math.max(0.8, X(o.f) - X(o.s)).toFixed(1)}%" title="${D.fmt(o.s)} → ${D.fmt(o.f)}"></i></div><span class="gb-d" dir="ltr">${D.fmt(o.s)} → ${D.fmt(o.f)}</span></div>`).join('')}</div></div>
+      <div class="up-c" style="flex:1"><div class="up-ct">${LBL('Monthly budget and cumulative cash flow (baseline)', 'الميزانية الشهرية والتدفق النقدي التراكمي (الأساسي)')}</div>${svgCols({ w: 570, h: 420, cats: mk.map(monthLbl), bars: [{ v: mk.map(k => months[k] / (cost || 1)), c: '#C9BBB2' }], lines: [{ v: cumV, c: '#5B4444' }], fmt: v => `${Math.round(v * 100)}%`, yMax: 1 })}<div class="up-lg"><span><i style="background:#C9BBB2"></i>${LBL('Month share of budget', 'نصيب الشهر من الميزانية')}</span><span><i style="background:#5B4444"></i>${LBL('Cumulative', 'تراكمي')}</span></div></div></div></div>`;
+  el.querySelectorAll('[data-cs]').forEach(s => s.onchange = () => { S.ui[s.dataset.cs] = s.value; RP.render(); });
+};
+
+/* ---------- Executive summary ---------- */
+RP.P.executive = (el, pg) => {
+  const X = rpRows(); if (!X) return rpNeed(el, pg, needSch());
+  const sm = PROG.summary(X.cut._id); const a = S.ui.rpExA || pickCode(/zone|phase/i), b = S.ui.rpExB || pickCode(/work type|building/i, a);
+  el.innerHTML = `<div class="up">${rpHead(LBL('Executive summary', 'الملخص التنفيذي'), `${T('cutoff')} <b dir="ltr">${D.fmt(X.cut.date)}</b>`)}
+    <div class="up-kpis">${rpK(LBL('Planned', 'المخطط'), fmtPct(sm.planned, 2), LBL('at the cut-off date', 'عند تاريخ القطع'))}${rpK(LBL('Actual – contractor', 'الفعلي – المقاول'), fmtPct(sm.ctr, 2), `${sm.ctr - sm.planned >= 0 ? '+' : ''}${((sm.ctr - sm.planned) * 100).toFixed(2)} pp`, sm.ctr + 0.005 < sm.planned ? 'bad' : 'ok')}${rpK(LBL('Consultant', 'الاستشاري'), fmtPct(sm.cons, 2))}${rpK(LBL('Owner', 'المالك'), sm.hasOwn ? fmtPct(sm.own, 2) : '—')}${rpK(LBL('Behind plan', 'متأخر عن المخطط'), fmtN(sm.behind), `${fmtN(sm.n)} ${T('activities')}`, sm.behind ? 'bad' : 'ok')}${rpK(LBL('Status', 'الحالة'), `${fmtN(sm.comp)} / ${fmtN(sm.inprog)}`, LBL('completed / in progress', 'مكتمل / جارٍ'))}</div>
+    <div class="up-b"><div class="up-t"><div class="up-ct">${LBL('By', 'حسب')} ${codeSel('rpExA', a)}</div>${hbars(byCode(a))}${hbLeg()}</div><div class="up-t"><div class="up-ct">${LBL('By', 'حسب')} ${codeSel('rpExB', b)}</div>${hbars(byCode(b))}${hbLeg()}</div></div></div>`;
+  el.querySelectorAll('[data-cs]').forEach(s => s.onchange = () => { S.ui[s.dataset.cs] = s.value; RP.render(); });
+};
+
+/* ---------- Delays ---------- */
+RP.P.delays = (el, pg) => {
+  const X = rpRows(); if (!X) return rpNeed(el, pg, needSch());
+  const sch = SCH(), ct = S.ui.rpDlC || pickCode(/zone|phase/i), fv = S.ui.rpDlV || '';
+  const all = X.rows.filter(r => r.behind).map(r => ({ r, v: actCodes(sch, r.a)[ct] || '—', gap: (r.pl || 0) - r.e.pct })); const vals = [...new Set(all.map(x => x.v))].sort();
+  const rows = all.filter(x => !fv || x.v === fv).sort((p, q) => q.gap * X.w(q.r.a) - p.gap * X.w(p.r.a));
+  const val = sum(rows, x => N(x.r.a.cost) * x.gap / 100), noR = rows.filter(x => !(x.r.u && x.r.u.reason)).length, crit = rows.filter(x => isNum(x.r.a.tf) && x.r.a.tf <= 0).length;
+  const bl = a => PROG.blDates(a) || {};
+  el.innerHTML = `<div class="up">${rpHead(LBL('Delays – activities behind plan', 'التأخيرات – الأنشطة المتأخرة عن المخطط'), `${T('cutoff')} <b dir="ltr">${D.fmt(X.cut.date)}</b>`)}
+    <div class="up-kpis">${rpK(LBL('Activities behind', 'أنشطة متأخرة'), fmtN(rows.length), fv ? h(fv) : LBL('all', 'الكل'), rows.length ? 'bad' : 'ok')}${rpK(LBL('Value behind', 'قيمة التأخير'), rpM(val), 'SAR')}${rpK(LBL('Critical (float ≤ 0)', 'حرجة (فائض ≤ 0)'), fmtN(crit), '', crit ? 'bad' : 'ok')}${rpK(LBL('Without delay reason', 'بدون سبب تأخير'), fmtN(noR), '', noR ? 'bad' : 'ok')}${rpK(LBL('Average gap', 'متوسط الفجوة'), rows.length ? `${(sum(rows, x => x.gap) / rows.length).toFixed(1)} pp` : '—')}${rpK(LBL('Group', 'التجميع'), `${vals.length}`, h(ct))}</div>
+    <div class="ph-c" style="margin:0">${codeSel('rpDlC', ct)}<select class="in rp-sel" data-dv><option value="">${LBL('All', 'الكل')}</option>${vals.map(v => `<option ${v === fv ? 'selected' : ''}>${h(v)}</option>`).join('')}</select></div>
+    <div class="up-t" style="flex:1;min-height:0"><div class="up-tw"><table class="t dl"><thead><tr><th>${LBL('Activity', 'النشاط')}</th><th>${h(ct)}</th><th>${LBL('BL start', 'بداية أساسي')}</th><th>${LBL('BL finish', 'نهاية أساسي')}</th><th>${LBL('Finish (P6)', 'النهاية (P6)')}</th><th>TF</th><th>${LBL('Plan', 'مخطط')}</th><th>${LBL('Actual', 'فعلي')}</th><th>${LBL('Caused by · reason', 'المتسبب · السبب')}</th></tr></thead><tbody>${rows.slice(0, 250).map(({ r, v }) => `<tr><td><b dir="ltr">${h(r.a.id)}</b><div class="tiny" dir="auto">${h(r.a.name)}</div></td><td class="small" dir="auto">${h(v)}</td><td dir="ltr">${D.fmt(bl(r.a).s)}</td><td dir="ltr">${D.fmt(bl(r.a).f)}</td><td dir="ltr">${D.fmt(r.a.af || r.a.pf || r.a.ef)}</td><td dir="ltr" class="${isNum(r.a.tf) && r.a.tf <= 0 ? 'neg' : ''}">${isNum(r.a.tf) ? fmtN(r.a.tf) : ''}</td><td dir="ltr">${fmtN(r.pl, 1)}%</td><td dir="ltr" class="neg">${fmtN(r.e.pct, 1)}%</td><td class="small" dir="auto">${h([r.u && r.u.causedBy, r.u && r.u.reason].filter(Boolean).map(x => E(x)).join(' · ') || '—')}</td></tr>`).join('') || `<tr><td colspan="9" class="empty">${LBL('No activity behind plan', 'لا توجد أنشطة متأخرة')}</td></tr>`}</tbody></table></div></div></div>`;
+  el.querySelectorAll('[data-cs]').forEach(s => s.onchange = () => { S.ui.rpDlC = s.value; S.ui.rpDlV = ''; RP.render(); });
+  el.querySelector('[data-dv]').onchange = e => { S.ui.rpDlV = e.target.value; RP.render(); };
+};
+
+/* ---------- Cost & invoices ---------- */
+RP.P.cost = (el, pg) => {
+  const p = S.db.project, I = live(S.db.invoices).sort((a, b) => N(a.no) - N(b.no)), f = MOD.invoices.F, st = invStats();
+  const bac = N(p.contractValue) + N(p.totalVO), H = (S.db.xhist || {}).updates || [];
+  const mk = [...new Set([...I.map(r => monthKey(r.submittal)), ...I.map(r => monthKey(r.releaseDate)), ...H.map(u => monthKey(u.dd))].filter(Boolean))].sort();
+  let ci = 0, cr = 0; const inv = mk.map(k => (ci += sum(I.filter(r => monthKey(r.submittal) === k), r => f.net.calc(r)))), rel = mk.map(k => (cr += sum(I.filter(r => monthKey(r.releaseDate) === k), r => f.releasedAmt.calc(r))));
+  const ev = mk.map(k => { const u = [...H].reverse().find(x => monthKey(x.dd) <= k); return u ? u.ev * bac : 0; });
+  el.innerHTML = `<div class="up">${rpHead(LBL('Cost & invoices', 'التكلفة والمستخلصات'), `${LBL('Contract value', 'قيمة العقد')} <b dir="ltr">${rpM(bac)}</b> SAR`)}
+    <div class="up-kpis">${rpK(LBL('Net invoiced', 'صافي المستخلصات'), rpM(st.net), `${fmtN(st.n)} ${LBL('invoices', 'مستخلص')}`)}${rpK(LBL('Released', 'المصروف'), rpM(st.rel), st.net ? fmtPct(st.rel / st.net) : '')}${rpK(LBL('Outstanding', 'المتبقي'), rpM(st.out), `${LBL('due in 30 days', 'مستحق خلال 30 يوم')} ${rpM(st.due30)}`)}${rpK(LBL('Overdue', 'متأخر الدفع'), fmtN(st.overdue), '', st.overdue ? 'bad' : 'ok')}${rpK(LBL('Down payment', 'الدفعة المقدمة'), rpM(N(p.contractValue) * N(p.dpPct)), p.dpPct ? fmtPct(p.dpPct, 0) : '')}${rpK(LBL('Retention', 'المحتجزات'), rpM(sum(I, r => f.retention.calc(r))), p.retPct ? fmtPct(p.retPct, 0) : '')}</div>
+    <div class="up-b"><div class="up-c" style="flex:0 0 560px"><div class="up-ct">${LBL('Cumulative: earned value vs net invoiced vs released (SAR M)', 'تراكمي: القيمة المكتسبة مقابل صافي المستخلصات مقابل المصروف (مليون ريال)')}</div>${svgCols({ w: 548, h: 400, cats: mk.map(monthLbl), bars: [{ v: inv, c: '#C9BBB2' }, { v: rel, c: '#AF9F58' }], lines: H.length ? [{ v: ev, c: '#5B4444' }] : [], fmt: v => fmtN(v / 1e6, 0) })}<div class="up-lg"><span><i style="background:#C9BBB2"></i>${LBL('Net invoiced', 'صافي المستخلصات')}</span><span><i style="background:#AF9F58"></i>${LBL('Released', 'المصروف')}</span>${H.length ? `<span><i style="background:#5B4444"></i>${LBL('Earned value', 'القيمة المكتسبة')}</span>` : ''}</div></div>
+      <div class="up-t"><div class="up-ct">${LBL('Invoices', 'المستخلصات')}</div><div class="up-tw"><table class="t"><thead><tr><th>#</th><th>${LBL('Invoice', 'المستخلص')}</th><th>${LBL('Net', 'الصافي')}</th><th>${LBL('Submitted', 'التقديم')}</th><th>${LBL('Due', 'الاستحقاق')}</th><th>${LBL('Released', 'الصرف')}</th><th>${T('status')}</th></tr></thead><tbody>${[...I].reverse().map(r => `<tr><td>${h(r.no)}</td><td class="small" dir="auto">${h(r.name || E(r.type))}</td><td dir="ltr">${fmtN(f.net.calc(r) / 1e6, 2)} M</td><td dir="ltr">${D.fmt(r.submittal)}</td><td dir="ltr">${D.fmt(f.dueDate.calc(r))}</td><td dir="ltr">${D.fmt(r.releaseDate)}</td><td>${bdg(f.status.calc(r))}</td></tr>`).join('') || `<tr><td colspan="7" class="empty">—</td></tr>`}</tbody></table></div></div></div></div>`;
+};
+
+/* ---------- Documents ---------- */
+RP.P.documents = el => {
+  const R = live(S.db.dc), q = r => N(r.qty) || 1, s = dcStats(), f = MOD.dc.F, rd = reportDate(); s.last7 = sum(R.filter(r => r.recordType !== 'Opening Balance' && r.issueDate > D.add(rd, -7) && r.issueDate <= rd), q);   // opening balances are not this week's submissions const g = new Map();
+  R.forEach(r => { const k = r.docType || '—'; const o = g.get(k) || { k, t: 0, A: 0, B: 0, C: 0, U: 0 }; o.t += q(r); const st = f.status.calc(r); if (r.reviewCode === 'Code A') o.A += q(r); else if (r.reviewCode === 'Code B') o.B += q(r); else if (r.reviewCode === 'Code C') o.C += q(r); else if (['Under Review', 'Overdue'].includes(st)) o.U += q(r); g.set(k, o); });
+  const G = [...g.values()].sort((a, b) => b.t - a.t).slice(0, 12); const mx = Math.max(1, ...G.map(o => o.t));
+  const dn = [[s.A, '#2E8B57', 'Code A'], [s.B, '#AF9F58', 'Code B'], [s.C, '#C8313F', 'Code C'], [s.awaiting, '#7A8FA6', LBL('Under review', 'قيد المراجعة')]]; const tot = sum(dn, x => x[0]) || 1; let acc = 0;
+  const donut = `<svg viewBox="0 0 200 200" width="210" height="210" role="img">${dn.map(([v, c]) => { const a0 = acc / tot * 2 * Math.PI, a1 = (acc += v) / tot * 2 * Math.PI; if (!v) return ''; const P = a => [100 + 78 * Math.sin(a), 100 - 78 * Math.cos(a)]; const [x0, y0] = P(a0), [x1, y1] = P(a1 - 1e-6); return `<path d="M${x0} ${y0} A78 78 0 ${a1 - a0 > Math.PI ? 1 : 0} 1 ${x1} ${y1}" fill="none" stroke="${c}" stroke-width="30"/>`; }).join('')}<text x="100" y="98" text-anchor="middle" font-size="26" font-weight="700">${fmtN(s.total)}</text><text x="100" y="120" text-anchor="middle" font-size="12" fill="#7A706C">${LBL('submissions', 'تقديم')}</text></svg>`;
+  el.innerHTML = `<div class="up">${rpHead(LBL('Documents', 'المستندات'), `${LBL('Document control register', 'سجل التحكم بالمستندات')} · ${fmtN(R.length)} ${LBL('records', 'سجل')}`)}
+    <div class="up-kpis">${rpK(LBL('Total submissions', 'إجمالي التقديمات'), fmtN(s.total))}${rpK(LBL('This week', 'هذا الأسبوع'), fmtN(s.last7))}${rpK('Code A', fmtN(s.A), '', 'ok')}${rpK('Code B', fmtN(s.B))}${rpK('Code C', fmtN(s.C), '', s.C ? 'bad' : '')}${rpK(LBL('Under review', 'قيد المراجعة'), fmtN(s.awaiting), `${LBL('overdue', 'متأخر')} ${fmtN(s.overdue)}`, s.overdue ? 'bad' : '')}</div>
+    <div class="up-b"><div class="up-t"><div class="up-ct">${LBL('Submissions by document type', 'التقديمات حسب نوع المستند')}</div><div class="hb">${G.map(o => `<div class="hb-r"><span class="hb-l" dir="auto" title="${h(o.k)}">${h(E(o.k))}</span><div class="hb-b st">${[['A', '#2E8B57'], ['B', '#AF9F58'], ['C', '#C8313F'], ['U', '#7A8FA6']].map(([k, c]) => o[k] ? `<i style="width:${(o[k] / mx * 100).toFixed(1)}%;background:${c}" title="${k}: ${o[k]}"></i>` : '').join('')}<i style="width:${((o.t - o.A - o.B - o.C - o.U) / mx * 100).toFixed(1)}%;background:#E4DDD2"></i></div><span class="hb-v" dir="ltr"><b>${fmtN(o.t)}</b></span></div>`).join('')}</div></div>
+      <div class="up-c" style="flex:0 0 360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px"><div class="up-ct">${LBL('Review codes', 'أكواد المراجعة')}</div>${donut}<div class="up-lg" style="flex-wrap:wrap">${dn.map(([v, c, l]) => `<span><i style="background:${c}"></i>${l} <b dir="ltr">${fmtN(v)}</b></span>`).join('')}<span><i style="background:#E4DDD2"></i>${LBL('Other / info', 'أخرى / للعلم')}</span></div></div></div></div>`;
+};
+
+/* ---------- HSE ---------- */
+RP.P.hse = el => {
+  const s = hseStats(), H = s.H, rd = reportDate(); const sm = k => sum(H, r => r[k]);
+  const wk = {}; H.forEach(r => { const k = D.add(r.date, -((new Date(r.date + 'T00:00:00Z').getUTCDay() + 1) % 7)); const o = wk[k] = wk[k] || { mh: 0, mp: 0, n: 0 }; o.mh += N(r.manHours); o.mp = Math.max(o.mp, N(r.direct) + N(r.indirect)); o.n++; });
+  const wks = Object.keys(wk).sort().slice(-16);
+  const inc = [['fatal', LBL('Fatalities', 'وفيات')], ['lti', 'LTI'], ['rdi', 'RDI'], ['mtc', 'MTC'], ['mva', 'MVA'], ['fac', LBL('First aid', 'إسعافات أولية')], ['propDamage', LBL('Property damage', 'أضرار ممتلكات')], ['fire', LBL('Fire', 'حريق')], ['env', LBL('Environmental', 'بيئي')], ['nearMiss', LBL('Near miss', 'وشيك الوقوع')]];
+  const act = [['tbt', LBL('Toolbox talks', 'محاضرات توعية')], ['inductions', LBL('Inductions', 'تعريف بالسلامة')], ['training', LBL('Training', 'تدريب')], ['inspections', LBL('Inspections', 'تفتيش')], ['audits', LBL('Audits', 'تدقيق')], ['drills', LBL('Drills', 'تمارين طوارئ')], ['permitsIssued', LBL('Permits issued', 'تصاريح صادرة')], ['permitsClosed', LBL('Permits closed', 'تصاريح مغلقة')], ['soRaised', LBL('Observations raised', 'ملاحظات مسجلة')], ['soClosed', LBL('Observations closed', 'ملاحظات مغلقة')], ['stopWork', LBL('Stop work', 'إيقاف عمل')], ['meetings', LBL('Meetings', 'اجتماعات')]];
+  el.innerHTML = `<div class="up">${rpHead(LBL('HSE', 'السلامة'), `${LBL('Last entry', 'آخر إدخال')} <b dir="ltr">${D.fmt(s.last) || '—'}</b>`)}
+    <div class="up-kpis">${rpK(LBL('Man-hours', 'ساعات العمل'), fmtN(s.mh))}${rpK(LBL('Safe man-hours since last LTI', 'ساعات آمنة منذ آخر إصابة'), fmtN(s.ltiFree), '', 'ok')}${rpK(LBL('Fatalities + LTI', 'وفيات + إصابات مضيعة للوقت'), fmtN(s.fatLti), '', s.fatLti ? 'bad' : 'ok')}${rpK(LBL('Total incidents', 'إجمالي الحوادث'), fmtN(s.inc))}${rpK(LBL('Open observations', 'ملاحظات مفتوحة'), fmtN(s.openObs), '', s.openObs > 0 ? 'bad' : 'ok')}${rpK(LBL('Permits issued', 'تصاريح صادرة'), fmtN(s.permits))}</div>
+    <div class="up-b"><div class="up-c" style="flex:0 0 560px"><div class="up-ct">${LBL('Man-hours per week and peak manpower', 'ساعات العمل أسبوعياً وأعلى عمالة')}</div>${svgCols({ w: 548, h: 400, cats: wks.map(k => D.fmt(k).slice(0, 6)), bars: [{ v: wks.map(k => wk[k].mh), c: '#C9BBB2' }], lines: [{ v: wks.map(k => wk[k].mp * (Math.max(...wks.map(x => wk[x].mh)) / Math.max(1, ...wks.map(x => wk[x].mp)))), c: '#5B4444' }] })}<div class="up-lg"><span><i style="background:#C9BBB2"></i>${LBL('Man-hours', 'ساعات العمل')}</span><span><i style="background:#5B4444"></i>${LBL('Peak manpower (scaled)', 'أعلى عمالة (بمقياس نسبي)')}</span></div></div>
+      <div class="up-t"><div class="hs"><div><div class="up-ct">${LBL('Incidents', 'الحوادث')}</div>${inc.map(([k, l]) => `<div class="hs-r"><span>${l}</span><b dir="ltr" class="${sm(k) && ['fatal', 'lti'].includes(k) ? 'neg' : ''}">${fmtN(sm(k))}</b></div>`).join('')}</div><div><div class="up-ct">${LBL('Activities', 'الأنشطة')}</div>${act.map(([k, l]) => `<div class="hs-r"><span>${l}</span><b dir="ltr">${fmtN(sm(k))}</b></div>`).join('')}</div></div></div></div></div>`;
 };
 
 </script>

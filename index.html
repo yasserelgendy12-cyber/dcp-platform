@@ -352,6 +352,29 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
 .ru-t{flex:1;min-height:0;overflow:auto;max-height:none}
 .ru-pp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 14px}.ru-pp label{display:flex;gap:8px;align-items:center;font-size:13px}
 .ru-qb{margin-top:10px}
+/* report: update & performance, photos, sources */
+.rp-need{display:flex;gap:10px;align-items:center;background:#FFF3DC;color:#7A4E00;border-radius:10px;padding:12px 16px;font-size:15px;margin-top:10px;max-width:820px}.rp-need svg{width:20px;height:20px;flex:0 0 20px}
+.up,.ph{height:100%;display:flex;flex-direction:column;padding:22px 30px;gap:14px;box-sizing:border-box}
+.up-h{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}.up-h h2{margin:0;color:#5B4444;font-size:24px}.up-h span{font-size:13px;color:#7A706C}
+.up-kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.up-k{background:#F7F5F1;border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;border-top:3px solid #B9AFA6}.up-k span{font-size:12px;color:#7A706C}.up-k b{font-size:21px}.up-k em{font-style:normal;font-size:11.5px;color:#7A706C}
+.up-k.ok{border-top-color:#2E8B57}.up-k.bad{border-top-color:#C8313F}.up-k.bad b{color:#A12424}
+.up-b{flex:1;min-height:0;display:flex;gap:14px}.up-c{flex:0 0 790px;border:1px solid #EEE7DC;border-radius:12px;padding:10px 6px 6px}.up-t{flex:1;min-width:0;border:1px solid #EEE7DC;border-radius:12px;padding:10px;display:flex;flex-direction:column}
+.up-ct{font-size:13px;font-weight:700;color:#4A4442;margin:0 6px 6px}
+.up-lg{display:flex;gap:18px;justify-content:center;font-size:12px;color:#5E5552}.up-lg i{display:inline-block;width:18px;height:4px;border-radius:2px;margin-inline-end:6px;vertical-align:middle}.up-lg i.dl{border-top:2px dashed #C8313F;height:0;background:none}
+.up-tw{flex:1;min-height:0;overflow:auto}.up-t .t{font-size:12px}.up-t .t th,.up-t .t td{padding:5px 6px}.neg{color:#A12424;font-weight:600}
+.ph-b{flex:1;min-height:0;display:flex;flex-direction:column;gap:10px}
+.ph-f{display:flex;flex-direction:column;gap:8px}.ph-d,.ph-c{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.ph-c .sp{flex:1}
+.ph-d button,.ph-c button{border:1px solid #DDD5C9;background:#fff;border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;cursor:pointer;color:#4A4442}.ph-d button.on{background:#5B4444;color:#fff;border-color:#5B4444}.ph-c button.on{background:#AF9F58;color:#2B1416;border-color:#AF9F58}.ph-c button:disabled{opacity:.35}
+.ph-g{flex:1;min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:10px}
+.ph-g figure{margin:0;position:relative;border-radius:10px;overflow:hidden;background:#EEE7DC;cursor:zoom-in}.ph-g img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-g figcaption{position:absolute;inset:auto 0 0 0;background:rgba(43,22,24,.78);color:#fff;font-size:12px;padding:5px 10px;display:flex;justify-content:space-between;gap:8px}.ph-g figcaption span{opacity:.75;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ph-lb{position:fixed;inset:0;background:rgba(10,8,8,.92);z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:zoom-out;color:#fff;font-size:13px}.ph-lb img{max-width:94vw;max-height:88vh;object-fit:contain}
+.rs-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rs-c{border:1px solid #EEE7DC;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px}.rs-h{display:flex;flex-direction:column;gap:2px}.rs-h b{font-size:15px;color:#5B4444}
+.rs-s{display:flex;gap:10px;align-items:center;background:#F7F5F1;border-radius:9px;padding:9px 11px}.rs-s svg{width:20px;height:20px;flex:0 0 20px;color:#5B4444}.rs-s div{display:flex;flex-direction:column}
+.rs-a{display:flex;gap:6px;flex-wrap:wrap}.rs-l{flex:1;min-height:0;display:flex;flex-direction:column}
+.rs-p{float:inline-end;color:#8A7A3E;font-weight:600}
 
 </style>
 </head>
@@ -1067,7 +1090,7 @@ function emptyDB(p) {
 let _sch = null;
 // code types never used as page filters (decision 11-Nov-2026: L3- Work Type / L4- Sub Work Type add no value)
 const NOFILT = /^L[34]-\s/i;
-const DB_SCHEMA = 3;   // 3 = report-portal users (rusers) + company identity. 2 = 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
+const DB_SCHEMA = 4;   // 4 = report sources (rsrc) + P6 update history summary (xhist). 3 = report-portal users (rusers) + company identity. 2 = baseline + presence + packed activity codes. A database written by a newer tool pauses syncing on older pages until they are reloaded.
 /* activity codes are stored packed (about half the size of a schedule): schedule.cd = {t: [code type names], v: [[values of type 0], …]}
    and activity.c = [index of the value per type, -1 = none]. activity.codes stays as an empty object for pages still running the previous tool. */
 function packSched(s) {
@@ -1164,7 +1187,8 @@ const newer = (a, b) => ((a && a._at) || '') >= ((b && b._at) || '') ? a : b;
 function mergeDB(A, B) { // returns merged copy (A = local, B = remote)
   if (!B) return A; if (!A) return B;
   const M = clone(A);
-  ['project', 'params', 'lists', 'security'].forEach(k => { M[k] = clone(newer(A[k], B[k])); });
+  ['project', 'params', 'lists', 'security', 'rsrc', 'xhist'].forEach(k => { if (A[k] || B[k]) M[k] = clone(newer(A[k], B[k])); });
+  Object.keys(B).forEach(k => { if (!(k in M)) M[k] = clone(B[k]); else if (M[k] && B[k] && typeof B[k] === 'object' && !Array.isArray(B[k]) && B[k]._at && !['presence', 'updates', 'schedule', 'baseline'].includes(k)) M[k] = clone(newer(M[k], B[k])); });   // keys added by newer tools are carried, never dropped
   if (B.schedule && (!A.schedule || (B.schedule.importedAt || '') > (A.schedule.importedAt || ''))) M.schedule = clone(B.schedule);
   if (B.baseline && (!A.baseline || (B.baseline.importedAt || '') > (A.baseline.importedAt || ''))) M.baseline = clone(B.baseline);
   M.schema = Math.max(A.schema || 1, B.schema || 1);
@@ -3804,6 +3828,7 @@ const RP = {
     if (!S.ui.rpPage) pg.innerHTML = `<div class="rp-ph"><h2>${LBL('No report page is open for this user.', 'لا توجد صفحات تقرير متاحة لهذا المستخدم.')}</h2></div>`;
     else { try { (RP.P[S.ui.rpPage] || RP.P._plan)(pg, pgs[i]); } catch (e) { console.error(e); pg.innerHTML = `<div class="notice bad" style="margin:30px">${ic('warn')}<div>${h(e.stack || e.message)}</div></div>`; } }
     RP.fit(); setSync(S.sync.state, S.sync.msg);
+    if (S.db.rsrc && S.db.rsrc.xer && S.ui.xscanned !== S.db.id && typeof scanXER === 'function') { S.ui.xscanned = S.db.id; setTimeout(() => scanXER(false, false), 1500); }   // pick up new update XER files silently (only where the folder is reachable without a prompt)
   },
   go(k) { S.ui.rpPage = k; const pe = (S.db.presence || {})[PRES.key()]; if (pe) pe.page = 'rp:' + k; RP.render(); },
   step(d) { const pgs = RP.pages(); const i = pgs.findIndex(x => x.k === S.ui.rpPage) + d; if (i >= 0 && i < pgs.length) RP.go(pgs[i].k); },
@@ -3883,6 +3908,150 @@ RP.userDialog = uid_ => {
       el.querySelector('[data-k]').onclick = () => save(false);
       const d = el.querySelector('[data-del]'); if (d) d.onclick = async () => { if (await confirmBox(`${T('del')}: <b>${h(u.name)}</b>?`, T('del'), true)) save(true); };
     } });
+};
+
+/* ===== REPORT SOURCES: P6 update history (XER folder) and site photos (folder) – chosen per project on the "Report sources" page =====
+   db.rsrc = { xer: src, photos: src, _at, _by }   src = { kind: 'cloud', name, link, driveId, itemId, webUrl } | { kind: 'local', name }  (a local folder handle stays on the device that chose it: IDB meta 'rsrc:<project>:<kind>')
+   db.xhist = { updates: [ { f, size, dd, fin, mf, n, ns, ip, cp, pv, ev, w } ], scannedAt, _at, _by }   – compact summary of every update XER, shared through the database
+   The XER files and photos stay in their folders; only the summary above is stored. */
+RP_ADMIN.push({ k: 'rsrc', en: 'Report sources', ar: 'مصادر التقرير', admin: true }); RP_ALL.push('rsrc');
+RP_PAGES.find(p => p.k === 'update').src = 'xer';
+const SRC = {
+  key: kind => `rsrc:${S.db.id}:${kind}`,
+  cfg: kind => ((S.db.rsrc || {})[kind]) || null,
+  async set(kind, src) { const r = clone(S.db.rsrc || {}); if (src) r[kind] = src; else delete r[kind]; S.db.rsrc = stamp(r); touch('report source', `${kind}: ${src ? src.kind + ' · ' + src.name : 'removed'}`); },
+  async handle(kind, interactive) { const d = await IDB.get('meta', SRC.key(kind)).catch(() => null); if (!d) return null; try { let p = await d.queryPermission({ mode: 'read' }); if (p !== 'granted' && interactive) p = await d.requestPermission({ mode: 'read' }); return p === 'granted' ? d : null; } catch (e) { return null; } },
+  async pickLocal(kind) { if (!window.showDirectoryPicker) return toast(LBL('This browser cannot open folders – use Edge or Chrome, or a OneDrive link.', 'هذا المتصفح لا يفتح المجلدات – استخدم Edge أو Chrome، أو رابط OneDrive.'), 'bad'); let d; try { d = await showDirectoryPicker({ id: 'rsrc-' + kind, mode: 'read' }); } catch (e) { return; } await IDB.put('meta', SRC.key(kind), d); await SRC.set(kind, { kind: 'local', name: d.name, by: S.user.name }); SRC.cache[kind] = null; return d; },
+  async linkCloud(kind, link) { const ref = await CLOUD.resolve(link, true); if (!ref.folder) throw new Error(LBL('Paste the link of a folder, not a file.', 'ألصق رابط مجلد وليس ملفاً.')); await SRC.set(kind, { kind: 'cloud', name: ref.name, link: ref.link, driveId: ref.driveId, itemId: ref.itemId, webUrl: ref.webUrl }); SRC.cache[kind] = null; },
+  cache: {},
+  // every file in the folder (recursive): { path: [sub folders], name, size, mtime, buf(), url() }
+  async files(kind, interactive) {
+    const c = SRC.cfg(kind); if (!c) return null;
+    if (SRC.cache[kind] && SRC.cache[kind].id === S.db.id) return SRC.cache[kind].list;
+    const out = [];
+    if (c.kind === 'local') {
+      const d = await SRC.handle(kind, interactive); if (!d) throw new Error(LBL(`This folder was linked on another device (${c.by || ''}) – link it again on this device.`, `هذا المجلد مرتبط على جهاز آخر (${c.by || ''}) – اربطه مرة أخرى على هذا الجهاز.`));
+      const walk = async (dir, path, depth) => { for await (const [name, h_] of dir.entries()) { if (h_.kind === 'directory') { if (depth < 4) await walk(h_, [...path, name], depth + 1); } else { const f = await h_.getFile(); out.push({ path, name, size: f.size, mtime: f.lastModified, buf: () => f.arrayBuffer(), url: () => URL.createObjectURL(f) }); } } };
+      await walk(d, [], 0);
+    } else {
+      const walk = async (ref, path, depth) => { const r = await CLOUD.g(CLOUD.itemPath(ref) + '/children?$top=999' + (kind === 'photos' ? '&$expand=thumbnails' : ''), {}, interactive); if (!r.ok) throw await CLOUD.gerr(r); const items = (await r.json()).value || [];
+        for (const it of items) { const rf = { driveId: (it.parentReference || {}).driveId || ref.driveId, itemId: it.id };
+          if (it.folder) { if (depth < 4) await walk(rf, [...path, it.name], depth + 1); }
+          else { const dl = it['@microsoft.graph.downloadUrl'], th = (it.thumbnails || [])[0] || {};
+            out.push({ path, name: it.name, size: it.size || 0, mtime: Date.parse(it.lastModifiedDateTime || '') || 0, buf: async () => { const r2 = dl ? await fetch(dl) : await CLOUD.g(CLOUD.itemPath(rf) + '/content', {}, interactive); if (!r2.ok) throw new Error('download ' + it.name); return r2.arrayBuffer(); }, url: async () => (th.large || th.medium || {}).url || dl, full: () => dl }); } } };
+      await walk(c, [], 0);
+    }
+    SRC.cache[kind] = { id: S.db.id, list: out }; return out;
+  }
+};
+/* summary of one update XER: planned % (baseline dates, like P6 Schedule % Complete) and earned % (P6 % complete) at its own data date */
+const planFrac = (s, f, d) => !s || !f ? 0 : d < s ? 0 : d >= f ? 1 : (D.diff(d, s) + 1) / (D.diff(f, s) + 1);
+function xerSummary(sch, file) {
+  const bl = new Map(((S.db.baseline || {}).activities || []).map(a => [a.id, a]));
+  const dd = sch.asOf || sch.dataDate; let W = 0, pv = 0, ev = 0; const acts = sch.activities; const useCost = acts.some(a => N(a.cost) > 0);
+  acts.forEach(a => { const w = useCost ? N(a.cost) : N(a.od); if (!w) return; const b = bl.get(a.id) || a; W += w; pv += w * planFrac(b.ps, b.pf, dd); ev += w * N(a.pct) / 100; });
+  const st = s => acts.filter(a => a.status === s).length;
+  return { f: file.name, size: file.size, dd, fin: sch.planEnd || '', mf: sch.mustFinish || '', n: acts.length, ns: st('Not Started'), ip: st('In Progress'), cp: st('Completed'), pv: W ? pv / W : 0, ev: W ? ev / W : 0, w: useCost ? 'cost' : 'dur' };
+}
+async function scanXER(interactive, verbose) {
+  if (SRC.busy) return; const files = await SRC.files('xer', interactive).catch(e => { if (verbose) toast(e.message || cloudMsg(e), 'bad'); return null; }); if (!files) return;
+  const xs = files.filter(f => /\.xer$/i.test(f.name)); const H = clone(S.db.xhist || { updates: [] }); const known = new Map(H.updates.map(u => [u.f, u]));
+  const todo = xs.filter(f => { const k = known.get(f.name); return !k || k.size !== f.size; });
+  const gone = H.updates.filter(u => !xs.some(f => f.name === u.f));
+  if (!todo.length && !gone.length) { if (verbose) toast(LBL('Update history is up to date', 'سجل التحديثات محدّث'), 'ok'); return; }
+  SRC.busy = true;
+  try {
+    let i = 0; toast(LBL(`Reading ${todo.length} update file(s)…`, `قراءة ${todo.length} ملف تحديث…`)); for (const f of todo) { i++; const pe = document.querySelector('[data-xprog]'); if (pe) pe.textContent = `${LBL('Reading', 'قراءة')} ${f.name} (${i}/${todo.length})…`;
+      const sch = XER.parse(XER.decode(await f.buf()), f.name); if (!sch.activities.length) continue; known.set(f.name, xerSummary(sch, f)); await new Promise(r => setTimeout(r, 0)); }
+    gone.forEach(u => known.delete(u.f));
+    H.updates = [...known.values()].sort((a, b) => (a.dd || '').localeCompare(b.dd || '')); H.scannedAt = nowISO();
+    S.db.xhist = stamp(H); touch('update history scanned', `${todo.length} read · ${H.updates.length} updates`); toast(LBL(`Update history: ${H.updates.length} updates`, `سجل التحديثات: ${H.updates.length} تحديث`), 'ok');
+  } catch (e) { toast((e && e.message) || cloudMsg(e), 'bad'); }
+  finally { SRC.busy = false; }
+  if (S.portal === 'rp') RP.render();
+}
+
+/* ---------- small SVG line chart (x = dates) ---------- */
+function svgLines({ w, h, x0, x1, series, vline, yMax = 1 }) {
+  const L = 46, R = 14, T = 12, B = 30, X = d => L + (D.diff(d, x0) / Math.max(1, D.diff(x1, x0))) * (w - L - R), Y = v => T + (1 - v / yMax) * (h - T - B);
+  const grid = [0, .25, .5, .75, 1].map(v => `<line x1="${L}" x2="${w - R}" y1="${Y(v * yMax)}" y2="${Y(v * yMax)}" stroke="#EEE7DC"/><text x="${L - 6}" y="${Y(v * yMax) + 4}" text-anchor="end" font-size="11" fill="#7A706C">${Math.round(v * yMax * 100)}%</text>`).join('');
+  const months = []; let m = x0.slice(0, 8) + '01'; while (m <= x1) { if (m >= x0) months.push(m); const [y, mm] = m.split('-').map(Number); m = mm === 12 ? `${y + 1}-01-01` : `${y}-${String(mm + 1).padStart(2, '0')}-01`; }
+  const step = Math.ceil(months.length / 9);
+  const xt = months.filter((_, i) => i % step === 0).map(d => `<line x1="${X(d)}" x2="${X(d)}" y1="${h - B}" y2="${h - B + 4}" stroke="#B9AFA6"/><text x="${X(d)}" y="${h - B + 17}" text-anchor="middle" font-size="11" fill="#7A706C">${D.fmt(d).slice(3)}</text>`).join('');
+  const ser = series.map(s => `<polyline fill="none" stroke="${s.color}" stroke-width="${s.wd || 2.5}" ${s.dash ? `stroke-dasharray="${s.dash}"` : ''} points="${s.pts.map(([d, v]) => `${X(d).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}"/>${s.marks ? s.pts.map(([d, v]) => `<circle cx="${X(d).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3.6" fill="#fff" stroke="${s.color}" stroke-width="2"/>`).join('') : ''}`).join('');
+  const vl = vline ? `<line x1="${X(vline)}" x2="${X(vline)}" y1="${T}" y2="${h - B}" stroke="#C8313F" stroke-dasharray="4 4"/><text x="${X(vline) + 4}" y="${T + 10}" font-size="11" fill="#C8313F">${D.fmt(vline)}</text>` : '';
+  return `<svg viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" role="img"><line x1="${L}" x2="${w - R}" y1="${h - B}" y2="${h - B}" stroke="#B9AFA6"/>${grid}${xt}${vl}${ser}</svg>`;
+}
+const blCurve = () => { // baseline planned % per week (cost weights of the baseline, else durations)
+  const acts = ((S.db.baseline || S.db.schedule || {}).activities) || []; if (!acts.length) return [];
+  const useCost = acts.some(a => N(a.cost) > 0); const ws = acts.map(a => useCost ? N(a.cost) : N(a.od)); const W = ws.reduce((x, y) => x + y, 0) || 1;
+  const s0 = acts.map(a => a.ps).filter(Boolean).sort()[0], f0 = acts.map(a => a.pf).filter(Boolean).sort().pop(); if (!s0 || !f0) return [];
+  const pts = []; for (let d = s0; d <= D.add(f0, 7); d = D.add(d, 7)) { let v = 0; acts.forEach((a, i) => { if (ws[i]) v += ws[i] * planFrac(a.ps, a.pf, d); }); pts.push([d, v / W]); }
+  return pts;
+};
+
+/* ---------- page: update & performance (P6 update history) ---------- */
+RP.P.update = (el, pg) => {
+  const H = (S.db.xhist || {}).updates || [];
+  if (!H.length) { RP.P._plan(el, pg); el.querySelector('.rp-ph').insertAdjacentHTML('beforeend', `<div class="rp-need">${ic('info')}<span>${LBL('Needs the P6 update history: link the XER updates folder on the “Report sources” page.', 'تحتاج سجل تحديثات P6: اربط فولدر تحديثات XER من صفحة "مصادر التقرير".')}</span></div>`); return; }
+  const last = H[H.length - 1], prev = H[H.length - 2] || null, p = S.db.project;
+  const blFin = (S.db.baseline && (S.db.baseline.mustFinish || S.db.baseline.planEnd)) || p.completion || '';
+  const slip = blFin && last.fin ? D.diff(last.fin, blFin) : null; const spi = last.pv ? last.ev / last.pv : null;
+  const el_ = p.commencement ? Math.max(0, D.diff(last.dd, p.commencement)) : null, tot = p.commencement && p.completion ? D.diff(p.completion, p.commencement) : null;
+  const curve = blCurve(); const x0 = (curve[0] || [H[0].dd])[0], x1 = blFin && blFin > (curve.length ? curve[curve.length - 1][0] : '') ? blFin : (curve.length ? curve[curve.length - 1][0] : last.dd);
+  const kp = (k, v, s, cls) => `<div class="up-k ${cls || ''}"><span>${k}</span><b dir="ltr">${v}</b>${s ? `<em>${s}</em>` : ''}</div>`;
+  const pp = x => `${x >= 0 ? '+' : ''}${(x * 100).toFixed(2)} pp`;
+  el.innerHTML = `<div class="up">
+    <div class="up-h"><h2>${LBL('Update & performance', 'التحديث والأداء')}</h2><span>${LBL('Latest update', 'آخر تحديث')}: <b dir="ltr">${h(last.f)}</b> · ${T('data_date')} <b dir="ltr">${D.fmt(last.dd)}</b></span></div>
+    <div class="up-kpis">${kp(LBL('Planned', 'المخطط'), fmtPct(last.pv, 2), prev ? `${LBL('last update', 'التحديث السابق')} ${fmtPct(prev.pv, 2)}` : '')}${kp(LBL('Earned (actual)', 'المكتسب (الفعلي)'), fmtPct(last.ev, 2), prev ? `${LBL('last update', 'التحديث السابق')} ${fmtPct(prev.ev, 2)}` : '')}${kp(LBL('Variance', 'الفرق'), pp(last.ev - last.pv), prev ? `${LBL('this week', 'هذا الأسبوع')} ${pp((last.ev - prev.ev) - (last.pv - prev.pv))}` : '', last.ev - last.pv < -0.005 ? 'bad' : 'ok')}${kp('SPI', spi ? spi.toFixed(2) : '—', spi ? (spi >= 0.98 ? LBL('on schedule', 'ضمن الجدول') : spi >= 0.9 ? LBL('slight delay', 'تأخير طفيف') : LBL('behind schedule', 'متأخر عن الجدول')) : '', spi && spi < 0.95 ? 'bad' : 'ok')}${kp(LBL('Forecast finish', 'الانتهاء المتوقع'), last.fin ? D.fmt(last.fin) : '—', slip != null ? (slip > 0 ? `${LBL('late by', 'متأخر')} ${slip} ${LBL('days', 'يوم')}` : LBL('on / before baseline', 'في موعد الأساسي أو قبله')) : '', slip > 0 ? 'bad' : 'ok')}${kp(LBL('Elapsed duration', 'المدة المنقضية'), el_ != null && tot ? `${Math.round(el_ / tot * 100)}%` : '—', el_ != null && tot ? `${el_} / ${tot} ${LBL('days', 'يوم')}` : '')}</div>
+    <div class="up-b"><div class="up-c"><div class="up-ct">${LBL('S-curve: baseline planned vs earned at each P6 update', 'منحنى S: المخطط الأساسي مقابل المكتسب في كل تحديث P6')}</div>
+      ${svgLines({ w: 780, h: 440, x0, x1, vline: last.dd, series: [{ pts: curve, color: '#5B4444', wd: 2.5 }, { pts: H.map(u => [u.dd, u.pv]), color: '#5B4444', wd: 0.01, marks: true }, { pts: H.map(u => [u.dd, u.ev]), color: '#AF9F58', wd: 3, marks: true }] })}
+      <div class="up-lg"><span><i style="background:#5B4444"></i>${LBL('Baseline planned', 'المخطط الأساسي')}</span><span><i style="background:#AF9F58"></i>${LBL('Earned at each update', 'المكتسب في كل تحديث')}</span><span><i class="dl"></i>${T('data_date')}</span></div></div>
+      <div class="up-t"><div class="up-ct">${LBL('P6 updates', 'تحديثات P6')} (${H.length})</div><div class="up-tw"><table class="t"><thead><tr><th>${T('data_date')}</th><th>${LBL('Planned', 'المخطط')}</th><th>${LBL('Earned', 'المكتسب')}</th><th>SPI</th><th>${LBL('Finish', 'الانتهاء')}</th></tr></thead><tbody>${[...H].reverse().map(u => `<tr><td dir="ltr">${D.fmt(u.dd)}</td><td dir="ltr">${fmtPct(u.pv)}</td><td dir="ltr">${fmtPct(u.ev)}</td><td dir="ltr" class="${u.pv && u.ev / u.pv < 0.95 ? 'neg' : ''}">${u.pv ? (u.ev / u.pv).toFixed(2) : '—'}</td><td dir="ltr">${D.fmt(u.fin)}</td></tr>`).join('')}</tbody></table></div></div></div></div>`;
+};
+
+/* ---------- page: site photos (photos folder) ---------- */
+const MON = { jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6, jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12 };
+const folderDate = s => { const m = /(\d{1,2})[-_ .]([a-z]{3})[a-z]*[-_ .](\d{4})/i.exec(s || ''); if (m && MON[m[2].toLowerCase()]) return `${m[3]}-${String(MON[m[2].toLowerCase()]).padStart(2, '0')}-${m[1].padStart(2, '0')}`; const i = /(\d{4})-(\d{2})-(\d{2})/.exec(s || ''); return i ? i[0] : ''; };
+RP.P.photos = async (el, pg) => {
+  if (!SRC.cfg('photos')) { RP.P._plan(el, pg); el.querySelector('.rp-ph').insertAdjacentHTML('beforeend', `<div class="rp-need">${ic('info')}<span>${LBL('Link the site photos folder on the “Report sources” page.', 'اربط فولدر صور الموقع من صفحة "مصادر التقرير".')}</span></div>`); return; }
+  el.innerHTML = `<div class="ph"><div class="up-h"><h2>${LBL('Site photos', 'صور الموقع')}</h2><span data-phs>${LBL('Reading the photos folder…', 'جارٍ قراءة فولدر الصور…')}</span></div><div data-phb class="ph-b"></div></div>`;
+  let files; try { files = await SRC.files('photos', false); } catch (e) { el.querySelector('[data-phs]').innerHTML = `<span class="neg">${h(e.message || cloudMsg(e))}</span> <button class="btn sm" data-phr>${LBL('Open folder access', 'فتح صلاحية المجلد')}</button>`; el.querySelector('[data-phr]').onclick = async () => { try { await SRC.files('photos', true); RP.render(); } catch (x) { toast(x.message || cloudMsg(x), 'bad'); } }; return; }
+  const pics = files.filter(f => /\.(jpe?g|png|webp)$/i.test(f.name)).map(f => { const top = f.path[0] || ''; const cat = f.path.slice(1).filter(x => folderDate(x) !== folderDate(top) || !folderDate(x)).pop() || ''; return { ...f, date: folderDate(top) || folderDate(f.name), cat }; }).filter(f => f.date);
+  if (!pics.length) { el.querySelector('[data-phs]').textContent = LBL('No photos found in dated folders (e.g. 11-Nov-2026).', 'لا توجد صور داخل مجلدات بتاريخ (مثال 11-Nov-2026).'); return; }
+  const dates = [...new Set(pics.map(p => p.date))].sort().reverse(); const st = S.ui.ph = S.ui.ph && dates.includes(S.ui.ph.d) ? S.ui.ph : { d: dates[0], c: '', i: 0 };
+  const draw = async () => {
+    const day = pics.filter(p => p.date === st.d); const cats = [...new Set(day.map(p => p.cat).filter(Boolean))].sort(); const sel = day.filter(p => !st.c || p.cat === st.c); const per = 6, pages = Math.max(1, Math.ceil(sel.length / per)); st.i = Math.min(st.i, pages - 1);
+    el.querySelector('[data-phs]').innerHTML = `${dates.length} ${LBL('dates', 'تواريخ')} · ${pics.length} ${LBL('photos', 'صورة')}`;
+    const b = el.querySelector('[data-phb]');
+    b.innerHTML = `<div class="ph-f"><div class="ph-d">${dates.map(d => `<button class="${d === st.d ? 'on' : ''}" data-pd="${d}" dir="ltr">${D.fmt(d)}</button>`).join('')}</div>
+      <div class="ph-c">${cats.length ? [['', LBL('All', 'الكل')], ...cats.map(c => [c, c])].map(([c, l]) => `<button class="${c === st.c ? 'on' : ''}" data-pc="${h(c)}">${h(l)}</button>`).join('') : ''}<span class="sp"></span>${pages > 1 ? `<button data-pp="-1" ${st.i ? '' : 'disabled'}>‹</button><span dir="ltr">${st.i + 1} / ${pages}</span><button data-pp="1" ${st.i < pages - 1 ? '' : 'disabled'}>›</button>` : ''}</div></div>
+      <div class="ph-g">${sel.slice(st.i * per, st.i * per + per).map((p, k) => `<figure data-pi="${st.i * per + k}"><img alt="" data-src="${k}"><figcaption>${h(p.cat || '')}<span dir="ltr">${h(p.name)}</span></figcaption></figure>`).join('')}</div>`;
+    b.querySelectorAll('[data-pd]').forEach(x => x.onclick = () => { st.d = x.dataset.pd; st.c = ''; st.i = 0; draw(); });
+    b.querySelectorAll('[data-pc]').forEach(x => x.onclick = () => { st.c = x.dataset.pc; st.i = 0; draw(); });
+    b.querySelectorAll('[data-pp]').forEach(x => x.onclick = () => { st.i += +x.dataset.pp; draw(); });
+    const vis = sel.slice(st.i * per, st.i * per + per);
+    b.querySelectorAll('img[data-src]').forEach(async (im, k) => { try { im.src = await vis[k].url(); } catch (e) { } });
+    b.querySelectorAll('[data-pi]').forEach(fg => fg.onclick = async () => { const p = sel[+fg.dataset.pi]; const u = p.full ? p.full() : await p.url(); const ov = document.createElement('div'); ov.className = 'ph-lb'; ov.innerHTML = `<img src="${u}" alt=""><div dir="auto">${h(D.fmt(p.date))} · ${h(p.cat)} · ${h(p.name)}</div>`; ov.onclick = () => ov.remove(); document.body.appendChild(ov); });
+  };
+  draw();
+};
+
+/* ---------- page: report sources ---------- */
+RP.P.rsrc = el => {
+  const H = (S.db.xhist || {}).updates || [];
+  const card = (kind, title, desc) => { const c = SRC.cfg(kind);
+    return `<div class="rs-c"><div class="rs-h"><b>${title}</b><span class="muted small">${desc}</span></div>
+      <div class="rs-s">${c ? `${ic(c.kind === 'cloud' ? 'cloud' : 'folder')}<div><b dir="auto">${h(c.name)}</b><span class="small muted">${c.kind === 'cloud' ? LBL('OneDrive folder link – readable on every device of users who have access to the folder', 'رابط مجلد OneDrive – يُقرأ من أي جهاز لمن لديه صلاحية على المجلد') : LBL(`Folder on the device of ${c.by || '—'} – other devices must link it again`, `مجلد على جهاز ${c.by || '—'} – الأجهزة الأخرى تحتاج ربطه مرة أخرى`)}</span></div>` : `${ic('warn')}<div><b>${LBL('Not linked', 'غير مرتبط')}</b></div>`}</div>
+      <div class="rs-a"><button class="btn sm pri" data-cl="${kind}">${ic('link')}${LBL('Link OneDrive folder', 'ربط مجلد OneDrive')}</button>${window.showDirectoryPicker ? `<button class="btn sm" data-lc="${kind}">${ic('folder')}${LBL('Choose folder on this device', 'اختيار مجلد من هذا الجهاز')}</button>` : ''}${c ? `<button class="btn sm ghost danger" data-rm="${kind}">${ic('x')}${LBL('Remove', 'إزالة')}</button>` : ''}${kind === 'xer' && c ? `<button class="btn sm" data-scan>${ic('sync')}${LBL('Read new updates', 'قراءة التحديثات الجديدة')}</button>` : ''}</div></div>`; };
+  el.innerHTML = `<div class="ru"><div class="ru-h"><div><h2>${LBL('Report sources', 'مصادر التقرير')}</h2><div class="muted small">${LBL('The two folders the report reads besides the platform database. Each project has its own. The files stay in their folders; the report keeps only a summary of each P6 update.', 'المجلدان اللذان يقرأ منهما التقرير بجانب قاعدة بيانات المنصة، ولكل مشروع مجلداته. الملفات تبقى في مجلداتها، والتقرير يحفظ ملخصاً لكل تحديث P6 فقط.')}</div></div></div>
+    <div class="rs-g">${card('xer', LBL('P6 update history (XER folder)', 'سجل تحديثات P6 (فولدر XER)'), LBL('Every weekly update XER, e.g. “03 XER Updates”.', 'كل ملفات XER للتحديثات الأسبوعية، مثال "03 XER Updates".'))}${card('photos', LBL('Site photos folder', 'فولدر صور الموقع'), LBL('Sub-folders per date (e.g. 11-Nov-2026), optionally per phase inside.', 'مجلد لكل تاريخ (مثال 11-Nov-2026)، وبداخله مجلدات المراحل إن وجدت.'))}</div>
+    <div class="rs-l"><div class="up-ct"><span class="rs-p" data-xprog></span>${LBL('Updates read', 'التحديثات المقروءة')}: ${H.length}${(S.db.xhist || {}).scannedAt ? ` · ${LBL('last read', 'آخر قراءة')} <bdi>${h(TS(S.db.xhist.scannedAt, 16))}</bdi>` : ''}</div><div class="tw ru-t"><table class="t"><thead><tr><th>${LBL('File', 'الملف')}</th><th>${T('data_date')}</th><th>${T('activities')}</th><th>${LBL('Planned', 'المخطط')}</th><th>${LBL('Earned', 'المكتسب')}</th><th>${LBL('Finish', 'الانتهاء')}</th></tr></thead><tbody>${[...H].reverse().map(u => `<tr><td dir="ltr">${h(u.f)}</td><td dir="ltr">${D.fmt(u.dd)}</td><td>${fmtN(u.n)}</td><td dir="ltr">${fmtPct(u.pv)}</td><td dir="ltr">${fmtPct(u.ev)}</td><td dir="ltr">${D.fmt(u.fin)}</td></tr>`).join('') || `<tr><td colspan="6" class="empty">—</td></tr>`}</tbody></table></div></div></div>`;
+  el.querySelectorAll('[data-cl]').forEach(b => b.onclick = () => { const kind = b.dataset.cl; modal({ title: LBL('Link OneDrive folder', 'ربط مجلد OneDrive'), size: 'sm', body: `<label class="f">${LBL('Folder sharing link', 'رابط مشاركة المجلد')}<input class="in" data-ln placeholder="https://1drv.ms/f/…" dir="ltr"></label><div class="tiny muted" style="margin-top:6px">${LBL('In OneDrive: right-click the folder → Share → Copy link. Report users who should see this source need access to the folder.', 'في OneDrive: زر الفأرة الأيمن على المجلد ← مشاركة ← نسخ الرابط. مستخدمو التقرير الذين يرون هذا المصدر يحتاجون صلاحية على المجلد.')}</div>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${LBL('Link', 'ربط')}</button>`,
+    onMount: (m, close) => m.querySelector('[data-k]').onclick = async () => { if (!CLOUD.available()) return toast(T('cl_e_unavail'), 'bad'); try { await SRC.linkCloud(kind, m.querySelector('[data-ln]').value); close(); toast(T('saved'), 'ok'); RP.render(); if (kind === 'xer') scanXER(true, true); } catch (e) { toast(e.message || cloudMsg(e), 'bad'); } } }); });
+  el.querySelectorAll('[data-lc]').forEach(b => b.onclick = async () => { const d = await SRC.pickLocal(b.dataset.lc); if (d) { toast(T('saved'), 'ok'); RP.render(); if (b.dataset.lc === 'xer') scanXER(true, true); } });
+  el.querySelectorAll('[data-rm]').forEach(b => b.onclick = async () => { if (!(await confirmBox(LBL('Remove this source?', 'إزالة هذا المصدر؟'), LBL('Remove', 'إزالة'), true))) return; await SRC.set(b.dataset.rm, null); SRC.cache[b.dataset.rm] = null; RP.render(); });
+  const sc = el.querySelector('[data-scan]'); if (sc) sc.onclick = () => { SRC.cache.xer = null; scanXER(true, true); };
 };
 
 </script>

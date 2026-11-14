@@ -677,6 +677,22 @@ td.tg>div{height:14px}.gl{position:absolute;top:0;font-style:normal;font-size:9.
 .pb-foot{direction:ltr;gap:12px}.pb-foot .pb-no{order:0;font-size:11px;font-weight:700;color:#0E4A55;padding-inline-end:10px;border-inline-end:1px solid #E1E7EC}.pb-foot .pb-pr{font-size:9.5px;color:#7B8C99}.pb-foot .pb-cf{font-size:9.5px;font-weight:700;letter-spacing:1px;color:#C62828;text-transform:uppercase}
 td.tg i.gb{overflow:visible;display:block;gap:0}
 .tt-t .tx button{width:18px;height:18px;padding:0;font-size:13px;line-height:18px;font-weight:700}.tt-t th:first-child{overflow:hidden;text-overflow:ellipsis}
+/* 14-Nov-2026 (2): smaller KPI cards, smaller Confidential, multi-select slicers, Gantt hover card, budget donut narrower */
+.xk{padding:4px 10px 5px}.xk-l{font-size:9.5px}.xk-v{font-size:16.5px;line-height:1.2}.xk em{font-size:10px}.xs-in .xk-v{font-size:16px}
+.pb-foot .pb-cf{font-size:8px;letter-spacing:.9px}
+.pb-band{position:relative;z-index:6}.pb-s{position:relative}
+.pb-sb{display:flex;align-items:center;gap:4px;width:100%;font:inherit;font-size:11.5px;border:1px solid #2E6A74;border-radius:6px;padding:3px 6px;background:#0A3A43;color:#fff;cursor:pointer;text-align:start;min-width:0}.pb-sb em{flex:1;min-width:0;font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pb-sb i{font-style:normal;font-size:9px;opacity:.8}
+.pb-s.on .pb-sb{background:#E8A33D;border-color:#E8A33D;color:#12202B;font-weight:700}.pb-sb:focus-visible{outline:2px solid #E8A33D;outline-offset:1px}
+.pb-pop{position:absolute;top:calc(100% + 4px);inset-inline-end:0;width:230px;max-height:330px;display:flex;flex-direction:column;background:#fff;color:#12202B;border:1px solid #D5DCE3;border-radius:10px;box-shadow:0 12px 30px rgba(10,58,67,.25);padding:8px;gap:6px;z-index:30}
+.pb-q{font:inherit;font-size:12px;border:1px solid #D5DCE3;border-radius:6px;padding:4px 8px}
+.pb-pa{display:flex;gap:6px}.pb-pa button{flex:1;font:inherit;font-size:11px;border:1px solid #D5DCE3;background:#F2F5F7;color:#0E4A55;border-radius:6px;padding:3px;cursor:pointer}.pb-pa button:hover{background:#E2EEF0}
+.pb-ol{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;scrollbar-width:thin}.pb-ol label{display:flex;align-items:center;gap:7px;padding:4px 4px;border-radius:5px;font-size:12px;cursor:pointer}.pb-ol label:hover{background:#F1F6F7}.pb-ol input{accent-color:#0E4A55;margin:0}.pb-ol span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pb-ol em{font-style:normal;font-size:10.5px;color:#7B8C99}.pb-oe{padding:6px;color:#7B8C99}
+.pb-pf{display:flex;justify-content:flex-end}.pb-pf .ok{font:inherit;font-size:12px;font-weight:700;border:0;border-radius:6px;background:#0E4A55;color:#fff;padding:5px 16px;cursor:pointer}.pb-pf .ok:hover{background:#0A3A43}
+.xtree{overflow-x:hidden}.gl.lf{margin-left:0;margin-right:5px}td.tg>div{cursor:default}
+#xtip{position:fixed;z-index:9999;display:none;pointer-events:none;background:#12202B;color:#fff;border-radius:7px;padding:6px 9px;font-size:11px;line-height:1.45;box-shadow:0 6px 18px rgba(0,0,0,.25);max-width:260px;font-family:inherit}
+#xtip b{display:block;font-weight:600;font-size:11px;margin-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#E8A33D}#xtip span{display:flex;justify-content:space-between;gap:14px}#xtip em{font-style:normal;color:#9FB3BF}#xtip i{font-style:normal;font-weight:600;font-variant-numeric:tabular-nums}
+.dn1{gap:6px}.dn1 .dn-l{max-height:none;overflow:visible;font-size:10.5px;gap:2px}
+.pb-pop .pb-ol span{color:#12202B;font-size:12px;font-weight:400}.pb-pop label{color:#12202B}
 
 </style>
 </head>
@@ -4182,14 +4198,13 @@ const RP = {
   frame(pg, n, tot) {
     if (pg.bare) return `<div class="pb-main pb-bare"></div>`;
     const p = S.db.project, cut = rpCut(), id = IDENT(S.db), nxt = RP_NEXT[pg.k];
-    const code = (p.reportPrefix || '').replace(/\d{3}$/, '') + String((cut && cut.reportNo) || '').padStart(3, '0');
     return `<div class="pb-band"><div class="pb-tt">${n ? `<span class="pb-sc">${LBL('Page', 'صفحة')} <bdi dir="ltr">${String(n).padStart(2, '0')}${tot ? ` / ${String(tot).padStart(2, '0')}` : ''}</bdi></span>` : ''}<div class="pb-t">${rpLbl(pg)}</div></div>${pg.slc ? RPF.html() : '<span class="sp"></span>'}${pg.slc ? `<button class="pb-rs" data-rs title="${LBL('Clear the filters on every page', 'مسح الفلاتر في كل الصفحات')}">${LBL('Reset', 'مسح الفلاتر')}</button>` : ''}${nxt && rpCan(nxt[0]) ? `<button class="pb-nx" data-rp="${nxt[0]}">${LBL(nxt[1], nxt[2])} <i>›</i></button>` : ''}</div>
       <div class="pb-main"></div>
-      <div class="pb-foot" dir="ltr">${id.logo ? `<img src="${id.logo}" alt="">` : ''}${n ? `<span class="pb-no" dir="auto">${LBL('Page', 'صفحة')} <bdi dir="ltr">${String(n).padStart(2, '0')}${tot ? ` / ${String(tot).padStart(2, '0')}` : ''}</bdi></span>` : ''}<span dir="auto"><b>${h(projTitle(p))}</b></span><span dir="ltr">${h(code)}</span><span dir="ltr">${cut ? D.fmt(cut.date) : ''}</span><span dir="auto">${h(id.name || p.contractor || '')}</span><span class="sp"></span>${p.preparedBy ? `<span class="pb-pr" dir="auto">${LBL('Prepared by', 'إعداد')}: ${h(p.preparedBy)}</span>` : ''}<span class="pb-cf">${LBL('Confidential', 'سري')}</span></div>`;
+      <div class="pb-foot" dir="ltr">${id.logo ? `<img src="${id.logo}" alt="">` : ''}${n ? `<span class="pb-no" dir="auto">${LBL('Page', 'صفحة')} <bdi dir="ltr">${String(n).padStart(2, '0')}${tot ? ` / ${String(tot).padStart(2, '0')}` : ''}</bdi></span>` : ''}<span dir="auto"><b>${h(projTitle(p))}</b></span><span dir="ltr">${cut ? D.fmt(cut.date) : ''}</span><span dir="auto">${h(id.name || p.contractor || '')}</span><span class="sp"></span>${p.preparedBy ? `<span class="pb-pr" dir="auto">${LBL('Prepared by', 'إعداد')}: ${h(p.preparedBy)}</span>` : ''}<span class="pb-cf">${LBL('Confidential', 'سري')}</span></div>`;
   },
   wire(root) {
     root.querySelectorAll('.pb-band [data-rp]').forEach(b => b.onclick = () => RP.go(b.dataset.rp));
-    root.querySelectorAll('[data-sl]').forEach(s => s.onchange = () => { const f = RPF.get(); f[s.dataset.sl] = s.value; RP.render(); });
+    root.querySelectorAll('[data-sl]').forEach(b => b.onclick = () => RPF.open(b));
     const rs = root.querySelector('[data-rs]'); if (rs) rs.onclick = () => { S.ui.rpF = {}; RP.render(); };
   },
   go(k) {
@@ -4579,16 +4594,37 @@ const RP_NEXT = {};
 /* ---------- synced slicers: the Global activity codes (like the Power BI slicers synced across pages) ---------- */
 const RPF = {
   get: () => S.ui.rpF || (S.ui.rpF = {}),
-  on: () => Object.values(RPF.get()).some(Boolean),
+  vals: k => { const v = RPF.get()[k]; return Array.isArray(v) ? v : v ? [v] : []; },   // several values per slicer (a single string from older sessions still works)
+  on: () => Object.keys(RPF.get()).some(k => RPF.vals(k).length),
   codes(a) { if (a.codes && Object.keys(a.codes).length) return a.codes; const s = SCH(), x = s && s.byId.get(a.id); if (x) return x.codes; return S.db.baseline ? actCodes(S.db.baseline, a) : {}; },
-  pass(a, skip) { const f = RPF.get(); for (const k in f) { if (!f[k] || k === skip) continue; if ((RPF.codes(a)[k] || '') !== f[k]) return false; } return true; },
+  pass(a, skip) { for (const k in RPF.get()) { if (k === skip) continue; const v = RPF.vals(k); if (v.length && !v.includes(RPF.codes(a)[k] || '')) return false; } return true; },
+  opts: {},
   html() {
-    const s = SCH(); if (!s) return '<span class="sp"></span>'; const f = RPF.get(), ks = codeTypes().slice(0, 7);
-    return `<div class="pb-sl">${ks.map(k => { const cnt = new Map(); s.activities.forEach(a => { if (!RPF.pass(a, k)) return; const v = a.codes[k]; if (v) cnt.set(v, (cnt.get(v) || 0) + 1); }); if (f[k] && !cnt.has(f[k])) cnt.set(f[k], 0);
-      const vals = [...cnt.keys()].sort((x, y) => x.localeCompare(y, 'en', { numeric: true }));
-      return `<label class="pb-s ${f[k] ? 'on' : ''}" title="${h(k)}"><span>${h(k.replace(/^\d+\s*/, ''))}</span><select data-sl="${h(k)}"><option value="">${LBL('All', 'الكل')}</option>${vals.map(v => `<option value="${h(v)}" ${v === f[k] ? 'selected' : ''}>${h(v)} (${cnt.get(v)})</option>`).join('')}</select></label>`; }).join('')}</div>`;
+    const s = SCH(); if (!s) return '<span class="sp"></span>'; const ks = codeTypes().slice(0, 7);
+    return `<div class="pb-sl">${ks.map(k => { const cnt = new Map(), sel = RPF.vals(k); s.activities.forEach(a => { if (!RPF.pass(a, k)) return; const v = a.codes[k]; if (v) cnt.set(v, (cnt.get(v) || 0) + 1); }); sel.forEach(v => { if (!cnt.has(v)) cnt.set(v, 0); });
+      RPF.opts[k] = [...cnt.keys()].sort((x, y) => x.localeCompare(y, 'en', { numeric: true })).map(v => [v, cnt.get(v)]);
+      const txt = !sel.length ? LBL('All', 'الكل') : sel.length === 1 ? sel[0] : `${sel.length} ${LBL('selected', 'محدد')}`;
+      return `<div class="pb-s ${sel.length ? 'on' : ''}" title="${h(k)}${sel.length ? ': ' + h(sel.join(', ')) : ''}"><span>${h(k.replace(/^\d+\s*/, ''))}</span><button type="button" class="pb-sb" data-sl="${h(k)}" aria-haspopup="listbox" aria-expanded="false"><em dir="auto">${h(txt)}</em><i>▾</i></button></div>`; }).join('')}</div>`;
   },
-  label: () => Object.entries(RPF.get()).filter(([, v]) => v).map(([k, v]) => `${h(k.replace(/^\d+\s*/, ''))}: <b>${h(v)}</b>`).join(' · ')
+  /* drop-down with check boxes: tick several values, Apply (or click outside) filters every page */
+  open(btn) {
+    const k = btn.dataset.sl, box = btn.parentElement, old = document.querySelector('.pb-pop'); if (old) { const same = old.parentElement === box; old._done(false); if (same) return; }
+    const sel = new Set(RPF.vals(k)), O = RPF.opts[k] || [], pop = document.createElement('div'); pop.className = 'pb-pop'; pop.setAttribute('role', 'listbox'); pop.setAttribute('aria-multiselectable', 'true');
+    pop.innerHTML = `${O.length > 10 ? `<input class="pb-q" type="search" placeholder="${LBL('Search', 'بحث')}" aria-label="${LBL('Search', 'بحث')}">` : ''}<div class="pb-pa"><button type="button" data-pa="1">${LBL('Select all', 'تحديد الكل')}</button><button type="button" data-pa="0">${LBL('Clear', 'إلغاء التحديد')}</button></div>
+      <div class="pb-ol">${O.map(([v, n]) => `<label><input type="checkbox" value="${h(v)}" ${sel.has(v) ? 'checked' : ''}><span dir="auto">${h(v)}</span><em>${fmtN(n)}</em></label>`).join('') || `<div class="pb-oe">—</div>`}</div>
+      <div class="pb-pf"><button type="button" class="ok" data-pok>${LBL('Apply', 'تطبيق')}</button></div>`;
+    box.appendChild(pop); btn.setAttribute('aria-expanded', 'true');
+    const cbs = () => [...pop.querySelectorAll('.pb-ol input')];
+    const done = apply => { document.removeEventListener('mousedown', out, true); document.removeEventListener('keydown', esc, true); btn.setAttribute('aria-expanded', 'false'); pop.remove();
+      if (!apply) return; const v = cbs().filter(c => c.checked).map(c => c.value), f = RPF.get(), was = RPF.vals(k);
+      if (v.length === was.length && v.every(x => was.includes(x))) return; if (v.length) f[k] = v; else delete f[k]; RP.render(); };
+    const out = e => { if (!pop.contains(e.target) && e.target !== btn && !btn.contains(e.target)) done(true); }, esc = e => { if (e.key === 'Escape') { e.stopPropagation(); done(false); } else if (e.key === 'Enter' && e.target.type !== 'checkbox') { e.preventDefault(); done(true); } };
+    pop._done = done; document.addEventListener('mousedown', out, true); document.addEventListener('keydown', esc, true);
+    pop.querySelectorAll('[data-pa]').forEach(b => b.onclick = () => cbs().forEach(c => { if (c.parentElement.style.display !== 'none') c.checked = b.dataset.pa === '1'; }));
+    pop.querySelector('[data-pok]').onclick = () => done(true);
+    const q = pop.querySelector('.pb-q'); if (q) { q.oninput = () => { const s = q.value.trim().toLowerCase(); cbs().forEach(c => c.parentElement.style.display = !s || c.value.toLowerCase().includes(s) ? '' : 'none'); }; q.focus(); } else { const c = cbs()[0]; if (c) c.focus(); }
+  },
+  label: () => Object.keys(RPF.get()).filter(k => RPF.vals(k).length).map(k => `${h(k.replace(/^\d+\s*/, ''))}: <b>${h(RPF.vals(k).join(', '))}</b>`).join(' · ')
 };
 const rpRowsAll = rpRows;
 function rpRowsF() { // progress rows of the report cut-off, filtered by the slicers (weights re-based on the selection)
@@ -6522,11 +6558,16 @@ function rpTree(id, o) { // o = { items, levels:[fn], root, name, title, cols:[{
   const G = o.gantt; let gx = null;
   if (G && G.s0 && G.f0) { const span = Math.max(1, D.diff(G.f0, G.s0)); gx = d => Math.max(0, Math.min(100, D.diff(d, G.s0) / span * 100)); }
   const dur = (s, f) => s && f ? `${fmtN(D.diff(f, s) + 1)} ${LBL('d', 'ي')}` : '';
-  const gcell = (s, f, cls) => !gx || !s ? '<td class="tg"></td>' : cls === 'ms' ? `<td class="tg"><div><i class="ms" style="left:${gx(f || s).toFixed(2)}%"></i><em class="gl" style="left:${gx(f || s).toFixed(2)}%">${D.fmt(f || s)}</em></div></td>` : `<td class="tg"><div><i class="${cls}" style="left:${gx(s).toFixed(2)}%;width:${Math.max(0.4, gx(f || s) - gx(s)).toFixed(2)}%"></i><em class="gl" style="left:${gx(f || s).toFixed(2)}%">${dur(s, f)}</em></div></td>`;
+  /* bar cell: label after the bar (or before it near the right edge) + hover card (name, start, finish, duration, value) */
+  const tip = (nm, s, f, v, ms) => h([nm, D.fmt(s), D.fmt(f || s), !ms && s && f ? fmtN(D.diff(f, s) + 1) : '0', G && G.cost && N(v) ? `${N(v) >= 1e6 ? rpM(v) : fmtN(N(v))} ${(S.db.baseline || S.db.schedule || {}).currency || 'SAR'}` : ''].join('␟'));
+  const gcell = (s, f, cls, nm, v) => { if (!gx || !s) return '<td class="tg"></td>'; const x0 = gx(s), x1 = gx(f || s), tp = ` data-tp="${tip(nm, s, f, v, cls === 'ms')}"`;
+    if (cls === 'ms') return `<td class="tg"><div${tp}><i class="ms" style="left:${x1.toFixed(2)}%"></i>${x1 > 82 ? `<em class="gl lf" style="right:${(100 - x1).toFixed(2)}%">${D.fmt(f || s)}</em>` : `<em class="gl" style="left:${x1.toFixed(2)}%">${D.fmt(f || s)}</em>`}</div></td>`;
+    const lb = x1 <= 82 ? `<em class="gl" style="left:${x1.toFixed(2)}%">${dur(s, f)}</em>` : x0 >= 14 ? `<em class="gl lf" style="right:${(100 - x0).toFixed(2)}%">${dur(s, f)}</em>` : '';
+    return `<td class="tg"><div${tp}><i class="${cls}" style="left:${x0.toFixed(2)}%;width:${Math.max(0.4, x1 - x0).toFixed(2)}%"></i>${lb}</div></td>`; };
   const draw = () => { const out = []; const walk = n => { const d = n.d - R, op = isOpen(n);
-      out.push(`<tr class="tgp d${Math.min(d, 3)}"><td class="tn" style="padding-inline-start:${8 + d * 16}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`) : ''}</tr>`);
+      out.push(`<tr class="tgp d${Math.min(d, 3)}"><td class="tn" style="padding-inline-start:${8 + d * 16}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
       if (!op) return; kids(n).forEach(walk);
-      n.items.forEach(it => { const sp = G ? G.span(it) : null; out.push(`<tr class="tl"><td class="tn" style="padding-inline-start:${30 + (d + 1) * 16}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga') : ''}</tr>`); }); };
+      n.items.forEach(it => { const sp = G ? G.span(it) : null; out.push(`<tr class="tl"><td class="tn" style="padding-inline-start:${30 + (d + 1) * 16}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
     if (o.root) walk(top); else { kids(top).forEach(walk); top.items.forEach(it => out.push(`<tr class="tl"><td class="tn">${h(o.name(it))}</td>${o.cols.map(c => `<td>${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? '<td class="tg"></td>' : ''}</tr>`)); }
     return out.join('') || `<tr><td colspan="${o.cols.length + 2}" class="empty">—</td></tr>`; };
   let ticks = '', tk0 = 0; if (gx) { const span = D.diff(G.f0, G.s0), stepM = span > 1400 ? 6 : span > 380 ? 3 : 1; tk0 = 1; const tk = []; let m = G.s0.slice(0, 8) + '01'; while (m <= G.f0) { if (m >= G.s0) tk.push(m); const [y, mm] = m.split('-').map(Number), nx = mm + stepM; m = nx > 12 ? `${y + 1}-${String(nx - 12).padStart(2, '0')}-01` : `${y}-${String(nx).padStart(2, '0')}-01`; }
@@ -6538,9 +6579,18 @@ function rpTreeMount(el) {
   el.querySelectorAll('[data-tree]').forEach(box => { const T = RT[box.dataset.tree]; if (!T) return; const tb = box.querySelector('tbody');
     const draw = () => { tb.innerHTML = T.draw(); tb.querySelectorAll('[data-tk]').forEach(b => b.onclick = () => { const k = b.dataset.tk; T.st.op[k] = b.getAttribute('aria-expanded') !== 'true'; draw(); }); };
     box.querySelectorAll('[data-tx]').forEach(b => b.onclick = () => { T.st.op = {}; T.st.d0 = b.dataset.tx === '1' ? 9 : 1; draw(); });
-    if (gxGantt(box)) { } draw(); });
+    rpTipWire(box); draw(); });
 }
-const gxGantt = () => false;
+function rpTipWire(box) { // small hover card for Gantt bars (kept outside the scaled page so it is not distorted)
+  if (!box.querySelector('.tgth')) return; let tp = document.getElementById('xtip'); if (!tp) { tp = document.createElement('div'); tp.id = 'xtip'; tp.setAttribute('role', 'tooltip'); document.body.appendChild(tp); }
+  tp.style.display = 'none'; tp._c = null;
+  const L = [LBL('Start', 'البداية'), LBL('Finish', 'النهاية'), LBL('Duration', 'المدة'), LBL('Value', 'القيمة')];
+  box.onmousemove = e => { const c = e.target.closest && e.target.closest('[data-tp]'); if (!c || !box.contains(c)) { tp.style.display = 'none'; return; }
+    if (tp._c !== c) { tp._c = c; const [nm, s, f, d, v] = c.dataset.tp.split('\u241F'); tp.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+      tp.innerHTML = `<b dir="auto">${h(nm)}</b><span><em>${L[0]}</em><i dir="ltr">${h(s)}</i></span><span><em>${L[1]}</em><i dir="ltr">${h(f)}</i></span><span><em>${L[2]}</em><i dir="ltr">${h(d)} ${LBL('d', 'يوم')}</i></span>${v ? `<span><em>${L[3]}</em><i dir="ltr">${h(v)}</i></span>` : ''}`; }
+    tp.style.display = 'block'; const w = tp.offsetWidth, hh = tp.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14; if (x + w > innerWidth - 6) x = e.clientX - w - 14; if (y + hh > innerHeight - 6) y = e.clientY - hh - 14; tp.style.left = x + 'px'; tp.style.top = y + 'px'; };
+  box.onmouseleave = () => { tp.style.display = 'none'; tp._c = null; };
+}
 
 /* ---------- combo chart: monthly bars (left axis) + cumulative lines (right axis, value and % of the total) ---------- */
 function _svgCombo({ w, h: hh, cats, bars = [], lines = [], fmtL = v => fmtN(v), tot, fmtR, lblR, vline }) {
@@ -6562,7 +6612,7 @@ const rpMonths = (a, b) => { const out = []; let m = a.slice(0, 7); while (m <= 
 const lg = items => `<span class="xlg">${items.map(([c, t, k]) => `<span><i class="${k || ''}" style="background:${k === 'dsh' ? 'none' : c}"></i>${t}</span>`).join('')}</span>`;
 
 /* ---------- 3 · Baseline Information: cards, Primavera-like programme (Project → Zone → Building → Level → activities), cost by building, cash flow ---------- */
-const RP_GANTT = 1;   // Gantt style of the baseline programme: 1 P6 classic · 2 modern minimal · 3 brackets & blocks (proposals on the design canvas, 14-Nov-2026)
+const RP_GANTT = 2;   // Gantt style of the baseline programme: 1 P6 classic · 2 modern minimal (chosen by Yasser, 14-Nov-2026) · 3 brackets & blocks
 const RP_PER = [['W', 'Weekly', 'أسبوعي'], ['M', 'Monthly', 'شهري'], ['Q', 'Quarterly', 'ربع سنوي']];
 /* baseline weekly series → week / month / quarter: bars with values on top, cumulative line with boxed % (like the BL PV chart of the portfolio report) */
 function rpPerChart(Q, kind, per, w, hh) {
@@ -6581,7 +6631,7 @@ RP.P.baseline = (el, pg) => {
   const isMs = a => ['TT_Mile', 'TT_FinMile'].includes(a.type), cd = a => RPF.codes(a), pnk = acts[0] ? Object.keys(cd(acts[0])).find(k => /project name/i.test(k)) : '', pn = (pnk && cd(acts[0])[pnk]) || projTitle(S.db.project);
   const RS = B.rsrc || [], NL = sum(acts, a => sum(a.rr || [], ([i, q]) => (RS[i] || {}).t === 'E' ? N(q) : 0));
   const tree = rpTree('bl', { items: acts, root: pn, levels: [a => cd(a)[H.z], a => cd(a)[H.b], a => cd(a)[H.l]], depth0: 2, name: a => a.name, title: a => a.id, head: LBL('Programme (baseline)', 'البرنامج (الأساسي)'),
-    gantt: { s0, f0, dd: (rpCut() || {}).date, style: RP_GANTT, w: 50, span: a => [a.ps, a.pf, isMs(a)] },
+    gantt: { s0, f0, dd: (rpCut() || {}).date, style: RP_GANTT, w: 52, span: a => [a.ps, a.pf, isMs(a)], cost: a => N(a.cost) },
     cols: [{ h: LBL('Start', 'البداية'), w: 86, cls: 'dt', g: n => D.fmt(n.s), l: a => D.fmt(a.ps) }, { h: LBL('Finish', 'النهاية'), w: 86, cls: 'dt', g: n => D.fmt(n.f), l: a => D.fmt(a.pf) }] });
   const gz = new Map(); acts.forEach(a => { const z = cd(a)[H.z] || '—'; gz.set(z, (gz.get(z) || 0) + N(a.cost)); });
   const PAL = ['#0E4A55', '#1E88C7', '#E8A33D', '#2E9E8F', '#7B8C99', '#B5653F', '#9C6B98', '#A9B8C4'];
@@ -6589,8 +6639,8 @@ RP.P.baseline = (el, pg) => {
   const td = (rpCut() || {}).date || todayISO(), dur = D.diff(f0, s0) + 1, el_ = td <= s0 ? 0 : td >= f0 ? dur : D.diff(td, s0) + 1;
   const pc = S.ui.blPerC || 'M', pl = S.ui.blPerL || 'M', perBtn = (k, p) => `<button class="xper" data-per="${k}" title="${LBL('Weekly → monthly → quarterly', 'أسبوعي ← شهري ← ربع سنوي')}">${ic('sync')}${LBL(...RP_PER.find(x => x[0] === p).slice(1))}</button>`;
   el.innerHTML = `<div class="xs"><div class="xs-r xs-k xk-c">${xk('k1', LBL('BL start', 'بداية الأساسي'), D.fmt(s0))}${xk('k2', LBL('BL finish', 'نهاية الأساسي'), D.fmt(f0))}${xk('k3', LBL('Duration', 'المدة'), `${fmtN(dur)} ${LBL('d', 'يوم')}`, `${LBL('week', 'الأسبوع')} ${Math.ceil(el_ / 7)} ${LBL('of', 'من')} ${Math.ceil(dur / 7)}`)}${xk('k4', LBL('Budget (BAC)', 'الميزانية'), rpM(cost), B.currency || 'SAR')}${xk('k5', LBL('Labour units', 'وحدات العمالة'), Q.LU ? fmtN(Q.LU / 8) : '—', `${LBL('man-days', 'يوم-عامل')}${NL ? ` · ${LBL('non-labour', 'غير العمالة')} ${fmtN(NL / 8)}` : ''}`)}${xk('k6', T('activities'), fmtN(acts.length), `${fmtN(acts.filter(isMs).length)} ${LBL('milestones', 'معلم')}`)}</div>
-    <div class="xs-r xs-m"><div class="xc" data-v="gantt" style="flex:7">${tree}</div>
-      <div class="xc" data-v="cost" style="flex:2.6"><div class="xc-t">${LBL('Budget by zone', 'الميزانية حسب المنطقة')}</div><div class="dn1">${donutSVG(DZ.map((x, i) => [x[1], PAL[i % PAL.length]]), rpM(cost), B.currency || 'SAR', 150)}<div class="dn-l">${DZ.map((x, i) => `<span><i style="background:${PAL[i % PAL.length]}"></i><em dir="auto">${h(x[0])}</em><b dir="ltr">${fmtPct(x[1] / (cost || 1), 1)}</b></span>`).join('')}</div></div></div></div>
+    <div class="xs-r xs-m"><div class="xc" data-v="gantt" style="flex:8.2">${tree}</div>
+      <div class="xc" data-v="cost" style="flex:1.75"><div class="xc-t">${LBL('Budget by zone', 'الميزانية حسب المنطقة')}</div><div class="dn1">${donutSVG(DZ.map((x, i) => [x[1], PAL[i % PAL.length]]), rpM(cost), B.currency || 'SAR', 112)}<div class="dn-l">${DZ.map((x, i) => `<span><i style="background:${PAL[i % PAL.length]}"></i><em dir="auto">${h(x[0])}</em><b dir="ltr">${fmtPct(x[1] / (cost || 1), 1)}</b></span>`).join('')}</div></div></div></div>
     <div class="xs-r xs-m" style="flex:1.15"><div class="xc xg" data-v="cash" style="flex:1"><div class="xc-t">${LBL('Cash flow – planned value and cumulative %', 'التدفق النقدي – القيمة المخططة والتراكمي %')}${perBtn('C', pc)}</div>${rpPerChart(Q, 'cost', pc, 620, 250)}</div>
       <div class="xc xg" data-v="lab" style="flex:1"><div class="xc-t">${LBL('Manpower – planned man-days and cumulative %', 'العمالة – أيام العمل المخططة والتراكمي %')}${perBtn('L', pl)}</div>${Q.LU ? rpPerChart(Q, 'lab', pl, 620, 250) : `<div class="empty">${LBL('No labour resources in the baseline XER.', 'لا توجد موارد عمالة في ملف XER الأساسي.')}</div>`}</div></div></div>`;
   el.querySelectorAll('[data-per]').forEach(b => b.onclick = () => { const k = 'blPer' + b.dataset.per, cur = S.ui[k] || 'M', i = RP_PER.findIndex(x => x[0] === cur); S.ui[k] = RP_PER[(i + 1) % 3][0]; RP.render(); });

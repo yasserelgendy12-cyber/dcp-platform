@@ -528,7 +528,13 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
 .pr-bar button svg{width:17px;height:17px}html[dir=rtl] .pr-bar button.ar{transform:scaleX(-1)}
 .pr-bar span{min-width:56px;text-align:center;font-weight:700}
 .pr-bar select{font:inherit;font-size:12.5px;background:#0A3A43;color:#fff;border:1px solid #2E6A74;border-radius:8px;padding:6px 8px;max-width:260px}
-.rpo.pres.idle .pr-bar{opacity:0;pointer-events:none}.rpo.pres.idle{cursor:none}
+.rpo.pres.idle{cursor:none}
+/* presentation: page tabs of the chosen pages (14-Nov-2026) */
+.rpo.pres .pr-nav{background:#0A3A43;border-bottom:1px solid rgba(159,211,218,.14);flex:0 0 auto}
+.rpo.pres .pr-nav .rp-tab2{background:#0E4A55}.rpo.pres .pr-nav .rp-tab2:hover{background:#155C68}.rpo.pres .pr-nav .rp-tab2.on{background:#E8A33D}
+.pr-nb{flex:0 0 auto;min-height:34px;min-width:38px;border:1px solid rgba(255,255,255,.28);border-radius:9px;background:transparent;color:#fff;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px}
+.pr-nb:hover{background:rgba(255,255,255,.12)}.pr-nb svg{width:16px;height:16px}
+@media print{.pr-nav{display:none!important}}
 .pr-d{display:flex;flex-direction:column;gap:12px}
 .pr-ss{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pr-s{border:1px solid #E1E7EC;border-radius:12px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
@@ -4259,7 +4265,7 @@ RP.P.cover = el => {
       <div class="cv-logos">${['owner', 'consultant', 'contractor'].map(k => L[k] ? `<figure><img src="${L[k]}" alt=""><figcaption>${LBL({ owner: 'Owner', consultant: 'Consultant', contractor: 'Contractor' }[k], { owner: 'المالك', consultant: 'الاستشاري', contractor: 'المقاول' }[k])}</figcaption></figure>` : '').join('')}</div>
       <div class="cv-t"><span>${LBL('Weekly Progress Report', 'تقرير التقدم الأسبوعي')}</span><b dir="ltr">${h(code)}</b></div>
       <div class="cv-meta"><div><span>${T('report_no')}</span><b dir="ltr">${h(String((cut && cut.reportNo) || '—'))}</b></div><div><span>${T('cutoff')}</span><b dir="ltr">${cut ? D.fmt(cut.date) : '—'}</b></div><div><span>${T('data_date')}</span><b dir="ltr">${sch ? D.fmt(sch.dataDate) : '—'}</b></div></div>
-      <div class="cv-k">${sm ? ring(sm.planned, '#0E4A55', LBL('Planned', 'المخطط'), LBL('at the cut-off date', 'عند تاريخ القطع')) + ring(sm.ctr, '#1E88C7', LBL('Actual', 'الفعلي'), LBL('contractor', 'المقاول')) : `<div class="muted">${LBL('Progress appears after a cut-off and the schedule (XER) are loaded.', 'يظهر التقدم بعد فتح تاريخ قطع وتحميل الجدول الزمني (XER).')}</div>`}</div>
+      <div class="cv-k">${sm ? ring(sm.planned, '#0E4A55', LBL('Planned', 'المخطط'), LBL('at the cut-off date', 'عند تاريخ القطع')) + ring(sm.ctr, RCOL.ev, LBL('Actual', 'الفعلي'), LBL('contractor', 'المقاول')) : `<div class="muted">${LBL('Progress appears after a cut-off and the schedule (XER) are loaded.', 'يظهر التقدم بعد فتح تاريخ قطع وتحميل الجدول الزمني (XER).')}</div>`}</div>
       ${sm ? `<div class="cv-var ${gap < -0.005 ? 'bad' : 'ok'}">${LBL('Variance', 'الفرق')}: <b dir="ltr">${gap >= 0 ? '+' : ''}${(gap * 100).toFixed(2)} pp</b> · ${gap < -0.005 ? LBL('behind plan', 'متأخر عن المخطط') : LBL('on / ahead of plan', 'مطابق أو متقدم على المخطط')}</div>` : ''}
       <div class="cv-prep">${p.preparedBy ? `${LBL('Prepared by', 'إعداد')}: <b dir="auto">${h(p.preparedBy)}</b>` : ''}</div>
     </div></div>`;
@@ -5066,7 +5072,8 @@ Object.assign(IC, {
   image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="M21 16l-5.5-5.5L5 20"/>',
   expand: '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>'
 });
-const RCOL = { p: '#0E4A55', act: '#1E88C7', pl: '#A9B8C4', ok: '#1E8A5A', warn: '#D9A21B', bad: '#C2410C', ns: '#D5DCE3', done: '#5E6B78', ink: '#12202B', mut: '#5B6B7A' };
+/* one colour set for the whole report (14-Nov-2026): planned value = teal, planned labour = blue, actual / earned = violet, planned cumulative = petrol, actual cumulative = amber */
+const RCOL = { p: '#0E4A55', pv: '#2E9E8F', plab: '#1E88C7', ev: '#7B5EA7', evd: '#5B3F87', acc: '#E8A33D', act: '#7B5EA7', pl: '#A9B8C4', ok: '#1E8A5A', warn: '#D9A21B', bad: '#C2410C', ns: '#D5DCE3', done: '#5E6B78', ink: '#12202B', mut: '#5B6B7A' };
 
 /* ---------- hidden visuals: hide / show any card, chart or table of a page; the page reflows ---------- */
 const RV_SEL = '[data-v], .up-kpis > .up-k, .up-c, .up-t, .ud-gs > .gg';
@@ -5135,18 +5142,20 @@ RP.stopPres = () => { const P = S.ui.pres; S.ui.pres = null; if (P && document.f
 RP.renderPres = () => {
   const P = S.ui.pres, all = RP.main(); P.pages = P.pages.filter(k => all.some(p => p.k === k)); if (!P.pages.length) { S.ui.pres = null; return RP.render(); }
   P.i = Math.max(0, Math.min(P.i || 0, P.pages.length - 1)); const pg = all.find(p => p.k === P.pages[P.i]); S.ui.rpPage = pg.k;
-  document.getElementById('app').innerHTML = `<div class="rpo pres" id="rpPres"><div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${RP.frame(pg, P.i + 1, P.pages.length)}</div></div>
-    <div class="pr-bar" role="toolbar" aria-label="${LBL('Presentation', 'العرض')}"><button class="ar" data-pp="-1" ${P.i ? '' : 'disabled'} aria-label="${LBL('Previous', 'السابق')}">‹</button><span dir="ltr">${P.i + 1} / ${P.pages.length}</span><button class="ar" data-pp="1" ${P.i < P.pages.length - 1 ? '' : 'disabled'} aria-label="${LBL('Next', 'التالي')}">›</button>
-      <select data-pj aria-label="${LBL('Go to page', 'الانتقال إلى صفحة')}">${P.pages.map((k, i) => `<option value="${i}" ${i === P.i ? 'selected' : ''}>${i + 1}. ${rpLbl(all.find(p => p.k === k))}</option>`).join('')}</select>
-      <button data-pfs aria-label="${LBL('Full screen', 'ملء الشاشة')}" title="${LBL('Full screen', 'ملء الشاشة')}">${ic('expand')}</button><button data-px>${ic('x')}${LBL('Exit', 'خروج')}</button></div></div>`;
+  /* page tabs of the chosen pages (14-Nov-2026): same slanted tabs as the report navigator, numbered in presentation order; click a tab or use ← → */
+  const tabs = P.pages.map((k, i) => { const x = all.find(p => p.k === k); return `<button class="rp-tab2 ${i === P.i ? 'on' : ''}" data-pt="${i}" title="${rpLbl(x)}" ${i === P.i ? 'aria-current="page"' : ''}><span><i dir="ltr">${String(i + 1).padStart(2, '0')}</i>${LBL(...x.t)}</span></button>`; }).join('');
+  document.getElementById('app').innerHTML = `<div class="rpo pres" id="rpPres"><nav class="rp-nav2 pr-nav" role="toolbar" aria-label="${LBL('Presentation pages', 'صفحات العرض')}"><button class="rp-ar" data-pp="-1" ${P.i ? '' : 'disabled'} aria-label="${LBL('Previous', 'السابق')}">‹</button><div class="rp-tb">${tabs}</div><span class="rp-cnt" dir="ltr">${P.i + 1} / ${P.pages.length}</span><button class="rp-ar" data-pp="1" ${P.i < P.pages.length - 1 ? '' : 'disabled'} aria-label="${LBL('Next', 'التالي')}">›</button>
+      <button class="pr-nb" data-pfs aria-label="${LBL('Full screen', 'ملء الشاشة')}" title="${LBL('Full screen', 'ملء الشاشة')}">${ic('expand')}</button><button class="pr-nb" data-px>${ic('x')}${LBL('Exit', 'خروج')}</button></nav>
+    <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${RP.frame(pg, P.i + 1, P.pages.length)}</div></div></div>`;
   const app = document.getElementById('app');
   app.querySelectorAll('[data-pp]').forEach(b => b.onclick = () => RP.step(+b.dataset.pp));
-  app.querySelector('[data-pj]').onchange = e => RP.go(P.pages[+e.target.value]);
+  app.querySelectorAll('[data-pt]').forEach(b => b.onclick = () => RP.go(P.pages[+b.dataset.pt]));
   app.querySelector('[data-px]').onclick = RP.stopPres;
   app.querySelector('[data-pfs]').onclick = () => { const d = document.documentElement; if (document.fullscreenElement) { P.fs = false; document.exitFullscreen().catch(() => { }); } else if (d.requestFullscreen) d.requestFullscreen().then(() => { P.fs = true; }).catch(() => { }); };
+  const on = app.querySelector('.pr-nav .rp-tab2.on'); if (on) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
   RP.show(document.getElementById('rpPage'), pg); RP.fit(); RP.presIdle();
 };
-RP.presIdle = () => { const pr = document.getElementById('rpPres'); if (!pr) return; pr.classList.remove('idle'); clearTimeout(RP._idle); RP._idle = setTimeout(() => { const x = document.getElementById('rpPres'); if (x && !x.querySelector('.pr-bar:hover, .pr-bar select:focus')) x.classList.add('idle'); }, 2600); };
+RP.presIdle = () => { const pr = document.getElementById('rpPres'); if (!pr) return; pr.classList.remove('idle'); clearTimeout(RP._idle); RP._idle = setTimeout(() => { const x = document.getElementById('rpPres'); if (x && !x.querySelector('.pr-nav:hover')) x.classList.add('idle'); }, 2600); };
 document.addEventListener('mousemove', () => { if (S.ui && S.ui.pres) RP.presIdle(); });
 document.addEventListener('fullscreenchange', () => { if (S.portal === 'rp') { const P = S.ui.pres; if (P && P.fs && !document.fullscreenElement) RP.stopPres(); else RP.fit(); } });
 
@@ -6630,20 +6639,21 @@ function rpTipWire() {
 }
 
 /* ---------- combo chart: monthly bars (left axis) + cumulative lines (right axis, value and % of the total) ---------- */
-function _svgCombo({ w, h: hh, cats, bars = [], lines = [], fmtL = v => fmtN(v), tot, fmtR, lblR, vline, tips }) {
+function _svgCombo({ w, h: hh, cats, bars = [], lines = [], fmtL = v => fmtN(v), tot, fmtR, lblR, vline, tips, note }) {
   const L = 52, Rm = 52, T = 18, B = 30, n = cats.length || 1, bw = (w - L - Rm) / n, X = i => L + bw * i + bw / 2;
   const mL = Math.max(1e-9, ...bars.flatMap(b => b.v.map(N))) * 1.18, mR = Math.max(N(tot) || 0, ...lines.flatMap(l => l.v.filter(v => v != null).map(N))) * 1.06 || 1;
   const YL = v => T + (1 - N(v) / mL) * (hh - T - B), YR = v => T + (1 - N(v) / mR) * (hh - T - B);
   const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${L}" x2="${w - Rm}" y1="${YL(f * mL)}" y2="${YL(f * mL)}" stroke="#EEF2F5"/><text x="${L - 6}" y="${YL(f * mL) + 4}" text-anchor="end" font-size="10" fill="#5B6B7A">${fmtL(f * mL)}</text>`).join('')
     + (tot ? [0, .25, .5, .75, 1].map(f => { const v = f * tot; return v <= mR ? `<text x="${w - Rm + 6}" y="${YR(v) + 4}" font-size="10" fill="#5B6B7A">${Math.round(f * 100)}%</text>` : ''; }).join('') : '');
   const nb = bars.length, gw = Math.min(bars.gw || 30, bw * 0.78), cw = gw / Math.max(1, nb);
-  const bs = bars.map((b, j) => b.v.map((v, i) => v != null && N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${YL(v).toFixed(1)}" width="${Math.max(1, cw - 1).toFixed(1)}" height="${Math.max(0, YL(0) - YL(v)).toFixed(1)}" fill="${b.c}" rx="1.5"><title>${h(cats[i])} · ${h(b.n || '')}: ${fmtL(v)}</title></rect>${b.lbl && b.lbl(i, v) ? `<text x="${(X(i) - gw / 2 + j * cw + cw / 2).toFixed(1)}" y="${(YL(v) - 4).toFixed(1)}" text-anchor="middle" font-size="${b.fs || 9.5}" font-weight="700" fill="${b.lc || '#2F3D4A'}">${b.lbl(i, v)}</text>` : ''}` : '').join('')).join('');
+  const bs = bars.map((b, j) => b.v.map((v, i) => v != null && N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${YL(v).toFixed(1)}" width="${Math.max(1, cw - 1).toFixed(1)}" height="${Math.max(0, YL(0) - YL(v)).toFixed(1)}" fill="${b.c}" rx="1.5"${b.op && b.op(i) < 1 ? ` opacity="${b.op(i)}"` : ''}><title>${h(cats[i])} · ${h(b.n || '')}: ${fmtL(v)}</title></rect>${b.lbl && b.lbl(i, v) ? `<text x="${(X(i) - gw / 2 + j * cw + cw / 2).toFixed(1)}" y="${(YL(v) - 4).toFixed(1)}" text-anchor="middle" font-size="${b.fs || 9.5}" font-weight="700" fill="${b.lc || '#2F3D4A'}">${b.lbl(i, v)}</text>` : ''}` : '').join('')).join('');
   const ls = lines.map(l => { const q = l.v.map((v, i) => [v, i]).filter(([v]) => v != null); return `<polyline fill="none" stroke="${l.c}" stroke-width="${l.wd || 2.4}" ${l.dash ? `stroke-dasharray="${l.dash}"` : ''} points="${q.map(([v, i]) => `${X(i).toFixed(1)},${YR(v).toFixed(1)}`).join(' ')}"/>`
     + q.map(([v, i]) => `${l.marks ? `<circle cx="${X(i).toFixed(1)}" cy="${YR(v).toFixed(1)}" r="3.2" fill="#fff" stroke="${l.c}" stroke-width="2"/>` : ''}${l.lbl && l.lbl(i, v) ? (l.box ? (() => { const s = l.lbl(i, v), wd = s.length * 5.6 + 8, y = l.below ? YR(v) + 5 : YR(v) - 15; return `<rect x="${(X(i) - wd / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${wd.toFixed(1)}" height="13" rx="3" fill="${l.c}" opacity=".9"/><text x="${X(i).toFixed(1)}" y="${(y + 9.5).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">${s}</text>`; })() : `<text x="${X(i).toFixed(1)}" y="${(YR(v) + (l.below ? 15 : -8)).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${l.c}" paint-order="stroke" stroke="#fff" stroke-width="3">${l.lbl(i, v)}</text>`) : ''}`).join(''); }).join('');
   const step = Math.max(1, Math.ceil(n / Math.max(4, (w - L - Rm) / 54))), xl = cats.map((c, i) => i % step ? '' : `<text x="${X(i)}" y="${hh - B + 15}" text-anchor="middle" font-size="10" fill="#5B6B7A">${h(c)}</text>`).join('');
   const vl = vline != null ? `<line x1="${X(vline)}" x2="${X(vline)}" y1="${T}" y2="${hh - B}" stroke="#C2410C" stroke-dasharray="4 4" opacity=".7"/>` : '';
   const tp = tips ? cats.map((c, i) => tips[i] ? `<rect class="ctp" x="${(X(i) - bw / 2).toFixed(1)}" y="${T}" width="${bw.toFixed(1)}" height="${hh - T - B}" data-tp="${tips[i]}"/>` : '').join('') : '';
-  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img"><line x1="${L}" x2="${w - Rm}" y1="${YL(0)}" y2="${YL(0)}" stroke="#B4C0CA"/>${grid}${vl}${tp}${bs}${ls}${xl}</svg>`;
+  const nt = note ? `<g font-size="9" fill="#5B6B7A"><rect x="${L + 6}" y="${T - 2}" width="10" height="8" rx="1.5" fill="${note.c}" opacity=".55"/><line x1="${L + 20}" x2="${L + 34}" y1="${T + 2}" y2="${T + 2}" stroke="${note.l}" stroke-width="2" stroke-dasharray="4 3"/><text x="${L + 38}" y="${T + 5}" direction="${S.lang === 'ar' ? 'rtl' : 'ltr'}" text-anchor="${S.lang === 'ar' ? 'end' : 'start'}">${h(note.t)}</text></g>` : '';
+  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img"><line x1="${L}" x2="${w - Rm}" y1="${YL(0)}" y2="${YL(0)}" stroke="#B4C0CA"/>${grid}${vl}${tp}${bs}${ls}${xl}${nt}</svg>`;
 }
 const svgCombo = o => { if (RCH.size > 600) RCH.clear(); const id = 'c' + (++rchN); RCH.set(id, [_svgCombo, o]); return _svgCombo(o).replace('<svg ', `<svg data-ch="${id}" `); };
 const rpMonths = (a, b) => { const out = []; let m = a.slice(0, 7); while (m <= b.slice(0, 7)) { out.push(m); const [y, mm] = m.split('-').map(Number); m = mm === 12 ? `${y + 1}-01` : `${y}-${String(mm + 1).padStart(2, '0')}`; } return out; };
@@ -6661,7 +6671,7 @@ function rpPerChart(Q, kind, per, w, hh) {
   const g = new Map(); Q.wk.forEach((d, i) => { const k = key(d); g.set(k, (g.get(k) || 0) + val(i)); });
   const ks = [...g.keys()], v = ks.map(k => g.get(k)); let c = 0; const cum = v.map(x => (c += x));
   const n = ks.length, every = Math.max(1, Math.ceil(n / (w / 46))), fm = x => kind === 'cost' ? (x >= 1e7 ? `${Math.round(x / 1e6)}M` : x >= 1e5 ? `${(x / 1e6).toFixed(1)}M` : x ? `${(x / 1e6).toFixed(2)}M` : '') : (x >= 1e4 ? `${Math.round(x / 1000)}k` : x >= 1000 ? `${(x / 1000).toFixed(1)}k` : x ? fmtN(x) : '');
-  const bars = [{ v, c: kind === 'cost' ? '#2E9E8F' : '#1E88C7', n: kind === 'cost' ? LBL('Planned value', 'القيمة المخططة') : LBL('Planned man-days', 'يوم-عامل مخطط'), lbl: (i, x) => i % every === 0 ? fm(x) : '', fs: n > 30 ? 8 : 9.5 }]; bars.gw = 34;
+  const bars = [{ v, c: kind === 'cost' ? RCOL.pv : RCOL.plab, n: kind === 'cost' ? LBL('Planned value', 'القيمة المخططة') : LBL('Planned man-days', 'يوم-عامل مخطط'), lbl: (i, x) => i % every === 0 ? fm(x) : '', fs: n > 30 ? 8 : 9.5 }]; bars.gw = 34;
   const cur = (S.db.baseline || S.db.schedule || {}).currency || 'SAR', fv = x => kind === 'cost' ? `${fmtN(x / 1e6, 2)} M ${cur}` : `${fmtN(x)} ${LBL('man-days', 'يوم-عامل')}`;
   const f100 = cum.findIndex(x => x / (tot || 1) >= 0.9995);
   const tips = ks.map((k, i) => rpTip(lab(k), [[LBL('Planned in period', 'المخطط في الفترة'), fv(v[i])], [LBL('Planned cumulative', 'المخطط التراكمي'), `${fv(cum[i])} · ${fmtPct(cum[i] / (tot || 1), 1)}`]]));
@@ -6705,7 +6715,22 @@ function rpUA(u) {   // figures of one update for the current slicers, from its 
   }
   RPUA.set(k, A); return A;
 }
-const RP_UC = { pl: '#A9B8C4', ac: '#1E88C7', pc: '#0E4A55', acc: '#E8A33D' };
+const RP_UC = { pv: RCOL.pv, plab: RCOL.plab, ac: RCOL.ev, acd: RCOL.evd, pc: RCOL.p, acc: RCOL.acc };   // the report colour set (RCOL): planned value teal, planned labour blue, actual violet, cumulative planned petrol, cumulative actual amber
+const RP_HL = { f: '#FFFBF4', s: '#F5E9D2' };   // light highlight of the selected update (last 4 updates, SPI of the critical activities)
+/* actual before the first update XER of the folder: the first update holds only the earned value to its data date. It is spread over the periods
+   from the first actual start, linear between the actual start and the actual finish (or the data date of the schedule) of each activity of the
+   schedule loaded in the platform (slicers applied), then scaled so the total equals the first update exactly. Returns the cumulative per day. */
+const RPPRE = new Map();
+function rpPre(kind, u1) {
+  const s = SCH(); if (!s || !u1 || !u1.dd) return null; const k = [kind, u1.f, u1.dd, s.dataDate, s.activities.length, JSON.stringify(RPF.get())].join('|'); if (RPPRE.has(k)) return RPPRE.get(k); if (RPPRE.size > 60) RPPRE.clear();
+  const d1 = u1.dd, dd = s.asOf || s.dataDate || d1, add = new Map(); let d0 = d1;
+  s.activities.forEach(a => { if (!a.as || a.as > d1 || !RPF.pass(a)) return; const w = kind === 'cost' ? N(a.cost) : N(a.lu !== undefined ? a.lu : (a.bl || {}).lu); if (!w) return;
+    const e = a.af || (dd > a.as ? dd : a.as), E = w * (a.af ? 1 : Math.min(1, N(a.pct) / 100)); if (!E) return; const n = D.diff(e, a.as) + 1, r = E / n;
+    add.set(a.as, (add.get(a.as) || 0) + r); const x = D.add(e, 1); add.set(x, (add.get(x) || 0) - r); if (a.as < d0) d0 = a.as; });
+  if (d0 >= d1) { RPPRE.set(k, null); return null; }
+  const cum = new Map(); let rate = 0, c = 0; for (let d = d0; d <= d1; d = D.add(d, 1)) { rate += add.get(d) || 0; c += rate; cum.set(d, c); }
+  const R = c > 0 ? { d0, d1, at: d => d < d0 ? 0 : d >= d1 ? 1 : (cum.get(d) || 0) / c } : null; RPPRE.set(k, R); return R;
+}
 function rpUpPer(Q, kind, per, upto, u, bac, w, hh) {   // planned (baseline, slicers) and actual (update summaries) per week / month / quarter
   const cur = (S.db.baseline || S.db.schedule || {}).currency || 'SAR', qk = m => `${m.slice(0, 4)}-Q${Math.ceil(+m.slice(5, 7) / 3)}`;
   const kP = d => per === 'W' ? d : per === 'M' ? monthKey(D.add(d, 3)) : qk(monthKey(D.add(d, 3))), kA = d => per === 'W' ? weekKey(d) : per === 'M' ? monthKey(d) : qk(monthKey(d));
@@ -6713,28 +6738,34 @@ function rpUpPer(Q, kind, per, upto, u, bac, w, hh) {   // planned (baseline, sl
   const tot = kind === 'cost' ? bac : Q.LU / 8, g = new Map(); Q.wk.forEach((d, i) => { const k = kP(d); g.set(k, (g.get(k) || 0) + (kind === 'cost' ? Q.wkV[i] * bac : Q.wkL[i] / 8)); });
   const ks = [...g.keys()], ix = new Map(ks.map((k, i) => [k, i])), n = ks.length, P = ks.map(k => g.get(k)); let c = 0; const cumP = P.map(x => (c += x));
   const cumA = ks.map(() => null), upd = ks.map(() => null);
-  const pAt = ks.map(() => null); upto.forEach(x => { const i = ix.get(kA(x.dd)); if (i == null) return; const A = rpUA(x); const v = kind === 'cost' ? A.ev * bac : A.evl / 8; if (kind !== 'cost' && !N(A.lu)) return; cumA[i] = v; upd[i] = x; pAt[i] = kind === 'cost' ? A.pv * bac : A.pvl / 8; });
-  const Am = cumA.map((v, i) => { if (v == null) return null; const p = cumA.slice(0, i).filter(x => x != null).pop(); return p == null ? null : Math.max(0, v - p); });
-  const vi = ix.get(kA(u.dd)), fa = cumA.findIndex(x => x != null), every = Math.max(1, Math.ceil(n / (w / 44)));
+  const pAt = ks.map(() => null), ev = x => { const A = rpUA(x); return kind === 'cost' ? A.ev * bac : N(A.lu) ? A.evl / 8 : null; };
+  upto.forEach(x => { const i = ix.get(kA(x.dd)); if (i == null) return; const A = rpUA(x), v = ev(x); if (v == null) return; cumA[i] = v; upd[i] = x; pAt[i] = kind === 'cost' ? A.pv * bac : A.pvl / 8; });
+  const fa = cumA.findIndex(x => x != null), est = ks.map(() => false);   // fa = period of the first update XER
+  if (fa > 0) { const u1 = upto.find(x => ix.get(kA(x.dd)) === fa), E1 = u1 ? ev(u1) : null, R = E1 ? rpPre(kind, u1) : null;   // periods before it: estimated from the actual dates
+    if (R) for (let d = R.d0; d < R.d1; d = D.add(d, 1)) { let i = ix.get(kA(d)); if (i == null) i = d < ks[0] ? 0 : null; if (i == null || i >= fa) continue; cumA[i] = E1 * R.at(d); est[i] = true; } }
+  const Am = cumA.map((v, i) => { if (v == null) return null; const p = cumA.slice(0, i).filter(x => x != null).pop(); return p == null ? (est[i] ? v : null) : Math.max(0, v - p); });
+  const vi = ix.get(kA(u.dd)), every = Math.max(1, Math.ceil(n / (w / 44))), u1l = (upto[0] || {}).lbl || '';
   const fm = x => kind === 'cost' ? (x >= 1e7 ? `${Math.round(x / 1e6)}M` : x >= 1e5 ? `${(x / 1e6).toFixed(1)}M` : x ? `${(x / 1e6).toFixed(2)}M` : '') : (x >= 1e4 ? `${Math.round(x / 1000)}k` : x >= 1000 ? `${(x / 1000).toFixed(1)}k` : x ? fmtN(x) : '');
   const fv = x => x == null ? '—' : kind === 'cost' ? `${fmtN(x / 1e6, 2)} M ${cur}` : `${fmtN(x)} ${LBL('man-days', 'يوم-عامل')}`, pc = x => fmtPct(x / (tot || 1), 1);
   const nearV = i => vi != null && Math.abs(i - vi) % every === 0 && i <= vi;   // actual values aligned on the selected update
-  const tips = ks.map((k, i) => rpTip(`${lab(k)}${upd[i] ? ` · ${upd[i].lbl}` : ''}`, [[LBL('Planned in period', 'المخطط في الفترة'), fv(P[i])], [LBL('Actual in period', 'الفعلي في الفترة'), Am[i] != null ? fv(Am[i]) : ''], [LBL('Planned cum. (end of period)', 'المخطط التراكمي (نهاية الفترة)'), `${fv(cumP[i])} · ${pc(cumP[i])}`], [`${LBL('Planned at', 'المخطط في')} ${upd[i] ? D.fmt(upd[i].ddp || upd[i].dd) : ''}`, pAt[i] != null ? `${fv(pAt[i])} · ${pc(pAt[i])}` : ''], [LBL('Actual cumulative', 'الفعلي التراكمي'), cumA[i] != null ? `${fv(cumA[i])} · ${pc(cumA[i])}` : ''], [LBL('Variance at the data date', 'الفرق في تاريخ البيانات'), cumA[i] != null && pAt[i] != null ? `${cumA[i] >= pAt[i] ? '+' : '−'}${fv(Math.abs(cumA[i] - pAt[i]))}` : '']]));
-  const bars = [{ v: P, c: RP_UC.pl, n: LBL('Planned', 'مخطط'), lc: '#5B6B7A', fs: n > 30 ? 8 : 9, lbl: (i, x) => i % every === 0 && Am[i] == null ? fm(x) : '' }, { v: Am, c: RP_UC.ac, n: LBL('Actual', 'فعلي'), lc: '#155E8A', fs: n > 30 ? 8 : 9.5, lbl: (i, x) => nearV(i) || i === vi ? fm(x) : '' }]; bars.gw = 36;
-  return svgCombo({ w, h: hh, cats: ks.map(lab), vline: vi, tips, bars, tot,
+  const tips = ks.map((k, i) => rpTip(`${lab(k)}${upd[i] ? ` · ${upd[i].lbl}` : ''}`, [[LBL('Planned in period', 'المخطط في الفترة'), fv(P[i])], [est[i] ? LBL(`Actual in period (estimated before ${u1l})`, `الفعلي في الفترة (تقديري قبل ${u1l})`) : LBL('Actual in period', 'الفعلي في الفترة'), Am[i] != null ? fv(Am[i]) : ''], [LBL('Planned cum. (end of period)', 'المخطط التراكمي (نهاية الفترة)'), `${fv(cumP[i])} · ${pc(cumP[i])}`], [`${LBL('Planned at', 'المخطط في')} ${upd[i] ? D.fmt(upd[i].ddp || upd[i].dd) : ''}`, pAt[i] != null ? `${fv(pAt[i])} · ${pc(pAt[i])}` : ''], [est[i] ? LBL('Actual cumulative (estimated)', 'الفعلي التراكمي (تقديري)') : LBL('Actual cumulative', 'الفعلي التراكمي'), cumA[i] != null ? `${fv(cumA[i])} · ${pc(cumA[i])}` : ''], [LBL('Variance at the data date', 'الفرق في تاريخ البيانات'), cumA[i] != null && pAt[i] != null ? `${cumA[i] >= pAt[i] ? '+' : '−'}${fv(Math.abs(cumA[i] - pAt[i]))}` : '']]));
+  const bars = [{ v: P, c: kind === 'cost' ? RP_UC.pv : RP_UC.plab, n: LBL('Planned', 'مخطط'), lc: '#3E4F5C', fs: n > 30 ? 8 : 9, lbl: (i, x) => i % every === 0 && Am[i] == null ? fm(x) : '' }, { v: Am, c: RP_UC.ac, op: i => est[i] ? 0.55 : 1, n: LBL('Actual', 'فعلي'), lc: RP_UC.acd, fs: n > 30 ? 8 : 9.5, lbl: (i, x) => nearV(i) || i === vi ? fm(x) : '' }]; bars.gw = 36;
+  const cumE = cumA.map((v, i) => est[i] || i === fa ? v : null), cumR = cumA.map((v, i) => est[i] ? null : v);   // estimated part of the actual cumulative dashed
+  const note = est.some(Boolean) ? { c: RP_UC.ac, l: RP_UC.acc, t: LBL(`Before ${u1l}: estimated from the actual dates`, `قبل ${u1l}: تقديري من التواريخ الفعلية`) } : null;
+  return svgCombo({ w, h: hh, cats: ks.map(lab), vline: vi, tips, bars, tot, note,
     lines: [{ v: cumP, c: RP_UC.pc, box: 1, below: 1, lbl: (i, x) => (vi == null || Math.abs(i - vi) > every) && (((n - 1 - i) % (every * 2) === 0 && x / (tot || 1) < 0.9995) || i === cumP.findIndex(y => y / (tot || 1) >= 0.9995)) ? pc(x).replace(/\.\d%$/, '%') : '' },
-      { v: cumA, c: RP_UC.acc, wd: 3, marks: true, box: 1, lbl: (i, x) => i === vi || i === fa ? pc(x) : '' }],
+      ...(est.some(Boolean) ? [{ v: cumE, c: RP_UC.acc, wd: 2.2, dash: '5 4' }] : []), { v: cumR, c: RP_UC.acc, wd: 3, marks: true, box: 1, lbl: (i, x) => i === vi || i === fa ? pc(x) : '' }],
     fmtL: rpAx(kind) });
 }
 function _rpL4({ L4, u, w, h: hh }) {   // last 4 updates: planned / actual % bars (top) and SPI line (bottom); the selected update highlighted
   const n = L4.length || 1, L = 34, R = 10, gw = (w - L - R) / n, cx = j => L + gw * j + gw / 2, yB = Math.round(hh * 0.55), Yb = v => 16 + (1 - Math.min(1, v)) * (yB - 16), ys0 = yB + 50, ys1 = hh - 8;
   const S_ = L4.map(x => { const A = rpUA(x); return A.pv ? A.ev / A.pv : null; }), sv = S_.filter(isNum), lo = Math.min(0.85, ...sv) - 0.05, hi = Math.max(1.15, ...sv) + 0.05, Ys = v => ys1 - (v - lo) / (hi - lo) * (ys1 - ys0);
   const col = s => !isNum(s) ? '#7B8C99' : s >= 0.95 ? RCOL.ok : s >= 0.85 ? RCOL.warn : RCOL.bad;
-  const hl = L4.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 3).toFixed(1)}" y="4" width="${(gw - 6).toFixed(1)}" height="${hh - 8}" rx="8" fill="#FFF4E0" stroke="#F3D9A8"/>` : '').join('');
+  const hl = L4.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 3).toFixed(1)}" y="4" width="${(gw - 6).toFixed(1)}" height="${hh - 8}" rx="8" fill="${RP_HL.f}" stroke="${RP_HL.s}"/>` : '').join('');
   const grid = [0, .5, 1].map(f => `<line x1="${L}" x2="${w - R}" y1="${Yb(f)}" y2="${Yb(f)}" stroke="#EEF2F5"/><text x="${L - 5}" y="${Yb(f) + 3.5}" text-anchor="end" font-size="9" fill="#7B8C99">${f * 100}%</text>`).join('');
   const bars = L4.map((x, j) => { const A = rpUA(x), bw = Math.min(30, gw * 0.36), on = x === u, op = on ? 1 : 0.55;
-    return `<rect x="${cx(j) - bw - 2}" y="${Yb(A.pv)}" width="${bw}" height="${yB - Yb(A.pv)}" fill="${RP_UC.pl}" rx="2" opacity="${op}"/><rect x="${cx(j) + 2}" y="${Yb(A.ev)}" width="${bw}" height="${yB - Yb(A.ev)}" fill="${RP_UC.ac}" rx="2" opacity="${op}"/>
-      <text x="${cx(j) - bw / 2 - 2}" y="${Yb(A.pv) - 4}" text-anchor="middle" font-size="9" font-weight="700" fill="#5B6B7A">${fmtPct(A.pv, 1)}</text><text x="${cx(j) + bw / 2 + 2}" y="${Yb(A.ev) - 4}" text-anchor="middle" font-size="9" font-weight="700" fill="#155E8A">${fmtPct(A.ev, 1)}</text>
+    return `<rect x="${cx(j) - bw - 2}" y="${Yb(A.pv)}" width="${bw}" height="${yB - Yb(A.pv)}" fill="${RP_UC.pv}" rx="2" opacity="${op}"/><rect x="${cx(j) + 2}" y="${Yb(A.ev)}" width="${bw}" height="${yB - Yb(A.ev)}" fill="${RP_UC.ac}" rx="2" opacity="${op}"/>
+      <text x="${cx(j) - bw / 2 - 2}" y="${Yb(A.pv) - 4}" text-anchor="middle" font-size="9" font-weight="700" fill="#1F6F64">${fmtPct(A.pv, 1)}</text><text x="${cx(j) + bw / 2 + 2}" y="${Yb(A.ev) - 4}" text-anchor="middle" font-size="9" font-weight="700" fill="${RP_UC.acd}">${fmtPct(A.ev, 1)}</text>
       <text x="${cx(j)}" y="${yB + 14}" text-anchor="middle" font-size="10" font-weight="${on ? 800 : 600}" fill="${on ? '#12202B' : '#5B6B7A'}">${x.lbl}</text><text x="${cx(j)}" y="${yB + 26}" text-anchor="middle" font-size="9" fill="#7B8C99">${D.fmt(x.ddp || x.dd).slice(0, 6)}</text>
       <rect class="ctp" x="${cx(j) - gw / 2}" y="4" width="${gw}" height="${hh - 8}" data-tp="${rpTip(`${x.lbl} · ${D.fmt(x.ddp || x.dd)}`, [[LBL('Planned', 'المخطط'), fmtPct(A.pv, 2)], [LBL('Actual', 'الفعلي'), fmtPct(A.ev, 2)], [LBL('Variance', 'الفرق'), rpPP(A.ev - A.pv)], ['SPI', isNum(S_[j]) ? S_[j].toFixed(2) : '—']])}"/>`; }).join('');
   const pts = L4.map((x, j) => isNum(S_[j]) ? [cx(j), Ys(S_[j]), S_[j]] : null).filter(Boolean);
@@ -6748,7 +6779,7 @@ function _rpCrit({ L4, u, w, h: hh }) {   // SPI of the critical activities (P6 
   if (!sv.length) return `<div class="empty">${LBL('Read the updates again on Report sources (summary v3) to see the SPI of the critical activities.', 'أعد قراءة التحديثات من مصادر التقرير (ملخص v3) لعرض SPI الأنشطة الحرجة.')}</div>`;
   const lo = Math.min(0.5, ...sv) - 0.05, hi = Math.max(1.1, ...sv) + 0.05, y0 = 16, y1 = hh - 22, Y = v => y1 - (v - lo) / (hi - lo) * (y1 - y0), C = '#C2410C';
   const pts = L4.map((x, j) => isNum(S_[j]) ? [cx(j), Y(S_[j]), S_[j], x] : null).filter(Boolean);
-  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img">${L4.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 3).toFixed(1)}" y="3" width="${(gw - 6).toFixed(1)}" height="${hh - 6}" rx="7" fill="#FFF4E0" stroke="#F3D9A8"/>` : '').join('')}
+  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img">${L4.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 3).toFixed(1)}" y="3" width="${(gw - 6).toFixed(1)}" height="${hh - 6}" rx="7" fill="${RP_HL.f}" stroke="${RP_HL.s}"/>` : '').join('')}
     <rect x="${L}" y="${Y(Math.min(hi, 0.95))}" width="${w - L - R}" height="${Math.max(0, y1 - Y(Math.min(hi, 0.95)))}" fill="#FDF0EA" opacity=".8"/>
     <line x1="${L}" x2="${w - R}" y1="${Y(1)}" y2="${Y(1)}" stroke="#9FB3BF" stroke-dasharray="4 3"/><text x="${L - 5}" y="${Y(1) + 3.5}" text-anchor="end" font-size="9" fill="#7B8C99">1.00</text>
     <polyline fill="none" stroke="${C}" stroke-width="2.6" stroke-dasharray="7 4" points="${pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ')}"/>
@@ -6773,17 +6804,17 @@ RP.P.update = (el, pg) => {
   const blFin = RPF.on() ? Q.f0 : ((S.db.baseline && (S.db.baseline.planEnd || S.db.baseline.mustFinish)) || Q.f0), slip = blFin && A.fin ? D.diff(A.fin, blFin) : null, spi = A.pv ? A.ev / A.pv : null, pspi = Ap && Ap.pv ? Ap.ev / Ap.pv : null;
   const dd = u.ddp || u.dd, tot = D.diff(Q.f0, Q.s0) + 1, elp = Math.max(0, Math.min(tot, D.diff(dd, Q.s0) + 1)), L4 = upto.slice(-4), [stT, stC] = spiState(spi), hasL = Q.LU > 0 && N(A.lu) > 0;
   const pc = S.ui.upPerC || 'M', pl = S.ui.upPerL || 'M', perBtn = (k, p) => `<button class="xper" data-uper="${k}" title="${LBL('Weekly → monthly → quarterly', 'أسبوعي ← شهري ← ربع سنوي')}">${ic('sync')}${LBL(...RP_PER.find(x => x[0] === p).slice(1))}</button>`;
-  const leg = (a, b) => lg([[RP_UC.pl, LBL('Planned', 'مخطط')], [RP_UC.ac, a], [RP_UC.pc, LBL('Planned cum.', 'مخطط تراكمي')], [RP_UC.acc, b]]);
+  const leg = (pc_, a, b) => lg([[pc_, LBL('Planned', 'مخطط')], [RP_UC.ac, a], [RP_UC.pc, LBL('Planned cum.', 'مخطط تراكمي')], [RP_UC.acc, b]]);
   const note = A.nf ? `<div class="xnote">${ic('info')}<span>${LBL('This update was summarised before the slicers were stored per update – open Report sources and click “Read new updates”; until then its figures are for the whole project.', 'هذا التحديث لُخِّص قبل حفظ الفلاتر لكل تحديث – افتح مصادر التقرير واضغط "قراءة التحديثات الجديدة"؛ حتى ذلك الحين أرقامه للمشروع كله.')}</span></div>` : rpOld(u);
   const fact = (v, l, c) => `<div title="${h(l)}"><b dir="ltr" class="${c || ''}">${v == null ? '—' : fmtN(v)}</b><span>${l}</span></div>`;
   el.innerHTML = `<div class="xs xs-h xup">${rpUpdPanel(u)}<div class="xs xs-in">${note}
     <div class="xs-r xs-k">${xk('k1', LBL('Data date', 'تاريخ البيانات'), D.fmt(dd), `${u.lbl} ${LBL('of', 'من')} ${L.length}`)}${xk('k2', LBL('Planned value', 'القيمة المخططة'), rpM(A.pv * bac), `${fmtPct(A.pv, 2)} · ${cur}`)}${xk('k3', LBL('Earned value', 'القيمة المكتسبة'), rpM(A.ev * bac), `${fmtPct(A.ev, 2)} · ${cur}`, A.ev + 0.005 < A.pv ? 'bad' : 'ok')}${xk('k4', LBL('Schedule variance', 'فرق الجدول'), `${A.ev >= A.pv ? '+' : '−'}${rpM(Math.abs(A.ev - A.pv) * bac)}`, rpPP(A.ev - A.pv), A.ev + 0.005 < A.pv ? 'bad' : 'ok')}${xk('k5', 'SPI', spi ? spi.toFixed(2) : '—', `${spiState(spi)[0]}${isNum(pspi) ? ` · ${LBL('prev.', 'السابق')} ${pspi.toFixed(2)}` : ''}`, spi && spi < 0.85 ? 'bad' : spi && spi < 0.95 ? 'warn' : 'ok')}${xk('k6', LBL('Forecast finish', 'الانتهاء المتوقع'), D.fmt(A.fin), slip != null ? (slip > 0 ? `+${fmtN(slip)} ${LBL('d vs baseline', 'يوم عن الأساسي')}` : LBL('on / before baseline', 'في الموعد أو قبله')) : '', slip > 0 ? 'bad hot' : 'ok')}${xk('k7', LBL('Labour earned', 'العمالة المكتسبة'), hasL ? fmtN(A.evl / 8) : '—', hasL ? `${LBL('of', 'من')} ${fmtN(A.pvl / 8)} ${LBL('planned', 'مخطط')}` : '')}
       <div class="xc xk xkf" data-v="facts" data-vl="${LBL('Activities', 'الأنشطة')}"><span class="xk-l">${LBL('Activities', 'الأنشطة')}</span><div class="xkf-g">${fact(A.cp, LBL('Completed', 'مكتملة'))}${fact(A.ip, LBL('In progress', 'جارية'))}${fact(A.ns, LBL('Not started', 'لم تبدأ'))}${fact(A.lp, LBL('Longest path', 'المسار الأطول'), 'lp')}</div></div></div>
     <div class="xs-r xs-m xup-m"><div class="xs-c" style="flex:6.4">
-        <div class="xc xg" data-v="cost"><div class="xc-t">${LBL('Planned vs actual value', 'القيمة المخططة مقابل الفعلية')} (${cur})${leg(LBL('Actual', 'فعلي'), LBL('Actual cum.', 'فعلي تراكمي'))}${perBtn('C', pc)}</div>${rpUpPer(Q, 'cost', pc, upto, u, bac, 640, 236)}</div>
-        <div class="xc xg" data-v="lab"><div class="xc-t">${LBL('Labour (man-days)', 'العمالة (يوم-عامل)')}${leg(LBL('Earned', 'مكتسب'), LBL('Earned cum.', 'مكتسب تراكمي'))}${perBtn('L', pl)}</div>${hasL ? rpUpPer(Q, 'lab', pl, upto, u, bac, 640, 236) : `<div class="empty">${LBL('No labour resources in the baseline XER.', 'لا توجد موارد عمالة في ملف XER الأساسي.')}</div>`}</div></div>
+        <div class="xc xg" data-v="cost"><div class="xc-t">${LBL('Planned vs actual value', 'القيمة المخططة مقابل الفعلية')} (${cur})${leg(RP_UC.pv, LBL('Actual', 'فعلي'), LBL('Actual cum.', 'فعلي تراكمي'))}${perBtn('C', pc)}</div>${rpUpPer(Q, 'cost', pc, upto, u, bac, 640, 236)}</div>
+        <div class="xc xg" data-v="lab"><div class="xc-t">${LBL('Labour (man-days)', 'العمالة (يوم-عامل)')}${leg(RP_UC.plab, LBL('Earned', 'مكتسب'), LBL('Earned cum.', 'مكتسب تراكمي'))}${perBtn('L', pl)}</div>${hasL ? rpUpPer(Q, 'lab', pl, upto, u, bac, 640, 236) : `<div class="empty">${LBL('No labour resources in the baseline XER.', 'لا توجد موارد عمالة في ملف XER الأساسي.')}</div>`}</div></div>
       <div class="xs-c" style="flex:3.6">
-        <div class="xc" data-v="last3" style="flex:1.45"><div class="xc-t">${LBL('Last 4 updates', 'آخر 4 تحديثات')}${lg([[RP_UC.pl, LBL('Planned', 'المخطط')], [RP_UC.ac, LBL('Actual', 'الفعلي')], [RP_UC.pc, 'SPI']])}</div><div class="x3">${rpL4({ L4, u, w: 380, h: 232 })}</div></div>
+        <div class="xc" data-v="last3" style="flex:1.45"><div class="xc-t">${LBL('Last 4 updates', 'آخر 4 تحديثات')}${lg([[RP_UC.pv, LBL('Planned', 'المخطط')], [RP_UC.ac, LBL('Actual', 'الفعلي')], [RP_UC.pc, 'SPI']])}</div><div class="x3">${rpL4({ L4, u, w: 380, h: 232 })}</div></div>
         <div class="xc" data-v="crit" style="flex:.8"><div class="xc-t">${LBL('SPI – critical activities', 'SPI – الأنشطة الحرجة')}<span class="xsub">${u.crit === 'lp' ? LBL('P6: longest path', 'P6: المسار الأطول') : LBL('P6: total float ≤ 0', 'P6: الفائض الكلي ≤ 0')} · ${LBL('last 4 updates', 'آخر 4 تحديثات')}</span></div><div class="x3">${rpCritSPI({ L4, u, w: 380, h: 112 })}</div></div>
         <div class="xc" data-v="meter" style="flex:1"><div class="xmt">
           <div class="xmt-a"><div class="xmt-t">${LBL('Time meter', 'عدّاد الوقت')}</div><div class="xmt-d">${donutSVG([[elp, '#0E4A55'], [tot - elp, '#D5DCE3']], fmtN(tot), LBL('days', 'يوم'), 92)}<div class="xmt-l"><span><i style="background:#0E4A55"></i>${LBL('Elapsed', 'المنقضي')}<b dir="ltr">${fmtN(elp)} · ${fmtPct(elp / tot, 0)}</b></span><span><i style="background:#D5DCE3"></i>${LBL('Remaining', 'المتبقي')}<b dir="ltr">${fmtN(tot - elp)} · ${fmtPct((tot - elp) / tot, 0)}</b></span>${slip > 0 ? `<span class="neg"><i style="background:#C2410C"></i>${LBL('Forecast', 'المتوقع')}<b dir="ltr">+${fmtN(slip)} ${LBL('d', 'يوم')}</b></span>` : ''}</div></div></div>

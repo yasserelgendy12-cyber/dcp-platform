@@ -849,6 +849,9 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 /* Look-Ahead table: activity / group names wrap (all text visible after Expand all), compact rows */
 .la-tl .tt-t td.tn{white-space:normal;align-items:flex-start;line-height:1.25;padding-top:3px;padding-bottom:3px}.la-tl .tt-t td.tn b,.la-tl .tt-t td.tn span:not(.tc){white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
 .la-tl .tt-t td.tn .tt{margin-top:0}.la-tl .tt-t td.tn .tc{flex:0 0 auto}.la-tl .tt-t th:first-child{white-space:nowrap}
+/* Look-Ahead table: smaller type in the date and number columns so every value fits (13-Jun-26, 100%, -116) */
+.la-tl .tt-t td.dt,.la-tl .tt-t td.nm{font-size:9.5px;padding-inline:3px;letter-spacing:-.1px;text-overflow:clip}.la-tl .tt-t td.nm b{font-weight:700}.la-tl .tt-t tr.tgp td.dt{font-weight:600}
+.la-tl .tt-t th{font-size:9.5px;padding-inline:3px}.la-tl .tt-t th:first-child{padding-inline:6px}.la-tl .tt-t td.lbar{padding-inline:3px}
 
 </style>
 </head>
@@ -7392,12 +7395,12 @@ RP.P.lookahead = (el, pg) => {
     const dS = laD;
     const tree = rpTree('la', { items: R, ind: 10, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => `${x.a.id} · ${kT(x)}`, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
       sort: (a, b) => String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
-      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 62 : 66, cls: 'dt', g: n => dS(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${dS(x.s0)}</span>` },
-        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 62 : 66, cls: 'dt', g: n => dS(n.all.map(x => x.f0).sort().pop()), l: x => dS(x.f0) },
+      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 62 : 70, cls: 'dt', g: n => dS(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${dS(x.s0)}</span>` },
+        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 62 : 70, cls: 'dt', g: n => dS(n.all.map(x => x.f0).sort().pop()), l: x => dS(x.f0) },
         { h: LBL('Actual', 'الفعلي'), w: 40, cls: 'nm', g: n => `${fmtN(wavg(n.all, x => x.pct), 0)}%`, l: x => x.st ? `${fmtN(x.pct, 0)}%` : '<span class="muted">—</span>' },
-        { h: LBL('Plan', 'المخطط'), w: 44, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
-        { h: '', w: 44, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
-        { h: 'TF', w: 42, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' }] });
+        { h: LBL('Plan', 'المخطط'), w: S.lang === 'ar' ? 46 : 42, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
+        { h: '', w: 40, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
+        { h: 'TF', w: 38, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' }] });
     const op = S.ui.laTb !== false, tl = el.querySelector('[data-lat]'); tl.classList.toggle('off', !op);
     tl.innerHTML = `<div class="la-th"><b>${LBL('Look-ahead', 'الأعمال القادمة')} · ${fmtN(wk)} ${LBL('weeks', 'أسابيع')}</b><span dir="ltr">${D_fmt(X.dd)} → ${D_fmt(WE)}</span><span class="xsub">${fmtN(R.length)} ${LBL('activities', 'نشاط')}</span><button class="la-tg" data-latb title="${op ? LBL('Hide the table', 'إخفاء الجدول') : LBL('Show the table', 'إظهار الجدول')}">${op ? '⟨' : '⟩'}</button></div>${op ? (R.length ? tree : `<div class="empty">${LBL('No activity in this window and selection.', 'لا توجد أنشطة في هذه الفترة والاختيار.')}</div>`) : ''}`;
     el.querySelectorAll('[data-law]').forEach(b => b.onclick = () => { S.ui.laW = +b.dataset.law; paint(); });

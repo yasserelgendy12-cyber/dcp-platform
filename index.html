@@ -782,6 +782,16 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .t.dlt td.dl-pa{font-size:10px;white-space:nowrap;color:#3E4F5C}.t.dlt td.dl-pa b{font-weight:700}
 .xs-h>.xu{flex:0 0 143px;box-sizing:border-box;min-width:0;overflow:hidden}
 .rpp .xdl-c,.rpp .xdl-x{color:#475766}.rpp .xdl-c b{color:#0E4A55}
+/* delay summaries: hover card (English, empty line, Arabic in amber) + ✎ for report customisers */
+#xsum{position:fixed;z-index:9999;display:none;pointer-events:none;background:#12202B;color:#fff;border-radius:9px;padding:10px 13px;max-width:380px;box-shadow:0 10px 26px rgba(0,0,0,.28);font-family:Inter,'IBM Plex Sans Arabic',system-ui,sans-serif}
+#xsum p{margin:0;font-size:12.5px;line-height:1.55;white-space:normal}#xsum p+p{margin-top:12px}#xsum p.ar{color:#F2C46D;font-family:'IBM Plex Sans Arabic',Inter,sans-serif;font-size:13px;line-height:1.7;text-align:right}
+.t.dlt td[data-sm]{position:relative;cursor:help}
+.dl-ed{position:absolute;top:3px;inset-inline-end:2px;width:20px;height:20px;border:0;border-radius:5px;background:#E2EEF0;color:#0E4A55;padding:3px;cursor:pointer;opacity:0;transition:opacity .12s}.dl-ed svg{width:14px;height:14px}
+.t.dlt tr:hover .dl-ed{opacity:1}.dl-ed:hover{background:#BFD9DD}
+@media print{.dl-ed,#xsum{display:none!important}}
+.rs-src{max-height:120px;overflow:auto;font-size:12px;line-height:1.5;color:#3E4F5C;background:#F4F7F9;border:1px solid #E1E7EC;border-radius:8px;padding:8px 10px;margin-bottom:10px}
+.md .f textarea.in{width:100%;box-sizing:border-box;font:inherit;font-size:13px;resize:vertical;min-height:58px}.rs-hint{font-size:11px;color:#7B8C99;margin-top:4px}
+.t.dlt tr:hover .dl-ed{opacity:0}.t.dlt td[data-sm]:hover .dl-ed{opacity:1}.dl-ed{background:rgba(226,238,240,.95)}
 
 </style>
 </head>
@@ -1498,7 +1508,7 @@ const IDB = (() => {
 })();
 
 /* ---------- DB model ---------- */
-const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users', 'rusers', 'ractions'];   // rusers = report-portal users (separate from the data-collection users), ractions = report decisions & actions (merged per record)
+const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users', 'rusers', 'ractions', 'rsums'];   // rusers = report-portal users (separate from the data-collection users), ractions = report decisions & actions, rsums = delay summaries EN / AR (merged per record)
 function emptyDB(p) {
   return {
     schema: DB_SCHEMA, id: `${p.number}-${p.code}`, createdAt: nowISO(), _at: nowISO(),
@@ -7005,6 +7015,66 @@ RP.P.critical = (el, pg) => {
    delay register (one row per delay event = caused by + reason entered by the team on the Data Collection progress page; expand for its activities) with responsibility and recovery;
    responsibility by value behind; delays by building. Source: the team's entries of each cut-off (caused by / reason / mitigation) and its closing snapshot
    (plan % vs actual %); the open cut-off from the live progress rows; a cut-off without team data falls back to the behind-plan list of its P6 update. ---------- */
+/* ---------- delay summaries (15-Nov-2026): hover card on the delay event and the mitigation of the delay register –
+   a short English summary, an empty line, then a short Arabic summary in another colour (no headings).
+   Stored per text in db.rsums[] = { _id: 'rs_' + hash of the text, src (start of the text), en, ar, _at, _by } (merged per record, COLLS);
+   written by report users holding rcfg (✎ on the row) – "Suggest" uses the browser's built-in summariser / translator when the browser has them.
+   Without a stored summary: the first sentence of the text (shortened), and the other language from the browser translator when available. ---------- */
+const RSUM = { txt: new Map(), mem: new Map(), busy: new Set() };
+const rsNorm = t => String(t || '').replace(/\s+/g, ' ').trim();
+const rsKey = t => { const s = rsNorm(t).toLowerCase(); let x = 0x811c9dc5; for (let i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 0x01000193) >>> 0; } return 'rs_' + x.toString(36) + s.length.toString(36); };
+const rsAr = t => /[؀-ۿ]/.test(t || '');
+const rsShort = (t, n = 170) => { t = rsNorm(t); if (!t) return ''; const m = t.match(/^.+?[.;:!?](?=\s|$)/); let s = m && m[0].length >= 25 ? m[0] : t; if (s.length > n) s = s.slice(0, n).replace(/\s+\S*$/, '') + '…'; return s; };
+const rsRec = k => live(S.db.rsums || []).find(r => r._id === k) || null;
+function rsGet(t) {   // { en, ar } for one text: stored summary, else the short form + the browser's translation (when available)
+  const k = rsKey(t), r = rsRec(k); if (r && (r.en || r.ar)) return { en: r.en || '', ar: r.ar || '', k, st: 1 };
+  const m = RSUM.mem.get(k) || {}, sh = rsShort(t); rsAuto(t, false);
+  return rsAr(t) ? { en: m.en || '', ar: m.ar || sh, k } : { en: m.en || sh, ar: m.ar || '', k };
+}
+const rsAI = { tr: {}, sm: null };
+async function rsTranslate(text, from, to, user) {
+  if (typeof Translator === 'undefined' || !text) return '';
+  const p = from + '>' + to; try { if (!rsAI.tr[p]) { const a = await Translator.availability({ sourceLanguage: from, targetLanguage: to }); if (a === 'unavailable' || (a !== 'available' && !user)) return ''; rsAI.tr[p] = await Translator.create({ sourceLanguage: from, targetLanguage: to }); } return await rsAI.tr[p].translate(text); } catch (e) { return ''; }
+}
+async function rsSummarise(text, user) {
+  if (typeof Summarizer === 'undefined' || !text || text.length < 200) return '';
+  try { if (!rsAI.sm) { const a = await Summarizer.availability(); if (a === 'unavailable' || (a !== 'available' && !user)) return ''; rsAI.sm = await Summarizer.create({ type: 'tldr', length: 'short', format: 'plain-text', outputLanguage: 'en' }); } return rsNorm(await rsAI.sm.summarize(text)); } catch (e) { return ''; }
+}
+async function rsAuto(t, user) {   // machine suggestion (cached for the session, never stored unless the user saves it)
+  const k = rsKey(t); if (!user && (RSUM.mem.has(k) || RSUM.busy.has(k))) return RSUM.mem.get(k); if (typeof Translator === 'undefined' && typeof Summarizer === 'undefined') return null;
+  RSUM.busy.add(k);
+  try { const src = rsNorm(t), ar = rsAr(src); let en = '', a = '';
+    if (ar) { a = rsShort(src); en = await rsTranslate(a, 'ar', 'en', user); }
+    else { en = (await rsSummarise(src, user)) || rsShort(src); a = await rsTranslate(en, 'en', 'ar', user); }
+    const o = { en, ar: a }; RSUM.mem.set(k, o); const tp = document.getElementById('xsum'); if (tp && tp._k === k) rsShow(tp, k); return o; }
+  finally { RSUM.busy.delete(k); }
+}
+const rsShow = (tp, k) => { const t = RSUM.txt.get(k); if (t == null) return; const s = rsGet(t); tp.innerHTML = `${s.en ? `<p dir="ltr">${h(s.en)}</p>` : ''}${s.ar ? `<p dir="rtl" lang="ar" class="ar">${h(s.ar)}</p>` : ''}`; tp.style.display = s.en || s.ar ? 'block' : 'none'; };
+const rsAttr = t => { const k = rsKey(t); RSUM.txt.set(k, rsNorm(t)); return ` data-sm="${k}"`; };
+function rsWire() {   // one hover card for the report (outside the scaled page)
+  if (rsWire.on) return; rsWire.on = 1; const tp = document.createElement('div'); tp.id = 'xsum'; tp.setAttribute('role', 'tooltip'); document.body.appendChild(tp);
+  document.addEventListener('mousemove', e => { const c = e.target && e.target.closest ? e.target.closest('[data-sm]') : null; if (!c || e.target.closest('.dl-ed')) { if (tp.style.display !== 'none') { tp.style.display = 'none'; tp._k = null; } return; }
+    if (tp._k !== c.dataset.sm) { tp._k = c.dataset.sm; rsShow(tp, tp._k); } if (tp.style.display === 'none') return;
+    const w = tp.offsetWidth, hh = tp.offsetHeight; let x = e.clientX + 16, y = e.clientY + 16; if (x + w > innerWidth - 8) x = e.clientX - w - 16; if (y + hh > innerHeight - 8) y = e.clientY - hh - 16; tp.style.left = Math.max(8, x) + 'px'; tp.style.top = Math.max(8, y) + 'px'; }, { passive: true });
+}
+const rsCanEdit = () => rpCan('rcfg') && !S.ui.pres;
+const rsEdBtn = t => rsCanEdit() && rsNorm(t) ? `<button class="dl-ed" data-rse="${rsKey(t)}" title="${LBL('Write the summary (English / Arabic)', 'كتابة الملخص (إنجليزي / عربي)')}" aria-label="${LBL('Edit summary', 'تعديل الملخص')}">${ic('pen')}</button>` : '';
+RP.sumDialog = k => {
+  const t = RSUM.txt.get(k); if (t == null) return; const all = S.db.rsums = S.db.rsums || [], r0 = all.find(x => x._id === k && !x._del), s = rsGet(t), ai = typeof Translator !== 'undefined' || typeof Summarizer !== 'undefined';
+  modal({ title: LBL('Summary shown on hover', 'الملخص الظاهر عند الوقوف'), size: 'lg', body: `<div class="rs-src" dir="auto">${h(t)}</div>
+      <label class="f">${LBL('Summary – English', 'الملخص – إنجليزي')}<textarea class="in" rows="3" dir="ltr" data-f="en" maxlength="400">${h(r0 ? r0.en || '' : s.en)}</textarea></label>
+      <label class="f">${LBL('Summary – Arabic', 'الملخص – عربي')}<textarea class="in" rows="3" dir="rtl" lang="ar" data-f="ar" maxlength="400">${h(r0 ? r0.ar || '' : s.ar)}</textarea></label>
+      <div class="rs-hint">${LBL('Keep each summary to one or two short sentences. Saved in the project database and used in every report where this text appears.', 'اجعل كل ملخص جملة أو جملتين قصيرتين. يُحفظ في قاعدة بيانات المشروع ويُستخدم في كل تقرير يظهر فيه هذا النص.')}</div>`,
+    foot: `${r0 ? `<button class="btn danger" data-del>${ic('trash')}${T('del')}</button>` : ''}${ai ? `<button class="btn" data-sug>${ic('sync')}${LBL('Suggest (browser)', 'اقتراح (المتصفح)')}</button>` : ''}<span class="sp"></span><button class="btn pri" data-k>${T('save')}</button>`,
+    onMount: (el, close) => {
+      const save = del => { const n = { ...(r0 || {}), _id: k, src: t.slice(0, 300), en: rsNorm(el.querySelector('[data-f=en]').value), ar: rsNorm(el.querySelector('[data-f=ar]').value) }; if (!del && !n.en && !n.ar) return toast(LBL('Write the summary', 'اكتب الملخص'), 'bad');
+        if (del) n._del = true; else delete n._del; stamp(n); const i = all.findIndex(x => x._id === k); if (i >= 0) all[i] = n; else all.push(n); touch(del ? 'delay summary removed' : 'delay summary saved', t.slice(0, 80)); close(); toast(T('saved'), 'ok'); RP.render(); };
+      el.querySelector('[data-k]').onclick = () => save(false);
+      const d = el.querySelector('[data-del]'); if (d) d.onclick = () => save(true);
+      const sg = el.querySelector('[data-sug]'); if (sg) sg.onclick = async () => { sg.disabled = true; const o = await rsAuto(t, true); sg.disabled = false; if (!o || (!o.en && !o.ar)) return toast(LBL('The browser has no summariser / translator available.', 'لا يتوفر في المتصفح ملخِّص أو مترجم.'), 'bad');
+        if (o.en) el.querySelector('[data-f=en]').value = o.en; if (o.ar) el.querySelector('[data-f=ar]').value = o.ar; };
+    } });
+};
 const RP_CB = [['Contractor', '#0E4A55'], ['Client', '#C77C2E'], ['Consultant', '#3E7CB1'], ['Concurrent', '#8A6D9E'], ['', '#B4C0CA']];
 const rpCbC = k => (RP_CB.find(x => x[0] === (k || '')) || RP_CB[4])[1], rpCbL = k => k ? E(k) : LBL('Not stated', 'غير محدد');
 const rpCbChip = k => `<span class="xcb" style="--c:${rpCbC(k)}">${h(rpCbL(k))}</span>`;
@@ -7069,14 +7139,13 @@ RP.P.delays = (el, pg) => {
   const slipC = d => isNum(d) ? `<span dir="ltr" class="${d > 0 ? 'neg' : ''}">${d > 0 ? '+' : ''}${fmtN(d)}</span>` : '—', tfC = t => isNum(t) ? `<span dir="ltr" class="${t < 0 ? 'neg' : ''}">${fmtN(t)}</span>` : '—';
   const since = e => { if (e.none) return '—'; const f = first.get(e.k); return !f || f._id === c._id ? `<span class="xnew">${LBL('New', 'جديد')}</span>` : `<span dir="ltr">${LBL('No.', 'رقم')} ${h(String(f.reportNo || '').padStart(2, '0'))}</span>`; };
   const evRow = (e, i) => { const o = !!op[e.k], bl = e.bld.slice(0, 3).join('  |  ') + (e.bld.length > 3 ? ` +${e.bld.length - 3}` : '');
-    const tt = e.none ? '' : `${e.rs}${e.mt ? `\n\n${LBL('Mitigation', 'المعالجة')}: ${e.mt}` : ''}`;
-    return `<tr class="dle ${e.none ? 'none' : ''} ${o ? 'dlo' : ''}" data-dle="${h(e.k)}" title="${h(tt)}"><td class="dl-i"><button class="tt" aria-expanded="${o}">${o ? '▾' : '▸'}</button></td>
-      <td class="dl-r"><b dir="auto">${e.none ? LBL('Reason not recorded – behind plan without a delay reason', 'لم يُسجّل سبب – أنشطة متأخرة بدون سبب تأخير') : h(e.rs)}</b><span dir="auto">${h(bl)}</span></td>
+    return `<tr class="dle ${e.none ? 'none' : ''} ${o ? 'dlo' : ''}" data-dle="${h(e.k)}"><td class="dl-i"><button class="tt" aria-expanded="${o}">${o ? '▾' : '▸'}</button></td>
+      <td class="dl-r"${e.none ? '' : rsAttr(e.rs)}>${e.none ? '' : rsEdBtn(e.rs)}<b dir="auto">${e.none ? LBL('Reason not recorded – behind plan without a delay reason', 'لم يُسجّل سبب – أنشطة متأخرة بدون سبب تأخير') : h(e.rs)}</b><span dir="auto">${h(bl)}</span></td>
       <td>${e.none ? '<span class="muted">—</span>' : rpCbChip(e.cb)}</td><td class="nm"><b>${fmtN(e.n)}</b></td><td class="nm" dir="ltr">${e.val ? rpM(e.val) : '—'}</td><td class="nm">${slipC(e.slip)}</td><td class="nm">${tfC(e.tf)}</td><td>${since(e)}</td>
-      <td class="dl-m">${e.none ? `<span class="neg">${LBL('Enter caused by, reason and mitigation on the progress page', 'أدخل المتسبب والسبب والمعالجة في صفحة الإنجاز')}</span>` : e.mt ? `<span dir="auto">${h(e.mt)}</span>${e.nmt ? `<em class="neg">${fmtN(e.nmt)} ${LBL('without mitigation', 'بدون معالجة')}</em>` : ''}` : `<span class="neg">${LBL('No mitigation recorded', 'لم تُسجّل معالجة')}</span>`}</td></tr>`
+      <td class="dl-m"${!e.none && e.mt ? rsAttr(e.mt) : ''}>${!e.none && e.mt ? rsEdBtn(e.mt) : ''}${e.none ? `<span class="neg">${LBL('Enter caused by, reason and mitigation on the progress page', 'أدخل المتسبب والسبب والمعالجة في صفحة الإنجاز')}</span>` : e.mt ? `<span dir="auto">${h(e.mt)}</span>${e.nmt ? `<em class="neg">${fmtN(e.nmt)} ${LBL('without mitigation', 'بدون معالجة')}</em>` : ''}` : `<span class="neg">${LBL('No mitigation recorded', 'لم تُسجّل معالجة')}</span>`}</td></tr>`
       + (o ? e.rows.slice().sort((a, b) => b.val - a.val || (b.slip || 0) - (a.slip || 0)).map(r => `<tr class="dla"><td></td><td class="dl-r"><b dir="auto" title="${h(r.a.id)}">${h(r.a.name)}</b><span dir="auto">${h(rpPath(r.a))}</span></td>
         <td dir="ltr" class="dl-pa" title="${LBL('Planned → actual at the cut-off', 'المخطط ← الفعلي في تاريخ القطع')}${r.cb !== e.cb && !e.none ? ` · ${h(rpCbL(r.cb))}` : ''}">${fmtN(r.pl, 0)}% → <b class="${r.beh ? 'neg' : ''}">${fmtN(r.pct, 0)}%</b></td><td class="nm" dir="ltr" title="${LBL('Gap (percentage points)', 'الفجوة (نقطة مئوية)')}">${r.beh ? `<span class="neg">−${fmtN(r.pl - r.pct, 0)}</span>` : '—'}</td><td class="nm" dir="ltr">${r.val ? rpM(r.val) : '—'}</td><td class="nm">${slipC(r.slip)}</td><td class="nm">${tfC(r.tf)}</td><td dir="ltr" class="small" title="${LBL('Forecast finish', 'الانتهاء المتوقع')}">${D.fmt(r.fc)}</td>
-        <td class="dl-m">${r.mt && r.mt !== e.mt ? `<span dir="auto">${h(r.mt)}</span>` : r.mt ? `<span class="muted">${LBL('as above', 'كما سبق')}</span>` : `<span class="neg">${LBL('none', 'لا يوجد')}</span>`}</td></tr>`).join('') : ''); };
+        <td class="dl-m"${r.mt && r.mt !== e.mt ? rsAttr(r.mt) : ''}>${r.mt && r.mt !== e.mt ? `${rsEdBtn(r.mt)}<span dir="auto">${h(r.mt)}</span>` : r.mt ? `<span class="muted">${LBL('as above', 'كما سبق')}</span>` : `<span class="neg">${LBL('none', 'لا يوجد')}</span>`}</td></tr>`).join('') : ''); };
   const srcNote = D0.src === 'xer' ? `<div class="xnote">${ic('info')}<span>${LBL('No delay entries of the team for this report – the behind-plan activities come from the P6 update; caused by, reason and mitigation are entered on the Data Collection progress page.', 'لا توجد تأخيرات مسجلة من الفريق لهذا التقرير – الأنشطة المتأخرة من تحديث P6؛ المتسبب والسبب والمعالجة تُدخل من صفحة الإنجاز في بوابة جمع البيانات.')}</span></div>` : D0.src === 'none' ? `<div class="xnote">${ic('info')}<span>${LBL('No progress data for this report.', 'لا توجد بيانات إنجاز لهذا التقرير.')}</span></div>` : '';
   const reg = `<div class="xc" data-v="reg" style="flex:7.3"><div class="xc-t">${LBL('Delay register – causes, responsibility and recovery', 'سجل التأخيرات – الأسباب والمسؤولية والمعالجة')}<span class="xsub">${fmtN(evR.length)} ${LBL('events', 'حدث')} · ${fmtN(R.length)} ${LBL('activities', 'نشاط')} · ${LBL('sorted by slip', 'مرتبة حسب الانزلاق')}</span><span class="dl-x"><button data-dlx="1" title="${LBL('Expand all', 'توسيع الكل')}">+</button><button data-dlx="0" title="${LBL('Collapse all', 'طي الكل')}">−</button></span></div>
     <div class="xtw dlw"><table class="t dlt"><colgroup><col style="width:24px"><col style="width:31%"><col style="width:82px"><col style="width:${S.lang === 'ar' ? 54 : 44}px"><col style="width:58px"><col style="width:48px"><col style="width:44px"><col style="width:${S.lang === 'ar' ? 66 : 58}px"><col></colgroup>
@@ -7089,10 +7158,11 @@ RP.P.delays = (el, pg) => {
   el.querySelectorAll('[data-dlc]').forEach(b => b.onclick = () => { S.ui.dlCut = b.dataset.dlc; const x = rpDlUpd(rpDlCut()); if (x) S.ui.rpUpd = x.f; RP.render(); });
   el.querySelectorAll('[data-dlcb]').forEach(b => b.onclick = () => { const s = new Set(S.ui.dlCb || []), k = b.dataset.dlcb; s.has(k) ? s.delete(k) : s.add(k); S.ui.dlCb = [...s]; RP.render(); });
   el.querySelectorAll('[data-dlfx]').forEach(b => b.onclick = () => { S.ui.dlFx = b.dataset.dlfx; RP.render(); });
+  el.querySelectorAll('[data-rse]').forEach(b => b.onclick = ev => { ev.stopPropagation(); RP.sumDialog(b.dataset.rse); });
   el.querySelectorAll('[data-dle]').forEach(tr => tr.onclick = () => { const k = tr.dataset.dle; op[k] = !op[k]; RP.render(); });
   el.querySelectorAll('[data-dlx]').forEach(b => b.onclick = () => { EV.forEach(e => op[e.k] = b.dataset.dlx === '1'); RP.render(); });
   const l = el.querySelector('.xdl .xu-l'), on_ = el.querySelector('.xdl .xu-b.on'); if (l && on_) l.scrollTop = Math.max(0, on_.offsetTop - l.offsetTop - l.clientHeight / 2);
-  rpTipWire();
+  rpTipWire(); rsWire();
 };
 
 /* ---------- 9 · Resources & Cost ---------- */

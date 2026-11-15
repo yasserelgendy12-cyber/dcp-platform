@@ -701,7 +701,8 @@ td.tg i.gb{overflow:visible;display:block;gap:0}
 .pb-pop .pb-ol span{color:#12202B;font-size:12px;font-weight:400}.pb-pop label{color:#12202B}
 /* Updates page (14-Nov-2026, 3rd round) */
 .xs-c{display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}.xs-c>.xc{flex:1 1 0;min-height:0}
-.xup .xu{flex:0 0 122px;padding:9px 6px}.xup .xu-b{grid-template-columns:9px auto 1fr;gap:5px;padding:3px 5px}.xup .xu-b span{font-size:10.5px}.xup .xu-b b{font-size:9.5px}.xup .xu-b i{width:8px;height:8px;border-width:2px}.xup .xu-t{font-size:10px}
+/* narrow update side filter on every page that has it (Updates, Critical & MS, Delays – 15-Nov-2026) */
+.xs-h>.xu{flex:0 0 122px;padding:9px 6px}.xs-h>.xu .xu-b{grid-template-columns:9px auto 1fr;gap:5px;padding:3px 5px}.xs-h>.xu .xu-b span{font-size:10.5px}.xs-h>.xu .xu-b b{font-size:9.5px}.xs-h>.xu .xu-b i{width:8px;height:8px;border-width:2px}.xs-h>.xu .xu-t{font-size:10px}
 .xup .xs-k .xk{flex:1 1 0;min-width:0}.xup .xs-k .xk-v{font-size:15px}.xup .xs-k .xk{padding:4px 9px 5px}.xup .xs-k .xk em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .xkf{flex:1.55 1 0!important;border-top-color:#2A8C99}.xkf-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px 8px;margin-top:2px}.xkf-g>div{display:flex;flex-direction:column;min-width:0}.xkf-g b{font-size:13.5px;line-height:1.15;color:#12202B}.xkf-g b.lp{color:#0E4A55}.xkf-g span{font-size:9px;color:#7B8C99;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .xc-t .xsub{font-size:10px;font-weight:500;color:#7B8C99;margin-inline-start:auto}
@@ -714,6 +715,40 @@ svg .ctp{fill:transparent;cursor:default}svg .ctp:hover{fill:rgba(14,74,85,.06)}
 .xmt-l{gap:4px;font-size:10px}.xmt-l b{font-size:11px;white-space:nowrap}.xmt-d{gap:8px}
 .x3>svg[data-ch]{width:100%;height:100%}
 .x3 svg,.xmt svg,.xg svg{direction:ltr}
+
+/* 5 · Critical & MS (15-Nov-2026): two sections kept apart – MILESTONES (petrol rail, light petrol tint) and CRITICAL ACTIVITIES (red rail, light red tint) */
+.xcr .xs-in{gap:8px}
+.cs{flex:1 1 0;min-height:0;display:flex;border-radius:12px;overflow:hidden;border:1px solid}
+.cs-ms{flex:1.14 1 0;background:#EFF6F7;border-color:#CFE3E6}.cs-cr{background:#FDF3EE;border-color:#F4D3C3}
+.cs-rail{flex:0 0 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:#fff}.cs-ms .cs-rail{background:#0E4A55}.cs-cr .cs-rail{background:#C2410C}
+.cs-rail span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;white-space:nowrap}.cs-rail svg{width:13px;height:13px;flex:0 0 auto}
+html[dir=rtl] .cs-rail span{letter-spacing:0;font-size:11px}
+.cs-in{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;gap:7px;padding:7px 8px}
+.cs-k{gap:7px}.cs-k .xk{flex:1 1 0;min-width:0}.cs-k .xk-v{font-size:15px}.cs-k .xk em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cs-k .xk .xstk{margin-top:3px;height:6px}
+.cs-cr .cs-k .xk-l{color:#B4471C}.cs-ms .cs-k .xk-l{color:#0E4A55}
+.cs-b{flex:1 1 0;min-height:0;gap:8px}.cs-b>.xc{padding:7px 10px}
+.cs-b .xc-t{font-size:12.5px}
+/* milestones table merged with the Gantt */
+.xmgw{flex:1;min-height:0;overflow:auto;scrollbar-width:thin}
+.t.xmg{table-layout:fixed;font-size:11px;border-collapse:separate;border-spacing:0}.t.xmg th,.t.xmg td{padding:2px 6px;height:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t.xmg thead th{position:sticky;top:0;z-index:3;font-size:10.5px}.t.xmg td.nm{text-align:end}.t.xmg .xch{font-size:9.5px;padding:0 5px}
+.t.xmg tfoot td{position:sticky;bottom:0;z-index:3;background:#FFF4EE;font-weight:700;color:#9A3412;border-top:1.5px solid #F0BFA6}
+.t.xmg td.mn .md{display:inline-block;width:7px;height:7px;transform:rotate(45deg);margin-inline-end:7px;vertical-align:1px;border-radius:1px}.t.xmg td.mn svg{width:12px;height:12px;vertical-align:-2px;margin-inline-end:5px;color:#C2410C}
+.t.xmg th.mgt{padding:0}.mgh{position:relative;height:19px;margin:0 9px;direction:ltr}.mgh em{position:absolute;top:3px;font-style:normal;font-size:9.5px;font-weight:500;transform:translateX(-50%);white-space:nowrap;opacity:.85}
+.mgh b{position:absolute;top:2px;transform:translateX(-50%);font-size:9px;font-weight:700;background:#E8A33D;color:#12202B;border-radius:6px;padding:0 4px;line-height:14px;white-space:nowrap}
+.t.xmg td.mg{padding:0 9px;overflow:visible}.t.xmg td.mg>div{position:relative;height:19px;direction:ltr}
+td.mg s{position:absolute;top:0;bottom:0;width:1px;background:#E9EEF2}td.mg s.dd{background:#E8A33D;width:1.5px;opacity:.85}
+td.mg i{position:absolute;top:50%}td.mg i.ln{height:4px;margin-top:-2px;border-radius:2px}
+td.mg i.b{width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;border:2px solid #0E4A55;background:#fff;box-sizing:border-box;z-index:1}td.mg i.f{width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;z-index:2;box-shadow:0 0 0 1.5px #fff}
+.t.xmg tbody tr:hover td{background:#FFF8EB}
+.xlg i.mb{border:2px solid #0E4A55;border-radius:50%;box-sizing:border-box;background:#fff!important}
+/* critical work by building */
+.xcr .tt-t .xch{font-size:9.5px;padding:0 5px}.xcr .tt-t td.nm b{font-weight:700}.xcr .xtree .tt-t th{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xcr .xc-t .xsub{font-size:9.5px}
+.cs-k .xk{padding:3px 9px 4px}.cs-k .xk-v{font-size:14.5px;line-height:1.15}
+.t.xmg td{padding:2px 4px}.t.xmg td.mn{padding-inline-start:6px}.xcr .tt-t td{padding:2px 4px}.xcr .tt-t td.dt{font-size:10.5px}
+.t.xmg td[dir=ltr]{font-size:10.5px}
+.xcr .tt-t td.dt{font-size:10px}
 
 </style>
 </head>
@@ -4365,6 +4400,7 @@ function xerSummary(sch, file) {
 /* v3 (14-Nov-2026): the same figures per combination of the slicer codes, so the Updates page follows the slicers for every update –
    gk = slicer code names, gv = their values, g = rows [code index × gk, weight, planned, earned, labour, labour planned, labour earned,
    completed, in progress, not started, on longest path, critical weight, critical planned, critical earned, latest finish (days after the data date)].
+   v4 (15-Nov-2026) adds two columns at the end: open critical activities and the lowest total float of the open activities (Critical & MS page).
    Critical activities follow the update's P6 setting: total float ≤ the critical float (CT_TotFloat) or the longest path. */
 function xerGroups(sch, acts, bl, dd, useCost) {
   const gk = codeTypes().slice(0, 7), sc = sch.sched || {}, lpCrit = /long|driv/i.test(sc.critType || ''), cf = isNum(sc.critFloat) ? sc.critFloat : 0;
@@ -4372,15 +4408,16 @@ function xerGroups(sch, acts, bl, dd, useCost) {
   const gv = gk.map(() => []), gi = gk.map(() => new Map()), rows = new Map(), o = gk.length;
   acts.forEach(a => { const c = a.codes && Object.keys(a.codes).length ? a.codes : actCodes(sch, a);
     const ix = gk.map((k, j) => { const v = c[k] || ''; let i = gi[j].get(v); if (i == null) { i = gv[j].length; gv[j].push(v); gi[j].set(v, i); } return i; });
-    const key = ix.join(','); let r = rows.get(key); if (!r) rows.set(key, r = [...ix, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1e6]);
+    const key = ix.join(','); let r = rows.get(key); if (!r) rows.set(key, r = [...ix, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1e6, 0, 1e6]);
     const b = bl.get(a.id) || a, fr = planFrac(b.ps, b.pf, dd), w = useCost ? N(a.cost) : N(a.od), l = N(b.lu !== undefined ? b.lu : a.lu), p = N(a.pct) / 100;
     r[o] += w; r[o + 1] += w * fr; r[o + 2] += w * p; r[o + 3] += l; r[o + 4] += l * fr; r[o + 5] += l * p;
     r[o + (a.status === 'Completed' ? 6 : a.status === 'In Progress' ? 7 : 8)]++; if (a.dp && a.status !== 'Completed') r[o + 9]++;
-    if (crit(a)) { r[o + 10] += w; r[o + 11] += w * fr; r[o + 12] += w * p; }
+    if (crit(a)) { r[o + 10] += w; r[o + 11] += w * fr; r[o + 12] += w * p; r[o + 14]++; }
+    if (a.status !== 'Completed' && isNum(a.tf)) r[o + 15] = Math.min(r[o + 15], a.tf);
     const f = a.status === 'Completed' ? (a.af || a.ef || a.pf) : (a.ef || a.pf); if (f) r[o + 13] = Math.max(r[o + 13], D.diff(f, dd)); });
   // compact: money in units of 100 (gs), latest finish before the critical columns, trailing zeros dropped (read back as 0)
   const gs = useCost ? 100 : 1, M = new Set([0, 1, 2, 10, 11, 12]);
-  const g = [...rows.values()].map(r => { const x = [...r.slice(0, o), ...[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 10, 11, 12].map(j => Math.round(M.has(j) ? r[o + j] / gs : j === 13 && r[o + j] < -9e5 ? 0 : r[o + j]))]; while (x.length > o && !x[x.length - 1]) x.pop(); return x; });
+  const g = [...rows.values()].map(r => { const x = [...r.slice(0, o), ...[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 10, 11, 12, 14, 15].map(j => Math.round(M.has(j) ? r[o + j] / gs : (j === 13 && r[o + j] < -9e5) || (j === 15 && r[o + j] > 9e5) ? 0 : r[o + j]))]; while (x.length > o && !x[x.length - 1]) x.pop(); return x; });
   const sm = j => sum([...rows.values()], r => r[o + j]);
   return { gk, gv, g, gs, crit: lpCrit ? 'lp' : 'tf', cf, cw: Math.round(sm(10)), cpv: Math.round(sm(11)), cev: Math.round(sm(12)) };
 }
@@ -4394,12 +4431,12 @@ function xerDetail(acts, bl, dd) {
   const beh = W.filter(o => !isMs(o.b)).map(({ a, b }) => [a.id, r1(planFrac(b.ps, b.pf, dd) * 100), r1(N(a.pct)), isNum(a.tf) ? a.tf : null, fc(a)]).filter(x => x[1] > x[2] + 0.5).sort((x, y) => (y[1] - y[2]) - (x[1] - x[2])).slice(0, 250);
   const tops = W.filter(o => !isMs(o.b) && fc(o.a) && bf(o.b)).map(({ a, b }) => [a.id, D.diff(fc(a), bf(b))]).sort((x, y) => y[1] - x[1]).slice(0, 10);
   const nm = W.filter(o => !isMs(o.b));
-  return { v: 3, ms, lpa, beh, tops, sl: nm.filter(({ a, b }) => a.as && bs(b) && D.diff(a.as, bs(b)) >= 1).length, fl: nm.filter(({ a, b }) => a.status === 'Completed' && a.af && bf(b) && D.diff(a.af, bf(b)) >= 1).length, sh: nm.filter(({ a, b }) => a.status === 'Not Started' && bs(b) && bs(b) < dd).length };
+  return { v: 4, ms, lpa, beh, tops, sl: nm.filter(({ a, b }) => a.as && bs(b) && D.diff(a.as, bs(b)) >= 1).length, fl: nm.filter(({ a, b }) => a.status === 'Completed' && a.af && bf(b) && D.diff(a.af, bf(b)) >= 1).length, sh: nm.filter(({ a, b }) => a.status === 'Not Started' && bs(b) && bs(b) < dd).length };
 }
 async function scanXER(interactive, verbose) {
   if (SRC.busy) return; const files = await SRC.files('xer', interactive).catch(e => { if (verbose) toast(e.message || cloudMsg(e), 'bad'); return null; }); if (!files) return;
   const xs = files.filter(f => /\.xer$/i.test(f.name)); const H = clone(S.db.xhist || { updates: [] }); const known = new Map(H.updates.map(u => [u.f, u]));
-  const gk = codeTypes().slice(0, 7).join('|'), todo = xs.filter(f => { const k = known.get(f.name); return !k || k.size !== f.size || (k.v || 1) < 3 || (k.gk || []).join('|') !== gk; });   // summaries of an older reader, or of other slicer codes, are read again
+  const gk = codeTypes().slice(0, 7).join('|'), todo = xs.filter(f => { const k = known.get(f.name); return !k || k.size !== f.size || (k.v || 1) < 4 || (k.gk || []).join('|') !== gk; });   // summaries of an older reader, or of other slicer codes, are read again
   const gone = H.updates.filter(u => !xs.some(f => f.name === u.f));
   if (!todo.length && !gone.length) { if (verbose) toast(LBL('Update history is up to date', 'سجل التحديثات محدّث'), 'ok'); return; }
   SRC.busy = true;
@@ -6573,7 +6610,7 @@ function rpUpds() {
   const k = [S.db.id, (S.db.xhist || {})._at || '', U ? (U.importedAt || U.fileName || '') : '', B ? (B.importedAt || '') : '', H.length].join('|'); if (RPU.key === k) return RPU.list;
   const isCur = u => !!(U && U !== B && (u.f === U.fileName || u.dd === (U.asOf || U.dataDate)));
   let cs = null; const curSum = () => { if (!cs) { try { cs = xerSummary(U, { name: U.fileName || 'update', size: 0 }); } catch (e) { cs = null; } } return cs; };
-  let L = H.filter(u => !(B && u.f === B.fileName) && !(N(u.pv) === 0 && N(u.ev) === 0)).map(u => isCur(u) && (u.v || 1) < 3 && curSum() ? { ...curSum(), f: u.f } : u);
+  let L = H.filter(u => !(B && u.f === B.fileName) && !(N(u.pv) === 0 && N(u.ev) === 0)).map(u => isCur(u) && (u.v || 1) < 4 && curSum() ? { ...curSum(), f: u.f } : u);
   if (U && U !== B && !L.some(isCur) && curSum()) L.push(curSum());
   L = L.sort((a, b) => (a.dd || '').localeCompare(b.dd || ''));
   RPU.key = k; RPU.list = L.map((u, i) => ({ ...u, i, lbl: 'UPD-' + String(i + 1).padStart(2, '0'), cur: isCur(u) }));   // UPD-nn by data date, as in the KAYAN portfolio report ("UPD-01 | 05-Aug-26")
@@ -6618,13 +6655,13 @@ function rpTree(id, o) { // o = { items, levels:[fn], root, name, title, cols:[{
     return out.join('') || `<tr><td colspan="${o.cols.length + 2}" class="empty">—</td></tr>`; };
   let ticks = '', tk0 = 0; if (gx) { const span = D.diff(G.f0, G.s0), stepM = span > 1400 ? 6 : span > 380 ? 3 : 1; tk0 = 1; const tk = []; let m = G.s0.slice(0, 8) + '01'; while (m <= G.f0) { if (m >= G.s0) tk.push(m); const [y, mm] = m.split('-').map(Number), nx = mm + stepM; m = nx > 12 ? `${y + 1}-${String(nx - 12).padStart(2, '0')}-01` : `${y}-${String(nx).padStart(2, '0')}-01`; }
     ticks = `<div class="tgh">${tk.map(t => `<em style="left:${gx(t).toFixed(2)}%">${stepM >= 3 ? `Q${Math.ceil(+t.slice(5, 7) / 3)}-${t.slice(2, 4)}` : D.fmt(t).slice(3)}</em>`).join('')}${G.dd && G.dd >= G.s0 && G.dd <= G.f0 ? `<s style="left:${gx(G.dd).toFixed(2)}%"></s>` : ''}</div>`; }
-  RT[id] = { draw, st, keysAll: () => { const ks = []; const w = n => { ks.push(n.key); n.kids.forEach(w); }; w(top); return ks; } };
+  RT[id] = { draw, st, c0: o.collapse == null ? 1 : o.collapse, keysAll: () => { const ks = []; const w = n => { ks.push(n.key); n.kids.forEach(w); }; w(top); return ks; } };
   return `<div class="xtree ${G && G.style ? 'gs' + G.style : ''}" data-tree="${id}"><table class="tt-t"><colgroup><col>${o.cols.map(c => `<col style="width:${c.w || 80}px">`).join('')}${gx ? `<col style="width:${G.w || 44}%">` : ''}</colgroup><thead><tr><th>${o.head || LBL('Activity', 'النشاط')}<span class="tx"><button data-tx="1" title="${LBL('Expand all', 'توسيع الكل')}" aria-label="${LBL('Expand all', 'توسيع الكل')}">+</button><button data-tx="0" title="${LBL('Collapse all', 'طي الكل')}" aria-label="${LBL('Collapse all', 'طي الكل')}">−</button></span></th>${o.cols.map(c => `<th>${c.h}</th>`).join('')}${gx ? `<th class="tgth">${ticks}</th>` : ''}</tr></thead><tbody></tbody></table></div>`;
 }
 function rpTreeMount(el) {
   el.querySelectorAll('[data-tree]').forEach(box => { const T = RT[box.dataset.tree]; if (!T) return; const tb = box.querySelector('tbody');
     const draw = () => { tb.innerHTML = T.draw(); tb.querySelectorAll('[data-tk]').forEach(b => b.onclick = () => { const k = b.dataset.tk; T.st.op[k] = b.getAttribute('aria-expanded') !== 'true'; draw(); }); };
-    box.querySelectorAll('[data-tx]').forEach(b => b.onclick = () => { T.st.op = {}; T.st.d0 = b.dataset.tx === '1' ? 9 : 1; draw(); });
+    box.querySelectorAll('[data-tx]').forEach(b => b.onclick = () => { T.st.op = {}; T.st.d0 = b.dataset.tx === '1' ? 9 : T.c0; draw(); });
     rpTipWire(); draw(); });
 }
 /* hover card (one for the whole report, kept outside the scaled page): data-tp = title ␟ label ␞ value ␟ label ␞ value … */
@@ -6824,26 +6861,110 @@ RP.P.update = (el, pg) => {
   rpTipWire();
 };
 
-/* ---------- 5 · Critical Path & Milestones (slicers + update filter) ---------- */
+/* ---------- 5 · Critical Path & Milestones (15-Nov-2026): two sections kept apart on the page –
+   MILESTONES (petrol rail): forecast completion, milestone counts, next milestone · milestones table merged with their Gantt (baseline ○ → forecast ●, every key date + project completion) · project completion slip of every update
+   CRITICAL ACTIVITIES (red rail): longest path, negative float, SPI of the critical activities, late starts · critical work by building → work type (summary v4 groups) · SPI of the critical activities over every update ---------- */
+IC.flag = IC.flag || '<path d="M5 21V4"/><path d="M5 4h12l-2.5 4 2.5 4H5"/>';
+function rpUAby(u, keys) {   // figures of one update per value of one or two slicer codes (summary groups), for the current slicers
+  const out = new Map(); if (!u || !u.g || !u.gk) return out; const o = u.gk.length, ki = keys.map(k => u.gk.indexOf(k)); if (ki.some(i => i < 0)) return out;
+  const sel = u.gk.map(c => { const v = RPF.vals(c); return v.length ? new Set(v) : null; }), v4 = (u.v || 0) >= 4;
+  u.g.forEach(r => { for (let j = 0; j < o; j++) if (sel[j] && !sel[j].has(u.gv[j][r[j]])) return;
+    const k = ki.map(i => u.gv[i][r[i]] || '—').join('␟'); let A = out.get(k); if (!A) out.set(k, A = { W: 0, pv: 0, ev: 0, cp: 0, ip: 0, ns: 0, lp: 0, mf: -1e6, cw: 0, cpv: 0, cev: 0, nc: v4 ? 0 : null, mt: null });
+    const x = j => r[o + j] || 0; A.W += x(0); A.pv += x(1); A.ev += x(2); A.cp += x(6); A.ip += x(7); A.ns += x(8); A.lp += x(9); A.mf = Math.max(A.mf, x(10)); A.cw += x(11); A.cpv += x(12); A.cev += x(13);
+    if (v4) { A.nc += x(14); if (x(7) + x(8) > 0) A.mt = A.mt == null ? x(15) : Math.min(A.mt, x(15)); } });
+  return out;
+}
+const rpAgg = L => L.reduce((A, x) => { ['W', 'pv', 'ev', 'cp', 'ip', 'ns', 'lp', 'cw', 'cpv', 'cev'].forEach(k => A[k] += x[k]); A.mf = Math.max(A.mf, x.mf); if (x.nc != null) A.nc = (A.nc || 0) + x.nc; if (x.mt != null) A.mt = A.mt == null ? x.mt : Math.min(A.mt, x.mt); return A; }, { W: 0, pv: 0, ev: 0, cp: 0, ip: 0, ns: 0, lp: 0, mf: -1e6, cw: 0, cpv: 0, cev: 0, nc: null, mt: null });
+const rpSt = d => d == null ? 'na' : d <= 0.5 ? 'on' : d <= 30 ? 'risk' : 'late';   // on time · at risk ≤ 30 d · late
+const RP_STC = { done: RCOL.done, on: RCOL.ok, risk: RCOL.warn, late: RCOL.bad, na: '#9FB3BF' };
+const rpStChip = s => chip({ done: 'ns', on: 'ok', risk: 'warn', late: 'bad', na: 'ns' }[s], { done: LBL('Achieved', 'منجز'), on: LBL('On time', 'في الموعد'), risk: LBL('At risk', 'معرّض'), late: LBL('Late', 'متأخر'), na: '—' }[s]);
+const rpQtr = (a0, a1) => { const t = []; let [y, m] = a0.split('-').map(Number); m = Math.floor((m - 1) / 3) * 3 + 1; for (;;) { const d = `${y}-${String(m).padStart(2, '0')}-01`; if (d > a1) break; if (d >= a0) t.push(d); m += 3; if (m > 12) { m -= 12; y++; } } return t; };
+/* milestones table merged with their Gantt: name · baseline · forecast · Δ · status | timeline (baseline ○, forecast ● in the status colour, slip line, data-date line); project completion pinned at the bottom */
+function rpMsGantt(MS, fin, dd) {
+  const ds = [...MS, fin].filter(Boolean).flatMap(r => [r.bf, r.fc]).filter(Boolean).sort(); if (!ds.length) return `<div class="empty">—</div>`;
+  const a0 = ds[0].slice(0, 8) + '01', a1 = D.add(ds[ds.length - 1], 25), span = Math.max(1, D.diff(a1, a0)), X = d => Math.max(0, Math.min(100, D.diff(d, a0) / span * 100)), tk = rpQtr(a0, a1), ddIn = dd && dd >= a0 && dd <= a1;
+  const grid = `${tk.map(t => `<s style="left:${X(t).toFixed(2)}%"></s>`).join('')}${ddIn ? `<s class="dd" style="left:${X(dd).toFixed(2)}%"></s>` : ''}`;
+  const bar = r => { if (!r.bf && !r.fc) return `<td class="mg"><div>${grid}</div></td>`; const b = r.bf || r.fc, f = r.fc || r.bf, c = RP_STC[r.s], x0 = Math.min(X(b), X(f)), x1 = Math.max(X(b), X(f));
+    const tp = rpTip(r.name, [[LBL('Baseline', 'الأساسي'), D.fmt(r.bf)], [r.s === 'done' ? LBL('Actual', 'الفعلي') : LBL('Forecast', 'المتوقع'), D.fmt(r.fc)], [LBL('Slip', 'الانزلاق'), r.d != null ? `${r.d > 0 ? '+' : ''}${fmtN(r.d)} ${LBL('d', 'يوم')}` : '']]);
+    return `<td class="mg"><div data-tp="${tp}">${grid}${x1 - x0 > 0.2 ? `<i class="ln" style="left:${x0.toFixed(2)}%;width:${(x1 - x0).toFixed(2)}%;background:${c}38"></i>` : ''}${r.bf ? `<i class="b" style="left:${X(r.bf).toFixed(2)}%"></i>` : ''}${r.fc ? `<i class="f" style="left:${X(r.fc).toFixed(2)}%;background:${c}"></i>` : ''}</div></td>`; };
+  const row = (r, cls) => `<tr class="${cls || ''}"${r.s !== 'done' && !r.end ? ' data-open' : ''}><td class="mn" dir="auto" title="${h(r.name)}">${r.end ? ic('flag') : `<i class="md" style="background:${RP_STC[r.s]}"></i>`}<span>${h(r.name)}</span></td><td dir="ltr">${D.fmt(r.bf)}</td><td dir="ltr">${D.fmt(r.fc)}</td><td dir="ltr" class="nm ${r.d > 0.5 ? 'neg' : ''}">${r.d != null ? `${r.d > 0 ? '+' : ''}${fmtN(r.d)}` : ''}</td><td>${rpStChip(r.s)}</td>${bar(r)}</tr>`;
+  const head = `<div class="mgh">${tk.filter((t, i) => (tk.length <= 6 || i % 2 === (tk.length % 2 ? 0 : 1)) && (!ddIn || Math.abs(X(t) - X(dd)) > 11)).map(t => `<em style="left:${X(t).toFixed(2)}%">${D.fmt(t).slice(3)}</em>`).join('')}${ddIn ? `<b style="left:${X(dd).toFixed(2)}%" title="${LBL('Data date', 'تاريخ البيانات')}">${D.fmt(dd).slice(0, 6)}</b>` : ''}</div>`;
+  return `<div class="xtw xmgw"><table class="t xmg"><colgroup><col style="width:28%"><col style="width:${S.lang === 'ar' ? 80 : 68}px"><col style="width:${S.lang === 'ar' ? 80 : 68}px"><col style="width:38px"><col style="width:62px"><col></colgroup>
+    <thead><tr><th>${LBL('Milestone', 'المعلم')}</th><th>${LBL('Baseline', 'الأساسي')}</th><th>${LBL('Forecast', 'المتوقع')}</th><th>Δ</th><th>${T('status')}</th><th class="mgt">${head}</th></tr></thead>
+    <tbody>${MS.map(r => row(r)).join('') || `<tr><td colspan="6" class="empty">${LBL('No milestone in this selection.', 'لا توجد معالم في هذا الاختيار.')}</td></tr>`}</tbody>${fin ? `<tfoot>${row(fin, 'end')}</tfoot>` : ''}</table></div>`;
+}
+function _rpSlipTr({ L, u, bl, w, h: hh }) {   // project (or selection) completion: forecast finish − baseline finish, every update
+  const v = L.map(x => { const f = rpUA(x).fin; return f && bl ? D.diff(f, bl) : null; }), vv = v.filter(isNum); if (!vv.length) return `<div class="empty">—</div>`;
+  const st_ = (() => { const m = Math.max(10, ...vv.map(Math.abs)) / 2, p = Math.pow(10, Math.floor(Math.log10(m))); return [1, 2, 2.5, 5, 10].map(k => k * p).find(k => k >= m) || m; })();
+  const Lm = 30, R = 8, T = 18, B = 22, n = L.length, gw = (w - Lm - R) / n, cx = j => Lm + gw * j + gw / 2, hi = Math.ceil(Math.max(10, ...vv) * 1.12 / st_) * st_, lo = Math.min(0, Math.floor(Math.min(0, ...vv) * 1.12 / st_) * st_), Y = x => T + (hi - x) / (hi - lo) * (hh - T - B), bw = Math.min(26, gw * 0.62);
+  const col = d => d <= 0.5 ? RCOL.ok : d <= 30 ? RCOL.warn : RCOL.bad, step = Math.ceil(26 / gw);
+  const hl = L.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 1).toFixed(1)}" y="2" width="${(gw - 2).toFixed(1)}" height="${hh - 4}" rx="6" fill="${RP_HL.f}" stroke="${RP_HL.s}"/>` : '').join('');
+  const gl = []; for (let g = lo; g <= hi + 1e-9; g += st_) gl.push(g); const grid = gl.map(g => `<line x1="${Lm}" x2="${w - R}" y1="${Y(g).toFixed(1)}" y2="${Y(g).toFixed(1)}" stroke="#EEF2F5"/><text x="${Lm - 4}" y="${(Y(g) + 3).toFixed(1)}" text-anchor="end" font-size="9" fill="#7B8C99">${g}</text>`).join('');
+  const bars = L.map((x, j) => { const d = v[j]; if (!isNum(d)) return ''; const y = Y(Math.max(0, d)), hgt = Math.max(1.5, Math.abs(Y(d) - Y(0))), on = x === u, p = j ? v[j - 1] : null;
+    return `<rect x="${(cx(j) - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${hgt.toFixed(1)}" rx="2" fill="${col(d)}" opacity="${on ? 1 : 0.78}"/><text x="${cx(j).toFixed(1)}" y="${(d >= 0 ? y - 4 : Y(d) + 11).toFixed(1)}" text-anchor="middle" font-size="${gw < 26 ? 8.5 : 9.5}" font-weight="800" fill="${col(d)}">${d > 0 && gw >= 26 ? '+' : ''}${fmtN(d)}</text>
+      <rect class="ctp" x="${(cx(j) - gw / 2).toFixed(1)}" y="2" width="${gw.toFixed(1)}" height="${hh - 4}" data-tp="${rpTip(`${x.lbl} · ${D.fmt(x.ddp || x.dd)}`, [[LBL('Forecast finish', 'الانتهاء المتوقع'), D.fmt(rpUA(x).fin)], [LBL('Baseline finish', 'انتهاء الأساسي'), D.fmt(bl)], [LBL('Slip', 'الانزلاق'), `${d > 0 ? '+' : ''}${fmtN(d)} ${LBL('d', 'يوم')}`], [LBL('Change vs previous update', 'التغير عن التحديث السابق'), isNum(p) ? `${d - p > 0 ? '+' : ''}${fmtN(d - p)} ${LBL('d', 'يوم')}` : '']])}"/>`; }).join('');
+  const xl = L.map((x, j) => j % step && x !== u ? '' : `<text x="${cx(j).toFixed(1)}" y="${hh - 7}" text-anchor="middle" font-size="9" font-weight="${x === u ? 800 : 500}" fill="${x === u ? '#12202B' : '#7B8C99'}">${x.lbl.replace('UPD-', '')}</text>`).join('');
+  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img">${hl}${grid}<line x1="${Lm}" x2="${w - R}" y1="${Y(0).toFixed(1)}" y2="${Y(0).toFixed(1)}" stroke="#B4C0CA"/>${bars}${xl}</svg>`;
+}
+function _rpCritAll({ L, u, w, h: hh }) {   // SPI of the critical activities (P6 setting of each update) over every update
+  const S_ = L.map(x => rpUA(x).cspi), sv = S_.filter(isNum);
+  if (!sv.length) return `<div class="empty">${L.every(x => x.g) ? (L.some(x => rpUA(x).cw > 0) ? LBL('The critical activities of this selection were not planned to start by these data dates.', 'الأنشطة الحرجة لهذا الاختيار لم يكن مخططاً أن تبدأ حتى تواريخ البيانات هذه.') : LBL('No critical activities in this selection.', 'لا توجد أنشطة حرجة في هذا الاختيار.')) : LBL('Read the updates again on Report sources to see the SPI of the critical activities.', 'أعد قراءة التحديثات من مصادر التقرير لعرض SPI الأنشطة الحرجة.')}</div>`;
+  const Lm = 30, R = 12, T = 22, B = 24, n = L.length, gw = (w - Lm - R) / Math.max(1, n), cx = j => Lm + gw * j + gw / 2, lo = Math.min(0.6, ...sv) - 0.08, hi = Math.max(1.2, ...sv) + 0.1, Y = v => T + (hi - v) / (hi - lo) * (hh - T - B);
+  const col = s => s >= 0.95 ? RCOL.ok : s >= 0.85 ? RCOL.warn : RCOL.bad, step = Math.ceil(26 / gw);
+  const hl = L.map((x, j) => x === u ? `<rect x="${(cx(j) - gw / 2 + 1).toFixed(1)}" y="2" width="${(gw - 2).toFixed(1)}" height="${hh - 4}" rx="6" fill="${RP_HL.f}" stroke="${RP_HL.s}"/>` : '').join('');
+  const bands = `<rect x="${Lm}" y="${Y(0.95).toFixed(1)}" width="${w - Lm - R}" height="${(Y(0.85) - Y(0.95)).toFixed(1)}" fill="#FFF6DE"/><rect x="${Lm}" y="${Y(0.85).toFixed(1)}" width="${w - Lm - R}" height="${Math.max(0, hh - B - Y(0.85)).toFixed(1)}" fill="#FDF0EA"/>`;
+  const ax = [lo + 0.08 > 0.6 ? null : 0.5, 1].filter(isNum).map(g => `<line x1="${Lm}" x2="${w - R}" y1="${Y(g).toFixed(1)}" y2="${Y(g).toFixed(1)}" stroke="${g === 1 ? '#9FB3BF' : '#EEF2F5'}" ${g === 1 ? 'stroke-dasharray="4 3"' : ''}/><text x="${Lm - 4}" y="${(Y(g) + 3).toFixed(1)}" text-anchor="end" font-size="9" fill="#7B8C99">${g.toFixed(2)}</text>`).join('');
+  const pts = L.map((x, j) => isNum(S_[j]) ? [cx(j), Y(S_[j]), S_[j], x, j] : null).filter(Boolean);
+  const side = []; pts.forEach(([x, y], i) => { const p = pts[i - 1], q = pts[i + 1]; let up = !(p && q && p[1] < y && q[1] < y) && !(!p && q && q[1] < y - 2) && !(!q && p && p[1] < y - 2); if (p && side[i - 1] === up && x - p[0] < 30 && Math.abs(y - p[1]) < 13) up = !up; side.push(up); });
+  const lbl = pts.map(([x, y, v, U, j], i) => { const up = side[i]; return `<text x="${x.toFixed(1)}" y="${(up ? y - 8 : y + 15).toFixed(1)}" text-anchor="middle" font-size="${gw < 30 ? 9.5 : 10.5}" font-weight="800" fill="${col(v)}" paint-order="stroke" stroke="#fff" stroke-width="3">${v.toFixed(2)}</text>`; }).join('');
+  const tips = L.map((x, j) => `<rect class="ctp" x="${(cx(j) - gw / 2).toFixed(1)}" y="2" width="${gw.toFixed(1)}" height="${hh - 4}" data-tp="${rpTip(`${x.lbl} · ${D.fmt(x.ddp || x.dd)}`, [[LBL('SPI – critical activities', 'SPI – الأنشطة الحرجة'), isNum(S_[j]) ? S_[j].toFixed(2) : '—'], [LBL('SPI – project', 'SPI – المشروع'), rpUA(x).pv ? (rpUA(x).ev / rpUA(x).pv).toFixed(2) : '—'], [LBL('Rule (P6)', 'القاعدة (P6)'), x.crit === 'lp' ? LBL('longest path', 'المسار الأطول') : `${LBL('total float', 'الفائض الكلي')} ≤ ${fmtN(N(x.cf))}`], [LBL('Share of the budget', 'نسبة من الميزانية'), rpUA(x).W ? fmtPct(rpUA(x).cw / rpUA(x).W, 1) : '']])}"/>`).join('');
+  const xl = L.map((x, j) => j % step && x !== u ? '' : `<text x="${cx(j).toFixed(1)}" y="${hh - 7}" text-anchor="middle" font-size="9" font-weight="${x === u ? 800 : 500}" fill="${x === u ? '#12202B' : '#7B8C99'}">${x.lbl.replace('UPD-', '')}</text>`).join('');
+  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img">${hl}${bands}${ax}<polyline fill="none" stroke="#C2410C" stroke-width="2.2" stroke-linejoin="round" points="${pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ')}"/>${pts.map(([x, y, v]) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${gw < 30 ? 3.6 : 4.2}" fill="#fff" stroke="${col(v)}" stroke-width="2.4"/>`).join('')}${lbl}${xl}${tips}</svg>`;
+}
+const rpSlipTr = rchWrap(_rpSlipTr), rpCritAll = rchWrap(_rpCritAll);
 RP.P.critical = (el, pg) => {
   const L = rpUpds(), u = rpUpd(); if (!u || !S.db.baseline) return rpNeed(el, pg, needSch());
-  const blFin = S.db.baseline.planEnd || S.db.baseline.mustFinish || '', slip = blFin && u.fin ? D.diff(u.fin, blFin) : null;
-  const MS = (u.ms || []).map(([id, fc, st]) => { const a = rpAct(id); if (!a || !RPF.pass(a)) return null; const bf = rpBlD(a).f, d = bf && fc ? D.diff(fc, bf) : null; return { id, a, name: String(a.name || id).replace(/^MI-\s*/i, ''), bf, fc, d, s: st === 2 ? 'done' : d == null ? 'na' : d <= 0.5 ? 'on' : d <= 30 ? 'risk' : 'late' }; }).filter(Boolean).sort((x, y) => (x.bf || '').localeCompare(y.bf || ''));
-  const cnt = s => MS.filter(m => m.s === s).length, col = s => s === 'late' ? RCOL.bad : s === 'risk' ? RCOL.warn : s === 'done' ? RCOL.done : RCOL.ok;
-  const open = MS.filter(m => m.s !== 'done' && m.bf && m.fc), rows = [...open.slice(0, 7), ...(blFin && u.fin && !RPF.on() ? [{ name: LBL('Project completion', 'إنجاز المشروع'), bf: blFin, fc: u.fin, d: slip, s: slip > 30 ? 'late' : slip > 0.5 ? 'risk' : 'on', end: 1 }] : [])];
-  const ds = rows.flatMap(r => [r.bf, r.fc]).filter(Boolean).sort(), a0 = (ds[0] || u.dd).slice(0, 8) + '01', a1 = D.add(ds[ds.length - 1] || a0, 20), span = Math.max(1, D.diff(a1, a0)), X = d => D.diff(d, a0) / span * 100;
-  const ticks = []; for (let m = a0; m <= a1;) { ticks.push(m); const [y, mm] = m.split('-').map(Number); const n = mm + 3; m = n > 12 ? `${y + 1}-${String(n - 12).padStart(2, '0')}-01` : `${y}-${String(n).padStart(2, '0')}-01`; }
-  const cp = (Array.isArray(u.lpa) ? u.lpa : []).map(([id, es, ef]) => { const a = rpAct(id); return a && RPF.pass(a) ? { a, es, ef } : null; }).filter(Boolean).slice(0, 5);
-  const upto = L.filter(x => x.i <= u.i).slice(-12);
-  el.innerHTML = `<div class="xs xs-h">${rpUpdPanel(u)}<div class="xs xs-in">${rpOld(u)}
-    <div class="xs-r xs-k">${xk('k1', LBL('Forecast completion', 'الإنجاز المتوقع'), D.fmt(u.fin), `${LBL('Baseline', 'الأساسي')} <bdi dir="ltr">${D.fmt(blFin)}</bdi>${slip != null ? ` · <i class="${slip > 0 ? 'neg' : 'pos'}" dir="ltr">${slip > 0 ? '+' : ''}${fmtN(slip)} ${LBL('d', 'يوم')}</i>` : ''}`, slip > 0 ? 'bad hot' : 'ok')}${xk('k2', `${LBL('Milestones', 'المعالم')} (${MS.length})`, `${cnt('late')}`, `${cnt('done')} ${LBL('achieved', 'منجز')} · ${cnt('on')} ${LBL('on time', 'في الموعد')} · ${cnt('risk')} ${LBL('at risk', 'معرّض')} · ${cnt('late')} ${LBL('late', 'متأخر')}`, cnt('late') ? 'bad' : 'ok', `<div class="xstk">${[['done', RCOL.done], ['on', RCOL.ok], ['risk', RCOL.warn], ['late', RCOL.bad]].map(([s, c]) => cnt(s) ? `<i style="flex:${cnt(s)};background:${c}"></i>` : '').join('')}</div>`)}${xk('k3', LBL('Longest path', 'المسار الأطول'), u.lp != null ? fmtN(u.lp) : '—', LBL('open activities', 'نشاط مفتوح'))}${xk('k4', LBL('Negative float', 'فائض سالب'), u.neg != null ? fmtN(u.neg) : '—', LBL('open activities', 'نشاط مفتوح'), u.neg ? 'bad' : 'ok')}${xk('k5', LBL('Should have started', 'كان يجب أن تبدأ'), u.sh != null ? fmtN(u.sh) : '—', `${LBL('started late', 'بدأت متأخرة')} ${u.sl != null ? fmtN(u.sl) : '—'} · ${LBL('finished late', 'انتهت متأخرة')} ${u.fl != null ? fmtN(u.fl) : '—'}`, u.sh ? 'bad' : 'ok')}</div>
-    <div class="xs-r xs-m" style="flex:1.45"><div class="xc" data-v="slip" style="flex:6"><div class="xc-t">${LBL('Milestone slippage – baseline vs forecast', 'انزلاق المعالم – الأساسي مقابل التوقع')}${lg([[RCOL.bad, LBL('Late > 30 d', 'متأخر > 30 يوم')], [RCOL.warn, LBL('At risk', 'معرّض')], [RCOL.ok, LBL('On time', 'في الموعد')]])}</div>
-        <div class="dmb"><div class="dmb-ax"><span></span><div>${ticks.map(t => `<em style="inset-inline-start:${X(t).toFixed(2)}%" dir="ltr">${D.fmt(t).slice(3)}</em>`).join('')}</div><span>${LBL('Slip', 'الانزلاق')}</span></div>
-        ${rows.map(r => `<div class="dmb-r ${r.end ? 'end' : ''}"><span class="dmb-n" dir="auto" title="${h(r.name)}">${h(r.name)}</span><div class="dmb-t">${ticks.map(t => `<s style="inset-inline-start:${X(t).toFixed(2)}%"></s>`).join('')}${u.dd >= a0 && u.dd <= a1 ? `<s class="dd" style="inset-inline-start:${X(u.dd).toFixed(2)}%"></s>` : ''}<i class="ln" style="inset-inline-start:${Math.min(X(r.bf), X(r.fc)).toFixed(2)}%;width:${Math.abs(X(r.fc) - X(r.bf)).toFixed(2)}%;background:${col(r.s)}40"></i><i class="b" style="inset-inline-start:${X(r.bf).toFixed(2)}%"></i><i class="f" style="inset-inline-start:${X(r.fc).toFixed(2)}%;background:${col(r.s)}"></i></div><b class="dmb-d" dir="ltr" style="color:${r.d > 0.5 ? col(r.s) : RCOL.ok}">${r.d > 0 ? '+' : ''}${fmtN(r.d)}</b></div>`).join('') || `<div class="empty">—</div>`}</div></div>
-      <div class="xc" data-v="mst" style="flex:5"><div class="xc-t">${LBL('Key milestones status', 'موقف المعالم الرئيسية')}</div><div class="xtw"><table class="t xms"><colgroup><col><col style="width:76px"><col style="width:76px"><col style="width:40px"><col style="width:74px"></colgroup><thead><tr><th>${LBL('Milestone', 'المعلم')}</th><th>${LBL('Baseline', 'الأساسي')}</th><th>${LBL('Forecast', 'المتوقع')}</th><th>Δ</th><th>${T('status')}</th></tr></thead><tbody>${MS.map(m => `<tr><td dir="auto">${h(m.name)}</td><td dir="ltr">${D.fmt(m.bf)}</td><td dir="ltr">${D.fmt(m.fc)}</td><td dir="ltr" class="${m.d > 0.5 ? 'neg' : ''}">${m.d > 0 ? '+' : ''}${m.d != null ? fmtN(m.d) : ''}</td><td>${chip({ done: 'ns', on: 'ok', risk: 'warn', late: 'bad', na: 'ns' }[m.s], { done: LBL('Achieved', 'منجز'), on: LBL('On time', 'في الموعد'), risk: LBL('At risk', 'معرّض'), late: LBL('Late', 'متأخر'), na: '—' }[m.s])}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div></div></div>
-    <div class="xs-r xs-m"><div class="xc" data-v="cp" style="flex:6"><div class="xc-t">${LBL('Critical (longest) path – next activities', 'المسار الحرج (الأطول) – الأنشطة القادمة')}</div><ol class="xcp">${cp.map((x, i) => `<li><i>${i + 1}</i><div><b dir="auto">${h(x.a.name)}</b><span dir="auto">${h(rpPath(x.a))}</span></div><em dir="ltr">${D.fmt(x.es)} → ${D.fmt(x.ef)}</em></li>`).join('') || `<li class="empty">—</li>`}</ol></div>
-      <div class="xc xg" data-v="trend" style="flex:5"><div class="xc-t">${LBL('Forecast finish vs baseline by update (days)', 'الانتهاء المتوقع مقابل الأساسي لكل تحديث (يوم)')}</div>${svgCols({ w: 460, h: 190, cats: upto.map(x => x.lbl.replace('UPD-', '')), bars: [{ v: upto.map(x => blFin && x.fin ? Math.max(0, D.diff(x.fin, blFin)) : 0), c: RCOL.bad }], fmt: v => fmtN(v, 0) })}</div></div></div></div>`;
-  rpUpdWire(el);
+  const A = rpUA(u), on = RPF.on(), Q = on ? blSeries(true) : null, blFin = on ? (Q ? Q.f0 : '') : (S.db.baseline.planEnd || S.db.baseline.mustFinish || ''), fin = A.fin || u.fin, slip = blFin && fin ? D.diff(fin, blFin) : null, dd = u.ddp || u.dd;
+  const upto = L.filter(x => x.i <= u.i), prev = L[u.i - 1], cs = A.cspi, pcs = prev ? rpUA(prev).cspi : null;
+  /* milestones of the update (P6 milestones of the baseline), slicers applied */
+  const MS = (u.ms || []).map(([id, fc, st]) => { const a = rpAct(id); if (!a || !RPF.pass(a)) return null; const bf = rpBlD(a).f, d = bf && fc ? D.diff(fc, bf) : null; return { id, name: String(a.name || id).replace(/^MI-\s*/i, ''), bf, fc, d, s: st === 2 ? 'done' : rpSt(d) }; }).filter(Boolean).sort((x, y) => (x.bf || '').localeCompare(y.bf || '') || (x.fc || '').localeCompare(y.fc || ''));
+  const cnt = s => MS.filter(m => m.s === s).length, nx = MS.filter(m => m.s !== 'done' && m.fc).sort((x, y) => (x.fc || '').localeCompare(y.fc || ''))[0];
+  const finRow = blFin && fin ? { name: on ? LBL('Completion of the selection', 'إنجاز الاختيار') : LBL('Project completion', 'إنجاز المشروع'), bf: blFin, fc: fin, d: slip, s: rpSt(slip), end: 1 } : null;
+  /* critical work by building → work type (summary groups of the update) + the baseline finish of each */
+  const H = rpHier(), wt = pickCode(/work type/i, H.b), kb = H.b || H.z, two = !!(wt && wt !== kb && (u.gk || []).includes(wt)), G = rpUAby(u, two ? [kb, wt] : [kb]), blF = new Map();
+  S.db.baseline.activities.forEach(a => { if (!RPF.pass(a)) return; const c = RPF.codes(a), f = rpBlD(a).f; if (!f) return; const b = c[kb] || '—', k2 = b + '␟' + (c[wt] || '—'); if (!(blF.get(b) >= f)) blF.set(b, f); if (two && !(blF.get(k2) >= f)) blF.set(k2, f); });
+  const items = [...G.entries()].map(([k, x]) => { const [b, t] = k.split('␟'); return { b, t: two ? t : b, k, ...x }; });
+  const fc = x => x.mf > -9e5 ? D.add(u.dd, x.mf) : '', open = x => x.ip + x.ns > 0, spiOf = x => x.cpv > 0 ? x.cev / x.cpv : null;
+  const stOf = (x, bf) => { if (!open(x)) return 'done'; const d = bf && fc(x) ? D.diff(fc(x), bf) : null; return rpSt(d); };
+  const byB = new Map(); items.forEach(it => { if (!byB.has(it.b)) byB.set(it.b, []); byB.get(it.b).push(it); });
+  const aggB = new Map([...byB].map(([b, L_]) => [b, rpAgg(L_)])), slipB = b => { const x = aggB.get(b), bf = blF.get(b); return x && bf && fc(x) && open(x) ? D.diff(fc(x), bf) : -1e6; };
+  const spiC = s => !isNum(s) ? '—' : `<b style="color:${s >= 0.95 ? RCOL.ok : s >= 0.85 ? RCOL.warn : RCOL.bad}">${s.toFixed(2)}</b>`;
+  const tfC = t => t == null ? '—' : `<span dir="ltr" class="${t < 0 ? 'neg' : ''}">${fmtN(t)}</span>`;
+  const cells = (x, bf) => { const f = fc(x), d = bf && f ? D.diff(f, bf) : null, op = open(x); return { nc: x.nc == null ? '—' : fmtN(x.nc), lp: x.lp ? `<b class="neg">${fmtN(x.lp)}</b>` : '—', mt: op ? tfC(x.mt) : '—', spi: op ? spiC(spiOf(x)) : '—', bf: D.fmt(bf), f: D.fmt(f), d: d != null && op ? `<span dir="ltr" class="${d > 0.5 ? 'neg' : ''}">${d > 0 ? '+' : ''}${fmtN(d)}</span>` : '—', st: rpStChip(stOf(x, bf)) }; };
+  const cN = n => cells(rpAgg(n.all), blF.get(n.label)), cL = it => cells(it, two ? blF.get(it.k) : blF.get(it.b));
+  const col = (k, hd, w, cls) => ({ h: hd, w, cls, g: n => cN(n)[k], l: it => cL(it)[k] });
+  const tree = rpTree('crb', { items, levels: two ? [it => it.b] : [], depth0: 0, collapse: 0, name: it => it.t, head: two ? LBL('Building · work type', 'المبنى · نوع العمل') : LBL('Building', 'المبنى'),
+    sort: (a, b) => slipB(b.label) - slipB(a.label) || String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
+    cols: [col('nc', LBL('Critical', 'حرجة'), 50, 'nm'), col('lp', LBL('Longest path', 'المسار الأطول'), 82, 'nm'), col('mt', LBL('Worst float', 'أسوأ فائض'), 72, 'nm'), col('spi', 'SPI', 38, 'nm'), col('bf', LBL('BL finish', 'نهاية أساسي'), S.lang === 'ar' ? 80 : 70, 'dt'), col('f', LBL('Forecast', 'المتوقع'), S.lang === 'ar' ? 80 : 70, 'dt'), col('d', LBL('Slip', 'الانزلاق'), 44, 'nm'), col('st', T('status'), 64, '')] });
+  items.sort((a, b) => { const sl = it => { const bf = two ? blF.get(it.k) : blF.get(it.b), f = fc(it); return open(it) && bf && f ? D.diff(f, bf) : -1e6; }; return sl(b) - sl(a) || String(a.t).localeCompare(String(b.t), undefined, { numeric: true }); });   // work types by slip too
+  const T_ = rpAgg(items), lpB = [...aggB].filter(([, x]) => x.lp > 0).sort((a, b) => b[1].lp - a[1].lp).map(([b]) => b);
+  const v4 = (u.v || 0) >= 4;
+  const ms = `<div class="cs cs-ms"><div class="cs-rail">${ic('flag')}<span>${LBL('Milestones', 'المعالم')}</span></div><div class="cs-in">
+    <div class="xs-r xs-k cs-k">${xk('k1', LBL('Forecast completion', 'الإنجاز المتوقع'), D.fmt(fin), `${LBL('Baseline', 'الأساسي')} <bdi dir="ltr">${D.fmt(blFin)}</bdi>${slip != null ? ` · <i class="${slip > 0 ? 'neg' : 'pos'}" dir="ltr">${slip > 0 ? '+' : ''}${fmtN(slip)} ${LBL('d', 'يوم')}</i>` : ''}`, slip > 0 ? 'bad hot' : 'ok')}
+      ${xk('k2', `${LBL('Milestones', 'المعالم')} (${MS.length})`, `${cnt('late')} ${LBL('late', 'متأخر')}`, `${cnt('done')} ${LBL('achieved', 'منجز')} · ${cnt('on')} ${LBL('on time', 'في الموعد')} · ${cnt('risk')} ${LBL('at risk', 'معرّض')}`, cnt('late') ? 'bad' : 'ok', `<div class="xstk">${[['done', RCOL.done], ['on', RCOL.ok], ['risk', RCOL.warn], ['late', RCOL.bad]].map(([s, c]) => cnt(s) ? `<i style="flex:${cnt(s)};background:${c}"></i>` : '').join('')}</div>`)}
+      ${xk('k8', LBL('Next milestone', 'المعلم القادم'), nx ? D.fmt(nx.fc) : '—', nx ? `<bdi dir="auto">${h(nx.name)}</bdi>${nx.d != null ? ` · <i class="${nx.d > 0.5 ? 'neg' : 'pos'}" dir="ltr">${nx.d > 0 ? '+' : ''}${fmtN(nx.d)} ${LBL('d', 'يوم')}</i>` : ''}` : '', nx ? (nx.s === 'late' ? 'bad' : nx.s === 'risk' ? 'warn' : 'ok') : '')}</div>
+    <div class="xs-r cs-b"><div class="xc" data-v="mst" style="flex:6.7"><div class="xc-t">${LBL('Key milestones – status and slippage', 'المعالم الرئيسية – الموقف والانزلاق')}${lg([['#fff', LBL('Baseline', 'الأساسي'), 'mb'], [RCOL.ok, LBL('On time', 'في الموعد')], [RCOL.warn, LBL('At risk ≤ 30 d', 'معرّض ≤ 30 يوم')], [RCOL.bad, LBL('Late > 30 d', 'متأخر > 30 يوم')], [RCOL.done, LBL('Achieved', 'منجز')]])}</div>${rpMsGantt(MS, finRow, dd)}</div>
+      <div class="xc" data-v="trend" style="flex:3.3"><div class="xc-t">${on ? LBL('Completion delay by update (days)', 'تأخير الإنجاز لكل تحديث (يوم)') : LBL('Project completion delay by update (days)', 'تأخير إنجاز المشروع لكل تحديث (يوم)')}</div><div class="x3">${rpSlipTr({ L: upto, u, bl: blFin, w: 330, h: 200 })}</div></div></div></div></div>`;
+  const cr = `<div class="cs cs-cr"><div class="cs-rail">${ic('warn')}<span>${LBL('Critical activities', 'الأنشطة الحرجة')}</span></div><div class="cs-in">
+    <div class="xs-r xs-k cs-k">${xk('k3', LBL('Longest path', 'المسار الأطول'), u.lp != null ? fmtN(A.lp != null ? A.lp : u.lp) : '—', lpB.length ? `${LBL('through', 'يمر بـ')} <bdi dir="auto">${h(lpB.slice(0, 3).join(' · '))}</bdi>` : LBL('open activities', 'نشاط مفتوح'), 'bad')}
+      ${xk('k5', `${LBL('Critical activities', 'الأنشطة الحرجة')} (${u.crit === 'lp' ? LBL('longest path', 'المسار الأطول') : `TF ≤ ${fmtN(N(u.cf))}`})`, T_.nc != null ? fmtN(T_.nc) : (u.neg != null ? fmtN(u.neg) : '—'), `${LBL('worst float', 'أسوأ فائض')} <i class="neg" dir="ltr">${T_.mt != null ? fmtN(T_.mt) : '—'} ${LBL('d', 'يوم')}</i> · ${LBL('of', 'من')} ${fmtN(N(A.ip) + N(A.ns))} ${LBL('open', 'مفتوح')}`, 'bad')}
+      ${xk('k6', LBL('SPI – critical activities', 'SPI – الأنشطة الحرجة'), isNum(cs) ? cs.toFixed(2) : '—', isNum(pcs) && isNum(cs) ? `${LBL('previous', 'السابق')} ${pcs.toFixed(2)} · <i class="${cs >= pcs ? 'pos' : 'neg'}" dir="ltr">${cs >= pcs ? '▲' : '▼'} ${Math.abs(cs - pcs).toFixed(2)}</i>` : '', !isNum(cs) ? '' : cs >= 0.95 ? 'ok' : cs >= 0.85 ? 'warn' : 'bad')}
+      ${xk('k4', LBL('Should have started', 'كان يجب أن تبدأ'), u.sh != null ? fmtN(u.sh) : '—', `${on ? `${LBL('whole project', 'المشروع كله')} · ` : ''}${LBL('started late', 'بدأت متأخرة')} ${u.sl != null ? fmtN(u.sl) : '—'} · ${LBL('finished late', 'انتهت متأخرة')} ${u.fl != null ? fmtN(u.fl) : '—'}`, u.sh ? 'bad' : 'ok')}</div>
+    <div class="xs-r cs-b"><div class="xc" data-v="cpb" style="flex:6.7"><div class="xc-t">${LBL('Critical work by building', 'الأعمال الحرجة حسب المبنى')}<span class="xsub">${v4 ? LBL('sorted by slip · expand a building for its work types', 'مرتبة حسب الانزلاق · افتح المبنى لعرض أنواع الأعمال') : LBL('read the updates again on Report sources for the critical counts and float', 'أعد قراءة التحديثات من مصادر التقرير لعدد الأنشطة الحرجة والفائض')}</span></div>${items.length ? tree : `<div class="empty">—</div>`}</div>
+      <div class="xc" data-v="crit" style="flex:3.3"><div class="xc-t">${LBL('SPI – critical activities, all updates', 'SPI – الأنشطة الحرجة، كل التحديثات')}</div><div class="x3">${rpCritAll({ L: upto, u, w: 330, h: 170 })}</div></div></div></div></div>`;
+  el.innerHTML = `<div class="xs xs-h xcr">${rpUpdPanel(u)}<div class="xs xs-in">${rpOld(u)}${ms}${cr}</div></div>`;
+  rpUpdWire(el); rpTreeMount(el); rpTipWire();
+  const mw = el.querySelector('.xmgw'), f1 = mw && mw.querySelector('tbody tr[data-open]'); if (f1 && !el.closest('.rpp')) mw.scrollTop = Math.max(0, f1.offsetTop - mw.querySelector('thead').offsetHeight - f1.offsetHeight);   // first open milestone near the top (achieved ones above)
 };
 
 /* ---------- 6 · Delays & Recovery (slicers + update filter): tree Zone → Building → Level → activity ---------- */

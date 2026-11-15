@@ -805,6 +805,23 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .t.dlt td.dl-r b,.t.dlt td.dl-m span{display:block;-webkit-line-clamp:unset;overflow:visible;line-height:1.38}
 .t.dlt td.dl-r b{font-size:10.5px}.t.dlt td.dl-m{font-size:10px;line-height:1.38}.t.dlt td.dl-r>span{font-size:9px;white-space:normal}
 .t.dlt tr.dla td.dl-r b{-webkit-line-clamp:unset;font-size:10px}.t.dlt .xcb{font-size:9.5px}
+/* 7 · Look-Ahead (15-Nov-2026): side filter (window · basis · focus), 3D of the 4D model in two colours, floating table */
+.xla .xla-w{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 2px}.xla-w button{display:flex;flex-direction:column;align-items:center;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:transparent;color:#D6E6E9;font:inherit;padding:5px 0 4px;cursor:pointer;line-height:1.1}
+.xla-w button b{font-size:16px}.xla-w button span{font-size:8.5px;opacity:.85}.xla-w button:hover{background:rgba(255,255,255,.08)}.xla-w button.on{background:#E8A33D;border-color:#E8A33D;color:#12202B}
+.xla-b{display:grid;grid-template-columns:1fr;gap:0;background:rgba(255,255,255,.07);border-radius:8px;padding:6px 8px;margin:2px 2px 0}.xla-b span{font-size:8.5px;color:#9FD3DA;text-transform:uppercase;letter-spacing:.4px;margin-top:3px}.xla-b span:first-child{margin-top:0}.xla-b b{font-size:11px;color:#fff;font-weight:700}
+.xla .xla-x{justify-content:space-between}.xla .xla-x b{font-size:10px;color:#9FD3DA}.xla .xla-x.on b{color:#3A2A00}
+.la-c{position:relative;padding:0!important;overflow:hidden;background:#F2F5F7}.la-3{position:absolute;inset:0}.la-f{width:100%;height:100%;border:0;display:block}.la-img{width:100%;height:100%;object-fit:cover;display:block}
+.la-ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:12px}
+.la-tl{position:absolute;top:10px;bottom:38px;inset-inline-start:10px;width:61%;display:flex;flex-direction:column;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid #DCE4E8;border-radius:10px;box-shadow:0 8px 24px rgba(14,74,85,.12);padding:8px 9px;gap:5px;z-index:2;min-height:0}
+.la-tl.off{bottom:auto;width:auto}.la-th{display:flex;align-items:center;gap:9px;font-size:11px;color:#3E4F5C}.la-th b{font-size:12.5px;color:#12202B}.la-th .xsub{margin-inline-start:auto;font-size:10px;color:#7B8C99}
+.la-tg{width:22px;height:22px;border:0;border-radius:6px;background:#E2EEF0;color:#0E4A55;font-weight:800;cursor:pointer;padding:0}.la-tg:hover{background:#BFD9DD}
+.la-tl .xtree{flex:1;min-height:0}.la-tl .tt-t{font-size:10.5px}.la-tl .tt-t th{font-size:10px;padding:4px 5px}.la-tl .tt-t td{padding:2px 5px}.la-tl .tt-t .xch{font-size:9.5px;padding:0 5px}.la-tl td.dt{font-size:10px}
+.lab{display:block;position:relative;height:7px;background:#EEF2F5;border-radius:4px;overflow:hidden}.lab i{position:absolute;inset-inline-start:0;top:0;bottom:0;border-radius:4px}.lab i.p{background:#8FD3A9}.lab i.a{background:#7B5EA7}
+.la-ctl{position:absolute;top:10px;inset-inline-end:10px;display:flex;flex-direction:column;gap:4px;z-index:2}.la-ctl button{width:28px;height:28px;border:1px solid #DCE4E8;border-radius:7px;background:rgba(255,255,255,.95);color:#0E4A55;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.08)}.la-ctl button:hover{background:#E2EEF0}
+.la-hint{position:absolute;bottom:10px;inset-inline-end:12px;font-size:9.5px;color:#7B8C99;z-index:2;pointer-events:none}
+.la-lg{position:absolute;bottom:9px;inset-inline-start:12px;display:flex;gap:14px;font-size:10.5px;color:#3E4F5C;z-index:2;background:rgba(255,255,255,.85);border-radius:7px;padding:3px 9px}.la-lg span{display:inline-flex;align-items:center;gap:6px}.la-lg i{width:12px;height:12px;border-radius:3px}.la-lg i.g{background:#2BA35F}.la-lg i.b{background:#A9AEB3}
+@media print{.la-ctl,.la-hint{display:none!important}}
+.rpp .xla-w button{color:#475766;border-color:#D5DCE3}.rpp .xla-w button.on{color:#12202B}.rpp .xla-b{background:#F2F5F7}.rpp .xla-b span{color:#5B6B7A}.rpp .xla-b b{color:#12202B}.rpp .xla .xla-x b{color:#0E4A55}
 
 </style>
 </head>
@@ -4238,7 +4255,7 @@ const RP_PAGES = [   // 14 dashboard pages (14-Nov-2026, Yasser's order); t = sh
   { k: 'update', en: 'Updates', ar: 'التحديثات', t: ['Updates', 'التحديثات'], slc: 1, upd: 1 },
   { k: 'critical', en: 'Critical Path & Milestones', ar: 'المسار الحرج والمعالم', t: ['Critical & MS', 'الحرج والمعالم'], slc: 1, upd: 1 },
   { k: 'delays', en: 'Delays & Recovery', ar: 'التأخيرات والتعافي', t: ['Delays', 'التأخيرات'], slc: 1, upd: 1 },
-  { k: 'lookahead', en: 'Look-Ahead', ar: 'الأعمال القادمة', t: ['Look-Ahead', 'الأعمال القادمة'], o4d: 'lookahead' },
+  { k: 'lookahead', en: 'Look-Ahead', ar: 'الأعمال القادمة', t: ['Look-Ahead', 'الأعمال القادمة'], slc: 1 },   // 15-Nov-2026: native page (3D of the 4D model + table), see report4.js
   { k: 'sim4d', en: '4D Simulation', ar: 'محاكاة 4D', t: ['4D', '4D'], o4d: 'viewer' },
   { k: 'rescost', en: 'Resources & Cost', ar: 'الموارد والتكلفة', t: ['Resources & Cost', 'الموارد والتكلفة'] },
   { k: 'qhse', en: 'Quality & Safety', ar: 'الجودة والسلامة', t: ['Quality & Safety', 'الجودة والسلامة'] },
@@ -7173,6 +7190,160 @@ RP.P.delays = (el, pg) => {
   const l = el.querySelector('.xdl .xu-l'), on_ = el.querySelector('.xdl .xu-b.on'); if (l && on_) l.scrollTop = Math.max(0, on_.offsetTop - l.offsetTop - l.clientHeight / 2);
   rpTipWire(); rsWire();
 };
+
+/* ---------- 7 · Look-Ahead (15-Nov-2026): the work planned for the next 2 / 3 / 4 weeks from the data date of the latest update XER loaded in the platform –
+   side filter (window · focus) + slicers; compact cards; a 3D model of the project in two colours only (built = concrete grey at the data date, look-ahead = green),
+   rotate / zoom / pan, no site life; over it a table Zone → Building → Level → Work type → activity with dates, actual % and planned % at the end of the window.
+   Everything comes from the update XER (dates, status, P6 %), the activity codes and the project 4D model (geometry + activity → building · level · element rules),
+   so a new project needs nothing more. ---------- */
+const LA_WIN = [2, 3, 4];
+const laEl = e => e === 'cols' ? 'c' : (e === 'slab' || e === 'pt' || e === 'raft') ? 's' : e === 'walls' ? 'w' : '';
+const LA_LVORD = lv => lv === 'RAFT' ? -5 : /^B\d$/.test(lv) ? -(+lv.slice(1)) - 1 : lv === 'GF' ? -1 : lv === 'RF' ? 999 : lv && lv[0] === 'L' ? +lv.slice(1) : 1000;
+const RPLA = { key: '', d: null };
+function rpLaData() {   // the latest update XER loaded in the platform, classified once with the project 4D model
+  const s = SCH(); if (!s || !s.upd) return null; const M = M4(); const k = [S.db.id, s.fileName, s.importedAt, M ? (M._at || '') : '-'].join('|'); if (RPLA.key === k) return RPLA.d;
+  const dd = s.asOf || s.dataDate, crit = (s.sched || {}).critFloat, cf = isNum(crit) ? crit : 0, lpCrit = /long|driv/i.test((s.sched || {}).critType || '');
+  const acts = s.activities.map(a => { const c = M ? O4D.classify(M, a) : { z: '', lv: null, e: 'misc', s: '' }, ms = a.type === 'TT_Mile' || a.type === 'TT_FinMile';
+    const st = a.status === 'Completed' ? 2 : a.status === 'In Progress' ? 1 : 0, s0 = st ? (a.as || a.es || a.ps) : (a.es || a.ps), f0 = st === 2 ? (a.af || a.ef || a.pf) : (a.ef || a.pf);
+    return { a, c, ms, st, s0: s0 || '', f0: f0 || s0 || '', pct: st === 2 ? 100 : N(a.pct), crit: st < 2 && (lpCrit ? !!a.dp : isNum(a.tf) && a.tf <= cf + 1e-9), w: N(a.cost), lu: N(a.lu !== undefined ? a.lu : (a.bl || {}).lu) }; });
+  const u = rpUpds().find(x => x.cur) || null;
+  RPLA.key = k; RPLA.d = { s, dd, acts, lbl: u ? u.lbl : (s.fileName || ''), M }; return RPLA.d;
+}
+function rpLaRows(X, wk) {   // activities of the window: not completed, start before the end of the window (overdue starts included); planned % at the end of the window from the update's forecast dates
+  const dd = X.dd, WE = D.add(dd, wk * 7), lin = (a, b, t) => !a || !b ? 0 : t <= a ? 0 : t >= b ? 1 : D.diff(t, a) / Math.max(1, D.diff(b, a));
+  return { WE, rows: X.acts.filter(x => x.st < 2 && x.s0 && x.s0 <= WE).map(x => {
+    const f = x.f0 || x.s0, pe = x.ms ? (f <= WE ? 100 : x.pct) : x.st === 1 ? x.pct + (100 - x.pct) * lin(dd, f, WE) : 100 * lin(D.add(x.s0, -1), f, WE);
+    const due = f <= WE, k = x.st === 0 ? (due ? 'both' : 'start') : due ? 'finish' : 'cont';
+    return { ...x, pe: Math.max(x.pct, Math.min(100, pe)), k, due }; }) };
+}
+/* 3D viewer (runs in its own frame; geometry rules as in the 4D app – storey heights from the model, columns grid, slabs, perimeter walls) */
+function LA3D_APP(P) {
+  const T = window.THREE, cv = document.getElementById('cv'), msg = document.getElementById('msg'); if (!T) { msg.hidden = false; return; }
+  let R; try { R = new T.WebGLRenderer({ canvas: cv, antialias: true, preserveDrawingBuffer: true }); } catch (e) { msg.hidden = false; return; }
+  R.setPixelRatio(Math.min(2, window.devicePixelRatio || 1)); R.shadowMap.enabled = true; R.shadowMap.type = T.PCFSoftShadowMap;
+  const scene = new T.Scene(); scene.background = new T.Color(0xF2F5F7); scene.fog = new T.Fog(0xF2F5F7, 900, 2100); const cam = new T.PerspectiveCamera(38, 1, 0.5, 6000);
+  scene.add(new T.HemisphereLight(0xffffff, 0xb9c3ca, 0.78)); const sun = new T.DirectionalLight(0xffffff, 0.62); sun.position.set(-260, 420, 300); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -300, right: 300, top: 300, bottom: -300, near: 10, far: 1400 }); sun.shadow.bias = -0.0006; scene.add(sun); scene.add(sun.target);
+  const G = P.geo, shoe = p => { let s = 0; for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length]; s += a[0] * b[1] - b[0] * a[1]; } return Math.abs(s) / 2; };
+  const SCL = Math.sqrt(G.siteArea / shoe(G.site)), [CX, CY] = G.center, W = p => [(p[0] - CX) * SCL, (p[1] - CY) * SCL], rectP = r => [[r[0], r[1]], [r[2], r[1]], [r[2], r[3]], [r[0], r[3]]], toW = p => p.map(W);
+  const SITE = toW(G.site), BH = G.bh, GFH = G.gfh, RAFTT = G.raftT, NB = G.nB, PITD = NB * BH + RAFTT;
+  const bbox = ps => { let a = 1e9, b = -1e9, c = 1e9, d = -1e9; for (const p of ps) for (const q of p) { a = Math.min(a, q[0]); b = Math.max(b, q[0]); c = Math.min(c, q[1]); d = Math.max(d, q[1]); } return { x0: a, x1: b, z0: c, z1: d, cx: (a + b) / 2, cz: (c + d) / 2 }; };
+  const inPoly = (x, z, p) => { let c = false; for (let i = 0, j = p.length - 1; i < p.length; j = i++) { const a = p[i], b = p[j]; if (((a[1] > z) !== (b[1] > z)) && (x < (b[0] - a[0]) * (z - a[1]) / (b[1] - a[1]) + a[0])) c = !c; } return c; };
+  const shape = poly => { const s = new T.Shape(); poly.forEach((p, i) => i ? s.lineTo(p[0], -p[1]) : s.moveTo(p[0], -p[1])); s.closePath(); return s; };
+  const extr = (ps, d) => { const g = new T.ExtrudeGeometry(ps.map(shape), { depth: d, bevelEnabled: false }); g.rotateX(-Math.PI / 2); return g; };
+  const ZN = {}; Object.entries(G.zones).forEach(([z, ps]) => { ZN[z] = { polys: ps.map(toW) }; ZN[z].bb = bbox(ZN[z].polys); });
+  const BLD = {}; Object.entries(G.bld).forEach(([z, b]) => { const lv = P.lv.filter(L => L.z === z && L.ord > 0 && L.ord < 999), maxN = Math.max(0, ...lv.map(L => L.ord)); const h = b.fh || (b.H ? (b.H - NB * BH - GFH) / (maxN + 1) : G.floorH);
+    BLD[z] = { poly: toW(b.r ? rectP(b.r) : b.p), pod: b.pod ? toW(b.pod) : null, h, maxN }; BLD[z].bb = bbox([BLD[z].poly]); });
+  const lvGeom = L => { if (ZN[L.z]) { const y0 = L.lv === 'RAFT' ? -PITD : /^B\d$/.test(L.lv) ? -(+L.lv.slice(1)) * BH : 0, h = L.lv === 'RAFT' ? RAFTT : L.lv === 'GF' ? GFH : BH; return { polys: ZN[L.z].polys, y0, h }; }
+    const B = BLD[L.z]; if (!B) return null; const n = L.ord === 999 ? B.maxN + 1 : L.ord, y0 = GFH + (n - 1) * B.h, h = L.ord === 999 ? 4 : B.h; return { polys: B.pod && n <= (G.podFloors || 3) ? [B.poly, B.pod] : [B.poly], y0, h }; };
+  /* ground with the excavation, site outline */
+  { const o = new T.Shape(), Rr = 2200; o.moveTo(-Rr, -Rr); o.lineTo(Rr, -Rr); o.lineTo(Rr, Rr); o.lineTo(-Rr, Rr); o.closePath(); const hole = new T.Path(); SITE.forEach((p, i) => i ? hole.lineTo(p[0], -p[1]) : hole.moveTo(p[0], -p[1])); hole.closePath(); o.holes.push(hole);
+    const g = new T.ShapeGeometry(o); g.rotateX(-Math.PI / 2); const m = new T.Mesh(g, new T.MeshLambertMaterial({ color: 0xE4E8EB })); m.receiveShadow = true; m.position.y = -0.03; scene.add(m);
+    const fl = new T.Mesh(extr([SITE], 0.2), new T.MeshLambertMaterial({ color: 0xD6DCE0 })); fl.position.y = -PITD - 0.2; fl.receiveShadow = true; scene.add(fl);
+    for (let i = 0; i < SITE.length; i++) { const a = SITE[i], b = SITE[(i + 1) % SITE.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); const w = new T.Mesh(new T.PlaneGeometry(len, PITD), new T.MeshLambertMaterial({ color: 0xCAD2D8, side: T.DoubleSide })); w.position.set((a[0] + b[0]) / 2, -PITD / 2, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); scene.add(w); }
+    const pts = []; SITE.forEach((a, i) => { const b = SITE[(i + 1) % SITE.length]; pts.push(a[0], 0.05, a[1], b[0], 0.05, b[1]); }); const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pts, 3)); scene.add(new T.LineSegments(lg, new T.LineBasicMaterial({ color: 0x7B8C99 }))); }
+  const MB = new T.MeshLambertMaterial({ color: 0xA9AEB3 }), MG = new T.MeshLambertMaterial({ color: 0x2BA35F, emissive: 0x0b3d20, emissiveIntensity: 0.25 }), EB = new T.LineBasicMaterial({ color: 0x7E858C }), EG = new T.LineBasicMaterial({ color: 0x15693A });
+  const OBJ = [], UB = new T.BoxGeometry(1, 1, 1); UB.translate(0, 0.5, 0);
+  P.lv.forEach(L => { const g = lvGeom(L); if (!g) return; const raft = L.lv === 'RAFT', top = g.y0 + g.h, th = raft ? RAFTT : L.lv === 'GF' ? 0.35 : 0.3, bb = bbox(g.polys), o = { L, bb, y0: g.y0, h: g.h, parts: { s: [], c: [], w: [] } };
+    const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; scene.add(sm, se); o.parts.s.push([sm, se]);
+    if (!raft) { const sp = ZN[L.z] ? 10.5 : 8, pts = []; for (const p of g.polys) { const b = bbox([p]); for (let x = b.x0 + 1.2; x <= b.x1 - 1; x += sp) for (let z = b.z0 + 1.2; z <= b.z1 - 1; z += sp) if (inPoly(x, z, p)) pts.push([x, z]); for (const q of p) pts.push([q[0] + (q[0] < b.cx ? 0.8 : -0.8), q[1] + (q[1] < b.cz ? 0.8 : -0.8)]); }
+      const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; scene.add(im); o.parts.c.push([im]);
+      for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; scene.add(w); o.parts.w.push([w]); } }
+    OBJ.push(o); });
+  const apply = st => { OBJ.forEach(o => { const s = st[o.L.z + '|' + o.L.lv] || {}; ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? MG : MB; if (e) { e.visible = v > 0; e.material = v === 2 ? EG : EB; } }); }); }); kick(); };
+  /* camera: drag to rotate, right-drag / shift to pan, wheel to zoom, double-click to reset */
+  const SB = bbox([SITE]), C0 = { tx: SB.cx, ty: 6, tz: SB.cz, r: Math.max(150, Math.hypot(SB.x1 - SB.x0, SB.z1 - SB.z0) * 1.7), th: 0.62, ph: 0.98 }, CAM = Object.assign({}, C0, P.cam || {});
+  const aspK = () => Math.max(1, 0.95 / (cv.clientWidth / Math.max(1, cv.clientHeight)));
+  const place = () => { const r = CAM.r * aspK(); cam.position.set(CAM.tx + r * Math.sin(CAM.ph) * Math.sin(CAM.th), CAM.ty + r * Math.cos(CAM.ph), CAM.tz + r * Math.sin(CAM.ph) * Math.cos(CAM.th)); cam.lookAt(CAM.tx, CAM.ty, CAM.tz); };
+  let raf = 0; function kick() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; place(); R.render(scene, cam); }); }
+  let SH = P.shift || 0; const resize = () => { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; R.setSize(w, h, false); cam.aspect = w / h; if (SH) cam.setViewOffset(w, h, -SH * w, 0, w, h); else cam.clearViewOffset(); cam.updateProjectionMatrix(); kick(); }; window.addEventListener('resize', resize);
+  const clamp = (v, a, b) => v < a ? a : v > b ? b : v, save = () => { try { parent.postMessage({ la3cam: Object.assign({}, CAM) }, '*'); } catch (e) { } };
+  let drag = null; cv.addEventListener('contextmenu', e => e.preventDefault());
+  cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; cv.style.cursor = 'grabbing'; });
+  cv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
+    if (drag.pan) { const k = CAM.r * aspK() * 0.0016, c = Math.cos(CAM.th), s = Math.sin(CAM.th); CAM.tx -= dx * c * k; CAM.tz -= -dx * s * k; CAM.ty += dy * k; } else { CAM.th -= dx * 0.006; CAM.ph = clamp(CAM.ph - dy * 0.005, 0.05, 1.5); } kick(); });
+  cv.addEventListener('pointerup', () => { drag = null; cv.style.cursor = ''; save(); });
+  cv.addEventListener('wheel', e => { e.preventDefault(); CAM.r = clamp(CAM.r * Math.exp(e.deltaY * 0.0012), 15, 1600); kick(); clearTimeout(window.__sv); window.__sv = setTimeout(save, 300); }, { passive: false });
+  cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); kick(); save(); });
+  window.LA = { update: st => apply(st), shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); kick(); save(); },
+    focus: z => { const b = (BLD[z] || ZN[z] || {}).bb; if (!b) return; const top = BLD[z] ? GFH + BLD[z].maxN * BLD[z].h : 0; Object.assign(CAM, { tx: b.cx, ty: top / 2, tz: b.cz, r: Math.max(90, Math.hypot(b.x1 - b.x0, b.z1 - b.z0) * 1.6 + top), th: 0.62, ph: 1.0 }); kick(); save(); },
+    snap: () => { place(); R.render(scene, cam); return cv.toDataURL('image/jpeg', 0.92); }, ready: true };
+  apply(P.st); resize(); try { parent.postMessage({ la3: 'ready' }, '*'); } catch (e) { }
+}
+const laDoc = P => `<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;overflow:hidden;background:#F2F5F7;font-family:Inter,'IBM Plex Sans Arabic',sans-serif}#cv{width:100%;height:100%;display:block;cursor:grab;touch-action:none}#msg[hidden]{display:none}#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:13px;text-align:center;padding:20px}</style></head><body><canvas id="cv"></canvas><div id="msg" hidden>${h(LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).'))}</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script><script>(${LA3D_APP.toString()})(${JSON.stringify(P).replace(/</g, '\\u003c')});<\/script></body></html>`;
+function rpLaGeo(M) {   // geometry of the project 4D model in the units of the 4D app
+  const L = M.levels || {}, bld = {}, zones = {}; Object.entries(M.buildings || {}).forEach(([k, b]) => { bld[k] = { p: b.poly, r: b.r || null, pod: b.podium || null, H: N(b.H), fh: N(b.floorH) || 0 }; }); Object.entries(M.zones || {}).forEach(([k, v]) => { zones[k] = v.polys; });
+  return { site: M.site, zones, bld, siteArea: (M.units || {}).siteArea || 10000, center: (M.units || {}).center || [0, 0], bh: L.basementH || 3.6, gfh: L.groundH || 6, raftT: L.raftT || 2.5, nB: (L.basement || ['B3', 'B2', 'B1']).length, floorH: L.floorH || 4.4, podFloors: L.podiumFloors || 3 };
+}
+function rpLaStates(D, sel) {   // per level and element: 1 = built at the data date (grey), 2 = in the look-ahead (green), 0 = not shown
+  const lv = new Map(), st = {}, ids = new Set(sel.map(x => x.a.id));
+  D.acts.forEach(x => { const e = laEl(x.c.e); if (!e || !x.c.lv || !x.c.z) return; const k = x.c.z + '|' + x.c.lv; if (!lv.has(k)) lv.set(k, { z: x.c.z, lv: x.c.lv, ord: LA_LVORD(x.c.lv) }); const o = st[k] = st[k] || { s: 0, c: 0, w: 0 };
+    if (ids.has(x.a.id)) o[e] = 2; else if (o[e] !== 2 && x.st === 2) o[e] = 1; });
+  return { lv: [...lv.values()], st };
+}
+RP.P.lookahead = (el, pg) => {
+  const X = rpLaData(); if (!X) return rpNeed(el, pg, LBL('Needs the latest update XER in the platform (Cut-off & P6 page).', 'تحتاج آخر تحديث XER في المنصة (صفحة تاريخ القطع و P6).'));
+  const H = rpHier(), wt = pickCode(/work type/i, H.b), cur = (S.db.baseline || X.s).currency || 'SAR', M = X.M, has3 = !!M, prt = !!el.closest('.rpp');
+  el.innerHTML = `<div class="xs xs-h xlap"><div class="xu xla" data-las></div><div class="xs xs-in"><div class="xs-r xs-k dl-k" data-lak></div>
+    <div class="xs-r xs-m"><div class="xc la-c" data-v="la3"><div class="la-3">${has3 ? `<div class="la-ld">${LBL('Loading the 3D model…', 'جارٍ تحميل الموديل ثلاثي الأبعاد…')}</div>` : `<div class="empty">${LBL('Import the project 4D model on Report sources to see the 3D view.', 'استورد موديل 4D للمشروع من مصادر التقرير لعرض الموديل ثلاثي الأبعاد.')}</div>`}</div>
+      <div class="la-tl" data-lat></div>
+      ${has3 && !prt ? `<div class="la-ctl"><button data-lz="0.8" title="${LBL('Zoom in', 'تكبير')}">+</button><button data-lz="1.25" title="${LBL('Zoom out', 'تصغير')}">−</button><button data-lr title="${LBL('Reset the view', 'إعادة العرض')}">⟲</button></div><div class="la-hint">${LBL('Drag to rotate · right-drag to pan · scroll to zoom · double-click to reset', 'اسحب للتدوير · الزر الأيمن للتحريك · العجلة للتكبير · نقرتان لإعادة العرض')}</div>` : ''}
+      <div class="la-lg"><span><i class="g"></i>${LBL('Look-ahead (planned in the window)', 'المستهدف خلال الفترة')}</span><span><i class="b"></i>${LBL('Built at the data date', 'المنفذ حتى تاريخ البيانات')}</span></div></div></div></div></div>`;
+  let f = null; const lw = () => f && f.contentWindow && f.contentWindow.LA;
+  const paint = () => {
+    const wk = LA_WIN.includes(S.ui.laW) ? S.ui.laW : 3, fx = S.ui.laFx || 'all', { WE, rows } = rpLaRows(X, wk);
+    const isK = (x, k) => k === 'all' ? true : k === 'crit' ? x.crit : k === 'start' ? (x.k === 'start' || x.k === 'both') : k === 'finish' ? (x.k === 'finish' || x.k === 'both') : x.k === 'cont';
+    const R0 = rows.filter(x => RPF.pass(x.a)), R = R0.filter(x => isK(x, fx)), days = wk * 7;
+    const bac = sum(X.acts.filter(x => RPF.pass(x.a)), x => x.w), val = sum(R, x => x.w * (x.pe - x.pct) / 100), md = sum(R, x => x.lu / 8 * (x.pe - x.pct) / 100);
+    const pours = R.filter(x => x.c.s === 'pour' && x.due), pS = pours.filter(x => x.c.e === 'slab' || x.c.e === 'raft').length, pC = pours.filter(x => x.c.e === 'cols').length, mss = R.filter(x => x.ms && x.due).sort((a, b) => a.f0.localeCompare(b.f0));
+    const nSt = R.filter(x => isK(x, 'start')).length, nCo = R.filter(x => isK(x, 'cont')).length, nFi = R.filter(x => isK(x, 'finish')).length, nCr = R.filter(x => x.crit).length, nOv = R.filter(x => x.st === 0 && x.s0 < X.dd).length;
+    /* side filter: window, basis, focus */
+    el.querySelector('[data-las]').innerHTML = `<div class="xu-t">${LBL('Look-ahead', 'الفترة القادمة')}</div><div class="xla-w">${LA_WIN.map(n => `<button class="${n === wk ? 'on' : ''}" data-law="${n}"><b>${n}</b><span>${LBL('weeks', 'أسابيع')}</span></button>`).join('')}</div>
+      <div class="xla-b"><span>${LBL('Based on', 'على أساس')}</span><b dir="ltr">${h(X.lbl)}</b><span>${LBL('Data date', 'تاريخ البيانات')}</span><b dir="ltr">${D_fmt(X.dd)}</b><span>${LBL('Window end', 'نهاية الفترة')}</span><b dir="ltr">${D_fmt(WE)}</b></div>
+      <div class="xu-t">${LBL('Show', 'العرض')}</div><div class="xdl-f">${[['all', LBL('All activities', 'كل الأنشطة')], ['start', LBL('Starting', 'تبدأ')], ['cont', LBL('Continuing', 'مستمرة')], ['finish', LBL('Finishing', 'تنتهي')], ['crit', LBL('Critical', 'حرجة')]].map(([k, t]) => `<button class="xdl-x xla-x ${fx === k ? 'on' : ''}" data-lafx="${k}"><span>${t}</span><b>${fmtN(R0.filter(x => isK(x, k)).length)}</b></button>`).join('')}</div>`;
+    /* cards */
+    el.querySelector('[data-lak]').innerHTML = `${xk('k1', LBL('Activities in the window', 'أنشطة الفترة'), fmtN(R.length), `${fmtN(nSt)} ${LBL('start', 'تبدأ')} · ${fmtN(nCo)} ${LBL('continue', 'مستمرة')} · ${fmtN(nFi)} ${LBL('finish', 'تنتهي')}`, '')}
+      ${xk('k2', LBL('Work planned in the window', 'قيمة الأعمال المخططة'), rpM(val), `${bac ? fmtPct(val / bac, 1) : '—'} ${LBL('of the budget', 'من الميزانية')} · ${cur}`, '')}
+      ${xk('k3', LBL('Labour planned', 'العمالة المخططة'), md ? fmtN(md) : '—', md ? `${LBL('man-days', 'يوم-عامل')} · ≈ ${fmtN(md / days)} ${LBL('workers / day', 'عامل يومياً')}` : LBL('no labour resources', 'لا توجد موارد عمالة'), '')}
+      ${xk('k4', LBL('Concrete pours due', 'صبات الخرسانة'), fmtN(pS + pC), `${fmtN(pS)} ${LBL('slabs / rafts', 'بلاطات / لبشة')} · ${fmtN(pC)} ${LBL('columns', 'أعمدة')}`, '')}
+      ${xk('k5', LBL('Critical in the window', 'حرجة في الفترة'), fmtN(nCr), nOv ? `<i class="neg">${fmtN(nOv)} ${LBL('should have started', 'كان يجب أن تبدأ')}</i>` : LBL('none late to start', 'لا يوجد تأخر في البدء'), nCr ? 'bad' : 'ok')}
+      ${xk('k6', LBL('Milestones due', 'معالم مستحقة'), fmtN(mss.length), mss.length ? `<bdi dir="auto">${h(String(mss[0].a.name).replace(/^MI-\s*/i, ''))}</bdi> · <bdi dir="ltr">${D_fmt(mss[0].f0)}</bdi>` : LBL('none in the window', 'لا يوجد في الفترة'), mss.length ? 'warn' : '')}`;
+    /* table over the model: Zone → Building → Level → Work type → activity */
+    const wavg = (xs, g) => { const W = sum(xs, x => x.w || 1); return W ? sum(xs, x => (x.w || 1) * g(x)) / W : 0; };
+    const stChip = x => chip({ start: 'ns', both: 'warn', finish: 'ok', cont: 'ns' }[x.k], { start: LBL('Starts', 'تبدأ'), both: LBL('Starts & ends', 'تبدأ وتنتهي'), finish: LBL('Finishes', 'تنتهي'), cont: LBL('Continues', 'مستمرة') }[x.k]);
+    const bar = (a, p) => `<span class="lab" title="${LBL('Actual now', 'الفعلي الآن')} ${fmtN(a, 0)}% · ${LBL('planned by the end of the window', 'المخطط بنهاية الفترة')} ${fmtN(p, 0)}%"><i class="p" style="width:${Math.min(100, p).toFixed(1)}%"></i><i class="a" style="width:${Math.min(100, a).toFixed(1)}%"></i></span>`;
+    const tree = rpTree('la', { items: R, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => x.a.id, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
+      sort: (a, b) => String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
+      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 78 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${D_fmt(x.s0)}</span>` },
+        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 78 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.f0).sort().pop()), l: x => D_fmt(x.f0) },
+        { h: LBL('Actual', 'الفعلي'), w: 44, cls: 'nm', g: n => `${fmtN(wavg(n.all, x => x.pct), 0)}%`, l: x => x.st ? `${fmtN(x.pct, 0)}%` : '<span class="muted">—</span>' },
+        { h: LBL('Plan by end', 'مخطط للنهاية'), w: 60, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
+        { h: '', w: 56, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
+        { h: 'TF', w: 40, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' },
+        { h: T('status'), w: 76, cls: '', g: n => '', l: x => stChip(x) }] });
+    const op = S.ui.laTb !== false, tl = el.querySelector('[data-lat]'); tl.classList.toggle('off', !op);
+    tl.innerHTML = `<div class="la-th"><b>${LBL('Look-ahead', 'الأعمال القادمة')} · ${fmtN(wk)} ${LBL('weeks', 'أسابيع')}</b><span dir="ltr">${D_fmt(X.dd)} → ${D_fmt(WE)}</span><span class="xsub">${fmtN(R.length)} ${LBL('activities', 'نشاط')}</span><button class="la-tg" data-latb title="${op ? LBL('Hide the table', 'إخفاء الجدول') : LBL('Show the table', 'إظهار الجدول')}">${op ? '⟨' : '⟩'}</button></div>${op ? (R.length ? tree : `<div class="empty">${LBL('No activity in this window and selection.', 'لا توجد أنشطة في هذه الفترة والاختيار.')}</div>`) : ''}`;
+    el.querySelectorAll('[data-law]').forEach(b => b.onclick = () => { S.ui.laW = +b.dataset.law; paint(); });
+    el.querySelectorAll('[data-lafx]').forEach(b => b.onclick = () => { S.ui.laFx = b.dataset.lafx; paint(); });
+    tl.querySelector('[data-latb]').onclick = () => { S.ui.laTb = !op; paint(); };
+    rpTreeMount(el); rpTipWire();
+    const G3 = rpLaStates(X, R); el._la = G3; el._sh = op ? (S.lang === 'ar' ? -0.28 : 0.28) : 0; const w = lw(); if (w && w.ready) { w.update(G3.st); w.shift(el._sh); }
+    return G3;
+  };
+  const G3 = paint(); if (!has3) return;
+  /* the 3D frame (geometry of the project 4D model); window / focus / table changes only recolour it */
+  const box = el.querySelector('.la-3');
+  f = document.createElement('iframe'); f.className = 'la-f'; f.title = LBL('Look-ahead 3D', 'الأعمال القادمة ثلاثي الأبعاد'); f.srcdoc = laDoc({ geo: rpLaGeo(M), lv: G3.lv, st: G3.st, cam: S.ui.laCam || null, shift: el._sh || 0 });
+  let host = null; if (prt) { host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-3000px;top:0;width:1100px;height:540px'; document.body.appendChild(host); host.appendChild(f); } else box.appendChild(f);   // print: drawn off-screen at page size, then kept as an image
+  el.querySelectorAll('[data-lz]').forEach(b => b.onclick = () => { const w = lw(); if (w) w.zoom(+b.dataset.lz); });
+  const rs = el.querySelector('[data-lr]'); if (rs) rs.onclick = () => { const w = lw(); if (w) w.reset(); };
+  const ready = () => new Promise(res => { let i = 0; const t = () => { const w = lw(); if (w && w.ready) { const l = box.querySelector('.la-ld'); if (l) l.remove(); if (el._la) w.update(el._la.st); return res(w); } if ((!prt && !el.isConnected) || ++i > 150) return res(null); setTimeout(t, 100); }; t(); });
+  if (prt) return ready().then(async w => { if (w) { await new Promise(r => setTimeout(r, 300)); const url = w.snap(); host.remove(); box.innerHTML = `<img class="la-img" src="${url}" alt="">`; } else if (host.remove() || 1) box.innerHTML = `<div class="empty">${LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).')}</div>`; });
+  ready();
+};
+if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (e.data && e.data.la3cam) S.ui.laCam = e.data.la3cam; }); }
+const D_fmt = d => d ? D.fmt(d) : '—';
 
 /* ---------- 9 · Resources & Cost ---------- */
 RP.P.rescost = (el, pg) => {

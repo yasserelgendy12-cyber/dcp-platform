@@ -822,6 +822,9 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .la-lg{position:absolute;bottom:9px;inset-inline-start:12px;display:flex;gap:14px;font-size:10.5px;color:#3E4F5C;z-index:2;background:rgba(255,255,255,.85);border-radius:7px;padding:3px 9px}.la-lg span{display:inline-flex;align-items:center;gap:6px}.la-lg i{width:12px;height:12px;border-radius:3px}.la-lg i.g{background:#2BA35F}.la-lg i.b{background:#A9AEB3}
 @media print{.la-ctl,.la-hint{display:none!important}}
 .rpp .xla-w button{color:#475766;border-color:#D5DCE3}.rpp .xla-w button.on{color:#12202B}.rpp .xla-b{background:#F2F5F7}.rpp .xla-b span{color:#5B6B7A}.rpp .xla-b b{color:#12202B}.rpp .xla .xla-x b{color:#0E4A55}
+.la-pk tbody tr[data-nk] td.tn,.la-pk tbody tr[data-ii] td.tn{cursor:pointer}.la-pk tbody tr:hover td{background:#F2F8F5}
+.la-pk tbody tr.sel td{background:#DDF1E5!important}.la-pk tbody tr.sel td.tn{box-shadow:inset 3px 0 0 #2BA35F}[dir=rtl] .la-pk tbody tr.sel td.tn{box-shadow:inset -3px 0 0 #2BA35F}
+@media print{.la-pk tbody tr.sel td{background:none!important;box-shadow:none!important}}
 
 </style>
 </head>
@@ -6720,15 +6723,16 @@ function rpTree(id, o) { // o = { items, levels:[fn], root, name, title, cols:[{
     if (cls === 'ms') return `<td class="tg"><div${tp}><i class="ms" style="left:${x1.toFixed(2)}%"></i>${x1 > 82 ? `<em class="gl lf" style="right:${(100 - x1).toFixed(2)}%">${D.fmt(f || s)}</em>` : `<em class="gl" style="left:${x1.toFixed(2)}%">${D.fmt(f || s)}</em>`}</div></td>`;
     const lb = x1 <= 82 ? `<em class="gl" style="left:${x1.toFixed(2)}%">${dur(s, f)}</em>` : x0 >= 14 ? `<em class="gl lf" style="right:${(100 - x0).toFixed(2)}%">${dur(s, f)}</em>` : '';
     return `<td class="tg"><div${tp}><i class="${cls}" style="left:${x0.toFixed(2)}%;width:${Math.max(0.4, x1 - x0).toFixed(2)}%"></i>${lb}</div></td>`; };
-  const draw = () => { const out = []; const walk = n => { const d = n.d - R, op = isOpen(n);
-      out.push(`<tr class="tgp d${Math.min(d, 3)}"><td class="tn" style="padding-inline-start:${8 + d * 16}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
+  const NK = {}, IT = [], iid = it => 'i:' + (o.title ? o.title(it) : IT.indexOf(it));
+  const draw = () => { const out = []; IT.length = 0; const walk = n => { const d = n.d - R, op = isOpen(n); NK[n.key] = n;
+      out.push(`<tr class="tgp d${Math.min(d, 3)}${st.sel === 'n:' + n.key ? ' sel' : ''}" data-nk="${h(n.key)}"><td class="tn" style="padding-inline-start:${8 + d * 16}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
       if (!op) return; kids(n).forEach(walk);
-      n.items.forEach(it => { const sp = G ? G.span(it) : null; out.push(`<tr class="tl"><td class="tn" style="padding-inline-start:${30 + (d + 1) * 16}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
+      n.items.forEach(it => { const sp = G ? G.span(it) : null; IT.push(it); out.push(`<tr class="tl${st.sel === iid(it) ? ' sel' : ''}" data-ii="${IT.length - 1}"><td class="tn" style="padding-inline-start:${30 + (d + 1) * 16}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
     if (o.root) walk(top); else { kids(top).forEach(walk); top.items.forEach(it => out.push(`<tr class="tl"><td class="tn">${h(o.name(it))}</td>${o.cols.map(c => `<td>${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? '<td class="tg"></td>' : ''}</tr>`)); }
     return out.join('') || `<tr><td colspan="${o.cols.length + 2}" class="empty">—</td></tr>`; };
   let ticks = '', tk0 = 0; if (gx) { const span = D.diff(G.f0, G.s0), stepM = span > 1400 ? 6 : span > 380 ? 3 : 1; tk0 = 1; const tk = []; let m = G.s0.slice(0, 8) + '01'; while (m <= G.f0) { if (m >= G.s0) tk.push(m); const [y, mm] = m.split('-').map(Number), nx = mm + stepM; m = nx > 12 ? `${y + 1}-${String(nx - 12).padStart(2, '0')}-01` : `${y}-${String(nx).padStart(2, '0')}-01`; }
     ticks = `<div class="tgh">${tk.map(t => `<em style="left:${gx(t).toFixed(2)}%">${stepM >= 3 ? `Q${Math.ceil(+t.slice(5, 7) / 3)}-${t.slice(2, 4)}` : D.fmt(t).slice(3)}</em>`).join('')}${G.dd && G.dd >= G.s0 && G.dd <= G.f0 ? `<s style="left:${gx(G.dd).toFixed(2)}%"></s>` : ''}</div>`; }
-  RT[id] = { draw, st, c0: o.collapse == null ? 1 : o.collapse, keysAll: () => { const ks = []; const w = n => { ks.push(n.key); n.kids.forEach(w); }; w(top); return ks; } };
+  RT[id] = { draw, st, pick: tr => { if (!tr) return null; if (tr.dataset.nk != null) { const n = NK[tr.dataset.nk]; return n ? { k: 'n:' + n.key, items: n.all, label: n.label, d: n.d - R } : null; } const it = IT[+tr.dataset.ii]; return it ? { k: iid(it), items: [it], label: o.name(it), leaf: 1 } : null; }, c0: o.collapse == null ? 1 : o.collapse, keysAll: () => { const ks = []; const w = n => { ks.push(n.key); n.kids.forEach(w); }; w(top); return ks; } };
   return `<div class="xtree ${G && G.style ? 'gs' + G.style : ''}" data-tree="${id}"><table class="tt-t"><colgroup><col>${o.cols.map(c => `<col style="width:${c.w || 80}px">`).join('')}${gx ? `<col style="width:${G.w || 44}%">` : ''}</colgroup><thead><tr><th>${o.head || LBL('Activity', 'النشاط')}<span class="tx"><button data-tx="1" title="${LBL('Expand all', 'توسيع الكل')}" aria-label="${LBL('Expand all', 'توسيع الكل')}">+</button><button data-tx="0" title="${LBL('Collapse all', 'طي الكل')}" aria-label="${LBL('Collapse all', 'طي الكل')}">−</button></span></th>${o.cols.map(c => `<th>${c.h}</th>`).join('')}${gx ? `<th class="tgth">${ticks}</th>` : ''}</tr></thead><tbody></tbody></table></div>`;
 }
 function rpTreeMount(el) {
@@ -7243,6 +7247,8 @@ function LA3D_APP(P) {
     for (let i = 0; i < SITE.length; i++) { const a = SITE[i], b = SITE[(i + 1) % SITE.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); const w = new T.Mesh(new T.PlaneGeometry(len, PITD), new T.MeshLambertMaterial({ color: 0xCAD2D8, side: T.DoubleSide })); w.position.set((a[0] + b[0]) / 2, -PITD / 2, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); scene.add(w); }
     const pts = []; SITE.forEach((a, i) => { const b = SITE[(i + 1) % SITE.length]; pts.push(a[0], 0.05, a[1], b[0], 0.05, b[1]); }); const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pts, 3)); scene.add(new T.LineSegments(lg, new T.LineBasicMaterial({ color: 0x7B8C99 }))); }
   const MB = new T.MeshLambertMaterial({ color: 0xA9AEB3 }), MG = new T.MeshLambertMaterial({ color: 0x2BA35F, emissive: 0x0b3d20, emissiveIntensity: 0.25 }), EB = new T.LineBasicMaterial({ color: 0x7E858C }), EG = new T.LineBasicMaterial({ color: 0x15693A });
+  const fd = (m, op) => { const c = m.clone(); c.transparent = true; c.opacity = op; c.depthWrite = false; return c; }, MBf = fd(MB, 0.16), MGf = fd(MG, 0.22), EBf = fd(EB, 0.12), EGf = fd(EG, 0.18);
+  let FZ = null, FL = null, ST = P.st;   // focus: zones kept solid (others faded), optional single level
   const OBJ = [], UB = new T.BoxGeometry(1, 1, 1); UB.translate(0, 0.5, 0);
   P.lv.forEach(L => { const g = lvGeom(L); if (!g) return; const raft = L.lv === 'RAFT', top = g.y0 + g.h, th = raft ? RAFTT : L.lv === 'GF' ? 0.35 : 0.3, bb = bbox(g.polys), o = { L, bb, y0: g.y0, h: g.h, parts: { s: [], c: [], w: [] } };
     const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; scene.add(sm, se); o.parts.s.push([sm, se]);
@@ -7250,7 +7256,8 @@ function LA3D_APP(P) {
       const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; scene.add(im); o.parts.c.push([im]);
       for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; scene.add(w); o.parts.w.push([w]); } }
     OBJ.push(o); });
-  const apply = st => { OBJ.forEach(o => { const s = st[o.L.z + '|' + o.L.lv] || {}; ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? MG : MB; if (e) { e.visible = v > 0; e.material = v === 2 ? EG : EB; } }); }); }); kick(); };
+  const apply = st => { ST = st; OBJ.forEach(o => { const key = o.L.z + '|' + o.L.lv, s = st[key] || {}, dim = FZ && !(FZ.has(o.L.z) && (!FL || key === FL)); ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? (dim ? MGf : MG) : (dim ? MBf : MB); m.castShadow = !dim; if (e) { e.visible = v > 0; e.material = v === 2 ? (dim ? EGf : EG) : (dim ? EBf : EB); } }); }); }); kick(); };
+  const unfocus = () => { if (FZ) { FZ = FL = null; apply(ST); } };
   /* camera: drag to rotate, right-drag / shift to pan, wheel to zoom, double-click to reset */
   const SB = bbox([SITE]), C0 = { tx: SB.cx, ty: 6, tz: SB.cz, r: Math.max(150, Math.hypot(SB.x1 - SB.x0, SB.z1 - SB.z0) * 1.7), th: 0.62, ph: 0.98 }, CAM = Object.assign({}, C0, P.cam || {});
   const aspK = () => Math.max(1, 0.95 / (cv.clientWidth / Math.max(1, cv.clientHeight)));
@@ -7264,9 +7271,12 @@ function LA3D_APP(P) {
     if (drag.pan) { const k = CAM.r * aspK() * 0.0016, c = Math.cos(CAM.th), s = Math.sin(CAM.th); CAM.tx -= dx * c * k; CAM.tz -= -dx * s * k; CAM.ty += dy * k; } else { CAM.th -= dx * 0.006; CAM.ph = clamp(CAM.ph - dy * 0.005, 0.05, 1.5); } kick(); });
   cv.addEventListener('pointerup', () => { drag = null; cv.style.cursor = ''; save(); });
   cv.addEventListener('wheel', e => { e.preventDefault(); CAM.r = clamp(CAM.r * Math.exp(e.deltaY * 0.0012), 15, 1600); kick(); clearTimeout(window.__sv); window.__sv = setTimeout(save, 300); }, { passive: false });
-  cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); kick(); save(); });
-  window.LA = { update: st => apply(st), shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); kick(); save(); },
-    focus: z => { const b = (BLD[z] || ZN[z] || {}).bb; if (!b) return; const top = BLD[z] ? GFH + BLD[z].maxN * BLD[z].h : 0; Object.assign(CAM, { tx: b.cx, ty: top / 2, tz: b.cz, r: Math.max(90, Math.hypot(b.x1 - b.x0, b.z1 - b.z0) * 1.6 + top), th: 0.62, ph: 1.0 }); kick(); save(); },
+  cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); unfocus(); kick(); save(); try { parent.postMessage({ la3sel: null }, '*'); } catch (e) { } });
+  window.LA = { update: st => apply(st), shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); unfocus(); kick(); save(); },
+    focus: (zs, lv) => { zs = [].concat(zs || []).filter(z => BLD[z] || ZN[z]); if (!zs.length) return 0; const bs = zs.map(z => (BLD[z] || ZN[z]).bb), b = { x0: Math.min(...bs.map(q => q.x0)), x1: Math.max(...bs.map(q => q.x1)), z0: Math.min(...bs.map(q => q.z0)), z1: Math.max(...bs.map(q => q.z1)) };
+      const top = Math.max(0, ...zs.map(z => BLD[z] ? GFH + BLD[z].maxN * BLD[z].h : 0)), o = lv ? OBJ.find(q => q.L.z + '|' + q.L.lv === lv) : null, d = Math.hypot(b.x1 - b.x0, b.z1 - b.z0);
+      FZ = new Set(zs); FL = o ? lv : null; apply(ST);
+      Object.assign(CAM, { tx: (b.x0 + b.x1) / 2, tz: (b.z0 + b.z1) / 2, ty: o ? o.y0 + o.h / 2 : top / 3, r: Math.max(o ? 120 : 150, d * 2.1 + top * 1.3), th: CAM.th, ph: o ? 0.95 : 0.88 }); kick(); save(); return 1; },
     snap: () => { place(); R.render(scene, cam); return cv.toDataURL('image/jpeg', 0.92); }, ready: true };
   apply(P.st); resize(); try { parent.postMessage({ la3: 'ready' }, '*'); } catch (e) { }
 }
@@ -7328,6 +7338,11 @@ RP.P.lookahead = (el, pg) => {
     el.querySelectorAll('[data-lafx]').forEach(b => b.onclick = () => { S.ui.laFx = b.dataset.lafx; paint(); });
     tl.querySelector('[data-latb]').onclick = () => { S.ui.laTb = !op; paint(); };
     rpTreeMount(el); rpTipWire();
+    const xt = tl.querySelector('.xtree'), TT = RT.la; if (xt && TT && has3) { xt.classList.add('la-pk'); xt.title = LBL('Click a row to zoom the model to it · click again to show the whole project', 'انقر على صف لتقريب النموذج إليه · انقر مرة أخرى لعرض المشروع كاملاً');
+      xt.onclick = e => { if (e.target.closest('button')) return; const tr = e.target.closest('tr[data-nk],tr[data-ii]'), pk = TT.pick(tr), w = lw(); if (!pk || !w || !w.ready) return;
+        if (TT.st.sel === pk.k) { TT.st.sel = null; w.reset(); } else { const zs = [...new Set(pk.items.map(x => x.c.z).filter(Boolean))], lvs = [...new Set(pk.items.map(x => x.c.lv ? x.c.z + '|' + x.c.lv : ''))];
+          if (!w.focus(zs, lvs.length === 1 && lvs[0] && (pk.leaf || pk.d >= 2) ? lvs[0] : null)) return toast(LBL('This item has no element in the 3D model', 'هذا البند ليس له عنصر في النموذج ثلاثي الأبعاد')); TT.st.sel = pk.k; }
+        xt.querySelectorAll('tr.sel').forEach(r => r.classList.remove('sel')); if (TT.st.sel) tr.classList.add('sel'); }; }
     const G3 = rpLaStates(X, R); el._la = G3; el._sh = op ? (S.lang === 'ar' ? -0.28 : 0.28) : 0; const w = lw(); if (w && w.ready) { w.update(G3.st); w.shift(el._sh); }
     return G3;
   };
@@ -7337,12 +7352,12 @@ RP.P.lookahead = (el, pg) => {
   f = document.createElement('iframe'); f.className = 'la-f'; f.title = LBL('Look-ahead 3D', 'الأعمال القادمة ثلاثي الأبعاد'); f.srcdoc = laDoc({ geo: rpLaGeo(M), lv: G3.lv, st: G3.st, cam: S.ui.laCam || null, shift: el._sh || 0 });
   let host = null; if (prt) { host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-3000px;top:0;width:1100px;height:540px'; document.body.appendChild(host); host.appendChild(f); } else box.appendChild(f);   // print: drawn off-screen at page size, then kept as an image
   el.querySelectorAll('[data-lz]').forEach(b => b.onclick = () => { const w = lw(); if (w) w.zoom(+b.dataset.lz); });
-  const rs = el.querySelector('[data-lr]'); if (rs) rs.onclick = () => { const w = lw(); if (w) w.reset(); };
+  const rs = el.querySelector('[data-lr]'); if (rs) rs.onclick = () => { const w = lw(); if (w) w.reset(); if (RT.la) RT.la.st.sel = null; el.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); };
   const ready = () => new Promise(res => { let i = 0; const t = () => { const w = lw(); if (w && w.ready) { const l = box.querySelector('.la-ld'); if (l) l.remove(); if (el._la) w.update(el._la.st); return res(w); } if ((!prt && !el.isConnected) || ++i > 150) return res(null); setTimeout(t, 100); }; t(); });
   if (prt) return ready().then(async w => { if (w) { await new Promise(r => setTimeout(r, 300)); const url = w.snap(); host.remove(); box.innerHTML = `<img class="la-img" src="${url}" alt="">`; } else if (host.remove() || 1) box.innerHTML = `<div class="empty">${LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).')}</div>`; });
   ready();
 };
-if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (e.data && e.data.la3cam) S.ui.laCam = e.data.la3cam; }); }
+if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (!e.data) return; if (e.data.la3cam) S.ui.laCam = e.data.la3cam; if ('la3sel' in e.data && RT.la) { RT.la.st.sel = null; document.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); } }); }
 const D_fmt = d => d ? D.fmt(d) : '—';
 
 /* ---------- 9 · Resources & Cost ---------- */

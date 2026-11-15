@@ -852,6 +852,41 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 /* Look-Ahead table: smaller type in the date and number columns so every value fits (13-Jun-26, 100%, -116) */
 .la-tl .tt-t td.dt,.la-tl .tt-t td.nm{font-size:9.5px;padding-inline:3px;letter-spacing:-.1px;text-overflow:clip}.la-tl .tt-t td.nm b{font-weight:700}.la-tl .tt-t tr.tgp td.dt{font-weight:600}
 .la-tl .tt-t th{font-size:9.5px;padding-inline:3px}.la-tl .tt-t th:first-child{padding-inline:6px}.la-tl .tt-t td.lbar{padding-inline:3px}
+/* Look-Ahead page: print button in the side filter */
+.xla-pr{margin-top:auto;display:flex;align-items:center;gap:7px;width:100%;border:1px solid rgba(232,163,61,.65);background:rgba(232,163,61,.16);color:#fff;border-radius:8px;padding:7px 8px;font:600 10.5px/1.25 inherit;cursor:pointer;text-align:start}
+.xla-pr:hover{background:rgba(232,163,61,.3)}.xla-pr svg{width:15px;height:15px;flex:0 0 15px;color:#E8A33D}
+@media print{.xla-pr{display:none!important}}
+/* Look-Ahead meeting sheets (A4 landscape, paginated in RP.laPrint) */
+.lap .lps{width:297mm;height:210mm;box-sizing:border-box;padding:7mm 8mm 6mm;display:flex;flex-direction:column;gap:2.2mm;background:#fff;color:#12202B;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",sans-serif;page-break-after:always;break-after:page;overflow:hidden}
+.lap .lps:last-child{page-break-after:auto;break-after:auto}
+.lap .lps-h{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6mm;border-bottom:.6mm solid #0E4A55;padding-bottom:2mm}
+.lap .lps-co{display:flex;align-items:center;gap:3mm;min-width:0}.lap .lps-co img{height:11mm;max-width:30mm;object-fit:contain}.lap .lps-co div{display:flex;flex-direction:column;min-width:0}.lap .lps-co b{font-size:9.5pt;color:#0E4A55}.lap .lps-co span{font-size:8pt;color:#3E4F5C}
+.lap .lps-t{text-align:center;display:flex;flex-direction:column;gap:.6mm}.lap .lps-t b{font-size:15pt;color:#0E4A55;letter-spacing:.2px}.lap .lps-t span{font-size:9pt;color:#12202B;font-weight:600;background:#FCF3E4;border:.3mm solid #E8A33D;border-radius:3mm;padding:.6mm 4mm;align-self:center}
+.lap .lps-m{display:flex;flex-direction:column;align-items:flex-end;gap:.5mm;font-size:7.6pt;color:#5B6B7A}[dir=rtl] .lap .lps-m{align-items:flex-start}.lap .lps-m b{color:#12202B}
+.lap .lps-sel{font-size:7.6pt;color:#3E4F5C;background:#F2F6F7;border-radius:1.5mm;padding:1.2mm 3mm}.lap .lps-sel>span{color:#0E4A55;font-weight:700}
+.lap .lps-b{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:2mm}
+.lap .lps-k{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm}.lap .lps-k div{border:.3mm solid #DCE4E8;border-top:.8mm solid #0E4A55;border-radius:1.5mm;padding:1.4mm 2.4mm;display:flex;flex-direction:column;gap:.3mm}
+.lap .lps-k span{font-size:6.8pt;color:#1E7A8A;font-weight:700;text-transform:uppercase;letter-spacing:.2px}.lap .lps-k b{font-size:13pt;color:#12202B}.lap .lps-k em{font-style:normal;font-size:6.8pt;color:#5B6B7A}
+.lap .lps-st{font-size:9pt;font-weight:700;color:#0E4A55;border-inline-start:1.2mm solid #E8A33D;padding-inline-start:2mm;margin-top:.5mm}
+.lap .lpt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:7.4pt}
+.lap .lpt th{background:#0E4A55;color:#fff;font-weight:600;font-size:7pt;padding:1.3mm 1.4mm;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:.2mm solid #0E4A55}
+.lap .lpt td{padding:.9mm 1.4mm;border-bottom:.2mm solid #E3E9ED;vertical-align:middle;overflow:hidden;overflow-wrap:anywhere;line-height:1.3}
+.lap .lpt-s td:not(:first-child),.lap .lpt-s th:not(:first-child){text-align:center}.lap .lpt-s tr.z td{background:#E4EEF0;font-weight:700;color:#0E4A55}.lap .lpt-s tr.b td:first-child{padding-inline-start:5mm}
+.lap .lpt-s tr.tot td{background:#0E4A55;color:#fff;font-weight:700}.lap .lpt-s tr.tot td.neg{color:#FFD3C2}
+.lap .lpt-d td:nth-child(n+5):nth-child(-n+10),.lap .lpt-d th:nth-child(n+5):nth-child(-n+10),.lap .lpt-d td:first-child,.lap .lpt-d th:first-child{text-align:center}
+.lap .lpt-d td.n{color:#7B8C99;font-size:6.6pt}.lap .lpt-d td.id{font-size:6.8pt;color:#3E4F5C;white-space:nowrap;text-overflow:ellipsis}.lap .lpt-d td.wt{font-size:6.8pt;color:#3E4F5C}
+.lap .lpt-d tr.a:nth-child(even) td{background:#FAFCFC}.lap .lpt-d tr.a td:nth-last-child(-n+2){border-inline-start:.2mm solid #E3E9ED;background:#fff}
+.lap .lpt-d tr.lgz td{background:#0E4A55;color:#fff;font-size:8.2pt;padding:1.3mm 2mm}.lap .lpt-d tr.lgb td{background:#D7E8EB;color:#0A3A43;font-size:7.8pt;padding:1.1mm 2mm 1.1mm 4mm}[dir=rtl] .lap .lpt-d tr.lgb td{padding:1.1mm 4mm 1.1mm 2mm}
+.lap .lpt-d tr.lgl td{background:#F1F6F7;color:#0E4A55;font-size:7.4pt;padding:.9mm 2mm .9mm 7mm;border-bottom:.3mm solid #C9D9DD}[dir=rtl] .lap .lpt-d tr.lgl td{padding:.9mm 7mm .9mm 2mm}
+.lap .lpt-d tr.lgc td{background:#FCF3E4;color:#7A5418;font-size:7.2pt;padding:.9mm 2mm}
+.lap .lpt-d tr[class^=lg] em{font-style:normal;font-weight:400;margin-inline-start:3mm;opacity:.85}
+.lap .lpt .neg{color:#C2410C;font-weight:700}.lap .lpt-d tr.cr td.id{box-shadow:inset .8mm 0 0 #C2410C}[dir=rtl] .lap .lpt-d tr.cr td.id{box-shadow:inset -.8mm 0 0 #C2410C}
+.lap .lpt .k{display:inline-block;border-radius:2mm;padding:.2mm 1.6mm;font-size:6.6pt;font-weight:600;white-space:nowrap}.lap .k.st{background:#E3EEF8;color:#1E5C8A}.lap .k.co{background:#EEF1F4;color:#4A5668}.lap .k.fi{background:#E3F5EC;color:#1E7A45}.lap .k.bo{background:#FCF0DC;color:#8A5A10}
+.lap .lps-lg{font-size:6.8pt;color:#5B6B7A}
+.lap .lps-sg{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:1mm}.lap .lps-sg div{border:.3mm solid #CFDCE1;border-radius:1.5mm;padding:1.4mm 2.5mm 2mm;display:flex;flex-direction:column;gap:1.6mm;font-size:7pt}.lap .lps-sg b{color:#0E4A55}.lap .lps-sg p{margin:0;display:grid;grid-template-columns:1.3fr 1fr .8fr;gap:2mm}.lap .lps-sg span{color:#5B6B7A;border-bottom:.2mm dotted #9AA8B3;padding-top:3.5mm;font-size:6.6pt}
+.lap .lps-f{display:flex;align-items:center;gap:4mm;font-size:6.8pt;color:#5B6B7A;border-top:.3mm solid #DCE4E8;padding-top:1.4mm}.lap .lps-f img{height:5mm}.lap .lps-f .pg{font-weight:700;color:#0E4A55}.lap .lps-f .sp{flex:1}.lap .lps-f .cf{color:#C2410C;font-size:6pt;letter-spacing:.6px;text-transform:uppercase}
+@media print{.lap{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.lap .lpt td.dt{white-space:nowrap;overflow-wrap:normal}.lap .lpt-d tr[class^=lg] td{text-align:start!important}.lap .lpt-d tr.lgz td b{letter-spacing:.3px;text-transform:uppercase}
 
 </style>
 </head>
@@ -7349,6 +7384,84 @@ function rpLaPin(X, R, H, hit) {
   return `<div class="ph"><i class="${hit.v === 2 ? 'g' : 'b'}"></i><bdi dir="auto">${h(bName)}</bdi><button data-x title="${LBL('Close', 'إغلاق')}">×</button></div>
     <div class="pr"><span>${LBL('Phase', 'المرحلة')}</span><b><bdi>${h(ph || '—')}</bdi></b><span>${isB ? LBL('Building', 'المبنى') : LBL('Area', 'المنطقة')}</span><b><bdi>${h(bName)}</bdi></b><span>${LBL('Level', 'الدور')}</span><b><bdi>${h(lvName)}</bdi></b><span>${LBL('Element', 'العنصر')}</span><b>${eName}</b></div><div class="pf">${foot}</div>`;
 }
+/* ---------- Look-Ahead meeting sheet (print / PDF) ----------
+   The look-ahead of the page with its current choices (window, Show filter, slicers), A4 landscape sheets ready for the progress meeting:
+   header (company, project, window, basis update, selection), summary cards + summary by zone / building on the first sheet, then the activities
+   grouped Zone → Building → Level (work type, start, finish, actual, planned by the end of the window, TF, window status, blank Responsible and
+   Remarks columns for the meeting), group headings repeated as "continued" on a new sheet, legend, sign-off boxes, "Page n / N" footer. */
+RP.laPrint = async el => {
+  const L = el && el._lap; if (!L || RP.printing) return; if (!L.R.length) return toast(LBL('No activity in this window and selection.', 'لا توجد أنشطة في هذه الفترة والاختيار.'), 'bad');
+  RP.printing = true; toast(LBL('Preparing the look-ahead sheets…', 'جارٍ تجهيز أوراق الأعمال القادمة…'));
+  const { X, R, H, wt, wk, WE, fx, kp } = L, p = S.db.project, id = IDENT(S.db), cut = rpCut(), ar = S.lang === 'ar', cur = (S.db.baseline || X.s).currency || 'SAR';
+  const cd = (x, k) => (k && RPF.codes(x.a)[k]) || '—', FX = { all: LBL('All activities', 'كل الأنشطة'), start: LBL('Starting', 'تبدأ'), cont: LBL('Continuing', 'مستمرة'), finish: LBL('Finishing', 'تنتهي'), crit: LBL('Critical', 'حرجة') };
+  const KT = { start: LBL('Starts', 'تبدأ'), both: LBL('Starts & ends', 'تبدأ وتنتهي'), finish: LBL('Finishes', 'تنتهي'), cont: LBL('Continues', 'مستمرة') }, KC = { start: 'st', both: 'bo', finish: 'fi', cont: 'co' };
+  const val = x => x.w * (x.pe - x.pct) / 100, md = x => x.lu / 8 * (x.pe - x.pct) / 100, lvO = x => x.c && x.c.lv ? LA_LVORD(x.c.lv) : 2000, num = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
+  /* groups: zone → building → level (levels in building order: raft, basements, ground, levels, roof) */
+  const tree = new Map(); R.forEach(x => { const z = cd(x, H.z), b = cd(x, H.b), l = cd(x, H.l);
+    if (!tree.has(z)) tree.set(z, new Map()); const zb = tree.get(z); if (!zb.has(b)) zb.set(b, new Map()); const bl = zb.get(b); if (!bl.has(l)) bl.set(l, []); bl.get(l).push(x); });
+  const zones = [...tree.keys()].sort(num);
+  /* --- sheet parts --- */
+  const crit = R.filter(x => x.crit).length, cnt = k => R.filter(x => k === 'start' ? (x.k === 'start' || x.k === 'both') : k === 'finish' ? (x.k === 'finish' || x.k === 'both') : x.k === k).length;
+  const head = `<header class="lps-h"><div class="lps-co">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<div><b dir="auto">${h(ar ? (id.nameAr || id.name) : (id.name || id.nameAr) || p.contractor || '')}</b><span dir="auto">${h(projTitle(p))} · <bdi dir="ltr">${h(p.number || '')}</bdi></span></div></div>
+    <div class="lps-t"><b>${LBL('Look-Ahead Programme', 'برنامج الأعمال القادمة')}</b><span>${fmtN(wk)} ${LBL('weeks', 'أسابيع')} · <bdi dir="ltr">${D.fmt(X.dd)} → ${D.fmt(WE)}</bdi></span></div>
+    <div class="lps-m"><span>${LBL('Based on', 'على أساس')} <b dir="ltr">${h(X.lbl)}</b></span><span>${LBL('Data date', 'تاريخ البيانات')} <b dir="ltr">${D.fmt(X.dd)}</b></span>${cut ? `<span>${T('report_no')} <b>${h(cut.reportNo || '')}</b> · ${T('cutoff')} <b dir="ltr">${D.fmt(cut.date)}</b></span>` : ''}</div></header>
+    <div class="lps-sel"><span>${LBL('Selection', 'الاختيار')}:</span> ${RPF.on() ? RPF.label() : `<b>${LBL('Whole project', 'المشروع كاملاً')}</b>`} · ${LBL('Show', 'العرض')}: <b>${FX[fx] || FX.all}</b> · <b>${fmtN(R.length)}</b> ${LBL('activities', 'نشاط')}</div>`;
+  const foot = `<footer class="lps-f" dir="ltr">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<span class="pg" dir="auto">${LBL('Page', 'صفحة')} <bdi dir="ltr" data-pn></bdi></span><span dir="auto">${h(projTitle(p))}</span><span>${LBL('Printed', 'طُبع')} ${TS(nowISO(), 16)}</span><span class="sp"></span>${p.preparedBy ? `<span dir="auto">${LBL('Prepared by', 'إعداد')}: ${h(p.preparedBy)}</span>` : ''}<span class="cf">${LBL('Confidential', 'سري')}</span></footer>`;
+  const kpis = `<div class="lps-k">${[[LBL('Activities in the window', 'أنشطة الفترة'), fmtN(R.length), `${fmtN(cnt('start'))} ${LBL('start', 'تبدأ')} · ${fmtN(cnt('cont'))} ${LBL('continue', 'مستمرة')} · ${fmtN(cnt('finish'))} ${LBL('finish', 'تنتهي')}`],
+      [LBL('Work planned in the window', 'قيمة الأعمال المخططة'), rpM(kp.val), `${kp.bac ? fmtPct(kp.val / kp.bac, 1) : '—'} ${LBL('of the budget', 'من الميزانية')} · ${cur}`],
+      [LBL('Labour planned', 'العمالة المخططة'), kp.md ? fmtN(kp.md) : '—', kp.md ? `${LBL('man-days', 'يوم-عامل')} · ≈ ${fmtN(kp.md / (wk * 7))} ${LBL('workers / day', 'عامل يومياً')}` : ''],
+      [LBL('Concrete pours due', 'صبات الخرسانة'), fmtN(kp.pours), `${fmtN(kp.pS)} ${LBL('slabs / rafts', 'بلاطات / لبشة')} · ${fmtN(kp.pC)} ${LBL('columns', 'أعمدة')}`],
+      [LBL('Critical in the window', 'حرجة في الفترة'), fmtN(crit), kp.nOv ? `${fmtN(kp.nOv)} ${LBL('should have started', 'كان يجب أن تبدأ')}` : LBL('none late to start', 'لا يوجد تأخر في البدء')],
+      [LBL('Milestones due', 'معالم مستحقة'), fmtN(kp.ms), '']].map(([l, v, s2]) => `<div><span>${l}</span><b dir="ltr">${v}</b><em>${s2}</em></div>`).join('')}</div>`;
+  /* summary by zone / building */
+  const SUMC = `<colgroup><col><col style="width:20mm"><col style="width:18mm"><col style="width:18mm"><col style="width:18mm"><col style="width:18mm"><col style="width:30mm"><col style="width:26mm"><col style="width:38mm"></colgroup>`;
+  const sumHead = `<thead><tr><th>${LBL('Zone / building', 'المنطقة / المبنى')}</th><th>${LBL('Activities', 'الأنشطة')}</th><th>${LBL('Start', 'تبدأ')}</th><th>${LBL('Continue', 'مستمرة')}</th><th>${LBL('Finish', 'تنتهي')}</th><th>${LBL('Critical', 'حرجة')}</th><th>${LBL('Work planned', 'قيمة الأعمال')} (${cur})</th><th>${LBL('Labour (man-days)', 'العمالة (يوم-عامل)')}</th><th>${LBL('Window', 'الفترة')}</th></tr></thead>`;
+  const sumRow = (cls, name, xs) => { const s0 = xs.map(x => x.s0).filter(Boolean).sort()[0], f0 = xs.map(x => x.f0).filter(Boolean).sort().pop();
+    return `<tr class="${cls}"><td dir="auto">${h(name)}</td><td>${fmtN(xs.length)}</td><td>${fmtN(xs.filter(x => x.k === 'start' || x.k === 'both').length)}</td><td>${fmtN(xs.filter(x => x.k === 'cont').length)}</td><td>${fmtN(xs.filter(x => x.k === 'finish' || x.k === 'both').length)}</td><td class="${xs.some(x => x.crit) ? 'neg' : ''}">${fmtN(xs.filter(x => x.crit).length)}</td><td dir="ltr">${fmtN(sum(xs, val))}</td><td dir="ltr">${fmtN(sum(xs, md))}</td><td dir="ltr" class="dt">${laD(s0)} → ${laD(f0)}</td></tr>`; };
+  /* activities table */
+  const DETC = `<colgroup><col style="width:6mm"><col style="width:31mm"><col><col style="width:22mm"><col style="width:17.5mm"><col style="width:17.5mm"><col style="width:11mm"><col style="width:12.5mm"><col style="width:10mm"><col style="width:19mm"><col style="width:22mm"><col style="width:39mm"></colgroup>`;
+  const detHead = `<thead><tr><th>#</th><th>${LBL('Activity ID', 'رقم النشاط')}</th><th>${LBL('Activity', 'النشاط')}</th><th>${LBL('Work type', 'نوع العمل')}</th><th>${LBL('Start', 'البداية')}</th><th>${LBL('Finish', 'النهاية')}</th><th>${LBL('Actual', 'الفعلي')}</th><th>${LBL('Plan', 'المخطط')}</th><th>TF</th><th>${LBL('Window', 'الفترة')}</th><th>${LBL('Responsible', 'المسؤول')}</th><th>${LBL('Remarks / actions', 'ملاحظات / إجراءات')}</th></tr></thead>`;
+  let no = 0;
+  const detRow = x => `<tr class="a${x.crit ? ' cr' : ''}"><td class="n">${++no}</td><td class="id" dir="ltr">${h(x.a.id)}</td><td dir="auto">${x.ms ? '◆ ' : ''}${h(x.a.name)}</td><td dir="auto" class="wt">${h(wt ? cd(x, wt) : '')}</td><td dir="ltr" class="dt${x.st === 0 && x.s0 < X.dd ? ' neg' : ''}">${laD(x.s0)}</td><td dir="ltr" class="dt">${laD(x.f0)}</td><td>${x.st ? fmtN(x.pct, 0) + '%' : '—'}</td><td><b>${fmtN(x.pe, 0)}%</b></td><td dir="ltr" class="${x.crit ? 'neg' : ''}">${isNum(x.a.tf) ? fmtN(x.a.tf) : ''}</td><td><span class="k ${KC[x.k]}">${KT[x.k]}</span></td><td></td><td></td></tr>`;
+  const legend = `<div class="lps-lg">${LBL('Plan = planned % by the end of the window · Actual = P6 % complete at the data date · TF ≤ 0 (red) = critical · start in red = should have started · ◆ = milestone', 'المخطط = النسبة المخططة بنهاية الفترة · الفعلي = نسبة الإنجاز في P6 بتاريخ البيانات · الفائض ≤ 0 (أحمر) = حرج · البداية بالأحمر = كان يجب أن تبدأ · ◆ = معلم')}</div>`;
+  const sign = `<div class="lps-sg">${[LBL('Prepared by – Planning', 'إعداد – التخطيط'), LBL('Reviewed by – Project Manager', 'مراجعة – مدير المشروع'), LBL('Consultant', 'الاستشاري')].map(t => `<div><b>${t}</b><p><span>${LBL('Name', 'الاسم')}</span><span>${LBL('Signature', 'التوقيع')}</span><span>${LBL('Date', 'التاريخ')}</span></p></div>`).join('')}</div>`;
+  /* items in order: blocks (kept whole) and table rows (thead repeated on each sheet, group headings kept with the next row) */
+  const I = [{ b: kpis }, { b: `<div class="lps-st">${LBL('Summary by zone and building', 'ملخص حسب المنطقة والمبنى')}</div>` }];
+  zones.forEach(z => { const zb = tree.get(z), all = [...zb.values()].flatMap(m => [...m.values()].flat()); I.push({ t: 's', r: sumRow('z', z, all) }); [...zb.keys()].sort(num).forEach(b => I.push({ t: 's', r: sumRow('b', b, [...zb.get(b).values()].flat()) })); });
+  I.push({ t: 's', r: sumRow('tot', LBL('Total', 'الإجمالي'), R) });
+  I.push({ b: `<div class="lps-st">${LBL('Activities by zone, building and level', 'الأنشطة حسب المنطقة والمبنى والمستوى')}</div>`, br: 1 });
+  zones.forEach(z => { const zb = tree.get(z), zn = [...zb.values()].reduce((s, m) => s + [...m.values()].reduce((q, a) => q + a.length, 0), 0); I.push({ t: 'd', g: 1, ctx: [z], r: `<tr class="lgz"><td colspan="12"><b dir="auto">${h(z)}</b><em>${fmtN(zn)} ${LBL('activities', 'نشاط')}</em></td></tr>` });
+    [...zb.keys()].sort(num).forEach(b => { const bl = zb.get(b), bx = [...bl.values()].flat(); I.push({ t: 'd', g: 2, ctx: [z, b], r: `<tr class="lgb"><td colspan="12"><b dir="auto">${h(b)}</b><em>${fmtN(bx.length)} ${LBL('activities', 'نشاط')} · ${rpM(sum(bx, val))} ${cur}</em></td></tr>` });
+      [...bl.keys()].sort((a, c) => Math.min(...bl.get(a).map(lvO)) - Math.min(...bl.get(c).map(lvO)) || num(a, c)).forEach(l => { const xs = bl.get(l).sort((a, c) => num(wt ? cd(a, wt) : '', wt ? cd(c, wt) : '') || String(a.s0).localeCompare(String(c.s0)) || num(a.a.name, c.a.name));
+        I.push({ t: 'd', g: 3, ctx: [z, b, l], r: `<tr class="lgl"><td colspan="12"><b dir="auto">${h(l)}</b><em>${fmtN(xs.length)}</em></td></tr>` }); xs.forEach(x => I.push({ t: 'd', ctx: [z, b, l], r: detRow(x) })); }); }); });
+  I.push({ b: legend }, { b: sign });
+  /* --- pagination on real A4 sheets (measured off-screen) --- */
+  const box = document.createElement('div'); box.id = 'rpPrint'; box.className = 'lap'; box.dir = document.documentElement.dir; box.style.cssText = 'display:block;position:fixed;left:-20000px;top:0'; document.body.appendChild(box);
+  try {
+    let sh, body, tb = null, tk = '';
+    let added = [];
+    const sheet = () => { added = []; sh = document.createElement('section'); sh.className = 'lps'; sh.innerHTML = head + '<div class="lps-b"></div>' + foot; box.appendChild(sh); body = sh.querySelector('.lps-b'); tb = null; tk = ''; };
+    const used = () => { const l = body.lastElementChild; return l ? l.getBoundingClientRect().bottom - body.getBoundingClientRect().top : 0; }, over = (extra = 0) => used() + extra > body.clientHeight + 1;
+    const table = t => { added = []; const e = document.createElement('table'); e.className = 'lpt ' + (t === 's' ? 'lpt-s' : 'lpt-d'); e.innerHTML = (t === 's' ? SUMC + sumHead : DETC + detHead) + '<tbody></tbody>'; body.appendChild(e); tb = e.tBodies[0]; tk = t; };
+    const addRow = (it, html) => { if (tk !== it.t) table(it.t); tb.insertAdjacentHTML('beforeend', html); return tb.lastElementChild; };
+    const cont = it => { if (it.t !== 'd' || !it.ctx || it.g === 1) return; const c = it.g ? it.ctx.slice(0, it.g - 1) : it.ctx; if (c.length) addRow(it, `<tr class="lgc"><td colspan="12">${c.map(v => `<b dir="auto">${h(v)}</b>`).join(' › ')} <em>(${LBL('continued', 'تابع')})</em></td></tr>`); };
+    sheet(); let rowH = 0;
+    for (let i = 0; i < I.length; i++) { const it = I[i];
+      if (it.b) { if (it.br && body.children.length > 2 && over(90)) sheet(); body.insertAdjacentHTML('beforeend', it.b); const e = body.lastElementChild; tk = ''; if (over() && body.children.length > 1) { e.remove(); sheet(); body.insertAdjacentHTML('beforeend', it.b); } continue; }
+      let e = addRow(it, it.r); if (!rowH && !it.g) rowH = e.offsetHeight;
+      const need = it.g ? (4 - it.g) * 6 + rowH * 2 : 0;   // a heading keeps its sub-headings and two rows on the same sheet
+      if (over(need)) { e.remove(); const carry = [];   // headings left at the foot of the sheet go with their rows to the next sheet
+        while (added.length && added[added.length - 1].g && added[added.length - 1].g < (it.g || 4)) { carry.unshift(added.pop()); tb.lastElementChild.remove(); }
+        if (tb && !tb.children.length) tb.parentElement.remove(); sheet(); cont(carry[0] || it); carry.forEach(c => { addRow(c, c.r); added.push(c); }); addRow(it, it.r); }
+      added.push(it);
+    }
+    const S2 = [...box.querySelectorAll('.lps')]; S2.forEach((s, i) => { const n = s.querySelector('[data-pn]'); if (n) n.textContent = `${i + 1} / ${S2.length}`; });
+    await Promise.race([Promise.all([...box.querySelectorAll('img')].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))), new Promise(r => setTimeout(r, 5000))]);
+    box.style.cssText = ''; RP.lapSheets = S2.length;
+    document.body.classList.add('printing'); await new Promise(r => setTimeout(r, 300));
+    window.print();
+  } finally { document.body.classList.remove('printing'); if (!RP.keepPrint) box.remove(); RP.printing = false; }
+};
 const laDoc = P => `<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;overflow:hidden;background:#F2F5F7;font-family:Inter,'IBM Plex Sans Arabic',sans-serif}#cv{width:100%;height:100%;display:block;cursor:grab;touch-action:none}#msg[hidden]{display:none}#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:13px;text-align:center;padding:20px}${LA_PIN_CSS}</style></head><body><canvas id="cv"></canvas><div id="pin" hidden></div><div id="msg" hidden>${h(LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).'))}</div>
 ${THREE_TAG}<script>(${LA3D_APP.toString()})(${JSON.stringify(P).replace(/</g, '\\u003c')});<\/script></body></html>`;
 function rpLaGeo(M) {   // geometry of the project 4D model in the units of the 4D app
@@ -7380,7 +7493,8 @@ RP.P.lookahead = (el, pg) => {
     /* side filter: window, basis, focus */
     el.querySelector('[data-las]').innerHTML = `<div class="xu-t">${LBL('Look-ahead', 'الفترة القادمة')}</div><div class="xla-w">${LA_WIN.map(n => `<button class="${n === wk ? 'on' : ''}" data-law="${n}"><b>${n}</b><span>${LBL('weeks', 'أسابيع')}</span></button>`).join('')}</div>
       <div class="xla-b"><span>${LBL('Based on', 'على أساس')}</span><b dir="ltr">${h(X.lbl)}</b><span>${LBL('Data date', 'تاريخ البيانات')}</span><b dir="ltr">${D_fmt(X.dd)}</b><span>${LBL('Window end', 'نهاية الفترة')}</span><b dir="ltr">${D_fmt(WE)}</b></div>
-      <div class="xu-t">${LBL('Show', 'العرض')}</div><div class="xdl-f">${[['all', LBL('All activities', 'كل الأنشطة')], ['start', LBL('Starting', 'تبدأ')], ['cont', LBL('Continuing', 'مستمرة')], ['finish', LBL('Finishing', 'تنتهي')], ['crit', LBL('Critical', 'حرجة')]].map(([k, t]) => `<button class="xdl-x xla-x ${fx === k ? 'on' : ''}" data-lafx="${k}"><span>${t}</span><b>${fmtN(R0.filter(x => isK(x, k)).length)}</b></button>`).join('')}</div>`;
+      <div class="xu-t">${LBL('Show', 'العرض')}</div><div class="xdl-f">${[['all', LBL('All activities', 'كل الأنشطة')], ['start', LBL('Starting', 'تبدأ')], ['cont', LBL('Continuing', 'مستمرة')], ['finish', LBL('Finishing', 'تنتهي')], ['crit', LBL('Critical', 'حرجة')]].map(([k, t]) => `<button class="xdl-x xla-x ${fx === k ? 'on' : ''}" data-lafx="${k}"><span>${t}</span><b>${fmtN(R0.filter(x => isK(x, k)).length)}</b></button>`).join('')}</div>
+      ${prt ? '' : `<button class="xla-pr" data-lapr title="${LBL('Print the look-ahead table of this selection for the progress meeting (A4, by zone, building and level)', 'طباعة جدول الأعمال القادمة لهذا الاختيار لاجتماع المتابعة (A4، حسب المنطقة والمبنى والمستوى)')}">${ic('print')}<span>${LBL('Print look-ahead sheet', 'طباعة جدول الأعمال القادمة')}</span></button>`}`;
     /* cards */
     el.querySelector('[data-lak]').innerHTML = `${xk('k1', LBL('Activities in the window', 'أنشطة الفترة'), fmtN(R.length), `${fmtN(nSt)} ${LBL('start', 'تبدأ')} · ${fmtN(nCo)} ${LBL('continue', 'مستمرة')} · ${fmtN(nFi)} ${LBL('finish', 'تنتهي')}`, '')}
       ${xk('k2', LBL('Work planned in the window', 'قيمة الأعمال المخططة'), rpM(val), `${bac ? fmtPct(val / bac, 1) : '—'} ${LBL('of the budget', 'من الميزانية')} · ${cur}`, '')}
@@ -7403,6 +7517,8 @@ RP.P.lookahead = (el, pg) => {
         { h: 'TF', w: 38, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' }] });
     const op = S.ui.laTb !== false, tl = el.querySelector('[data-lat]'); tl.classList.toggle('off', !op);
     tl.innerHTML = `<div class="la-th"><b>${LBL('Look-ahead', 'الأعمال القادمة')} · ${fmtN(wk)} ${LBL('weeks', 'أسابيع')}</b><span dir="ltr">${D_fmt(X.dd)} → ${D_fmt(WE)}</span><span class="xsub">${fmtN(R.length)} ${LBL('activities', 'نشاط')}</span><button class="la-tg" data-latb title="${op ? LBL('Hide the table', 'إخفاء الجدول') : LBL('Show the table', 'إظهار الجدول')}">${op ? '⟨' : '⟩'}</button></div>${op ? (R.length ? tree : `<div class="empty">${LBL('No activity in this window and selection.', 'لا توجد أنشطة في هذه الفترة والاختيار.')}</div>`) : ''}`;
+    el._lap = { X, R, H, wt, wk, WE, fx, kp: { val, md, bac, pours: pS + pC, pS, pC, nOv, ms: mss.length } };
+    const pr = el.querySelector('[data-lapr]'); if (pr) pr.onclick = () => RP.laPrint(el);
     el.querySelectorAll('[data-law]').forEach(b => b.onclick = () => { S.ui.laW = +b.dataset.law; paint(); });
     el.querySelectorAll('[data-lafx]').forEach(b => b.onclick = () => { S.ui.laFx = b.dataset.lafx; paint(); });
     tl.querySelector('[data-latb]').onclick = () => { S.ui.laTb = !op; paint(); };

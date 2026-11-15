@@ -813,7 +813,7 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .xla .xla-x{justify-content:space-between}.xla .xla-x b{font-size:10px;color:#9FD3DA}.xla .xla-x.on b{color:#3A2A00}
 .la-c{position:relative;padding:0!important;overflow:hidden;background:#F2F5F7}.la-3{position:absolute;inset:0}.la-f{width:100%;height:100%;border:0;display:block}.la-img{width:100%;height:100%;object-fit:cover;display:block}
 .la-ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:12px}
-.la-tl{position:absolute;top:10px;bottom:38px;inset-inline-start:10px;width:61%;display:flex;flex-direction:column;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid #DCE4E8;border-radius:10px;box-shadow:0 8px 24px rgba(14,74,85,.12);padding:8px 9px;gap:5px;z-index:2;min-height:0}
+.la-tl{position:absolute;top:10px;bottom:38px;inset-inline-start:10px;width:55%;display:flex;flex-direction:column;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid #DCE4E8;border-radius:10px;box-shadow:0 8px 24px rgba(14,74,85,.12);padding:8px 9px;gap:5px;z-index:2;min-height:0}
 .la-tl.off{bottom:auto;width:auto}.la-th{display:flex;align-items:center;gap:9px;font-size:11px;color:#3E4F5C}.la-th b{font-size:12.5px;color:#12202B}.la-th .xsub{margin-inline-start:auto;font-size:10px;color:#7B8C99}
 .la-tg{width:22px;height:22px;border:0;border-radius:6px;background:#E2EEF0;color:#0E4A55;font-weight:800;cursor:pointer;padding:0}.la-tg:hover{background:#BFD9DD}
 .la-tl .xtree{flex:1;min-height:0}.la-tl .tt-t{font-size:10.5px}.la-tl .tt-t th{font-size:10px;padding:4px 5px}.la-tl .tt-t td{padding:2px 5px}.la-tl .tt-t .xch{font-size:9.5px;padding:0 5px}.la-tl td.dt{font-size:10px}
@@ -846,6 +846,9 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .pt-rl{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;margin-inline-end:8px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;font:600 12.5px/1 inherit;cursor:pointer;font-family:inherit}
 .pt-rl:hover{background:rgba(255,255,255,.1)}.pt-rl svg{width:15px;height:15px}
 [data-reload][disabled] svg{animation:rlspin 1s linear infinite}@keyframes rlspin{to{transform:rotate(360deg)}}
+/* Look-Ahead table: activity / group names wrap (all text visible after Expand all), compact rows */
+.la-tl .tt-t td.tn{white-space:normal;align-items:flex-start;line-height:1.25;padding-top:3px;padding-bottom:3px}.la-tl .tt-t td.tn b,.la-tl .tt-t td.tn span:not(.tc){white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.la-tl .tt-t td.tn .tt{margin-top:0}.la-tl .tt-t td.tn .tc{flex:0 0 auto}.la-tl .tt-t th:first-child{white-space:nowrap}
 
 </style>
 </head>
@@ -6749,10 +6752,11 @@ function rpTree(id, o) { // o = { items, levels:[fn], root, name, title, cols:[{
     const lb = x1 <= 82 ? `<em class="gl" style="left:${x1.toFixed(2)}%">${dur(s, f)}</em>` : x0 >= 14 ? `<em class="gl lf" style="right:${(100 - x0).toFixed(2)}%">${dur(s, f)}</em>` : '';
     return `<td class="tg"><div${tp}><i class="${cls}" style="left:${x0.toFixed(2)}%;width:${Math.max(0.4, x1 - x0).toFixed(2)}%"></i>${lb}</div></td>`; };
   const NK = {}, IT = [], iid = it => 'i:' + (o.title ? o.title(it) : IT.indexOf(it));
+  const IN = o.ind || 16, IL = o.ind ? 14 + o.ind : 30;   // indentation step (o.ind for compact trees)
   const draw = () => { const out = []; IT.length = 0; const walk = n => { const d = n.d - R, op = isOpen(n); NK[n.key] = n;
-      out.push(`<tr class="tgp d${Math.min(d, 3)}${st.sel === 'n:' + n.key ? ' sel' : ''}" data-nk="${h(n.key)}"><td class="tn" style="padding-inline-start:${8 + d * 16}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
+      out.push(`<tr class="tgp d${Math.min(d, 3)}${st.sel === 'n:' + n.key ? ' sel' : ''}" data-nk="${h(n.key)}"><td class="tn" style="padding-inline-start:${8 + d * IN}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
       if (!op) return; kids(n).forEach(walk);
-      n.items.forEach(it => { const sp = G ? G.span(it) : null; IT.push(it); out.push(`<tr class="tl${st.sel === iid(it) ? ' sel' : ''}" data-ii="${IT.length - 1}"><td class="tn" style="padding-inline-start:${30 + (d + 1) * 16}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
+      n.items.forEach(it => { const sp = G ? G.span(it) : null; IT.push(it); out.push(`<tr class="tl${st.sel === iid(it) ? ' sel' : ''}" data-ii="${IT.length - 1}"><td class="tn" style="padding-inline-start:${IL + (d + 1) * IN}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
     if (o.root) walk(top); else { kids(top).forEach(walk); top.items.forEach(it => out.push(`<tr class="tl"><td class="tn">${h(o.name(it))}</td>${o.cols.map(c => `<td>${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? '<td class="tg"></td>' : ''}</tr>`)); }
     return out.join('') || `<tr><td colspan="${o.cols.length + 2}" class="empty">—</td></tr>`; };
   let ticks = '', tk0 = 0; if (gx) { const span = D.diff(G.f0, G.s0), stepM = span > 1400 ? 6 : span > 380 ? 3 : 1; tk0 = 1; const tk = []; let m = G.s0.slice(0, 8) + '01'; while (m <= G.f0) { if (m >= G.s0) tk.push(m); const [y, mm] = m.split('-').map(Number), nx = mm + stepM; m = nx > 12 ? `${y + 1}-${String(nx - 12).padStart(2, '0')}-01` : `${y}-${String(nx).padStart(2, '0')}-01`; }
@@ -7226,6 +7230,7 @@ RP.P.delays = (el, pg) => {
    Everything comes from the update XER (dates, status, P6 %), the activity codes and the project 4D model (geometry + activity → building · level · element rules),
    so a new project needs nothing more. ---------- */
 const LA_WIN = [2, 3, 4];
+const laD = d => !d ? '—' : S.lang === 'ar' ? `${d.slice(8, 10)}-${d.slice(5, 7)}-${d.slice(2, 4)}` : D.fmt(d);   // compact dates of the Look-Ahead (the Arabic month names are long)
 const laEl = e => e === 'cols' ? 'c' : (e === 'slab' || e === 'pt' || e === 'raft') ? 's' : e === 'walls' ? 'w' : '';
 const LA_LVORD = lv => lv === 'RAFT' ? -5 : /^B\d$/.test(lv) ? -(+lv.slice(1)) - 1 : lv === 'GF' ? -1 : lv === 'RF' ? 999 : lv && lv[0] === 'L' ? +lv.slice(1) : 1000;
 const RPLA = { key: '', d: null };
@@ -7274,12 +7279,12 @@ function LA3D_APP(P) {
   const MB = new T.MeshLambertMaterial({ color: 0xA9AEB3 }), MG = new T.MeshLambertMaterial({ color: 0x2BA35F, emissive: 0x0b3d20, emissiveIntensity: 0.25 }), EB = new T.LineBasicMaterial({ color: 0x7E858C }), EG = new T.LineBasicMaterial({ color: 0x15693A });
   const fd = (m, op) => { const c = m.clone(); c.transparent = true; c.opacity = op; c.depthWrite = false; return c; }, MBf = fd(MB, 0.16), MGf = fd(MG, 0.22), EBf = fd(EB, 0.12), EGf = fd(EG, 0.18);
   let FZ = null, FL = null, ST = P.st;   // focus: zones kept solid (others faded), optional single level
-  const OBJ = [], UB = new T.BoxGeometry(1, 1, 1); UB.translate(0, 0.5, 0);
+  const OBJ = [], PICK = [], UB = new T.BoxGeometry(1, 1, 1); UB.translate(0, 0.5, 0); const tag = (m, e) => { m.userData = { o: OBJ.length, e }; PICK.push(m); };
   P.lv.forEach(L => { const g = lvGeom(L); if (!g) return; const raft = L.lv === 'RAFT', top = g.y0 + g.h, th = raft ? RAFTT : L.lv === 'GF' ? 0.35 : 0.3, bb = bbox(g.polys), o = { L, bb, y0: g.y0, h: g.h, parts: { s: [], c: [], w: [] } };
-    const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; scene.add(sm, se); o.parts.s.push([sm, se]);
+    const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; tag(sm, 's'); const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; scene.add(sm, se); o.parts.s.push([sm, se]);
     if (!raft) { const sp = ZN[L.z] ? 10.5 : 8, pts = []; for (const p of g.polys) { const b = bbox([p]); for (let x = b.x0 + 1.2; x <= b.x1 - 1; x += sp) for (let z = b.z0 + 1.2; z <= b.z1 - 1; z += sp) if (inPoly(x, z, p)) pts.push([x, z]); for (const q of p) pts.push([q[0] + (q[0] < b.cx ? 0.8 : -0.8), q[1] + (q[1] < b.cz ? 0.8 : -0.8)]); }
-      const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; scene.add(im); o.parts.c.push([im]);
-      for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; scene.add(w); o.parts.w.push([w]); } }
+      const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; tag(im, 'c'); scene.add(im); o.parts.c.push([im]);
+      for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; tag(w, 'w'); scene.add(w); o.parts.w.push([w]); } }
     OBJ.push(o); });
   const apply = st => { ST = st; OBJ.forEach(o => { const key = o.L.z + '|' + o.L.lv, s = st[key] || {}, dim = FZ && !(FZ.has(o.L.z) && (!FL || key === FL)); ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? (dim ? MGf : MG) : (dim ? MBf : MB); m.castShadow = !dim; if (e) { e.visible = v > 0; e.material = v === 2 ? (dim ? EGf : EG) : (dim ? EBf : EB); } }); }); }); kick(); };
   const unfocus = () => { if (FZ) { FZ = FL = null; apply(ST); } };
@@ -7287,17 +7292,31 @@ function LA3D_APP(P) {
   const SB = bbox([SITE]), C0 = { tx: SB.cx, ty: 6, tz: SB.cz, r: Math.max(150, Math.hypot(SB.x1 - SB.x0, SB.z1 - SB.z0) * 1.7), th: 0.62, ph: 0.98 }, CAM = Object.assign({}, C0, P.cam || {});
   const aspK = () => Math.max(1, 0.95 / (cv.clientWidth / Math.max(1, cv.clientHeight)));
   const place = () => { const r = CAM.r * aspK(); cam.position.set(CAM.tx + r * Math.sin(CAM.ph) * Math.sin(CAM.th), CAM.ty + r * Math.cos(CAM.ph), CAM.tz + r * Math.sin(CAM.ph) * Math.cos(CAM.th)); cam.lookAt(CAM.tx, CAM.ty, CAM.tz); };
-  let raf = 0; function kick() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; place(); R.render(scene, cam); }); }
+  /* bookmark: click an element → a small label pinned to it (text from the report page), follows the model */
+  const PIN = document.getElementById('pin'), PV = new T.Vector3(); let PA = null;
+  let SAFE = null;   // visible part of the frame (not under the table of the page), in frame pixels
+  const pinPos = () => { if (!PA || !PIN || PIN.hidden) return; PV.copy(PA).project(cam); const w = cv.clientWidth, h = cv.clientHeight, x = (PV.x + 1) / 2 * w, y = (1 - PV.y) / 2 * h, out = PV.z > 1 || x < 0 || x > w || y < 0 || y > h;
+    const a = SAFE ? SAFE[0] : 0, b = SAFE ? SAFE[1] : w, cw = PIN.offsetWidth, l = Math.max(a + 6, Math.min(b - 6 - cw, x - cw / 2));
+    PIN.style.visibility = out ? 'hidden' : ''; PIN.style.left = l + 'px'; PIN.style.top = y + 'px'; PIN.style.setProperty('--tx', Math.max(10, Math.min(cw - 10, x - l)) + 'px'); PIN.classList.toggle('dn', y < PIN.offsetHeight + 24); };
+  const unpin = tell => { PA = null; if (PIN) { PIN.hidden = true; PIN.innerHTML = ''; } if (tell) try { parent.postMessage({ la3hit: null }, '*'); } catch (e) { } };
+  let raf = 0; function kick() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; place(); R.render(scene, cam); pinPos(); }); }
   let SH = P.shift || 0; const resize = () => { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; R.setSize(w, h, false); cam.aspect = w / h; if (SH) cam.setViewOffset(w, h, -SH * w, 0, w, h); else cam.clearViewOffset(); cam.updateProjectionMatrix(); kick(); }; window.addEventListener('resize', resize);
   const clamp = (v, a, b) => v < a ? a : v > b ? b : v, save = () => { try { parent.postMessage({ la3cam: Object.assign({}, CAM) }, '*'); } catch (e) { } };
-  let drag = null; cv.addEventListener('contextmenu', e => e.preventDefault());
-  cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; cv.style.cursor = 'grabbing'; });
+  const RC = new T.Raycaster(), MV = new T.Vector2();
+  const pick = (cx, cy) => { const r = cv.getBoundingClientRect(); MV.set((cx - r.left) / r.width * 2 - 1, -((cy - r.top) / r.height) * 2 + 1); RC.setFromCamera(MV, cam);
+    const hs = RC.intersectObjects(PICK.filter(m => m.visible), false); const hit = hs.find(x => !x.object.material.transparent) || hs[0];
+    if (!hit) return unpin(1); const o = OBJ[hit.object.userData.o], key = o.L.z + '|' + o.L.lv, v = ((ST[key] || {})[hit.object.userData.e]) || 0;
+    PA = hit.point.clone(); try { parent.postMessage({ la3hit: { z: o.L.z, lv: o.L.lv, e: hit.object.userData.e, v } }, '*'); } catch (e) { } };
+  let drag = null, d0 = null; cv.addEventListener('contextmenu', e => e.preventDefault());
+  cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); d0 = { x: e.clientX, y: e.clientY, b: e.button }; drag = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; cv.style.cursor = 'grabbing'; });
   cv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
     if (drag.pan) { const k = CAM.r * aspK() * 0.0016, c = Math.cos(CAM.th), s = Math.sin(CAM.th); CAM.tx -= dx * c * k; CAM.tz -= -dx * s * k; CAM.ty += dy * k; } else { CAM.th -= dx * 0.006; CAM.ph = clamp(CAM.ph - dy * 0.005, 0.05, 1.5); } kick(); });
-  cv.addEventListener('pointerup', () => { drag = null; cv.style.cursor = ''; save(); });
+  cv.addEventListener('pointerup', e => { drag = null; cv.style.cursor = ''; if (d0 && d0.b === 0 && Math.hypot(e.clientX - d0.x, e.clientY - d0.y) < 5) pick(e.clientX, e.clientY); else save(); d0 = null; });
+  if (PIN) PIN.addEventListener('click', e => { if (e.target.closest('[data-x]')) unpin(1); });
   cv.addEventListener('wheel', e => { e.preventDefault(); CAM.r = clamp(CAM.r * Math.exp(e.deltaY * 0.0012), 15, 1600); kick(); clearTimeout(window.__sv); window.__sv = setTimeout(save, 300); }, { passive: false });
-  cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); unfocus(); kick(); save(); try { parent.postMessage({ la3sel: null }, '*'); } catch (e) { } });
+  cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); unfocus(); unpin(1); kick(); save(); try { parent.postMessage({ la3sel: null }, '*'); } catch (e) { } });
   window.LA = { update: st => apply(st), shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); unfocus(); kick(); save(); },
+    safe: v => { SAFE = v; pinPos(); }, pin: (html, dir) => { if (!PIN || !PA) return; if (!html) return unpin(0); PIN.innerHTML = html; PIN.dir = dir || 'ltr'; PIN.hidden = false; PIN.style.visibility = 'hidden'; requestAnimationFrame(pinPos); }, unpin: () => unpin(0),
     focus: (zs, lv) => { zs = [].concat(zs || []).filter(z => BLD[z] || ZN[z]); if (!zs.length) return 0; const bs = zs.map(z => (BLD[z] || ZN[z]).bb), b = { x0: Math.min(...bs.map(q => q.x0)), x1: Math.max(...bs.map(q => q.x1)), z0: Math.min(...bs.map(q => q.z0)), z1: Math.max(...bs.map(q => q.z1)) };
       const top = Math.max(0, ...zs.map(z => BLD[z] ? GFH + BLD[z].maxN * BLD[z].h : 0)), o = lv ? OBJ.find(q => q.L.z + '|' + q.L.lv === lv) : null, d = Math.hypot(b.x1 - b.x0, b.z1 - b.z0);
       FZ = new Set(zs); FL = o ? lv : null; apply(ST);
@@ -7305,7 +7324,29 @@ function LA3D_APP(P) {
     snap: () => { place(); R.render(scene, cam); return cv.toDataURL('image/jpeg', 0.92); }, ready: true };
   apply(P.st); resize(); try { parent.postMessage({ la3: 'ready' }, '*'); } catch (e) { }
 }
-const laDoc = P => `<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;overflow:hidden;background:#F2F5F7;font-family:Inter,'IBM Plex Sans Arabic',sans-serif}#cv{width:100%;height:100%;display:block;cursor:grab;touch-action:none}#msg[hidden]{display:none}#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:13px;text-align:center;padding:20px}</style></head><body><canvas id="cv"></canvas><div id="msg" hidden>${h(LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).'))}</div>
+/* bookmark label on the model (inside the 3D frame): anchored at the clicked point, pointer tail, flips below near the top edge */
+const LA_PIN_CSS = `#pin{position:absolute;z-index:5;transform:translateY(calc(-100% - 11px));background:#fff;border:1px solid #CFDCE1;border-top:3px solid #0E4A55;border-radius:8px;box-shadow:0 6px 18px rgba(14,74,85,.22);padding:6px 9px 7px;min-width:150px;max-width:250px;font-size:11px;line-height:1.4;color:#12202B;pointer-events:auto;white-space:normal}
+#pin[hidden]{display:none}#pin::after{content:'';position:absolute;left:var(--tx,50%);bottom:-7px;margin-left:-6px;border:6px solid transparent;border-bottom:0;border-top-color:#fff;filter:drop-shadow(0 1px 0 #CFDCE1)}
+#pin.dn{transform:translateY(11px)}#pin.dn::after{bottom:auto;top:-9px;border:6px solid transparent;border-top:0;border-bottom-color:#0E4A55;filter:none}
+#pin::before{content:'';position:absolute;left:var(--tx,50%);bottom:-17px;margin-left:-4px;width:8px;height:8px;border-radius:50%;background:#E8A33D;border:2px solid #fff;box-shadow:0 0 0 1px #0E4A55}#pin.dn::before{bottom:auto;top:-19px}
+#pin .ph{display:flex;align-items:center;gap:6px;font-weight:700;font-size:11.5px;color:#0E4A55;margin-bottom:3px}#pin .ph i{width:9px;height:9px;border-radius:2px;flex:0 0 9px}#pin .ph i.g{background:#2BA35F}#pin .ph i.b{background:#A9AEB3}
+#pin .ph button{margin-inline-start:auto;border:0;background:#EEF2F5;color:#0E4A55;border-radius:5px;width:17px;height:17px;line-height:16px;font-size:12px;cursor:pointer;padding:0}
+#pin .pr{display:grid;grid-template-columns:auto 1fr;gap:1px 8px}#pin .pr span{color:#5B6B7A;font-size:10px}#pin .pr b{font-weight:600;font-size:10.5px}#pin .pf{margin-top:4px;padding-top:4px;border-top:1px solid #EEF2F5;font-size:10px;color:#3E4F5C}#pin .pf b{color:#1E7A45}`;
+/* text of the bookmark: phase · building · level of the element (activity codes, as in the table), element, look-ahead / built */
+function rpLaPin(X, R, H, hit) {
+  if (!hit) return '';
+  const same = x => x.c.z === hit.z && x.c.lv === hit.lv, mine = x => same(x) && laEl(x.c.e) === hit.e, all = X.acts.filter(same), cd = (xs, k) => { const m = new Map(); xs.forEach(x => { const v = RPF.codes(x.a)[k]; if (v) m.set(v, (m.get(v) || 0) + 1); }); return [...m].sort((a, b) => b[1] - a[1]).map(x => x[0])[0] || ''; };
+  const la = R.filter(mine), el = all.filter(mine), src = el.length ? el : all, M = X.M || {}, bm = ((M.buildings || {})[hit.z] || (M.zones || {})[hit.z] || {}), ph = cd(src, H.z) || ((M.zones || {})[hit.z] || {}).name || '', bd = cd(src, H.b), lvT = cd(src, H.l);
+  const isB = !!(M.buildings || {})[hit.z], mName = (S.lang === 'ar' && bm.nameAr ? bm.nameAr : bm.name) || '', bName = mName || bd || hit.z;   // building / zone name from the project 4D model (the code values can be generic)
+  const lvName = /^L\d+$/.test(hit.lv) ? `${LBL('Level', 'الدور')} ${hit.lv.slice(1)}` : /^B\d$/.test(hit.lv) ? `${LBL('Basement', 'البدروم')} ${hit.lv.slice(1)}` : ({ RAFT: LBL('Raft', 'اللبشة'), GF: LBL('Ground floor', 'الدور الأرضي'), RF: LBL('Roof', 'السطح') }[hit.lv] || lvT || hit.lv);
+  const eName = { s: LBL('Slab', 'البلاطة'), c: LBL('Columns', 'الأعمدة'), w: LBL('Walls / masonry', 'الحوائط / البلوك') }[hit.e] || '';
+  const s0 = la.map(x => x.s0).filter(Boolean).sort()[0], f0 = la.map(x => x.f0).filter(Boolean).sort().pop();
+  const foot = la.length ? `<b>${LBL('Look-ahead', 'ضمن الفترة القادمة')}</b> · ${fmtN(la.length)} ${LBL(la.length > 1 ? 'activities' : 'activity', la.length > 1 ? 'أنشطة' : 'نشاط')} · <bdi dir="ltr">${laD(s0)} → ${laD(f0)}</bdi>`
+    : hit.v === 1 ? LBL('Built at the data date', 'منفذ حتى تاريخ البيانات') : LBL('Not in this look-ahead', 'ليس ضمن الفترة القادمة');
+  return `<div class="ph"><i class="${hit.v === 2 ? 'g' : 'b'}"></i><bdi dir="auto">${h(bName)}</bdi><button data-x title="${LBL('Close', 'إغلاق')}">×</button></div>
+    <div class="pr"><span>${LBL('Phase', 'المرحلة')}</span><b><bdi>${h(ph || '—')}</bdi></b><span>${isB ? LBL('Building', 'المبنى') : LBL('Area', 'المنطقة')}</span><b><bdi>${h(bName)}</bdi></b><span>${LBL('Level', 'الدور')}</span><b><bdi>${h(lvName)}</bdi></b><span>${LBL('Element', 'العنصر')}</span><b>${eName}</b></div><div class="pf">${foot}</div>`;
+}
+const laDoc = P => `<!DOCTYPE html><html><head><meta charset="utf-8"><style>html,body{margin:0;height:100%;overflow:hidden;background:#F2F5F7;font-family:Inter,'IBM Plex Sans Arabic',sans-serif}#cv{width:100%;height:100%;display:block;cursor:grab;touch-action:none}#msg[hidden]{display:none}#msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#5B6B7A;font-size:13px;text-align:center;padding:20px}${LA_PIN_CSS}</style></head><body><canvas id="cv"></canvas><div id="pin" hidden></div><div id="msg" hidden>${h(LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).'))}</div>
 ${THREE_TAG}<script>(${LA3D_APP.toString()})(${JSON.stringify(P).replace(/</g, '\\u003c')});<\/script></body></html>`;
 function rpLaGeo(M) {   // geometry of the project 4D model in the units of the 4D app
   const L = M.levels || {}, bld = {}, zones = {}; Object.entries(M.buildings || {}).forEach(([k, b]) => { bld[k] = { p: b.poly, r: b.r || null, pod: b.podium || null, H: N(b.H), fh: N(b.floorH) || 0 }; }); Object.entries(M.zones || {}).forEach(([k, v]) => { zones[k] = v.polys; });
@@ -7346,17 +7387,17 @@ RP.P.lookahead = (el, pg) => {
       ${xk('k6', LBL('Milestones due', 'معالم مستحقة'), fmtN(mss.length), mss.length ? `<bdi dir="auto">${h(String(mss[0].a.name).replace(/^MI-\s*/i, ''))}</bdi> · <bdi dir="ltr">${D_fmt(mss[0].f0)}</bdi>` : LBL('none in the window', 'لا يوجد في الفترة'), mss.length ? 'warn' : '')}`;
     /* table over the model: Zone → Building → Level → Work type → activity */
     const wavg = (xs, g) => { const W = sum(xs, x => x.w || 1); return W ? sum(xs, x => (x.w || 1) * g(x)) / W : 0; };
-    const stChip = x => chip({ start: 'ns', both: 'warn', finish: 'ok', cont: 'ns' }[x.k], { start: LBL('Starts', 'تبدأ'), both: LBL('Starts & ends', 'تبدأ وتنتهي'), finish: LBL('Finishes', 'تنتهي'), cont: LBL('Continues', 'مستمرة') }[x.k]);
     const bar = (a, p) => `<span class="lab" title="${LBL('Actual now', 'الفعلي الآن')} ${fmtN(a, 0)}% · ${LBL('planned by the end of the window', 'المخطط بنهاية الفترة')} ${fmtN(p, 0)}%"><i class="p" style="width:${Math.min(100, p).toFixed(1)}%"></i><i class="a" style="width:${Math.min(100, a).toFixed(1)}%"></i></span>`;
-    const tree = rpTree('la', { items: R, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => x.a.id, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
+    const kT = x => ({ start: LBL('starts in the window', 'تبدأ خلال الفترة'), both: LBL('starts and finishes in the window', 'تبدأ وتنتهي خلال الفترة'), finish: LBL('finishes in the window', 'تنتهي خلال الفترة'), cont: LBL('continues after the window', 'مستمرة بعد نهاية الفترة') }[x.k]);
+    const dS = laD;
+    const tree = rpTree('la', { items: R, ind: 10, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => `${x.a.id} · ${kT(x)}`, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
       sort: (a, b) => String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
-      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 88 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${D_fmt(x.s0)}</span>` },
-        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 88 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.f0).sort().pop()), l: x => D_fmt(x.f0) },
-        { h: LBL('Actual', 'الفعلي'), w: 44, cls: 'nm', g: n => `${fmtN(wavg(n.all, x => x.pct), 0)}%`, l: x => x.st ? `${fmtN(x.pct, 0)}%` : '<span class="muted">—</span>' },
-        { h: LBL('Plan by end', 'مخطط للنهاية'), w: S.lang === 'ar' ? 68 : 60, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
-        { h: '', w: 56, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
-        { h: 'TF', w: 40, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' },
-        { h: T('status'), w: 76, cls: '', g: n => '', l: x => stChip(x) }] });
+      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 62 : 66, cls: 'dt', g: n => dS(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${dS(x.s0)}</span>` },
+        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 62 : 66, cls: 'dt', g: n => dS(n.all.map(x => x.f0).sort().pop()), l: x => dS(x.f0) },
+        { h: LBL('Actual', 'الفعلي'), w: 40, cls: 'nm', g: n => `${fmtN(wavg(n.all, x => x.pct), 0)}%`, l: x => x.st ? `${fmtN(x.pct, 0)}%` : '<span class="muted">—</span>' },
+        { h: LBL('Plan', 'المخطط'), w: 44, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
+        { h: '', w: 44, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
+        { h: 'TF', w: 42, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' }] });
     const op = S.ui.laTb !== false, tl = el.querySelector('[data-lat]'); tl.classList.toggle('off', !op);
     tl.innerHTML = `<div class="la-th"><b>${LBL('Look-ahead', 'الأعمال القادمة')} · ${fmtN(wk)} ${LBL('weeks', 'أسابيع')}</b><span dir="ltr">${D_fmt(X.dd)} → ${D_fmt(WE)}</span><span class="xsub">${fmtN(R.length)} ${LBL('activities', 'نشاط')}</span><button class="la-tg" data-latb title="${op ? LBL('Hide the table', 'إخفاء الجدول') : LBL('Show the table', 'إظهار الجدول')}">${op ? '⟨' : '⟩'}</button></div>${op ? (R.length ? tree : `<div class="empty">${LBL('No activity in this window and selection.', 'لا توجد أنشطة في هذه الفترة والاختيار.')}</div>`) : ''}`;
     el.querySelectorAll('[data-law]').forEach(b => b.onclick = () => { S.ui.laW = +b.dataset.law; paint(); });
@@ -7368,21 +7409,24 @@ RP.P.lookahead = (el, pg) => {
         if (TT.st.sel === pk.k) { TT.st.sel = null; w.reset(); } else { const zs = [...new Set(pk.items.map(x => x.c.z).filter(Boolean))], lvs = [...new Set(pk.items.map(x => x.c.lv ? x.c.z + '|' + x.c.lv : ''))];
           if (!w.focus(zs, lvs.length === 1 && lvs[0] && (pk.leaf || pk.d >= 2) ? lvs[0] : null)) return toast(LBL('This item has no element in the 3D model', 'هذا البند ليس له عنصر في النموذج ثلاثي الأبعاد')); TT.st.sel = pk.k; }
         xt.querySelectorAll('tr.sel').forEach(r => r.classList.remove('sel')); if (TT.st.sel) tr.classList.add('sel'); }; }
-    const G3 = rpLaStates(X, R); el._la = G3; el._sh = op ? (S.lang === 'ar' ? -0.28 : 0.28) : 0; const w = lw(); if (w && w.ready) { w.update(G3.st); w.shift(el._sh); }
+    const G3 = rpLaStates(X, R); el._la = G3; el._sh = op ? (S.lang === 'ar' ? -0.25 : 0.25) : 0; const w = lw(); if (w && w.ready) { w.update(G3.st); w.shift(el._sh); }
+    el._safe = () => { const w2 = lw(); if (!w2 || !w2.ready || !f) return; const fr = f.getBoundingClientRect(), k = f.clientWidth / Math.max(1, fr.width), t = op ? tl.getBoundingClientRect() : null;
+      w2.safe(!t ? null : S.lang === 'ar' ? [0, Math.max(0, (t.left - fr.left) * k)] : [Math.max(0, (t.right - fr.left) * k), f.clientWidth]); };
+    RPLA.pin = () => { const w2 = lw(); if (w2 && w2.ready && el.isConnected) { el._safe(); w2.pin(rpLaPin(X, R, H, RPLA.hit), S.lang === 'ar' ? 'rtl' : 'ltr'); } }; if (RPLA.hit) RPLA.pin(); else if (el._safe) el._safe();
     return G3;
   };
   const G3 = paint(); if (!has3) return;
   /* the 3D frame (geometry of the project 4D model); window / focus / table changes only recolour it */
   const box = el.querySelector('.la-3');
-  f = document.createElement('iframe'); f.className = 'la-f'; f.title = LBL('Look-ahead 3D', 'الأعمال القادمة ثلاثي الأبعاد'); f.srcdoc = laDoc({ geo: rpLaGeo(M), lv: G3.lv, st: G3.st, cam: S.ui.laCam || null, shift: el._sh || 0 });
+  RPLA.hit = null; f = document.createElement('iframe'); f.className = 'la-f'; f.title = LBL('Look-ahead 3D', 'الأعمال القادمة ثلاثي الأبعاد'); f.srcdoc = laDoc({ geo: rpLaGeo(M), lv: G3.lv, st: G3.st, cam: S.ui.laCam || null, shift: el._sh || 0 });
   let host = null; if (prt) { host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-3000px;top:0;width:1100px;height:540px'; document.body.appendChild(host); host.appendChild(f); } else box.appendChild(f);   // print: drawn off-screen at page size, then kept as an image
   el.querySelectorAll('[data-lz]').forEach(b => b.onclick = () => { const w = lw(); if (w) w.zoom(+b.dataset.lz); });
   const rs = el.querySelector('[data-lr]'); if (rs) rs.onclick = () => { const w = lw(); if (w) w.reset(); if (RT.la) RT.la.st.sel = null; el.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); };
-  const ready = () => new Promise(res => { let i = 0; const t = () => { const w = lw(); if (w && w.ready) { const l = box.querySelector('.la-ld'); if (l) l.remove(); if (el._la) w.update(el._la.st); return res(w); } if ((!prt && !el.isConnected) || ++i > 150) return res(null); setTimeout(t, 100); }; t(); });
+  const ready = () => new Promise(res => { let i = 0; const t = () => { const w = lw(); if (w && w.ready) { const l = box.querySelector('.la-ld'); if (l) l.remove(); if (el._la) w.update(el._la.st); if (el._safe) el._safe(); return res(w); } if ((!prt && !el.isConnected) || ++i > 150) return res(null); setTimeout(t, 100); }; t(); });
   if (prt) return ready().then(async w => { if (w) { await new Promise(r => setTimeout(r, 300)); const url = w.snap(); host.remove(); box.innerHTML = `<img class="la-img" src="${url}" alt="">`; } else if (host.remove() || 1) box.innerHTML = `<div class="empty">${LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).')}</div>`; });
   ready();
 };
-if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (!e.data) return; if (e.data.la3cam) S.ui.laCam = e.data.la3cam; if ('la3sel' in e.data && RT.la) { RT.la.st.sel = null; document.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); } }); }
+if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (!e.data) return; if (e.data.la3cam) S.ui.laCam = e.data.la3cam; if ('la3hit' in e.data) { RPLA.hit = e.data.la3hit; if (RPLA.pin) RPLA.pin(); } if ('la3sel' in e.data && RT.la) { RT.la.st.sel = null; document.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); } }); }
 const D_fmt = d => d ? D.fmt(d) : '—';
 
 /* ---------- 9 · Resources & Cost ---------- */

@@ -12,6 +12,7 @@
   --ink:#16202E;--ink2:#4A5668;--ink3:#7B8698;--line:#E1E6EE;--line2:#EEF1F6;--bg:#F3F5F9;--card:#fff;
   --ok:#0E8A5F;--ok-l:#E3F5EE;--warn:#B76E00;--warn-l:#FFF3DC;--bad:#C62828;--bad-l:#FDE8E8;--info:#2F6FB5;--info-l:#E6F0FB;
   --input:#0B7A4B;--calc:#F4F6F9;--r:10px;--sh:0 1px 2px rgba(16,32,56,.06),0 2px 8px rgba(16,32,56,.05);
+  --tb:0px;
   --font:"Inter","Segoe UI","IBM Plex Sans Arabic","Tahoma",system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box}
@@ -23,7 +24,7 @@ a{color:var(--pri)}
 .muted{color:var(--ink3)}.small{font-size:12px}.tiny{font-size:11px}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}
 .num{font-variant-numeric:tabular-nums}
 /* ---------- layout ---------- */
-#app{display:flex;height:100vh;overflow:hidden}
+#app{display:flex;height:calc(100vh - var(--tb));overflow:hidden}
 #side{width:248px;flex:0 0 248px;background:var(--navy);color:#C9D6E8;display:flex;flex-direction:column;transition:width .2s}
 #side .brand{padding:18px 18px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
 #side .brand .t1{color:#fff;font-weight:700;font-size:14px;letter-spacing:.2px;line-height:1.35;text-align:start;unicode-bidi:plaintext;overflow-wrap:anywhere}
@@ -109,7 +110,7 @@ html[dir=rtl] .sec-t{letter-spacing:0}
 .tbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
 .tbar .in{height:32px}
 .tbar .search{min-width:220px}
-.tw{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:auto;box-shadow:var(--sh);max-height:calc(100vh - 250px)}
+.tw{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:auto;box-shadow:var(--sh);max-height:calc(100vh - 250px - var(--tb))}
 table.t{border-collapse:separate;border-spacing:0;width:100%;font-size:12.5px}
 table.t th{position:sticky;top:0;z-index:2;background:var(--navy);color:#fff;font-weight:600;text-align:start;padding:8px 10px;white-space:nowrap;font-size:11.8px;border-inline-end:1px solid rgba(255,255,255,.08)}
 table.t th.srt{cursor:pointer}
@@ -139,8 +140,8 @@ html[dir=rtl] table.egrid tr.beh td.stk{box-shadow:inset -3px 0 0 var(--bad)}
 .tabs .tb{padding:9px 14px;cursor:pointer;color:var(--ink3);font-weight:600;border-bottom:2px solid transparent;margin-bottom:-1px}
 .tabs .tb.on{color:var(--pri);border-color:var(--pri)}
 /* ---------- modal ---------- */
-.ov{position:fixed;inset:0;background:rgba(12,24,44,.45);display:flex;align-items:flex-start;justify-content:center;z-index:50;padding:40px 16px;overflow:auto}
-.md{background:#fff;border-radius:14px;width:min(980px,100%);box-shadow:0 20px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 80px)}
+.ov{position:fixed;inset:var(--tb) 0 0 0;background:rgba(12,24,44,.45);display:flex;align-items:flex-start;justify-content:center;z-index:50;padding:40px 16px;overflow:auto}
+.md{background:#fff;border-radius:14px;width:min(980px,100%);box-shadow:0 20px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;max-height:calc(100vh - 80px - var(--tb))}
 .md.sm{width:min(520px,100%)}
 .md .mh{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
 .md .mh h3{margin:0;font-size:15px;color:var(--navy)}
@@ -154,7 +155,7 @@ html[dir=rtl] #toast{transform:translateX(50%)}
 .tst{background:var(--navy);color:#fff;padding:9px 16px;border-radius:9px;box-shadow:0 6px 20px rgba(0,0,0,.2);font-size:13px;max-width:560px}
 .tst.bad{background:var(--bad)}.tst.ok{background:var(--ok)}.tst.warn{background:var(--warn)}
 /* ---------- login ---------- */
-#login{position:fixed;inset:0;background:linear-gradient(135deg,#0B2240 0%,#163A63 55%,#1F4C80 100%);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto;z-index:40}
+#login{position:fixed;inset:var(--tb) 0 0 0;background:linear-gradient(135deg,#0B2240 0%,#163A63 55%,#1F4C80 100%);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto;z-index:40}
 .lg{background:#fff;border-radius:16px;width:min(880px,100%);display:grid;grid-template-columns:1fr 1.15fr;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .lg .l{background:var(--navy);color:#C9D6E8;padding:30px 28px;display:flex;flex-direction:column;gap:14px}
 .lg .l h2{color:#fff;margin:0;font-size:21px;line-height:1.3}
@@ -248,7 +249,7 @@ select.fsel.on{border-color:var(--pri);background:var(--pri-l);color:var(--navy)
 .bdg .dot{width:6px;height:6px;vertical-align:1px}
 /* ---------- portal: front screen + gate sign-in (design A, approved 12-Nov-2026) ---------- */
 #login.ptm{background:#1D2026;padding:0;display:block;overflow:hidden}
-.pt{height:100vh;min-height:600px;display:flex;flex-direction:column;color:#fff;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",system-ui,sans-serif}
+.pt{height:calc(100vh - var(--tb));min-height:600px;display:flex;flex-direction:column;color:#fff;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",system-ui,sans-serif}
 html[lang=en] .pt{font-family:"Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif}
 .pt-h{display:flex;align-items:center;gap:14px;padding:12px 44px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
 .pt-h .sp{flex:1}
@@ -308,10 +309,10 @@ html[dir=ltr] .gcta svg{transform:scaleX(-1)}
 .gpj a{font-size:12.5px;font-weight:600;padding:6px 4px}.gc.rp .gpj a{color:#0E4A55}
 .gbtn{justify-content:center;padding:12px;font-size:14.5px}.gc.rp .gbtn{background:#0E4A55;border-color:#0E4A55}.gc.dc .gbtn{background:#0F2A4A;border-color:#0F2A4A}
 .gc .roles{max-height:34vh;overflow:auto}
-@media(max-width:900px){.pt-h,.pt-m{padding-left:16px;padding-right:16px}.pt{height:auto;min-height:100vh}#login.ptm{overflow:auto}.pt-gates{grid-template-columns:1fr;grid-template-rows:auto}.pt-gate{height:auto}.pt-gate .gt b{font-size:24px}}
+@media(max-width:900px){.pt-h,.pt-m{padding-left:16px;padding-right:16px}.pt{height:auto;min-height:calc(100vh - var(--tb))}#login.ptm{overflow:auto}.pt-gates{grid-template-columns:1fr;grid-template-rows:auto}.pt-gate{height:auto}.pt-gate .gt b{font-size:24px}}
 
 /* ---------- Reports & 4D portal: paged report (1280×720 page scaled to the window) ---------- */
-.rpo{flex:1;min-width:0;height:100vh;display:flex;flex-direction:column;background:#E8EDF1}
+.rpo{flex:1;min-width:0;height:calc(100vh - var(--tb));display:flex;flex-direction:column;background:#E8EDF1}
 .rp-h{display:flex;align-items:center;gap:10px;padding:8px 18px;background:#12202B;color:#fff;flex-wrap:wrap}
 .rp-h .sp{flex:1}.rp-h .chip{background:rgba(255,255,255,.1);color:#D6E6E9}.rp-h .chip b{color:#fff}.rp-h .chip.co{background:#E8A33D;color:#12202B}.rp-h .chip.co b{color:#12202B}
 .rp-h .btn.ghost{color:#D6E6E9}.rp-h .btn.ghost:hover{background:rgba(255,255,255,.1)}
@@ -520,7 +521,7 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
 .rv-bar{display:flex;align-items:center;gap:10px;background:#FFF4E0;color:#6B4400;border-bottom:1px solid #F2D9A0;padding:6px 16px;font-size:12.5px}.rv-bar>svg{width:17px;height:17px;flex:0 0 17px}.rv-bar .sp{flex:1}.rv-bar b{white-space:nowrap}
 .pres .rv-tool,.rpp .rv-tool,.rv-ed .rv-tool{display:none!important}
 /* presentation mode */
-.rpo.pres{background:#061A1F;height:100vh}
+.rpo.pres{background:#061A1F;height:calc(100vh - var(--tb))}
 .rpo.pres .rp-page{box-shadow:none}
 .pr-bar{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:rgba(10,58,67,.95);color:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 8px 30px rgba(0,0,0,.45);transition:opacity .35s;z-index:30;font-size:13px}
 .pr-bar button{min-width:44px;min-height:40px;border:0;border-radius:10px;background:transparent;color:#fff;font:inherit;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px}
@@ -828,6 +829,23 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .pt-instslot:empty{display:none}.pt-inst{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;margin-inline-end:8px;border-radius:8px;border:1px solid rgba(232,163,61,.55);background:rgba(232,163,61,.14);color:inherit;font:600 12.5px/1 inherit;cursor:pointer}.pt-inst:hover{background:rgba(232,163,61,.26)}.pt-inst svg{width:15px;height:15px}
 .md.lg{display:flex;flex-direction:column;grid-template-columns:none;overflow:visible;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);width:min(980px,100%)}   /* large dialogs (presentation pages, delay summary): not the login card (.lg) */
 .pr-d label>span[dir]{color:#7B8C99;font-weight:600;margin-inline:4px 6px}
+
+/* installed app with the title bar hidden (window controls overlay): the window buttons sit over the top of the page, so a title strip
+   (drag area) takes that height and every screen starts below it. --tb = 0 in the browser, the local file, full screen and print. */
+#wcoBar{display:none}
+@media (display-mode: window-controls-overlay){
+  :root{--tb:env(titlebar-area-height,33px)}
+  body{padding-top:var(--tb)}
+  #wcoBar{display:flex;align-items:center;gap:8px;position:fixed;top:0;left:env(titlebar-area-x,0);width:env(titlebar-area-width,100%);height:var(--tb);padding:0 12px;z-index:100000;background:#0A3A43;color:#E6EEF0;font:600 12px/1 "Inter","IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;-webkit-app-region:drag;app-region:drag;user-select:none;-webkit-user-select:none;white-space:nowrap;overflow:hidden}
+  #wcoBar img{width:18px;height:18px;border-radius:4px;flex:0 0 auto}
+  #wcoBar span{overflow:hidden;text-overflow:ellipsis}#wcoBar i{font-style:normal;color:#9FD3DA;font-weight:500;margin-inline-start:6px}
+  html:has(.rpo.pres) #wcoBar{background:#061A1F}
+}
+@media print{:root{--tb:0px}body{padding-top:0!important}#wcoBar{display:none!important}}
+/* update / reload button (front screen, gate sign-in, Data Collection side bar, report top bar) */
+.pt-rl{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;margin-inline-end:8px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:transparent;color:inherit;font:600 12.5px/1 inherit;cursor:pointer;font-family:inherit}
+.pt-rl:hover{background:rgba(255,255,255,.1)}.pt-rl svg{width:15px;height:15px}
+[data-reload][disabled] svg{animation:rlspin 1s linear infinite}@keyframes rlspin{to{transform:rotate(360deg)}}
 
 </style>
 </head>
@@ -2499,6 +2517,7 @@ const IC = {
   sync: '<path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M3 21v-5h5"/>',
   folder: '<path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>',
   out: '<path d="M15 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4M10 17l-5-5 5-5M5 12h11"/>',
+  reload: '<path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/><path d="M12 9v6M9.5 12.5L12 15l2.5-2.5"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 3 2.5 15 0 18M12 3c-2.5 3-2.5 15 0 18"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/>', warn: '<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.01"/>',
   ok: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>', copy: '<rect x="8" y="8" width="13" height="13" rx="1.5"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/>',
@@ -2585,7 +2604,7 @@ function renderShell() {
   <aside id="side"><div class="brand" title="${h(p.number)} · ${h(p.code)}"><div class="t1" dir="ltr">${h(p.name || `${p.number} · ${p.code}`)}</div><div class="t2">${h(S.lang === 'ar' && p.nameAr ? p.nameAr : `${p.number} · ${p.code}`)}</div></div>
     <nav>${nav}</nav>
     <div class="foot"><div class="who">${h(S.user.name)}</div><div class="x2" style="color:#8FA6C4">${h(userLabel())}</div>
-      <div style="display:flex;gap:6px;margin-top:8px"><button class="btn sm ghost" style="color:#C9D6E8" data-lang>${ic('globe')}${T('switch_lang')}</button>${S.user.id ? `<button class="btn sm ghost" style="color:#C9D6E8" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" style="color:#C9D6E8" data-out>${ic('out')}</button></div></div></aside>
+      <div style="display:flex;gap:6px;margin-top:8px"><button class="btn sm ghost" style="color:#C9D6E8" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="btn sm ghost" style="color:#C9D6E8" data-lang>${ic('globe')}${T('switch_lang')}</button>${S.user.id ? `<button class="btn sm ghost" style="color:#C9D6E8" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" style="color:#C9D6E8" data-out>${ic('out')}</button></div></div></aside>
   <main id="main"><header id="top"><div class="ttl">${T(S.page)}</div><span class="sp"></span>
     ${cut ? `<span class="chip co">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span><span class="chip">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span>` : `<span class="chip sync-err">${T('no_cutoff')}</span>`}
     ${SCH() ? `<span class="chip">${T('data_date')}: <b>${D.fmt(SCH().dataDate)}</b></span>` : ''}
@@ -4097,7 +4116,7 @@ function ptHead(db, right) {
   const pri = ar ? (id.nameAr || id.name) : (id.name || id.nameAr), sec = ar ? (id.nameAr && id.name ? id.name : '') : (id.name && id.nameAr ? id.nameAr : '');
   return `<header class="pt-h">${id.logo ? `<div class="pt-logo"><img src="${id.logo}" alt=""></div>` : ''}<div class="pt-co">${pri ? `<b dir="auto">${h(pri)}</b>${sec ? `<span dir="auto">${h(sec)}</span>` : ''}` : `<b>${T('pt_title')}</b><span>${T('pt_title_alt')}</span>`}</div><span class="sp"></span>${right}</header>`;
 }
-const ptLang = () => `${typeof PWA !== 'undefined' ? PWA.slot() : ''}<div class="pt-lang"><button class="${S.lang === 'ar' ? 'on' : ''}" data-l="ar">عربي</button><button class="${S.lang === 'en' ? 'on' : ''}" data-l="en">EN</button></div>`;
+const ptLang = () => `${typeof PWA !== 'undefined' ? PWA.slot() + PWA.rbtn() : ''}<div class="pt-lang"><button class="${S.lang === 'ar' ? 'on' : ''}" data-l="ar">عربي</button><button class="${S.lang === 'en' ? 'on' : ''}" data-l="en">EN</button></div>`;
 const GATE_IC = { dc: '<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v3h6V3M9 12l2 2 4-4M9 17h6"/>', rp: '<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/>' };
 const gateIc = g => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${GATE_IC[g]}</svg>`;
 
@@ -4302,7 +4321,7 @@ const RP = {
         ${cut ? `<span class="chip co">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span><span class="chip">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="chip">${T('data_date')}: <b>${D.fmt(sch.dataDate)}</b></span>` : ''}
         <span class="chip" id="syncChip"></span><span class="rp-u">${ic('user')}<b>${h(S.user.name)}</b></span>
         ${cfg ? `<button class="btn sm ${edit ? 'on' : ''}" data-rvedit title="${LBL('Hide or show visuals on the report pages', 'إخفاء أو إظهار العناصر في صفحات التقرير')}">${ic('pen')}${LBL('Customise', 'تخصيص')}</button>` : ''}<button class="btn sm pres" data-rppres title="${LBL('Presentation mode – choose the pages to show', 'وضع العرض – اختر الصفحات التي تُعرض')}">${ic('play')}${LBL('Present', 'عرض تقديمي')}</button>
-        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – all report pages', 'طباعة / PDF – كل صفحات التقرير')}">${ic('print')}${LBL('Print', 'طباعة')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
+        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – all report pages', 'طباعة / PDF – كل صفحات التقرير')}">${ic('print')}${LBL('Print', 'طباعة')}</button><button class="btn sm ghost" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
       <nav class="rp-nav2" aria-label="${LBL('Report pages', 'صفحات التقرير')}"><button class="rp-ar" data-prev ${i <= 0 ? 'disabled' : ''} aria-label="${LBL('Previous page', 'الصفحة السابقة')}">‹</button><div class="rp-tb">${main.map((x, m) => `<button class="rp-tab2 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}"><span><i dir="ltr">${String(m + 1).padStart(2, '0')}</i>${LBL(...x.t)}</span></button>`).join('')}${adm.map(x => `<button class="rp-tab2 adm ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}" aria-label="${rpLbl(x)}"><span>${ic(x.k === 'rsrc' ? 'folder' : 'user')}</span></button>`).join('')}</div><span class="rp-cnt" dir="ltr">${pg && !pg.admin ? `${n} / ${main.length}` : ''}</span><button class="rp-ar" data-next ${i < 0 || i >= pgs.length - 1 ? 'disabled' : ''} aria-label="${LBL('Next page', 'الصفحة التالية')}">›</button></nav>
       ${edit && pg && !pg.admin ? RV.bar(pg) : ''}
       <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${pg ? RP.frame(pg, n, main.length) : ''}</div></div>
@@ -7455,12 +7474,36 @@ const PWA = {
   btn: () => PWA.web() && !PWA.app() && (PWA.ev || PWA.ios()) ? `<button class="pt-inst" data-inst title="${PWA.L('Install the platform as an app on this device', 'تثبيت المنصة كتطبيق على هذا الجهاز')}">${ic('dl')}<span>${PWA.L('Install app', 'تثبيت التطبيق')}</span></button>` : '',
   slot: () => `<span class="pt-instslot" data-instslot>${PWA.btn()}</span>`,
   refresh: () => document.querySelectorAll('[data-instslot]').forEach(s => { s.innerHTML = PWA.btn(); }),
+  /* update / reload: save and sync the open project (max 6 s, as at sign-out), ask the service worker for the newest version, then load the
+     newest tool and come back to the sign-in of the same gate (#dc / #report). Online a version stamp (?v=) skips every cached copy;
+     the local file simply reloads. */
+  tip: () => PWA.L('Update the platform – save, load the newest version and reopen', 'تحديث المنصة – حفظ ثم تحميل أحدث نسخة وإعادة الفتح'),
+  rbtn: () => `<button class="pt-rl" data-reload title="${PWA.tip()}">${ic('reload')}<span>${PWA.L('Update', 'تحديث')}</span></button>`,
+  async reload() {
+    if (PWA.busy) return; PWA.busy = true;
+    document.querySelectorAll('[data-reload]').forEach(b => { b.disabled = true; });
+    toast(PWA.L('Updating the platform…', 'جارٍ تحديث المنصة…'), 'ok');
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+    try { if (S.db && S.user) { try { PRES.stamp('out'); } catch (e) { } clearTimeout(saveTimer); clearTimeout(syncTimer); await IDB.put('projects', S.db.id, S.db); S.ui.cloudDirty = true;
+      await Promise.race([S.cloud ? syncCloud(false) : S.dir ? syncFolder(false) : 0, wait(6000)]); } } catch (e) { }
+    try { const r = PWA.reg || ('serviceWorker' in navigator && await navigator.serviceWorker.getRegistration()); if (r) await Promise.race([r.update(), wait(4000)]); } catch (e) { }
+    const g = S.portal === 'rp' || (!S.portal && S.ui.gate === 'rp') ? 'report' : S.portal === 'dc' || (!S.portal && S.ui.gate === 'dc') ? 'dc' : '';
+    if (location.protocol === 'file:') { history.replaceState(null, '', location.pathname + (g ? '#' + g : '')); location.reload(); return; }
+    location.replace(location.pathname + '?v=' + Date.now().toString(36) + (g ? '#' + g : ''));
+  },
+  bar() { // title strip of the installed app when its title bar is hidden (window controls overlay) – shown by CSS only in that mode
+    if (document.getElementById('wcoBar')) return; const b = document.createElement('div'); b.id = 'wcoBar'; b.setAttribute('dir', 'ltr');
+    b.innerHTML = '<img src="icons/icon-192.png" alt=""><span>Projects Control Platform<i>منصة التحكم بالمشاريع</i></span>'; document.body.prepend(b);
+  },
   async install() {
     if (PWA.ev) { const e = PWA.ev; PWA.ev = null; try { e.prompt(); await e.userChoice; } catch (x) { } PWA.refresh(); return; }
     if (PWA.ios()) toast(PWA.L('On iPhone / iPad: tap Share, then “Add to Home Screen”.', 'على الآيفون / الآيباد: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».'), 'ok');
   },
   init() {
+    document.addEventListener('click', e => { const b = e.target.closest && e.target.closest('[data-reload]'); if (b && !b.disabled) PWA.reload(); });
+    if (/[?&]v=/.test(location.search)) history.replaceState(null, '', location.pathname + location.hash);   // drop the version stamp of an update
     if (!PWA.web()) return;
+    if (document.body) PWA.bar(); else document.addEventListener('DOMContentLoaded', PWA.bar);
     const add = (rel, href, x) => { if (document.querySelector(`link[rel="${rel}"]`)) return; const l = document.createElement('link'); l.rel = rel; l.href = href; Object.assign(l, x || {}); document.head.appendChild(l); };
     add('manifest', 'manifest.webmanifest'); add('apple-touch-icon', 'icons/icon-192.png'); add('icon', 'icons/icon-192.png', { type: 'image/png' });
     if (!document.querySelector('meta[name="theme-color"]')) { const m = document.createElement('meta'); m.name = 'theme-color'; m.content = '#0E4A55'; document.head.appendChild(m); }

@@ -7315,10 +7315,10 @@ RP.P.lookahead = (el, pg) => {
     const bar = (a, p) => `<span class="lab" title="${LBL('Actual now', 'الفعلي الآن')} ${fmtN(a, 0)}% · ${LBL('planned by the end of the window', 'المخطط بنهاية الفترة')} ${fmtN(p, 0)}%"><i class="p" style="width:${Math.min(100, p).toFixed(1)}%"></i><i class="a" style="width:${Math.min(100, a).toFixed(1)}%"></i></span>`;
     const tree = rpTree('la', { items: R, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => x.a.id, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
       sort: (a, b) => String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
-      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 78 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${D_fmt(x.s0)}</span>` },
-        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 78 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.f0).sort().pop()), l: x => D_fmt(x.f0) },
+      cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 88 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${D_fmt(x.s0)}</span>` },
+        { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 88 : 70, cls: 'dt', g: n => D_fmt(n.all.map(x => x.f0).sort().pop()), l: x => D_fmt(x.f0) },
         { h: LBL('Actual', 'الفعلي'), w: 44, cls: 'nm', g: n => `${fmtN(wavg(n.all, x => x.pct), 0)}%`, l: x => x.st ? `${fmtN(x.pct, 0)}%` : '<span class="muted">—</span>' },
-        { h: LBL('Plan by end', 'مخطط للنهاية'), w: 60, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
+        { h: LBL('Plan by end', 'مخطط للنهاية'), w: S.lang === 'ar' ? 68 : 60, cls: 'nm', g: n => `<b>${fmtN(wavg(n.all, x => x.pe), 0)}%</b>`, l: x => `<b>${fmtN(x.pe, 0)}%</b>` },
         { h: '', w: 56, cls: 'lbar', g: n => bar(wavg(n.all, x => x.pct), wavg(n.all, x => x.pe)), l: x => bar(x.pct, x.pe) },
         { h: 'TF', w: 40, cls: 'nm', g: n => { const t = n.all.map(x => x.a.tf).filter(isNum); return t.length ? `<span dir="ltr" class="${Math.min(...t) <= 0 ? 'neg' : ''}">${fmtN(Math.min(...t))}</span>` : ''; }, l: x => isNum(x.a.tf) ? `<span dir="ltr" class="${x.crit ? 'neg' : ''}">${fmtN(x.a.tf)}</span>` : '' },
         { h: T('status'), w: 76, cls: '', g: n => '', l: x => stChip(x) }] });

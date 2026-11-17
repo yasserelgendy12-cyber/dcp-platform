@@ -1057,6 +1057,7 @@ table.t.pgt tr.beh td.sl{box-shadow:inset 3px 0 0 var(--bad)}html[dir=rtl] table
 /* entry fields with a bookmark: the label is underlined dotted */
 .fll[data-tip]{text-decoration:underline dotted #AAB6C6;text-underline-offset:3px;text-decoration-thickness:1px;cursor:help}
 table.t th[data-tip]{cursor:help}
+table.t.pgt .na{display:block;text-align:center;color:#B7C0CC;font-weight:600}
 
 </style>
 </head>
@@ -3534,6 +3535,7 @@ PAGES.progress = v => {
     if (type === 'area') return `<textarea class="in tx ${ec}" rows="2" data-u="${f}" ${en ? '' : 'disabled'}>${h(val)}</textarea>`;
     const pc = ['ctr', 'cons', 'own'].includes(f);
     return `<input class="in ${cls} ${ec}" type="${type}" ${type === 'number' ? `min="0" ${pc ? 'max="100"' : ''} step="any"` : ''} ${type === 'date' ? `max="${cdate}"` : ''} data-u="${f}" value="${h(val)}" ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${pc && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
+  const NA = '<span class="na" aria-hidden="true">—</span>';   // milestones: one date only (start milestone → actual start, finish milestone → actual finish), no remaining duration
   const pvCell = (pct, status, extra) => `<div class="pv"><b>${pct}%</b>${extra || ''}</div><span class="ps ${PG_ST[status] || ''}">${pgSt(status)}</span>`;
   const xCell = r => { const bad = r.iss.filter(i => i.sev === 'bad').length, wn = r.iss.length - bad;
     return pvCell(r.e.pctR, r.e.status, r.e.changed ? `<i class="chg" aria-label="changed">↑</i>` : '') + (r.iss.length ? `<div class="ik">${bad ? `<span class="ib">! ${bad}</span>` : ''}${wn ? `<span class="iw">? ${wn}</span>` : ''}</div>` : ''); };
@@ -3544,7 +3546,7 @@ PAGES.progress = v => {
     <td class="p6"${tt('p6')}>${pvCell(Math.round(a.pct), a.status)}</td>
     <td class="n pl ${r.behind ? 'bh' : ''}" data-pl${tt('pl')}>${r.pl === null ? '' : r.pl.toFixed(0) + '%'}</td>
     <td${tt('ctr')}>${cell(r, 'ctr', 'pct', 'number', canC)}</td><td${tt('cons')}>${cell(r, 'cons', 'pct', 'number', canCo)}</td><td${tt('own')}>${cell(r, 'own', 'pct', 'number', canO)}</td>
-    <td${tt('as')}>${cell(r, 'as', 'dt', 'date', op.as, nd.as)}</td><td${tt('af')}>${cell(r, 'af', 'dt', 'date', op.af, nd.af)}</td><td${tt('rd')}>${cell(r, 'rd', 'rd', 'number', op.rd)}</td>
+    <td${tt('as')}>${a.type === 'TT_FinMile' ? NA : cell(r, 'as', 'dt', 'date', op.as, nd.as)}</td><td${tt('af')}>${a.type === 'TT_Mile' ? NA : cell(r, 'af', 'dt', 'date', op.af, nd.af)}</td><td${tt('rd')}>${PROG.isMs(a) ? NA : cell(r, 'rd', 'rd', 'number', op.rd)}</td>
     <td${tt('causedBy')}>${cell(r, 'causedBy', '', 'sel', canC)}</td><td${tt('reason')}>${cell(r, 'reason', '', 'area', canC)}</td><td${tt('mitigation')}>${cell(r, 'mitigation', '', 'area', canC)}</td>
     <td class="px" data-fl${tt('x')}>${xCell(r)}</td>`; };
   const COLS = [['sl', ''], ['act', LBL('Activity', 'النشاط')], ['p6', 'P6'], ['pl', LBL('Plan %', 'المخطط %')], ['ctr', LBL('Contr. %', 'المقاول %')], ['cons', LBL('Cons. %', 'استشاري %')], ['own', LBL('Owner %', 'المالك %')], ['as', T('c_as')], ['af', T('c_af')], ['rd', LBL('Rem. (d)', 'المتبقي (يوم)')], ['causedBy', T('c_cb')], ['reason', T('c_rsn')], ['mitigation', T('c_mit')], ['x', LBL('To P6', 'إلى P6')]];
@@ -3555,8 +3557,8 @@ PAGES.progress = v => {
     ctr: [T('c_ctr'), LBL('Physical progress at the cut-off date, entered by the contractor.', 'نسبة الإنجاز الفعلية في تاريخ القطع، يدخلها المقاول.'), { how: LBL('Type 0–100. Leave it empty to keep the P6 % (grey). P6 receives the higher of the two.', 'اكتب رقماً من 0 إلى 100. اتركه فارغاً للإبقاء على نسبة P6 (الرقم الرمادي). يُرسل إلى P6 الأعلى بين النسبتين.') }],
     cons: [T('c_cons'), LBL("The consultant's review of the progress.", 'مراجعة الاستشاري لنسبة الإنجاز.'), { how: LBL('Type 0–100 after site verification. Empty = the P6 %. Not above the % sent to P6.', 'اكتب من 0 إلى 100 بعد التحقق في الموقع. الفارغ = نسبة P6. لا تتجاوز النسبة المرسلة إلى P6.') }],
     own: [T('c_own'), LBL("The owner's assessment of the progress.", 'تقييم المالك لنسبة الإنجاز.'), { how: LBL('Type 0–100. An activity left empty counts 0 in the owner actual.', 'اكتب من 0 إلى 100. النشاط الفارغ يُحتسب صفراً في فعلي المالك.') }],
-    as: [T('c_as'), LBL('The date the work actually started.', 'تاريخ البدء الفعلي للعمل.'), { how: LBL('Opens when the % is above 0; green = required. A date on or before the cut-off.', 'تُفتح عندما تكون النسبة أكبر من 0، والأخضر = مطلوب. تاريخ لا يتجاوز تاريخ القطع.') }],
-    af: [T('c_af'), LBL('The date the work actually finished.', 'تاريخ الانتهاء الفعلي للعمل.'), { how: LBL('Opens at 100 %; green = required. On or before the cut-off and not before the actual start.', 'تُفتح عند 100%، والأخضر = مطلوب. لا يتجاوز تاريخ القطع ولا يسبق البدء الفعلي.') }],
+    as: [T('c_as'), LBL('The date the work actually started.', 'تاريخ البدء الفعلي للعمل.'), { how: LBL('Opens when the % is above 0; green = required. A date on or before the cut-off.', 'تُفتح عندما تكون النسبة أكبر من 0، والأخضر = مطلوب. تاريخ لا يتجاوز تاريخ القطع.') }, LBL('◆ Finish milestones take the actual finish only (—).', '◆ معالم النهاية تأخذ تاريخ الانتهاء فقط (—).')],
+    af: [T('c_af'), LBL('The date the work actually finished.', 'تاريخ الانتهاء الفعلي للعمل.'), { how: LBL('Opens at 100 %; green = required. On or before the cut-off and not before the actual start.', 'تُفتح عند 100%، والأخضر = مطلوب. لا يتجاوز تاريخ القطع ولا يسبق البدء الفعلي.') }, LBL('◆ Start milestones take the actual start only (—).', '◆ معالم البداية تأخذ تاريخ البدء فقط (—).')],
     rd: [LBL('Remaining duration', 'المدة المتبقية'), LBL('Working days left for an activity in progress.', 'أيام العمل المتبقية لنشاط جارٍ.'), { how: LBL('A whole number above 0. Empty = calculated (grey): duration × (1 − %).', 'رقم صحيح أكبر من 0. الفارغ = محسوب تلقائياً (الرمادي): المدة × (1 − النسبة).') }],
     causedBy: [T('c_cb'), LBL('The party responsible for the delay.', 'الجهة المسؤولة عن التأخير.'), { how: LBL('For an activity behind plan choose Contractor, Consultant, Client or Concurrent – required with the reason.', 'للنشاط المتأخر اختر: المقاول أو الاستشاري أو المالك أو متزامن – مطلوب مع السبب.') }],
     reason: [T('c_rsn'), LBL('Why the activity is behind plan.', 'سبب تأخر النشاط عن الخطة.'), { how: LBL('One short sentence: what is late and why (e.g. "Rebar delivery late 5 days – supplier"). Hover a cell to read the full text.', 'جملة قصيرة: ما المتأخر ولماذا (مثال: «تأخر توريد حديد التسليح 5 أيام – المورد»). مرّر المؤشر على الخانة لقراءة النص كاملاً.') }],
@@ -3577,9 +3579,12 @@ PAGES.progress = v => {
       case 'ctr': return [T('c_ctr'), ent('ctr'), [LBL('P6 %', 'نسبة P6'), pgPct(Math.round(a.pct))], [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('ctr'), lock(canC)];
       case 'cons': return [T('c_cons'), ent('cons'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('cons'), lock(canCo)];
       case 'own': return [T('c_own'), ent('own'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('own'), lock(canO)];
-      case 'as': return [T('c_as'), ent('as'), [LBL('In P6', 'في P6'), a.as ? D.fmt(a.as) : '—'], nd.as ? { warn: LBL('Required: the activity has started.', 'مطلوب: النشاط بدأ.') } : '', how('as'), lock(op.as, canC ? LBL('Opens when the % is above 0.', 'تُفتح عندما تكون النسبة أكبر من 0.') : null)];
-      case 'af': return [T('c_af'), ent('af'), [LBL('In P6', 'في P6'), a.af ? D.fmt(a.af) : '—'], nd.af ? { warn: LBL('Required: the activity is at 100 %.', 'مطلوب: النشاط عند 100%.') } : '', how('af'), lock(op.af, canC ? LBL('Opens at 100 %.', 'تُفتح عند 100%.') : null)];
-      case 'rd': return [LBL('Remaining duration', 'المدة المتبقية'), ent('rd'), [LBL('Sent to P6', 'المرسل إلى P6'), `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], how('rd'), lock(op.rd, canC ? LBL('Only for an activity in progress.', 'لنشاط جارٍ فقط.') : null)];
+      case 'as': if (a.type === 'TT_FinMile') return [T('c_as'), LBL('◆ Finish milestone: only the actual finish date is entered.', '◆ معلم نهاية: يُدخل تاريخ الانتهاء الفعلي فقط.')];
+        return [T('c_as'), ent('as'), a.type === 'TT_Mile' ? LBL('◆ Start milestone: only this date is entered.', '◆ معلم بداية: يُدخل هذا التاريخ فقط.') : '', [LBL('In P6', 'في P6'), a.as ? D.fmt(a.as) : '—'], nd.as ? { warn: LBL('Required: the activity has started.', 'مطلوب: النشاط بدأ.') } : '', how('as'), lock(op.as, canC ? LBL('Opens when the % is above 0.', 'تُفتح عندما تكون النسبة أكبر من 0.') : null)];
+      case 'af': if (a.type === 'TT_Mile') return [T('c_af'), LBL('◆ Start milestone: only the actual start date is entered.', '◆ معلم بداية: يُدخل تاريخ البدء الفعلي فقط.')];
+        return [T('c_af'), ent('af'), a.type === 'TT_FinMile' ? LBL('◆ Finish milestone: only this date is entered.', '◆ معلم نهاية: يُدخل هذا التاريخ فقط.') : '', [LBL('In P6', 'في P6'), a.af ? D.fmt(a.af) : '—'], nd.af ? { warn: LBL('Required: the activity is at 100 %.', 'مطلوب: النشاط عند 100%.') } : '', how('af'), lock(op.af, canC ? LBL('Opens at 100 %.', 'تُفتح عند 100%.') : null)];
+      case 'rd': if (PROG.isMs(a)) return [LBL('Remaining duration', 'المدة المتبقية'), LBL('◆ Milestone: no remaining duration.', '◆ معلم رئيسي: لا توجد مدة متبقية.')];
+        return [LBL('Remaining duration', 'المدة المتبقية'), ent('rd'), [LBL('Sent to P6', 'المرسل إلى P6'), `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], how('rd'), lock(op.rd, canC ? LBL('Only for an activity in progress.', 'لنشاط جارٍ فقط.') : null)];
       case 'causedBy': return [T('c_cb'), [LBL('Entered', 'المُدخل'), u.causedBy ? E(u.causedBy) : '—'], r.behind && !u.causedBy ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how('causedBy'), lock(canC)];
       case 'reason': case 'mitigation': { const t = u[c]; const by = (u._by || '').split(' (')[0], at = u._t && u._t[c] ? TS(u._t[c], 16) : '';
         return t ? [HTIP[c][0], { txt: t }, [LBL('Entered by', 'أدخله'), by ? `${by}${at ? ' · ' + at : ''}` : '']] : [HTIP[c][0], LBL('Nothing entered yet.', 'لم يُدخل شيء بعد.'), r.behind && c === 'reason' ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how(c), lock(canC)]; }

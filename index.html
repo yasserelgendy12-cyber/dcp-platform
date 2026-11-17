@@ -1059,6 +1059,69 @@ table.t.pgt tr.beh td.sl{box-shadow:inset 3px 0 0 var(--bad)}html[dir=rtl] table
 table.t th[data-tip]{cursor:help}
 table.t.pgt .na{display:block;text-align:center;color:#B7C0CC;font-weight:600}
 
+/* ---------- Dashboard (rebuilt 17-Nov-2026): one screen – header, 8 key figures, progress · HSE / manpower / documents & drawings · data-entry check ---------- */
+.dbx{display:flex;flex-direction:column;gap:10px;min-height:0}
+.dbh{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:0 0 auto}
+.dbh b{font-size:15px;color:var(--navy);margin-inline-end:12px}.dbh span{font-size:12px;color:var(--ink3)}
+.dbks{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;flex:0 0 auto}
+.dbk{background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 11px;box-shadow:var(--sh);min-width:0;cursor:help;border-top:3px solid #C8D3E1}
+.dbk .k{font-size:11px;font-weight:700;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbk .v{font-size:19px;font-weight:700;color:var(--navy);line-height:1.25;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dbk .s{font-size:10.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbk.ok{border-top-color:var(--ok)}.dbk.ok .v{color:var(--ok)}.dbk.warn{border-top-color:#E0A21B}.dbk.warn .v{color:var(--warn)}.dbk.bad{border-top-color:var(--bad)}.dbk.bad .v{color:var(--bad)}
+.dbg{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1.18fr) minmax(0,1fr);gap:10px}
+.dbcol{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:10px;min-height:0}
+.dbtw{display:grid;grid-template-columns:1fr 1fr;gap:10px;min-height:0}
+.dbc{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:var(--sh);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.dbc>header{display:flex;align-items:center;gap:7px;padding:7px 12px;border-bottom:1px solid var(--line2);flex:0 0 auto}
+.dbc>header svg{width:15px;height:15px;color:var(--pri)}.dbc>header h3{margin:0;font-size:13px;font-weight:700;color:var(--navy);white-space:nowrap}
+.dbc>header .chip{margin-inline-start:auto;font-size:10.5px;padding:2px 8px}.dbc>header .chip.bad{background:var(--bad-l);color:var(--bad);font-weight:700}.dbc>header .chip.warn{background:var(--warn-l);color:var(--warn);font-weight:700}.dbc>header .chip.ok{background:var(--ok-l);color:var(--ok)}
+.dbc>header .lnk{margin-inline-start:6px;font-size:11.5px}.dbc>header h3+.lnk{margin-inline-start:auto}
+.dbc .bd{padding:8px 12px;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;gap:7px}
+.lnk{background:none;border:0;color:var(--pri);font:inherit;font-weight:600;cursor:pointer;padding:0 2px}.lnk:hover{text-decoration:underline}
+/* progress card */
+.dbr{display:grid;grid-template-columns:118px minmax(0,1fr) 52px;align-items:center;gap:8px;font-size:12px;color:var(--ink2);cursor:help}
+.dbr b{text-align:end;color:var(--navy);font-variant-numeric:tabular-nums}.dbr .bar{height:8px}
+.dbr .bar i.co{background:#0E8A5F}.dbr .bar i.ow{background:#B76E00}
+.dbst{cursor:help}.dbst .sb{display:flex;height:9px;border-radius:5px;overflow:hidden;background:var(--line2)}.dbst .sb i{display:block;height:100%}
+.dbst i.c{background:#5E6B78}.dbst i.i{background:var(--pri)}.dbst i.n{background:#D5DCE3}
+.dbst .lg{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:4px;font-size:11px;color:var(--ink3)}.dbst .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-inline-end:4px;vertical-align:0}.dbst .lg b{color:var(--ink);font-variant-numeric:tabular-nums}.dbst .lg .beh{margin-inline-start:auto;color:var(--bad)}.dbst .lg .beh b{color:var(--bad)}
+.dbtr{flex:1 1 auto;min-height:90px;display:flex;flex-direction:column;cursor:help}
+.dbtr .tt{display:flex;align-items:center;gap:10px;white-space:nowrap;font-size:11px;color:var(--ink3);font-weight:600}.dbtr .tt span{color:var(--navy);font-weight:700;margin-inline-end:auto}
+.dbtr .tt em{font-style:normal;display:inline-flex;align-items:center;gap:4px}.dbtr .tt em i{display:inline-block;width:14px;height:3px;border-radius:2px}.dbtr .tt i.pl{background:#9FB3CC}.dbtr .tt i.ac{background:var(--pri)}
+.dbtr .dbch{flex:1 1 auto;min-height:60px}
+.dbch svg{display:block}.dbch svg text{font-size:9.5px;fill:var(--ink3);font-family:Inter,sans-serif}.dbch .gl{stroke:#EEF1F6}.dbch .lp{fill:none;stroke:#9FB3CC;stroke-width:2;stroke-dasharray:4 3}.dbch .la{fill:none;stroke:var(--pri);stroke-width:2.2}.dbch .pa{fill:var(--pri)}.dbch text.vp{fill:#7E93AE;font-weight:700}.dbch text.va{fill:var(--pri);font-weight:700}
+.dbch .sd{fill:#2F6DB5}.dbch .si{fill:#B9CCE3}.dbch text.lv{fill:var(--navy);font-weight:700;font-size:10px}
+.sptt{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--ink3);font-weight:600;white-space:nowrap}.sptt span{color:var(--navy);font-weight:700;margin-inline-end:auto}.sptt em{font-style:normal;display:inline-flex;align-items:center;gap:4px}.sptt em i{display:inline-block;width:9px;height:9px;border-radius:2px}
+table.dbt{width:100%;border-collapse:collapse;font-size:11.5px;flex:0 0 auto}
+table.dbt th{font-size:10.5px;color:var(--ink3);font-weight:700;text-align:start;padding:3px 4px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:help}table.dbt th.n,table.dbt td.n{text-align:center}
+table.dbt td{padding:3px 4px;border-bottom:1px solid var(--line2);white-space:nowrap;color:var(--ink)}table.dbt td:first-child{max-width:120px;overflow:hidden;text-overflow:ellipsis}
+table.dbt td.bad{color:var(--bad);font-weight:700}
+table.dbt .b2{position:relative;height:7px;background:var(--line2);border-radius:4px;overflow:hidden;width:70px;display:inline-block;vertical-align:middle;margin-inline-end:6px}table.dbt .b2 i{position:absolute;inset-inline-start:0;top:0;bottom:0;background:var(--pri);border-radius:4px}table.dbt .b2 i.pl{background:#C9D5E4}
+table.dbt .pp{font-size:10.5px;color:var(--ink3);font-variant-numeric:tabular-nums}table.dbt .pp b{color:var(--pri)}table.dbt .pp b.bad{color:var(--bad)}
+/* small figures of the middle column */
+.dbms{display:grid;gap:6px}.dbms.m3{grid-template-columns:repeat(3,minmax(0,1fr))}.dbms.m5{grid-template-columns:repeat(5,minmax(0,1fr))}.dbms.m1{grid-template-columns:1fr;gap:5px}
+.dbm{background:#F7F9FC;border:1px solid var(--line2);border-radius:8px;padding:4px 8px;min-width:0;cursor:help}
+.dbm .k{font-size:10.5px;color:var(--ink3);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dbm .v{font-size:16px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums;line-height:1.25;white-space:nowrap}.dbm .s{font-size:10px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbm.ok .v{color:var(--ok)}.dbm.warn .v{color:var(--warn)}.dbm.bad .v{color:var(--bad)}
+.dbms.m1 .dbm{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:6px}.dbms.m1 .dbm .v{grid-column:2;grid-row:1/3;font-size:15px}.dbms.m1 .dbm .s{grid-column:1}
+.dbch.sp{flex:1 1 auto;min-height:44px;cursor:help}
+/* data-entry check */
+.c-al .bd{padding:6px 8px;gap:6px}
+.dbal{flex:1 1 auto;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:4px}
+.dbal .al{display:grid;grid-template-columns:8px minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;background:#F7F9FC;border:1px solid var(--line2);cursor:help}
+.dbal .al .dt{width:8px;height:8px;border-radius:50%;background:var(--info)}.dbal .al.bad{background:#FDF3F2;border-color:#F6D5D1}.dbal .al.bad .dt{background:var(--bad)}.dbal .al.warn{background:#FFF8EC;border-color:#F5E3BF}.dbal .al.warn .dt{background:#E0A21B}
+.dbal .al .tx{min-width:0;display:flex;flex-direction:column}.dbal .al b{font-size:12px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dbal .al .tx span{font-size:10.5px;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dbal .al em{font-style:normal;font-weight:800;font-size:13px;font-variant-numeric:tabular-nums;color:var(--info);min-width:26px;text-align:center}.dbal .al.bad em{color:var(--bad)}.dbal .al.warn em{color:var(--warn)}
+.dbal .al .lnk{font-size:16px;line-height:1;padding:0 4px}
+.alok{display:flex;gap:8px;align-items:center;color:var(--ok);font-weight:600;font-size:12.5px;padding:10px}.alok svg{width:16px;height:16px}
+.alf{flex:0 0 auto;display:flex;align-items:center;gap:8px;border-top:1px solid var(--line2);padding-top:6px;font-size:11px;color:var(--ink3)}.alf .okl{display:inline-flex;align-items:center;gap:4px;color:var(--ok);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.alf .okl svg{width:12px;height:12px;flex:0 0 auto}.alf .lnk{margin-inline-start:auto;white-space:nowrap;font-size:11.5px}.alf .lnk b.w{color:var(--warn)}
+@media (max-width:1500px){.dbk .v{font-size:17px}.dbk{padding:6px 9px}.dbr{grid-template-columns:104px minmax(0,1fr) 46px;font-size:11.5px}.dbms.m5{grid-template-columns:repeat(5,minmax(0,1fr))}.dbm{padding:3px 6px}.dbm .v{font-size:14.5px}}
+@media (max-width:1250px){.dbks{grid-template-columns:repeat(4,minmax(0,1fr))}.dbg{grid-template-columns:1fr 1fr}.c-al{grid-column:1/-1}}
+@media (max-width:1460px){.dbm .k{font-size:9.5px}.dbms.m5{gap:4px}.dbms.m5 .dbm{padding:3px 4px}.dbk .k{font-size:10.5px}.dbms.m1 .dbm .v{font-size:13.5px}}
+@media (max-height:800px){.dbx{gap:7px}.dbk{padding:4px 9px}.dbk .v{font-size:16px}.dbc .bd{padding:6px 10px;gap:5px}.dbc>header{padding:5px 10px}table.dbt td,table.dbt th{padding:2px 4px}.dbal .al{padding:3px 7px}}
+@media print{.dbx{height:auto!important}}
+
 </style>
 </head>
 <body>
@@ -3354,85 +3417,146 @@ function invStats() {
   return { net: sum(I, r => f.net.calc(r)), rel: sum(I, r => f.releasedAmt.calc(r)), out: sum(I, r => f.outstandingAmt.calc(r)), n: I.length, overdue: I.filter(r => f.status.calc(r) === 'Overdue').length, gross: sum(interim, r => r.amount), due30: sum(I.filter(r => { const d = f.dueDate.calc(r); return !r.releaseDate && d && d >= reportDate() && d <= D.add(reportDate(), 30); }), r => f.outstandingAmt.calc(r)) };
 }
 
-/* ---------- HOME ---------- */
+/* ---------- HOME – Dashboard (rebuilt 17-Nov-2026): one screen, the main figures of every page and the data-entry check ---------- */
+// alerts of missing / late entries, for the planner: [severity bad|warn|info, area, responsible, title, detail, count, page, fix]
+function homeAlerts(ctx) {
+  const { cut, sch, sm, rd, hs, lastMp } = ctx; const out = []; const L = LBL;
+  const add = (sev, area, who, title, detail, n, page, fix) => { if (n) out.push({ sev, area, who, title, detail, n, page, fix }); };
+  const PL = L('Planning', 'التخطيط'), CT = L('Contractor', 'المقاول'), CO = L('Consultant', 'الاستشاري'), HSE_ = L('HSE', 'السلامة'), DCU = L('Document control', 'التحكم بالوثائق'), DWU = L('Drawings', 'المخططات'), MPU = L('Manpower', 'العمالة'), INU = L('Invoices', 'المستخلصات');
+  // planning: cut-off, schedule files, P6 file
+  add('bad', T('p6'), PL, L('No open cut-off', 'لا يوجد تاريخ قطع مفتوح'), L('Open the weekly cut-off before the team enters progress.', 'افتح تاريخ القطع الأسبوعي قبل إدخال الإنجاز.'), cut ? 0 : 1, 'p6');
+  add('bad', T('p6'), PL, L('Baseline XER not loaded', 'ملف الجدول الأساسي XER غير محمّل'), L('Upload the approved baseline on Cut-off & P6 Export.', 'ارفع الجدول الأساسي المعتمد من تاريخ القطع وتصدير P6.'), S.db.baseline ? 0 : 1, 'p6');
+  const lc = cut && lastClosedBefore(cut);
+  add('warn', T('p6'), PL, L('Update XER of this cut-off not loaded', 'ملف التحديث XER لهذا القطع غير محمّل'), sch && sch.upd ? `${sch.upd.fileName || ''} · ${D.fmt(sch.dataDate)}` : T('no_schedule'), !S.db.schedule || (lc && S.db.schedule.dataDate < lc.date) ? 1 : 0, 'p6');
+  if (sm) {
+    const la = D.add(sm.cdate, N(S.db.params.lookahead) || 14);
+    const due = sm.rows.filter(r => r.e.status !== 'Completed' && (r.e.status === 'In Progress' || (r.a.ps && r.a.ps <= la) || (r.a.pf && r.a.pf <= la)));
+    add('warn', T('progress'), CT, L('Due activities not updated', 'أنشطة مطلوبة لم تُحدَّث'), L(`In progress or planned within ${N(S.db.params.lookahead) || 14} days, no contractor entry in this cut-off.`, `جارية أو مخططة خلال ${N(S.db.params.lookahead) || 14} يوماً، بدون إدخال من المقاول في هذا القطع.`), due.filter(r => !PROG.byC(r.u)).length, 'progress');
+    add('warn', T('progress'), CT, L('Behind plan without reason', 'متأخر عن الخطة بدون سبب'), L('Caused by, reason and mitigation are required.', 'المتسبب والسبب والإجراء التصحيحي مطلوبة.'), sm.rows.filter(r => r.behind && !((r.u || {}).reason && (r.u || {}).causedBy)).length, 'progress');
+    add('bad', T('progress'), CT, L('Errors in the progress entries', 'أخطاء في إدخالات الإنجاز'), L('Missing actual dates or wrong values – they stop the P6 file.', 'تواريخ فعلية ناقصة أو قيم خاطئة – تمنع ملف P6.'), sm.bad, 'progress');
+    add('info', T('progress'), CO, L('Contractor updates awaiting review', 'تحديثات المقاول بانتظار المراجعة'), L('Contractor % entered, no consultant review yet.', 'نسبة المقاول مُدخلة ولا توجد مراجعة استشاري بعد.'), sm.rows.filter(r => r.u && isNum(r.u.ctr) && !isNum(r.u.cons)).length, 'progress');
+  }
+  const gap = d => d ? Math.max(0, D.diff(rd, d)) : null;
+  const gM = gap(lastMp.date), gH = gap(hs.last);
+  add('warn', T('manpower'), MPU, L('Manpower days not recorded', 'أيام عمالة غير مسجلة'), lastMp.date ? L(`Last day recorded ${D.fmt(lastMp.date)}.`, `آخر يوم مسجل ${D.fmt(lastMp.date)}.`) : L('No record yet.', 'لا يوجد أي سجل.'), gM === null ? 1 : gM > 1 ? gM : 0, 'manpower');
+  add('warn', T('hse'), HSE_, L('HSE days not recorded', 'أيام سلامة غير مسجلة'), hs.last ? L(`Last day recorded ${D.fmt(hs.last)}.`, `آخر يوم مسجل ${D.fmt(hs.last)}.`) : L('No record yet.', 'لا يوجد أي سجل.'), gH === null ? 1 : gH > 1 ? gH : 0, 'hse');
+  const H = hseLive();
+  add('warn', T('hse'), HSE_, L('Observations without summary', 'ملاحظات بدون ملخص'), L('Days with observations raised and no observation summary.', 'أيام بها ملاحظات مسجلة بدون ملخص.'), H.filter(r => HS_OR(r) > 0 && !String(r.obsSummary || '').trim()).length, 'hse');
+  add('warn', T('hse'), MPU, L('Working days without manpower', 'أيام عمل بدون عمالة'), L('HSE working days with no Manpower & Equipment record.', 'أيام عمل في السلامة بدون سجل في العمالة والمعدات.'), H.filter(r => r.dayStatus === 'Working' && !(N(r.indirect) + N(r.direct)) && r.date <= rd).length, 'manpower');
+  const DC = live(S.db.dc).filter(r => r.recordType !== 'Opening Balance');
+  add('info', T('dc'), DCU, L('Documents without copy link', 'مستندات بدون رابط النسخة'), L('Add the link of the document copy.', 'أضف رابط نسخة المستند.'), DC.filter(r => !safeUrl(r.docLink)).length, 'dc');
+  add('info', T('dc'), DCU, L('Replies without reply link', 'ردود بدون رابط نسخة الرد'), L('Reply recorded, reply copy not linked.', 'الرد مسجل ونسخة الرد غير مربوطة.'), DC.filter(r => r.replyDate && !safeUrl(r.replyLink)).length, 'dc');
+  add('warn', T('dc'), DCU, L('Overdue replies', 'ردود متأخرة'), L('Reply due date passed – follow up.', 'تجاوز تاريخ استحقاق الرد – للمتابعة.'), DC.filter(r => MOD.dc.F.status.calc(r) === 'Overdue').length, 'dc');
+  const DR = live(S.db.drawings);
+  add('warn', T('drawings'), DWU, L('Late drawing submissions', 'تقديمات مخططات متأخرة'), L('Planned date passed, not submitted.', 'تجاوز التاريخ المخطط ولم يُقدَّم.'), DR.filter(r => MOD.drawings.F.status.calc(r) === 'Late - Not Submitted').length, 'drawings');
+  add('info', T('drawings'), DWU, L('Submitted drawings without copy link', 'مخططات مقدَّمة بدون رابط النسخة'), L('Add the link of the submitted copy.', 'أضف رابط النسخة المقدَّمة.'), DR.filter(r => r.actualSub && !safeUrl(r.docLink)).length, 'drawings');
+  add('warn', T('drawings'), DWU, L('Overdue consultant reviews', 'مراجعات استشاري متأخرة'), L('Review due date passed.', 'تجاوز تاريخ استحقاق المراجعة.'), DR.filter(r => MOD.drawings.F.status.calc(r) === 'Overdue Review').length, 'drawings');
+  const IV = live(S.db.invoices);
+  add('warn', T('invoices'), INU, L('Invoices without submittal date', 'مستخلصات بدون تاريخ تقديم'), L('The payment due date cannot be calculated.', 'لا يمكن حساب تاريخ استحقاق الدفع.'), IV.filter(r => N(r.amount) > 0 && !r.submittal).length, 'invoices');
+  add('info', T('invoices'), INU, L('Overdue payments', 'دفعات متأخرة'), L('Payment due date passed – follow up with the client.', 'تجاوز تاريخ استحقاق الدفع – للمتابعة مع المالك.'), IV.filter(r => MOD.invoices.F.status.calc(r) === 'Overdue').length, 'invoices');
+  const ord = { bad: 0, warn: 1, info: 2 };
+  return out.sort((a, b) => ord[a.sev] - ord[b.sev]);
+}
 PAGES.home = v => {
-  const p = S.db.project, cut = activeCutoff(), rd = reportDate();
+  const p = S.db.project, cut = activeCutoff(), rd = reportDate(), L = LBL;
   const el = Math.max(0, D.diff(rd, p.commencement)), tot = D.diff(p.completion, p.commencement), rem = D.diff(p.completion, rd);
   const bac = N(p.contractValue) + N(p.totalVO), inv = invStats(), hs = hseStats(), mp = mpDaily(), dc = dcStats(), dr = drwStats();
   const lastMp = [...mp].reverse().find(d => d.direct + d.indirect > 0) || {};
   const last7 = mp.filter(d => d.date > D.add(lastMp.date || rd, -7) && d.direct > 0);
-  const sch = SCH(); const sm = (cut && sch) ? PROG.summary(cut._id) : null;
+  const sch = SCH(); const pc = cut || lastCutoff(); const sm = (pc && sch) ? PROG.summary(pc._id) : null;
   const checks = runChecks(); const rev = checks.filter(c => c.v !== 0 && c.v !== 'n/a').length;
-  // routine
-  const tasks = []; const anyPerm = ['admin', 'ctr', 'cons', 'own', 'hse', 'dc', 'manpower', 'drawings', 'invoices'].some(can);
-  const tk = (icn, title, sub, ok, page) => tasks.push(`<div class="step"><div class="ic">${ic(icn)}</div><div class="bd"><b>${title}</b><span>${sub}</span></div>${ok ? `<span class="bdg ok">${T('task_ok')}</span>` : `<span class="bdg warn">${T('task_todo')}</span>`}<button class="btn sm" data-go="${page}">${T('go')}</button></div>`);
-  if (hasPerm('p6')) {
-    tk('p6', LBL('Open the weekly cut-off', 'فتح تاريخ القطع الأسبوعي'), cut ? `${D.fmt(cut.date)} · ${T('report_no')} ${cut.reportNo}` : T('no_cutoff'), !!cut, 'p6');
-    tk('layers', LBL('Upload the baseline schedule (XER)', 'رفع الجدول الزمني الأساسي (XER)'), S.db.baseline ? `${S.db.baseline.fileName} · ${fmtN(S.db.baseline.activities.length)} ${T('activities')}` : '—', !!S.db.baseline, 'p6');
-    tk('up', LBL('Import the latest P6 XER', 'استيراد آخر ملف XER من P6'), S.db.schedule ? `${S.db.schedule.fileName} · ${D.fmt(S.db.schedule.dataDate)}` : T('no_schedule'), !!S.db.schedule && (!cut || !lastClosedBefore(cut) || S.db.schedule.dataDate >= lastClosedBefore(cut).date), 'p6');
-    tk('check', LBL('Clear all data checks', 'معالجة جميع ملاحظات فحص البيانات'), `${checks.length - rev} / ${checks.length} OK`, rev === 0, 'checks');
-    tk('dl', LBL('Generate the P6 update file', 'إنشاء ملف تحديث P6'), cut && (cut.exports || []).length ? `${(cut.exports || []).length} × · ${D.fmt(TS(cut.exports.slice(-1)[0].at, 10))}` : '—', !!(cut && (cut.exports || []).length), 'p6');
-  }
-  if (can('ctr') && sm) tk('chart', T('progress'), `${sm.updated} ${LBL('updated', 'محدث')} · ${sm.behindNoReason} ${LBL('behind without reason', 'متأخر بدون سبب')} · ${sm.bad} ${LBL('with errors', 'بها أخطاء')}`, sm.updated > 0 && sm.bad === 0 && sm.behindNoReason === 0, 'progress');
-  if (can('manpower')) tk('users', T('manpower'), `${T('last_day')}: ${D.fmt(lastMp.date) || '—'}`, !!lastMp.date && lastMp.date >= D.add(rd, -1), 'manpower');
-  if (can('hse')) tk('shield', T('hse'), `${T('last_day')}: ${D.fmt(hs.last) || '—'}`, !!hs.last && hs.last >= D.add(rd, -1), 'hse');
-  if (can('dc')) tk('doc', T('dc'), `${T('last7')}: ${dc.last7} · ${T('overdue')}: ${dc.overdue}`, dc.overdue === 0, 'dc');
-  if (can('drawings')) tk('layers', T('drawings'), `${LBL('Late', 'متأخر')}: ${dr.late} · ${LBL('Overdue review', 'مراجعة متأخرة')}: ${dr.ovr}`, dr.late + dr.ovr === 0, 'drawings');
-  if (can('invoices')) tk('cash', T('invoices'), `${T('overdue')}: ${inv.overdue}`, inv.overdue === 0, 'invoices');
-  if (!can('ctr') && sm) ['cons', 'own'].filter(can).forEach(f => { const pend = sm.rows.filter(r => r.u && isNum(r.u.ctr) && !isNum(r.u[f])).length; tk('chart', T('progress') + ' — ' + (f === 'cons' ? T('c_cons') : T('c_own')), `${pend} ${LBL('activities awaiting your review', 'نشاط بانتظار مراجعتك')}`, pend === 0, 'progress'); });
-  if (!anyPerm) tk('check', T('checks'), `${checks.length - rev} / ${checks.length} OK`, rev === 0, 'checks');
-
-  // progress by life cycle
-  let lc = '';
+  const alerts = homeAlerts({ cut, sch, sm, rd, hs, lastMp });
+  const tip = (t, ...x) => TIP.a(t, ...x);
+  const pct = x => isNum(x) ? (x * 100).toFixed(1) + '%' : '—';
+  // forecast completion = scheduled finish of the latest update XER vs the baseline finish (as the report pages)
+  const fin = sch && sch.upd ? (sch.upd.planEnd || '') : '', blFin = S.db.baseline ? (S.db.baseline.planEnd || S.db.baseline.mustFinish || '') : (p.completion || '');
+  const slip = fin && blFin ? D.diff(fin, blFin) : null;
+  const spi = sm && sm.planned ? sm.ctr / sm.planned : null;
+  const tile = (k, val, sub, cls, t) => `<div class="dbk ${cls || ''}"${tip(k, ...t)}><div class="k">${k}</div><div class="v">${val}</div><div class="s">${sub || '&nbsp;'}</div></div>`;
+  const sev = x => x >= 0.95 ? 'ok' : x >= 0.85 ? 'warn' : 'bad';
+  const kp = [
+    tile(T('planned'), sm ? pct(sm.planned) : '—', sm ? (sm.plannedDD !== null && sch.upd ? `${L('P6 data date', 'تاريخ بيانات P6')} ${pct(sm.plannedDD)}` : `${L('cut-off', 'القطع')} ${D.fmt(sm.cdate)}`) : '', '', [L('Σ weight × planned share on the baseline dates, at the cut-off date (P6 data date in the sub-line).', 'مجموع (الوزن × النسبة المخططة) على تواريخ البرنامج الأساسي في تاريخ القطع (تاريخ بيانات P6 في السطر السفلي).')]),
+    tile(T('contractor_act'), sm ? pct(sm.ctr) : '—', sm ? `<span dir="ltr">${sm.ctr - sm.planned >= 0 ? '+' : ''}${((sm.ctr - sm.planned) * 100).toFixed(1)} pp</span> ${L('vs plan', 'عن المخطط')}` : '', sm ? (sm.ctr >= sm.planned ? 'ok' : 'bad') : '', [L('Σ weight × % sent to P6 (higher of P6 % and contractor %).', 'مجموع (الوزن × النسبة المرسلة إلى P6، الأعلى بين نسبة P6 والمقاول).'), L('Variance = actual − planned, in percentage points.', 'الفرق = الفعلي − المخطط بالنقاط المئوية.')]),
+    tile('SPI', spi === null ? '—' : spi.toFixed(2), spi === null ? '' : spi >= 0.95 ? L('on track', 'حسب الخطة') : spi >= 0.85 ? L('at risk', 'معرّض للتأخر') : L('behind', 'متأخر'), spi === null ? '' : sev(spi), [L('Contractor actual ÷ planned at the cut-off.', 'فعلي المقاول ÷ المخطط في تاريخ القطع.'), L('≥ 0.95 on track · ≥ 0.85 at risk · below = behind.', '≥ 0.95 حسب الخطة · ≥ 0.85 معرّض للتأخر · أقل = متأخر.')]),
+    tile(L('Forecast finish', 'الإنجاز المتوقع'), fin ? D.fmt(fin) : '—', slip === null ? (blFin ? `${L('baseline', 'الأساسي')} ${D.fmt(blFin)}` : '') : `<span dir="ltr">${slip > 0 ? '+' : ''}${fmtN(slip)} d</span> ${L('vs baseline', 'عن الأساسي')}`, slip === null ? '' : slip > 30 ? 'bad' : slip > 0 ? 'warn' : 'ok', [L('Scheduled finish of the latest update XER compared with the baseline finish.', 'الانتهاء المجدول في آخر تحديث XER مقارنة بانتهاء البرنامج الأساسي.'), blFin ? `${L('Baseline finish', 'انتهاء الأساسي')} ${D.fmt(blFin)}` : '']),
+    tile(T('time_elapsed'), tot > 0 ? fmtP(el / tot) : '—', `${fmtN(el)} ${L('days', 'يوم')} · ${L('remaining', 'متبقي')} ${fmtN(rem)}`, rem < 0 ? 'bad' : '', [L('Days from commencement to the report date ÷ contract duration.', 'الأيام من البدء حتى تاريخ التقرير ÷ مدة العقد.'), `${T('commencement')} ${D.fmt(p.commencement)} · ${T('completion')} ${D.fmt(p.completion)}`]),
+    tile(T('bac'), fmtM(bac), `${L('contract', 'العقد')} ${fmtM(p.contractValue)} · VO ${fmtM(p.totalVO || 0)}`, '', [L('Contract value + approved variations (SAR).', 'قيمة العقد + الأوامر التغييرية المعتمدة (ريال).')]),
+    tile(T('net_invoiced'), fmtM(inv.net), `${bac ? fmtP(inv.gross / bac) + ' ' + L('of BAC', 'من الميزانية') : ''}`, '', [L('Σ net invoice amounts (after retention and advance recovery).', 'مجموع صافي المستخلصات (بعد المحتجزات واسترداد المقدمة).'), L('Sub-line: gross interim invoices ÷ BAC.', 'السطر السفلي: إجمالي المستخلصات ÷ الميزانية.'), [L('Released', 'المصروف'), fmtM(inv.rel)]]),
+    tile(T('outstanding'), fmtM(inv.out), `${L('released', 'مصروف')} ${fmtM(inv.rel)} · ${T('overdue')} ${fmtN(inv.overdue)}`, inv.overdue ? 'bad' : '', [L('Net invoiced − released; overdue = past the payment due date.', 'صافي المستخلص − المصروف؛ المتأخر = تجاوز تاريخ استحقاق الدفع.')])
+  ].join('');
+  // progress card: bars, status split, trend of the updates, progress by life cycle
+  let pg = `<div class="muted small">${sch ? T('no_open_cutoff') : T('no_schedule')}</div>`;
   if (sm) {
+    const bar = (lbl, val, cls, t) => `<div class="dbr"${tip(lbl, t)}><span>${lbl}</span><div class="bar"><i class="${cls}" style="width:${Math.min(100, val * 100)}%"></i></div><b>${pct(val)}</b></div>`;
+    const n = sm.n || 1, sp = (x, c) => `<i class="${c}" style="width:${x / n * 100}%"></i>`;
     const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || (sch.codeTypes || [])[0];
     const grp = {}; const { w } = PROG.weights();
-    sm.rows.forEach(r => { const g = (r.a.codes[key] || '—'); const o = grp[g] = grp[g] || { n: 0, c: 0, ip: 0, ns: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; o[r.e.status === 'Completed' ? 'c' : r.e.status === 'In Progress' ? 'ip' : 'ns']++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
-    lc = `<div class="tw" style="max-height:none"><table class="t"><thead><tr><th${TIP.a(h(key || ''), LBL('Activity code of the P6 schedule (project life cycle).', 'كود النشاط في برنامج P6 (دورة حياة المشروع).'))}>${h(key || '')}</th><th class="n"${TIP.a(T('activities'), LBL('Activities of the group.', 'أنشطة المجموعة.'))}>${T('activities')}</th><th class="n"${TIP.a(T('completed'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('completed')}</th><th class="n"${TIP.a(T('in_progress'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('in_progress')}</th><th class="n"${TIP.a(T('not_started'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('not_started')}</th><th style="min-width:200px"${TIP.a(`${T('planned')} / ${T('contractor_act')}`, LBL('Weighted planned % at the cut-off (light bar) and contractor actual (dark bar) of the group.', 'المخطط المرجّح في تاريخ القطع (الشريط الفاتح) وفعلي المقاول (الشريط الداكن) للمجموعة.'))}>${T('planned')} / ${T('contractor_act')}</th><th class="n"${TIP.a(T('behind'), LBL('Activities of the group behind plan.', 'أنشطة المجموعة المتأخرة عن الخطة.'))}>${T('behind')}</th></tr></thead><tbody>
-      ${Object.entries(grp).sort((a, b) => b[1].w - a[1].w).map(([g, o]) => { const pl = o.w ? o.pl / o.w : 0, ac = o.w ? o.ac / o.w : 0; return `<tr><td><b>${h(g)}</b></td><td class="n">${o.n}</td><td class="n">${o.c}</td><td class="n">${o.ip}</td><td class="n">${o.ns}</td><td><div class="bar" title="${T('planned')} ${pl.toFixed(1)}%"><i class="pl" style="width:${pl}%"></i></div><div class="bar" style="margin-top:3px" title="${T('contractor_act')} ${ac.toFixed(1)}%"><i style="width:${ac}%"></i></div><span class="tiny muted">${pl.toFixed(1)}% / <b style="color:var(--pri)">${ac.toFixed(1)}%</b></span></td><td class="n">${o.beh ? `<span class="bdg bad">${o.beh}</span>` : '0'}</td></tr>`; }).join('')}</tbody></table></div>`;
+    sm.rows.forEach(r => { const g = (r.a.codes[key] || '—'); const o = grp[g] = grp[g] || { n: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
+    const G = Object.entries(grp).sort((a, b) => b[1].w - a[1].w).slice(0, 6);
+    pg = `${bar(T('planned'), sm.planned, 'pl', L('At the cut-off date, on the baseline dates.', 'في تاريخ القطع على تواريخ البرنامج الأساسي.'))}${bar(T('contractor_act'), sm.ctr, '', L('% sent to P6 (higher of P6 % and contractor %).', 'النسبة المرسلة إلى P6 (الأعلى بين نسبة P6 والمقاول).'))}${bar(T('consultant_rev'), sm.cons, 'co', L('Consultant review; P6 % where not reviewed.', 'مراجعة الاستشاري؛ ونسبة P6 لغير المراجَع.'))}${bar(T('owner_rev'), sm.own, 'ow', L('Owner entries only; an activity without one counts 0.', 'مدخلات المالك فقط؛ النشاط بدون إدخال يُحتسب صفراً.'))}
+      <div class="dbst"${tip(T('activities'), L('Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'))}><div class="sb">${sp(sm.comp, 'c')}${sp(sm.inprog, 'i')}${sp(sm.ns, 'n')}</div><div class="lg"><span><i class="c"></i>${T('completed')} <b>${fmtN(sm.comp)}</b></span><span><i class="i"></i>${T('in_progress')} <b>${fmtN(sm.inprog)}</b></span><span><i class="n"></i>${T('not_started')} <b>${fmtN(sm.ns)}</b></span><span class="beh">${T('behind')} <b>${fmtN(sm.behind)}</b></span></div></div>
+      <div class="dbtr"${tip(L('Progress trend', 'منحنى الإنجاز'), L('Cumulative planned and earned % of every P6 update (report sources), and the current cut-off.', 'النسبة التراكمية المخططة والمكتسبة لكل تحديث P6 (مصادر التقرير)، وتاريخ القطع الحالي.'))}><div class="tt"><span>${L('Progress trend', 'منحنى الإنجاز')}</span><em><i class="pl"></i>${T('planned')}</em><em><i class="ac"></i>${L('Actual', 'الفعلي')}</em></div><div class="dbch" data-trend></div></div>
+      <table class="dbt"><thead><tr><th${tip(h(key || ''), L('Activity code of the P6 schedule.', 'كود النشاط في برنامج P6.'))}>${h(String(key || '').replace(/^\d\d /, ''))}</th><th class="n"${tip(T('activities'), L('Activities of the group.', 'أنشطة المجموعة.'))}>${T('activities')}</th><th${tip(`${T('planned')} / ${L('Actual', 'الفعلي')}`, L('Weighted planned % at the cut-off (light) and contractor actual (dark).', 'المخطط المرجّح في تاريخ القطع (الفاتح) وفعلي المقاول (الداكن).'))}>${T('planned')} / ${L('Actual', 'الفعلي')}</th><th class="n"${tip(T('behind'), L('Activities of the group behind plan.', 'أنشطة المجموعة المتأخرة عن الخطة.'))}>${T('behind')}</th></tr></thead>
+      <tbody>${G.map(([g, o]) => { const pl = o.w ? o.pl / o.w : 0, ac = o.w ? o.ac / o.w : 0; return `<tr><td>${h(g)}</td><td class="n">${fmtN(o.n)}</td><td><div class="b2"><i class="pl" style="width:${pl}%"></i><i style="width:${ac}%"></i></div><span class="pp">${pl.toFixed(0)}% / <b class="${ac + 0.5 < pl ? 'bad' : ''}">${ac.toFixed(0)}%</b></span></td><td class="n ${o.beh ? 'bad' : ''}">${fmtN(o.beh)}</td></tr>`; }).join('')}</tbody></table>`;
   }
-  v.innerHTML = `${pageHead(`${T('welcome')}, ${h(S.user.name)}`, `${h(p.name)} · ${h(reportCode())} · ${T('report_date')}: ${D.fmt(rd)}`, `<button class="btn" data-pr>${ic('print')}${T('print')}</button>`)}
-    ${!cut ? `<div class="notice warn">${ic('warn')}<div>${T('no_open_cutoff')}</div></div>` : ''}
-    <div class="grid" style="grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)">
-      <div class="card"><div class="ch">${ic('list')}<h3>${T('your_tasks')}</h3></div><div class="cb steps">${tasks.join('') || '<span class="muted">—</span>'}</div></div>
-      <div class="card"><div class="ch">${ic('chart')}<h3>${T('kpi_prog')}</h3>${sm ? `<span class="chip" style="margin-inline-start:auto">${T('cutoff')} ${D.fmt(cut.date)}</span>` : ''}</div><div class="cb">
-        ${sm ? `<div class="prog-row"><span>${T('planned')}</span><div class="bar"><i class="pl" style="width:${sm.planned * 100}%"></i></div><b class="num">${fmtP(sm.planned)}</b></div>
-        <div class="tiny muted" style="margin:-4px 0 6px">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')} · ${T('pl_at_cut')} ${D.fmt(sm.cdate)}${sm.plannedDD !== null && sch.upd ? ` · ${T('pl_at_dd')} ${D.fmt(sm.ddate)}: <b>${(sm.plannedDD * 100).toFixed(2)}%</b>` : ''}</div>
-        <div class="prog-row"><span>${T('contractor_act')}</span><div class="bar"><i style="width:${sm.ctr * 100}%"></i></div><b class="num">${fmtP(sm.ctr)}</b></div>
-        <div class="prog-row"><span>${T('consultant_rev')}</span><div class="bar"><i style="width:${sm.cons * 100}%;background:#0E8A5F"></i></div><b class="num">${fmtP(sm.cons)}</b></div>
-        <div class="prog-row"><span>${T('owner_rev')}</span><div class="bar"><i style="width:${sm.own * 100}%;background:#B76E00"></i></div><b class="num">${fmtP(sm.own)}</b></div>
-        <div class="grid g3" style="margin-top:12px">${kpi(T('variance'), ((sm.ctr - sm.planned) * 100).toFixed(1) + ' pp', '', sm.ctr >= sm.planned ? 'ok' : 'bad')}${kpi(T('spi'), sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—', '', sm.ctr >= sm.planned ? 'ok' : 'warn')}${kpi(T('behind'), sm.behind, `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok')}</div>` : `<div class="muted">${sch ? T('no_open_cutoff') : T('no_schedule')}</div>`}
-      </div></div>
-    </div>
-    <div class="sec-t">${T('kpi_time')}</div>
-    <div class="grid g6">${kpi(T('commencement'), D.fmt(p.commencement))}${kpi(T('completion'), D.fmt(p.completion))}${kpi(T('report_date'), D.fmt(rd))}${kpi(T('elapsed'), fmtN(el))}${kpi(T('remaining'), fmtN(rem), '', rem < 0 ? 'bad' : '')}${kpi(T('time_elapsed'), tot > 0 ? fmtP(el / tot) : '—')}</div>
-    <div class="sec-t">${T('kpi_comm')} (SAR)</div>
-    <div class="grid g6">${kpi(T('contract_value'), fmtM(p.contractValue))}${kpi(T('vo'), fmtM(p.totalVO || 0))}${kpi(T('bac'), fmtM(bac))}${kpi(T('net_invoiced'), fmtM(inv.net), bac ? fmtP(inv.gross / bac) + ' ' + LBL('of BAC (gross)', 'من الميزانية (إجمالي)') : '')}${kpi(T('released'), fmtM(inv.rel), inv.net ? fmtP(inv.rel / inv.net) : '', 'ok')}${kpi(T('outstanding'), fmtM(inv.out), `${T('overdue')}: ${inv.overdue}`, inv.overdue ? 'bad' : '')}</div>
-    ${sm ? `<div class="sec-t">${T('activities')}</div><div class="grid g6">${kpi(T('activities'), fmtN(sm.n))}${kpi(T('completed'), fmtN(sm.comp), '', 'ok')}${kpi(T('in_progress'), fmtN(sm.inprog))}${kpi(T('not_started'), fmtN(sm.ns))}${kpi(T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`)}${kpi(T('p6_changed_n'), fmtN(sm.changed))}</div><div style="margin-top:12px">${lc}</div>` : ''}
-    <div class="sec-t">${T('kpi_hse')}</div>
-    <div class="grid g6">${kpi(T('manhours') + ' (PTD)', fmtN(hs.mh))}${kpi(T('lti_free'), fmtN(hs.ltiFree), '', 'ok')}${kpi(LBL('Fatalities + LTI', 'الوفيات + LTI'), hs.fatLti, '', hs.fatLti ? 'bad' : 'ok')}${kpi(T('incidents') + ' (PTD)', hs.inc, '', hs.inc ? 'warn' : 'ok')}${kpi(T('open_obs'), hs.openObs, '', hs.openObs > 0 ? 'warn' : 'ok')}${kpi(T('permits') + ' (PTD)', fmtN(hs.permits))}</div>
-    <div class="sec-t">${T('kpi_mp')}</div>
-    <div class="grid g6">${kpi(T('last_day'), D.fmt(lastMp.date) || '—')}${kpi(T('direct'), fmtN(lastMp.direct))}${kpi(T('indirect'), fmtN(lastMp.indirect))}${kpi(T('equip_working'), fmtN(lastMp.eqW))}${kpi(T('peak_direct'), fmtN(Math.max(0, ...mp.map(d => d.direct))))}${kpi(T('avg7'), last7.length ? fmtN(sum(last7, d => d.direct) / last7.length) : '—')}</div>
-    <div class="grid g2" style="margin-top:6px"><div><div class="sec-t">${T('kpi_dc')}</div><div class="grid g3">${kpi(T('total_subm'), fmtN(dc.total), `${T('last7')}: ${dc.last7}`)}${kpi(T('awaiting'), fmtN(dc.awaiting), `${T('overdue')}: ${dc.overdue}`, dc.overdue ? 'bad' : '')}${kpi('A / B / C', `${dc.A} / ${dc.B} / ${dc.C}`)}</div></div>
-    <div><div class="sec-t">${T('kpi_drw')}</div><div class="grid g3">${kpi(T('design_prog'), fmtP(dr.dP))}${kpi(T('shop_prog'), fmtP(dr.sP))}${kpi(T('eng_prog'), fmtP(dr.O), `${LBL('Late', 'متأخر')}: ${dr.late} · ${LBL('Review overdue', 'مراجعة متأخرة')}: ${dr.ovr}`, dr.late + dr.ovr ? 'warn' : '')}</div></div></div>
-    <div class="sec-t">${T('checks')}</div>
-    <div class="card"><div class="cb" style="display:flex;gap:14px;align-items:center">${ic(rev ? 'warn' : 'ok')}<div><b>${checks.length - rev} / ${checks.length}</b> ${T('passed')} · ${rev} ${T('to_review')}</div><span style="flex:1"></span><button class="btn sm" data-go="checks">${T('go')}</button></div></div>`;
-  // bookmarks of the dashboard figures (by label)
-  const HT = [[T('variance'), 'Contractor actual − planned at the cut-off, in percentage points.', 'فعلي المقاول − المخطط في تاريخ القطع، بالنقاط المئوية.'], [T('spi'), 'Contractor actual ÷ planned at the cut-off; 1 or more = on or ahead of plan.', 'فعلي المقاول ÷ المخطط في تاريخ القطع؛ 1 أو أكثر = حسب الخطة أو متقدم.'],
-    [T('behind'), 'Activities not completed whose planned % at the cut-off is above the actual %.', 'أنشطة غير مكتملة نسبتها المخططة في تاريخ القطع أعلى من الفعلية.'], [T('commencement'), 'Project start date (Project setup).', 'تاريخ بدء المشروع (إعداد المشروع).'], [T('completion'), 'Contract completion date (Project setup).', 'تاريخ انتهاء العقد (إعداد المشروع).'],
-    [T('report_date'), 'Date the figures are reported at (cut-off).', 'التاريخ الذي تُعرض عنده الأرقام (تاريخ القطع).'], [T('elapsed'), 'Calendar days from commencement to the report date.', 'الأيام التقويمية من البدء حتى تاريخ التقرير.'], [T('remaining'), 'Calendar days from the report date to completion; negative = past completion.', 'الأيام التقويمية من تاريخ التقرير حتى الانتهاء؛ السالب = تجاوز تاريخ الانتهاء.'],
-    [T('time_elapsed'), 'Elapsed days ÷ contract duration.', 'الأيام المنقضية ÷ مدة العقد.'], [T('contract_value'), 'Original contract value (Project setup).', 'قيمة العقد الأصلية (إعداد المشروع).'], [T('vo'), 'Approved variation orders (Project setup).', 'الأوامر التغييرية المعتمدة (إعداد المشروع).'], [T('bac'), 'Contract value + variations (budget at completion).', 'قيمة العقد + الأوامر التغييرية (الميزانية عند الإنجاز).'],
-    [T('net_invoiced'), 'Σ net invoice amounts (after retention and advance recovery); sub-line: gross interim invoices ÷ BAC.', 'مجموع صافي المستخلصات (بعد المحتجزات واسترداد المقدمة)؛ السطر السفلي: إجمالي المستخلصات الجارية ÷ الميزانية.'], [T('released'), 'Σ net amount of the invoices paid; sub-line: % of the net invoiced.', 'مجموع صافي المستخلصات المدفوعة؛ السطر السفلي: النسبة من صافي المستخلص.'],
-    [T('outstanding'), 'Net invoiced − released; overdue = past the payment due date.', 'صافي المستخلص − المصروف؛ المتأخر = تجاوز تاريخ استحقاق الدفع.'], [T('activities'), 'Activities of the latest P6 update XER.', 'أنشطة آخر تحديث XER من P6.'], [T('completed'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'], [T('in_progress'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'], [T('not_started'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'],
-    [T('updated'), 'Activities with an entry in the open cut-off, by party.', 'أنشطة بها إدخال في تاريخ القطع المفتوح، حسب الجهة.'], [T('p6_changed_n'), 'Activities whose status, %, dates or remaining duration differ from P6 – they go to the P6 file.', 'أنشطة تختلف حالتها أو نسبتها أو تواريخها أو المتبقي عن P6 – تُرسل في ملف P6.'],
-    [T('manhours') + ' (PTD)', 'Σ man-hours to date (HSE Daily, from Manpower & Equipment).', 'مجموع ساعات العمل حتى تاريخه (السلامة اليومية، من العمالة والمعدات).'], [T('lti_free'), 'Man-hours since the last fatality or lost-time injury.', 'ساعات العمل منذ آخر وفاة أو إصابة مضيعة للوقت.'], [LBL('Fatalities + LTI', 'الوفيات + LTI'), 'Σ fatalities + lost-time injuries to date.', 'مجموع الوفيات + الإصابات المضيعة للوقت حتى تاريخه.'],
-    [T('incidents') + ' (PTD)', 'Σ incidents of every type to date.', 'مجموع الحوادث بكل أنواعها حتى تاريخه.'], [T('open_obs'), 'Safety observations raised − closed, to date.', 'ملاحظات السلامة المسجلة − المغلقة حتى تاريخه.'], [T('permits') + ' (PTD)', 'Σ permits to work issued to date.', 'مجموع تصاريح العمل الصادرة حتى تاريخه.'],
-    [T('last_day'), 'Latest date with labour recorded (Manpower & Equipment).', 'آخر تاريخ مسجلة فيه عمالة (العمالة والمعدات).'], [T('direct'), 'Direct labour (day + night) on that last day.', 'العمالة المباشرة (نهاري + ليلي) في ذلك اليوم الأخير.'], [T('indirect'), 'Indirect labour (day + night) on that last day.', 'العمالة غير المباشرة (نهاري + ليلي) في ذلك اليوم الأخير.'],
-    [T('equip_working'), 'Equipment working on that last day.', 'المعدات العاملة في ذلك اليوم الأخير.'], [T('peak_direct'), 'Highest direct labour of one day.', 'أعلى عمالة مباشرة في يوم واحد.'], [T('avg7'), 'Average direct labour of the last 7 recorded days.', 'متوسط العمالة المباشرة لآخر 7 أيام مسجلة.'],
-    [T('total_subm'), 'Σ documents (quantity); sub-line: last 7 days.', 'مجموع المستندات (بالكمية)؛ السطر السفلي: آخر 7 أيام.'], [T('awaiting'), 'Documents that need a reply and have none; overdue = past the due date.', 'مستندات تحتاج رداً ولا يوجد رد؛ المتأخر = تجاوز تاريخ الاستحقاق.'], ['A / B / C', 'Documents returned with codes A / B / C.', 'مستندات عادت بالأكواد A / B / C.'],
-    [T('design_prog'), 'Σ credit of design drawings ÷ design drawings planned.', 'مجموع النسب المحتسبة للمخططات التصميمية ÷ المستهدف.'], [T('shop_prog'), 'Σ credit of shop drawings ÷ shop drawings planned.', 'مجموع النسب المحتسبة للمخططات التنفيذية ÷ المستهدف.'], [T('eng_prog'), 'Design and shop progress weighted by their weights (Lists & settings).', 'إنجاز التصميمي والتنفيذي مرجّحاً بأوزانهما (القوائم والإعدادات).']];
-  const HTm = new Map(HT.map(x => [x[0], S.lang === 'ar' ? x[2] : x[1]]));
-  v.querySelectorAll('.kpi').forEach(k => { const l = k.querySelector('.k'); const t = l && HTm.get(l.textContent.trim()); if (t) { k.setAttribute('data-tip', JSON.stringify([l.textContent.trim(), t])); l.removeAttribute('title'); } });
+  const mini = (k, val, sub, cls, t) => `<div class="dbm ${cls || ''}"${tip(k, t)}><div class="k">${k}</div><div class="v">${val}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div>`;
+  const hseC = mini(L('Man-hours', 'ساعات العمل'), fmtN(hs.mh), L('project to date', 'حتى تاريخه'), '', L('Σ man-hours to date (from Manpower & Equipment).', 'مجموع ساعات العمل حتى تاريخه (من العمالة والمعدات).')) +
+    mini(L('Safe man-hours', 'ساعات آمنة'), fmtN(hs.ltiFree), L('since last LTI', 'منذ آخر إصابة'), 'ok', L('Man-hours since the last fatality or lost-time injury.', 'ساعات العمل منذ آخر وفاة أو إصابة مضيعة للوقت.')) +
+    mini(L('Fatal + LTI', 'وفيات + LTI'), fmtN(hs.fatLti), '', hs.fatLti ? 'bad' : 'ok', L('Fatalities + lost-time injuries to date.', 'الوفيات + الإصابات المضيعة للوقت حتى تاريخه.')) +
+    mini(T('incidents'), fmtN(hs.inc), '', hs.inc ? 'warn' : 'ok', L('Incidents of every type to date.', 'الحوادث بكل أنواعها حتى تاريخه.')) +
+    mini(T('open_obs'), fmtN(hs.openObs), '', hs.openObs > 0 ? 'warn' : 'ok', L('Safety observations raised − closed.', 'ملاحظات السلامة المسجلة − المغلقة.')) +
+    mini(T('permits'), fmtN(hs.permits), '', '', L('Permits to work issued to date.', 'تصاريح العمل الصادرة حتى تاريخه.'));
+  const mpC = mini(L('Direct', 'مباشرة'), fmtN(lastMp.direct), '', '', L('Direct labour (day + night) on the last day recorded.', 'العمالة المباشرة (نهاري + ليلي) في آخر يوم مسجل.')) +
+    mini(L('Indirect', 'غير مباشرة'), fmtN(lastMp.indirect), '', '', L('Indirect labour on the last day recorded.', 'العمالة غير المباشرة في آخر يوم مسجل.')) +
+    mini(L('Equipment', 'معدات'), fmtN(lastMp.eqW), '', '', L('Equipment working on the last day recorded.', 'المعدات العاملة في آخر يوم مسجل.')) +
+    mini(L('Peak direct', 'أعلى مباشرة'), fmtN(Math.max(0, ...mp.map(d => d.direct))), '', '', L('Highest direct labour of one day.', 'أعلى عمالة مباشرة في يوم واحد.')) +
+    mini(L('Avg. 7 days', 'متوسط 7 أيام'), last7.length ? fmtN(sum(last7, d => d.direct) / last7.length) : '—', '', '', L('Average direct labour of the last 7 recorded days.', 'متوسط العمالة المباشرة لآخر 7 أيام مسجلة.'));
+  const dcC = mini(T('total_subm'), fmtN(dc.total), `${T('last7')}: ${fmtN(dc.last7)}`, '', L('Documents (quantity); sub-line: last 7 days.', 'المستندات (بالكمية)؛ السطر السفلي: آخر 7 أيام.')) +
+    mini(T('awaiting'), fmtN(dc.awaiting), `${T('overdue')}: ${fmtN(dc.overdue)}`, dc.overdue ? 'bad' : '', L('Need a reply and have none; overdue = past the due date.', 'تحتاج رداً ولا يوجد رد؛ المتأخر = تجاوز الاستحقاق.')) +
+    mini('A / B / C', `${fmtN(dc.A)} / ${fmtN(dc.B)} / ${fmtN(dc.C)}`, '', '', L('Documents returned with codes A / B / C.', 'مستندات عادت بالأكواد A / B / C.'));
+  const dwC = mini(T('eng_prog'), fmtP(dr.O), `${L('design', 'تصميمي')} ${fmtP(dr.dP, 0)} · ${L('shop', 'تنفيذي')} ${fmtP(dr.sP, 0)}`, 'ok', L('Design and shop progress weighted by their weights.', 'إنجاز التصميمي والتنفيذي مرجّحاً بأوزانهما.')) +
+    mini(L('Late submissions', 'تقديمات متأخرة'), fmtN(dr.late), '', dr.late ? 'bad' : 'ok', L('Planned date passed, not submitted.', 'تجاوز التاريخ المخطط ولم يُقدَّم.')) +
+    mini(L('Overdue reviews', 'مراجعات متأخرة'), fmtN(dr.ovr), '', dr.ovr ? 'warn' : 'ok', L('Submitted, review due date passed.', 'مقدَّمة وتجاوزت تاريخ استحقاق المراجعة.'));
+  const card = (icon, title, page, body, cls, extra) => `<section class="dbc ${cls || ''}"><header>${ic(icon)}<h3>${title}</h3>${extra || ''}${page && canSee(page) ? `<button class="lnk" data-go="${page}" title="${h(T('go'))}">${L('Open', 'فتح')} ›</button>` : ''}</header><div class="bd">${body}</div></section>`;
+  const nB = alerts.filter(a => a.sev === 'bad').length, nW = alerts.filter(a => a.sev === 'warn').length;
+  const AREAS = [['progress', T('progress')], ['manpower', T('manpower')], ['hse', T('hse')], ['dc', T('dc')], ['drawings', T('drawings')], ['invoices', T('invoices')]];
+  const okAreas = AREAS.filter(([k]) => !alerts.some(a => a.page === k)).map(x => x[1]);
+  const alC = `<div class="dbal">${alerts.map(a => `<div class="al ${a.sev}"${tip(a.title, a.detail, [L('Responsible', 'المسؤول'), a.who], [L('Page', 'الصفحة'), a.area])}><i class="dt"></i><div class="tx"><b>${h(a.title)}</b><span>${h(a.who)} · ${h(a.detail)}</span></div><em>${fmtN(a.n)}</em>${canSee(a.page) ? `<button class="lnk" data-go="${a.page}" aria-label="${h(T('go'))}">›</button>` : ''}</div>`).join('') || `<div class="alok">${ic('ok')}${L('Every page is up to date – nothing missing.', 'كل الصفحات محدّثة – لا توجد معلومات ناقصة.')}</div>`}</div>
+    <div class="alf">${okAreas.length ? `<span class="okl">${ic('ok')}${L('Complete', 'مكتملة')}: ${okAreas.join(' · ')}</span>` : ''}<button class="lnk" data-go="checks"${tip(T('checks'), L('The 37 data checks of the platform; each one with how to fix it.', 'فحوصات البيانات الـ37 في المنصة، ولكل منها طريقة المعالجة.'))}>${T('checks')}: <b class="${rev ? 'w' : ''}">${checks.length - rev} / ${checks.length}</b> ›</button></div>`;
+  v.innerHTML = `<div class="dbx">
+    <div class="dbh"><div><b>${h(p.name || '')}</b><span><bdi>${h(reportCode())}</bdi> · ${T('report_date')} ${D.fmt(rd)}${pc ? ` · ${T('cutoff')} ${D.fmt(pc.date)}${cut ? '' : ` (${L('closed', 'مغلق')})`}` : ''}</span></div><button class="btn sm" data-pr>${ic('print')}${T('print')}</button></div>
+    <div class="dbks">${kp}</div>
+    <div class="dbg">
+      ${card('chart', T('kpi_prog'), 'progress', pg, 'c-pg', sm ? `<span class="chip">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}</span>` : '')}
+      <div class="dbcol">
+        ${card('shield', T('kpi_hse'), 'hse', `<div class="dbms m3">${hseC}</div>`, '', `<span class="chip">${T('last_day')} ${D.fmt(hs.last) || '—'}</span>`)}
+        ${card('users', T('kpi_mp'), 'manpower', `<div class="dbms m5">${mpC}</div><div class="sptt"><span>${L('Labour – last 14 days recorded', 'العمالة – آخر 14 يوماً مسجلة')}</span><em><i style="background:#2F6DB5"></i>${L('Direct', 'مباشرة')}</em><em><i style="background:#B9CCE3"></i>${L('Indirect', 'غير مباشرة')}</em></div><div class="dbch sp" data-spark${tip(L('Labour – last 14 days recorded', 'العمالة – آخر 14 يوماً مسجلة'), L('Direct (dark) and indirect (light) labour per day.', 'العمالة المباشرة (الداكن) وغير المباشرة (الفاتح) لكل يوم.'))}></div>`, '', `<span class="chip">${T('last_day')} ${D.fmt(lastMp.date) || '—'}</span>`)}
+        <div class="dbtw">${card('doc', T('kpi_dc'), 'dc', `<div class="dbms m1">${dcC}</div>`)}${card('layers', T('kpi_drw'), 'drawings', `<div class="dbms m1">${dwC}</div>`)}</div>
+      </div>
+      ${card('warn', L('Data-entry check', 'اختبار المدخلات'), '', alC, 'c-al', `<span class="chip ${nB ? 'bad' : nW ? 'warn' : 'ok'}"${tip(L('Alerts', 'التنبيهات'), L('Missing or late entries by page and by responsible user; red = stops the P6 file, amber = missing entry, blue = follow-up.', 'معلومات ناقصة أو متأخرة حسب الصفحة والمسؤول؛ الأحمر = يمنع ملف P6، الكهرماني = إدخال ناقص، الأزرق = للمتابعة.'))}>${fmtN(alerts.length)} ${L('alerts', 'تنبيه')}</span>`)}
+    </div></div>`;
+  // charts drawn at the size of their box
+  const trendPts = () => {
+    const X = ((S.db.xhist || {}).updates || []).filter(u => (N(u.pv) || N(u.ev)) && u.dd).map(u => ({ d: u.dd, p: N(u.pv), a: N(u.ev) })).sort((a, b) => a.d.localeCompare(b.d));
+    if (sm && (!X.length || sm.cdate > X[X.length - 1].d)) X.push({ d: sm.cdate, p: sm.planned, a: sm.ctr, cur: 1 });
+    return X;
+  };
+  const draw = () => {
+    const tb = v.querySelector('[data-trend]');
+    if (tb) { const P = trendPts(), W = tb.clientWidth, Hh = tb.clientHeight; if (P.length < 2 || W < 40 || Hh < 30) tb.innerHTML = `<div class="muted tiny" style="padding:6px">${L('Trend appears after two updates (Report sources) or two cut-offs.', 'يظهر المنحنى بعد تحديثين (مصادر التقرير) أو تاريخي قطع.')}</div>`;
+      else { const pad = { l: 30, r: 34, t: 6, b: 16 }; const t0 = new Date(P[0].d).getTime(), t1 = new Date(P[P.length - 1].d).getTime(); const mx = Math.max(...P.map(q => Math.max(q.p, q.a))) * 1.08 || 1;
+        const x = d => pad.l + (W - pad.l - pad.r) * ((new Date(d).getTime() - t0) / Math.max(1, t1 - t0)), y = vv => Hh - pad.b - (Hh - pad.t - pad.b) * vv / mx;
+        const line = k => P.map((q, i) => `${i ? 'L' : 'M'}${x(q.d).toFixed(1)},${y(q[k]).toFixed(1)}`).join(' ');
+        const ticks = [0, 0.5, 1].map(f => mx / 1.08 * f).map(vv => `<line x1="${pad.l}" x2="${W - pad.r}" y1="${y(vv)}" y2="${y(vv)}" class="gl"/><text x="${pad.l - 4}" y="${y(vv) + 3}" text-anchor="end">${(vv * 100).toFixed(0)}%</text>`).join('');
+        const lastP = P[P.length - 1]; const mo = []; let m = new Date(t0); m.setUTCDate(1); while (m.getTime() <= t1) { if (m.getTime() >= t0) mo.push(m.toISOString().slice(0, 10)); m.setUTCMonth(m.getUTCMonth() + 1); }
+        tb.innerHTML = `<svg width="${W}" height="${Hh}" dir="ltr">${ticks}${mo.map(d => `<text x="${x(d)}" y="${Hh - 3}" text-anchor="middle">${D.fmt(d).slice(3, 6)}</text>`).join('')}<path d="${line('p')}" class="lp"/><path d="${line('a')}" class="la"/>${P.map(q => `<circle cx="${x(q.d)}" cy="${y(q.a)}" r="${q.cur ? 3.2 : 2}" class="pa"/>`).join('')}<text x="${x(lastP.d) + 4}" y="${y(lastP.p) + (lastP.p > lastP.a ? -2 : 9)}" class="vp">${(lastP.p * 100).toFixed(1)}</text><text x="${x(lastP.d) + 4}" y="${y(lastP.a) + (lastP.a >= lastP.p ? -2 : 9)}" class="va">${(lastP.a * 100).toFixed(1)}</text></svg>`; } }
+    const sb = v.querySelector('[data-spark]');
+    if (sb) { const M = mp.filter(d => d.direct + d.indirect > 0).slice(-14), W = sb.clientWidth, Hh = sb.clientHeight; if (!M.length || W < 40) sb.innerHTML = ''; else { const mx = (Math.max(...M.map(d => d.direct + d.indirect)) || 1) * 1.12, bw = (W - 4) / M.length;
+      sb.innerHTML = `<svg width="${W}" height="${Hh}" dir="ltr">${M.map((d, i) => { const hd = (Hh - 12) * d.direct / mx, hi = (Hh - 12) * d.indirect / mx; return `<rect x="${2 + i * bw + 1}" y="${Hh - 10 - hd}" width="${Math.max(2, bw - 3)}" height="${hd}" class="sd"/><rect x="${2 + i * bw + 1}" y="${Hh - 10 - hd - hi}" width="${Math.max(2, bw - 3)}" height="${hi}" class="si"/>`; }).join('')}<text x="${2 + (M.length - 0.5) * bw}" y="${Hh - 13 - (Hh - 12) * (M[M.length - 1].direct + M[M.length - 1].indirect) / mx}" text-anchor="middle" class="lv">${fmtN(M[M.length - 1].direct + M[M.length - 1].indirect)}</text><text x="2" y="${Hh - 1}">${D.fmt(M[0].date)}</text><text x="${W - 2}" y="${Hh - 1}" text-anchor="end">${D.fmt(M[M.length - 1].date)}</text></svg>`; } }
+  };
+  const fit = () => { const box = v.querySelector('.dbx'); if (!box) return; const vw = document.getElementById('view'); const cs = getComputedStyle(vw); const avail = vw.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 2; box.style.height = Math.max(560, avail) + 'px'; draw(); };
+  requestAnimationFrame(fit);
+  if (!PAGES.home._rs) { PAGES.home._rs = 1; addEventListener('resize', () => { if (S.page === 'home' && S.portal !== 'rp' && document.querySelector('#view .dbx')) { clearTimeout(PAGES.home._t); PAGES.home._t = setTimeout(() => requestAnimationFrame(() => { const box = document.querySelector('#view .dbx'); if (box) { const vw = document.getElementById('view'); const cs = getComputedStyle(vw); box.style.height = Math.max(560, vw.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 2) + 'px'; } PAGES.home(document.getElementById('view')); }), 150); } }); }
   v.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   v.querySelector('[data-pr]').onclick = () => RPT.print('home');
 };

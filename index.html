@@ -191,8 +191,49 @@ html[dir=rtl] #toast{transform:translateX(50%)}
 .logos img{height:34px;max-width:90px;object-fit:contain;background:#fff;border-radius:6px;padding:3px;border:1px solid var(--line)}
 .drop{border:2px dashed #C9D3E1;border-radius:12px;padding:22px;text-align:center;color:var(--ink3);cursor:pointer;background:#FAFBFD}
 .drop:hover,.drop.ov2{border-color:var(--pri);background:var(--pri-l);color:var(--pri)}
-.mpgrid td.rn{min-width:260px;white-space:normal}
-.mpgrid .in{width:72px;text-align:end}
+.mpgrid td.rn{white-space:normal;line-height:1.3}
+.mpgrid .in{width:100%;max-width:96px;text-align:center;height:28px;padding:3px 8px;display:block;margin:0 auto}
+.mpgrid tr.has td.rn{color:var(--navy);font-weight:600}
+/* manpower & equipment page: one filter bar, compact cards, tables without horizontal scrolling */
+.mpf{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;box-shadow:var(--sh);margin-bottom:10px}
+.mpd{display:inline-flex;align-items:center;gap:6px;border:1px solid #D3DAE5;border-radius:7px;padding:0 4px 0 10px;height:32px;background:#fff;font-size:12px;color:var(--ink3)}
+html[dir=rtl] .mpd{padding:0 10px 0 4px}
+.mpd b{color:var(--ink2);font-weight:600}.mpd.on{border-color:var(--pri);background:var(--pri-l);box-shadow:0 0 0 2px rgba(29,95,168,.12)}
+.mpd .in{height:26px;border:0;padding:0 4px;background:transparent;width:122px}
+.mph{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2);font-weight:600;border:1px solid #D3DAE5;border-radius:7px;padding:0 3px 0 10px;height:32px;background:#F7F9FC}
+html[dir=rtl] .mph{padding:0 10px 0 3px}
+.mph .in{width:56px;height:26px;text-align:center;font-weight:700;padding:2px 4px}.mph.ro .in{background:#EEF1F6;color:var(--ink3)}.mph svg{width:13px;height:13px;color:var(--ink3)}
+.mpk{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.mpk .kpi{padding:7px 10px}.mpk .kpi .k{font-size:10.5px;letter-spacing:.3px}.mpk .kpi .v{font-size:17px;margin-top:1px}
+.mpk .kpi .s{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:1660px){.mpk .kpi .k{white-space:normal;line-height:1.2;min-height:2.4em;display:flex;align-items:flex-end}.mpk .kpi .s{white-space:normal;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}
+@media (max-width:1100px){.mpk{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.mpf select.fsel{min-width:120px}
+.tabs .tb .tcnt{display:inline-block;min-width:18px;padding:0 6px;border-radius:9px;background:var(--line2);color:var(--ink3);font-size:11px;font-weight:600;text-align:center}
+.tabs .tb.on .tcnt{background:var(--pri-l);color:var(--pri)}
+.tw.mpw{overflow-x:hidden;overflow-y:auto}
+.tw.mpsum,.tw.mplog,.tw.mpent{max-height:calc(100vh - 460px - var(--tb));min-height:240px}
+table.t.mpt{table-layout:fixed}
+table.t.mpt th{white-space:normal;line-height:1.25;vertical-align:bottom;padding:7px 8px}
+table.t.mpt td{white-space:normal;overflow-wrap:anywhere;padding:6px 8px}
+table.t.mpt td.n,table.t.mpt td.nw{white-space:nowrap}
+table.t.mpt td.n,table.t.mpt th.n{text-align:center}
+table.t.mpt tfoot td{box-shadow:0 4px 0 #EEF2F8}
+table.t.mpt td.rm{color:var(--ink2);font-size:11.5px}.clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+table.t.mpt td.by{font-size:11px;color:var(--ink3)}
+table.t.mpt th.ck,table.t.mpt td.ck{text-align:center;padding:6px 4px}
+table.t.mpt td.ac{white-space:nowrap;padding:3px 4px;text-align:center}
+.ib{border:0;background:transparent;cursor:pointer;padding:4px;border-radius:6px;color:var(--ink2);display:inline-flex}.ib:hover{background:var(--line2)}.ib.del{color:var(--bad)}.ib.del:hover{background:var(--bad-l)}.ib svg{width:15px;height:15px}
+.btn.adm{background:var(--warn-l);border-color:var(--warn);color:#7A4A00}
+.mpbar{height:10px;display:flex;background:var(--line2);border-radius:5px;overflow:hidden;min-width:4px}.mpbar i{display:block;height:100%}
+.mpbar i.d,.mpleg .lg.d{background:var(--navy)}.mpbar i.i,.mpleg .lg.i{background:#8FB3DA}
+.mpleg{justify-content:flex-start;gap:14px}.mpleg span{display:inline-flex;align-items:center;gap:5px}.mpleg .lg{display:inline-block;width:10px;height:10px;border-radius:2px}
+.mpl{display:flex;gap:6px;align-items:center}.mpl.ck2{gap:5px;color:var(--ink2);font-weight:600;cursor:pointer}
+.mpe2{margin-top:-2px}
+.mpseg{display:inline-flex;border:1px solid #D3DAE5;border-radius:7px;overflow:hidden;background:#fff}
+.mpseg button{border:0;background:transparent;padding:0 12px;height:30px;font-weight:600;font-size:12px;color:var(--ink2);cursor:pointer;border-inline-end:1px solid var(--line);font-family:inherit;display:inline-flex;align-items:center;gap:5px}
+.mpseg button:last-child{border-inline-end:0}.mpseg button:hover{background:var(--line2)}
+.mpseg button.on{background:var(--navy);color:#fff}.mpseg button i{font-style:normal;font-size:10.5px;opacity:.65}
 .mpgrid tr.gh td{background:#EEF2F8;font-weight:700;color:var(--navy);position:sticky;top:33px;z-index:1}
 .pill-sel{display:flex;gap:6px;flex-wrap:wrap}
 .pill-sel .bdg{cursor:pointer;padding:4px 10px;font-size:12px}
@@ -2731,10 +2772,10 @@ function logPage(v, mk, opts = {}) {
   const ib = root.querySelector('[data-imp]'); if (ib) ib.onclick = () => IMP.open('module', mk, { after: () => opts.redraw ? opts.redraw() : render(true) });
   draw();
 }
-async function exportModule(mk) {
+async function exportModule(mk, rowsIn) {   // rowsIn: the records shown (page filters), else every record
   const m = MOD[mk]; _tgtCache = null;
   const head = m.fields.map(f => FL(f));
-  const rows = live(S.db[mk]).map(r => m.fields.map(f => { const v = cv(m, f, r); if (v === '' || v == null) return null; if ((f.ft || f.t) === 'date') return D.valid(v) ? { d: v } : v; if ((f.ft || f.t) === 'pct') return { n: N(v), fmt: 'pct' }; if ((f.ft || f.t) === 'money') return { n: N(v), fmt: 'money' }; return typeof v === 'number' ? v : (f.t === 'list' ? listVal(f.list, v) : f.t === 'enum' || f.badge ? E(v) : v); }));
+  const rows = (rowsIn || live(S.db[mk])).map(r => m.fields.map(f => { const v = cv(m, f, r); if (v === '' || v == null) return null; if ((f.ft || f.t) === 'date') return D.valid(v) ? { d: v } : v; if ((f.ft || f.t) === 'pct') return { n: N(v), fmt: 'pct' }; if ((f.ft || f.t) === 'money') return { n: N(v), fmt: 'money' }; return typeof v === 'number' ? v : (f.t === 'list' ? listVal(f.list, v) : f.t === 'enum' || f.badge ? E(v) : v); }));
   const blob = await XLSXW.build([{ name: T(mk).slice(0, 31), rows: [head, ...rows], styles: { headerRows: [0] }, freeze: 'A2', autoFilter: 1, rtl: S.lang === 'ar' }]);
   saveOutput(`${S.db.project.code}_${mk}_${reportDate()}.xlsx`, blob, 'Exports');
 }
@@ -2750,8 +2791,8 @@ function inputFor(f, val, ro) {
   if (f.t === 'area') return `<textarea class="in" data-k="${f.k}" rows="3" ${dis}>${h(v)}</textarea>`;
   return `<input class="in" type="text" data-k="${f.k}" value="${h(v)}" ${dis}>`;
 }
-function openRecord(mk, rec, after) {
-  const m = MOD[mk]; const isNew = !rec; const ro = !can(m.edit);
+function openRecord(mk, rec, after, o = {}) {
+  const m = MOD[mk]; const isNew = !rec; const ro = o.ro !== undefined ? o.ro : !can(m.edit);   // o.ro: the page decides (manpower log: editable in record management only)
   const r = isNew ? Object.assign(m.defaults ? m.defaults() : {}) : clone(rec);
   const secs = m.secs.map((s, i) => {
     const fs = m.fields.filter(f => (f.sec || 0) === i); if (!fs.length) return '';
@@ -3052,68 +3093,266 @@ PAGES.drawings = v => {
 };
 
 /* ---------- MANPOWER ---------- */
-PAGES.manpower = v => {
-  const tab = S.ui.mpTab = S.ui.mpTab || 'entry'; const ed = can('manpower');
-  const mp = mpDaily(); const lastMp = [...mp].reverse().find(d => d.direct + d.indirect > 0) || {};
-  v.innerHTML = pageHead(T('manpower'), MOD.manpower.desc[S.lang]) + roNotice('manpower') +
-    `<div class="grid g6" style="margin-bottom:14px">${kpi(T('last_day'), D.fmt(lastMp.date) || '—')}${kpi(T('direct'), fmtN(lastMp.direct))}${kpi(T('indirect'), fmtN(lastMp.indirect))}${kpi(T('equip_working'), fmtN(lastMp.eqW))}${kpi(LBL('Equipment idle', 'معدات متوقفة'), fmtN(lastMp.eqI))}${kpi(T('peak_direct'), fmtN(Math.max(0, ...mp.map(d => d.direct))))}</div>
-    <div class="tabs">${['entry', 'sum', 'log'].map(t => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${T({ entry: 'day_entry', sum: 'daily_summary', log: 'detail_log' }[t])}</div>`).join('')}</div><div data-tc></div>`;
-  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.ui.mpTab = t.dataset.t; render(true); });
-  const c = v.querySelector('[data-tc]');
-  if (tab === 'log') return logPage(c, 'manpower', { embedded: true });
-  if (tab === 'sum') {
-    const rows = [...mp].reverse();
-    c.innerHTML = `<div class="tw"><table class="t"><thead><tr><th>${T('date')}</th><th>${T('day')}</th><th class="n">${T('direct')}</th><th class="n">${T('indirect')}</th><th class="n">${T('total')}</th><th class="n">${T('equip_working')}</th><th class="n">${LBL('Equipment idle', 'معدات متوقفة')}</th><th class="n">${T('manhours')}</th><th style="min-width:180px"></th></tr></thead><tbody>${rows.map(d => { const tot = d.direct + d.indirect; const mx = Math.max(1, ...mp.map(x => x.direct + x.indirect)); return `<tr class="cl" data-d="${d.date}"><td>${D.fmt(d.date)}</td><td>${D.dow(d.date)}</td><td class="n">${fmtN(d.direct)}</td><td class="n">${fmtN(d.indirect)}</td><td class="n"><b>${fmtN(tot)}</b></td><td class="n">${fmtN(d.eqW)}</td><td class="n">${fmtN(d.eqI)}</td><td class="n">${fmtN(tot * N(S.db.project.stdHours || 8))}</td><td><div class="bar"><i style="width:${tot / mx * 100}%"></i></div></td></tr>`; }).join('')}</tbody></table></div>`;
-    c.querySelectorAll('[data-d]').forEach(tr => tr.onclick = () => { S.ui.mpDate = tr.dataset.d; S.ui.mpTab = 'entry'; render(true); });
-    return;
+// One filter for the whole page: cards, daily summary, detailed log and the printed report follow it.
+const MPF = {
+  KEYS: ['cat', 'type', 'res', 'ctr'],
+  st: () => { const f = S.ui.mpF = S.ui.mpF || {}; ['from', 'to', 'cat', 'type', 'res', 'ctr'].forEach(k => { f[k] = f[k] || ''; }); return f; },
+  hrs: () => N(S.db.project.stdHours) || 8,
+  ctr0: () => (S.db.lists.contractors[0] || {}).v || 'Main Contractor',
+  get: (r, k) => k === 'cat' ? MOD.manpower.F.cat.calc(r) : k === 'type' ? MOD.manpower.F.type.calc(r) : k === 'res' ? r.resource : k === 'ctr' ? (r.contractor || MPF.ctr0()) : '',
+  pass(r, f, except) {
+    if (except !== 'date') { if (f.from && r.date < f.from) return false; if (f.to && r.date > f.to) return false; }
+    return MPF.KEYS.every(k => k === except || !f[k] || String(MPF.get(r, k)) === f[k]);
+  },
+  rows: except => { const f = MPF.st(); return live(S.db.manpower).filter(r => r.date && MPF.pass(r, f, except)); },
+  active: () => { const f = MPF.st(); return ['from', 'to', ...MPF.KEYS].some(k => f[k]); },
+  clear: () => { S.ui.mpF = {}; S.ui.mpEF = {}; if (S.ui.mpLog) { S.ui.mpLog.q = ''; S.ui.mpLog.page = 0; S.ui.mpLog.sel = new Set(); } },
+  name: k => ({ cat: LBL('Category', 'الفئة'), type: LBL('Type', 'النوع'), res: LBL('Resource', 'المورد'), ctr: LBL('Contractor', 'المقاول') }[k]),
+  label: (k, v) => k === 'res' ? listVal('resources', v) : k === 'ctr' ? listVal('contractors', v) : E(v),
+  range: f => f.from === f.to ? D.fmt(f.from) : `${D.fmt(f.from) || '…'} ${LBL('→', 'إلى')} ${D.fmt(f.to) || '…'}`,
+  note() { const f = MPF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); MPF.KEYS.forEach(k => { if (f[k]) p.push(`${MPF.name(k)}: ${MPF.label(k, f[k])}`); }); return p; },
+  daily(rows) {
+    const map = {};
+    rows.forEach(r => { const m = map[r.date] = map[r.date] || { date: r.date, direct: 0, indirect: 0, eqW: 0, eqI: 0, n: 0 }; const t = MPF.get(r, 'type'), w = N(r.day) + N(r.night); m.n++; if (t === 'Direct') m.direct += w; else if (t === 'Indirect') m.indirect += w; else if (t === 'Equipment') { m.eqW += w; m.eqI += N(r.idle); } });
+    return Object.values(map).sort((a, b) => a.date.localeCompare(b.date));
+  },
+  stats(rows) {
+    const days = MPF.daily(rows), hrs = MPF.hrs();
+    const peak = k => days.reduce((b, d) => d[k] > b.v ? { v: d[k], date: d.date } : b, { v: 0, date: '' });
+    const last = [...days].reverse().find(d => d.direct + d.indirect + d.eqW > 0) || {};
+    const dMD = sum(days, d => d.direct), iMD = sum(days, d => d.indirect);
+    return { days, hrs, last, dMD, iMD, dMH: dMD * hrs, iMH: iMD * hrs, eMD: sum(days, d => d.eqW), eI: sum(days, d => d.eqI), dPk: peak('direct'), iPk: peak('indirect'), dDays: days.filter(d => d.direct > 0).length, iDays: days.filter(d => d.indirect > 0).length, lastD: days.length ? days[days.length - 1].date : '' };
+  },
+  // [label, value, sub-line] – the same cards on the page and in the printed report
+  cards(s) {
+    const upTo = n => s.lastD ? `${fmtN(n)} ${LBL('days', 'يوم')} · ${LBL('to', 'حتى')} ${D.fmt(s.lastD)}` : '—';
+    const hb = `${LBL('man-days', 'اليوميات')} × ${fmtN(s.hrs, s.hrs % 1 ? 1 : 0)} ${LBL('h', 'س')}`;
+    return [
+      [LBL('Last day recorded', 'آخر يوم مسجل'), D.fmt(s.last.date) || '—', s.last.date ? `${LBL('Direct', 'مباشرة')} ${fmtN(s.last.direct)} · ${LBL('Indirect', 'غير مباشرة')} ${fmtN(s.last.indirect)}` : ''],
+      [LBL('Direct man-days', 'يوميات العمالة المباشرة'), fmtN(s.dMD), upTo(s.dDays)],
+      [LBL('Indirect man-days', 'يوميات العمالة غير المباشرة'), fmtN(s.iMD), upTo(s.iDays)],
+      [LBL('Work hours – direct', 'ساعات العمل – مباشرة'), fmtN(s.dMH), hb],
+      [LBL('Work hours – indirect', 'ساعات العمل – غير مباشرة'), fmtN(s.iMH), hb],
+      [LBL('Peak day – direct', 'أعلى يوم – مباشرة'), fmtN(s.dPk.v), D.fmt(s.dPk.date) || '—'],
+      [LBL('Peak day – indirect', 'أعلى يوم – غير مباشرة'), fmtN(s.iPk.v), D.fmt(s.iPk.date) || '—'],
+      [LBL('Equipment-days', 'يوميات المعدات'), fmtN(s.eMD), `${LBL('Idle', 'متوقفة')} ${fmtN(s.eI)} · ${LBL('last day', 'آخر يوم')} ${fmtN(s.last.eqW || 0)}`]
+    ];
+  },
+  // breakdown by resource of the filtered records (printed report)
+  byRes(rows) {
+    const m = new Map(); const hrs = MPF.hrs();
+    rows.forEach(r => { const k = r.resource || ''; const x = m.get(k) || { res: k, cat: MPF.get(r, 'cat'), type: MPF.get(r, 'type'), days: new Map(), idle: 0 }; const w = N(r.day) + N(r.night); x.days.set(r.date, (x.days.get(r.date) || 0) + w); x.idle += N(r.idle); m.set(k, x); });
+    const ord = { Indirect: 0, Direct: 1, Equipment: 2 };
+    return [...m.values()].map(x => { const v = [...x.days.values()]; const md = v.reduce((a, b) => a + b, 0); return Object.assign(x, { n: x.days.size, md, peak: Math.max(0, ...v), avg: x.days.size ? md / x.days.size : 0, wh: md * hrs }); })
+      .sort((a, b) => ((ord[a.type] ?? 3) - (ord[b.type] ?? 3)) || b.md - a.md);
   }
-  // daily entry grid
+};
+const MP_LOGC = () => [
+  { k: 'date', h: LBL('Date', 'التاريخ'), w: 84, s: r => r.date, v: r => D.fmt(r.date), cls: 'nw' },
+  { k: 'res', h: LBL('Resource', 'المورد'), w: '', s: r => listVal('resources', r.resource), v: r => h(listVal('resources', r.resource)) },
+  { k: 'cat', h: LBL('Category', 'الفئة'), w: 74, s: r => E(MPF.get(r, 'cat')), v: r => h(E(MPF.get(r, 'cat'))) },
+  { k: 'type', h: LBL('Type', 'النوع'), w: 86, s: r => E(MPF.get(r, 'type')), v: r => { const t = MPF.get(r, 'type'); return `<span class="bdg ${t === 'Not in list' ? 'bad' : ''}">${h(E(t))}</span>`; } },
+  { k: 'ctr', h: LBL('Contractor', 'المقاول'), w: 128, s: r => MPF.label('ctr', MPF.get(r, 'ctr')), v: r => h(MPF.label('ctr', MPF.get(r, 'ctr'))) },
+  { k: 'day', h: LBL('Day shift', 'الوردية النهارية'), w: 66, n: 1, s: r => N(r.day), v: r => fmtN(r.day) },
+  { k: 'night', h: LBL('Night shift', 'الوردية الليلية'), w: 66, n: 1, s: r => N(r.night), v: r => fmtN(r.night) },
+  { k: 'idle', h: LBL('Idle', 'متوقف'), w: 58, n: 1, s: r => N(r.idle), v: r => fmtN(r.idle) },
+  { k: 'tw', h: LBL('Total working', 'إجمالي العاملين'), w: 70, n: 1, s: r => N(r.day) + N(r.night), v: r => `<b>${fmtN(N(r.day) + N(r.night))}</b>` },
+  { k: 'wh', h: LBL('Work hours', 'ساعات العمل'), w: 70, n: 1, s: r => (N(r.day) + N(r.night)) * MPF.hrs(), v: r => fmtN((N(r.day) + N(r.night)) * MPF.hrs()) },
+  { k: 'remarks', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp" title="${h(r.remarks)}">${h(r.remarks)}</div>` : '', cls: 'rm' },
+  { k: 'by', h: LBL('Entered by', 'أدخلها'), w: 104, s: r => r._by || '', v: r => h((r._by || '').split(' (')[0]), cls: 'by' }
+];
+const mpOk = async () => !S.ui.mpDirty || await confirmBox(LBL('The daily entry has unsaved changes. Continue without saving?', 'في الإدخال اليومي تعديلات غير محفوظة. هل تريد المتابعة بدون حفظ؟'), LBL('Continue', 'متابعة'), true);
+async function mpGo(fn) {   // in-page change that redraws the page: keep unsaved daily entries safe
+  if (!(await mpOk())) return;
+  S.ui.mpDirty = false; fn(); render(true);
+}
+PAGES.manpower = v => {
+  const tab = S.ui.mpTab = S.ui.mpTab || 'entry'; const ed = can('manpower'), mgr = canUsers();
+  if (!mgr) S.ui.mpAdm = false; const adm = !!S.ui.mpAdm; S.ui.mpDirty = false;
+  const f = MPF.st(); const all = live(S.db.manpower).filter(r => r.date); const rows = MPF.rows(); const s = MPF.stats(rows);
+  const dates = all.map(r => r.date).sort(); const dMin = dates[0] || '', dMax = dates[dates.length - 1] || '';
+  const tOrd = { Direct: 0, Indirect: 1, Equipment: 2, Labor: 0 };
+  const sel = k => {
+    const cnt = new Map(); MPF.rows(k).forEach(r => { const x = MPF.get(r, k); if (x) cnt.set(x, (cnt.get(x) || 0) + 1); });
+    const vals = [...cnt.keys()].sort((a, b) => ((tOrd[a] ?? 9) - (tOrd[b] ?? 9)) || String(MPF.label(k, a)).localeCompare(String(MPF.label(k, b)))); if (f[k] && !cnt.has(f[k])) vals.unshift(f[k]);
+    return `<select class="in fsel ${f[k] ? 'on' : ''}" data-mf="${k}" title="${h(MPF.name(k))}"><option value="">${h(MPF.name(k))}: ${T('all')}</option>${vals.map(x => `<option value="${h(x)}" ${x === f[k] ? 'selected' : ''}>${x === f[k] ? h(MPF.name(k)) + ': ' : ''}${h(MPF.label(k, x))} (${fmtN(cnt.get(x) || 0)})</option>`).join('')}</select>`;
+  };
+  const hrsTip = mgr ? LBL('Hours of one man-day – the basis of every work-hours figure on this page', 'عدد ساعات العمل في اليوم الواحد – أساس حساب ساعات العمل في هذه الصفحة') : LBL('Set by the user manager only', 'يعدّلها مدير المستخدمين فقط');
+  v.innerHTML = pageHead(T('manpower'), MOD.manpower.desc[S.lang], mgr ? `<button class="btn ${adm ? 'adm' : ''}" data-madm title="${h(LBL('Edit or delete any record or a whole date (user manager)', 'تعديل أو حذف أي سجل أو تاريخ كامل (مدير المستخدمين)'))}">${ic(adm ? 'x' : 'pen')}${adm ? LBL('Close record management', 'إنهاء إدارة السجلات') : LBL('Manage records', 'إدارة السجلات')}</button>` : '') + roNotice('manpower') +
+    (adm ? `<div class="notice warn">${ic('warn')}<div><b>${LBL('Record management is on.', 'وضع إدارة السجلات مفعّل.')}</b> ${LBL('Detailed log: edit (✎) or delete (🗑) any record, or tick several records and delete them together. Daily summary: delete every record of a date (within the current filters). Every change is kept in the activity log.', 'السجل التفصيلي: تعديل (✎) أو حذف (🗑) أي سجل، أو تحديد عدة سجلات وحذفها معاً. الملخص اليومي: حذف كل سجلات تاريخ معيّن (ضمن الفلاتر الحالية). كل تغيير يُحفظ في سجل النشاط.')}</div></div>` : '') +
+    `<div class="tbar mpf">
+      <div class="mpd ${f.from || f.to ? 'on' : ''}" title="${h(LBL('Pick a date to show that day only; add the second date for a period', 'اختر تاريخاً لعرض بيانات ذلك اليوم فقط، وأضف التاريخ الثاني لعرض فترة'))}"><b>${LBL('Date', 'التاريخ')}</b><input class="in" type="date" data-fd="from" value="${h(f.from)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('From', 'من'))}"><span>${LBL('to', 'إلى')}</span><input class="in" type="date" data-fd="to" value="${h(f.to)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('To', 'إلى'))}"></div>
+      ${sel('cat')}${sel('type')}${sel('res')}${sel('ctr')}
+      <button class="btn sm" data-mclr ${MPF.active() ? '' : 'disabled'}>${ic('x')}${LBL('Clear filters', 'مسح الفلاتر')}</button>
+      <span style="flex:1"></span>
+      <label class="mph ${mgr ? '' : 'ro'}" title="${h(hrsTip)}"><span>${LBL('Work hours / day', 'ساعات العمل / اليوم')}</span><input class="in" type="number" min="1" max="24" step="0.5" data-mh value="${MPF.hrs()}" ${mgr ? '' : 'disabled'}>${mgr ? '' : ic('lock')}</label>
+    </div>
+    <div class="mpk">${MPF.cards(s).map(([k, val, sub]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '')).join('')}</div>
+    <div class="tabs">${['entry', 'sum', 'log'].map(t => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${T({ entry: 'day_entry', sum: 'daily_summary', log: 'detail_log' }[t])}${t === 'entry' ? '' : ` <span class="tcnt">${fmtN(t === 'sum' ? s.days.length : rows.length)}</span>`}</div>`).join('')}</div><div data-tc></div>`;
+  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => mpGo(() => { S.ui.mpTab = t.dataset.t; }));
+  v.querySelectorAll('[data-mf]').forEach(x => x.onchange = () => mpGo(() => { f[x.dataset.mf] = x.value; if (S.ui.mpLog) S.ui.mpLog.page = 0; }));
+  v.querySelectorAll('[data-fd]').forEach(x => x.onchange = () => mpGo(() => {
+    const k = x.dataset.fd; f[k] = x.value;
+    if (k === 'from' && f.from && (!f.to || f.to < f.from)) f.to = f.from;   // one date = that day only
+    if (k === 'to' && f.to && f.from && f.from > f.to) f.from = f.to;
+    if (S.ui.mpLog) S.ui.mpLog.page = 0;
+  }));
+  v.querySelector('[data-mclr]').onclick = () => mpGo(MPF.clear);
+  const mh = v.querySelector('[data-mh]');
+  if (mh && mgr) mh.onchange = () => {
+    const n = Number(mh.value);
+    if (!(n > 0 && n <= 24)) { toast(LBL('Enter hours between 1 and 24', 'أدخل عدد ساعات بين 1 و 24'), 'bad'); mh.value = MPF.hrs(); return; }
+    mpGo(() => { S.db.project = stamp(Object.assign(clone(S.db.project), { stdHours: n })); touch('work hours / day', String(n)); toast(`${LBL('Work hours / day', 'ساعات العمل / اليوم')}: ${n}`, 'ok'); });
+  };
+  const ab = v.querySelector('[data-madm]'); if (ab) ab.onclick = () => mpGo(() => { S.ui.mpAdm = !adm; if (S.ui.mpLog) S.ui.mpLog.sel = new Set(); });
+  const c = v.querySelector('[data-tc]');
+  if (tab === 'sum') return mpSummary(c, s, rows, adm);
+  if (tab === 'log') return mpLog(c, rows, adm, ed);
+  mpEntry(c, ed);
+};
+function mpSummary(c, s, rows, adm) {
+  const days = [...s.days].reverse(); const mx = Math.max(1, ...days.map(d => d.direct + d.indirect)); const hrs = s.hrs;
+  const lab = s.days.filter(d => d.direct + d.indirect > 0); const avg = lab.length ? sum(lab, d => d.direct + d.indirect) / lab.length : 0;
+  const W = ['9%', '7.5%', '9%', '9%', '9%', '9%', '9%', '9%', '', ...(adm ? ['5%'] : [])];
+  c.innerHTML = days.length ? `<div class="tw mpw mpsum"><table class="t mpt"><colgroup>${W.map(w => `<col${w ? ` style="width:${w}"` : ''}>`).join('')}</colgroup><thead><tr>
+      <th>${LBL('Date', 'التاريخ')}</th><th>${LBL('Day', 'اليوم')}</th><th class="n">${LBL('Direct labour', 'عمالة مباشرة')}</th><th class="n">${LBL('Indirect labour', 'عمالة غير مباشرة')}</th><th class="n">${LBL('Total labour', 'إجمالي العمالة')}</th><th class="n">${LBL('Work hours', 'ساعات العمل')}</th><th class="n">${LBL('Equipment working', 'معدات عاملة')}</th><th class="n">${LBL('Equipment idle', 'معدات متوقفة')}</th><th>${LBL('Labour (direct | indirect)', 'العمالة (مباشرة | غير مباشرة)')}</th>${adm ? `<th>${LBL('Delete', 'حذف')}</th>` : ''}</tr></thead>
+    <tbody>${days.map(d => { const tot = d.direct + d.indirect; return `<tr class="cl" data-d="${d.date}" title="${h(LBL('Open this day in the daily entry', 'فتح هذا اليوم في الإدخال اليومي'))}"><td>${D.fmt(d.date)}</td><td>${D.dow(d.date)}</td><td class="n">${fmtN(d.direct)}</td><td class="n">${fmtN(d.indirect)}</td><td class="n"><b>${fmtN(tot)}</b></td><td class="n">${fmtN(tot * hrs)}</td><td class="n">${fmtN(d.eqW)}</td><td class="n">${fmtN(d.eqI)}</td><td><div class="mpbar" style="width:${Math.max(2, tot / mx * 100)}%"><i class="d" style="flex:${d.direct}"></i><i class="i" style="flex:${d.indirect}"></i></div></td>${adm ? `<td class="ac"><button class="ib del" data-dd="${d.date}" title="${h(LBL('Delete the records of this date', 'حذف سجلات هذا التاريخ'))}">${ic('trash')}</button></td>` : ''}</tr>`; }).join('')}</tbody>
+    <tfoot><tr><td colspan="2">${T('total')} (${fmtN(days.length)} ${LBL('days', 'يوم')})</td><td class="n">${fmtN(s.dMD)}</td><td class="n">${fmtN(s.iMD)}</td><td class="n">${fmtN(s.dMD + s.iMD)}</td><td class="n">${fmtN((s.dMD + s.iMD) * hrs)}</td><td class="n">${fmtN(s.eMD)}</td><td class="n">${fmtN(s.eI)}</td><td>${LBL('Average labour per working day', 'متوسط العمالة لكل يوم عمل')}: <b>${fmtN(avg)}</b></td>${adm ? '<td></td>' : ''}</tr></tfoot></table></div>
+    <div class="pg mpleg"><span><i class="lg d"></i>${LBL('Direct', 'مباشرة')}</span><span><i class="lg i"></i>${LBL('Indirect', 'غير مباشرة')}</span><span>· ${LBL('Click a day to open it in the daily entry', 'اضغط على يوم لفتحه في الإدخال اليومي')}</span></div>`
+    : `<div class="card empty">${T('none')}</div>`;
+  mpFit(c);
+  c.querySelectorAll('tr[data-d]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-dd]')) return; S.ui.mpDate = tr.dataset.d; S.ui.mpTab = 'entry'; render(true); });
+  c.querySelectorAll('[data-dd]').forEach(b => b.onclick = async () => {
+    const d = b.dataset.dd; const del = rows.filter(r => r.date === d); const fn = MPF.note().filter(x => !x.startsWith(LBL('Date', 'التاريخ')));
+    if (!del.length || !(await confirmBox(`${LBL('Delete every record of', 'حذف كل سجلات يوم')} <b>${D.fmt(d)}</b> (${fmtN(del.length)} ${LBL('records', 'سجل')})${fn.length ? `<div class="tiny muted" style="margin-top:6px">${LBL('Within the filters', 'ضمن الفلاتر')}: ${h(fn.join(' · '))}</div>` : ''}`, T('del'), true))) return;
+    mpDelete(del, `${D.fmt(d)}`);
+  });
+}
+function mpFit(c) {   // the table takes the rest of the window: the page itself does not need to scroll
+  requestAnimationFrame(() => { const tw = c.querySelector('.tw.mpw'); if (!tw) return; const vw = document.getElementById('view'); const vb = vw ? vw.getBoundingClientRect().bottom : innerHeight; const below = (c.querySelector('.pg') || {}).offsetHeight || 0; tw.style.maxHeight = Math.max(240, vb - tw.getBoundingClientRect().top - below - 46 + (vw ? vw.scrollTop : 0)) + 'px'; });
+}
+function mpDelete(recs, what) {
+  const ids = new Set(recs.map(r => r._id));
+  S.db.manpower = S.db.manpower.map(r => ids.has(r._id) ? stamp({ _id: r._id, _del: true }) : r);
+  if (S.ui.mpLog) S.ui.mpLog.sel = new Set();
+  touch('delete', `manpower: ${what} (${ids.size})`); toast(`${T('deleted')} (${fmtN(ids.size)})`, 'ok'); render(true);
+}
+function mpLog(c, rowsIn, adm, ed) {
+  const st = S.ui.mpLog = S.ui.mpLog || { q: '', sort: { k: 'date', dir: -1 }, page: 0, sel: new Set() };
+  if (!(st.sel instanceof Set)) st.sel = new Set();
+  const cols = MP_LOGC(); const C = Object.fromEntries(cols.map(x => [x.k, x]));
+  c.innerHTML = `<div class="tbar"><input class="in search" style="min-width:300px" placeholder="${h(LBL('Search resource, contractor, remarks…', 'بحث في المورد، المقاول، الملاحظات…'))}" value="${h(st.q)}" data-q>
+    ${adm ? `<button class="btn sm danger" data-dsel disabled>${ic('trash')}${LBL('Delete selected', 'حذف المحدد')} <span data-nsel>(0)</span></button>` : ''}
+    <span style="flex:1"></span>${ed ? `<button class="btn pri sm" data-add>${ic('plus')}${T('add_rec')}</button><button class="btn sm" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn sm" data-xl title="${h(LBL('Exports the records shown (current filters)', 'يصدّر السجلات المعروضة (حسب الفلاتر الحالية)'))}">${ic('dl')}${T('export_xlsx')}</button></div><div data-tb></div>`;
+  const draw = () => {
+    const q = st.q.trim().toLowerCase();
+    let rows = !q ? rowsIn.slice() : rowsIn.filter(r => [D.fmt(r.date), r.date, r.resource, listVal('resources', r.resource), MPF.label('ctr', MPF.get(r, 'ctr')), E(MPF.get(r, 'type')), r.remarks, r._by].some(x => String(x || '').toLowerCase().includes(q)));
+    const sk = C[st.sort.k] || C.date; rows.sort((a, b) => { const x = sk.s(a), y = sk.s(b); return (x === y ? (b.date || '').localeCompare(a.date || '') : (x > y ? 1 : -1) * st.sort.dir); });
+    st.view = rows.map(r => r._id);
+    const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
+    const pr = rows.slice(st.page * PS, st.page * PS + PS);
+    const tot = k => fmtN(sum(rows, r => C[k].s(r)));
+    const allSel = pr.length && pr.every(r => st.sel.has(r._id));
+    c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw mplog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
+        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}">${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+      <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.cls || ''}">${x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
+      <tfoot><tr>${adm ? '<td></td>' : ''}<td colspan="5">${T('total')} (${fmtN(rows.length)} ${T('rows')})</td><td class="n">${tot('day')}</td><td class="n">${tot('night')}</td><td class="n">${tot('idle')}</td><td class="n">${tot('tw')}</td><td class="n">${tot('wh')}</td><td colspan="${adm ? 3 : 2}"></td></tr></tfoot></table></div>
+      <div class="pg">${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
+      : `<div class="card empty">${T('none')}</div>`;
+    const tb = c.querySelector('[data-tb]');
+    const nsel = () => { const n = [...st.sel].filter(id => rows.some(r => r._id === id)).length; const b = c.querySelector('[data-dsel]'); if (b) { b.disabled = !n; b.querySelector('[data-nsel]').textContent = `(${fmtN(n)})`; } };
+    tb.querySelectorAll('[data-s]').forEach(th => th.onclick = () => { const k = th.dataset.s; st.sort = { k, dir: st.sort.k === k ? -st.sort.dir : (k === 'date' ? -1 : 1) }; draw(); });
+    const recOf = tr => S.db.manpower.find(x => x._id === tr.dataset.id);
+    tb.querySelectorAll('tr[data-id]').forEach(tr => tr.onclick = e => {
+      if (e.target.closest('[data-ck],[data-del]')) return;
+      openRecord('manpower', recOf(tr), () => render(true), { ro: !adm });   // edit / delete in record management only
+    });
+    tb.querySelectorAll('[data-ck]').forEach(x => x.onchange = () => { const id = x.closest('tr').dataset.id; x.checked ? st.sel.add(id) : st.sel.delete(id); x.closest('tr').classList.toggle('sel', x.checked); nsel(); });
+    const sa = tb.querySelector('[data-sall]'); if (sa) sa.onchange = () => { pr.forEach(r => sa.checked ? st.sel.add(r._id) : st.sel.delete(r._id)); draw(); };
+    tb.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => { const r = recOf(b.closest('tr')); if (!(await confirmBox(`${T('confirm_del')}<div class="tiny muted" style="margin-top:6px">${D.fmt(r.date)} · ${h(listVal('resources', r.resource))}</div>`, T('del'), true))) return; mpDelete([r], `${r.date} ${r.resource}`); });
+    const pp = tb.querySelector('[data-pp]'), pn = tb.querySelector('[data-pn]');
+    if (pp) pp.onclick = () => { st.page--; draw(); }; if (pn) pn.onclick = () => { st.page++; draw(); };
+    nsel(); mpFit(c);
+  };
+  c.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
+  const ds = c.querySelector('[data-dsel]');
+  if (ds) ds.onclick = async () => { const sel = rowsIn.filter(r => st.sel.has(r._id)); if (!sel.length || !(await confirmBox(`${LBL('Delete the selected records?', 'حذف السجلات المحددة؟')} (${fmtN(sel.length)})`, T('del'), true))) return; mpDelete(sel, LBL('selected records', 'سجلات محددة')); };
+  const add = c.querySelector('[data-add]'); if (add) add.onclick = () => openRecord('manpower', null, () => render(true));
+  const im = c.querySelector('[data-imp]'); if (im) im.onclick = () => IMP.open('module', 'manpower', { after: () => render(true) });
+  c.querySelector('[data-xl]').onclick = () => { const byId = new Map(rowsIn.map(r => [r._id, r])); exportModule('manpower', (st.view || []).map(id => byId.get(id)).filter(Boolean)); };
+  draw();
+}
+function mpEntry(c, ed) {
   const ctrList = S.db.lists.contractors.length ? S.db.lists.contractors : [{ v: 'Main Contractor' }];
+  const lastMp = [...mpDaily()].reverse().find(d => d.direct + d.indirect > 0) || {};
   const date = S.ui.mpDate = S.ui.mpDate || (lastMp.date && lastMp.date < reportDate() ? D.add(lastMp.date, 1) : reportDate());
-  const ctr = S.ui.mpCtr = S.ui.mpCtr || ctrList[0].v;
+  const ctr = S.ui.mpCtr = S.ui.mpCtr || ctrList[0].v; const hrs = MPF.hrs();
+  const ef = S.ui.mpEF = S.ui.mpEF || {}; ef.q = ef.q || ''; ef.g = ef.g || ''; ef.only = !!ef.only;
   const res = (S.db.lists.resources || []).filter(r => !/^Historical Summary/.test(r.v));
   const dayRows = live(S.db.manpower).filter(r => r.date === date && (r.contractor || ctrList[0].v) === ctr);
-  const val = (rs, f) => { const r = dayRows.find(x => x.resource === rs); return r && isNum(r[f]) ? r[f] : ''; };
+  const val = (rs, k) => { const r = dayRows.find(x => x.resource === rs); return r && isNum(r[k]) ? r[k] : ''; };
   const hist = dayRows.filter(r => /^Historical Summary/.test(r.resource));
-  const groups = [['Indirect', T('indirect')], ['Direct', T('direct')], ['Equipment', LBL('Equipment', 'المعدات')]];
-  c.innerHTML = `<div class="tbar"><label class="small" style="display:flex;gap:6px;align-items:center"><b>${T('date')}</b><input class="in" type="date" value="${date}" data-md></label><span class="chip">${D.dow(date)}</span>
-     <label class="small" style="display:flex;gap:6px;align-items:center"><b>${T('contractor')}</b><select class="in" data-mc>${ctrList.map(x => `<option value="${h(x.v)}" ${x.v === ctr ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}</select></label>
-     ${ed ? `<button class="btn" data-cp>${ic('copy')}${T('copy_prev')}</button>` : ''}${ed ? `<button class="btn" data-mimp>${ic('up')}${T('imp_btn')}</button>` : ''}<span style="flex:1"></span>${ed ? `<button class="btn pri" data-sd>${T('save_day')}</button>` : ''}</div>
-     ${hist.length ? `<div class="notice info">${ic('info')}<div>${T('opening_note')} (${hist.map(r => `${listVal('resources', r.resource)}: ${fmtN(N(r.day) + N(r.night))}`).join(' · ')})</div></div>` : ''}
-     <div class="tw" style="max-height:calc(100vh - 380px)"><table class="t mpgrid"><thead><tr><th>${LBL('Position / equipment', 'الوظيفة / المعدة')}</th><th class="n">${T('day')}</th><th class="n">${T('night')}</th><th class="n">${T('idle')}</th><th class="n">${T('total')}</th></tr></thead><tbody>
-     ${groups.map(([g, gl]) => `<tr class="gh"><td colspan="4">${gl}</td><td class="n" data-gt="${g}"></td></tr>` + res.filter(r => r.type === g).map(r => `<tr data-r="${h(r.v)}" data-g="${g}"><td class="rn">${h(LV(r))}${S.lang === 'ar' ? `<div class="tiny muted">${h(r.v)}</div>` : ''}</td>${['day', 'night', 'idle'].map(f => `<td class="n"><input class="in" type="number" min="0" step="1" data-f="${f}" value="${val(r.v, f)}" ${ed ? '' : 'disabled'}></td>`).join('')}<td class="n" data-rt></td></tr>`).join('')).join('')}
-     </tbody><tfoot><tr><td>${T('total')} (${T('direct')} / ${T('indirect')} / ${LBL('Equipment', 'المعدات')})</td><td colspan="4" class="n" data-tt></td></tr></tfoot></table></div>`;
+  const groups = [['Indirect', LBL('Indirect labour', 'عمالة غير مباشرة')], ['Direct', LBL('Direct labour', 'عمالة مباشرة')], ['Equipment', LBL('Equipment', 'المعدات')]];
+  const gCnt = g => res.filter(r => r.type === g).length;
+  c.innerHTML = `<div class="tbar mpe"><label class="small mpl"><b>${T('date')}</b><input class="in" type="date" value="${date}" data-md></label><span class="chip">${D.dow(date)}</span>
+     <label class="small mpl"><b>${T('contractor')}</b><select class="in" data-mc>${ctrList.map(x => `<option value="${h(x.v)}" ${x.v === ctr ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}</select></label>
+     ${ed ? `<button class="btn" data-cp>${ic('copy')}${T('copy_prev')}</button><button class="btn" data-mimp>${ic('up')}${T('imp_btn')}</button>` : ''}<span style="flex:1"></span>${ed ? `<button class="btn pri" data-sd>${T('save_day')}</button>` : ''}</div>
+   <div class="tbar mpe2"><input class="in search" data-eq placeholder="${h(LBL('Find a position or equipment…', 'ابحث عن وظيفة أو معدة…'))}" value="${h(ef.q)}">
+     <div class="mpseg" role="group" aria-label="${h(LBL('Type', 'النوع'))}">${[['', LBL('All', 'الكل'), res.length], ...groups.map(([g, gl]) => [g, gl, gCnt(g)])].map(([g, gl, n]) => `<button data-eg="${g}" class="${ef.g === g ? 'on' : ''}">${gl}<i>${fmtN(n)}</i></button>`).join('')}</div>
+     <label class="small mpl ck2"><input type="checkbox" data-eo ${ef.only ? 'checked' : ''}>${LBL('Entered only', 'المُدخل فقط')}</label>
+     <span class="tiny muted" data-esh></span></div>
+   ${hist.length ? `<div class="notice info">${ic('info')}<div>${T('opening_note')} (${hist.map(r => `${listVal('resources', r.resource)}: ${fmtN(N(r.day) + N(r.night))}`).join(' · ')})</div></div>` : ''}
+   <div class="tw mpw mpent"><table class="t mpt mpgrid"><colgroup><col><col style="width:13%"><col style="width:13%"><col style="width:13%"><col style="width:12%"><col style="width:12%"></colgroup><thead><tr><th>${LBL('Position / equipment', 'الوظيفة / المعدة')}</th><th class="n">${LBL('Day shift', 'الوردية النهارية')}</th><th class="n">${LBL('Night shift', 'الوردية الليلية')}</th><th class="n">${LBL('Idle', 'متوقف')}</th><th class="n">${LBL('Total working', 'إجمالي العاملين')}</th><th class="n">${LBL('Work hours', 'ساعات العمل')}</th></tr></thead><tbody>
+   ${groups.map(([g, gl]) => `<tr class="gh" data-gh="${g}"><td>${gl}</td>${['day', 'night', 'idle', 'tw', 'wh'].map(k => `<td class="n" data-gt="${g}:${k}"></td>`).join('')}</tr>` + res.filter(r => r.type === g).map(r => `<tr data-r="${h(r.v)}" data-g="${g}" data-nm="${h((r.v + ' ' + (r.ar || '')).toLowerCase())}"><td class="rn">${h(LV(r))}${S.lang === 'ar' ? `<div class="tiny muted">${h(r.v)}</div>` : ''}</td>${['day', 'night', 'idle'].map(k => `<td class="n"><input class="in" type="number" min="0" step="1" data-f="${k}" value="${val(r.v, k)}" ${ed ? '' : 'disabled'} aria-label="${h(LV(r))}"></td>`).join('')}<td class="n" data-rt></td><td class="n" data-rh></td></tr>`).join('')).join('')}
+   </tbody><tfoot><tr><td>${LBL('Total of the day', 'إجمالي اليوم')} <span class="tiny muted">(${LBL('all positions', 'كل الوظائف')})</span></td>${['day', 'night', 'idle', 'tw', 'wh'].map(k => `<td class="n" data-tt="${k}"></td>`).join('')}</tr></tfoot></table></div>`;
+  const num = (tr, k) => N(tr.querySelector(`[data-f=${k}]`).value);
   const recalc = () => {
-    const tot = { Direct: 0, Indirect: 0, Equipment: 0 };
-    c.querySelectorAll('tr[data-r]').forEach(tr => { const d = N(tr.querySelector('[data-f=day]').value), n = N(tr.querySelector('[data-f=night]').value), i = N(tr.querySelector('[data-f=idle]').value); tr.querySelector('[data-rt]').textContent = (d + n + i) ? fmtN(d + n) + (i ? ` (+${i})` : '') : ''; tot[tr.dataset.g] += d + n; });
-    groups.forEach(([g]) => c.querySelector(`[data-gt="${g}"]`).textContent = fmtN(tot[g]));
-    c.querySelector('[data-tt]').textContent = `${fmtN(tot.Direct)} / ${fmtN(tot.Indirect)} / ${fmtN(tot.Equipment)}`;
+    const G = {}, T_ = { day: 0, night: 0, idle: 0, tw: 0, wh: 0 };
+    c.querySelectorAll('tr[data-r]').forEach(tr => {
+      const d = num(tr, 'day'), n = num(tr, 'night'), i = num(tr, 'idle'), w = d + n;
+      tr.querySelector('[data-rt]').textContent = w ? fmtN(w) : ''; tr.querySelector('[data-rh]').textContent = w ? fmtN(w * hrs) : '';
+      tr.classList.toggle('has', d + n + i > 0);
+      const g = G[tr.dataset.g] = G[tr.dataset.g] || { day: 0, night: 0, idle: 0, tw: 0, wh: 0 };
+      [['day', d], ['night', n], ['idle', i], ['tw', w], ['wh', w * hrs]].forEach(([k, x]) => { g[k] += x; T_[k] += x; });
+    });
+    groups.forEach(([g]) => ['day', 'night', 'idle', 'tw', 'wh'].forEach(k => { c.querySelector(`[data-gt="${g}:${k}"]`).textContent = fmtN((G[g] || {})[k] || 0); }));
+    Object.entries(T_).forEach(([k, x]) => { c.querySelector(`[data-tt="${k}"]`).textContent = fmtN(x); });
   };
-  recalc(); c.querySelectorAll('input[data-f]').forEach(i => i.oninput = recalc);
-  c.querySelector('[data-md]').onchange = e => { S.ui.mpDate = e.target.value; render(true); };
-  c.querySelector('[data-mc]').onchange = e => { S.ui.mpCtr = e.target.value; render(true); };
-  const mi = c.querySelector('[data-mimp]'); if (mi) mi.onclick = () => IMP.open('module', 'manpower');
+  const show = () => {   // quick filters of the daily entry: display only, nothing typed is lost
+    const q = ef.q.trim().toLowerCase(); let n = 0;
+    c.querySelectorAll('tr[data-r]').forEach(tr => { const ok = (!ef.g || tr.dataset.g === ef.g) && (!q || tr.dataset.nm.includes(q) || tr.querySelector('.rn').textContent.toLowerCase().includes(q)) && (!ef.only || tr.classList.contains('has')); tr.hidden = !ok; if (ok) n++; });
+    groups.forEach(([g]) => { c.querySelector(`[data-gh="${g}"]`).hidden = !c.querySelector(`tr[data-r][data-g="${g}"]:not([hidden])`); });
+    c.querySelector('[data-esh]').textContent = `${fmtN(n)} / ${fmtN(res.length)} ${LBL('shown', 'معروض')}`;
+  };
+  recalc(); show(); mpFit(c);
+  c.querySelectorAll('input[data-f]').forEach(i => i.oninput = () => { S.ui.mpDirty = true; recalc(); });
+  c.querySelector('[data-eq]').oninput = e => { ef.q = e.target.value; show(); };
+  c.querySelectorAll('[data-eg]').forEach(b => b.onclick = () => { ef.g = b.dataset.eg; c.querySelectorAll('[data-eg]').forEach(x => x.classList.toggle('on', x === b)); show(); });
+  c.querySelector('[data-eo]').onchange = e => { ef.only = e.target.checked; show(); };
+  c.querySelector('[data-md]').onchange = e => { const nv = e.target.value; e.target.value = date; mpGo(() => { S.ui.mpDate = nv; }); };
+  c.querySelector('[data-mc]').onchange = e => { const nv = e.target.value; e.target.value = ctr; mpGo(() => { S.ui.mpCtr = nv; }); };
+  const mi = c.querySelector('[data-mimp]'); if (mi) mi.onclick = async () => { if (await mpOk()) IMP.open('module', 'manpower'); };
   const cp = c.querySelector('[data-cp]');
   if (cp) cp.onclick = () => {
     const prev = live(S.db.manpower).filter(r => r.date < date && (r.contractor || ctrList[0].v) === ctr && !/^Historical Summary/.test(r.resource)).map(r => r.date).sort().pop();
     if (!prev) { toast(LBL('No previous day with detailed entries', 'لا يوجد يوم سابق بإدخالات تفصيلية'), 'bad'); return; }
     const pr = live(S.db.manpower).filter(r => r.date === prev && (r.contractor || ctrList[0].v) === ctr);
-    c.querySelectorAll('tr[data-r]').forEach(tr => { const r = pr.find(x => x.resource === tr.dataset.r); ['day', 'night', 'idle'].forEach(f => tr.querySelector(`[data-f=${f}]`).value = r && isNum(r[f]) ? r[f] : ''); });
-    recalc(); toast(`${T('copy_prev')}: ${D.fmt(prev)}`);
+    c.querySelectorAll('tr[data-r]').forEach(tr => { const r = pr.find(x => x.resource === tr.dataset.r); ['day', 'night', 'idle'].forEach(k => tr.querySelector(`[data-f=${k}]`).value = r && isNum(r[k]) ? r[k] : ''); });
+    S.ui.mpDirty = true; recalc(); show(); toast(`${T('copy_prev')}: ${D.fmt(prev)}`);
   };
   const sd = c.querySelector('[data-sd]');
   if (sd) sd.onclick = () => {
     let n = 0;
-    c.querySelectorAll('tr[data-r]').forEach(tr => {
-      const rs = tr.dataset.r; const vals = {}; ['day', 'night', 'idle'].forEach(f => { const x = tr.querySelector(`[data-f=${f}]`).value; if (x !== '') vals[f] = Number(x); });
+    c.querySelectorAll('tr[data-r]').forEach(tr => {   // every position, also the ones hidden by the quick filters
+      const rs = tr.dataset.r; const vals = {}; ['day', 'night', 'idle'].forEach(k => { const x = tr.querySelector(`[data-f=${k}]`).value; if (x !== '') vals[k] = Number(x); });
       const ex = S.db.manpower.find(r => !r._del && r.date === date && r.resource === rs && (r.contractor || ctrList[0].v) === ctr);
       const has = Object.values(vals).some(x => x > 0);
       if (ex) { const i = S.db.manpower.indexOf(ex); if (has) { const nr = Object.assign({}, ex); delete nr.day; delete nr.night; delete nr.idle; Object.assign(nr, vals); if (JSON.stringify([ex.day, ex.night, ex.idle]) !== JSON.stringify([nr.day, nr.night, nr.idle])) { S.db.manpower[i] = stamp(nr); n++; } } else { S.db.manpower[i] = stamp({ _id: ex._id, _del: true }); n++; } }
       else if (has) { S.db.manpower.push(stamp(Object.assign({ _id: uid(), date, resource: rs, contractor: ctr }, vals))); n++; }
     });
-    touch('manpower day', `${date} ${ctr} (${n})`); toast(`${T('day_saved')} (${n})`, 'ok'); render(true);
+    S.ui.mpDirty = false; touch('manpower day', `${date} ${ctr} (${n})`); toast(`${T('day_saved')} (${n})`, 'ok'); render(true);
   };
-};
+}
 
 /* ---------- CHECKS ---------- */
 PAGES.checks = v => {
@@ -4044,16 +4283,27 @@ tfoot td{background:#E8EEF6;font-weight:700}
     return doc(T('drawings'), LBL('Engineering / drawings status', 'موقف الأعمال الهندسية والمخططات'), kp([[T('design_prog'), fmtP(s.dP), `${fmtN(s.dT)} ${LBL('drawings', 'مخطط')}`], [T('shop_prog'), fmtP(s.sP), `${fmtN(s.sT)} ${LBL('drawings', 'مخطط')}`], [T('eng_prog'), fmtP(s.O)], [LBL('Under review', 'قيد المراجعة'), fmtN(s.ur)], [LBL('Late submissions', 'تقديمات متأخرة'), s.late, '', s.late ? 'bad' : 'ok'], [LBL('Overdue reviews', 'مراجعات متأخرة'), s.ovr, '', s.ovr ? 'bad' : 'ok']]) +
       sec(T('summary'), filterNote('targets') + modTable('targets', T_), T_.length) + sec(LBL('Drawings register', 'سجل المخططات'), filterNote('drawings') + modTable('drawings', L), L.length));
   };
-  R.manpower = () => {
-    const mp = mpDaily(); let pr = period(); let per = mp.filter(d => d.date >= pr.from && d.date <= pr.to);
-    const lastMp = [...mp].reverse().find(d => d.direct + d.indirect > 0) || {}; const hrs = N(P().stdHours || 8);
-    let fb = false; if (!per.some(d => d.direct + d.indirect > 0) && lastMp.date) { pr = { from: D.add(lastMp.date, -6), to: lastMp.date }; per = mp.filter(d => d.date >= pr.from && d.date <= pr.to); fb = true; }
-    const sumT = table([{ h: T('date'), cls: 'nw', v: d => D.fmt(d.date) }, { h: T('day'), v: d => D.dow(d.date) }, { h: T('direct'), n: 1, v: d => fmtN(d.direct) }, { h: T('indirect'), n: 1, v: d => fmtN(d.indirect) }, { h: T('total'), n: 1, v: d => `<b>${fmtN(d.direct + d.indirect)}</b>` }, { h: T('equip_working'), n: 1, v: d => fmtN(d.eqW) }, { h: LBL('Equipment idle', 'معدات متوقفة'), n: 1, v: d => fmtN(d.eqI) }, { h: T('manhours'), n: 1, v: d => fmtN((d.direct + d.indirect) * hrs) }], per,
-      [LBL('Average (working days)', 'المتوسط (أيام العمل)'), '', ...['direct', 'indirect'].map(k => { const w = per.filter(d => d.direct + d.indirect > 0); return fmtN(w.length ? sum(w, d => d[k]) / w.length : 0); }), fmtN((() => { const w = per.filter(d => d.direct + d.indirect > 0); return w.length ? sum(w, d => d.direct + d.indirect) / w.length : 0; })()), '', '', fmtN(sum(per, d => (d.direct + d.indirect) * hrs))]);
-    const dayRows = live(S.db.manpower).filter(r => r.date === lastMp.date && N(r.day) + N(r.night) + N(r.idle) > 0);
-    const byRes = table([{ h: MOD.manpower.F.resource[S.lang === 'ar' ? 'ar' : 'en'], v: r => esc(listVal('resources', r.resource)) }, { h: MOD.manpower.F.type[S.lang === 'ar' ? 'ar' : 'en'], v: r => esc(E(MOD.manpower.F.type.calc(r))) }, { h: T('contractor'), v: r => esc(listVal('contractors', r.contractor)) }, { h: T('day'), n: 1, v: r => fmtN(r.day) }, { h: T('night'), n: 1, v: r => fmtN(r.night) }, { h: T('idle'), n: 1, v: r => fmtN(r.idle) }], dayRows.sort((a, b) => String(MOD.manpower.F.type.calc(a)).localeCompare(String(MOD.manpower.F.type.calc(b)))), [T('total'), '', '', fmtN(sum(dayRows, r => r.day)), fmtN(sum(dayRows, r => r.night)), fmtN(sum(dayRows, r => r.idle))]);
-    return doc(T('manpower'), LBL('Manpower & equipment report', 'تقرير العمالة والمعدات'), kp([[T('last_day'), D.fmt(lastMp.date) || '—'], [T('direct'), fmtN(lastMp.direct)], [T('indirect'), fmtN(lastMp.indirect)], [T('equip_working'), fmtN(lastMp.eqW)], [T('peak_direct'), fmtN(Math.max(0, ...mp.map(d => d.direct)))], [LBL('Man-hours this period', 'ساعات العمل في الفترة'), fmtN(sum(per, d => (d.direct + d.indirect) * hrs))]]) +
-      sec(`${T('daily_summary')} — ${D.fmt(pr.from)} → ${D.fmt(pr.to)}${fb ? ' (' + LBL('last 7 days with data', 'آخر 7 أيام بها بيانات') + ')' : ''}`, sumT, per.length) + sec(`${LBL('Breakdown by resource', 'التفصيل حسب المورد')} — ${D.fmt(lastMp.date)}`, byRes, dayRows.length), 'portrait');
+  R.manpower = () => {   // follows the page filters (date, category, type, resource, contractor) and the work hours / day
+    const rows = MPF.rows(), s = MPF.stats(rows), hrs = s.hrs; const tab = S.ui.mpTab || 'entry';
+    const fn = MPF.note();
+    const note = `<div class="note">${fn.length ? `${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fn.map(esc).join(' · ')}` : LBL('All records – no filter applied', 'كل السجلات – بدون فلاتر')} · ${LBL('Work hours / day', 'ساعات العمل / اليوم')}: <b>${fmtN(hrs, hrs % 1 ? 1 : 0)}</b></div>`;
+    const cards = `<div class="kp" style="grid-template-columns:repeat(4,1fr)">${MPF.cards(s).map(([k, v, sub]) => `<div><span>${esc(k)}</span><b>${v}</b>${sub ? `<i>${sub}</i>` : ''}</div>`).join('')}</div>`;
+    const lab = s.days.filter(d => d.direct + d.indirect > 0); const avg = k => lab.length ? sum(lab, k) / lab.length : 0;
+    const sumT = table([{ h: T('date'), cls: 'nw', v: d => D.fmt(d.date) }, { h: LBL('Day', 'اليوم'), v: d => D.dow(d.date) }, { h: LBL('Direct labour', 'عمالة مباشرة'), n: 1, v: d => fmtN(d.direct) }, { h: LBL('Indirect labour', 'عمالة غير مباشرة'), n: 1, v: d => fmtN(d.indirect) }, { h: LBL('Total labour', 'إجمالي العمالة'), n: 1, v: d => `<b>${fmtN(d.direct + d.indirect)}</b>` }, { h: LBL('Work hours', 'ساعات العمل'), n: 1, v: d => fmtN((d.direct + d.indirect) * hrs) }, { h: LBL('Equipment working', 'معدات عاملة'), n: 1, v: d => fmtN(d.eqW) }, { h: LBL('Equipment idle', 'معدات متوقفة'), n: 1, v: d => fmtN(d.eqI) }], s.days,
+      [`${T('total')} (${fmtN(s.days.length)} ${LBL('days', 'يوم')})`, '', fmtN(s.dMD), fmtN(s.iMD), fmtN(s.dMD + s.iMD), fmtN((s.dMD + s.iMD) * hrs), fmtN(s.eMD), fmtN(s.eI)]) +
+      (lab.length ? `<div class="note">${LBL('Average per working day', 'المتوسط لكل يوم عمل')}: ${LBL('direct', 'مباشرة')} ${fmtN(avg(d => d.direct))} · ${LBL('indirect', 'غير مباشرة')} ${fmtN(avg(d => d.indirect))} · ${LBL('total', 'الإجمالي')} ${fmtN(avg(d => d.direct + d.indirect))}</div>` : '');
+    const br = MPF.byRes(rows);
+    const byRes = table([{ h: LBL('Resource', 'المورد'), cls: 'w', v: x => esc(listVal('resources', x.res)) }, { h: LBL('Category', 'الفئة'), v: x => esc(E(x.cat)) }, { h: LBL('Type', 'النوع'), v: x => esc(E(x.type)) }, { h: LBL('Days recorded', 'أيام مسجلة'), n: 1, v: x => fmtN(x.n) }, { h: LBL('Man-days (day + night)', 'اليوميات (نهاري + ليلي)'), n: 1, v: x => `<b>${fmtN(x.md)}</b>` }, { h: LBL('Idle', 'متوقف'), n: 1, v: x => fmtN(x.idle) }, { h: LBL('Peak day', 'أعلى يوم'), n: 1, v: x => fmtN(x.peak) }, { h: LBL('Average / day', 'المتوسط / يوم'), n: 1, v: x => fmtN(x.avg, 1) }, { h: LBL('Work hours', 'ساعات العمل'), n: 1, v: x => fmtN(x.wh) }], br,
+      [`${T('total')} (${fmtN(br.length)})`, '', '', '', fmtN(sum(br, x => x.md)), fmtN(sum(br, x => x.idle)), '', '', fmtN(sum(br, x => x.wh))]);
+    const rng = s.days.length ? (s.days[0].date === s.lastD ? D.fmt(s.lastD) : `${D.fmt(s.days[0].date)} ${LBL('→', 'إلى')} ${D.fmt(s.lastD)}`) : '—';
+    let body = note + cards + sec(`${T('daily_summary')} — ${rng}`, sumT, s.days.length) + sec(`${LBL('Breakdown by resource', 'التفصيل حسب المورد')} — ${rng}`, byRes, br.length);
+    if (tab === 'log') {   // detailed log as shown on the page (search and sort included)
+      const st = S.ui.mpLog || {}; const byId = new Map(rows.map(r => [r._id, r])); const L = st.view ? st.view.map(id => byId.get(id)).filter(Boolean) : rows.slice().sort((a, b) => b.date.localeCompare(a.date));
+      const C = MP_LOGC().filter(x => x.k !== 'by');
+      body += sec(`${T('detail_log')}${st.q ? ` — ${LBL('Search', 'بحث')}: “${st.q}”` : ''}`, table(C.map(x => ({ h: x.h, n: x.n, cls: x.k === 'res' || x.k === 'remarks' ? 'w' : (x.k === 'date' ? 'nw' : ''), v: r => x.k === 'remarks' ? esc(r.remarks || '') : x.v(r) })), L,
+        [`${T('total')} (${fmtN(L.length)})`, '', '', '', '', ...['day', 'night', 'idle', 'tw', 'wh'].map(k => fmtN(sum(L, r => C.find(x => x.k === k).s(r)))), '']), L.length);
+    }
+    return doc(T('manpower'), LBL('Manpower & equipment report', 'تقرير العمالة والمعدات'), body, tab === 'log' ? 'landscape' : 'portrait');
   };
   R.progress = () => {
     const cut = activeCutoff() || lastCutoff(); const sch = SCH(); if (!sch || !cut) return doc(T('progress'), '', `<div class="note">${T('no_schedule')}</div>`);

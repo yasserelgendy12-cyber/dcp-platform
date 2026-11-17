@@ -934,7 +934,8 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .mpk.hsk{grid-template-columns:repeat(10,minmax(0,1fr))}
 .mpk.hsk .kpi .k{white-space:normal;line-height:1.2;min-height:2.4em;display:flex;align-items:flex-end}
 .mpk.hsk .kpi .s{white-space:normal;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-@media (max-width:1500px){.mpk.hsk{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media (max-width:1500px){.mpk.hsk{gap:6px}.mpk.hsk .kpi{padding:6px 8px}.mpk.hsk .kpi .k{font-size:10px;letter-spacing:0}.mpk.hsk .kpi .v{font-size:15.5px}.mpk.hsk .kpi .s{font-size:10px}}
+@media (max-width:1300px){.mpk.hsk{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .btn.hsmp{background:#F2F6FB;color:var(--ink2);font-weight:600}
 table.t.mpt th.mpc{background:#1B3A5E}table.t.mpt td.mpc{background:#F4F7FB;color:var(--navy)}
 i.src{font-style:normal;color:#8FB3DA;font-weight:700}
@@ -953,6 +954,33 @@ table.t.mpt tr.obr td{background:#F7F3EA}
 .hf.wide{grid-column:1/-1}.hf.wide .in{height:auto;text-align:start}
 .hsec.mpsec{background:#F7FAFD}
 .hmp{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px}.hmp div{background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px}.hmp span{display:block;font-size:10.5px;color:var(--ink3)}.hmp b{font-size:16px;color:var(--navy)}
+/* multi-select filter (one filter, several values) */
+.fslot{display:inline-flex}
+.msel{display:inline-flex;align-items:center;gap:5px;height:32px;cursor:pointer;max-width:300px;white-space:nowrap;font-size:12.5px;color:var(--ink2)}
+.msel span{color:var(--ink3);font-weight:500}.msel b{font-weight:600;color:var(--input);overflow:hidden;text-overflow:ellipsis}.msel i{font-style:normal;color:var(--ink3);font-size:10px;margin-inline-start:2px}
+.msel.on{border-color:var(--pri);background:var(--pri-l);box-shadow:0 0 0 2px rgba(29,95,168,.12)}.msel.on b{color:var(--navy)}
+.mspop{position:fixed;z-index:200;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px rgba(15,42,74,.18);padding:8px;max-width:380px;display:flex;flex-direction:column;gap:6px}
+.mspop .in{width:100%;height:30px}
+.mspop .msa{display:flex;gap:10px}.mspop .msa button{border:0;background:transparent;color:var(--pri);font:inherit;font-size:12px;font-weight:600;cursor:pointer;padding:2px}
+.mspop .msl{max-height:300px;overflow:auto;display:flex;flex-direction:column}
+.mspop .msl label{display:flex;align-items:center;gap:8px;padding:5px 6px;border-radius:6px;cursor:pointer;font-size:12.5px}.mspop .msl label:hover{background:var(--line2)}
+.mspop .msl label span{flex:1}.mspop .msl label i{font-style:normal;font-size:11px;color:var(--ink3);background:var(--line2);border-radius:9px;padding:0 6px}
+.mspop .msf{display:flex;justify-content:flex-end;gap:6px;border-top:1px solid var(--line2);padding-top:6px}
+/* registers: document links and the last reply */
+.dlink{display:inline-flex;align-items:center;gap:4px;color:var(--pri);font-weight:600;font-size:12px;text-decoration:none}.dlink:hover{text-decoration:underline}.dlink svg{width:14px;height:14px}
+.dlink.btn{color:var(--pri)}
+table.t.mpt td.cp{text-align:center}
+.rp b{font-weight:600;color:var(--navy);font-size:12px}.rp .bdg{font-size:10.5px}
+.tiny.bad{color:var(--bad);font-weight:600}
+.tw.rglog,.tw.rgsum{max-height:calc(100vh - 460px - var(--tb));min-height:240px}
+/* contract documents */
+.pdg{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:10px}
+.pdc{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;box-shadow:var(--sh)}
+.pdh{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line2);padding-bottom:6px;margin-bottom:6px;color:var(--navy)}
+.pdi{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line2)}.pdi:last-child{border-bottom:0}
+.pdt{flex:1;min-width:0}.pdt b{font-size:12.5px;color:var(--ink)}.pde{padding:6px 0}
+
+.tw.tgfit{max-height:calc(100vh - 470px - var(--tb));min-height:240px}.tw.tgfit table.t.mpt th{font-size:11px}.tw.tgfit table.t.mpt td{font-size:11.5px}
 
 </style>
 </head>
@@ -1671,14 +1699,14 @@ const IDB = (() => {
 })();
 
 /* ---------- DB model ---------- */
-const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users', 'rusers', 'ractions', 'rsums'];   // rusers = report-portal users (separate from the data-collection users), ractions = report decisions & actions, rsums = delay summaries EN / AR (merged per record)
+const COLLS = ['hse', 'dc', 'manpower', 'drawings', 'targets', 'invoices', 'cutoffs', 'users', 'rusers', 'ractions', 'rsums', 'pdocs'];   // rusers = report-portal users (separate from the data-collection users), ractions = report decisions & actions, rsums = delay summaries EN / AR (merged per record)
 function emptyDB(p) {
   return {
     schema: DB_SCHEMA, id: `${p.number}-${p.code}`, createdAt: nowISO(), _at: nowISO(),
     project: Object.assign({ number: '', code: '', name: '', nameAr: '', location: '', owner: '', consultant: '', contractor: '', reportPrefix: '', contractValue: 0, totalVO: 0, landArea: '', dpPct: 0.05, retPct: 0.05, signDate: '', dpDate: '', handoverDate: '', commencement: '', completion: '', stdHours: 8, preparedBy: '', logos: {}, _at: nowISO() }, p),
     params: { designWeight: 0.25, shopWeight: 0.75, creditURShop: 0.3, creditURDesign: 1, drwReviewDays: 14, manpowerFirstDate: '', lookahead: 14, _at: nowISO() },
     lists: clone(DEFAULT_LISTS), security: { pins: { admin: 'admin', contractor: 'contractor', consultant: 'consultant', owner: 'owner' }, _at: nowISO() },
-    schedule: null, baseline: null, presence: {}, cutoffs: [], users: [], updates: {}, hse: [], dc: [], manpower: [], drawings: [], targets: [], invoices: [], audit: []
+    schedule: null, baseline: null, presence: {}, cutoffs: [], users: [], updates: {}, hse: [], dc: [], manpower: [], drawings: [], targets: [], invoices: [], pdocs: [], audit: []
   };
 }
 /* ---------- schedule sources (XER): the approved baseline + the latest update ----------
@@ -2299,10 +2327,13 @@ const MOD = {
       F('zone', 'Location / Zone', 'الموقع / المنطقة', 'list', { list: 'zones', sec: 1 }),
       F('from', 'From', 'من', 'text', { sec: 1 }), F('to', 'To', 'إلى', 'text', { sec: 1 }),
       F('transmittal', 'Transmittal No', 'رقم خطاب الإرسال', 'text', { sec: 1 }),
+      F('docLink', 'Document Copy Link', 'رابط نسخة المستند', 'url', { sec: 1, wide: 1 }),
       F('qty', 'Qty', 'الكمية', 'int', { tbl: 1, sec: 1, tot: 1 }),
       F('replyDue', 'Reply Due Date', 'تاريخ استحقاق الرد', 'calc', { ft: 'date', tbl: 1, sec: 2, calc: r => { const d = L_.doc(r.docType); return (r.issueDate && d && d.resp === 'Yes') ? D.add(r.issueDate, N(d.days)) : ''; } }),
       F('replyDate', 'Reply Date', 'تاريخ الرد', 'date', { tbl: 1, sec: 2 }),
       F('reviewCode', 'Review Code', 'كود المراجعة', 'list', { list: 'reviewCodes', tbl: 1, sec: 2 }),
+      F('replyRef', 'Reply Ref No', 'الرقم المرجعي للرد', 'text', { sec: 2 }),
+      F('replyLink', 'Reply Copy Link', 'رابط نسخة الرد', 'url', { sec: 2 }),
       F('status', 'Status', 'الحالة', 'calc', { badge: 1, tbl: 1, sec: 2, calc: r => {
         if (!r.docType) return ''; if (!r.issueDate) return 'In Progress'; if (r.replyDate) return 'Replied';
         const d = L_.doc(r.docType); if (d && d.resp === 'No') return 'Info Only'; if (r.recordType === 'Opening Balance') return 'Under Review';
@@ -2353,9 +2384,12 @@ const MOD = {
       F('plannedSub', 'Planned Submission Date', 'تاريخ التقديم المخطط', 'date', { tbl: 1, sec: 1 }),
       F('actualSub', 'Actual Submission Date', 'تاريخ التقديم الفعلي', 'date', { tbl: 1, sec: 1 }),
       F('transmittal', 'Transmittal No', 'رقم خطاب الإرسال', 'text', { sec: 1 }),
+      F('docLink', 'Submitted Copy Link', 'رابط نسخة المخطط المقدَّم', 'url', { sec: 1, wide: 1 }),
       F('reviewDue', 'Review Due Date', 'تاريخ استحقاق المراجعة', 'calc', { ft: 'date', sec: 1, calc: r => r.actualSub ? D.add(r.actualSub, N(S.db.params.drwReviewDays)) : '' }),
       F('reviewDate', 'Review Date', 'تاريخ المراجعة', 'date', { tbl: 1, sec: 1 }),
       F('reviewCode', 'Review Code', 'كود المراجعة', 'list', { list: 'reviewCodes', tbl: 1, sec: 1 }),
+      F('replyRef', 'Reply Ref No', 'الرقم المرجعي للرد', 'text', { sec: 1 }),
+      F('replyLink', 'Reply Copy Link', 'رابط نسخة الرد', 'url', { sec: 1 }),
       F('status', 'Status', 'الحالة', 'calc', { badge: 1, tbl: 1, sec: 1, calc: r => {
         if (!r.no) return ''; const rd = reportDate();
         if (!r.actualSub) return (r.plannedSub && r.plannedSub < rd) ? 'Late - Not Submitted' : 'Not Submitted';
@@ -2721,6 +2755,9 @@ const badgeCls = v => ({ 'Replied': 'ok', 'Paid': 'ok', 'Approved': 'ok', 'Compl
   'Overdue': 'bad', 'Late - Not Submitted': 'bad', 'Overdue Review': 'bad', 'Rejected': 'bad', 'Paid Late': 'warn', 'Check Code': 'bad', 'Not in list': 'bad', 'REVIEW': 'warn', 'Behind': 'bad',
   'Under Review': 'warn', 'Awaiting Approval': 'warn', 'Unpaid - Not Due': 'info', 'In Progress': 'info', 'Approved as Noted': 'ok', 'Revise & Resubmit': 'warn', 'Not Submitted': '', 'Info Only': '', 'Opening Balance': 'navy' }[v] || '');
 const bdg = v => v ? `<span class="bdg ${badgeCls(v)}">${h(E(v))}</span>` : '';
+// a document link (OneDrive / SharePoint / Drive …): opens in a new tab; only http(s) links are made clickable
+const safeUrl = v => /^https?:\/\//i.test(String(v || '').trim()) ? String(v).trim() : '';
+const linkA = (v, label, cls) => { const u = safeUrl(v); return u ? `<a class="dlink ${cls || ''}" href="${h(u)}" target="_blank" rel="noopener noreferrer" title="${h(u)}">${ic('link')}${label ? `<span>${h(label)}</span>` : ''}</a>` : (v ? `<span class="tiny muted" title="${h(v)}">${h(String(v).slice(0, 30))}</span>` : ''); };
 function fmtVal(f, v, r) {
   if (v === '' || v === null || v === undefined) return '';
   const ft = f.ft || f.t;
@@ -2730,6 +2767,7 @@ function fmtVal(f, v, r) {
   if (ft === 'pct') return fmtP(v, 1);
   if (ft === 'int' || ft === 'dec') return fmtN(v, ft === 'dec' ? (Number(v) % 1 ? 1 : 0) : 0);
   if (f.t === 'list') return h(listVal(f.list, v));
+  if (f.t === 'url') return linkA(v);
   if (f.t === 'enum') return h(E(v));
   return h(v);
 }
@@ -2773,6 +2811,7 @@ async function signOut() { // record the sign-out for the presence register, pus
 }
 function go(page) { if (!canSee(page)) page = 'home'; S.page = page; const pe = S.db && (S.db.presence || {})[PRES.key()]; if (pe) pe.page = page; render(); document.getElementById('view').scrollTop = 0; }
 function render(keepScroll) {
+  document.querySelectorAll('.mspop').forEach(p => p.remove());
   if (!S.db || !S.user) return;
   if (S.portal === 'rp') return RP.render();
   _tgtCache = null;
@@ -2797,21 +2836,19 @@ function logPage(v, mk, opts = {}) {
   if (opts.embedded) host.innerHTML = '';
   const rowsAll = live(S.db[mk]);
   host.innerHTML = `<div class="tbar"><input class="in search" placeholder="${T('search')}" value="${h(st.q)}" data-q>
-    ${m.filters.map(k => `<select class="in fsel" data-f="${k}"></select>`).join('')}
+    ${m.filters.map(k => `<span class="fslot" data-fh="${k}"></span>`).join('')}${m.filters.length ? `<button class="btn sm" data-fclr>${ic('x')}${LBL('Clear filters', 'مسح الفلاتر')}</button>` : ''}
     ${opts.embedded ? `<span style="flex:1"></span>${editable ? `<button class="btn pri sm" data-add>${ic('plus')}${T('add_rec')}</button><button class="btn sm" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn sm" data-xl>${ic('dl')}${T('export_xlsx')}</button>` : ''}</div><div data-tb></div>`;
   const draw = () => {
     _tgtCache = null;
     const cols = m.fields.filter(f => f.tbl);
     const passQ = r => { if (!st.q) return true; const q = st.q.toLowerCase(); return m.fields.some(f => String(cv(m, f, r) ?? '').toLowerCase().includes(q) || (f.t === 'list' && String(listVal(f.list, r[f.k])).toLowerCase().includes(q))); };
-    const passF = (r, except) => { for (const [k, val] of Object.entries(st.f)) if (val && k !== except && String(cv(m, m.F[k], r)) !== val) return false; return true; };
+    const passF = (r, except) => { for (const [k, val] of Object.entries(st.f)) { const vs = A_(val); if (vs.length && k !== except && !vs.includes(String(cv(m, m.F[k], r)))) return false; } return true; };
     const base = rowsAll.filter(passQ);
-    host.querySelectorAll('select[data-f]').forEach(sel => { // cascading filter lists
-      const k = sel.dataset.f, f = m.F[k], cur = st.f[k] || ''; const cnt = new Map();
-      base.forEach(r => { if (!passF(r, k)) return; const val = cv(m, f, r); if (val !== '' && val != null) cnt.set(String(val), (cnt.get(String(val)) || 0) + 1); });
-      const vals = Array.from(cnt.keys()).sort(); if (cur && !cnt.has(cur)) vals.unshift(cur);
-      const lbl = o => h(f.t === 'list' ? listVal(f.list, o) : E(o));
-      sel.innerHTML = `<option value="">${h(FL(f))}: ${T('all')}</option>` + vals.map(o => `<option value="${h(o)}" ${o === cur ? 'selected' : ''}>${o === cur ? h(FL(f)) + ': ' : ''}${lbl(o)} (${fmtN(cnt.get(o) || 0)})</option>`).join('');
-      sel.classList.toggle('on', !!cur);
+    host.querySelectorAll('[data-fh]').forEach(slot => { // cascading multi-select filters
+      const k = slot.dataset.fh, f = m.F[k]; const lab = o => f.t === 'list' ? listVal(f.list, o) : E(o);
+      const opts = MSEL.opts(base.filter(r => passF(r, k)), r => cv(m, f, r), lab); A_(st.f[k]).forEach(v => { if (!opts.some(o => o.v === v)) opts.unshift({ v, l: lab(v), n: 0 }); });
+      slot.innerHTML = MSEL.btn(k, FL(f), opts, st.f[k]);
+      MSEL.wire(slot, k, opts, st.f[k], vals => { st.f[k] = vals; st.page = 0; draw(); });
     });
     let rows = base.filter(r => passF(r));
     if (st.sort.k) { const f = m.F[st.sort.k]; rows.sort((a, b) => { const x = cv(m, f, a), y = cv(m, f, b); return (x === y ? 0 : (x ?? '') > (y ?? '') ? 1 : -1) * st.sort.dir; }); }
@@ -2819,7 +2856,7 @@ function logPage(v, mk, opts = {}) {
     const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
     const pr = rows.slice(st.page * PS, st.page * PS + PS);
     const tot = cols.some(f => f.tot);
-    host.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw"><table class="t"><thead><tr>${cols.map(f => `<th class="srt ${['int', 'dec', 'money', 'pct'].includes(f.ft || f.t) ? 'n' : ''}" data-s="${f.k}">${h(FL(f))}${st.sort.k === f.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}<th></th></tr></thead>
+    host.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw ${opts.fit ? 'mpw tgfit' : ''}"><table class="t ${opts.fit ? 'mpt' : ''}"><thead><tr>${cols.map(f => `<th class="srt ${['int', 'dec', 'money', 'pct'].includes(f.ft || f.t) ? 'n' : ''}" data-s="${f.k}">${h(FL(f))}${st.sort.k === f.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}<th>${LBL('Entered by', 'أدخلها')}</th></tr></thead>
       <tbody>${pr.map(r => `<tr class="cl" data-id="${r._id}">${cols.map(f => { const val = cv(m, f, r); const n = ['int', 'dec', 'money', 'pct'].includes(f.ft || f.t); return `<td class="${n ? 'n' : ''} ${f.t === 'calc' && !f.badge ? 'c' : ''} ${f.t === 'area' || f.wide ? 'wrap' : ''}" ${f.t === 'area' ? `title="${h(val)}"` : ''}>${f.t === 'area' ? h(String(val || '').slice(0, 90)) + (String(val || '').length > 90 ? '…' : '') : fmtVal(f, val, r)}</td>`; }).join('')}<td class="tiny muted">${h((r._by || '').split(' (')[0])}</td></tr>`).join('')}</tbody>
       ${tot ? `<tfoot><tr>${cols.map((f, i) => { if (!f.tot) return `<td>${i === 0 ? T('total') + ` (${rows.length})` : ''}</td>`; const s = sum(rows, r => cv(m, f, r)); return `<td class="n">${fmtVal(Object.assign({}, f, { badge: 0 }), s)}</td>`; }).join('')}<td></td></tr></tfoot>` : ''}</table></div>
       <div class="pg">${rows.length} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
@@ -2831,7 +2868,7 @@ function logPage(v, mk, opts = {}) {
     if (pp) pp.onclick = () => { st.page--; draw(); }; if (pn) pn.onclick = () => { st.page++; draw(); };
   };
   host.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
-  host.querySelectorAll('select[data-f]').forEach(s => s.onchange = () => { st.f[s.dataset.f] = s.value; st.page = 0; draw(); });
+  const fc = host.querySelector('[data-fclr]'); if (fc) fc.onclick = () => { st.f = {}; st.q = ''; const q = host.querySelector('[data-q]'); if (q) q.value = ''; st.page = 0; draw(); };
   const root = opts.embedded ? host : v;
   const ab = root.querySelector('[data-add]'); if (ab) ab.onclick = () => openRecord(mk, null, () => opts.redraw ? opts.redraw() : render(true));
   const xb = root.querySelector('[data-xl]'); if (xb) xb.onclick = () => exportModule(mk);
@@ -2846,6 +2883,43 @@ async function exportModule(mk, rowsIn) {   // rowsIn: the records shown (page f
   saveOutput(`${S.db.project.code}_${mk}_${reportDate()}.xlsx`, blob, 'Exports');
 }
 
+/* ---------- multi-select filter (several values in one filter; same behaviour on every Data Collection page) ---------- */
+const A_ = x => Array.isArray(x) ? x : (x ? [x] : []);   // a filter value of an older session (one string) becomes a list
+const MSEL = {
+  // opts: [{v, l, n}] (n = record count), sel: [values]
+  btn(key, label, opts, sel) {
+    sel = A_(sel); const n = sel.length; const one = n === 1 ? (opts.find(o => o.v === sel[0]) || { l: sel[0] }).l : '';
+    return `<button type="button" class="in msel ${n ? 'on' : ''}" data-ms="${h(key)}" title="${h(label)}${n ? ': ' + h(sel.map(v => (opts.find(o => o.v === v) || { l: v }).l).join(' · ')) : ''}"><span>${h(label)}:</span> <b>${n ? (n === 1 ? h(one) : `${n} ${LBL('selected', 'محدد')}`) : T('all')}</b><i>▾</i></button>`;
+  },
+  wire(root, key, opts, sel, apply) { const b = root.querySelector(`[data-ms="${key}"]`); if (b) b.onclick = e => { e.stopPropagation(); MSEL.open(b, opts, A_(sel), apply); }; },
+  close() { const p = document.querySelector('.mspop'); if (p) p._done(false); },
+  open(b, opts, sel, apply) {
+    MSEL.close(); const cur = new Set(sel); const p = document.createElement('div'); p.className = 'mspop'; p.dir = document.documentElement.dir || 'ltr';
+    p.innerHTML = `${opts.length > 8 ? `<input class="in" data-mq placeholder="${h(LBL('Search…', 'بحث…'))}">` : ''}<div class="msa"><button type="button" data-all>${LBL('Select all', 'تحديد الكل')}</button><button type="button" data-none>${LBL('Clear', 'مسح')}</button></div>
+      <div class="msl">${opts.map(o => `<label data-l="${h(String(o.l).toLowerCase())}"><input type="checkbox" data-v="${h(o.v)}" ${cur.has(o.v) ? 'checked' : ''}><span>${h(o.l)}</span>${o.n !== undefined ? `<i>${fmtN(o.n)}</i>` : ''}</label>`).join('') || `<div class="tiny muted" style="padding:6px">${T('none')}</div>`}</div>
+      <div class="msf"><button type="button" class="btn sm" data-x>${T('cancel')}</button><button type="button" class="btn sm pri" data-ok>${LBL('Apply', 'تطبيق')}</button></div>`;
+    document.body.appendChild(p);
+    const r = b.getBoundingClientRect(), w = Math.max(240, r.width); p.style.minWidth = w + 'px'; p.style.top = Math.min(r.bottom + 4, innerHeight - p.offsetHeight - 8) + 'px';
+    if (p.dir === 'rtl') p.style.left = Math.max(8, r.right - p.offsetWidth) + 'px'; else p.style.left = Math.min(r.left, innerWidth - p.offsetWidth - 8) + 'px';
+    const boxes = () => [...p.querySelectorAll('input[data-v]')];
+    const vals = () => boxes().filter(x => x.checked).map(x => x.dataset.v);
+    const outside = e => { if (!p.contains(e.target)) done(true); };
+    const key = e => { if (e.key === 'Escape') done(false); if (e.key === 'Enter') done(true); };
+    const done = ok => { document.removeEventListener('mousedown', outside, true); document.removeEventListener('keydown', key, true); const v = vals(); p.remove(); if (ok && (v.length !== sel.length || v.some(x => !cur.has(x)))) apply(v); };
+    p._done = done;
+    const q = p.querySelector('[data-mq]'); if (q) { q.oninput = () => { const t = q.value.trim().toLowerCase(); p.querySelectorAll('.msl label').forEach(l => { l.hidden = !!t && !l.dataset.l.includes(t); }); }; setTimeout(() => q.focus(), 30); }
+    p.querySelector('[data-all]').onclick = () => boxes().forEach(x => { if (!x.closest('label').hidden) x.checked = true; });
+    p.querySelector('[data-none]').onclick = () => boxes().forEach(x => { x.checked = false; });
+    p.querySelector('[data-x]').onclick = () => done(false); p.querySelector('[data-ok]').onclick = () => done(true);
+    setTimeout(() => { document.addEventListener('mousedown', outside, true); document.addEventListener('keydown', key, true); }, 0);
+  },
+  // options of a filter with counts, from the rows that pass the other filters
+  opts(rows, get, label, order) {
+    const cnt = new Map(); rows.forEach(r => A_(get(r)).forEach(v => { if (v !== '' && v != null) cnt.set(String(v), (cnt.get(String(v)) || 0) + 1); }));
+    const o = [...cnt.keys()].map(v => ({ v, l: label ? label(v) : v, n: cnt.get(v) }));
+    return o.sort(order || ((a, b) => String(a.l).localeCompare(String(b.l))));
+  }
+};
 /* ---------- record form ---------- */
 function inputFor(f, val, ro) {
   const dis = ro ? 'disabled' : '';
@@ -2854,6 +2928,7 @@ function inputFor(f, val, ro) {
   if (['int', 'dec', 'money'].includes(f.t)) return `<input class="in num" type="number" step="${f.t === 'int' ? 1 : 'any'}" min="0" data-k="${f.k}" value="${h(v)}" ${dis}>`;
   if (f.t === 'list') { const L = S.db.lists[f.list] || []; const has = !v || L.some(x => x.v === v); return `<select class="in" data-k="${f.k}" ${dis}><option value=""></option>${L.map(x => `<option value="${h(x.v)}" ${x.v === v ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}${has ? '' : `<option selected value="${h(v)}">${h(v)} ⚠</option>`}</select>`; }
   if (f.t === 'enum') return `<select class="in" data-k="${f.k}" ${dis}>${f.opts.map(o => `<option value="${h(o)}" ${o === v ? 'selected' : ''}>${h(o ? E(o) : '')}</option>`).join('')}</select>`;
+  if (f.t === 'url') return `<input class="in" type="url" dir="ltr" placeholder="https://…  (OneDrive / SharePoint / Google Drive)" data-k="${f.k}" value="${h(v)}" ${dis}>`;
   if (f.t === 'area') return `<textarea class="in" data-k="${f.k}" rows="3" ${dis}>${h(v)}</textarea>`;
   return `<input class="in" type="text" data-k="${f.k}" value="${h(v)}" ${dis}>`;
 }
@@ -3147,14 +3222,308 @@ function setUpd(cid, id, f, val, silent) {
 }
 
 /* ---------- simple log pages ---------- */
-PAGES.dc = v => logPage(v, 'dc', { kpis: () => { const s = dcStats(); return kpi(T('total_subm'), fmtN(s.total)) + kpi(T('last7'), fmtN(s.last7)) + kpi(T('code_a'), fmtN(s.A)) + kpi(T('code_b'), fmtN(s.B)) + kpi(T('code_c'), fmtN(s.C)) + kpi(T('awaiting'), fmtN(s.awaiting), `${T('overdue')}: ${s.overdue}`, s.overdue ? 'bad' : ''); } });
 PAGES.invoices = v => logPage(v, 'invoices', { kpis: () => { const s = invStats(); return kpi(LBL('Invoices', 'المستخلصات'), s.n) + kpi(T('net_invoiced'), fmtM(s.net)) + kpi(T('released'), fmtM(s.rel), '', 'ok') + kpi(T('outstanding'), fmtM(s.out)) + kpi(T('overdue'), s.overdue, '', s.overdue ? 'bad' : 'ok') + kpi(LBL('Due in 30 days', 'مستحق خلال 30 يوم'), fmtM(s.due30)); } });
+
+/* ---------- REGISTERS: Document Control & Drawings (same frame as Manpower & Equipment and HSE Daily) ----------
+   one filter bar (multi-select) for the cards, the tables and the print; document copy link and last reply columns;
+   users of the page add documents and record replies / links; editing and deleting saved records only in record
+   management (user manager). */
+const RG = {
+  st(cfg) { const f = S.ui[cfg.key] = S.ui[cfg.key] || {}; f.from = f.from || ''; f.to = f.to || ''; cfg.defs.forEach(d => { f[d.k] = A_(f[d.k]); }); return f; },
+  pass(cfg, r, f, except) {
+    if (except !== 'date' && (f.from || f.to)) { const d = cfg.date(r); if (!d || (f.from && d < f.from) || (f.to && d > f.to)) return false; }
+    return cfg.defs.every(d => d.k === except || !f[d.k].length || A_(d.get(r)).some(v => f[d.k].includes(String(v))));
+  },
+  rows(cfg, except) { const f = RG.st(cfg); return cfg.all().filter(r => RG.pass(cfg, r, f, except)); },
+  active(cfg) { const f = RG.st(cfg); return !!(f.from || f.to || cfg.defs.some(d => f[d.k].length)); },
+  clear(cfg) { S.ui[cfg.key] = {}; const L = S.ui[cfg.key + 'L']; if (L) { L.q = ''; L.page = 0; L.sel = new Set(); } },
+  note(cfg) { const f = RG.st(cfg); const p = []; if (f.from || f.to) p.push(`${cfg.dateLbl()}: ${MPF.range(f)}`); cfg.defs.forEach(d => { if (f[d.k].length) p.push(`${d.l()}: ${f[d.k].map(v => d.lab ? d.lab(v) : v).join(' / ')}`); }); return p; },
+  bar(cfg, extra) {
+    const f = RG.st(cfg); const ds = cfg.all().map(cfg.date).filter(Boolean).sort(); const mn = ds[0] || '', mx = ds[ds.length - 1] || '';
+    return `<div class="tbar mpf"><div class="mpd ${f.from || f.to ? 'on' : ''}" title="${h(LBL('Pick a date to show that day only; add the second date for a period', 'اختر تاريخاً لعرض بيانات ذلك اليوم فقط، وأضف التاريخ الثاني لعرض فترة'))}"><b>${cfg.dateLbl()}</b><input class="in" type="date" data-fd="from" value="${h(f.from)}" min="${mn}" max="${mx}" aria-label="${h(LBL('From', 'من'))}"><span>${LBL('to', 'إلى')}</span><input class="in" type="date" data-fd="to" value="${h(f.to)}" min="${mn}" max="${mx}" aria-label="${h(LBL('To', 'إلى'))}"></div>
+      ${cfg.defs.map(d => `<span class="fslot" data-rgs="${d.k}"></span>`).join('')}<button class="btn sm" data-rclr ${RG.active(cfg) ? '' : 'disabled'}>${ic('x')}${LBL('Clear filters', 'مسح الفلاتر')}</button><span style="flex:1"></span>${extra || ''}</div>`;
+  },
+  wire(cfg, v, go) {
+    const f = RG.st(cfg);
+    cfg.defs.forEach(d => { const slot = v.querySelector(`[data-rgs="${d.k}"]`); if (!slot) return; const opts = MSEL.opts(RG.rows(cfg, d.k), d.get, d.lab, d.order); if (d.fixed) { d.fixed().forEach(x => { if (!opts.some(o => o.v === x)) opts.push({ v: x, l: d.lab(x), n: 0 }); }); if (d.order) opts.sort(d.order); } f[d.k].forEach(x => { if (!opts.some(o => o.v === x)) opts.unshift({ v: x, l: d.lab ? d.lab(x) : x, n: 0 }); }); slot.innerHTML = MSEL.btn(d.k, d.l(), opts, f[d.k]); MSEL.wire(slot, d.k, opts, f[d.k], vals => go(() => { f[d.k] = vals; const L = S.ui[cfg.key + 'L']; if (L) L.page = 0; })); });
+    v.querySelectorAll('[data-fd]').forEach(x => x.onchange = () => go(() => { const k = x.dataset.fd; f[k] = x.value; if (k === 'from' && f.from && (!f.to || f.to < f.from)) f.to = f.from; if (k === 'to' && f.to && f.from && f.from > f.to) f.from = f.to; const L = S.ui[cfg.key + 'L']; if (L) L.page = 0; }));
+    const c = v.querySelector('[data-rclr]'); if (c) c.onclick = () => go(() => RG.clear(cfg));
+  },
+  go: fn => { fn(); render(true); },
+  head(mk, title, desc, ed, mgr, adm, addLbl) {
+    return pageHead(title, desc, `${ed ? `<button class="btn pri" data-radd>${ic('plus')}${addLbl}</button><button class="btn" data-rimp>${ic('up')}${T('imp_btn')}</button>` : ''}${mgr ? `<button class="btn ${adm ? 'adm' : ''}" data-radm title="${h(LBL('Edit or delete any saved record (user manager)', 'تعديل أو حذف أي سجل محفوظ (مدير المستخدمين)'))}">${ic(adm ? 'x' : 'pen')}${adm ? LBL('Close record management', 'إنهاء إدارة السجلات') : LBL('Manage records', 'إدارة السجلات')}</button>` : ''}`) + roNotice(mk) +
+      (adm ? `<div class="notice warn">${ic('warn')}<div><b>${LBL('Record management is on.', 'وضع إدارة السجلات مفعّل.')}</b> ${LBL('Edit (✎) or delete (🗑) any record, or tick several records and delete them together. Every change is kept in the activity log.', 'تعديل (✎) أو حذف (🗑) أي سجل، أو تحديد عدة سجلات وحذفها معاً. كل تغيير يُحفظ في سجل النشاط.')}</div></div>` : '');
+  },
+  wireHead(v, mk, admKey) {
+    const a = v.querySelector('[data-radd]'); if (a) a.onclick = () => openRecord(mk, null, () => render(true));
+    const i = v.querySelector('[data-rimp]'); if (i) i.onclick = () => IMP.open('module', mk, { after: () => render(true) });
+    const m = v.querySelector('[data-radm]'); if (m) m.onclick = () => { S.ui[admKey] = !S.ui[admKey]; render(true); };
+  },
+  del(mk, recs, what) {
+    const ids = new Set(recs.map(r => r._id)); S.db[mk] = S.db[mk].map(r => ids.has(r._id) ? stamp({ _id: r._id, _del: true }) : r);
+    const L = S.ui[(mk === 'dc' ? 'dcF' : 'dwF') + 'L']; if (L) L.sel = new Set();
+    touch('delete', `${mk}: ${what} (${ids.size})`); toast(`${T('deleted')} (${fmtN(ids.size)})`, 'ok'); render(true);
+  },
+  // record a reply / submission / link on a saved record (users of the page) – only these fields change
+  upd(mk, rec, keys, title) {
+    const m = MOD[mk]; const r = clone(rec);
+    modal({ title: `${title} — ${h(mk === 'dc' ? (rec.ref || '') : (rec.no || ''))}`, size: 'md',
+      body: `<div class="tiny muted" style="margin-bottom:8px">${h(mk === 'dc' ? `${listVal('docTypes', rec.docType)} · ${rec.title || ''}` : `${rec.title || ''} · ${E(rec.category)}`)}</div><div class="fgrid">${keys.map(k => { const f = m.F[k]; return `<label class="f" style="${f.t === 'url' || f.t === 'area' ? 'grid-column:1/-1' : ''}"><span>${h(FL(f))}</span>${inputFor(f, r[k], false)}</label>`; }).join('')}</div>`,
+      foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-sv>${T('save')}</button>`,
+      onMount: (el, close) => {
+        el.querySelector('[data-c]').onclick = close;
+        el.querySelector('[data-sv]').onclick = () => {
+          el.querySelectorAll('[data-k]').forEach(i => { const f = m.F[i.dataset.k]; let val = i.value.trim ? i.value.trim() : i.value; if (['int', 'dec'].includes(f.t)) val = val === '' ? '' : Number(val); if (val === '' || val == null) delete r[f.k]; else r[f.k] = val; });
+          const bad = keys.find(k => m.F[k].t === 'url' && r[k] && !safeUrl(r[k])); if (bad) { toast(`${FL(m.F[bad])}: ${LBL('the link must start with https://', 'الرابط يجب أن يبدأ بـ https://')}`, 'bad'); el.querySelector(`[data-k="${bad}"]`).classList.add('err'); return; }
+          const d0 = mk === 'dc' ? r.issueDate : r.actualSub, d1 = mk === 'dc' ? r.replyDate : r.reviewDate;
+          if (d0 && d1 && d1 < d0) { toast(LBL('The reply date is before the issue / submission date', 'تاريخ الرد قبل تاريخ الإصدار / التقديم'), 'bad'); return; }
+          const i = S.db[mk].findIndex(x => x._id === rec._id); S.db[mk][i] = stamp(r); touch('edit', `${mk}: ${mk === 'dc' ? rec.ref : rec.no} (${keys.join(', ')})`); toast(T('saved'), 'ok'); close(); render(true);
+        };
+      } });
+  },
+  // log table shared by both registers
+  log(c, cfg, rowsIn, o) {
+    const st = S.ui[cfg.key + 'L'] = S.ui[cfg.key + 'L'] || { q: '', sort: { k: cfg.sort0, dir: -1 }, page: 0, sel: new Set() };
+    if (!(st.sel instanceof Set)) st.sel = new Set();
+    const cols = cfg.cols(o); const C = Object.fromEntries(cols.map(x => [x.k, x])); const adm = o.adm; const mk = cfg.mk;
+    if ((c.clientWidth || innerWidth) < 1500) cols.forEach(x => { if (x.wn) x.w = x.wn; });
+    c.innerHTML = `<div class="tbar"><input class="in search" style="min-width:300px" placeholder="${h(cfg.qph())}" value="${h(st.q)}" data-q>
+      ${adm ? `<button class="btn sm danger" data-dsel disabled>${ic('trash')}${LBL('Delete selected', 'حذف المحدد')} <span data-nsel>(0)</span></button>` : ''}
+      <span style="flex:1"></span><button class="btn sm" data-xl title="${h(LBL('Exports the records shown (current filters)', 'يصدّر السجلات المعروضة (حسب الفلاتر الحالية)'))}">${ic('dl')}${T('export_xlsx')}</button></div><div data-tb></div>`;
+    const draw = () => {
+      const q = st.q.trim().toLowerCase();
+      let rows = !q ? rowsIn.slice() : rowsIn.filter(r => cfg.text(r).some(x => String(x || '').toLowerCase().includes(q)));
+      const sk = C[st.sort.k] || C[cfg.sort0]; rows.sort((a, b) => { const x = sk.s(a), y = sk.s(b); return x === y ? 0 : (x > y ? 1 : -1) * st.sort.dir; });
+      st.view = rows.map(r => r._id);
+      const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
+      const pr = rows.slice(st.page * PS, st.page * PS + PS); const allSel = pr.length && pr.every(r => st.sel.has(r._id));
+      c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw rglog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
+          ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}">${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+        <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.cls || ''}">${x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
+        <tfoot><tr>${adm ? '<td></td>' : ''}${cfg.foot(rows, cols)}${adm ? '<td></td>' : ''}</tr></tfoot></table></div>
+        <div class="pg">${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
+        : `<div class="card empty">${T('none')}</div>`;
+      const tb = c.querySelector('[data-tb]'); const recOf = tr => S.db[mk].find(x => x._id === tr.dataset.id);
+      const nsel = () => { const n = [...st.sel].filter(id => rows.some(r => r._id === id)).length; const b = c.querySelector('[data-dsel]'); if (b) { b.disabled = !n; b.querySelector('[data-nsel]').textContent = `(${fmtN(n)})`; } };
+      tb.querySelectorAll('[data-s]').forEach(th => th.onclick = () => { const k = th.dataset.s; st.sort = { k, dir: st.sort.k === k ? -st.sort.dir : (C[k].d0 || 1) }; draw(); });
+      tb.querySelectorAll('tr[data-id]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-ck],[data-del],[data-act],a')) return; openRecord(mk, recOf(tr), () => render(true), { ro: !adm }); });
+      tb.querySelectorAll('[data-act]').forEach(b => b.onclick = () => o.act(b.dataset.act, recOf(b.closest('tr'))));
+      tb.querySelectorAll('[data-ck]').forEach(x => x.onchange = () => { const id = x.closest('tr').dataset.id; x.checked ? st.sel.add(id) : st.sel.delete(id); x.closest('tr').classList.toggle('sel', x.checked); nsel(); });
+      const sa = tb.querySelector('[data-sall]'); if (sa) sa.onchange = () => { pr.forEach(r => sa.checked ? st.sel.add(r._id) : st.sel.delete(r._id)); draw(); };
+      tb.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => { const r = recOf(b.closest('tr')); if (!(await confirmBox(`${T('confirm_del')}<div class="tiny muted" style="margin-top:6px">${h(cfg.name(r))}</div>`, T('del'), true))) return; RG.del(mk, [r], cfg.name(r)); });
+      const pp = tb.querySelector('[data-pp]'), pn = tb.querySelector('[data-pn]'); if (pp) pp.onclick = () => { st.page--; draw(); }; if (pn) pn.onclick = () => { st.page++; draw(); };
+      nsel(); mpFit(c);
+    };
+    c.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
+    const ds = c.querySelector('[data-dsel]'); if (ds) ds.onclick = async () => { const sel = rowsIn.filter(r => st.sel.has(r._id)); if (!sel.length || !(await confirmBox(`${LBL('Delete the selected records?', 'حذف السجلات المحددة؟')} (${fmtN(sel.length)})`, T('del'), true))) return; RG.del(mk, sel, LBL('selected records', 'سجلات محددة')); };
+    c.querySelector('[data-xl]').onclick = () => { const byId = new Map(live(S.db[mk]).map(r => [r._id, r])); exportModule(mk, (st.view || []).map(id => byId.get(id)).filter(Boolean)); };
+    draw();
+  }
+};
+/* --- Document Control --- */
+const DCQ = r => N(r.qty) || 1;
+const DC_ST = r => MOD.dc.F.status.calc(r);
+const DC_AWAIT = r => ['Under Review', 'Overdue'].includes(DC_ST(r));
+const DC_PARTY = r => (r.direction === 'Incoming' ? r.from : r.to) || '';
+const DC_CFG = {
+  key: 'dcF', mk: 'dc', sort0: 'date', all: () => live(S.db.dc), date: r => r.issueDate || '', dateLbl: () => LBL('Issue date', 'تاريخ الإصدار'),
+  defs: [
+    { k: 'direction', l: () => LBL('Direction', 'الاتجاه'), get: r => r.direction || '', lab: v => E(v) },
+    { k: 'docType', l: () => LBL('Doc type', 'نوع المستند'), get: r => r.docType || '', lab: v => listVal('docTypes', v) },
+    { k: 'discipline', l: () => LBL('Discipline', 'التخصص'), get: r => r.discipline || '', lab: v => listVal('disciplines', v) },
+    { k: 'status', l: () => LBL('Status', 'الحالة'), get: r => DC_ST(r), lab: v => E(v), order: (a, b) => ['Overdue', 'Under Review', 'Replied', 'Info Only', 'In Progress'].indexOf(a.v) - ['Overdue', 'Under Review', 'Replied', 'Info Only', 'In Progress'].indexOf(b.v) },
+    { k: 'reviewCode', l: () => LBL('Review code', 'كود المراجعة'), get: r => r.reviewCode || '', lab: v => listVal('reviewCodes', v) },
+    { k: 'party', l: () => LBL('From / to', 'الجهة (من / إلى)'), get: DC_PARTY },
+    { k: 'show', fixed: () => DC_SHOW().map(x => x[0]), l: () => LBL('Show', 'عرض'), get: r => DC_SHOW().filter(x => x[2](r)).map(x => x[0]), lab: v => (DC_SHOW().find(x => x[0] === v) || [, v])[1], order: (a, b) => DC_SHOW().findIndex(x => x[0] === a.v) - DC_SHOW().findIndex(x => x[0] === b.v) }
+  ],
+  qph: () => LBL('Search ref, title, party, reply ref, remarks…', 'بحث في الرقم المرجعي، العنوان، الجهة، مرجع الرد، الملاحظات…'),
+  text: r => [r.ref, r.rev, r.title, r.from, r.to, r.transmittal, r.replyRef, r.remarks, listVal('docTypes', r.docType), D.fmt(r.issueDate)],
+  name: r => `${r.ref || ''} · ${r.title || ''}`
+};
+const DC_SHOW = () => [
+  ['await', LBL('Awaiting reply', 'بانتظار الرد'), DC_AWAIT],
+  ['over', LBL('Overdue reply', 'رد متأخر'), r => DC_ST(r) === 'Overdue'],
+  ['due7', LBL('Reply due in 7 days', 'رد مستحق خلال 7 أيام'), r => { const d = MOD.dc.F.replyDue.calc(r); return DC_AWAIT(r) && d && d >= reportDate() && d <= D.add(reportDate(), 7); }],
+  ['nolink', LBL('Without copy link', 'بدون رابط النسخة'), r => !safeUrl(r.docLink)],
+  ['norlink', LBL('Replied without reply link', 'رد بدون رابط نسخة الرد'), r => !!r.replyDate && !safeUrl(r.replyLink)]
+];
+function dcStats2(rows) {
+  const s = (f) => sum(rows.filter(f), DCQ); const rd = reportDate(); const R = rows.filter(r => r.replyDate && r.issueDate);
+  const od = rows.filter(r => DC_ST(r) === 'Overdue'); const code = c => s(r => r.reviewCode === c);
+  return { tot: sum(rows, DCQ), out: s(r => r.direction === 'Outgoing'), inc: s(r => r.direction === 'Incoming'), l7: s(r => r.issueDate > D.add(rd, -7) && r.issueDate <= rd), l7o: s(r => r.issueDate > D.add(rd, -7) && r.issueDate <= rd && r.direction === 'Outgoing'),
+    aw: s(DC_AWAIT), od: sum(od, DCQ), odAvg: od.length ? sum(od, r => MOD.dc.F.daysOverdue.calc(r)) / od.length : 0, odMax: Math.max(0, ...od.map(r => N(MOD.dc.F.daysOverdue.calc(r)))),
+    rep: s(r => DC_ST(r) === 'Replied'), avgRep: R.length ? sum(R, r => D.diff(r.replyDate, r.issueDate)) / R.length : 0, due7: s(DC_SHOW()[2][2]),
+    A: code('Code A'), B: code('Code B'), C: code('Code C'), Dd: code('Code D'), rev: s(r => !!r.reviewCode), link: rows.filter(r => safeUrl(r.docLink)).length, n: rows.length, rlink: rows.filter(r => safeUrl(r.replyLink)).length };
+}
+function dcCards(s) {
+  const pc = x => s.rev ? ` (${fmtN(x / s.rev * 100)}%)` : '';
+  return [
+    [LBL('Documents', 'المستندات'), fmtN(s.tot), `${LBL('outgoing', 'صادر')} ${fmtN(s.out)} · ${LBL('incoming', 'وارد')} ${fmtN(s.inc)}`],
+    [LBL('Issued – last 7 days', 'صادر/وارد – آخر 7 أيام'), fmtN(s.l7), `${LBL('outgoing', 'صادر')} ${fmtN(s.l7o)}`],
+    [LBL('Awaiting reply', 'بانتظار الرد'), fmtN(s.aw), `${LBL('overdue', 'متأخر')} ${fmtN(s.od)}`, s.aw ? 'warn' : 'ok'],
+    [LBL('Overdue replies', 'ردود متأخرة'), fmtN(s.od), s.od ? `${LBL('avg.', 'متوسط')} ${fmtN(s.odAvg)} · ${LBL('max', 'أقصى')} ${fmtN(s.odMax)} ${LBL('days', 'يوم')}` : LBL('none overdue', 'لا يوجد متأخر'), s.od ? 'bad' : 'ok'],
+    [LBL('Replies due in 7 days', 'ردود مستحقة خلال 7 أيام'), fmtN(s.due7), LBL('follow up with the consultant', 'للمتابعة مع الاستشاري'), s.due7 ? 'warn' : ''],
+    [LBL('Replied', 'تم الرد'), fmtN(s.rep), `${LBL('avg. reply', 'متوسط الرد')} ${fmtN(s.avgRep, 1)} ${LBL('days', 'يوم')}`, 'ok'],
+    ['Code A', fmtN(s.A), `${LBL('of reviewed', 'من المراجَع')}${pc(s.A)}`, 'ok'],
+    ['Code B', fmtN(s.B), `${LBL('of reviewed', 'من المراجَع')}${pc(s.B)}`],
+    ['Code C / D', fmtN(s.C + s.Dd), `C ${fmtN(s.C)} · D ${fmtN(s.Dd)}`, s.C + s.Dd ? 'warn' : ''],
+    [LBL('Copies linked', 'نسخ مربوطة'), fmtN(s.link), `${LBL('of', 'من')} ${fmtN(s.n)} ${LBL('records', 'سجل')} · ${LBL('reply copies', 'نسخ الردود')} ${fmtN(s.rlink)}`]
+  ];
+}
+const rgCards = cs => `<div class="mpk hsk">${cs.map(([k, val, sub, cls]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '', cls)).join('')}</div>`;
+const rgReply = (d, code, ref, link) => d || code ? `<div class="rp">${d ? `<b>${D.fmt(d)}</b>` : ''}${code ? ` ${bdg(code)}` : ''}${ref || link ? `<div class="tiny muted">${ref ? h(ref) : ''} ${linkA(link)}</div>` : ''}</div>` : '';
+PAGES.dc = v => {
+  const tab = S.ui.dcTab = S.ui.dcTab || 'reg'; const ed = can('dc'), mgr = canUsers(), cdv = can('cdocs') || mgr;
+  if (!mgr) S.ui.dcAdm = false; const adm = !!S.ui.dcAdm;
+  const rows = RG.rows(DC_CFG); const s = dcStats2(rows);
+  const tabs = [['reg', LBL('Document register', 'سجل المستندات'), rows.length], ['sum', LBL('Status by document type', 'الموقف حسب نوع المستند')], ...(cdv ? [['cdocs', LBL('Contract documents', 'المستندات التعاقدية'), live(S.db.pdocs).length]] : [])];
+  const t = tabs.some(x => x[0] === tab) ? tab : 'reg';
+  v.innerHTML = RG.head('dc', T('dc'), LBL('Document-control register: every document issued or received, a link to its copy, the reply due date, the last reply (date, code, reference, copy) and the status.', 'سجل التحكم بالوثائق: كل مستند صادر أو وارد مع رابط نسخته، تاريخ استحقاق الرد، آخر رد (التاريخ، الكود، المرجع، النسخة) والحالة.'), ed, mgr, adm, LBL('Add document', 'إضافة مستند')) +
+    RG.bar(DC_CFG) + rgCards(dcCards(s)) +
+    `<div class="tabs">${tabs.map(([k, l, n]) => `<div class="tb ${t === k ? 'on' : ''}" data-t="${k}">${l}${n !== undefined ? ` <span class="tcnt">${fmtN(n)}</span>` : ''}</div>`).join('')}</div><div data-tc></div>`;
+  RG.wire(DC_CFG, v, RG.go); RG.wireHead(v, 'dc', 'dcAdm');
+  v.querySelectorAll('[data-t]').forEach(x => x.onclick = () => { S.ui.dcTab = x.dataset.t; render(true); });
+  const c = v.querySelector('[data-tc]');
+  if (t === 'sum') return dcSum(c, rows);
+  if (t === 'cdocs') return cdocsPage(c, mgr);
+  const canAct0 = ed || mgr; const OB = r => r.recordType === 'Opening Balance';   // opening-balance aggregates: no copy / reply actions
+  RG.log(c, Object.assign({}, DC_CFG, {
+    cols: () => [
+      { k: 'date', h: LBL('Issue date', 'تاريخ الإصدار'), w: 84, wn: 78, d0: -1, s: r => r.issueDate || '', v: r => D.fmt(r.issueDate), cls: 'nw' },
+      { k: 'type', h: LBL('Doc type', 'نوع المستند'), w: 128, wn: 104, s: r => listVal('docTypes', r.docType), v: r => h(listVal('docTypes', r.docType)) },
+      { k: 'dir', h: LBL('Direction', 'الاتجاه'), w: 88, wn: 84, s: r => r.direction || '', v: r => `<span class="bdg ${r.direction === 'Incoming' ? 'info' : 'navy'}">${r.direction === 'Incoming' ? '↘' : '↗'} ${h(E(r.direction))}</span>` },
+      { k: 'ref', h: LBL('Ref no / rev', 'الرقم المرجعي / المراجعة'), w: 150, wn: 124, s: r => r.ref || '', v: r => `<span class="mono">${h(r.ref || '')}</span>${r.rev ? `<div class="tiny muted">${h(r.rev)}</div>` : ''}` },
+      { k: 'title', h: LBL('Title / subject', 'العنوان / الموضوع'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp" title="${h(r.title)}">${h(r.title)}</div>` : '' },
+      { k: 'disc', h: LBL('Discipline', 'التخصص'), w: 86, wn: 70, s: r => listVal('disciplines', r.discipline), v: r => h(listVal('disciplines', r.discipline)) },
+      { k: 'party', h: LBL('From / to', 'الجهة (من / إلى)'), w: 104, wn: 86, s: DC_PARTY, v: r => h(DC_PARTY(r)) },
+      { k: 'qty', h: LBL('Qty', 'الكمية'), w: 46, n: 1, s: DCQ, v: r => fmtN(DCQ(r)) },
+      { k: 'due', h: LBL('Reply due', 'استحقاق الرد'), w: 82, wn: 76, s: r => MOD.dc.F.replyDue.calc(r) || '', v: r => D.fmt(MOD.dc.F.replyDue.calc(r)), cls: 'nw' },
+      { k: 'st', h: LBL('Status', 'الحالة'), w: 104, wn: 92, s: DC_ST, v: r => { const o = MOD.dc.F.daysOverdue.calc(r); return `${bdg(DC_ST(r))}${DC_ST(r) === 'Overdue' && o ? `<div class="tiny bad">${fmtN(o)} ${LBL('days late', 'يوم تأخير')}</div>` : ''}`; } },
+      { k: 'reply', h: LBL('Last reply', 'آخر رد'), w: 150, wn: 128, s: r => r.replyDate || '', v: r => rgReply(r.replyDate, r.reviewCode, r.replyRef, r.replyLink) + (canAct0 && (adm || !OB(r)) && (r.replyDate || DC_AWAIT(r) || adm) ? `<button class="lnk ${DC_AWAIT(r) ? 'need' : ''}" data-act="reply">${r.replyDate ? '✎' : '＋ ' + LBL('Record reply', 'تسجيل الرد')}</button>` : '') },
+      { k: 'copy', h: LBL('Copy', 'النسخة'), w: 62, s: r => safeUrl(r.docLink) ? 1 : 0, v: r => safeUrl(r.docLink) ? linkA(r.docLink, LBL('Open', 'فتح')) : (canAct0 && (adm || !OB(r)) ? `<button class="lnk need" data-act="link" title="${h(LBL('Add the link of the document copy', 'إضافة رابط نسخة المستند'))}">＋ ${LBL('Link', 'رابط')}</button>` : '—'), cls: 'cp' }
+    ],
+    foot: (rows, cols) => `<td colspan="7">${T('total')} (${fmtN(rows.length)} ${T('rows')})</td><td class="n">${fmtN(sum(rows, DCQ))}</td><td colspan="4"></td>`
+  }), rows, { adm, act: (a, r) => RG.upd('dc', r, a === 'link' ? ['docLink'] : ['replyDate', 'reviewCode', 'replyRef', 'replyLink', 'docLink'], a === 'link' ? LBL('Document copy link', 'رابط نسخة المستند') : LBL('Record the reply', 'تسجيل الرد')) });
+};
+function dcSum(c, rows) {
+  const types = [...new Set(rows.map(r => r.docType).filter(Boolean))].map(t => { const x = rows.filter(r => r.docType === t); return { t, s: dcStats2(x) }; }).sort((a, b) => b.s.tot - a.s.tot);
+  const all = dcStats2(rows); const K = [['tot', LBL('Total', 'الإجمالي')], ['out', LBL('Outgoing', 'صادر')], ['inc', LBL('Incoming', 'وارد')], ['l7', LBL('Last 7 days', 'آخر 7 أيام')], ['aw', LBL('Awaiting reply', 'بانتظار الرد')], ['od', LBL('Overdue', 'متأخر')], ['rep', LBL('Replied', 'تم الرد')], ['avgRep', LBL('Avg. days to reply', 'متوسط أيام الرد')], ['A', 'Code A'], ['B', 'Code B'], ['C', 'Code C'], ['Dd', 'Code D'], ['link', LBL('Copies linked', 'نسخ مربوطة')]];
+  const cell = (s, k) => k === 'avgRep' ? fmtN(s[k], 1) : k === 'od' && s.od ? `<span class="bdg bad">${fmtN(s.od)}</span>` : fmtN(s[k]);
+  c.innerHTML = types.length ? `<div class="tw mpw rgsum"><table class="t mpt"><colgroup><col style="width:20%">${K.map(() => '<col>').join('')}</colgroup><thead><tr><th>${LBL('Document type', 'نوع المستند')}</th>${K.map(([, l]) => `<th class="n">${l}</th>`).join('')}</tr></thead>
+    <tbody>${types.map(x => `<tr class="cl" data-ty="${h(x.t)}" title="${h(LBL('Open these documents in the register', 'فتح هذه المستندات في السجل'))}"><td>${h(listVal('docTypes', x.t))}</td>${K.map(([k]) => `<td class="n">${cell(x.s, k)}</td>`).join('')}</tr>`).join('')}</tbody>
+    <tfoot><tr><td>${T('total')} (${fmtN(types.length)})</td>${K.map(([k]) => `<td class="n">${k === 'avgRep' ? fmtN(all[k], 1) : fmtN(all[k])}</td>`).join('')}</tr></tfoot></table></div>` : `<div class="card empty">${T('none')}</div>`;
+  c.querySelectorAll('tr[data-ty]').forEach(tr => tr.onclick = () => { RG.st(DC_CFG).docType = [tr.dataset.ty]; S.ui.dcTab = 'reg'; render(true); });
+  mpFit(c);
+}
+/* --- Contract documents (contract, BOQ …): links kept in db.pdocs; seen by holders of `cdocs`, managed by the user manager --- */
+const PDOC_KINDS = () => [['contract', LBL('Contract agreement', 'عقد المشروع')], ['boq', LBL('Bill of quantities (BOQ)', 'المقايسة / جدول الكميات (BOQ)')], ['spec', LBL('Specifications', 'المواصفات')], ['dwg', LBL('Contract drawings', 'المخططات التعاقدية')], ['vo', LBL('Variation orders / addenda', 'الأوامر التغييرية والملاحق')], ['other', LBL('Other contract documents', 'مستندات تعاقدية أخرى')]];
+function cdocsPage(c, mgr) {
+  const P = live(S.db.pdocs || []);
+  c.innerHTML = `<div class="notice info">${ic('info')}<div>${LBL('The project contract, BOQ and the other contract documents, as OneDrive / SharePoint / Google Drive links. Visible to users holding “Contract documents” (Users & Permissions); links are added and changed by the user manager. The file itself stays in the drive with its own sharing.', 'عقد المشروع والمقايسة وباقي المستندات التعاقدية كروابط OneDrive / SharePoint / Google Drive. تظهر لمن لديه صلاحية «المستندات التعاقدية» (المستخدمون والصلاحيات)، ويضيف الروابط ويعدّلها مدير المستخدمين. الملف نفسه يبقى في الدرايف بصلاحيات مشاركته.')}</div></div>
+    <div class="pdg">${PDOC_KINDS().map(([k, l]) => { const its = P.filter(x => (x.kind || 'other') === k).sort((a, b) => (b.date || '').localeCompare(a.date || '')); return `<div class="pdc"><div class="pdh"><b>${l}</b>${mgr ? `<button class="lnk" data-pa="${k}">＋ ${LBL('Add link', 'إضافة رابط')}</button>` : ''}</div>${its.length ? its.map(x => `<div class="pdi" data-pid="${x._id}"><div class="pdt"><b>${h(x.title || l)}</b><div class="tiny muted">${[x.ref, D.fmt(x.date), x.notes].filter(Boolean).map(h).join(' · ')}</div></div>${linkA(x.link, LBL('Open', 'فتح'), 'btn sm')}${mgr ? `<button class="ib" data-pe title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-pd title="${h(T('del'))}">${ic('trash')}</button>` : ''}</div>`).join('') : `<div class="tiny muted pde">${LBL('No link yet', 'لا يوجد رابط بعد')}</div>`}</div>`; }).join('')}</div>`;
+  const dlg = (rec, kind) => {
+    const r = rec ? clone(rec) : { kind };
+    modal({ title: rec ? LBL('Contract document', 'مستند تعاقدي') : LBL('Add contract document link', 'إضافة رابط مستند تعاقدي'), size: 'md',
+      body: `<div class="fgrid"><label class="f"><span>${LBL('Type', 'النوع')}</span><select class="in" data-pk="kind">${PDOC_KINDS().map(([k, l]) => `<option value="${k}" ${r.kind === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label><label class="f"><span>${LBL('Title', 'العنوان')} <span class="req">*</span></span><input class="in" data-pk="title" value="${h(r.title || '')}"></label>
+        <label class="f" style="grid-column:1/-1"><span>${LBL('Drive link (OneDrive / SharePoint / Google Drive)', 'رابط الدرايف (OneDrive / SharePoint / Google Drive)')} <span class="req">*</span></span><input class="in" type="url" dir="ltr" data-pk="link" placeholder="https://…" value="${h(r.link || '')}"></label>
+        <label class="f"><span>${LBL('Reference no', 'الرقم المرجعي')}</span><input class="in" data-pk="ref" value="${h(r.ref || '')}"></label><label class="f"><span>${LBL('Date', 'التاريخ')}</span><input class="in" type="date" data-pk="date" value="${h(r.date || '')}"></label>
+        <label class="f" style="grid-column:1/-1"><span>${LBL('Notes', 'ملاحظات')}</span><input class="in" data-pk="notes" value="${h(r.notes || '')}"></label></div>`,
+      foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-sv>${T('save')}</button>`,
+      onMount: (el, close) => {
+        el.querySelector('[data-c]').onclick = close;
+        el.querySelector('[data-sv]').onclick = () => {
+          el.querySelectorAll('[data-pk]').forEach(i => { const v = i.value.trim(); if (v) r[i.dataset.pk] = v; else delete r[i.dataset.pk]; });
+          if (!r.title || !safeUrl(r.link)) { toast(LBL('Enter the title and a link starting with https://', 'أدخل العنوان ورابطاً يبدأ بـ https://'), 'bad'); return; }
+          S.db.pdocs = S.db.pdocs || []; if (rec) { const i = S.db.pdocs.findIndex(x => x._id === rec._id); S.db.pdocs[i] = stamp(r); } else { r._id = 'pd_' + uid(); S.db.pdocs.push(stamp(r)); }
+          touch(rec ? 'edit' : 'add', `contract document: ${r.title}`); toast(T('saved'), 'ok'); close(); render(true);
+        };
+      } });
+  };
+  c.querySelectorAll('[data-pa]').forEach(b => b.onclick = () => dlg(null, b.dataset.pa));
+  c.querySelectorAll('[data-pe]').forEach(b => b.onclick = () => dlg(P.find(x => x._id === b.closest('[data-pid]').dataset.pid)));
+  c.querySelectorAll('[data-pd]').forEach(b => b.onclick = async () => { const x = P.find(y => y._id === b.closest('[data-pid]').dataset.pid); if (!(await confirmBox(`${T('confirm_del')}<div class="tiny muted" style="margin-top:6px">${h(x.title)}</div>`, T('del'), true))) return; const i = S.db.pdocs.findIndex(y => y._id === x._id); S.db.pdocs[i] = stamp({ _id: x._id, _del: true }); touch('delete', `contract document: ${x.title}`); render(true); });
+}
+/* --- Drawings --- */
+const DW_ST = r => MOD.drawings.F.status.calc(r);
+const DW_DATE = r => r.actualSub || r.plannedSub || '';
+const DW_CAT = v => ({ 'Design Drawing': LBL('Design', 'تصميمي'), 'Shop Drawing': LBL('Shop', 'تنفيذي'), 'As-Built Drawing': LBL('As-built', 'كما نُفّذ') }[v] || E(v));
+const DW_SHOW = () => [
+  ['late', LBL('Late – not submitted', 'متأخر – لم يُقدَّم'), r => DW_ST(r) === 'Late - Not Submitted'],
+  ['ovr', LBL('Overdue review', 'مراجعة متأخرة'), r => DW_ST(r) === 'Overdue Review'],
+  ['due14', LBL('Planned in the next 14 days', 'مخطط تقديمه خلال 14 يوماً'), r => !r.actualSub && r.plannedSub && r.plannedSub >= reportDate() && r.plannedSub <= D.add(reportDate(), 14)],
+  ['resub', LBL('Resubmitted', 'أعيد تقديمه'), r => N(r.resub) > 0],
+  ['nolink', LBL('Submitted without copy link', 'مقدَّم بدون رابط النسخة'), r => !!r.actualSub && !safeUrl(r.docLink)]
+];
+const DW_CFG = {
+  key: 'dwF', mk: 'drawings', sort0: 'date', all: () => live(S.db.drawings).filter(r => r.no), date: DW_DATE, dateLbl: () => LBL('Submission date', 'تاريخ التقديم'),
+  defs: [
+    { k: 'category', l: () => LBL('Category', 'الفئة'), get: r => r.category || '', lab: DW_CAT },
+    { k: 'phase', l: () => LBL('Phase', 'المرحلة'), get: r => r.phase || '', lab: v => listVal('phases', v) },
+    { k: 'zone', l: () => LBL('Building / zone', 'المبنى / المنطقة'), get: r => r.zone || '', lab: v => listVal('zones', v) },
+    { k: 'element', l: () => LBL('Element', 'العنصر'), get: r => r.element || '', lab: v => listVal('elements', v) },
+    { k: 'discipline', l: () => LBL('Discipline', 'التخصص'), get: r => r.discipline || '', lab: v => listVal('disciplines', v) },
+    { k: 'status', l: () => LBL('Status', 'الحالة'), get: DW_ST, lab: v => E(v) },
+    { k: 'reviewCode', l: () => LBL('Review code', 'كود المراجعة'), get: r => r.reviewCode || '', lab: v => listVal('reviewCodes', v) },
+    { k: 'show', fixed: () => DW_SHOW().map(x => x[0]), l: () => LBL('Show', 'عرض'), get: r => DW_SHOW().filter(x => x[2](r)).map(x => x[0]), lab: v => (DW_SHOW().find(x => x[0] === v) || [, v])[1], order: (a, b) => DW_SHOW().findIndex(x => x[0] === a.v) - DW_SHOW().findIndex(x => x[0] === b.v) }
+  ],
+  qph: () => LBL('Search drawing no, title, transmittal, reply ref…', 'بحث في رقم المخطط، العنوان، خطاب الإرسال، مرجع الرد…'),
+  text: r => [r.no, r.rev, r.title, r.transmittal, r.replyRef, r.remarks, listVal('zones', r.zone), listVal('elements', r.element)],
+  name: r => `${r.no || ''} · ${r.title || ''}`
+};
+function dwStats(rows) {
+  _tgtCache = null; const f = RG.st(DW_CFG); const keyF = ['phase', 'zone', 'element'];
+  const T_ = live(S.db.targets).filter(t => keyF.every(k => !f[k].length || f[k].includes(t[k])));
+  const dT = sum(T_, t => tgtAgg(t).dT), sT = sum(T_, t => tgtAgg(t).sT); const P = S.db.params;
+  const dP = dT ? sum(T_, t => tgtAgg(t).dP * tgtAgg(t).dT) / dT : 0, sP = sT ? sum(T_, t => tgtAgg(t).sP * tgtAgg(t).sT) / sT : 0;
+  const wD = N(P.designWeight) * (dT > 0), wS = N(P.shopWeight) * (sT > 0);
+  const n = st => rows.filter(r => DW_ST(r) === st).length, cd = c => rows.filter(r => r.reviewCode === c).length; const late = rows.filter(r => DW_ST(r) === 'Late - Not Submitted');
+  return { dP, sP, O: (wD + wS) ? (wD * dP + wS * sP) / (wD + wS) : 0, dT, sT, n: rows.length, des: rows.filter(r => r.category === 'Design Drawing').length, shop: rows.filter(r => r.category === 'Shop Drawing').length, ab: rows.filter(r => r.category === 'As-Built Drawing').length,
+    sub: rows.filter(r => r.actualSub).length, nsub: rows.filter(r => !r.actualSub).length, link: rows.filter(r => r.actualSub && safeUrl(r.docLink)).length, ur: n('Under Review') + n('Overdue Review'), ovr: n('Overdue Review'),
+    A: cd('Code A'), B: cd('Code B'), C: cd('Code C'), Dd: cd('Code D'), late: late.length, lateAvg: late.length ? sum(late, r => MOD.drawings.F.daysLate.calc(r)) / late.length : 0, due14: rows.filter(DW_SHOW()[2][2]).length };
+}
+function dwCards(s) {
+  return [
+    [T('design_prog'), fmtP(s.dP), `${fmtN(s.dT)} ${LBL('drawings planned', 'مخطط مستهدف')}`],
+    [T('shop_prog'), fmtP(s.sP), `${fmtN(s.sT)} ${LBL('drawings planned', 'مخطط مستهدف')}`],
+    [T('eng_prog'), fmtP(s.O), LBL('weighted design + shop', 'مرجّح تصميمي + تنفيذي'), 'ok'],
+    [LBL('Drawings registered', 'المخططات المسجلة'), fmtN(s.n), `${LBL('design', 'تصميمي')} ${fmtN(s.des)} · ${LBL('shop', 'تنفيذي')} ${fmtN(s.shop)} · ${LBL('as-built', 'كما نُفّذ')} ${fmtN(s.ab)}`],
+    [LBL('Submitted', 'المقدَّمة'), fmtN(s.sub), `${LBL('not submitted', 'لم تُقدَّم')} ${fmtN(s.nsub)} · ${LBL('copies linked', 'نسخ مربوطة')} ${fmtN(s.link)}`],
+    [LBL('Under review', 'قيد المراجعة'), fmtN(s.ur), `${LBL('overdue review', 'مراجعة متأخرة')} ${fmtN(s.ovr)}`, s.ovr ? 'warn' : ''],
+    [LBL('Approved (A + B)', 'معتمد (A + B)'), fmtN(s.A + s.B), `A ${fmtN(s.A)} · B ${fmtN(s.B)}`, 'ok'],
+    [LBL('To revise (C + D)', 'للتعديل (C + D)'), fmtN(s.C + s.Dd), `C ${fmtN(s.C)} · D ${fmtN(s.Dd)}`, s.C + s.Dd ? 'warn' : ''],
+    [LBL('Late submissions', 'تقديمات متأخرة'), fmtN(s.late), s.late ? `${LBL('avg.', 'متوسط')} ${fmtN(s.lateAvg)} ${LBL('days late', 'يوم تأخير')}` : LBL('none late', 'لا يوجد متأخر'), s.late ? 'bad' : 'ok'],
+    [LBL('Due in 14 days', 'مستحق خلال 14 يوماً'), fmtN(s.due14), LBL('planned, not submitted', 'مخطط ولم يُقدَّم'), s.due14 ? 'warn' : '']
+  ];
+}
 PAGES.drawings = v => {
-  const st = S.ui.drwTab = S.ui.drwTab || 'log'; const s = drwStats(); const ed = can('drawings');
-  v.innerHTML = pageHead(T('drawings'), MOD.drawings.desc[S.lang]) + roNotice('drawings') + `<div class="grid g6" style="margin-bottom:14px">${kpi(T('design_prog'), fmtP(s.dP), `${fmtN(s.dT)} ${LBL('drawings', 'مخطط')}`)}${kpi(T('shop_prog'), fmtP(s.sP), `${fmtN(s.sT)} ${LBL('drawings', 'مخطط')}`)}${kpi(T('eng_prog'), fmtP(s.O))}${kpi(LBL('Under review', 'قيد المراجعة'), fmtN(s.ur))}${kpi(LBL('Late submissions', 'تقديمات متأخرة'), s.late, '', s.late ? 'bad' : 'ok')}${kpi(LBL('Overdue reviews', 'مراجعات متأخرة'), s.ovr, '', s.ovr ? 'bad' : 'ok')}</div>
-    <div class="tabs"><div class="tb ${st === 'log' ? 'on' : ''}" data-t="log">${T('log')}</div><div class="tb ${st === 'sum' ? 'on' : ''}" data-t="sum">${T('summary')}</div></div><div data-tc></div>`;
-  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.ui.drwTab = t.dataset.t; render(true); });
-  logPage(v.querySelector('[data-tc]'), st === 'log' ? 'drawings' : 'targets', { embedded: true });
+  const tab = S.ui.drwTab = ['reg', 'sum'].includes(S.ui.drwTab) ? S.ui.drwTab : 'reg'; const ed = can('drawings'), mgr = canUsers();
+  if (!mgr) S.ui.dwAdm = false; const adm = !!S.ui.dwAdm;
+  const rows = RG.rows(DW_CFG); const s = dwStats(rows);
+  v.innerHTML = RG.head('drawings', T('drawings'), LBL('Design, shop and as-built drawings: planned / actual submission, a link to the submitted copy, the last review (date, code, reference, copy), status and progress credit.', 'المخططات التصميمية والتنفيذية وكما نُفّذت: التقديم المخطط / الفعلي، رابط النسخة المقدَّمة، آخر مراجعة (التاريخ، الكود، المرجع، النسخة)، الحالة ونسبة الإنجاز المحتسبة.'), ed, mgr, adm, LBL('Add drawing', 'إضافة مخطط')) +
+    RG.bar(DW_CFG) + rgCards(dwCards(s)) +
+    `<div class="tabs">${[['reg', LBL('Drawings register', 'سجل المخططات'), rows.length], ['sum', LBL('Targets & progress by phase / building / element', 'المستهدف والإنجاز حسب المرحلة / المبنى / العنصر'), live(S.db.targets).length]].map(([k, l, n]) => `<div class="tb ${tab === k ? 'on' : ''}" data-t="${k}">${l} <span class="tcnt">${fmtN(n)}</span></div>`).join('')}</div><div data-tc></div>`;
+  RG.wire(DW_CFG, v, RG.go); RG.wireHead(v, 'drawings', 'dwAdm');
+  v.querySelectorAll('[data-t]').forEach(x => x.onclick = () => { S.ui.drwTab = x.dataset.t; render(true); });
+  const c = v.querySelector('[data-tc]');
+  if (tab === 'sum') return logPage(c, 'targets', { embedded: true, fit: true });
+  const canAct = ed || mgr; const await_ = r => ['Under Review', 'Overdue Review'].includes(DW_ST(r));
+  RG.log(c, Object.assign({}, DW_CFG, {
+    cols: () => [
+      { k: 'no', h: LBL('Drawing no / rev', 'رقم المخطط / المراجعة'), w: 150, wn: 124, s: r => r.no || '', v: r => `<span class="mono">${h(r.no || '')}</span>${r.rev ? `<div class="tiny muted">${h(r.rev)}${N(r.resub) ? ` · ${LBL('resub.', 'إعادة')} ${fmtN(r.resub)}` : ''}</div>` : ''}` },
+      { k: 'title', h: LBL('Drawing title', 'عنوان المخطط'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp" title="${h(r.title)}">${h(r.title)}</div>` : '' },
+      { k: 'cat', h: LBL('Category', 'الفئة'), w: 70, wn: 60, s: r => r.category || '', v: r => h(DW_CAT(r.category)) },
+      { k: 'ph', h: LBL('Phase', 'المرحلة'), w: 70, wn: 60, s: r => listVal('phases', r.phase), v: r => h(listVal('phases', r.phase)) },
+      { k: 'zone', h: LBL('Building / zone', 'المبنى / المنطقة'), w: 92, wn: 76, s: r => listVal('zones', r.zone), v: r => h(listVal('zones', r.zone)) },
+      { k: 'el', h: LBL('Element', 'العنصر'), w: 92, wn: 76, s: r => listVal('elements', r.element), v: r => h(listVal('elements', r.element)) },
+      { k: 'pl', h: LBL('Planned submission', 'التقديم المخطط'), w: 84, wn: 76, s: r => r.plannedSub || '', v: r => D.fmt(r.plannedSub), cls: 'nw' },
+      { k: 'date', h: LBL('Actual submission', 'التقديم الفعلي'), w: 84, wn: 76, d0: -1, s: r => r.actualSub || '', v: r => r.actualSub ? D.fmt(r.actualSub) + (r.transmittal ? `<div class="tiny muted">${h(r.transmittal)}</div>` : '') : (canAct ? `<button class="lnk" data-act="sub">＋ ${LBL('Submit', 'تقديم')}</button>` : ''), cls: 'nw' },
+      { k: 'st', h: LBL('Status', 'الحالة'), w: 112, wn: 98, s: DW_ST, v: r => { const st = DW_ST(r); const d = st === 'Late - Not Submitted' ? MOD.drawings.F.daysLate.calc(r) : st === 'Overdue Review' ? MOD.drawings.F.reviewOverdue.calc(r) : 0; return `${bdg(st)}${d ? `<div class="tiny bad">${fmtN(d)} ${LBL('days', 'يوم')}</div>` : ''}`; } },
+      { k: 'reply', h: LBL('Last reply (review)', 'آخر رد (المراجعة)'), w: 150, wn: 124, s: r => r.reviewDate || '', v: r => rgReply(r.reviewDate, r.reviewCode, r.replyRef, r.replyLink) + (canAct && r.actualSub && (r.reviewCode || await_(r) || adm) ? `<button class="lnk ${await_(r) ? 'need' : ''}" data-act="reply">${r.reviewCode || r.reviewDate ? '✎' : '＋ ' + LBL('Record review', 'تسجيل المراجعة')}</button>` : '') },
+      { k: 'cr', h: LBL('Progress credit', 'الإنجاز المحتسب'), w: 66, wn: 58, n: 1, s: r => MOD.drawings.F.credit.calc(r), v: r => fmtP(MOD.drawings.F.credit.calc(r), 0) },
+      { k: 'copy', h: LBL('Copy', 'النسخة'), w: 62, s: r => safeUrl(r.docLink) ? 1 : 0, v: r => safeUrl(r.docLink) ? linkA(r.docLink, LBL('Open', 'فتح')) : (canAct && r.actualSub ? `<button class="lnk need" data-act="link" title="${h(LBL('Add the link of the submitted copy', 'إضافة رابط النسخة المقدَّمة'))}">＋ ${LBL('Link', 'رابط')}</button>` : '—'), cls: 'cp' }
+    ],
+    foot: (rows) => `<td colspan="7">${T('total')} (${fmtN(rows.length)} ${T('rows')}) · ${LBL('submitted', 'مقدَّم')} ${fmtN(rows.filter(r => r.actualSub).length)}</td><td colspan="5"></td>`
+  }), rows, { adm, act: (a, r) => RG.upd('drawings', r, a === 'link' ? ['docLink'] : a === 'sub' ? ['actualSub', 'rev', 'resub', 'transmittal', 'docLink'] : ['reviewDate', 'reviewCode', 'replyRef', 'replyLink'], a === 'link' ? LBL('Submitted copy link', 'رابط النسخة المقدَّمة') : a === 'sub' ? LBL('Record the submission', 'تسجيل التقديم') : LBL('Record the review', 'تسجيل المراجعة')) });
 };
 
 /* ---------- HSE DAILY ---------- */
@@ -3172,17 +3541,17 @@ const HSF = {
     ['stop', LBL('Stop work', 'أوامر إيقاف عمل'), r => N(r.stopWork) > 0],
     ['nomp', LBL('Working day without manpower', 'يوم عمل بدون عمالة'), r => r.dayStatus === 'Working' && !(N(r.indirect) + N(r.direct))]
   ],
-  st: () => { const f = S.ui.hsF = S.ui.hsF || {}; ['from', 'to', 'status', 'focus'].forEach(k => { f[k] = f[k] || ''; }); return f; },
+  st: () => { const f = S.ui.hsF = S.ui.hsF || {}; f.from = f.from || ''; f.to = f.to || ''; f.status = A_(f.status); f.focus = A_(f.focus); return f; },
   pass(r, f, except) {
     if (except !== 'date') { if (f.from && r.date < f.from) return false; if (f.to && r.date > f.to) return false; }
-    if (except !== 'status' && f.status && r.dayStatus !== f.status) return false;
-    if (except !== 'focus' && f.focus) { const x = HSF.FOCUS().find(q => q[0] === f.focus); if (x && !x[2](r)) return false; }
+    if (except !== 'status' && f.status.length && !f.status.includes(r.dayStatus)) return false;
+    if (except !== 'focus' && f.focus.length && !HSF.FOCUS().some(q => f.focus.includes(q[0]) && q[2](r))) return false;   // several "show" choices: a day matching any of them
     return true;
   },
   rows: except => { const f = HSF.st(); return hseLive().filter(r => r.date && HSF.pass(r, f, except)).sort((a, b) => a.date.localeCompare(b.date)); },
-  active: () => { const f = HSF.st(); return ['from', 'to', 'status', 'focus'].some(k => f[k]); },
+  active: () => { const f = HSF.st(); return !!(f.from || f.to || f.status.length || f.focus.length); },
   clear: () => { S.ui.hsF = {}; S.ui.hsSec = ''; if (S.ui.hsLog) { S.ui.hsLog.q = ''; S.ui.hsLog.page = 0; S.ui.hsLog.sel = new Set(); } },
-  note() { const f = HSF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); if (f.status) p.push(`${LBL('Day status', 'حالة اليوم')}: ${E(f.status)}`); if (f.focus) { const x = HSF.FOCUS().find(q => q[0] === f.focus); if (x) p.push(`${LBL('Show', 'عرض')}: ${x[1]}`); } return p; },
+  note() { const f = HSF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); if (f.status.length) p.push(`${LBL('Day status', 'حالة اليوم')}: ${f.status.map(E).join(' / ')}`); if (f.focus.length) p.push(`${LBL('Show', 'عرض')}: ${HSF.FOCUS().filter(q => f.focus.includes(q[0])).map(q => q[1]).join(' / ')}`); return p; },
   stats(rows) {
     const S_ = k => sum(rows, r => r[k]); const D_ = rows.filter(r => r.dayStatus !== 'Opening Balance');
     let safe = 0, lastLti = ''; for (let i = rows.length - 1; i >= 0; i--) { if (N(rows[i].fatal) + N(rows[i].lti) > 0) { lastLti = rows[i].date; break; } safe += N(rows[i].manHours); }
@@ -3230,12 +3599,12 @@ PAGES.hse = v => {
   const dates = all.map(r => r.date).filter(Boolean).sort(); const dMin = dates[0] || '', dMax = dates[dates.length - 1] || '';
   const stCnt = new Map(); HSF.rows('status').forEach(r => stCnt.set(r.dayStatus, (stCnt.get(r.dayStatus) || 0) + 1));
   const fcRows = HSF.rows('focus');
+  const hopts = { status: MOD.hse.F.dayStatus.opts.filter(o => stCnt.has(o) || f.status.includes(o)).map(o => ({ v: o, l: E(o), n: stCnt.get(o) || 0 })), focus: HSF.FOCUS().map(([k, l, fn]) => ({ v: k, l, n: fcRows.filter(fn).length })) };
   v.innerHTML = pageHead(T('hse'), LBL('Daily HSE log: incidents, observations, training, inspections and permits – one record per day. Manpower and man-hours are read from Manpower & Equipment.', 'سجل السلامة اليومي: الحوادث، الملاحظات، التدريب، التفتيش والتصاريح – سجل واحد لكل يوم. العمالة وساعات العمل تُقرأ من صفحة العمالة والمعدات.'), mgr ? `<button class="btn ${adm ? 'adm' : ''}" data-hadm title="${h(LBL('Edit or delete any saved day (user manager)', 'تعديل أو حذف أي يوم مسجل (مدير المستخدمين)'))}">${ic(adm ? 'x' : 'pen')}${adm ? LBL('Close record management', 'إنهاء إدارة السجلات') : LBL('Manage records', 'إدارة السجلات')}</button>` : '') + roNotice('hse') +
     (adm ? `<div class="notice warn">${ic('warn')}<div><b>${LBL('Record management is on.', 'وضع إدارة السجلات مفعّل.')}</b> ${LBL('Daily log: edit (✎) or delete (🗑) any day, or tick several days and delete them together. Manpower and man-hours stay read only (they come from Manpower & Equipment). Every change is kept in the activity log.', 'السجل اليومي: تعديل (✎) أو حذف (🗑) أي يوم، أو تحديد عدة أيام وحذفها معاً. العمالة وساعات العمل تبقى للقراءة فقط (من صفحة العمالة والمعدات). كل تغيير يُحفظ في سجل النشاط.')}</div></div>` : '') +
     `<div class="tbar mpf">
       <div class="mpd ${f.from || f.to ? 'on' : ''}" title="${h(LBL('Pick a date to show that day only; add the second date for a period', 'اختر تاريخاً لعرض بيانات ذلك اليوم فقط، وأضف التاريخ الثاني لعرض فترة'))}"><b>${LBL('Date', 'التاريخ')}</b><input class="in" type="date" data-fd="from" value="${h(f.from)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('From', 'من'))}"><span>${LBL('to', 'إلى')}</span><input class="in" type="date" data-fd="to" value="${h(f.to)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('To', 'إلى'))}"></div>
-      <select class="in fsel ${f.status ? 'on' : ''}" data-hf="status"><option value="">${LBL('Day status', 'حالة اليوم')}: ${T('all')}</option>${MOD.hse.F.dayStatus.opts.filter(o => stCnt.has(o) || o === f.status).map(o => `<option value="${h(o)}" ${o === f.status ? 'selected' : ''}>${o === f.status ? LBL('Day status', 'حالة اليوم') + ': ' : ''}${h(E(o))} (${fmtN(stCnt.get(o) || 0)})</option>`).join('')}</select>
-      <select class="in fsel ${f.focus ? 'on' : ''}" data-hf="focus"><option value="">${LBL('Show', 'عرض')}: ${LBL('all days', 'كل الأيام')}</option>${HSF.FOCUS().map(([k, l, fn]) => `<option value="${k}" ${k === f.focus ? 'selected' : ''}>${k === f.focus ? LBL('Show', 'عرض') + ': ' : ''}${h(l)} (${fmtN(fcRows.filter(fn).length)})</option>`).join('')}</select>
+      <span class="fslot" data-hfs="status">${MSEL.btn('status', LBL('Day status', 'حالة اليوم'), hopts.status, f.status)}</span><span class="fslot" data-hfs="focus">${MSEL.btn('focus', LBL('Show', 'عرض'), hopts.focus, f.focus)}</span>
       <button class="btn sm" data-hclr ${HSF.active() ? '' : 'disabled'}>${ic('x')}${LBL('Clear filters', 'مسح الفلاتر')}</button>
       <span style="flex:1"></span>
       <button class="btn sm hsmp" data-hgomp title="${h(LBL('Manpower and man-hours of this page are read from Manpower & Equipment (entered once)', 'العمالة وساعات العمل في هذه الصفحة تُقرأ من صفحة العمالة والمعدات (تُسجَّل مرة واحدة)'))}">${ic('users')}${LBL('Manpower from Manpower & Equipment', 'العمالة من صفحة العمالة والمعدات')} · ${LBL('day', 'نهاري')} ${MP_H.d()} ${LBL('h', 'س')} / ${LBL('night', 'ليلي')} ${MP_H.n()} ${LBL('h', 'س')}</button>
@@ -3243,7 +3612,7 @@ PAGES.hse = v => {
     <div class="mpk hsk">${HSF.cards(s).map(([k, val, sub, cls]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '', cls)).join('')}</div>
     <div class="tabs">${[['entry', LBL('Daily entry', 'الإدخال اليومي')], ['log', LBL('Daily log', 'السجل اليومي'), rows.length], ['sum', LBL('Weekly / monthly summary', 'الملخص الأسبوعي / الشهري')]].map(([t, l, n]) => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${l}${n !== undefined ? ` <span class="tcnt">${fmtN(n)}</span>` : ''}</div>`).join('')}</div><div data-tc></div>`;
   v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => hsGo(() => { S.ui.hsTab = t.dataset.t; }));
-  v.querySelectorAll('[data-hf]').forEach(x => x.onchange = () => hsGo(() => { f[x.dataset.hf] = x.value; if (S.ui.hsLog) S.ui.hsLog.page = 0; }));
+  ['status', 'focus'].forEach(k => MSEL.wire(v, k, hopts[k], f[k], vals => hsGo(() => { f[k] = vals; if (S.ui.hsLog) S.ui.hsLog.page = 0; })));
   v.querySelectorAll('[data-fd]').forEach(x => x.onchange = () => hsGo(() => {
     const k = x.dataset.fd; f[k] = x.value;
     if (k === 'from' && f.from && (!f.to || f.to < f.from)) f.to = f.from;
@@ -3397,20 +3766,20 @@ function hsEntry(c, ed) {
 // One filter for the whole page: cards, daily summary, detailed log and the printed report follow it.
 const MPF = {
   KEYS: ['cat', 'type', 'res', 'ctr'],
-  st: () => { const f = S.ui.mpF = S.ui.mpF || {}; ['from', 'to', 'cat', 'type', 'res', 'ctr'].forEach(k => { f[k] = f[k] || ''; }); return f; },
+  st: () => { const f = S.ui.mpF = S.ui.mpF || {}; f.from = f.from || ''; f.to = f.to || ''; ['cat', 'type', 'res', 'ctr'].forEach(k => { f[k] = A_(f[k]); }); return f; },
   ctr0: () => (S.db.lists.contractors[0] || {}).v || 'Main Contractor',
   get: (r, k) => k === 'cat' ? MOD.manpower.F.cat.calc(r) : k === 'type' ? MOD.manpower.F.type.calc(r) : k === 'res' ? r.resource : k === 'ctr' ? (r.contractor || MPF.ctr0()) : '',
   pass(r, f, except) {
     if (except !== 'date') { if (f.from && r.date < f.from) return false; if (f.to && r.date > f.to) return false; }
-    return MPF.KEYS.every(k => k === except || !f[k] || String(MPF.get(r, k)) === f[k]);
+    return MPF.KEYS.every(k => k === except || !f[k].length || f[k].includes(String(MPF.get(r, k))));
   },
   rows: except => { const f = MPF.st(); return live(S.db.manpower).filter(r => r.date && MPF.pass(r, f, except)); },
-  active: () => { const f = MPF.st(); return ['from', 'to', ...MPF.KEYS].some(k => f[k]); },
+  active: () => { const f = MPF.st(); return !!(f.from || f.to || MPF.KEYS.some(k => f[k].length)); },
   clear: () => { S.ui.mpF = {}; S.ui.mpEF = {}; if (S.ui.mpLog) { S.ui.mpLog.q = ''; S.ui.mpLog.page = 0; S.ui.mpLog.sel = new Set(); } },
   name: k => ({ cat: LBL('Category', 'الفئة'), type: LBL('Type', 'النوع'), res: LBL('Resource', 'المورد'), ctr: LBL('Contractor', 'المقاول') }[k]),
   label: (k, v) => k === 'res' ? listVal('resources', v) : k === 'ctr' ? listVal('contractors', v) : E(v),
   range: f => f.from === f.to ? D.fmt(f.from) : `${D.fmt(f.from) || '…'} ${LBL('→', 'إلى')} ${D.fmt(f.to) || '…'}`,
-  note() { const f = MPF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); MPF.KEYS.forEach(k => { if (f[k]) p.push(`${MPF.name(k)}: ${MPF.label(k, f[k])}`); }); return p; },
+  note() { const f = MPF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); MPF.KEYS.forEach(k => { if (f[k].length) p.push(`${MPF.name(k)}: ${f[k].map(v => MPF.label(k, v)).join(' / ')}`); }); return p; },
   daily(rows) {
     const map = {};
     rows.forEach(r => { const m = map[r.date] = map[r.date] || { date: r.date, direct: 0, indirect: 0, dH: 0, iH: 0, eqW: 0, eqI: 0, n: 0 }; const t = MPF.get(r, 'type'), w = N(r.day) + N(r.night); m.n++; if (t === 'Direct') { m.direct += w; m.dH += MP_H.wh(r); } else if (t === 'Indirect') { m.indirect += w; m.iH += MP_H.wh(r); } else if (t === 'Equipment') { m.eqW += w; m.eqI += N(r.idle); } });
@@ -3472,11 +3841,8 @@ PAGES.manpower = v => {
   const f = MPF.st(); const all = live(S.db.manpower).filter(r => r.date); const rows = MPF.rows(); const s = MPF.stats(rows);
   const dates = all.map(r => r.date).sort(); const dMin = dates[0] || '', dMax = dates[dates.length - 1] || '';
   const tOrd = { Direct: 0, Indirect: 1, Equipment: 2, Labor: 0 };
-  const sel = k => {
-    const cnt = new Map(); MPF.rows(k).forEach(r => { const x = MPF.get(r, k); if (x) cnt.set(x, (cnt.get(x) || 0) + 1); });
-    const vals = [...cnt.keys()].sort((a, b) => ((tOrd[a] ?? 9) - (tOrd[b] ?? 9)) || String(MPF.label(k, a)).localeCompare(String(MPF.label(k, b)))); if (f[k] && !cnt.has(f[k])) vals.unshift(f[k]);
-    return `<select class="in fsel ${f[k] ? 'on' : ''}" data-mf="${k}" title="${h(MPF.name(k))}"><option value="">${h(MPF.name(k))}: ${T('all')}</option>${vals.map(x => `<option value="${h(x)}" ${x === f[k] ? 'selected' : ''}>${x === f[k] ? h(MPF.name(k)) + ': ' : ''}${h(MPF.label(k, x))} (${fmtN(cnt.get(x) || 0)})</option>`).join('')}</select>`;
-  };
+  const mopts = k => { const o = MSEL.opts(MPF.rows(k), r => MPF.get(r, k), v => MPF.label(k, v), (a, b) => ((tOrd[a.v] ?? 9) - (tOrd[b.v] ?? 9)) || String(a.l).localeCompare(String(b.l))); f[k].forEach(x => { if (!o.some(y => y.v === x)) o.unshift({ v: x, l: MPF.label(k, x), n: 0 }); }); return o; };
+  const sel = k => `<span class="fslot" data-mfs="${k}">${MSEL.btn(k, MPF.name(k), mopts(k), f[k])}</span>`;
   const hrsTip = mgr ? LBL('Hours of one man-day in the day shift and in the night shift: day-shift man-days × day hours + night-shift man-days × night hours = work hours of this page', 'ساعات اليومية في الوردية النهارية والليلية: يوميات النهاري × ساعات النهاري + يوميات الليلي × ساعات الليلي = ساعات العمل في هذه الصفحة') : LBL('Set by the user manager only', 'يعدّلها مدير المستخدمين فقط');
   v.innerHTML = pageHead(T('manpower'), MOD.manpower.desc[S.lang], mgr ? `<button class="btn ${adm ? 'adm' : ''}" data-madm title="${h(LBL('Edit or delete any record or a whole date (user manager)', 'تعديل أو حذف أي سجل أو تاريخ كامل (مدير المستخدمين)'))}">${ic(adm ? 'x' : 'pen')}${adm ? LBL('Close record management', 'إنهاء إدارة السجلات') : LBL('Manage records', 'إدارة السجلات')}</button>` : '') + roNotice('manpower') +
     (adm ? `<div class="notice warn">${ic('warn')}<div><b>${LBL('Record management is on.', 'وضع إدارة السجلات مفعّل.')}</b> ${LBL('Detailed log: edit (✎) or delete (🗑) any record, or tick several records and delete them together. Daily summary: delete every record of a date (within the current filters). Every change is kept in the activity log.', 'السجل التفصيلي: تعديل (✎) أو حذف (🗑) أي سجل، أو تحديد عدة سجلات وحذفها معاً. الملخص اليومي: حذف كل سجلات تاريخ معيّن (ضمن الفلاتر الحالية). كل تغيير يُحفظ في سجل النشاط.')}</div></div>` : '') +
@@ -3490,7 +3856,7 @@ PAGES.manpower = v => {
     <div class="mpk">${MPF.cards(s).map(([k, val, sub]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '')).join('')}</div>
     <div class="tabs">${['entry', 'sum', 'log'].map(t => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${T({ entry: 'day_entry', sum: 'daily_summary', log: 'detail_log' }[t])}${t === 'entry' ? '' : ` <span class="tcnt">${fmtN(t === 'sum' ? s.days.length : rows.length)}</span>`}</div>`).join('')}</div><div data-tc></div>`;
   v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => mpGo(() => { S.ui.mpTab = t.dataset.t; }));
-  v.querySelectorAll('[data-mf]').forEach(x => x.onchange = () => mpGo(() => { f[x.dataset.mf] = x.value; if (S.ui.mpLog) S.ui.mpLog.page = 0; }));
+  MPF.KEYS.forEach(k => MSEL.wire(v, k, mopts(k), f[k], vals => mpGo(() => { f[k] = vals; if (S.ui.mpLog) S.ui.mpLog.page = 0; })));
   v.querySelectorAll('[data-fd]').forEach(x => x.onchange = () => mpGo(() => {
     const k = x.dataset.fd; f[k] = x.value;
     if (k === 'from' && f.from && (!f.to || f.to < f.from)) f.to = f.from;   // one date = that day only
@@ -3987,9 +4353,10 @@ const PERM_AREAS = [
   { k: 'dc', en: 'Document control', ar: 'التحكم بالوثائق', g: 2 },
   { k: 'manpower', en: 'Manpower & equipment', ar: 'العمالة والمعدات', g: 2 },
   { k: 'drawings', en: 'Drawings (log & summary)', ar: 'المخططات (السجل والملخص)', g: 2 },
-  { k: 'invoices', en: 'Invoices', ar: 'المستخلصات', g: 2 }
+  { k: 'invoices', en: 'Invoices', ar: 'المستخلصات', g: 2 },
+  { k: 'cdocs', en: 'Contract documents – view the project contract, BOQ and the other contract documents (links) on Document Control; links are added by the user manager', ar: 'المستندات التعاقدية – الاطلاع على عقد المشروع والمقايسة وباقي المستندات التعاقدية (روابط) في صفحة التحكم بالوثائق؛ يضيف الروابط مدير المستخدمين', g: 2 }
 ];
-const PERM_SHORT = { admin: ['Planner (all data)', 'التخطيط (كل البيانات)'], users: ['User management', 'إدارة المستخدمين'], p6: ['Cut-off & P6', 'تاريخ القطع و P6'], database: ['Database & Sync', 'قاعدة البيانات'], project: ['Project setup', 'إعداد المشروع'], lists: ['Lists & settings', 'القوائم والإعدادات'], ctr: ['Contractor %', 'المقاول %'], cons: ['Consultant %', 'الاستشاري %'], own: ['Owner %', 'المالك %'], hse: ['HSE', 'السلامة'], dc: ['DC', 'الوثائق'], manpower: ['Manpower', 'العمالة'], drawings: ['Drawings', 'المخططات'], invoices: ['Invoices', 'المستخلصات'] };
+const PERM_SHORT = { admin: ['Planner (all data)', 'التخطيط (كل البيانات)'], users: ['User management', 'إدارة المستخدمين'], p6: ['Cut-off & P6', 'تاريخ القطع و P6'], database: ['Database & Sync', 'قاعدة البيانات'], project: ['Project setup', 'إعداد المشروع'], lists: ['Lists & settings', 'القوائم والإعدادات'], ctr: ['Contractor %', 'المقاول %'], cons: ['Consultant %', 'الاستشاري %'], own: ['Owner %', 'المالك %'], hse: ['HSE', 'السلامة'], dc: ['DC', 'الوثائق'], manpower: ['Manpower', 'العمالة'], drawings: ['Drawings', 'المخططات'], invoices: ['Invoices', 'المستخلصات'], cdocs: ['Contract docs', 'المستندات التعاقدية'] };
 const ROLE_PERMS = { admin: ['admin', ...PAGE_PERMS], site: ['ctr', 'manpower'], hse: ['hse'], dc: ['dc'], design: ['drawings'], qs: ['invoices'], consultant: ['cons'], owner: ['own'], viewer: [] };
 const usersLive = (db = S.db) => live(db.users || []);
 const usersActive = (db = S.db) => usersLive(db).filter(u => u.active !== false);
@@ -4546,7 +4913,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const tot = fs.some(f => f.tot) ? fs.map((f, i) => f.tot ? fmtVal(Object.assign({}, f, { badge: 0 }), sum(rows, r => cv(m, f, r))) : (i === 0 ? `${T('total')} (${rows.length})` : '')) : null;
     return table(cols, rows, tot, cols.length > 11 ? 'wide' : '');
   }
-  const filterNote = (mk) => { const st = S.ui[mk] || {}; const parts = []; if (st.q) parts.push(`${LBL('Search', 'بحث')}: “${esc(st.q)}”`); Object.entries(st.f || {}).forEach(([k, v]) => { if (v) { const f = MOD[mk].F[k]; parts.push(`${FL(f)}: ${esc(f.t === 'list' ? listVal(f.list, v) : E(v))}`); } }); return parts.length ? `<div class="note">${LBL('Filters applied', 'الفلاتر المطبقة')}: ${parts.join(' · ')}</div>` : ''; };
+  const filterNote = (mk) => { const st = S.ui[mk] || {}; const parts = []; if (st.q) parts.push(`${LBL('Search', 'بحث')}: “${esc(st.q)}”`); Object.entries(st.f || {}).forEach(([k, v]) => { const vs = A_(v); if (vs.length) { const f = MOD[mk].F[k]; parts.push(`${FL(f)}: ${vs.map(x => esc(f.t === 'list' ? listVal(f.list, x) : E(x))).join(' / ')}`); } }); return parts.length ? `<div class="note">${LBL('Filters applied', 'الفلاتر المطبقة')}: ${parts.join(' · ')}</div>` : ''; };
   const viewRows = mk => { const st = S.ui[mk]; if (st && st.view) { const cur = new Map(live(S.db[mk]).map(r => [r._id, r])); return st.view.map(r => cur.get(r._id)).filter(Boolean); } return live(S.db[mk]).sort((a, b) => String(a[MOD[mk].sortKey] || '').localeCompare(String(b[MOD[mk].sortKey] || ''))); };
 
   /* ---------- page reports ---------- */
@@ -4569,16 +4936,18 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const sums = txt.length ? table([{ h: T('date'), cls: 'nw', v: r => D.fmt(r.date) }, { h: LBL('Incident summary', 'ملخص الحوادث'), cls: 'w', v: r => esc(r.incSummary || '') }, { h: LBL('Observation summary', 'ملخص ملاحظات السلامة'), cls: 'w', v: r => esc(r.obsSummary || '') }], txt) : '';
     return doc(T('hse'), LBL('HSE report', 'تقرير السلامة'), note + cards + sec(LBL('HSE statistics', 'إحصائيات السلامة'), stats) + sec(mode === 'month' ? LBL('Summary by month', 'الملخص حسب الشهر') : LBL('Summary by report week', 'الملخص حسب أسبوع التقرير'), per, P.list.length) + sec(LBL('Daily HSE log', 'سجل السلامة اليومي'), log, L.length) + (sums ? sec(LBL('Incident and observation summaries', 'ملخصات الحوادث والملاحظات'), sums, txt.length) : ''), 'landscape');
   };
+  // registers: follow the page filters; the cards, the summary and the register as shown (search and sort)
+  const rgNote = (cfg) => { const fn = RG.note(cfg); return `<div class="note">${fn.length ? `${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fn.map(esc).join(' · ')}` : LBL('All records – no filter applied', 'كل السجلات – بدون فلاتر')}</div>`; };
+  const rgKp = cs => `<div class="kp" style="grid-template-columns:repeat(5,1fr)">${cs.map(([k, v, sub, c]) => `<div><span>${esc(k)}</span><b class="${c || ''}">${v}</b>${sub ? `<i>${sub}</i>` : ''}</div>`).join('')}</div>`;
+  const rgView = (cfg, rows) => { const st = S.ui[cfg.key + 'L'] || {}; const byId = new Map(rows.map(r => [r._id, r])); return st.view ? st.view.map(id => byId.get(id)).filter(Boolean) : rows.slice().sort((a, b) => String(cfg.date(b)).localeCompare(String(cfg.date(a)))); };
+  const rgReplyTxt = (d, code, ref, link) => [D.fmt(d), code ? listVal('reviewCodes', code) : '', ref || '', safeUrl(link) ? `<a href="${esc(safeUrl(link))}">${LBL('copy', 'نسخة')}</a>` : ''].filter(Boolean).join(' · ');
   R.dc = () => {
-    const D_ = live(S.db.dc), q = r => N(r.qty) || 1, pr = period(), s = dcStats();
-    const types = Array.from(new Set(D_.map(r => r.docType).filter(Boolean)));
-    const st = r => MOD.dc.F.status.calc(r);
-    const rowsT = types.map(t => { const x = D_.filter(r => r.docType === t); const c = code => sum(x.filter(r => r.reviewCode === code), q); return { t, tot: sum(x, q), per: sum(x.filter(r => r.issueDate >= pr.from && r.issueDate <= pr.to), q), A: c('Code A'), B: c('Code B'), C: c('Code C'), Dd: c('Code D'), ur: sum(x.filter(r => ['Under Review', 'Overdue'].includes(st(r))), q), od: sum(x.filter(r => st(r) === 'Overdue'), q), ip: sum(x.filter(r => st(r) === 'In Progress'), q) }; });
-    const K = ['tot', 'per', 'A', 'B', 'C', 'Dd', 'ur', 'od', 'ip'];
-    const sumT = table([{ h: MOD.dc.F.docType[S.lang === 'ar' ? 'ar' : 'en'], v: r => esc(listVal('docTypes', r.t)) }, ...[[T('total_subm'), 'tot'], [LBL('This period', 'هذه الفترة'), 'per'], ['Code A', 'A'], ['Code B', 'B'], ['Code C', 'C'], ['Code D', 'Dd'], [T('awaiting'), 'ur'], [T('overdue'), 'od'], [LBL('In progress', 'قيد الإعداد'), 'ip']].map(([hh, k]) => ({ h: hh, n: 1, v: r => fmtN(r[k]) }))], rowsT, [T('total'), ...K.map(k => fmtN(sum(rowsT, r => r[k])))]);
-    const rows = viewRows('dc');
-    return doc(T('dc'), LBL('Document control status', 'موقف التحكم بالوثائق'), kp([[T('total_subm'), fmtN(s.total)], [T('last7'), fmtN(s.last7)], ['Code A', fmtN(s.A)], ['Code B', fmtN(s.B)], ['Code C', fmtN(s.C)], [T('awaiting'), fmtN(s.awaiting), `${T('overdue')}: ${s.overdue}`, s.overdue ? 'bad' : '']]) +
-      sec(LBL('Status by document type', 'الموقف حسب نوع المستند'), sumT) + sec(LBL('Document register', 'سجل المستندات'), filterNote('dc') + modTable('dc', rows, { skip: ['daysToReply'] }), rows.length));
+    const rows = RG.rows(DC_CFG), s = dcStats2(rows), L = rgView(DC_CFG, rows);
+    const types = [...new Set(rows.map(r => r.docType).filter(Boolean))].map(t => ({ t, s: dcStats2(rows.filter(r => r.docType === t)) })).sort((a, b) => b.s.tot - a.s.tot);
+    const K = [['tot', LBL('Total', 'الإجمالي')], ['out', LBL('Out', 'صادر')], ['inc', LBL('In', 'وارد')], ['l7', LBL('Last 7 days', 'آخر 7 أيام')], ['aw', LBL('Awaiting', 'بانتظار الرد')], ['od', LBL('Overdue', 'متأخر')], ['rep', LBL('Replied', 'تم الرد')], ['avgRep', LBL('Avg. days', 'متوسط الأيام')], ['A', 'A'], ['B', 'B'], ['C', 'C'], ['Dd', 'D'], ['link', LBL('Linked', 'مربوط')]];
+    const sumT = table([{ h: LBL('Document type', 'نوع المستند'), v: x => esc(listVal('docTypes', x.t)) }, ...K.map(([k, l]) => ({ h: l, n: 1, v: x => k === 'avgRep' ? fmtN(x.s[k], 1) : fmtN(x.s[k]) }))], types, [T('total'), ...K.map(([k]) => k === 'avgRep' ? fmtN(s[k], 1) : fmtN(s[k]))]);
+    const reg = table([{ h: LBL('Issue date', 'تاريخ الإصدار'), cls: 'nw', v: r => D.fmt(r.issueDate) }, { h: LBL('Type', 'النوع'), v: r => esc(listVal('docTypes', r.docType)) }, { h: LBL('Dir.', 'الاتجاه'), v: r => esc(E(r.direction)) }, { h: LBL('Ref / rev', 'المرجع / المراجعة'), cls: 'nw', v: r => `${esc(r.ref || '')}${r.rev ? ' / ' + esc(r.rev) : ''}` }, { h: LBL('Title', 'العنوان'), cls: 'w', v: r => esc(r.title || '') }, { h: LBL('From / to', 'الجهة'), v: r => esc(DC_PARTY(r)) }, { h: LBL('Qty', 'الكمية'), n: 1, v: r => fmtN(DCQ(r)) }, { h: LBL('Reply due', 'استحقاق الرد'), cls: 'nw', v: r => D.fmt(MOD.dc.F.replyDue.calc(r)) }, { h: LBL('Status', 'الحالة'), v: r => `<span class="bdg ${badgeCls(DC_ST(r))}">${esc(E(DC_ST(r)))}</span>` }, { h: LBL('Last reply', 'آخر رد'), v: r => rgReplyTxt(r.replyDate, r.reviewCode, r.replyRef, r.replyLink) }, { h: LBL('Copy', 'النسخة'), v: r => safeUrl(r.docLink) ? `<a href="${esc(safeUrl(r.docLink))}">${LBL('open', 'فتح')}</a>` : '' }], L, [`${T('total')} (${fmtN(L.length)})`, '', '', '', '', '', fmtN(sum(L, DCQ)), '', '', '', ''], 'wide');
+    return doc(T('dc'), LBL('Document control status', 'موقف التحكم بالوثائق'), rgNote(DC_CFG) + rgKp(dcCards(s)) + sec(LBL('Status by document type', 'الموقف حسب نوع المستند'), sumT, types.length) + sec(LBL('Document register', 'سجل المستندات'), reg, L.length), 'landscape');
   };
   R.invoices = () => {
     const s = invStats(), rows = viewRows('invoices');
@@ -4586,9 +4955,12 @@ tfoot td{background:#E8EEF6;font-weight:700}
       sec(LBL('Invoices log', 'سجل المستخلصات'), filterNote('invoices') + modTable('invoices', rows), rows.length));
   };
   R.drawings = () => {
-    const s = drwStats(); _tgtCache = null; const T_ = viewRows('targets'), L = viewRows('drawings');
-    return doc(T('drawings'), LBL('Engineering / drawings status', 'موقف الأعمال الهندسية والمخططات'), kp([[T('design_prog'), fmtP(s.dP), `${fmtN(s.dT)} ${LBL('drawings', 'مخطط')}`], [T('shop_prog'), fmtP(s.sP), `${fmtN(s.sT)} ${LBL('drawings', 'مخطط')}`], [T('eng_prog'), fmtP(s.O)], [LBL('Under review', 'قيد المراجعة'), fmtN(s.ur)], [LBL('Late submissions', 'تقديمات متأخرة'), s.late, '', s.late ? 'bad' : 'ok'], [LBL('Overdue reviews', 'مراجعات متأخرة'), s.ovr, '', s.ovr ? 'bad' : 'ok']]) +
-      sec(T('summary'), filterNote('targets') + modTable('targets', T_), T_.length) + sec(LBL('Drawings register', 'سجل المخططات'), filterNote('drawings') + modTable('drawings', L), L.length));
+    const rows = RG.rows(DW_CFG), s = dwStats(rows), L = rgView(DW_CFG, rows);
+    const grp = {}; rows.forEach(r => { const k = `${r.category}|${r.zone}`; const o = grp[k] = grp[k] || { cat: r.category, zone: r.zone, rows: [] }; o.rows.push(r); });
+    const G = Object.values(grp).map(o => Object.assign(o, { s: dwStats(o.rows) })).sort((a, b) => String(a.cat).localeCompare(String(b.cat)) || String(listVal('zones', a.zone)).localeCompare(String(listVal('zones', b.zone))));
+    const sumT = table([{ h: LBL('Category', 'الفئة'), v: o => esc(DW_CAT(o.cat)) }, { h: LBL('Building / zone', 'المبنى / المنطقة'), v: o => esc(listVal('zones', o.zone)) }, ...[['n', LBL('Registered', 'مسجل')], ['sub', LBL('Submitted', 'مقدَّم')], ['ur', LBL('Under review', 'قيد المراجعة')], ['A', 'A'], ['B', 'B'], ['C', 'C'], ['Dd', 'D'], ['late', LBL('Late', 'متأخر')]].map(([k, l]) => ({ h: l, n: 1, v: o => fmtN(o.s[k]) }))], G, [T('total'), '', ...['n', 'sub', 'ur', 'A', 'B', 'C', 'Dd', 'late'].map(k => fmtN(s[k]))]);
+    const reg = table([{ h: LBL('Drawing no / rev', 'رقم المخطط / المراجعة'), cls: 'nw', v: r => `${esc(r.no || '')}${r.rev ? ' / ' + esc(r.rev) : ''}` }, { h: LBL('Title', 'العنوان'), cls: 'w', v: r => esc(r.title || '') }, { h: LBL('Category', 'الفئة'), v: r => esc(DW_CAT(r.category)) }, { h: LBL('Phase', 'المرحلة'), v: r => esc(listVal('phases', r.phase)) }, { h: LBL('Building', 'المبنى'), v: r => esc(listVal('zones', r.zone)) }, { h: LBL('Element', 'العنصر'), v: r => esc(listVal('elements', r.element)) }, { h: LBL('Planned', 'المخطط'), cls: 'nw', v: r => D.fmt(r.plannedSub) }, { h: LBL('Submitted', 'المقدَّم'), cls: 'nw', v: r => D.fmt(r.actualSub) }, { h: LBL('Status', 'الحالة'), v: r => `<span class="bdg ${badgeCls(DW_ST(r))}">${esc(E(DW_ST(r)))}</span>` }, { h: LBL('Last reply', 'آخر رد'), v: r => rgReplyTxt(r.reviewDate, r.reviewCode, r.replyRef, r.replyLink) }, { h: LBL('Credit', 'المحتسب'), n: 1, v: r => fmtP(MOD.drawings.F.credit.calc(r), 0) }, { h: LBL('Copy', 'النسخة'), v: r => safeUrl(r.docLink) ? `<a href="${esc(safeUrl(r.docLink))}">${LBL('open', 'فتح')}</a>` : '' }], L, [`${T('total')} (${fmtN(L.length)})`, '', '', '', '', '', '', '', '', '', '', ''], 'wide');
+    return doc(T('drawings'), LBL('Engineering / drawings status', 'موقف الأعمال الهندسية والمخططات'), rgNote(DW_CFG) + rgKp(dwCards(s)) + sec(LBL('Status by category and building', 'الموقف حسب الفئة والمبنى'), sumT, G.length) + sec(LBL('Drawings register', 'سجل المخططات'), reg, L.length), 'landscape');
   };
   R.manpower = () => {   // follows the page filters (date, category, type, resource, contractor) and the work hours / day
     const rows = MPF.rows(), s = MPF.stats(rows), fh = x => fmtN(x, x % 1 ? 1 : 0); const tab = S.ui.mpTab || 'entry';

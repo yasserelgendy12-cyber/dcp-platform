@@ -982,6 +982,82 @@ table.t.mpt td.cp{text-align:center}
 
 .tw.tgfit{max-height:calc(100vh - 470px - var(--tb));min-height:240px}.tw.tgfit table.t.mpt th{font-size:11px}.tw.tgfit table.t.mpt td{font-size:11.5px}
 
+/* ---------- Bookmarks (hover cards) of the Data Collection portal ---------- */
+#dtip{position:fixed;z-index:10000;display:none;pointer-events:none;max-width:330px;min-width:170px;background:#0F2A4A;color:#E7EEF7;border:1px solid #2A4D77;border-radius:10px;padding:9px 12px 10px;box-shadow:0 12px 30px rgba(9,24,44,.32);font:12.5px/1.55 var(--font);text-align:start}
+html[lang=ar] #dtip,#dtip[dir=rtl]{font-size:13px;line-height:1.65}
+#dtip b{display:block;font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;padding-bottom:4px;border-bottom:1px solid rgba(255,255,255,.12)}
+#dtip p{margin:3px 0 0;color:#D5E0EE}
+#dtip dl{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;row-gap:2px;margin:4px 0 0}
+#dtip dt{color:#93A9C4;white-space:nowrap}#dtip dd{margin:0;color:#fff;font-weight:600;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#dtip .th{margin-top:7px;background:rgba(61,190,122,.13);border-inline-start:3px solid #3DBE7A;border-radius:6px;padding:5px 8px;color:#E9FFF2}
+#dtip .ts{margin-top:6px;color:#93A9C4;font-size:11.5px}#dtip .th i,#dtip .ts i{display:block;font-style:normal;font-weight:700;font-size:10.5px;letter-spacing:.3px;color:#7FE0A8;margin-bottom:1px}#dtip .ts i{display:inline;color:#93A9C4;margin-inline-end:5px}
+#dtip .tw2{margin-top:5px;color:#FFC86B;font-weight:600}
+#dtip .tt2{white-space:pre-wrap;color:#fff;font-size:13px;line-height:1.6;max-height:260px;overflow:hidden;margin-top:2px}
+@media print{#dtip{display:none!important}}
+[data-tip] .hl,[data-tipk] .hl,.pgt thead th .hl{text-decoration:underline dotted rgba(255,255,255,.55);text-underline-offset:4px;text-decoration-thickness:1px}
+.kpi[data-tip] .k,.kpi[data-tipk] .k{text-decoration:underline dotted #AAB6C6;text-underline-offset:3px;text-decoration-thickness:1px;cursor:help}
+
+/* ---------- Progress Updates page (rebuilt 17-Nov-2026): compact cards, one filter panel, table that fits the width ---------- */
+.pk{grid-template-columns:.85fr 1.35fr 1.1fr 1.25fr .8fr .8fr;gap:10px;margin-bottom:10px!important}
+.pk .kpi{padding:6px 11px}.pk .kpi .k{font-size:10.5px;letter-spacing:.3px;line-height:1.35}.pk .kpi .v{font-size:18px;line-height:1.25;margin-top:1px}.pk .kpi .s{font-size:11px;white-space:normal;line-height:1.3}.pk .kpi.mini .s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pk .kpi.main{padding:5px 12px}.pk .kpi.main .v{font-size:25px;line-height:1.1}.kpi.main .k{font-size:11px}
+.pk .kpi.pl2 .plr{margin-top:1px;line-height:1.3}.pk .kpi.pl2 .plr b{font-size:15px}.pk .kpi.pl2 .plr+.plr{padding-top:1px;margin-top:1px}
+.pk .revs{gap:4px}.pk .kpi.mini{padding:2px 10px}.pk .kpi.mini .k,.pk .kpi.mini .s{line-height:1.3}.pk .kpi.mini .v{font-size:14.5px}
+@media(max-width:1250px){.pk{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.pgf{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:8px 10px;margin-bottom:10px}
+.pgf .r1{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pgf .r1 .search{min-width:180px;flex:0 1 230px;height:32px}
+.pgf .msel{max-width:220px;font-size:12px;padding:0 8px;gap:4px}
+.pgf .r2{display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line2);margin-top:8px;padding-top:8px}
+.pgf .r2 [data-clr]{margin-inline-start:auto;height:30px}
+.fseg{flex:0 0 auto;display:inline-flex;align-items:center;gap:1px;padding:2px;border:1px solid #D3DAE5;border-radius:9px;background:#F6F8FB}
+.fseg .fl{font-size:11.5px;font-weight:700;color:var(--ink3);padding:0 7px 0 5px;white-space:nowrap}
+.fseg .fsp{width:1px;align-self:stretch;background:#CBD4E1;margin:3px 4px}
+.fseg .fo{border:0;background:transparent;border-radius:7px;padding:0 7px;height:28px;font:inherit;font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.fseg .fo:hover:not(.on){background:#E8EDF4}
+.fseg .fo b{font-size:10.5px;font-weight:700;background:#E4E9F1;color:var(--ink2);border-radius:8px;padding:0 5px;text-align:center;font-variant-numeric:tabular-nums;line-height:16px}
+.fseg .fo.on{background:var(--navy);color:#fff}.fseg .fo.on b{background:rgba(255,255,255,.22);color:#fff}
+.fseg .fo.at b{background:#FDF0DC;color:#9A5B00}.fseg .fo.at.on b{background:rgba(255,255,255,.22);color:#fff}
+.fseg.fs-up{background:#F2F6FC;border-style:dashed;border-color:#9FB3CC}.fseg.fs-up .fl{color:var(--navy);cursor:help}.fseg.fs-up .fo b{background:var(--pri-l);color:var(--pri)}.fseg.fs-up .fo.on{background:var(--pri)}
+.fseg .lad{height:26px;margin:0 2px}.fseg .lad .in{height:24px;width:38px}.fseg .lad i{font-size:11px;font-weight:600;padding:0 6px 0 2px}
+/* the table: fixed layout, every column visible, vertical scroll only */
+.tw.pgw{overflow-x:auto;overflow-y:auto;container-type:inline-size}
+table.t.pgt{table-layout:fixed;min-width:1000px;font-size:13px}
+table.t.pgt th{white-space:normal;line-height:1.25;vertical-align:middle;padding:7px 5px;font-size:12px;text-align:center;cursor:help}
+table.t.pgt th.h-act{text-align:start;padding-inline-start:8px}table.t.pgt th.sl{cursor:default}
+table.t.pgt td{padding:5px 4px;white-space:normal;vertical-align:middle}
+table.t.pgt .in{height:30px;font-size:13px;padding:3px 5px;width:100%;min-width:0}
+table.t.pgt .in.pct,table.t.pgt .in.rd{width:100%;text-align:center}
+table.t.pgt .in.dt{width:100%;padding:3px 4px;font-size:12.5px;text-align:center}
+table.t.pgt .in.dt::-webkit-calendar-picker-indicator{display:none}table.t.pgt .in.dt:not(:disabled){cursor:pointer}
+table.t.pgt input[type=number]::-webkit-inner-spin-button,table.t.pgt input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}table.t.pgt input[type=number]{-moz-appearance:textfield}
+table.t.pgt textarea.in.tx{height:40px;min-height:0;resize:none;line-height:1.35;font-size:12.5px;padding:3px 6px;overflow:hidden;display:block}
+table.t.pgt textarea.in.tx:focus{overflow:auto;position:relative;z-index:2}
+table.t.pgt select.in{padding:3px 2px;font-size:12.5px}
+table.t.pgt td.sl,table.t.pgt th.sl{text-align:center;padding:4px 2px}
+table.t.pgt td.acn{padding-inline-start:8px}
+table.t.pgt .anm{font-size:13px;font-weight:600;color:var(--ink);line-height:1.38;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+table.t.pgt .anm .ms{font-style:normal;color:var(--navy);font-size:11px;margin-inline-end:4px}
+table.t.pgt .anm .nb{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--warn);margin-inline-end:5px;vertical-align:1px}
+table.t.pgt td.p6,table.t.pgt td.px{text-align:center;line-height:1.2}
+table.t.pgt .pv{display:flex;align-items:center;justify-content:center;gap:4px}.pgt .pv b{font-size:13.5px;font-variant-numeric:tabular-nums;color:var(--ink)}
+table.t.pgt .ps{display:inline-block;font-size:10.5px;font-weight:600;border-radius:9px;padding:0 5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;margin-top:2px;background:var(--line2);color:var(--ink2);white-space:nowrap}
+table.t.pgt .ps.ip{background:var(--info-l);color:var(--info)}table.t.pgt .ps.cp{background:var(--ok-l);color:var(--ok)}
+table.t.pgt .chg{font-style:normal;font-weight:800;color:var(--pri);font-size:12px}
+table.t.pgt td.px{background:#F7F9FC}
+table.t.pgt .ik{display:flex;gap:3px;justify-content:center;margin-top:3px}
+table.t.pgt .ik span{font-size:10.5px;font-weight:800;border-radius:8px;padding:0 6px;line-height:16px}.pgt .ik .ib{background:var(--bad);color:#fff}.pgt .ik .iw{background:#F5B43C;color:#3B2600}
+table.t.pgt td.pl{text-align:center;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink2)}table.t.pgt td.pl.bh{color:var(--bad);font-weight:700}
+table.t.pgt tr.beh td.sl{box-shadow:inset 3px 0 0 var(--bad)}html[dir=rtl] table.t.pgt tr.beh td.sl{box-shadow:inset -3px 0 0 var(--bad)}
+/* column widths: narrow screens first (laptop, table ≈ 1100–1300 px), wider screens below */
+.pgt col.c-sl{width:28px}.pgt col.c-act{width:18%}.pgt col.c-p6{width:80px}.pgt col.c-pl{width:50px}
+.pgt col.c-ctr,.pgt col.c-cons,.pgt col.c-own{width:52px}.pgt col.c-as,.pgt col.c-af{width:104px}.pgt col.c-rd{width:50px}.pgt col.c-causedBy{width:84px}.pgt col.c-x{width:80px}
+@container (min-width:1360px){.pgt col.c-sl{width:32px}.pgt col.c-act{width:22%}.pgt col.c-p6{width:90px}.pgt col.c-pl{width:62px}.pgt col.c-ctr,.pgt col.c-cons,.pgt col.c-own{width:68px}.pgt col.c-as,.pgt col.c-af{width:126px}.pgt col.c-rd{width:64px}.pgt col.c-causedBy{width:110px}.pgt col.c-x{width:98px}}
+
+/* entry fields with a bookmark: the label is underlined dotted */
+.fll[data-tip]{text-decoration:underline dotted #AAB6C6;text-underline-offset:3px;text-decoration-thickness:1px;cursor:help}
+table.t th[data-tip]{cursor:help}
+
 </style>
 </head>
 <body>
@@ -2824,7 +2900,7 @@ function render(keepScroll) {
   if (keepScroll) v.scrollTop = sc;
 }
 const pageHead = (title, desc, actions) => `<div class="page-h"><div><h1>${title}</h1>${desc ? `<div class="desc">${desc}</div>` : ''}</div><div class="act">${actions || ''}</div></div>`;
-const kpi = (k, v, s, cls) => `<div class="kpi ${cls || ''}"><div class="k" title="${h(k)}">${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`;
+const kpi = (k, v, s, cls, tip) => `<div class="kpi ${cls || ''}"${tip && tip.length ? TIP.a(String(k).replace(/<[^>]*>/g, ''), ...tip) : ''}><div class="k"${tip && tip.length ? '' : ` title="${h(k)}"`}>${k}</div><div class="v">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`;
 const roNotice = area => can(area) ? '' : `<div class="notice info">${ic('lock')}<div>${T('readonly')} – ${h(userLabel())}</div></div>`;
 
 /* ---------- generic log page ---------- */
@@ -2856,8 +2932,8 @@ function logPage(v, mk, opts = {}) {
     const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
     const pr = rows.slice(st.page * PS, st.page * PS + PS);
     const tot = cols.some(f => f.tot);
-    host.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw ${opts.fit ? 'mpw tgfit' : ''}"><table class="t ${opts.fit ? 'mpt' : ''}"><thead><tr>${cols.map(f => `<th class="srt ${['int', 'dec', 'money', 'pct'].includes(f.ft || f.t) ? 'n' : ''}" data-s="${f.k}">${h(FL(f))}${st.sort.k === f.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}<th>${LBL('Entered by', 'أدخلها')}</th></tr></thead>
-      <tbody>${pr.map(r => `<tr class="cl" data-id="${r._id}">${cols.map(f => { const val = cv(m, f, r); const n = ['int', 'dec', 'money', 'pct'].includes(f.ft || f.t); return `<td class="${n ? 'n' : ''} ${f.t === 'calc' && !f.badge ? 'c' : ''} ${f.t === 'area' || f.wide ? 'wrap' : ''}" ${f.t === 'area' ? `title="${h(val)}"` : ''}>${f.t === 'area' ? h(String(val || '').slice(0, 90)) + (String(val || '').length > 90 ? '…' : '') : fmtVal(f, val, r)}</td>`; }).join('')}<td class="tiny muted">${h((r._by || '').split(' (')[0])}</td></tr>`).join('')}</tbody>
+    host.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw ${opts.fit ? 'mpw tgfit' : ''}"><table class="t ${opts.fit ? 'mpt' : ''}"><thead><tr>${cols.map(f => `<th class="srt ${['int', 'dec', 'money', 'pct'].includes(f.ft || f.t) ? 'n' : ''}" data-s="${f.k}"${TIP.fa(mk, f)}>${h(FL(f))}${st.sort.k === f.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}<th${TIP.a(LBL('Entered by', 'أدخلها'), LBL('User who saved the record.', 'المستخدم الذي حفظ السجل.'))}>${LBL('Entered by', 'أدخلها')}</th></tr></thead>
+      <tbody>${pr.map(r => `<tr class="cl" data-id="${r._id}">${cols.map(f => { const val = cv(m, f, r); const n = ['int', 'dec', 'money', 'pct'].includes(f.ft || f.t); return `<td class="${n ? 'n' : ''} ${f.t === 'calc' && !f.badge ? 'c' : ''} ${f.t === 'area' || f.wide ? 'wrap' : ''}" ${f.t === 'area' ? TIP.t(val) : ''}>${f.t === 'area' ? h(String(val || '').slice(0, 90)) + (String(val || '').length > 90 ? '…' : '') : fmtVal(f, val, r)}</td>`; }).join('')}<td class="tiny muted">${h((r._by || '').split(' (')[0])}</td></tr>`).join('')}</tbody>
       ${tot ? `<tfoot><tr>${cols.map((f, i) => { if (!f.tot) return `<td>${i === 0 ? T('total') + ` (${rows.length})` : ''}</td>`; const s = sum(rows, r => cv(m, f, r)); return `<td class="n">${fmtVal(Object.assign({}, f, { badge: 0 }), s)}</td>`; }).join('')}<td></td></tr></tfoot>` : ''}</table></div>
       <div class="pg">${rows.length} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
       : `<div class="card empty">${T('none')}</div>`;
@@ -2937,7 +3013,7 @@ function openRecord(mk, rec, after, o = {}) {
   const r = isNew ? Object.assign(m.defaults ? m.defaults() : {}) : clone(rec);
   const secs = m.secs.map((s, i) => {
     const fs = m.fields.filter(f => (f.sec || 0) === i); if (!fs.length) return '';
-    return `<div class="fsec"><h4>${S.lang === 'ar' ? s.ar : s.en}</h4><div class="fgrid">${fs.map(f => `<label class="f" style="${f.t === 'area' || f.wide ? 'grid-column:1/-1' : ''}"><span>${h(FL(f))}${f.req ? ' <span class="req">*</span>' : ''}</span>${f.t === 'calc' ? `<div class="calcv" data-cv="${f.k}"></div>` : inputFor(f, r[f.k], ro)}${f.hint ? `<span class="tiny muted" data-h="${f.k}"></span>` : ''}${f.note ? `<span class="tiny muted">${h(LBL(f.note.en, f.note.ar))}</span>` : ''}</label>`).join('')}</div></div>`;
+    return `<div class="fsec"><h4>${S.lang === 'ar' ? s.ar : s.en}</h4><div class="fgrid">${fs.map(f => `<label class="f" style="${f.t === 'area' || f.wide ? 'grid-column:1/-1' : ''}"><span class="fll"${TIP.fa(mk, f)}>${h(FL(f))}${f.req ? ' <span class="req">*</span>' : ''}</span>${f.t === 'calc' ? `<div class="calcv" data-cv="${f.k}"></div>` : inputFor(f, r[f.k], ro)}${f.hint ? `<span class="tiny muted" data-h="${f.k}"></span>` : ''}${f.note ? `<span class="tiny muted">${h(LBL(f.note.en, f.note.ar))}</span>` : ''}</label>`).join('')}</div></div>`;
   }).join('');
   const meta = rec && rec._at ? `<span class="tiny muted">${T('created_by')}: ${h(rec._by || '')} · ${h(TS(rec._at, 16))}</span>` : '';
   modal({
@@ -2965,6 +3041,284 @@ function openRecord(mk, rec, after, o = {}) {
   });
 }
 function openRecordWith(mk, preset, after) { const m = MOD[mk]; const save = m.defaults; m.defaults = () => preset; openRecord(mk, null, after); m.defaults = save; }
+
+/* ---------- Bookmarks: short hover cards on the Data Collection portal ----------
+   They explain a figure, a column or an entry field in the interface language (Arabic / English).
+   Markup on any element:
+     data-tip="…"   TIP.a(title, ...items)          – text built at render time (already in the interface language)
+     data-tipk="k"  TIP.k('k')                      – a key of TIPS (both languages, resolved at hover time)
+     data-tipf="p"  TIP.fn[p](el) → [title, ...items] – built at hover time (row data, current values)
+   items: 'text' = short line · [label, value] = a row of facts · {how: 'text'} = how to enter · {src: 'text'} = where the figure comes from · {warn: 'text'} */
+const TIP = {
+  fn: {},
+  a: (title, ...items) => ` data-tip="${h(JSON.stringify([title, ...items]))}"`,
+  k: key => ` data-tipk="${h(key)}"`,
+  t: text => text ? ` data-tip="${h(JSON.stringify(['', { txt: String(text) }]))}"` : '',   // a long text shown in full
+  el: null, cur: null, tm: 0,
+  get(el) {
+    try {
+      if (el.dataset.tipf) { const f = TIP.fn[el.dataset.tipf]; return f ? f(el) : null; }
+      if (el.dataset.tipk) { const d = TIPS[el.dataset.tipk]; return d ? (S.lang === 'ar' ? d.ar : d.en) : null; }
+      return JSON.parse(el.dataset.tip);
+    } catch (e) { return null; }
+  },
+  html(arr) {
+    if (!arr || !arr.length) return '';
+    const [t, ...it] = arr; const L = (en, ar) => S.lang === 'ar' ? ar : en;
+    const kv = [], out = [];
+    const flush = () => { if (kv.length) { out.push(`<dl>${kv.splice(0).join('')}</dl>`); } };
+    it.forEach(x => {
+      if (x === null || x === undefined || x === '' || x === false) return;
+      if (Array.isArray(x)) { if (x[1] === '' || x[1] === null || x[1] === undefined) return; kv.push(`<dt>${h(x[0])}</dt><dd dir="auto">${h(x[1])}</dd>`); return; }
+      flush();
+      if (typeof x === 'object') {
+        if (x.how) out.push(`<div class="th"><i>${L('How to enter', 'طريقة الإدخال')}</i>${h(x.how)}</div>`);
+        else if (x.src) out.push(`<div class="ts"><i>${L('Source', 'المصدر')}</i>${h(x.src)}</div>`);
+        else if (x.warn) out.push(`<div class="tw2">${h(x.warn)}</div>`);
+        else if (x.txt) out.push(`<div class="tt2" dir="auto">${h(x.txt)}</div>`);
+        return;
+      }
+      out.push(`<p>${h(x)}</p>`);
+    });
+    flush();
+    return `${t ? `<b>${h(t)}</b>` : ''}${out.join('')}`;
+  },
+  box() { let b = document.getElementById('dtip'); if (!b) { b = document.createElement('div'); b.id = 'dtip'; b.setAttribute('role', 'tooltip'); document.body.appendChild(b); } return b; },
+  show(el) {
+    const html = TIP.html(TIP.get(el)); if (!html || !el.isConnected) return TIP.hide();
+    const b = TIP.box(); b.innerHTML = html; b.dir = S.lang === 'ar' ? 'rtl' : 'ltr'; b.style.display = 'block'; b.style.left = '0px'; b.style.top = '0px';
+    const r = el.getBoundingClientRect(), w = b.offsetWidth, hh = b.offsetHeight, top0 = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tb')) || 0;
+    let y = r.bottom + 6; if (y + hh > innerHeight - 6) y = r.top - hh - 6; if (y < 6 + top0) y = Math.max(6 + top0, Math.min(innerHeight - hh - 6, r.bottom + 6));
+    let x = S.lang === 'ar' ? r.right - w : r.left; x = Math.max(6, Math.min(innerWidth - w - 6, x));
+    b.style.left = x + 'px'; b.style.top = y + 'px'; TIP.cur = el;
+  },
+  hide() { clearTimeout(TIP.tm); TIP.cur = null; TIP.el = null; const b = document.getElementById('dtip'); if (b) b.style.display = 'none'; },
+  wire() {
+    if (TIP.on) return; TIP.on = 1;
+    const SEL = '[data-tip],[data-tipk],[data-tipf]';
+    document.addEventListener('mouseover', e => {
+      const el = e.target.closest && e.target.closest(SEL);
+      if (el === TIP.el) return; clearTimeout(TIP.tm); TIP.el = el;
+      if (!el) { if (TIP.cur) TIP.hide(); return; }
+      if (TIP.cur) { TIP.hide(); TIP.el = el; }
+      TIP.tm = setTimeout(() => { if (TIP.el === el) TIP.show(el); }, el.matches('td,td *') ? 380 : 220);
+    });
+    document.addEventListener('mouseout', e => { if (!e.relatedTarget) TIP.hide(); });
+    ['mousedown', 'keydown', 'wheel'].forEach(ev => document.addEventListener(ev, () => { if (TIP.cur || TIP.el) TIP.hide(); }, true));
+    document.addEventListener('scroll', () => { if (TIP.cur) TIP.hide(); }, true);
+  }
+};
+TIP.wire();
+
+/* Bookmark texts used in more than one place (key → English / Arabic) */
+const TIPS = {};
+
+/* ---- entry fields: [what it is / why / where it comes from (EN), (AR), how to enter (EN), (AR)] – an empty "how" takes the general rule of the field type ---- */
+const FT_HOW = {
+  date: ['Pick the date.', 'اختر التاريخ.'],
+  int: ['Whole number; empty = 0.', 'رقم صحيح؛ الفارغ = صفر.'],
+  dec: ['Number; decimals allowed.', 'رقم؛ يقبل الكسور.'],
+  money: ['Amount in SAR – numbers only, no commas.', 'المبلغ بالريال – أرقام فقط بدون فواصل.'],
+  list: ['Choose from the list (kept in Lists & settings).', 'اختر من القائمة (تُدار من القوائم والإعدادات).'],
+  enum: ['Choose one option.', 'اختر خياراً واحداً.'],
+  url: ['Paste the https:// sharing link of the file (OneDrive / SharePoint / Google Drive).', 'الصق رابط المشاركة https:// للملف (OneDrive / SharePoint / Google Drive).'],
+  text: ['Type it exactly as written on the document.', 'اكتبه كما هو مكتوب في المستند تماماً.'],
+  area: ['Short sentences: what happened, where, and the action.', 'جمل قصيرة: ماذا حدث، وأين، والإجراء.']
+};
+const HSN = ['Number for this day from the daily HSE report; empty = 0.', 'العدد لهذا اليوم من تقرير السلامة اليومي؛ الفارغ = صفر.'];
+const FTIPS = {
+  hse: {
+    date: ['The day this HSE record covers – one record per day.', 'اليوم الذي يغطيه سجل السلامة – سجل واحد لكل يوم.', '', ''],
+    day: ['Day of the week of the date.', 'يوم الأسبوع للتاريخ.'],
+    dayStatus: ['Working, rest day, holiday, stopped, or opening balance; non-working days keep the log continuous.', 'يوم عمل، أو راحة، أو عطلة، أو متوقف، أو رصيد افتتاحي؛ أيام عدم العمل تُسجَّل ليبقى السجل متصلاً.', 'Choose the status of the site that day; "Opening Balance" only for totals carried from before the log.', 'اختر حالة الموقع ذلك اليوم؛ «رصيد افتتاحي» فقط للإجماليات المرحّلة قبل بدء السجل.'],
+    weather: ['Site weather – explains heat stress and stoppages.', 'حالة الطقس في الموقع – تفسّر الإجهاد الحراري والتوقفات.', '', ''],
+    tempMax: ['Highest temperature of the day (°C).', 'أعلى درجة حرارة في اليوم (°م).', 'From the site thermometer or the weather service; number only.', 'من مقياس الموقع أو الأرصاد؛ رقم فقط.'],
+    indirect: ['Indirect labour of the day – read from Manpower & Equipment (entered once).', 'العمالة غير المباشرة لليوم – تُقرأ من صفحة العمالة والمعدات (تُسجَّل مرة واحدة).'],
+    direct: ['Direct labour of the day – read from Manpower & Equipment.', 'العمالة المباشرة لليوم – تُقرأ من صفحة العمالة والمعدات.'],
+    totalMP: ['Indirect + direct labour of the day.', 'العمالة غير المباشرة + المباشرة لليوم.'],
+    manHours: ['Day-shift man-days × day hours + night-shift man-days × night hours (Manpower & Equipment).', 'يوميات الوردية النهارية × ساعاتها + يوميات الليلية × ساعاتها (من العمالة والمعدات).'],
+    obManHours: ['Man-hours carried from before the daily log – only on the opening-balance record.', 'ساعات العمل المرحّلة من قبل بدء السجل اليومي – في سجل الرصيد الافتتاحي فقط.', 'Total man-hours to the start date of the log, from the previous HSE report.', 'إجمالي ساعات العمل حتى بداية السجل، من تقرير السلامة السابق.'],
+    hseStaff: ['HSE officers and supervisors on site that day.', 'مسؤولو ومشرفو السلامة في الموقع ذلك اليوم.', '', ''], firstAiders: ['Trained first aiders on site that day.', 'المسعفون المدرَّبون في الموقع ذلك اليوم.', '', ''],
+    fatal: ['Work-related fatalities.', 'الوفيات المتعلقة بالعمل.', '', ''], lti: ['Injuries that kept the person off work for at least one shift (LTI).', 'إصابات أبعدت المصاب عن العمل وردية واحدة على الأقل (LTI).', '', ''],
+    daysAway: ['Calendar days lost by LTI cases.', 'الأيام التقويمية الضائعة بسبب إصابات LTI.', '', ''], rdi: ['Injured person returned on restricted duty (RDI).', 'عاد المصاب للعمل بمهام مقيّدة (RDI).', '', ''],
+    daysRestricted: ['Days on restricted duty.', 'أيام العمل المقيّد.', '', ''], mtc: ['Injuries treated by a doctor beyond first aid (MTC).', 'إصابات عالجها طبيب بأكثر من الإسعاف الأولي (MTC).', '', ''],
+    mva: ['Vehicle accidents on or for the project.', 'حوادث المركبات في المشروع أو لصالحه.', '', ''], fac: ['Minor injuries treated with first aid only (FAC).', 'إصابات بسيطة عولجت بالإسعاف الأولي فقط (FAC).', '', ''],
+    propDamage: ['Incidents with damage to property or equipment.', 'حوادث نتج عنها تلف ممتلكات أو معدات.', '', ''], fire: ['Fire incidents, any size.', 'حوادث الحريق بأي حجم.', '', ''],
+    env: ['Spills, leaks or other environmental incidents.', 'انسكابات أو تسربات أو حوادث بيئية أخرى.', '', ''], nearMiss: ['Events that could have caused harm but did not.', 'أحداث كادت تسبب ضرراً ولم تسببه.', '', ''],
+    hipo: ['Incidents or near misses that could have been fatal or major (HiPo).', 'حوادث أو حوادث وشيكة كان يمكن أن تكون قاتلة أو جسيمة (HiPo).', '', ''],
+    otherInc: ['Incidents not in the classes above.', 'حوادث لا تندرج تحت الأنواع السابقة.', '', ''], nonWork: ['Health cases not caused by the work (counted apart).', 'حالات صحية غير ناتجة عن العمل (تُحسب منفصلة).', '', ''],
+    clinicVisits: ['Visits to the site clinic or a medical centre.', 'زيارات عيادة الموقع أو مركز طبي.', '', ''],
+    totalInc: ['Sum of every incident type of the day (fatal to other).', 'مجموع كل أنواع الحوادث لليوم (من الوفاة إلى الأخرى).'],
+    incSummary: ['What happened in each incident of the day.', 'ما حدث في كل حادثة في اليوم.', 'Per incident: type, time, place, person / trade, cause and action.', 'لكل حادثة: النوع، الوقت، المكان، الشخص / المهنة، السبب والإجراء.'],
+    soRaised: ['Unsafe acts / conditions recorded today.', 'التصرفات أو الظروف غير الآمنة المسجلة اليوم.', '', ''], soClosed: ['Safety observations closed today (any date raised).', 'ملاحظات السلامة المغلقة اليوم (أياً كان تاريخ تسجيلها).', '', ''],
+    eoRaised: ['Environmental observations recorded today.', 'الملاحظات البيئية المسجلة اليوم.', '', ''], eoClosed: ['Environmental observations closed today.', 'الملاحظات البيئية المغلقة اليوم.', '', ''],
+    ppeViol: ['People found without the required PPE.', 'أشخاص وُجدوا بدون معدات الوقاية المطلوبة.', '', ''], warnings: ['Violation or warning notices issued.', 'إنذارات أو مخالفات صادرة.', '', ''],
+    stopWork: ['Stop-work orders issued for unsafe work.', 'أوامر إيقاف العمل الصادرة لعمل غير آمن.', '', ''],
+    obsSummary: ['Main observations of the day and their status.', 'أهم ملاحظات اليوم وحالتها.', 'One line per observation: what, where, who closes it, by when.', 'سطر لكل ملاحظة: ماذا، أين، من يغلقها، ومتى.'],
+    tbt: ['Toolbox talks held today.', 'محاضرات التوعية المنعقدة اليوم.', '', ''], tbtAtt: ['People who attended the toolbox talks.', 'عدد الحاضرين لمحاضرات التوعية.', '', ''],
+    inductions: ['New workers inducted on site safety.', 'العمال الجدد الذين تلقوا تعريف السلامة.', '', ''], training: ['HSE training sessions held.', 'جلسات تدريب السلامة المنعقدة.', '', ''], trainingAtt: ['People trained today.', 'عدد المتدربين اليوم.', '', ''],
+    inspections: ['HSE inspections carried out.', 'عمليات تفتيش السلامة المنفذة.', '', ''], equipInsp: ['Plant and lifting equipment inspected.', 'المعدات ومعدات الرفع التي تم فحصها.', '', ''], scaffoldInsp: ['Scaffolds inspected and tagged.', 'السقالات التي تم فحصها ووضع بطاقاتها.', '', ''],
+    leaderTours: ['Site tours by management.', 'جولات الإدارة في الموقع.', '', ''], walkthroughs: ['HSE walkthroughs of the site.', 'جولات السلامة في الموقع.', '', ''], audits: ['HSE audits carried out.', 'عمليات تدقيق السلامة المنفذة.', '', ''],
+    permitsIssued: ['Permits to work issued today.', 'تصاريح العمل الصادرة اليوم.', '', ''], permitsClosed: ['Permits to work closed today.', 'تصاريح العمل المغلقة اليوم.', '', ''],
+    ptwHot: ['Of the permits issued: hot work.', 'من التصاريح الصادرة: أعمال ساخنة.', '', ''], ptwHeight: ['Of the permits issued: work at height.', 'من التصاريح الصادرة: العمل على ارتفاع.', '', ''], ptwLift: ['Of the permits issued: critical lifts.', 'من التصاريح الصادرة: رفع حرج.', '', ''],
+    ptwConfined: ['Of the permits issued: confined space.', 'من التصاريح الصادرة: أماكن مغلقة.', '', ''], ptwExc: ['Of the permits issued: excavation.', 'من التصاريح الصادرة: حفريات.', '', ''],
+    drills: ['Emergency drills held.', 'تمارين الطوارئ المنفذة.', '', ''], campaigns: ['HSE campaigns run.', 'حملات السلامة المنفذة.', '', ''], lessons: ['Lessons learned shared.', 'الدروس المستفادة المنشورة.', '', ''],
+    meetings: ['HSE meetings held.', 'اجتماعات السلامة المنعقدة.', '', ''], recognitions: ['Workers or teams recognised for safe work.', 'العمال أو الفرق المكرَّمون للعمل الآمن.', '', ''], wasteLoads: ['Waste loads removed from site.', 'حمولات المخلفات المنقولة من الموقع.', '', ''],
+    remarks: ['Anything else about HSE that day.', 'أي معلومة أخرى عن السلامة في ذلك اليوم.', '', '']
+  },
+  dc: {
+    issueDate: ['Date the document was sent (outgoing) or received (incoming); the reply due date counts from it.', 'تاريخ إرسال المستند (صادر) أو استلامه (وارد)؛ ويُحسب منه تاريخ استحقاق الرد.', 'The date on the transmittal or the receipt stamp.', 'التاريخ المكتوب في خطاب الإرسال أو ختم الاستلام.'],
+    docType: ['Type of document; it sets whether a reply is needed and in how many days.', 'نوع المستند؛ ويحدد إن كان يحتاج رداً وخلال كم يوماً.', '', ''],
+    direction: ['Outgoing = sent by us; Incoming = received.', 'صادر = أرسلناه؛ وارد = استلمناه.', '', ''],
+    ref: ['Unique reference number of the document; with the revision it identifies the record.', 'الرقم المرجعي الفريد للمستند؛ ومع رقم المراجعة يميّز السجل.', '', ''], rev: ['Revision of the document (e.g. R00, R01).', 'رقم مراجعة المستند (مثل R00 ، R01).', '', ''],
+    title: ['Subject as written on the document.', 'الموضوع كما هو مكتوب في المستند.', '', ''], discipline: ['Discipline the document belongs to.', 'التخصص الذي يتبعه المستند.', '', ''], zone: ['Location or zone the document concerns.', 'الموقع أو المنطقة التي يخصها المستند.', '', ''],
+    from: ['Party that sent the document.', 'الجهة المرسِلة للمستند.', 'Company name as in the letterhead.', 'اسم الجهة كما في الترويسة.'], to: ['Party the document was sent to.', 'الجهة المرسَل إليها المستند.', 'Company name as in the letterhead.', 'اسم الجهة كما في الترويسة.'],
+    transmittal: ['Number of the transmittal / cover letter.', 'رقم خطاب الإرسال.', '', ''],
+    docLink: ['Link to the copy of the document in the drive – opens from the register.', 'رابط نسخة المستند على الدرايف – يُفتح من السجل.', '', ''],
+    qty: ['Number of documents in this record (a batch of the same type).', 'عدد المستندات في هذا السجل (دفعة من نفس النوع).', 'Usually 1; more only for a batch with one reference.', 'غالباً 1؛ وأكثر فقط لدفعة بمرجع واحد.'],
+    replyDue: ['Issue date + reply days of the document type (when a reply is required).', 'تاريخ الإصدار + مدة الرد لنوع المستند (عند طلب رد).'],
+    replyDate: ['Date the reply was received / sent – closes the waiting time.', 'تاريخ استلام / إرسال الرد – يُنهي فترة الانتظار.', 'The date on the reply letter; not before the issue date.', 'التاريخ المكتوب على خطاب الرد؛ ولا يسبق تاريخ الإصدار.'],
+    reviewCode: ['Code given in the reply (A approved … D rejected).', 'الكود المعطى في الرد (A معتمد … D مرفوض).', '', ''], replyRef: ['Reference number of the reply letter.', 'الرقم المرجعي لخطاب الرد.', '', ''],
+    replyLink: ['Link to the copy of the reply.', 'رابط نسخة الرد.', '', ''],
+    status: ['Replied, Overdue (due date passed), Under Review, Info only or In progress.', 'تم الرد، أو متأخر (تجاوز الاستحقاق)، أو قيد المراجعة، أو للعلم، أو قيد الإعداد.'],
+    daysToReply: ['Reply date − issue date.', 'تاريخ الرد − تاريخ الإصدار.'], daysOverdue: ['Days past the reply due date (to the reply or today).', 'الأيام بعد تاريخ استحقاق الرد (حتى الرد أو اليوم).'],
+    recordType: ['Document, or opening balance (totals carried from before the register).', 'مستند، أو رصيد افتتاحي (إجماليات مرحّلة من قبل بدء السجل).', '', ''],
+    remarks: ['Anything else about this document.', 'أي معلومة أخرى عن هذا المستند.', '', '']
+  },
+  manpower: {
+    date: ['Day of the count.', 'يوم العدّ.', '', ''], resource: ['Position (labour) or equipment type – it sets category and type.', 'الوظيفة (عمالة) أو نوع المعدة – ويحدد الفئة والنوع.', '', ''],
+    typeOverride: ['Changes the type of the resource for this record only.', 'يغيّر نوع المورد لهذا السجل فقط.', 'Leave empty to use the type of the list.', 'اتركه فارغاً لاستخدام نوع القائمة.'],
+    cat: ['Labour or equipment – from the resources list.', 'عمالة أو معدات – من قائمة الموارد.'], type: ['Direct, indirect or equipment – from the resources list.', 'مباشرة أو غير مباشرة أو معدات – من قائمة الموارد.'],
+    contractor: ['Company the people / equipment belong to.', 'الشركة التي تتبعها العمالة / المعدات.', '', ''], area: ['Where they worked.', 'مكان العمل.', '', ''],
+    day: ['Workers (or equipment) working the day shift.', 'العمال (أو المعدات) العاملون في الوردية النهارية.', 'Head count from the daily attendance sheet.', 'العدد من كشف الحضور اليومي.'],
+    night: ['Workers (or equipment) working the night shift.', 'العمال (أو المعدات) العاملون في الوردية الليلية.', 'Head count from the daily attendance sheet.', 'العدد من كشف الحضور اليومي.'],
+    idle: ['On site but not working (mainly equipment).', 'موجودون في الموقع ولا يعملون (غالباً المعدات).', '', ''],
+    totalWorking: ['Day shift + night shift.', 'الوردية النهارية + الليلية.'], totalOnSite: ['Working + idle.', 'العاملون + المتوقفون.'],
+    workHours: ['Day shift × day hours + night shift × night hours.', 'النهاري × ساعاته + الليلي × ساعاته.'],
+    remarks: ['Anything else about this resource that day.', 'أي معلومة أخرى عن هذا المورد في ذلك اليوم.', '', '']
+  },
+  drawings: {
+    no: ['Drawing number; with the revision it identifies the record.', 'رقم المخطط؛ ومع رقم المراجعة يميّز السجل.', 'As in the title block.', 'كما في جدول العنوان بالمخطط.'], title: ['Title as in the title block.', 'العنوان كما في جدول العنوان.', '', ''],
+    category: ['Design, shop or as-built drawing – sets the progress credit.', 'تصميمي أو تنفيذي أو كما نُفّذ – ويحدد نسبة الإنجاز المحتسبة.', '', ''],
+    phase: ['Project phase of the drawing.', 'مرحلة المشروع للمخطط.', '', ''], zone: ['Building or zone of the drawing.', 'المبنى أو المنطقة للمخطط.', '', ''], element: ['Element the drawing details (e.g. slab, column).', 'العنصر الذي يفصّله المخطط (مثل البلاطة، العمود).', '', ''],
+    discipline: ['Discipline of the drawing.', 'تخصص المخطط.', '', ''], rev: ['Revision of the drawing (R00, R01 …).', 'رقم مراجعة المخطط (R00 ، R01 …).', '', ''],
+    resub: ['How many times it was resubmitted.', 'عدد مرات إعادة التقديم.', '', ''],
+    plannedSub: ['Target submission date from the drawing programme.', 'تاريخ التقديم المستهدف من برنامج المخططات.', '', ''],
+    actualSub: ['Date it was submitted to the consultant; starts the review time.', 'تاريخ تقديمه للاستشاري؛ ومنه تبدأ مدة المراجعة.', 'The date on the transmittal.', 'التاريخ المكتوب في خطاب الإرسال.'],
+    transmittal: ['Number of the submission transmittal.', 'رقم خطاب التقديم.', '', ''], docLink: ['Link to the submitted copy in the drive.', 'رابط النسخة المقدَّمة على الدرايف.', '', ''],
+    reviewDue: ['Actual submission + review days (Lists & settings).', 'التقديم الفعلي + مدة المراجعة (القوائم والإعدادات).'],
+    reviewDate: ['Date the consultant returned the review.', 'تاريخ إعادة الاستشاري للمراجعة.', 'The date on the reply; not before the submission.', 'التاريخ المكتوب على الرد؛ ولا يسبق التقديم.'],
+    reviewCode: ['Review result: A / B approved, C / D to revise.', 'نتيجة المراجعة: A / B معتمد، C / D للتعديل.', '', ''], replyRef: ['Reference of the review reply.', 'مرجع رد المراجعة.', '', ''], replyLink: ['Link to the copy of the review reply.', 'رابط نسخة رد المراجعة.', '', ''],
+    status: ['Not submitted / late, under review / overdue, or the status of the review code.', 'لم يُقدَّم / متأخر، قيد المراجعة / متأخرة، أو حالة كود المراجعة.'],
+    credit: ['Share of the drawing counted as done: by review code, or the under-review credit.', 'نسبة المخطط المحتسبة منجزة: حسب كود المراجعة أو نسبة قيد المراجعة.'],
+    daysLate: ['Actual (or today) − planned submission, when later.', 'التقديم الفعلي (أو اليوم) − المخطط، عند التأخر.'], reviewOverdue: ['Review date (or today) − review due date, when later.', 'تاريخ المراجعة (أو اليوم) − تاريخ الاستحقاق، عند التأخر.'],
+    remarks: ['Anything else about this drawing.', 'أي معلومة أخرى عن هذا المخطط.', '', '']
+  },
+  targets: {
+    phase: ['Phase of the target group.', 'مرحلة مجموعة المستهدفات.', '', ''], zone: ['Building / zone of the group.', 'مبنى / منطقة المجموعة.', '', ''], element: ['Element of the group.', 'عنصر المجموعة.', '', ''],
+    designPlanned: ['Design drawings expected for this group.', 'عدد المخططات التصميمية المتوقعة لهذه المجموعة.', 'From the drawing list / programme.', 'من قائمة / برنامج المخططات.'], shopPlanned: ['Shop drawings expected for this group.', 'عدد المخططات التنفيذية المتوقعة لهذه المجموعة.', 'From the drawing list / programme.', 'من قائمة / برنامج المخططات.'],
+    designOpening: ['Design drawings submitted before the register started.', 'المخططات التصميمية المقدَّمة قبل بدء السجل.', '', ''], shopOpening: ['Shop drawings submitted before the register started.', 'المخططات التنفيذية المقدَّمة قبل بدء السجل.', '', ''],
+    designTotal: ['Higher of the planned number and opening + registered.', 'الأعلى بين العدد المخطط والافتتاحي + المسجل.'], designSubmitted: ['Opening + registered drawings with a submission date.', 'الافتتاحي + المسجلة بتاريخ تقديم.'],
+    designProgress: ['Σ credit of the design drawings ÷ design total.', 'مجموع النسب المحتسبة للتصميمي ÷ إجمالي التصميمي.'], shopTotal: ['Higher of the planned number and opening + registered.', 'الأعلى بين العدد المخطط والافتتاحي + المسجل.'],
+    shopSubmitted: ['Opening + registered drawings with a submission date.', 'الافتتاحي + المسجلة بتاريخ تقديم.'], shopProgress: ['Σ credit of the shop drawings ÷ shop total.', 'مجموع النسب المحتسبة للتنفيذي ÷ إجمالي التنفيذي.'],
+    codeA: ['Drawings of the group with code A.', 'مخططات المجموعة بكود A.'], codeB: ['Drawings of the group with code B.', 'مخططات المجموعة بكود B.'], codeC: ['Drawings of the group with code C.', 'مخططات المجموعة بكود C.'], codeD: ['Drawings of the group with code D.', 'مخططات المجموعة بكود D.'],
+    underReview: ['Submitted, review not returned yet (opening included).', 'مقدَّمة ولم تُعد مراجعتها بعد (يشمل الافتتاحي).'], overall: ['Design and shop progress weighted by their weights (Lists & settings).', 'إنجاز التصميمي والتنفيذي مرجّحاً بأوزانهما (القوائم والإعدادات).']
+  },
+  invoices: {
+    no: ['Invoice number – next free number by default.', 'رقم المستخلص – افتراضياً الرقم التالي المتاح.', '', ''], type: ['Invoice type; sets deductions and payment terms.', 'نوع المستخلص؛ ويحدد الاستقطاعات وشروط الدفع.', '', ''],
+    name: ['Name of the invoice (e.g. IPA-12 – October).', 'اسم المستخلص (مثل IPA-12 – أكتوبر).', '', ''],
+    amount: ['Gross amount of the invoice before deductions.', 'القيمة الإجمالية للمستخلص قبل الاستقطاعات.', 'From the certified invoice, in SAR.', 'من المستخلص المعتمد، بالريال.'],
+    retention: ['Amount × retention % (Project setup), when the type retains.', 'القيمة × نسبة المحتجزات (إعداد المشروع)، إذا كان النوع يخصمها.'], advRec: ['Amount × advance % (Project setup), when the type recovers it.', 'القيمة × نسبة الدفعة المقدمة (إعداد المشروع)، إذا كان النوع يستردها.'],
+    net: ['Amount − retention − advance recovery.', 'القيمة − المحتجزات − استرداد المقدمة.'],
+    submittal: ['Date the invoice was submitted.', 'تاريخ تقديم المستخلص.', '', ''], consApproval: ['Date the consultant approved it.', 'تاريخ اعتماد الاستشاري.', '', ''], clientApproval: ['Date the client approved it.', 'تاريخ اعتماد المالك.', '', ''],
+    taxDate: ['Date of the tax invoice.', 'تاريخ الفاتورة الضريبية.', '', ''], releaseDate: ['Date the payment was received.', 'تاريخ استلام الدفعة.', 'From the bank advice.', 'من إشعار البنك.'],
+    basis: ['Date the payment term counts from – set by the invoice type.', 'التاريخ الذي تُحسب منه مدة الدفع – يحدده نوع المستخلص.'], payDays: ['Payment days of the invoice type.', 'مدة الدفع لنوع المستخلص.'],
+    basisDate: ['The invoice date that matches the payment basis.', 'تاريخ المستخلص المطابق لأساس الدفع.'], dueDate: ['Basis date + payment days.', 'تاريخ الأساس + مدة الدفع.'],
+    delayDays: ['Release date (or today) − due date, when later.', 'تاريخ الصرف (أو اليوم) − تاريخ الاستحقاق، عند التأخر.'], status: ['Paid, paid late, overdue, not due yet, or awaiting approval.', 'مدفوع، مدفوع متأخراً، متأخر، غير مستحق بعد، أو بانتظار الاعتماد.'],
+    releasedAmt: ['Net amount once released.', 'صافي المبلغ بعد الصرف.'], outstandingAmt: ['Net − released.', 'الصافي − المصروف.'],
+    consDays: ['Consultant approval − submittal.', 'اعتماد الاستشاري − التقديم.'], clientDays: ['Client approval − consultant approval.', 'اعتماد المالك − اعتماد الاستشاري.'], approvalDays: ['Client approval − submittal.', 'اعتماد المالك − التقديم.'], releaseDays: ['Release − submittal.', 'الصرف − التقديم.'],
+    remarks: ['Anything else about this invoice.', 'أي معلومة أخرى عن هذا المستخلص.', '', '']
+  }
+};
+// items of a field bookmark: what (+ where from), how to enter (or "calculated")
+TIP.field = (mk, f) => {
+  const d = (FTIPS[mk] || {})[f.k]; const L = (en, ar) => S.lang === 'ar' ? ar : en;
+  const out = [FL(f)]; if (d) out.push(L(d[0], d[1]));
+  if (f.t === 'calc') out.push({ src: L('Calculated – read only', 'محسوب تلقائياً – للقراءة فقط') });
+  else { const hw = d && d[2] ? [d[2], d[3]] : (mk === 'hse' && f.t === 'int' ? HSN : FT_HOW[f.t] || null); if (hw) out.push({ how: L(hw[0], hw[1]) }); if (f.req) out.push({ warn: L('Required', 'مطلوب') }); }
+  return out;
+};
+TIP.fa = (mk, f) => TIP.a(...TIP.field(mk, f));
+
+/* ---- cards of the rebuilt pages, by position: how each figure is calculated ---- */
+const CARD_TIPS = {
+  mp: [
+    ['Latest date with records in the filter.', 'آخر تاريخ له سجلات ضمن الفلتر.', 'Sub-line: direct and indirect labour of that day.', 'السطر السفلي: العمالة المباشرة وغير المباشرة لذلك اليوم.'],
+    ['Σ (day + night shift) of direct labour records.', 'مجموع (النهاري + الليلي) لسجلات العمالة المباشرة.', 'Days counted to the last date.', 'عدد الأيام حتى آخر تاريخ.'],
+    ['Σ (day + night shift) of indirect labour records.', 'مجموع (النهاري + الليلي) لسجلات العمالة غير المباشرة.', 'Days counted to the last date.', 'عدد الأيام حتى آخر تاريخ.'],
+    ['Day man-days × day hours + night man-days × night hours – direct labour.', 'يوميات النهاري × ساعاته + يوميات الليلي × ساعاته – العمالة المباشرة.'],
+    ['Day man-days × day hours + night man-days × night hours – indirect labour.', 'يوميات النهاري × ساعاته + يوميات الليلي × ساعاته – العمالة غير المباشرة.'],
+    ['Highest direct labour of one day, with its date.', 'أعلى عمالة مباشرة في يوم واحد، مع تاريخه.'],
+    ['Highest indirect labour of one day, with its date.', 'أعلى عمالة غير مباشرة في يوم واحد، مع تاريخه.'],
+    ['Σ working equipment (day + night).', 'مجموع المعدات العاملة (نهاري + ليلي).', 'Idle = equipment on site not working.', 'المتوقفة = معدات في الموقع لا تعمل.']
+  ],
+  hs: [
+    ['Latest day with an HSE record in the filter.', 'آخر يوم له سجل سلامة ضمن الفلتر.', 'Days recorded · working days.', 'الأيام المسجلة · أيام العمل.'],
+    ['Σ man-hours (from Manpower & Equipment, opening balance included).', 'مجموع ساعات العمل (من العمالة والمعدات، ويشمل الرصيد الافتتاحي).', 'Average manpower per working day.', 'متوسط العمالة لكل يوم عمل.'],
+    ['Man-hours since the last fatality / LTI in the filter.', 'ساعات العمل منذ آخر وفاة / إصابة مضيعة للوقت ضمن الفلتر.'],
+    ['Σ incidents of every type.', 'مجموع الحوادث بكل أنواعها.', 'LTI · RDI · MTC · FAC = the main classes.', 'LTI · RDI · MTC · FAC = الأنواع الرئيسية.'],
+    ['Σ near misses.', 'مجموع الحوادث الوشيكة.', 'HiPo, fire and environmental incidents in the sub-line.', 'عالية الخطورة والحريق والبيئية في السطر السفلي.'],
+    ['TRIR = recordable (fatal + LTI + RDI + MTC) × 200,000 ÷ man-hours.', 'TRIR = الإصابات المسجلة (وفاة + LTI + RDI + MTC) × 200,000 ÷ ساعات العمل.', 'LTIFR = (fatal + LTI) × 1,000,000 ÷ man-hours.', 'LTIFR = (وفاة + LTI) × 1,000,000 ÷ ساعات العمل.'],
+    ['Σ safety + environmental observations raised.', 'مجموع ملاحظات السلامة والبيئة المسجلة.', 'Open = raised − closed; closure % = closed ÷ raised.', 'المفتوحة = المسجلة − المغلقة؛ نسبة الإغلاق = المغلقة ÷ المسجلة.'],
+    ['Σ toolbox talks.', 'مجموع محاضرات التوعية.', 'Inductions and training sessions in the sub-line.', 'التعريف وجلسات التدريب في السطر السفلي.'],
+    ['Σ HSE inspections.', 'مجموع عمليات التفتيش.', 'Audits and tours in the sub-line.', 'التدقيق والجولات في السطر السفلي.'],
+    ['Σ permits to work issued.', 'مجموع تصاريح العمل الصادرة.', 'Closed permits and stop-work orders in the sub-line.', 'التصاريح المغلقة وأوامر الإيقاف في السطر السفلي.']
+  ],
+  dc: [
+    ['Σ documents (quantity) in the filter.', 'مجموع المستندات (بالكمية) ضمن الفلتر.', 'Outgoing · incoming.', 'صادر · وارد.'],
+    ['Documents issued or received in the last 7 days to the report date.', 'المستندات الصادرة أو الواردة خلال آخر 7 أيام حتى تاريخ التقرير.'],
+    ['Need a reply and no reply date yet.', 'تحتاج رداً ولا يوجد تاريخ رد بعد.', 'Overdue = past the reply due date.', 'المتأخر = تجاوز تاريخ استحقاق الرد.'],
+    ['Awaiting reply and past the due date.', 'بانتظار الرد وتجاوزت تاريخ الاستحقاق.', 'Average and longest delay in days.', 'متوسط وأقصى تأخير بالأيام.'],
+    ['Awaiting reply, due within the next 7 days.', 'بانتظار الرد ومستحقة خلال 7 أيام.'],
+    ['Documents with a reply date.', 'مستندات لها تاريخ رد.', 'Average days to reply = reply − issue date.', 'متوسط أيام الرد = تاريخ الرد − تاريخ الإصدار.'],
+    ['Documents returned with code A (approved).', 'مستندات عادت بكود A (معتمد).', '% of the reviewed documents.', 'النسبة من المستندات المراجَعة.'],
+    ['Documents returned with code B (approved with comments).', 'مستندات عادت بكود B (معتمد بملاحظات).', '% of the reviewed documents.', 'النسبة من المستندات المراجَعة.'],
+    ['Documents returned with code C or D (revise / rejected).', 'مستندات عادت بكود C أو D (للتعديل / مرفوض).'],
+    ['Records with a link to their copy.', 'سجلات لها رابط نسختها.', 'Reply copies linked in the sub-line.', 'نسخ الردود المربوطة في السطر السفلي.']
+  ],
+  dw: [
+    ['Σ design credit ÷ design drawings planned (targets in the filter).', 'مجموع نسب المخططات التصميمية المحتسبة ÷ المستهدف (ضمن الفلتر).'],
+    ['Σ shop credit ÷ shop drawings planned (targets in the filter).', 'مجموع نسب المخططات التنفيذية المحتسبة ÷ المستهدف (ضمن الفلتر).'],
+    ['Design and shop progress weighted by their weights (Lists & settings).', 'إنجاز التصميمي والتنفيذي مرجّحاً بأوزانهما (القوائم والإعدادات).'],
+    ['Drawings in the register (filter applied).', 'المخططات في السجل (بعد الفلتر).', 'Design · shop · as-built.', 'تصميمي · تنفيذي · كما نُفّذ.'],
+    ['Drawings with an actual submission date.', 'مخططات لها تاريخ تقديم فعلي.', 'Not submitted and copies linked in the sub-line.', 'غير المقدَّمة والنسخ المربوطة في السطر السفلي.'],
+    ['Submitted, no review code yet.', 'مقدَّمة ولا يوجد كود مراجعة بعد.', 'Overdue = past submission + review days.', 'المتأخرة = تجاوزت التقديم + مدة المراجعة.'],
+    ['Drawings with code A or B.', 'مخططات بكود A أو B.'],
+    ['Drawings with code C or D – to be revised and resubmitted.', 'مخططات بكود C أو D – للتعديل وإعادة التقديم.'],
+    ['Planned date passed and not submitted.', 'تجاوزت التاريخ المخطط ولم تُقدَّم.', 'Average days late.', 'متوسط أيام التأخير.'],
+    ['Planned in the next 14 days, not submitted yet.', 'مخطط تقديمها خلال 14 يوماً ولم تُقدَّم بعد.']
+  ]
+};
+// items of the bookmark of card i of a page (lines in the interface language)
+const CTIP = (pg, i) => { const d = (CARD_TIPS[pg] || [])[i]; if (!d) return null; const ar = S.lang === 'ar'; const out = []; for (let j = 0; j < d.length; j += 2) out.push(ar ? d[j + 1] : d[j]); return out; };
+
+/* ---- columns of the logs / registers of the rebuilt pages (key of the column → [EN, AR]) ---- */
+const COL_TIPS = {
+  mp: { date: ['Day of the count.', 'يوم العدّ.'], res: ['Position or equipment type.', 'الوظيفة أو نوع المعدة.'], cat: ['Labour or equipment (resources list).', 'عمالة أو معدات (قائمة الموارد).'], type: ['Direct, indirect or equipment (resources list).', 'مباشرة أو غير مباشرة أو معدات (قائمة الموارد).'],
+    ctr: ['Company of the people / equipment.', 'شركة العمالة / المعدات.'], day: ['Working the day shift.', 'العاملون في الوردية النهارية.'], night: ['Working the night shift.', 'العاملون في الوردية الليلية.'], idle: ['On site, not working.', 'في الموقع ولا يعملون.'],
+    tw: ['Day + night shift.', 'النهاري + الليلي.'], wh: ['Day × day hours + night × night hours.', 'النهاري × ساعاته + الليلي × ساعاته.'], remarks: ['Remarks of the record – hover for the full text.', 'ملاحظات السجل – مرّر المؤشر لقراءة النص كاملاً.'], by: ['User who saved the record.', 'المستخدم الذي حفظ السجل.'] },
+  hs: { date: ['Day of the record.', 'يوم السجل.'], st: ['Working, rest day, holiday, stopped or opening balance.', 'عمل، راحة، عطلة، متوقف أو رصيد افتتاحي.'], ind: ['From Manpower & Equipment (↺ read only).', 'من العمالة والمعدات (↺ للقراءة فقط).'], dir: ['From Manpower & Equipment (↺ read only).', 'من العمالة والمعدات (↺ للقراءة فقط).'],
+    mh: ['Day man-days × day hours + night man-days × night hours (↺).', 'يوميات النهاري × ساعاته + الليلي × ساعاته (↺).'], inc: ['All incidents of the day; red = recordable injury.', 'كل حوادث اليوم؛ الأحمر = إصابة مسجلة.'], nm: ['Near misses of the day.', 'الحوادث الوشيكة لليوم.'],
+    or: ['Safety + environmental observations raised.', 'ملاحظات السلامة والبيئة المسجلة.'], oc: ['Safety + environmental observations closed.', 'ملاحظات السلامة والبيئة المغلقة.'], sw: ['Stop-work orders.', 'أوامر إيقاف العمل.'], tbt: ['Toolbox talks.', 'محاضرات التوعية.'], insp: ['HSE inspections.', 'عمليات التفتيش.'], pi: ['Permits to work issued.', 'تصاريح العمل الصادرة.'],
+    os: ['Summary of the observations – HSE users add it with ＋ / ✎; amber = observations without a summary.', 'ملخص الملاحظات – يضيفه مستخدم السلامة بـ ＋ / ✎؛ الكهرماني = ملاحظات بدون ملخص.'], rm: ['Remarks of the day – hover for the full text.', 'ملاحظات اليوم – مرّر المؤشر لقراءة النص كاملاً.'], by: ['User who saved the day.', 'المستخدم الذي حفظ اليوم.'] },
+  dc: { date: ['Date sent (outgoing) or received (incoming).', 'تاريخ الإرسال (صادر) أو الاستلام (وارد).'], type: ['Type of document – sets the reply days.', 'نوع المستند – ويحدد مدة الرد.'], dir: ['↗ outgoing · ↘ incoming.', '↗ صادر · ↘ وارد.'], ref: ['Reference number and revision.', 'الرقم المرجعي ورقم المراجعة.'],
+    title: ['Subject of the document.', 'موضوع المستند.'], disc: ['Discipline.', 'التخصص.'], party: ['From (incoming) or to (outgoing).', 'من (الوارد) أو إلى (الصادر).'], qty: ['Documents in the record.', 'عدد المستندات في السجل.'], due: ['Issue date + reply days of the type.', 'تاريخ الإصدار + مدة الرد للنوع.'],
+    st: ['Replied, under review, overdue (days late), info only.', 'تم الرد، قيد المراجعة، متأخر (أيام التأخير)، للعلم.'], reply: ['Last reply: date, code, reference and copy link; ＋ Record reply to add it.', 'آخر رد: التاريخ والكود والمرجع ورابط النسخة؛ ＋ تسجيل الرد لإضافته.'], copy: ['Opens the copy of the document; ＋ Link to add it.', 'يفتح نسخة المستند؛ ＋ رابط لإضافتها.'] },
+  dw: { no: ['Drawing number, revision and resubmittals.', 'رقم المخطط والمراجعة وإعادات التقديم.'], title: ['Drawing title.', 'عنوان المخطط.'], cat: ['Design, shop or as-built.', 'تصميمي، تنفيذي أو كما نُفّذ.'], ph: ['Phase.', 'المرحلة.'], zone: ['Building / zone.', 'المبنى / المنطقة.'], el: ['Element.', 'العنصر.'],
+    pl: ['Target submission date.', 'تاريخ التقديم المستهدف.'], date: ['Actual submission and transmittal; ＋ Submit to record it.', 'التقديم الفعلي وخطاب الإرسال؛ ＋ تقديم لتسجيله.'], st: ['Not submitted / late, under review / overdue, or review status (days).', 'لم يُقدَّم / متأخر، قيد المراجعة / متأخرة، أو حالة المراجعة (بالأيام).'],
+    reply: ['Last review: date, code, reference and copy link; ＋ Record review.', 'آخر مراجعة: التاريخ والكود والمرجع ورابط النسخة؛ ＋ تسجيل المراجعة.'], cr: ['Share counted as done (review code or under-review credit).', 'النسبة المحتسبة منجزة (كود المراجعة أو نسبة قيد المراجعة).'], copy: ['Opens the submitted copy; ＋ Link to add it.', 'يفتح النسخة المقدَّمة؛ ＋ رابط لإضافتها.'] }
+};
+TIP.col = (pg, k, label) => { const d = (COL_TIPS[pg] || {})[k]; return d ? TIP.a(label, S.lang === 'ar' ? d[1] : d[0]) : ''; };
 
 /* ===== PAGES ===== */
 const LBL = (en, ar) => S.lang === 'ar' ? ar : en;
@@ -3033,7 +3387,7 @@ PAGES.home = v => {
     const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || (sch.codeTypes || [])[0];
     const grp = {}; const { w } = PROG.weights();
     sm.rows.forEach(r => { const g = (r.a.codes[key] || '—'); const o = grp[g] = grp[g] || { n: 0, c: 0, ip: 0, ns: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; o[r.e.status === 'Completed' ? 'c' : r.e.status === 'In Progress' ? 'ip' : 'ns']++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
-    lc = `<div class="tw" style="max-height:none"><table class="t"><thead><tr><th>${h(key || '')}</th><th class="n">${T('activities')}</th><th class="n">${T('completed')}</th><th class="n">${T('in_progress')}</th><th class="n">${T('not_started')}</th><th style="min-width:200px">${T('planned')} / ${T('contractor_act')}</th><th class="n">${T('behind')}</th></tr></thead><tbody>
+    lc = `<div class="tw" style="max-height:none"><table class="t"><thead><tr><th${TIP.a(h(key || ''), LBL('Activity code of the P6 schedule (project life cycle).', 'كود النشاط في برنامج P6 (دورة حياة المشروع).'))}>${h(key || '')}</th><th class="n"${TIP.a(T('activities'), LBL('Activities of the group.', 'أنشطة المجموعة.'))}>${T('activities')}</th><th class="n"${TIP.a(T('completed'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('completed')}</th><th class="n"${TIP.a(T('in_progress'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('in_progress')}</th><th class="n"${TIP.a(T('not_started'), LBL('Status after the team entries.', 'الحالة بعد إدخالات الفريق.'))}>${T('not_started')}</th><th style="min-width:200px"${TIP.a(`${T('planned')} / ${T('contractor_act')}`, LBL('Weighted planned % at the cut-off (light bar) and contractor actual (dark bar) of the group.', 'المخطط المرجّح في تاريخ القطع (الشريط الفاتح) وفعلي المقاول (الشريط الداكن) للمجموعة.'))}>${T('planned')} / ${T('contractor_act')}</th><th class="n"${TIP.a(T('behind'), LBL('Activities of the group behind plan.', 'أنشطة المجموعة المتأخرة عن الخطة.'))}>${T('behind')}</th></tr></thead><tbody>
       ${Object.entries(grp).sort((a, b) => b[1].w - a[1].w).map(([g, o]) => { const pl = o.w ? o.pl / o.w : 0, ac = o.w ? o.ac / o.w : 0; return `<tr><td><b>${h(g)}</b></td><td class="n">${o.n}</td><td class="n">${o.c}</td><td class="n">${o.ip}</td><td class="n">${o.ns}</td><td><div class="bar" title="${T('planned')} ${pl.toFixed(1)}%"><i class="pl" style="width:${pl}%"></i></div><div class="bar" style="margin-top:3px" title="${T('contractor_act')} ${ac.toFixed(1)}%"><i style="width:${ac}%"></i></div><span class="tiny muted">${pl.toFixed(1)}% / <b style="color:var(--pri)">${ac.toFixed(1)}%</b></span></td><td class="n">${o.beh ? `<span class="bdg bad">${o.beh}</span>` : '0'}</td></tr>`; }).join('')}</tbody></table></div>`;
   }
   v.innerHTML = `${pageHead(`${T('welcome')}, ${h(S.user.name)}`, `${h(p.name)} · ${h(reportCode())} · ${T('report_date')}: ${D.fmt(rd)}`, `<button class="btn" data-pr>${ic('print')}${T('print')}</button>`)}
@@ -3062,113 +3416,197 @@ PAGES.home = v => {
     <div><div class="sec-t">${T('kpi_drw')}</div><div class="grid g3">${kpi(T('design_prog'), fmtP(dr.dP))}${kpi(T('shop_prog'), fmtP(dr.sP))}${kpi(T('eng_prog'), fmtP(dr.O), `${LBL('Late', 'متأخر')}: ${dr.late} · ${LBL('Review overdue', 'مراجعة متأخرة')}: ${dr.ovr}`, dr.late + dr.ovr ? 'warn' : '')}</div></div></div>
     <div class="sec-t">${T('checks')}</div>
     <div class="card"><div class="cb" style="display:flex;gap:14px;align-items:center">${ic(rev ? 'warn' : 'ok')}<div><b>${checks.length - rev} / ${checks.length}</b> ${T('passed')} · ${rev} ${T('to_review')}</div><span style="flex:1"></span><button class="btn sm" data-go="checks">${T('go')}</button></div></div>`;
+  // bookmarks of the dashboard figures (by label)
+  const HT = [[T('variance'), 'Contractor actual − planned at the cut-off, in percentage points.', 'فعلي المقاول − المخطط في تاريخ القطع، بالنقاط المئوية.'], [T('spi'), 'Contractor actual ÷ planned at the cut-off; 1 or more = on or ahead of plan.', 'فعلي المقاول ÷ المخطط في تاريخ القطع؛ 1 أو أكثر = حسب الخطة أو متقدم.'],
+    [T('behind'), 'Activities not completed whose planned % at the cut-off is above the actual %.', 'أنشطة غير مكتملة نسبتها المخططة في تاريخ القطع أعلى من الفعلية.'], [T('commencement'), 'Project start date (Project setup).', 'تاريخ بدء المشروع (إعداد المشروع).'], [T('completion'), 'Contract completion date (Project setup).', 'تاريخ انتهاء العقد (إعداد المشروع).'],
+    [T('report_date'), 'Date the figures are reported at (cut-off).', 'التاريخ الذي تُعرض عنده الأرقام (تاريخ القطع).'], [T('elapsed'), 'Calendar days from commencement to the report date.', 'الأيام التقويمية من البدء حتى تاريخ التقرير.'], [T('remaining'), 'Calendar days from the report date to completion; negative = past completion.', 'الأيام التقويمية من تاريخ التقرير حتى الانتهاء؛ السالب = تجاوز تاريخ الانتهاء.'],
+    [T('time_elapsed'), 'Elapsed days ÷ contract duration.', 'الأيام المنقضية ÷ مدة العقد.'], [T('contract_value'), 'Original contract value (Project setup).', 'قيمة العقد الأصلية (إعداد المشروع).'], [T('vo'), 'Approved variation orders (Project setup).', 'الأوامر التغييرية المعتمدة (إعداد المشروع).'], [T('bac'), 'Contract value + variations (budget at completion).', 'قيمة العقد + الأوامر التغييرية (الميزانية عند الإنجاز).'],
+    [T('net_invoiced'), 'Σ net invoice amounts (after retention and advance recovery); sub-line: gross interim invoices ÷ BAC.', 'مجموع صافي المستخلصات (بعد المحتجزات واسترداد المقدمة)؛ السطر السفلي: إجمالي المستخلصات الجارية ÷ الميزانية.'], [T('released'), 'Σ net amount of the invoices paid; sub-line: % of the net invoiced.', 'مجموع صافي المستخلصات المدفوعة؛ السطر السفلي: النسبة من صافي المستخلص.'],
+    [T('outstanding'), 'Net invoiced − released; overdue = past the payment due date.', 'صافي المستخلص − المصروف؛ المتأخر = تجاوز تاريخ استحقاق الدفع.'], [T('activities'), 'Activities of the latest P6 update XER.', 'أنشطة آخر تحديث XER من P6.'], [T('completed'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'], [T('in_progress'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'], [T('not_started'), 'Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'],
+    [T('updated'), 'Activities with an entry in the open cut-off, by party.', 'أنشطة بها إدخال في تاريخ القطع المفتوح، حسب الجهة.'], [T('p6_changed_n'), 'Activities whose status, %, dates or remaining duration differ from P6 – they go to the P6 file.', 'أنشطة تختلف حالتها أو نسبتها أو تواريخها أو المتبقي عن P6 – تُرسل في ملف P6.'],
+    [T('manhours') + ' (PTD)', 'Σ man-hours to date (HSE Daily, from Manpower & Equipment).', 'مجموع ساعات العمل حتى تاريخه (السلامة اليومية، من العمالة والمعدات).'], [T('lti_free'), 'Man-hours since the last fatality or lost-time injury.', 'ساعات العمل منذ آخر وفاة أو إصابة مضيعة للوقت.'], [LBL('Fatalities + LTI', 'الوفيات + LTI'), 'Σ fatalities + lost-time injuries to date.', 'مجموع الوفيات + الإصابات المضيعة للوقت حتى تاريخه.'],
+    [T('incidents') + ' (PTD)', 'Σ incidents of every type to date.', 'مجموع الحوادث بكل أنواعها حتى تاريخه.'], [T('open_obs'), 'Safety observations raised − closed, to date.', 'ملاحظات السلامة المسجلة − المغلقة حتى تاريخه.'], [T('permits') + ' (PTD)', 'Σ permits to work issued to date.', 'مجموع تصاريح العمل الصادرة حتى تاريخه.'],
+    [T('last_day'), 'Latest date with labour recorded (Manpower & Equipment).', 'آخر تاريخ مسجلة فيه عمالة (العمالة والمعدات).'], [T('direct'), 'Direct labour (day + night) on that last day.', 'العمالة المباشرة (نهاري + ليلي) في ذلك اليوم الأخير.'], [T('indirect'), 'Indirect labour (day + night) on that last day.', 'العمالة غير المباشرة (نهاري + ليلي) في ذلك اليوم الأخير.'],
+    [T('equip_working'), 'Equipment working on that last day.', 'المعدات العاملة في ذلك اليوم الأخير.'], [T('peak_direct'), 'Highest direct labour of one day.', 'أعلى عمالة مباشرة في يوم واحد.'], [T('avg7'), 'Average direct labour of the last 7 recorded days.', 'متوسط العمالة المباشرة لآخر 7 أيام مسجلة.'],
+    [T('total_subm'), 'Σ documents (quantity); sub-line: last 7 days.', 'مجموع المستندات (بالكمية)؛ السطر السفلي: آخر 7 أيام.'], [T('awaiting'), 'Documents that need a reply and have none; overdue = past the due date.', 'مستندات تحتاج رداً ولا يوجد رد؛ المتأخر = تجاوز تاريخ الاستحقاق.'], ['A / B / C', 'Documents returned with codes A / B / C.', 'مستندات عادت بالأكواد A / B / C.'],
+    [T('design_prog'), 'Σ credit of design drawings ÷ design drawings planned.', 'مجموع النسب المحتسبة للمخططات التصميمية ÷ المستهدف.'], [T('shop_prog'), 'Σ credit of shop drawings ÷ shop drawings planned.', 'مجموع النسب المحتسبة للمخططات التنفيذية ÷ المستهدف.'], [T('eng_prog'), 'Design and shop progress weighted by their weights (Lists & settings).', 'إنجاز التصميمي والتنفيذي مرجّحاً بأوزانهما (القوائم والإعدادات).']];
+  const HTm = new Map(HT.map(x => [x[0], S.lang === 'ar' ? x[2] : x[1]]));
+  v.querySelectorAll('.kpi').forEach(k => { const l = k.querySelector('.k'); const t = l && HTm.get(l.textContent.trim()); if (t) { k.setAttribute('data-tip', JSON.stringify([l.textContent.trim(), t])); l.removeAttribute('title'); } });
   v.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go));
   v.querySelector('[data-pr]').onclick = () => RPT.print('home');
 };
 function lastClosedBefore(cut) { return live(S.db.cutoffs).filter(c => c.status === 'closed' && c.date < cut.date).sort((a, b) => b.date.localeCompare(a.date))[0]; }
 
-/* ---------- PROGRESS ---------- */
+/* ---------- PROGRESS (rebuilt 17-Nov-2026: compact cards, one filter panel, a table that fits the page width, bookmarks) ---------- */
+const PG_ST = { 'Completed': 'cp', 'In Progress': 'ip', 'Not Started': 'ns' };
+const pgSt = s => s === 'Completed' ? LBL('Completed', 'مكتمل') : s === 'In Progress' ? LBL('In progress', 'جارٍ') : s === 'Not Started' ? LBL('Not started', 'لم يبدأ') : E(s);
+const pgPct = x => isNum(x) ? `${fmtN(N(x), N(x) % 1 ? 1 : 0)}%` : '';
 PAGES.progress = v => {
   const cut = activeCutoff(), sch = SCH();
   const st = S.ui.prog = S.ui.prog || { focus: 'all', q: '', codes: {}, page: 0, sel: new Set(), la: N(S.db.params.lookahead) || 14 };
   const canC = can('ctr') && !!cut, canCo = can('cons') && !!cut, canO = can('own') && !!cut;
   if (!sch) { v.innerHTML = pageHead(T('progress'), '') + `<div class="notice warn">${ic('warn')}<div>${T('no_schedule')}</div></div>`; return; }
   const cid = cut ? cut._id : (lastCutoff() || {})._id; const cdate = cut ? cut.date : reportDate();
+  const ddate = sch.asOf || sch.dataDate || '';
   const codeKeys = sch.filterKeys;   // Global activity codes of the XER files (the latest update wins)
-  Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; });
+  Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; else st.codes[k] = A_(st.codes[k]); });
   if (st.focus === 'updated') st.focus = 'updC';
-  const FO = { all: 'f_all', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', issues: 'f_issues', due: 'f_due' };
-  const pill = f => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T(FO[f])}</span>`;
+  const codeLabel = k => k.replace(/^\d\d /, '');
+  // one focus at a time: status · needs attention (one segment "Show") and updated in this cut-off by (second segment)
+  const FG = [['fs-sh', LBL('Show', 'عرض'), [['all', LBL('All', 'الكل')], ['inprog', T('f_inprog')], ['ns', T('f_ns')], ['comp', T('f_comp')], '|', ['behind', T('f_behind')], ['issues', T('f_issues')], ['due', LBL('Due within', 'مطلوب خلال')]]],
+    ['fs-up', LBL('Updated by', 'تم تحديثه من'), [['updC', T('r_ctr_s')], ['updCo', T('r_cons_s')], ['updO', T('r_own_s')]]]];
+  const FTIP = {
+    all: [LBL('All', 'الكل'), LBL('Every activity of the schedule.', 'كل أنشطة البرنامج.')],
+    inprog: [T('f_inprog'), LBL('Status after the team entries: above 0 % and below 100 %.', 'الحالة بعد إدخالات الفريق: أكبر من 0% وأقل من 100%.')],
+    ns: [T('f_ns'), LBL('Status after the team entries: 0 %.', 'الحالة بعد إدخالات الفريق: 0%.')],
+    comp: [T('f_comp'), LBL('Status after the team entries: 100 %.', 'الحالة بعد إدخالات الفريق: 100%.')],
+    behind: [T('f_behind'), LBL('Not completed, and the planned % at the cut-off is above the actual %.', 'غير مكتمل، والمخطط في تاريخ القطع أعلى من الفعلي.')],
+    issues: [T('f_issues'), LBL('An error (!) or a warning (?) in the "To P6" column.', 'خطأ (!) أو تنبيه (?) في عمود «إلى P6».')],
+    due: [LBL('Due within', 'مطلوب خلال'), LBL('Work of the next days from the cut-off: in progress, planned to start or finish in the window, or updated in this cut-off.', 'أعمال الأيام القادمة من تاريخ القطع: الجارية، أو المخطط بدؤها أو انتهاؤها خلال الفترة، أو المحدَّثة في هذا القطع.'), { how: LBL('Type the number of days in the box.', 'اكتب عدد الأيام في الخانة.') }],
+    updC: [T('r_ctr_s'), LBL('Activities the contractor updated in this cut-off (%, dates, remaining duration or delay fields).', 'أنشطة حدّثها المقاول في هذا القطع (النسبة أو التواريخ أو المتبقي أو بيانات التأخير).')],
+    updCo: [T('r_cons_s'), LBL('Activities the consultant reviewed in this cut-off.', 'أنشطة راجعها الاستشاري في هذا القطع.')],
+    updO: [T('r_own_s'), LBL('Activities the owner assessed in this cut-off.', 'أنشطة قيّمها المالك في هذا القطع.')]
+  };
   v.innerHTML = pageHead(T('progress'), '', `${cut && (canC || canCo || canO) ? `<button class="btn" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn" data-xl>${ic('dl')}${T('export_xlsx')}</button>`) +
     (!cut ? `<div class="notice warn">${ic('warn')}<div>${T('no_open_cutoff')}</div></div>` : '') +
     (!sch.upd ? `<div class="notice info">${ic('info')}<div>${T('xer_upd_none')}</div></div>` : '') +
     (cut && !(canC || canCo || canO) ? roNotice('ctr') : '') +
-    `<div class="pk" data-k style="margin-bottom:12px"></div>
-    <div class="tbar"><div class="pill-sel" data-fc>${['all', 'inprog', 'ns', 'comp', 'behind', 'issues'].map(pill).join('')}<span class="fsep"></span>${pill('due')}<label class="lad" dir="ltr" title="${T('lookahead')}"><input class="in" type="number" min="0" value="${st.la}" data-la><i>d</i></label></div>
-      <div class="updf pill-sel"><span class="ul">${T('f_upd_lbl')}</span>${[['updC', 'r_ctr_s'], ['updCo', 'r_cons_s'], ['updO', 'r_own_s']].map(([f, k]) => `<span class="bdg ${st.focus === f ? 'on' : ''}" data-fo="${f}">${T(k)} <b data-uc="${f}">0</b></span>`).join('')}</div></div>
-    <div class="tbar"><input class="in search" placeholder="${T('search')}" value="${h(st.q)}" data-q>${codeKeys.map(k => `<select class="in fsel" data-cd="${h(k)}"></select>`).join('')}<button class="btn" data-clr>${ic('x')}${T('clear_filters')}</button></div>
+    `<div class="pk" data-k></div>
+    <div class="pgf">
+      <div class="r1"><input class="in search" placeholder="${h(LBL('Search activity name or ID', 'بحث باسم النشاط أو الكود'))}" value="${h(st.q)}" data-q${TIP.a(LBL('Search', 'بحث'), LBL('Activity name or ID (the baseline name is searched too).', 'اسم النشاط أو الكود (ويشمل اسم البرنامج الأساسي).'))}>${codeKeys.map(k => `<span class="fslot" data-cs="${h(k)}"></span>`).join('')}</div>
+      <div class="r2">${FG.map(([g, gl, items]) => `<div class="fseg ${g}" ${g === 'fs-sh' ? 'data-fc' : 'data-uf'}><span class="fl"${g === 'fs-up' ? TIP.a(LBL('Updated in this cut-off by', 'تم تحديثه في هذا القطع من'), LBL('Activities with an entry of that party in the open cut-off.', 'أنشطة بها إدخال من هذه الجهة في تاريخ القطع المفتوح.')) : ''}>${gl}</span>${items.map(it => it === '|' ? '<span class="fsp"></span>' : `<button type="button" class="fo ${st.focus === it[0] ? 'on' : ''} ${['behind', 'issues', 'due'].includes(it[0]) ? 'at' : ''}" data-fo="${it[0]}"${TIP.a(...FTIP[it[0]])}>${it[1]} <b data-n="${it[0]}">0</b></button>${it[0] === 'due' ? `<label class="lad" dir="ltr"${TIP.a(LBL('Look-ahead window', 'نافذة الأيام القادمة'), LBL('Days from the cut-off date used by "Due within".', 'عدد الأيام من تاريخ القطع لفلتر «مطلوب خلال».'))}><input class="in" type="number" min="0" value="${st.la}" data-la><i>${LBL('days', 'يوم')}</i></label>` : ''}`).join('')}</div>`).join('')}<button class="btn sm" data-clr>${ic('x')}${T('clear_filters')}</button></div>
+    </div>
     <div data-g></div><div data-bulk></div>`;
-  const kpis = () => {
-    const sm = PROG.summary(cid); const gap = x => `<span dir="ltr">${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)} pp</span> ${LBL('vs plan', 'عن المخطط')}`;
-    // planned: two figures on the chosen basis – at the P6 data date of the latest XER (= P6 "Schedule % Complete") and at the cut-off date (the one the actuals are compared with)
+
+  /* ---- cards: compact, each with a bookmark that says how its figure is calculated ---- */
+  const kpis = sm => {
+    const gap = x => `<span dir="ltr">${x >= 0 ? '+' : ''}${(x * 100).toFixed(1)} pp</span> ${LBL('vs plan', 'عن المخطط')}`;
     const plRow = (val, lbl, date) => `<div class="plr"><b>${(val * 100).toFixed(2)}%</b><span>${lbl} · ${D.fmt(date)}</span></div>`;
-    // consultant / owner: smaller boxes in one colour – the contractor figure is the one the update is driven by
-    const rev = (lbl, val, n, none) => `<div class="kpi mini"><div class="k">${lbl}</div><div class="v">${fmtP(val)}</div><div class="s">${n ? `${gap(val - sm.planned)} · ${fmtN(n)} ${T('rev_n')}` : T(none)}</div></div>`;
+    const nIss = sm.rows.filter(r => r.iss.length).length;
+    const rev = (lbl, val, n, none, tip) => `<div class="kpi mini"${tip}><div class="k">${lbl}</div><div class="v">${fmtP(val)}</div><div class="s">${n ? `${gap(val - sm.planned)} · ${fmtN(n)} ${T('rev_n')}` : none}</div></div>`;
     v.querySelector('[data-k]').innerHTML =
-      kpi(T('activities'), fmtN(sm.n), `${T('completed')} ${fmtN(sm.comp)} · ${T('in_progress')} ${fmtN(sm.inprog)}`) +
-      `<div class="kpi pl2" data-plk><div class="k">${T('planned')} <span class="bas">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}</span></div>${sm.plannedDD !== null && sch.upd ? plRow(sm.plannedDD, T('pl_at_dd'), sm.ddate) : ''}${plRow(sm.planned, T('pl_at_cut'), sm.cdate)}</div>` +
-      `<div class="kpi main ${sm.ctr >= sm.planned ? 'ok' : 'warn'}" data-ctrk><div class="k">${T('contractor_act')}</div><div class="v">${fmtP(sm.ctr)}</div><div class="s">${gap(sm.ctr - sm.planned)}</div></div>` +
-      `<div class="revs">${rev(T('consultant_rev'), sm.cons, sm.updCo, 'rev_none')}${rev(T('owner_rev'), sm.own, sm.updO, 'rev_none_o')}</div>` +
-      kpi(T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok') + kpi(T('f_issues'), fmtN(sm.bad), '', sm.bad ? 'bad' : 'ok');
-    v.querySelectorAll('[data-uc]').forEach(b => { b.textContent = fmtN(sm[b.dataset.uc]); });
+      `<div class="kpi"${TIP.a(T('activities'), LBL('Activities of the latest P6 update XER.', 'أنشطة آخر تحديث XER من P6.'), LBL('Completed / in progress = status after the team entries, as sent to P6.', 'مكتمل / جارٍ = الحالة بعد إدخالات الفريق كما تُرسل إلى P6.'))}><div class="k">${T('activities')}</div><div class="v">${fmtN(sm.n)}</div><div class="s">${T('completed')} ${fmtN(sm.comp)} · ${T('in_progress')} ${fmtN(sm.inprog)}</div></div>` +
+      `<div class="kpi pl2" data-plk${TIP.a(T('planned'), LBL('Σ activity weight × planned share.', 'مجموع (وزن النشاط × النسبة المخططة).'), LBL('Planned share = days elapsed ÷ duration, on the baseline dates (as P6 Schedule % Complete). Weight = budgeted cost ÷ total cost.', 'النسبة المخططة = الأيام المنقضية ÷ المدة على تواريخ البرنامج الأساسي (مثل Schedule % Complete في P6). الوزن = التكلفة المخططة ÷ إجمالي التكلفة.'), [LBL('Upper', 'الأعلى'), LBL('at the P6 data date (= P6)', 'في تاريخ بيانات P6 (= P6)')], [LBL('Lower', 'الأسفل'), LBL('at the cut-off date – compared with the actual', 'في تاريخ القطع – للمقارنة بالفعلي')])}><div class="k">${T('planned')} <span class="bas">${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}</span></div>${sm.plannedDD !== null && sch.upd ? plRow(sm.plannedDD, T('pl_at_dd'), sm.ddate) : ''}${plRow(sm.planned, T('pl_at_cut'), sm.cdate)}</div>` +
+      `<div class="kpi main ${sm.ctr >= sm.planned ? 'ok' : 'warn'}" data-ctrk${TIP.a(T('contractor_act'), LBL('Σ activity weight × % sent to P6 (the higher of the P6 % and the contractor %).', 'مجموع (وزن النشاط × النسبة المرسلة إلى P6، وهي الأعلى بين نسبة P6 ونسبة المقاول).'), LBL('Variance = actual − planned at the cut-off, in percentage points.', 'الفرق = الفعلي − المخطط في تاريخ القطع، بالنقاط المئوية.'))}><div class="k">${T('contractor_act')}</div><div class="v">${fmtP(sm.ctr)}</div><div class="s">${gap(sm.ctr - sm.planned)}</div></div>` +
+      `<div class="revs">${rev(T('consultant_rev'), sm.cons, sm.updCo, LBL('No reviews yet', 'لا توجد مراجعات بعد'), TIP.a(T('consultant_rev'), LBL('Σ activity weight × consultant %; the P6 % where the consultant has not reviewed.', 'مجموع (وزن النشاط × نسبة الاستشاري)، ونسبة P6 للأنشطة غير المراجَعة.')))}${rev(T('owner_rev'), sm.own, sm.updO, LBL('No entries yet', 'لا توجد إدخالات بعد'), TIP.a(T('owner_rev'), LBL('Σ activity weight × owner %; an activity without an owner entry counts 0.', 'مجموع (وزن النشاط × نسبة المالك)، والنشاط بدون إدخال من المالك يُحتسب صفراً.')))}</div>` +
+      `<div class="kpi ${sm.behind ? 'warn' : 'ok'}"${TIP.a(T('behind'), LBL('Activities not completed whose planned % at the cut-off is above the actual %.', 'أنشطة غير مكتملة نسبتها المخططة في تاريخ القطع أعلى من الفعلية.'), LBL('Sub-line: of them without a reason for delay.', 'السطر السفلي: منها بدون سبب تأخير.'))}><div class="k">${T('behind')}</div><div class="v">${fmtN(sm.behind)}</div><div class="s">${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}</div></div>` +
+      `<div class="kpi ${sm.bad ? 'bad' : nIss ? 'warn' : 'ok'}"${TIP.a(T('f_issues'), LBL('Activities with an error (!) or a warning (?) in the "To P6" column.', 'أنشطة بها خطأ (!) أو تنبيه (?) في عمود «إلى P6».'), LBL('Errors must be fixed before the P6 file is generated.', 'يجب تصحيح الأخطاء قبل إنشاء ملف P6.'))}><div class="k">${T('f_issues')}</div><div class="v">${fmtN(nIss)}</div><div class="s">${fmtN(sm.bad)} ${LBL('with errors', 'بها أخطاء')}</div></div>`;
   };
-  const passBase = (r, la) => {
-    const a = r.a, e = r.e, upd = r.u && Object.keys(r.u).some(k => !k.startsWith('_'));
-    if (st.focus === 'due' && !(upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'))) return false;
-    if (st.focus === 'inprog' && e.status !== 'In Progress') return false; if (st.focus === 'ns' && e.status !== 'Not Started') return false; if (st.focus === 'comp' && e.status !== 'Completed') return false;
-    if (st.focus === 'behind' && !r.behind) return false; if (st.focus === 'updC' && !PROG.byC(r.u)) return false; if (st.focus === 'updCo' && !PROG.byCo(r.u)) return false; if (st.focus === 'updO' && !PROG.byO(r.u)) return false; if (st.focus === 'issues' && !r.iss.length) return false;
-    if (st.q) { const q = st.q.toLowerCase(); if (!(a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.wbs.toLowerCase().includes(q) || (a.bl && a.bl.name.toLowerCase().includes(q)))) return false; }
-    return true;
-  };
-  const passCodes = (r, except) => { for (const [k, val] of Object.entries(st.codes)) if (val && k !== except && r.a.codes[k] !== val) return false; return true; };
-  let baseRows = [];
+
+  /* ---- filters: search + activity codes (multi-select) + one focus (status / needs attention / updated by) ---- */
+  const passQ = r => { if (!st.q) return true; const q = st.q.toLowerCase(), a = r.a; return a.id.toLowerCase().includes(q) || a.name.toLowerCase().includes(q) || a.wbs.toLowerCase().includes(q) || (a.bl && a.bl.name.toLowerCase().includes(q)); };
+  const passCodes = (r, except) => { for (const [k, val] of Object.entries(st.codes)) { const vs = A_(val); if (vs.length && k !== except && !vs.includes(r.a.codes[k])) return false; } return true; };
+  const passFocus = (r, f, la) => { const a = r.a, e = r.e;
+    switch (f) {
+      case 'inprog': return e.status === 'In Progress'; case 'ns': return e.status === 'Not Started'; case 'comp': return e.status === 'Completed';
+      case 'behind': return r.behind; case 'issues': return r.iss.length > 0;
+      case 'updC': return PROG.byC(r.u); case 'updCo': return PROG.byCo(r.u); case 'updO': return PROG.byO(r.u);
+      case 'due': { const upd = r.u && Object.keys(r.u).some(k => !k.startsWith('_')); return upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'); }
+      default: return true; } };
+  let all = [];
   const filtered = () => {
-    const la = D.add(cdate, N(st.la));
-    baseRows = PROG.rows(cid).filter(r => passBase(r, la));
-    return baseRows.filter(r => passCodes(r)).sort((x, y) => (x.a.ps || '9').localeCompare(y.a.ps || '9') || x.a.id.localeCompare(y.a.id));
+    const la = D.add(cdate, N(st.la)); all = PROG.rows(cid);
+    return all.filter(r => passQ(r) && passCodes(r) && passFocus(r, st.focus, la)).sort((x, y) => (x.a.ps || '9').localeCompare(y.a.ps || '9') || x.a.id.localeCompare(y.a.id));
   };
-  const codeLabel = k => k.replace(/^\d\d /, '');
-  const updCodeSelects = () => { // cascading: each list shows only values present under the other filters
-    v.querySelectorAll('[data-cd]').forEach(sel => {
-      const k = sel.dataset.cd, cur = st.codes[k] || '';
-      const cnt = new Map(); baseRows.forEach(r => { if (!passCodes(r, k)) return; const val = r.a.codes[k]; if (val) cnt.set(val, (cnt.get(val) || 0) + 1); });
-      const vals = Array.from(cnt.keys()).sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
-      if (cur && !cnt.has(cur)) vals.unshift(cur);
-      const total = Array.from(cnt.values()).reduce((a, b) => a + b, 0);
-      sel.innerHTML = `<option value="">${h(codeLabel(k))}: ${T('all')} (${fmtN(total)})</option>` + vals.map(o => `<option value="${h(o)}" ${o === cur ? 'selected' : ''}>${o === cur ? h(codeLabel(k)) + ': ' : ''}${h(o)} (${fmtN(cnt.get(o) || 0)})</option>`).join('');
-      sel.classList.toggle('on', !!cur); sel.disabled = !vals.length && !cur;
+  const drawFilters = () => {
+    const la = D.add(cdate, N(st.la)); const qc = all.filter(r => passQ(r) && passCodes(r));
+    v.querySelectorAll('[data-n]').forEach(b => { b.textContent = fmtN(qc.filter(r => passFocus(r, b.dataset.n, la)).length); });
+    v.querySelectorAll('[data-cs]').forEach(slot => {   // cascading: each list shows the values present under the other filters, with counts
+      const k = slot.dataset.cs, base = all.filter(r => passQ(r) && passFocus(r, st.focus, la) && passCodes(r, k));
+      const opts = MSEL.opts(base, r => r.a.codes[k], null, (a, b) => String(a.v).localeCompare(String(b.v), 'en', { numeric: true }));
+      A_(st.codes[k]).forEach(x => { if (!opts.some(o => o.v === x)) opts.unshift({ v: x, l: x, n: 0 }); });
+      slot.innerHTML = MSEL.btn(k, codeLabel(k), opts, st.codes[k]);
+      const b = slot.querySelector('.msel'); if (b) { b.removeAttribute('title'); b.setAttribute('data-tip', JSON.stringify([codeLabel(k), LBL(`Activity code "${k}" of the P6 schedule.`, `كود النشاط «${k}» في برنامج P6.`), LBL('Choose one or more values; the other lists show only what remains.', 'اختر قيمة أو أكثر؛ تعرض باقي القوائم ما يتبقى فقط.'), A_(st.codes[k]).length ? [LBL('Selected', 'المحدد'), A_(st.codes[k]).join(' · ')] : ''])); }
+      MSEL.wire(slot, k, opts, st.codes[k], vals => { st.codes[k] = vals; st.page = 0; draw(); });
     });
   };
+
+  /* ---- table ---- */
   // actual dates and remaining duration are entered by the team only (nothing is pre-filled from the XER files). A box opens when the contractor % allows it:
   // actual start above 0 %, actual finish at 100 %, remaining duration while in progress; a box that already holds a value stays open so it can be corrected.
-  const MISS = ['v_as', 'v_af'];   // "date missing" issues: shown as a green box to fill, still listed in the Check column
+  const MISS = ['v_as', 'v_af'];   // "date missing" issues: shown as a green box to fill, still listed in the To P6 column
   const openFor = (a, u, e) => { u = u || {}; return { as: canC && a.type !== 'TT_FinMile' && (e.pct > 0 || !!u.as), af: canC && a.type !== 'TT_Mile' && (e.pct >= 100 || !!u.af), rd: canC && !PROG.isMs(a) && (e.status === 'In Progress' || isNum(u.rd)) }; };
   const needFor = (a, u, e) => { u = u || {}; return { as: e.pct > 0 && a.type !== 'TT_FinMile' && !u.as, af: e.pct >= 100 && a.type !== 'TT_Mile' && !u.af }; };   // green = the date is due for this status and not entered yet
+  const CB = ['Contractor', 'Consultant', 'Client', 'Concurrent'];
   const cell = (r, f, cls, type, en, need) => { const u = r.u || {}; const val = u[f] ?? ''; const isErr = r.iss.some(i => i.f === f && i.sev === 'bad' && !(need && en && MISS.includes(i.k))), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
-    if (type === 'sel') return `<select class="in ${isErr ? 'err' : isW ? 'wrn' : ''}" data-u="${f}" ${en ? '' : 'disabled'} style="width:118px"><option value=""></option>${['Contractor', 'Consultant', 'Client', 'Concurrent'].map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${E(o)}</option>`).join('')}</select>`;
+    const ec = `${isErr ? 'err' : isW ? 'wrn' : ''} ${need && en && !isErr ? 'need' : ''}`;
+    if (type === 'sel') return `<select class="in ${ec}" data-u="${f}" ${en ? '' : 'disabled'}><option value=""></option>${CB.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${E(o)}</option>`).join('')}</select>`;
+    if (type === 'area') return `<textarea class="in tx ${ec}" rows="2" data-u="${f}" ${en ? '' : 'disabled'}>${h(val)}</textarea>`;
     const pc = ['ctr', 'cons', 'own'].includes(f);
-    return `<input class="in ${cls} ${isErr ? 'err' : isW ? 'wrn' : ''} ${need && en && !isErr ? 'need' : ''}" type="${type}" ${type === 'number' ? `min="0" ${pc ? 'max="100"' : ''} step="any"` : ''} ${type === 'date' ? `max="${cdate}"` : ''} data-u="${f}" value="${h(val)}" ${need && en ? `title="${T('need_date')}"` : ''} ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${pc && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
-  const resCell = r => `${bdg(r.e.status)} <b class="num">${r.e.pctR}%</b><div class="tiny muted">${r.e.as ? 'AS ' + D.fmt(r.e.as) : ''} ${r.e.af ? '· AF ' + D.fmt(r.e.af) : ''} ${r.e.status === 'In Progress' ? '· RD ' + r.e.rd : ''}</div>`;
-  const flagCell = r => r.iss.length ? r.iss.map(i => `<span class="bdg ${i.sev === 'bad' ? 'bad' : 'warn'}" title="${h(T(i.k))}">${i.sev === 'bad' ? '!' : '?'}</span>`).join(' ') + `<div class="tiny" style="color:${r.iss.some(i => i.sev === 'bad') ? 'var(--bad)' : 'var(--warn)'};line-height:1.3;margin-top:2px">${h(T(r.iss[0].k))}</div>` : (r.e.changed ? `<span class="bdg ok">→ P6</span>` : '');
-  const rowHtml = r => { const a = r.a; const ctrEn = canC, consEn = canCo, ownEn = canO, op = openFor(a, r.u, r.e), nd = needFor(a, r.u, r.e); const b = PROG.blDates(a), nm = a.bl ? a.bl.name : a.name, od = b ? N(b.od) : N(a.od);   // activity cell = baseline schedule data when the baseline XER is loaded
-    return `<td class="stk"><input type="checkbox" data-sel ${st.sel.has(a.id) ? 'checked' : ''}></td>
-    <td class="stk" style="inset-inline-start:34px;min-width:300px;max-width:340px;white-space:normal"><span class="mono muted">${h(a.id)}</span>${PROG.isMs(a) ? ' <span class="bdg navy">◆</span>' : ''}${sch.bl && !a.bl ? ` <span class="bdg warn">${T('c_notbl')}</span>` : ''}<span class="an" title="${h(nm)}${nm !== a.name ? '\nP6: ' + h(a.name) : ''}\n${h(a.wbs)}">${h(nm)}</span><span class="tiny muted">${b ? `<b class="blt">${T('c_bl')}</b> ` : ''}${D.fmt(b ? b.s : a.ps)} → ${D.fmt(b ? b.f : a.pf)} · ${T('c_od')} ${fmtN(od, od % 1 ? 1 : 0)}d${a.tf !== null && a.tf !== undefined ? ' · TF ' + fmtN(a.tf, 0) : ''}</span></td>
-    <td>${bdg(a.status)}<div class="num small"><b>${Math.round(a.pct)}%</b> ${a.as ? '<span class="tiny muted">AS ' + D.fmt(a.as) + '</span>' : ''}</div></td>
-    <td class="n" data-pl>${r.pl === null ? '' : r.pl.toFixed(0) + '%'}</td>
-    <td>${cell(r, 'ctr', 'pct', 'number', ctrEn)}</td><td>${cell(r, 'cons', 'pct', 'number', consEn)}</td><td>${cell(r, 'own', 'pct', 'number', ownEn)}</td>
-    <td>${cell(r, 'as', 'dt', 'date', op.as, nd.as)}</td><td>${cell(r, 'af', 'dt', 'date', op.af, nd.af)}</td><td>${cell(r, 'rd', 'rd', 'number', op.rd)}</td>
-    <td>${cell(r, 'causedBy', '', 'sel', ctrEn)}</td><td>${cell(r, 'reason', 'tx', 'text', ctrEn)}</td><td>${cell(r, 'mitigation', 'tx', 'text', ctrEn)}</td>
-    <td data-res style="min-width:150px">${resCell(r)}</td><td data-fl style="min-width:230px;white-space:normal">${flagCell(r)}</td>`; };
+    return `<input class="in ${cls} ${ec}" type="${type}" ${type === 'number' ? `min="0" ${pc ? 'max="100"' : ''} step="any"` : ''} ${type === 'date' ? `max="${cdate}"` : ''} data-u="${f}" value="${h(val)}" ${en ? '' : 'disabled'} ${f === 'rd' && r.e.status === 'In Progress' && !isNum(u.rd) ? `placeholder="${r.e.rd}"` : ''} ${pc && !isNum(val) ? `placeholder="${f === 'ctr' ? Math.round(r.a.pct) : ''}"` : ''}>`; };
+  const pvCell = (pct, status, extra) => `<div class="pv"><b>${pct}%</b>${extra || ''}</div><span class="ps ${PG_ST[status] || ''}">${pgSt(status)}</span>`;
+  const xCell = r => { const bad = r.iss.filter(i => i.sev === 'bad').length, wn = r.iss.length - bad;
+    return pvCell(r.e.pctR, r.e.status, r.e.changed ? `<i class="chg" aria-label="changed">↑</i>` : '') + (r.iss.length ? `<div class="ik">${bad ? `<span class="ib">! ${bad}</span>` : ''}${wn ? `<span class="iw">? ${wn}</span>` : ''}</div>` : ''); };
+  const rowHtml = r => { const a = r.a, op = openFor(a, r.u, r.e), nd = needFor(a, r.u, r.e); const nm = a.bl ? a.bl.name : a.name;   // activity name = baseline schedule data when the baseline XER is loaded
+    const tt = f => ` data-c="${f}" data-tipf="pg"`;
+    return `<td class="sl"><input type="checkbox" data-sel ${st.sel.has(a.id) ? 'checked' : ''} aria-label="${h(a.id)}"></td>
+    <td class="acn"${tt('act')}><div class="anm">${PROG.isMs(a) ? '<i class="ms">◆</i>' : ''}${sch.bl && !a.bl ? '<i class="nb"></i>' : ''}${h(nm)}</div></td>
+    <td class="p6"${tt('p6')}>${pvCell(Math.round(a.pct), a.status)}</td>
+    <td class="n pl ${r.behind ? 'bh' : ''}" data-pl${tt('pl')}>${r.pl === null ? '' : r.pl.toFixed(0) + '%'}</td>
+    <td${tt('ctr')}>${cell(r, 'ctr', 'pct', 'number', canC)}</td><td${tt('cons')}>${cell(r, 'cons', 'pct', 'number', canCo)}</td><td${tt('own')}>${cell(r, 'own', 'pct', 'number', canO)}</td>
+    <td${tt('as')}>${cell(r, 'as', 'dt', 'date', op.as, nd.as)}</td><td${tt('af')}>${cell(r, 'af', 'dt', 'date', op.af, nd.af)}</td><td${tt('rd')}>${cell(r, 'rd', 'rd', 'number', op.rd)}</td>
+    <td${tt('causedBy')}>${cell(r, 'causedBy', '', 'sel', canC)}</td><td${tt('reason')}>${cell(r, 'reason', '', 'area', canC)}</td><td${tt('mitigation')}>${cell(r, 'mitigation', '', 'area', canC)}</td>
+    <td class="px" data-fl${tt('x')}>${xCell(r)}</td>`; };
+  const COLS = [['sl', ''], ['act', LBL('Activity', 'النشاط')], ['p6', 'P6'], ['pl', LBL('Plan %', 'المخطط %')], ['ctr', LBL('Contr. %', 'المقاول %')], ['cons', LBL('Cons. %', 'استشاري %')], ['own', LBL('Owner %', 'المالك %')], ['as', T('c_as')], ['af', T('c_af')], ['rd', LBL('Rem. (d)', 'المتبقي (يوم)')], ['causedBy', T('c_cb')], ['reason', T('c_rsn')], ['mitigation', T('c_mit')], ['x', LBL('To P6', 'إلى P6')]];
+  const HTIP = {
+    act: [LBL('Activity', 'النشاط'), LBL('Activity of the P6 schedule; the name comes from the approved baseline.', 'نشاط من برنامج P6، والاسم من البرنامج الأساسي المعتمد.'), LBL('Hover a name for its ID, baseline start / finish and original duration.', 'مرّر المؤشر على الاسم لعرض الكود والبدء والانتهاء الأساسي والمدة الأصلية.'), LBL('◆ milestone · red mark at the side = behind plan', '◆ معلم رئيسي · العلامة الحمراء بجانب الصف = متأخر عن الخطة')],
+    p6: ['P6', LBL(`Status and % complete in the latest update XER (data date ${D.fmt(sch.dataDate)}).`, `الحالة ونسبة الإنجاز في آخر تحديث XER (تاريخ البيانات ${D.fmt(sch.dataDate)}).`), { src: LBL('Cut-off & P6 Export – read only', 'صفحة تاريخ القطع وتصدير P6 – للقراءة فقط') }],
+    pl: [T('c_plan'), LBL(`Planned % at the cut-off date ${D.fmt(cdate)}, on the baseline dates.`, `النسبة المخططة في تاريخ القطع ${D.fmt(cdate)} على تواريخ البرنامج الأساسي.`), LBL('= days elapsed ÷ duration (as P6). Red = behind plan.', '= الأيام المنقضية ÷ المدة (مثل P6). الأحمر = متأخر عن الخطة.')],
+    ctr: [T('c_ctr'), LBL('Physical progress at the cut-off date, entered by the contractor.', 'نسبة الإنجاز الفعلية في تاريخ القطع، يدخلها المقاول.'), { how: LBL('Type 0–100. Leave it empty to keep the P6 % (grey). P6 receives the higher of the two.', 'اكتب رقماً من 0 إلى 100. اتركه فارغاً للإبقاء على نسبة P6 (الرقم الرمادي). يُرسل إلى P6 الأعلى بين النسبتين.') }],
+    cons: [T('c_cons'), LBL("The consultant's review of the progress.", 'مراجعة الاستشاري لنسبة الإنجاز.'), { how: LBL('Type 0–100 after site verification. Empty = the P6 %. Not above the % sent to P6.', 'اكتب من 0 إلى 100 بعد التحقق في الموقع. الفارغ = نسبة P6. لا تتجاوز النسبة المرسلة إلى P6.') }],
+    own: [T('c_own'), LBL("The owner's assessment of the progress.", 'تقييم المالك لنسبة الإنجاز.'), { how: LBL('Type 0–100. An activity left empty counts 0 in the owner actual.', 'اكتب من 0 إلى 100. النشاط الفارغ يُحتسب صفراً في فعلي المالك.') }],
+    as: [T('c_as'), LBL('The date the work actually started.', 'تاريخ البدء الفعلي للعمل.'), { how: LBL('Opens when the % is above 0; green = required. A date on or before the cut-off.', 'تُفتح عندما تكون النسبة أكبر من 0، والأخضر = مطلوب. تاريخ لا يتجاوز تاريخ القطع.') }],
+    af: [T('c_af'), LBL('The date the work actually finished.', 'تاريخ الانتهاء الفعلي للعمل.'), { how: LBL('Opens at 100 %; green = required. On or before the cut-off and not before the actual start.', 'تُفتح عند 100%، والأخضر = مطلوب. لا يتجاوز تاريخ القطع ولا يسبق البدء الفعلي.') }],
+    rd: [LBL('Remaining duration', 'المدة المتبقية'), LBL('Working days left for an activity in progress.', 'أيام العمل المتبقية لنشاط جارٍ.'), { how: LBL('A whole number above 0. Empty = calculated (grey): duration × (1 − %).', 'رقم صحيح أكبر من 0. الفارغ = محسوب تلقائياً (الرمادي): المدة × (1 − النسبة).') }],
+    causedBy: [T('c_cb'), LBL('The party responsible for the delay.', 'الجهة المسؤولة عن التأخير.'), { how: LBL('For an activity behind plan choose Contractor, Consultant, Client or Concurrent – required with the reason.', 'للنشاط المتأخر اختر: المقاول أو الاستشاري أو المالك أو متزامن – مطلوب مع السبب.') }],
+    reason: [T('c_rsn'), LBL('Why the activity is behind plan.', 'سبب تأخر النشاط عن الخطة.'), { how: LBL('One short sentence: what is late and why (e.g. "Rebar delivery late 5 days – supplier"). Hover a cell to read the full text.', 'جملة قصيرة: ما المتأخر ولماذا (مثال: «تأخر توريد حديد التسليح 5 أيام – المورد»). مرّر المؤشر على الخانة لقراءة النص كاملاً.') }],
+    mitigation: [T('c_mit'), LBL('The action that recovers the delay.', 'الإجراء الذي يستعيد التأخير.'), { how: LBL('What will be done, by whom and by when (e.g. "Second shift on formwork until 30-Nov").', 'ماذا سيتم، ومن المسؤول، ومتى (مثال: «وردية ثانية للشدات حتى 30-نوفمبر»).') }],
+    x: [LBL('To P6', 'إلى P6'), LBL('What goes to P6 in the "Last Updates TO P6" file: status and % (the higher of the P6 % and the contractor %); actual dates and remaining duration in the bookmark of the cell.', 'ما يُرسل إلى P6 في ملف Last Updates TO P6: الحالة والنسبة (الأعلى بين نسبة P6 ونسبة المقاول)، والتواريخ الفعلية والمتبقي في بطاقة الخانة.'), LBL('↑ changes P6 · ! error – fix before the P6 file · ? warning', '↑ يغيّر P6 · ! خطأ – يُصحَّح قبل ملف P6 · ? تنبيه')]
+  };
+  // bookmark of a cell: this activity's data, and for an entry column how to enter it
+  const rowOf = id => { const a = sch.byId.get(id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate); const r = { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate); return r; };
+  TIP.fn.pg = el => {
+    const tr = el.closest('tr[data-a]'); if (!tr || !sch.byId.get(tr.dataset.a)) return null; const r = rowOf(tr.dataset.a), a = r.a, u = r.u || {}, e = r.e, c = el.dataset.c;
+    const op = openFor(a, u, e), nd = needFor(a, u, e), b = PROG.blDates(a), d = x => x ? D.fmt(x) : '—';
+    const how = k => HTIP[k].find(x => x && x.how), lock = (en, why) => en ? null : { warn: why || LBL('Read only for your role or with no open cut-off.', 'للقراءة فقط لدورك أو لعدم وجود تاريخ قطع مفتوح.') };
+    const ent = k => [LBL('Entered', 'المُدخل'), isNum(u[k]) || (u[k] && typeof u[k] === 'string') ? (['ctr', 'cons', 'own'].includes(k) ? pgPct(u[k]) : ['as', 'af'].includes(k) ? D.fmt(u[k]) : String(u[k])) : '—'];
+    switch (c) {
+      case 'act': return [a.bl ? a.bl.name : a.name, [LBL('Activity ID', 'كود النشاط'), a.id], [LBL('Start', 'البدء'), d(b ? b.s : a.ps)], [LBL('Finish', 'الانتهاء'), d(b ? b.f : a.pf)], [LBL('Original duration', 'المدة الأصلية'), `${fmtN(b ? N(b.od) : N(a.od), 0)} ${LBL('d', 'يوم')}`], a.bl && a.bl.name !== a.name ? [LBL('Name in the update', 'الاسم في التحديث'), a.name] : '', PROG.isMs(a) ? LBL('◆ Milestone', '◆ معلم رئيسي') : '', sch.bl && !a.bl ? { warn: LBL('Not in the baseline – dates from the update.', 'غير موجود في البرنامج الأساسي – التواريخ من التحديث.') } : (b ? { src: LBL('Approved baseline XER', 'البرنامج الأساسي المعتمد XER') } : '')];
+      case 'p6': return [LBL('P6 – latest update', 'P6 – آخر تحديث'), [LBL('Status', 'الحالة'), pgSt(a.status)], [LBL('% complete', 'نسبة الإنجاز'), pgPct(Math.round(a.pct))], [T('c_as'), a.as ? D.fmt(a.as) : ''], [T('c_af'), a.af ? D.fmt(a.af) : ''], [LBL('Remaining duration', 'المدة المتبقية'), a.status === 'In Progress' ? `${fmtN(Math.ceil(N(a.rd) - 1e-9))} ${LBL('d', 'يوم')}` : ''], [LBL('Total float', 'الفائض الكلي'), isNum(a.tf) ? `${fmtN(a.tf, 0)} ${LBL('d', 'يوم')}` : ''], { src: `${sch.upd ? sch.upd.fileName || 'XER' : 'XER'} · ${D.fmt(sch.dataDate)}` }];
+      case 'pl': return [T('c_plan'), [`${LBL('At the cut-off', 'في تاريخ القطع')} ${D.fmt(cdate)}`, r.pl === null ? '—' : pgPct(r.pl)], ddate ? [`${LBL('At the P6 data date', 'في تاريخ بيانات P6')} ${D.fmt(ddate)}`, pgPct(PROG.planned(a, ddate))] : '', [LBL('Actual (to P6)', 'الفعلي (إلى P6)'), pgPct(e.pctR)], r.pl !== null ? [LBL('Variance', 'الفرق'), `${e.pct - r.pl >= 0 ? '+' : ''}${fmtN(e.pct - r.pl, 1)} pp`] : '', r.behind ? { warn: LBL('Behind plan – enter the reason and the caused-by.', 'متأخر عن الخطة – أدخل السبب والمتسبب.') } : ''];
+      case 'ctr': return [T('c_ctr'), ent('ctr'), [LBL('P6 %', 'نسبة P6'), pgPct(Math.round(a.pct))], [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('ctr'), lock(canC)];
+      case 'cons': return [T('c_cons'), ent('cons'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('cons'), lock(canCo)];
+      case 'own': return [T('c_own'), ent('own'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('own'), lock(canO)];
+      case 'as': return [T('c_as'), ent('as'), [LBL('In P6', 'في P6'), a.as ? D.fmt(a.as) : '—'], nd.as ? { warn: LBL('Required: the activity has started.', 'مطلوب: النشاط بدأ.') } : '', how('as'), lock(op.as, canC ? LBL('Opens when the % is above 0.', 'تُفتح عندما تكون النسبة أكبر من 0.') : null)];
+      case 'af': return [T('c_af'), ent('af'), [LBL('In P6', 'في P6'), a.af ? D.fmt(a.af) : '—'], nd.af ? { warn: LBL('Required: the activity is at 100 %.', 'مطلوب: النشاط عند 100%.') } : '', how('af'), lock(op.af, canC ? LBL('Opens at 100 %.', 'تُفتح عند 100%.') : null)];
+      case 'rd': return [LBL('Remaining duration', 'المدة المتبقية'), ent('rd'), [LBL('Sent to P6', 'المرسل إلى P6'), `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], how('rd'), lock(op.rd, canC ? LBL('Only for an activity in progress.', 'لنشاط جارٍ فقط.') : null)];
+      case 'causedBy': return [T('c_cb'), [LBL('Entered', 'المُدخل'), u.causedBy ? E(u.causedBy) : '—'], r.behind && !u.causedBy ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how('causedBy'), lock(canC)];
+      case 'reason': case 'mitigation': { const t = u[c]; const by = (u._by || '').split(' (')[0], at = u._t && u._t[c] ? TS(u._t[c], 16) : '';
+        return t ? [HTIP[c][0], { txt: t }, [LBL('Entered by', 'أدخله'), by ? `${by}${at ? ' · ' + at : ''}` : '']] : [HTIP[c][0], LBL('Nothing entered yet.', 'لم يُدخل شيء بعد.'), r.behind && c === 'reason' ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how(c), lock(canC)]; }
+      case 'x': return [LBL('Sent to P6', 'المرسل إلى P6'), [LBL('Status', 'الحالة'), pgSt(e.status)], [LBL('% complete', 'نسبة الإنجاز'), pgPct(e.pctR)], [T('c_as'), e.as ? D.fmt(e.as) : ''], [T('c_af'), e.af ? D.fmt(e.af) : ''], [LBL('Remaining duration', 'المدة المتبقية'), e.status === 'Completed' ? '' : `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], e.changed ? LBL('↑ Differs from P6 – will update it.', '↑ يختلف عن P6 – سيحدّثه.') : LBL('Same as P6.', 'مطابق لـ P6.'), ...r.iss.map(i => ({ warn: `${i.sev === 'bad' ? '!' : '?'} ${T(i.k)}` }))];
+    }
+    return null;
+  };
   const PS = 50;
+  const fit = () => requestAnimationFrame(() => { const tw = v.querySelector('[data-g] .tw'); if (!tw) return; const vw = document.getElementById('view'); const vb = vw ? vw.getBoundingClientRect().bottom : innerHeight; const below = (v.querySelector('[data-g] .pg') || {}).offsetHeight || 0; tw.style.maxHeight = Math.max(300, vb - tw.getBoundingClientRect().top - below - 34 + (vw ? vw.scrollTop : 0)) + 'px'; });
   const draw = () => {
-    kpis(); const rows = filtered(); st.view = rows; updCodeSelects(); const pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
+    const rows = filtered(); kpis(PROG.summary(cid)); st.view = rows; drawFilters(); const pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
     const pr = rows.slice(st.page * PS, st.page * PS + PS);
-    v.querySelector('[data-g]').innerHTML = `<div class="tw" style="max-height:max(300px,calc(100vh - 400px))"><table class="t egrid"><thead><tr><th class="stk"><input type="checkbox" data-all></th><th class="stk" style="inset-inline-start:34px">${T('c_id')} / ${T('c_name')}</th><th>${T('c_p6')}</th><th class="n">${T('c_plan')}</th><th>${T('c_ctr')}</th><th>${T('c_cons')}</th><th>${T('c_own')}</th><th>${T('c_as')}</th><th>${T('c_af')}</th><th>${T('c_rd')}</th><th>${T('c_cb')}</th><th>${T('c_rsn')}</th><th>${T('c_mit')}</th><th>→ P6</th><th>${T('c_flags')}</th></tr></thead>
-      <tbody>${pr.map(r => `<tr data-a="${h(r.a.id)}" class="${r.behind ? 'beh' : ''} ${st.sel.has(r.a.id) ? 'sel' : ''}">${rowHtml(r)}</tr>`).join('') || `<tr><td colspan="15" class="empty">${T('none')}</td></tr>`}</tbody></table></div>
-      <div class="pg">${rows.length} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`;
+    v.querySelector('[data-g]').innerHTML = `<div class="tw pgw"><table class="t egrid pgt"><colgroup>${COLS.map(([k]) => `<col class="c-${k}">`).join('')}</colgroup><thead><tr>${COLS.map(([k, l]) => k === 'sl' ? `<th class="sl"><input type="checkbox" data-all aria-label="${h(LBL('Select all', 'تحديد الكل'))}"></th>` : `<th class="h-${k}"${TIP.a(...HTIP[k])}><span class="hl">${h(l)}</span></th>`).join('')}</tr></thead>
+      <tbody>${pr.map(r => `<tr data-a="${h(r.a.id)}" class="${r.behind ? 'beh' : ''} ${st.sel.has(r.a.id) ? 'sel' : ''}">${rowHtml(r)}</tr>`).join('') || `<tr><td colspan="${COLS.length}" class="empty">${T('none')}</td></tr>`}</tbody></table></div>
+      <div class="pg">${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`;
     const g = v.querySelector('[data-g]');
     const pp = g.querySelector('[data-pp]'), pn = g.querySelector('[data-pn]'); if (pp) pp.onclick = () => { st.page--; draw(); }; if (pn) pn.onclick = () => { st.page++; draw(); };
     g.querySelector('[data-all]').onchange = e => { pr.forEach(r => e.target.checked ? st.sel.add(r.a.id) : st.sel.delete(r.a.id)); draw(); };
-    drawBulk();
+    drawBulk(); fit();
   };
   const refreshRow = tr => {
-    const id = tr.dataset.a; const a = sch.byId.get(id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate);
-    const r = { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate);
-    tr.classList.toggle('beh', r.behind); tr.querySelector('[data-res]').innerHTML = resCell(r); tr.querySelector('[data-fl]').innerHTML = flagCell(r);
-    const op = openFor(a, u, e), nd = needFor(a, u, e);
+    const r = rowOf(tr.dataset.a), a = r.a, u = r.u;
+    tr.classList.toggle('beh', r.behind); tr.querySelector('[data-fl]').innerHTML = xCell(r); const pc = tr.querySelector('[data-pl]'); if (pc) pc.classList.toggle('bh', r.behind);
+    const op = openFor(a, u, r.e), nd = needFor(a, u, r.e);
     tr.querySelectorAll('[data-u]').forEach(i => { const f = i.dataset.u, bad = r.iss.some(x => x.f === f && x.sev === 'bad' && !(nd[f] && op[f] && MISS.includes(x.k))); i.classList.toggle('err', bad); i.classList.toggle('wrn', r.iss.some(x => x.f === f && x.sev === 'warn'));
       if (f === 'rd') i.placeholder = (r.e.status === 'In Progress' && !isNum((u || {}).rd)) ? r.e.rd : '';
-      if (f in op) { i.disabled = !op[f]; const need = !!nd[f] && op[f]; i.classList.toggle('need', need && !bad); i.title = need ? T('need_date') : ''; } });
+      if (f in op) { i.disabled = !op[f]; const need = !!nd[f] && op[f]; i.classList.toggle('need', need && !bad); } });
     return r;
   };
   const drawBulk = () => {
@@ -3186,25 +3624,26 @@ PAGES.progress = v => {
     b.querySelector('[data-bc]').onclick = async () => { if (!(await confirmBox(`${T('bulk_clear')} (${st.sel.size})?`, T('clear'), true))) return; st.sel.forEach(id => ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].forEach(f => setUpd(cid, id, f, '', true))); touch('bulk clear', `${st.sel.size} activities`); draw(); };
   };
   const g = v.querySelector('[data-g]');
+  g.addEventListener('click', e => { const t = e.target; if (t.matches && t.matches('input.dt:not(:disabled)') && t.showPicker) { try { t.showPicker(); } catch (x) { } } });
   g.addEventListener('change', e => {
     const t = e.target; const tr = t.closest('tr[data-a]'); if (!tr) return;
     if (t.matches('[data-sel]')) { t.checked ? st.sel.add(tr.dataset.a) : st.sel.delete(tr.dataset.a); tr.classList.toggle('sel', t.checked); drawBulk(); return; }
     if (!t.matches('[data-u]')) return;
     let val = t.value; const f = t.dataset.u; if (['ctr', 'cons', 'own', 'rd'].includes(f) && val !== '') val = Number(val);
+    if (['reason', 'mitigation'].includes(f)) val = String(val).trim();
     // entry limits: a value that breaks one is not saved – the box goes back to what it held and a short message says why
     const no = msg => { const cur = ((S.db.updates[cid] || {})[tr.dataset.a] || {})[f]; t.value = cur ?? ''; toast(msg, 'bad'); };
     if (['ctr', 'cons', 'own'].includes(f) && val !== '' && !(val >= 0 && val <= 100)) return no(T('e_pct'));
     if (f === 'as' && val && val > cdate) return no(`${T('e_as_cut')} (${D.fmt(cdate)})`);
     if (f === 'af' && val && val > cdate) return no(`${T('e_af_cut')} (${D.fmt(cdate)})`);
     if (f === 'rd' && val !== '' && !(val > 0 && Number.isInteger(val))) return no(T('v_rd'));
-    setUpd(cid, tr.dataset.a, f, val); const r = refreshRow(tr); kpis();
+    setUpd(cid, tr.dataset.a, f, val); const r = refreshRow(tr); all = PROG.rows(cid); kpis(PROG.summary(cid)); drawFilters();
     if (f === 'ctr') { const u = r.u || {}; if (u.af && r.e.pct < 100) toast(T('e_af_100'), 'bad'); else if (u.as && r.e.pct <= 0) toast(T('e_as_0'), 'bad'); }   // lowering the % left a date that is no longer allowed
   });
   v.querySelectorAll('[data-fo]').forEach(p => p.onclick = () => { st.focus = p.dataset.fo; st.page = 0; v.querySelectorAll('[data-fo]').forEach(x => x.classList.toggle('on', x === p)); draw(); });
   v.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
   v.querySelector('[data-clr]').onclick = () => { st.focus = 'all'; st.q = ''; st.codes = {}; st.page = 0; st.sel.clear(); render(true); };
   v.querySelector('[data-la]').onchange = e => { st.la = N(e.target.value); draw(); };
-  v.querySelectorAll('[data-cd]').forEach(s => s.onchange = () => { st.codes[s.dataset.cd] = s.value; st.page = 0; draw(); });
   const ipb = v.querySelector('[data-imp]'); if (ipb) ipb.onclick = () => IMP.open('progress', null, { rows: filtered().map(r => r.a), after: () => render(true) });
   v.querySelector('[data-xl]').onclick = async () => {
     const rows = filtered(); const head = ['Activity ID', 'Activity Name', 'WBS Code', ...codeKeys, 'BL Start', 'BL Finish', 'Planned Start', 'Planned Finish', 'P6 Status', 'P6 %', 'Plan % @ cut-off', 'By Contractor (%)', 'By Consultant (%)', 'By Owner (%)', 'Actual Start', 'Actual Finish', 'Remaining Duration', 'Caused By', 'Reasons For Delay', 'Mitigation', 'Export Status', 'Export %', 'Issues', 'Updated By'];
@@ -3222,7 +3661,8 @@ function setUpd(cid, id, f, val, silent) {
 }
 
 /* ---------- simple log pages ---------- */
-PAGES.invoices = v => logPage(v, 'invoices', { kpis: () => { const s = invStats(); return kpi(LBL('Invoices', 'المستخلصات'), s.n) + kpi(T('net_invoiced'), fmtM(s.net)) + kpi(T('released'), fmtM(s.rel), '', 'ok') + kpi(T('outstanding'), fmtM(s.out)) + kpi(T('overdue'), s.overdue, '', s.overdue ? 'bad' : 'ok') + kpi(LBL('Due in 30 days', 'مستحق خلال 30 يوم'), fmtM(s.due30)); } });
+PAGES.invoices = v => logPage(v, 'invoices', { kpis: () => { const s = invStats(); const t = (en, ar) => [LBL(en, ar)];
+  return kpi(LBL('Invoices', 'المستخلصات'), s.n, '', '', t('Invoices in the register.', 'المستخلصات في السجل.')) + kpi(T('net_invoiced'), fmtM(s.net), '', '', t('Σ net amount = amount − retention − advance recovery.', 'مجموع الصافي = القيمة − المحتجزات − استرداد المقدمة.')) + kpi(T('released'), fmtM(s.rel), '', 'ok', t('Σ net amount of the invoices with a releasing date.', 'مجموع صافي المستخلصات التي لها تاريخ صرف.')) + kpi(T('outstanding'), fmtM(s.out), '', '', t('Net invoiced − released.', 'صافي المستخلص − المصروف.')) + kpi(T('overdue'), s.overdue, '', s.overdue ? 'bad' : 'ok', t('Not paid and past the payment due date (basis date + payment days).', 'غير مدفوعة وتجاوزت تاريخ استحقاق الدفع (تاريخ الأساس + مدة الدفع).')) + kpi(LBL('Due in 30 days', 'مستحق خلال 30 يوم'), fmtM(s.due30), '', '', t('Net amount not paid, due in the next 30 days.', 'صافي غير مدفوع يستحق خلال 30 يوماً.')); } });
 
 /* ---------- REGISTERS: Document Control & Drawings (same frame as Manpower & Equipment and HSE Daily) ----------
    one filter bar (multi-select) for the cards, the tables and the print; document copy link and last reply columns;
@@ -3268,7 +3708,7 @@ const RG = {
   upd(mk, rec, keys, title) {
     const m = MOD[mk]; const r = clone(rec);
     modal({ title: `${title} — ${h(mk === 'dc' ? (rec.ref || '') : (rec.no || ''))}`, size: 'md',
-      body: `<div class="tiny muted" style="margin-bottom:8px">${h(mk === 'dc' ? `${listVal('docTypes', rec.docType)} · ${rec.title || ''}` : `${rec.title || ''} · ${E(rec.category)}`)}</div><div class="fgrid">${keys.map(k => { const f = m.F[k]; return `<label class="f" style="${f.t === 'url' || f.t === 'area' ? 'grid-column:1/-1' : ''}"><span>${h(FL(f))}</span>${inputFor(f, r[k], false)}</label>`; }).join('')}</div>`,
+      body: `<div class="tiny muted" style="margin-bottom:8px">${h(mk === 'dc' ? `${listVal('docTypes', rec.docType)} · ${rec.title || ''}` : `${rec.title || ''} · ${E(rec.category)}`)}</div><div class="fgrid">${keys.map(k => { const f = m.F[k]; return `<label class="f" style="${f.t === 'url' || f.t === 'area' ? 'grid-column:1/-1' : ''}"><span class="fll"${TIP.fa(mk, f)}>${h(FL(f))}</span>${inputFor(f, r[k], false)}</label>`; }).join('')}</div>`,
       foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-sv>${T('save')}</button>`,
       onMount: (el, close) => {
         el.querySelector('[data-c]').onclick = close;
@@ -3298,7 +3738,7 @@ const RG = {
       const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
       const pr = rows.slice(st.page * PS, st.page * PS + PS); const allSel = pr.length && pr.every(r => st.sel.has(r._id));
       c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw rglog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
-          ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}">${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+          ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}"${TIP.col(cfg.mk === 'dc' ? 'dc' : 'dw', x.k, x.h)}>${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
         <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.cls || ''}">${x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
         <tfoot><tr>${adm ? '<td></td>' : ''}${cfg.foot(rows, cols)}${adm ? '<td></td>' : ''}</tr></tfoot></table></div>
         <div class="pg">${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
@@ -3370,7 +3810,7 @@ function dcCards(s) {
     [LBL('Copies linked', 'نسخ مربوطة'), fmtN(s.link), `${LBL('of', 'من')} ${fmtN(s.n)} ${LBL('records', 'سجل')} · ${LBL('reply copies', 'نسخ الردود')} ${fmtN(s.rlink)}`]
   ];
 }
-const rgCards = cs => `<div class="mpk hsk">${cs.map(([k, val, sub, cls]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '', cls)).join('')}</div>`;
+const rgCards = (cs, pg) => `<div class="mpk hsk">${cs.map(([k, val, sub, cls], i) => kpi(k, val, sub ? `<span>${sub}</span>` : '', cls, CTIP(pg, i))).join('')}</div>`;
 const rgReply = (d, code, ref, link) => d || code ? `<div class="rp">${d ? `<b>${D.fmt(d)}</b>` : ''}${code ? ` ${bdg(code)}` : ''}${ref || link ? `<div class="tiny muted">${ref ? h(ref) : ''} ${linkA(link)}</div>` : ''}</div>` : '';
 PAGES.dc = v => {
   const tab = S.ui.dcTab = S.ui.dcTab || 'reg'; const ed = can('dc'), mgr = canUsers(), cdv = can('cdocs') || mgr;
@@ -3379,7 +3819,7 @@ PAGES.dc = v => {
   const tabs = [['reg', LBL('Document register', 'سجل المستندات'), rows.length], ['sum', LBL('Status by document type', 'الموقف حسب نوع المستند')], ...(cdv ? [['cdocs', LBL('Contract documents', 'المستندات التعاقدية'), live(S.db.pdocs).length]] : [])];
   const t = tabs.some(x => x[0] === tab) ? tab : 'reg';
   v.innerHTML = RG.head('dc', T('dc'), LBL('Document-control register: every document issued or received, a link to its copy, the reply due date, the last reply (date, code, reference, copy) and the status.', 'سجل التحكم بالوثائق: كل مستند صادر أو وارد مع رابط نسخته، تاريخ استحقاق الرد، آخر رد (التاريخ، الكود، المرجع، النسخة) والحالة.'), ed, mgr, adm, LBL('Add document', 'إضافة مستند')) +
-    RG.bar(DC_CFG) + rgCards(dcCards(s)) +
+    RG.bar(DC_CFG) + rgCards(dcCards(s), 'dc') +
     `<div class="tabs">${tabs.map(([k, l, n]) => `<div class="tb ${t === k ? 'on' : ''}" data-t="${k}">${l}${n !== undefined ? ` <span class="tcnt">${fmtN(n)}</span>` : ''}</div>`).join('')}</div><div data-tc></div>`;
   RG.wire(DC_CFG, v, RG.go); RG.wireHead(v, 'dc', 'dcAdm');
   v.querySelectorAll('[data-t]').forEach(x => x.onclick = () => { S.ui.dcTab = x.dataset.t; render(true); });
@@ -3393,7 +3833,7 @@ PAGES.dc = v => {
       { k: 'type', h: LBL('Doc type', 'نوع المستند'), w: 128, wn: 104, s: r => listVal('docTypes', r.docType), v: r => h(listVal('docTypes', r.docType)) },
       { k: 'dir', h: LBL('Direction', 'الاتجاه'), w: 88, wn: 84, s: r => r.direction || '', v: r => `<span class="bdg ${r.direction === 'Incoming' ? 'info' : 'navy'}">${r.direction === 'Incoming' ? '↘' : '↗'} ${h(E(r.direction))}</span>` },
       { k: 'ref', h: LBL('Ref no / rev', 'الرقم المرجعي / المراجعة'), w: 150, wn: 124, s: r => r.ref || '', v: r => `<span class="mono">${h(r.ref || '')}</span>${r.rev ? `<div class="tiny muted">${h(r.rev)}</div>` : ''}` },
-      { k: 'title', h: LBL('Title / subject', 'العنوان / الموضوع'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp" title="${h(r.title)}">${h(r.title)}</div>` : '' },
+      { k: 'title', h: LBL('Title / subject', 'العنوان / الموضوع'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp"${TIP.t(r.title)}>${h(r.title)}</div>` : '' },
       { k: 'disc', h: LBL('Discipline', 'التخصص'), w: 86, wn: 70, s: r => listVal('disciplines', r.discipline), v: r => h(listVal('disciplines', r.discipline)) },
       { k: 'party', h: LBL('From / to', 'الجهة (من / إلى)'), w: 104, wn: 86, s: DC_PARTY, v: r => h(DC_PARTY(r)) },
       { k: 'qty', h: LBL('Qty', 'الكمية'), w: 46, n: 1, s: DCQ, v: r => fmtN(DCQ(r)) },
@@ -3405,11 +3845,13 @@ PAGES.dc = v => {
     foot: (rows, cols) => `<td colspan="7">${T('total')} (${fmtN(rows.length)} ${T('rows')})</td><td class="n">${fmtN(sum(rows, DCQ))}</td><td colspan="4"></td>`
   }), rows, { adm, act: (a, r) => RG.upd('dc', r, a === 'link' ? ['docLink'] : ['replyDate', 'reviewCode', 'replyRef', 'replyLink', 'docLink'], a === 'link' ? LBL('Document copy link', 'رابط نسخة المستند') : LBL('Record the reply', 'تسجيل الرد')) });
 };
+const DCSUM_TIP = { tot: ['Documents of the type (quantity).', 'مستندات النوع (بالكمية).'], out: ['Sent by us.', 'أرسلناها.'], inc: ['Received.', 'استلمناها.'], l7: ['Issued or received in the last 7 days.', 'صادرة أو واردة خلال آخر 7 أيام.'], aw: ['Need a reply and have none.', 'تحتاج رداً ولا يوجد رد.'], od: ['Awaiting reply, past the due date.', 'بانتظار الرد وتجاوزت الاستحقاق.'],
+  rep: ['With a reply date.', 'لها تاريخ رد.'], avgRep: ['Average of reply date − issue date.', 'متوسط (تاريخ الرد − تاريخ الإصدار).'], A: ['Returned with code A.', 'عادت بكود A.'], B: ['Returned with code B.', 'عادت بكود B.'], C: ['Returned with code C.', 'عادت بكود C.'], Dd: ['Returned with code D.', 'عادت بكود D.'], link: ['Records with a link to their copy.', 'سجلات لها رابط نسختها.'] };
 function dcSum(c, rows) {
   const types = [...new Set(rows.map(r => r.docType).filter(Boolean))].map(t => { const x = rows.filter(r => r.docType === t); return { t, s: dcStats2(x) }; }).sort((a, b) => b.s.tot - a.s.tot);
   const all = dcStats2(rows); const K = [['tot', LBL('Total', 'الإجمالي')], ['out', LBL('Outgoing', 'صادر')], ['inc', LBL('Incoming', 'وارد')], ['l7', LBL('Last 7 days', 'آخر 7 أيام')], ['aw', LBL('Awaiting reply', 'بانتظار الرد')], ['od', LBL('Overdue', 'متأخر')], ['rep', LBL('Replied', 'تم الرد')], ['avgRep', LBL('Avg. days to reply', 'متوسط أيام الرد')], ['A', 'Code A'], ['B', 'Code B'], ['C', 'Code C'], ['Dd', 'Code D'], ['link', LBL('Copies linked', 'نسخ مربوطة')]];
   const cell = (s, k) => k === 'avgRep' ? fmtN(s[k], 1) : k === 'od' && s.od ? `<span class="bdg bad">${fmtN(s.od)}</span>` : fmtN(s[k]);
-  c.innerHTML = types.length ? `<div class="tw mpw rgsum"><table class="t mpt"><colgroup><col style="width:20%">${K.map(() => '<col>').join('')}</colgroup><thead><tr><th>${LBL('Document type', 'نوع المستند')}</th>${K.map(([, l]) => `<th class="n">${l}</th>`).join('')}</tr></thead>
+  c.innerHTML = types.length ? `<div class="tw mpw rgsum"><table class="t mpt"><colgroup><col style="width:20%">${K.map(() => '<col>').join('')}</colgroup><thead><tr><th${TIP.a(LBL('Document type', 'نوع المستند'), LBL('One row per type; click a row for its documents in the register.', 'صف لكل نوع؛ انقر الصف لعرض مستنداته في السجل.'))}>${LBL('Document type', 'نوع المستند')}</th>${K.map(([k, l]) => `<th class="n"${TIP.a(l, DCSUM_TIP[k] ? LBL(...DCSUM_TIP[k]) : '')}>${l}</th>`).join('')}</tr></thead>
     <tbody>${types.map(x => `<tr class="cl" data-ty="${h(x.t)}" title="${h(LBL('Open these documents in the register', 'فتح هذه المستندات في السجل'))}"><td>${h(listVal('docTypes', x.t))}</td>${K.map(([k]) => `<td class="n">${cell(x.s, k)}</td>`).join('')}</tr>`).join('')}</tbody>
     <tfoot><tr><td>${T('total')} (${fmtN(types.length)})</td>${K.map(([k]) => `<td class="n">${k === 'avgRep' ? fmtN(all[k], 1) : fmtN(all[k])}</td>`).join('')}</tr></tfoot></table></div>` : `<div class="card empty">${T('none')}</div>`;
   c.querySelectorAll('tr[data-ty]').forEach(tr => tr.onclick = () => { RG.st(DC_CFG).docType = [tr.dataset.ty]; S.ui.dcTab = 'reg'; render(true); });
@@ -3500,7 +3942,7 @@ PAGES.drawings = v => {
   if (!mgr) S.ui.dwAdm = false; const adm = !!S.ui.dwAdm;
   const rows = RG.rows(DW_CFG); const s = dwStats(rows);
   v.innerHTML = RG.head('drawings', T('drawings'), LBL('Design, shop and as-built drawings: planned / actual submission, a link to the submitted copy, the last review (date, code, reference, copy), status and progress credit.', 'المخططات التصميمية والتنفيذية وكما نُفّذت: التقديم المخطط / الفعلي، رابط النسخة المقدَّمة، آخر مراجعة (التاريخ، الكود، المرجع، النسخة)، الحالة ونسبة الإنجاز المحتسبة.'), ed, mgr, adm, LBL('Add drawing', 'إضافة مخطط')) +
-    RG.bar(DW_CFG) + rgCards(dwCards(s)) +
+    RG.bar(DW_CFG) + rgCards(dwCards(s), 'dw') +
     `<div class="tabs">${[['reg', LBL('Drawings register', 'سجل المخططات'), rows.length], ['sum', LBL('Targets & progress by phase / building / element', 'المستهدف والإنجاز حسب المرحلة / المبنى / العنصر'), live(S.db.targets).length]].map(([k, l, n]) => `<div class="tb ${tab === k ? 'on' : ''}" data-t="${k}">${l} <span class="tcnt">${fmtN(n)}</span></div>`).join('')}</div><div data-tc></div>`;
   RG.wire(DW_CFG, v, RG.go); RG.wireHead(v, 'drawings', 'dwAdm');
   v.querySelectorAll('[data-t]').forEach(x => x.onclick = () => { S.ui.drwTab = x.dataset.t; render(true); });
@@ -3510,7 +3952,7 @@ PAGES.drawings = v => {
   RG.log(c, Object.assign({}, DW_CFG, {
     cols: () => [
       { k: 'no', h: LBL('Drawing no / rev', 'رقم المخطط / المراجعة'), w: 150, wn: 124, s: r => r.no || '', v: r => `<span class="mono">${h(r.no || '')}</span>${r.rev ? `<div class="tiny muted">${h(r.rev)}${N(r.resub) ? ` · ${LBL('resub.', 'إعادة')} ${fmtN(r.resub)}` : ''}</div>` : ''}` },
-      { k: 'title', h: LBL('Drawing title', 'عنوان المخطط'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp" title="${h(r.title)}">${h(r.title)}</div>` : '' },
+      { k: 'title', h: LBL('Drawing title', 'عنوان المخطط'), w: '', s: r => r.title || '', v: r => r.title ? `<div class="clamp"${TIP.t(r.title)}>${h(r.title)}</div>` : '' },
       { k: 'cat', h: LBL('Category', 'الفئة'), w: 70, wn: 60, s: r => r.category || '', v: r => h(DW_CAT(r.category)) },
       { k: 'ph', h: LBL('Phase', 'المرحلة'), w: 70, wn: 60, s: r => listVal('phases', r.phase), v: r => h(listVal('phases', r.phase)) },
       { k: 'zone', h: LBL('Building / zone', 'المبنى / المنطقة'), w: 92, wn: 76, s: r => listVal('zones', r.zone), v: r => h(listVal('zones', r.zone)) },
@@ -3609,7 +4051,7 @@ PAGES.hse = v => {
       <span style="flex:1"></span>
       <button class="btn sm hsmp" data-hgomp title="${h(LBL('Manpower and man-hours of this page are read from Manpower & Equipment (entered once)', 'العمالة وساعات العمل في هذه الصفحة تُقرأ من صفحة العمالة والمعدات (تُسجَّل مرة واحدة)'))}">${ic('users')}${LBL('Manpower from Manpower & Equipment', 'العمالة من صفحة العمالة والمعدات')} · ${LBL('day', 'نهاري')} ${MP_H.d()} ${LBL('h', 'س')} / ${LBL('night', 'ليلي')} ${MP_H.n()} ${LBL('h', 'س')}</button>
     </div>
-    <div class="mpk hsk">${HSF.cards(s).map(([k, val, sub, cls]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '', cls)).join('')}</div>
+    <div class="mpk hsk">${HSF.cards(s).map(([k, val, sub, cls], i) => kpi(k, val, sub ? `<span>${sub}</span>` : '', cls, CTIP('hs', i))).join('')}</div>
     <div class="tabs">${[['entry', LBL('Daily entry', 'الإدخال اليومي')], ['log', LBL('Daily log', 'السجل اليومي'), rows.length], ['sum', LBL('Weekly / monthly summary', 'الملخص الأسبوعي / الشهري')]].map(([t, l, n]) => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${l}${n !== undefined ? ` <span class="tcnt">${fmtN(n)}</span>` : ''}</div>`).join('')}</div><div data-tc></div>`;
   v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => hsGo(() => { S.ui.hsTab = t.dataset.t; }));
   ['status', 'focus'].forEach(k => MSEL.wire(v, k, hopts[k], f[k], vals => hsGo(() => { f[k] = vals; if (S.ui.hsLog) S.ui.hsLog.page = 0; })));
@@ -3657,7 +4099,7 @@ const HS_LOGC = () => [
   { k: 'insp', h: LBL('Inspections', 'تفتيش'), w: 58, n: 1, s: r => N(r.inspections), v: r => fmtN(N(r.inspections)) },
   { k: 'pi', h: LBL('Permits issued', 'تصاريح صادرة'), w: 62, n: 1, s: r => N(r.permitsIssued), v: r => fmtN(N(r.permitsIssued)) },
   { k: 'os', h: LBL('Observation summary', 'ملخص ملاحظات السلامة'), w: '', s: r => r.obsSummary || '', cls: 'rm os' },
-  { k: 'rm', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp" title="${h(r.remarks)}">${h(r.remarks)}</div>` : '', cls: 'rm' },
+  { k: 'rm', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp"${TIP.t(r.remarks)}>${h(r.remarks)}</div>` : '', cls: 'rm' },
   { k: 'by', h: LBL('Entered by', 'أدخلها'), w: 92, s: r => r._by || '', v: r => h((r._by || '').split(' (')[0]), cls: 'by' }
 ];
 function hsLog(c, rowsIn, adm, ed, mgr) {
@@ -3665,7 +4107,7 @@ function hsLog(c, rowsIn, adm, ed, mgr) {
   if (!(st.sel instanceof Set)) st.sel = new Set();
   const cols = HS_LOGC(); const C = Object.fromEntries(cols.map(x => [x.k, x])); const canSum = ed || mgr;
   if ((c.clientWidth || innerWidth) < 1500) cols.forEach(x => { if (x.k === 'mh') x.w = 64; else if (x.n) x.w = 50; else if (x.k === 'date') x.w = 80; else if (x.k === 'st') x.w = 86; else if (x.k === 'by') x.w = 70; });   // narrow screens: more room for the summary and remarks
-  const sumCell = r => { const t = String(r.obsSummary || '').trim(); const need = HS_OR(r) > 0 && !t; return `${t ? `<div class="clamp" title="${h(t)}">${h(t)}</div>` : ''}${canSum && (t || HS_OR(r) > 0 || adm) ? `<button class="lnk ${need ? 'need' : ''}" data-os title="${h(LBL('Write the summary of the observations of this day', 'اكتب ملخص ملاحظات السلامة لهذا اليوم'))}">${t ? '✎' : '＋ ' + LBL('Add summary', 'إضافة ملخص')}</button>` : (need ? `<span class="tiny muted">${LBL('no summary', 'بدون ملخص')}</span>` : '')}`; };
+  const sumCell = r => { const t = String(r.obsSummary || '').trim(); const need = HS_OR(r) > 0 && !t; return `${t ? `<div class="clamp"${TIP.t(t)}>${h(t)}</div>` : ''}${canSum && (t || HS_OR(r) > 0 || adm) ? `<button class="lnk ${need ? 'need' : ''}" data-os title="${h(LBL('Write the summary of the observations of this day', 'اكتب ملخص ملاحظات السلامة لهذا اليوم'))}">${t ? '✎' : '＋ ' + LBL('Add summary', 'إضافة ملخص')}</button>` : (need ? `<span class="tiny muted">${LBL('no summary', 'بدون ملخص')}</span>` : '')}`; };
   c.innerHTML = `<div class="tbar"><input class="in search" style="min-width:300px" placeholder="${h(LBL('Search date, status, summary, remarks…', 'بحث في التاريخ، الحالة، الملخص، الملاحظات…'))}" value="${h(st.q)}" data-q>
     ${adm ? `<button class="btn sm danger" data-dsel disabled>${ic('trash')}${LBL('Delete selected', 'حذف المحدد')} <span data-nsel>(0)</span></button>` : ''}
     <span style="flex:1"></span>${ed ? `<button class="btn sm" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn sm" data-xl title="${h(LBL('Exports the days shown (current filters)', 'يصدّر الأيام المعروضة (حسب الفلاتر الحالية)'))}">${ic('dl')}${T('export_xlsx')}</button></div><div data-tb></div>`;
@@ -3678,7 +4120,7 @@ function hsLog(c, rowsIn, adm, ed, mgr) {
     const pr = rows.slice(st.page * PS, st.page * PS + PS); const allSel = pr.length && pr.every(r => st.sel.has(r._id));
     const tot = k => fmtN(sum(rows, r => C[k].s(r)));
     c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw hslog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
-        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل أيام الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''} ${x.mp ? 'mpc' : ''}" data-s="${x.k}" ${x.mp ? `title="${h(LBL('Read only – from Manpower & Equipment', 'للقراءة فقط – من صفحة العمالة والمعدات'))}"` : ''}>${x.h}${x.mp ? ' <i class="src">↺</i>' : ''}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل أيام الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''} ${x.mp ? 'mpc' : ''}" data-s="${x.k}"${TIP.col('hs', x.k, x.h)}>${x.h}${x.mp ? ' <i class="src">↺</i>' : ''}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
       <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.mp ? 'mpc' : ''} ${x.cls || ''}" ${x.mp && r.src === 'rec' ? `title="${h(LBL('Older record: no Manpower & Equipment entries for this date', 'سجل قديم: لا توجد إدخالات عمالة لهذا التاريخ'))}"` : ''}>${x.k === 'os' ? sumCell(r) : x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
       <tfoot><tr>${adm ? '<td></td>' : ''}<td colspan="2">${T('total')} (${fmtN(rows.length)} ${LBL('days', 'يوم')})</td><td class="n mpc">${tot('ind')}</td><td class="n mpc">${tot('dir')}</td><td class="n mpc">${tot('mh')}</td>${['inc', 'nm', 'or', 'oc', 'sw', 'tbt', 'insp', 'pi'].map(k => `<td class="n">${tot(k)}</td>`).join('')}<td colspan="${adm ? 4 : 3}"></td></tr></tfoot></table></div>
       <div class="pg mpleg"><span><i class="src">↺</i> ${LBL('read only – from Manpower & Equipment', 'للقراءة فقط – من صفحة العمالة والمعدات')}</span><span style="flex:1"></span>${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
@@ -3706,7 +4148,7 @@ function hsSum(c, rows) {
   const row = (lbl, s, x, cls, extra) => `<tr class="${cls || ''}" ${extra || ''}><td>${lbl}</td><td class="n">${fmtN(s.n)}</td><td class="n"><b>${fmtN(s.mh)}</b></td><td class="n">${fmtN(s.avg)}</td><td class="n">${s.inc ? `<span class="bdg ${s.rec ? 'bad' : 'warn'}">${fmtN(s.inc)}</span>` : '0'}</td><td class="n">${cell(s, 'rec')}</td><td class="n">${cell(s, 'nm')}</td><td class="n">${cell(s, 'oR')}</td><td class="n">${cell(s, 'oC')}</td><td class="n">${x === undefined ? '' : fmtN(x)}</td><td class="n">${cell(s, 'tbt')}</td><td class="n">${cell(s, 'insp')}</td><td class="n">${cell(s, 'pi')}</td><td class="n">${cell(s, 'stop')}</td></tr>`;
   const lab = p => mode === 'month' ? `${D.fmt(p.from).slice(3)}` : `${D.fmt(p.from)} ${LBL('→', 'إلى')} ${D.fmt(p.to)}`;
   c.innerHTML = `<div class="tbar"><div class="mpseg" role="group">${[['week', LBL('By report week', 'حسب أسبوع التقرير')], ['month', LBL('By month', 'حسب الشهر')]].map(([k, l]) => `<button data-per="${k}" class="${mode === k ? 'on' : ''}">${l}</button>`).join('')}</div><span class="tiny muted">${LBL('Report weeks end the day before the cut-off weekday, as the weekly HSE report. Click a period to open its days in the daily log.', 'أسبوع التقرير ينتهي في اليوم السابق ليوم تاريخ القطع، مثل تقرير السلامة الأسبوعي. اضغط على فترة لفتح أيامها في السجل اليومي.')}</span></div>
-    ${P.list.length || P.ob ? `<div class="tw mpw hssum"><table class="t mpt"><colgroup><col style="width:17%">${Array(13).fill('<col>').join('')}</colgroup><thead><tr><th>${mode === 'month' ? LBL('Month', 'الشهر') : LBL('Report week', 'أسبوع التقرير')}</th><th class="n">${LBL('Days', 'الأيام')}</th><th class="n">${LBL('Man-hours', 'ساعات العمل')} <i class="src">↺</i></th><th class="n">${LBL('Avg. manpower / day', 'متوسط العمالة / يوم')} <i class="src">↺</i></th><th class="n">${LBL('Incidents', 'الحوادث')}</th><th class="n">${LBL('Recordable injuries', 'إصابات مسجلة')}</th><th class="n">${LBL('Near misses', 'حوادث وشيكة')}</th><th class="n">${LBL('Observations raised', 'ملاحظات مسجلة')}</th><th class="n">${LBL('Observations closed', 'ملاحظات مغلقة')}</th><th class="n">${LBL('Open observations (end of period)', 'الملاحظات المفتوحة (نهاية الفترة)')}</th><th class="n">${LBL('Toolbox talks', 'محاضرات توعية')}</th><th class="n">${LBL('Inspections', 'تفتيش')}</th><th class="n">${LBL('Permits issued', 'تصاريح صادرة')}</th><th class="n">${LBL('Stop work', 'إيقاف عمل')}</th></tr></thead>
+    ${P.list.length || P.ob ? `<div class="tw mpw hssum"><table class="t mpt"><colgroup><col style="width:17%">${Array(13).fill('<col>').join('')}</colgroup><thead><tr><th${mode === 'month' ? '' : TIP.a(LBL('Report week', 'أسبوع التقرير'), LBL('7 days ending the day before the cut-off weekday – as the weekly HSE report.', '7 أيام تنتهي في اليوم السابق ليوم القطع – مثل تقرير السلامة الأسبوعي.'))}>${mode === 'month' ? LBL('Month', 'الشهر') : LBL('Report week', 'أسبوع التقرير')}</th><th class="n"${TIP.a(LBL('Days', 'الأيام'), LBL('Days recorded in the period.', 'الأيام المسجلة في الفترة.'))}>${LBL('Days', 'الأيام')}</th><th class="n"${TIP.a(LBL('Man-hours', 'ساعات العمل'), LBL('Σ man-hours of the period.', 'مجموع ساعات العمل في الفترة.'))}>${LBL('Man-hours', 'ساعات العمل')} <i class="src">↺</i></th><th class="n"${TIP.a(LBL('Avg. manpower / day', 'متوسط العمالة / يوم'), LBL('Average manpower per working day.', 'متوسط العمالة لكل يوم عمل.'))}>${LBL('Avg. manpower / day', 'متوسط العمالة / يوم')} <i class="src">↺</i></th><th class="n"${TIP.a(LBL('Incidents', 'الحوادث'), LBL('Σ incidents of every type.', 'مجموع الحوادث بكل أنواعها.'))}>${LBL('Incidents', 'الحوادث')}</th><th class="n"${TIP.a(LBL('Recordable injuries', 'إصابات مسجلة'), LBL('Fatal + LTI + RDI + MTC.', 'وفاة + LTI + RDI + MTC.'))}>${LBL('Recordable injuries', 'إصابات مسجلة')}</th><th class="n"${TIP.a(LBL('Near misses', 'حوادث وشيكة'), LBL('Σ near misses.', 'مجموع الحوادث الوشيكة.'))}>${LBL('Near misses', 'حوادث وشيكة')}</th><th class="n"${TIP.a(LBL('Observations raised', 'ملاحظات مسجلة'), LBL('Safety + environmental observations raised.', 'ملاحظات السلامة والبيئة المسجلة.'))}>${LBL('Observations raised', 'ملاحظات مسجلة')}</th><th class="n"${TIP.a(LBL('Observations closed', 'ملاحظات مغلقة'), LBL('Safety + environmental observations closed.', 'ملاحظات السلامة والبيئة المغلقة.'))}>${LBL('Observations closed', 'ملاحظات مغلقة')}</th><th class="n"${TIP.a(LBL('Open observations (end of period)', 'الملاحظات المفتوحة (نهاية الفترة)'), LBL('Opening balance + raised − closed to the end of the period.', 'الرصيد الافتتاحي + المسجلة − المغلقة حتى نهاية الفترة.'))}>${LBL('Open observations (end of period)', 'الملاحظات المفتوحة (نهاية الفترة)')}</th><th class="n"${TIP.a(LBL('Toolbox talks', 'محاضرات توعية'), LBL('Σ toolbox talks.', 'مجموع محاضرات التوعية.'))}>${LBL('Toolbox talks', 'محاضرات توعية')}</th><th class="n"${TIP.a(LBL('Inspections', 'تفتيش'), LBL('Σ HSE inspections.', 'مجموع عمليات التفتيش.'))}>${LBL('Inspections', 'تفتيش')}</th><th class="n"${TIP.a(LBL('Permits issued', 'تصاريح صادرة'), LBL('Σ permits to work issued.', 'مجموع تصاريح العمل الصادرة.'))}>${LBL('Permits issued', 'تصاريح صادرة')}</th><th class="n"${TIP.a(LBL('Stop work', 'إيقاف عمل'), LBL('Σ stop-work orders.', 'مجموع أوامر إيقاف العمل.'))}>${LBL('Stop work', 'إيقاف عمل')}</th></tr></thead>
     <tbody>${P.ob ? row(`${bdg('Opening Balance')}`, P.ob.s, undefined, 'obr') : ''}${P.list.slice().reverse().map(p => row(lab(p), p.s, p.openCum, 'cl', `data-pf="${p.from}" data-pt="${p.to}"`)).join('')}</tbody>
     <tfoot><tr><td>${T('total')} (${fmtN(P.list.length)} ${mode === 'month' ? LBL('months', 'شهر') : LBL('weeks', 'أسبوع')})</td><td class="n">${fmtN(all.n)}</td><td class="n">${fmtN(all.mh)}</td><td class="n">${fmtN(all.avg)}</td><td class="n">${fmtN(all.inc)}</td><td class="n">${fmtN(all.rec)}</td><td class="n">${fmtN(all.nm)}</td><td class="n">${fmtN(all.oR)}</td><td class="n">${fmtN(all.oC)}</td><td class="n">${fmtN(all.open)}</td><td class="n">${fmtN(all.tbt)}</td><td class="n">${fmtN(all.insp)}</td><td class="n">${fmtN(all.pi)}</td><td class="n">${fmtN(all.stop)}</td></tr></tfoot></table></div>` : `<div class="card empty">${T('none')}</div>`}`;
   c.querySelectorAll('[data-per]').forEach(b => b.onclick = () => { S.ui.hsPer = b.dataset.per; render(true); });
@@ -3725,7 +4167,7 @@ function hsEntry(c, ed) {
     if (f.t === 'calc' || f.k === 'date') return '';
     if (f.k === 'obManHours' && r.dayStatus !== 'Opening Balance') return '';
     const wide = f.t === 'area';
-    return `<label class="hf ${wide ? 'wide' : ''}"><span>${h(FL(f))}</span>${inputFor(f, r[f.k], ro)}</label>`;
+    return `<label class="hf ${wide ? 'wide' : ''}"><span class="fll"${TIP.fa('hse', f)}>${h(FL(f))}</span>${inputFor(f, r[f.k], ro)}</label>`;
   };
   const sec = (i, cls) => `<div class="hsec ${cls || ''}" data-sec="${i}"><h4>${S.lang === 'ar' ? m.secs[i].ar : m.secs[i].en}</h4><div class="hfg">${m.fields.filter(f => (f.sec || 0) === i).map(fld).join('')}</div></div>`;
   c.innerHTML = `<div class="tbar mpe"><label class="small mpl"><b>${T('date')}</b><button class="btn sm" data-dn="-1" title="${h(LBL('Previous day', 'اليوم السابق'))}">‹</button><input class="in" type="date" value="${date}" max="${reportDate()}" data-hd><button class="btn sm" data-dn="1" title="${h(LBL('Next day', 'اليوم التالي'))}">›</button></label><span class="chip">${D.dow(date)}</span>
@@ -3827,7 +4269,7 @@ const MP_LOGC = () => [
   { k: 'idle', h: LBL('Idle', 'متوقف'), w: 58, n: 1, s: r => N(r.idle), v: r => fmtN(r.idle) },
   { k: 'tw', h: LBL('Total working', 'إجمالي العاملين'), w: 70, n: 1, s: r => N(r.day) + N(r.night), v: r => `<b>${fmtN(N(r.day) + N(r.night))}</b>` },
   { k: 'wh', h: LBL('Work hours', 'ساعات العمل'), w: 70, n: 1, s: r => MP_H.wh(r), v: r => fmtN(MP_H.wh(r)) },
-  { k: 'remarks', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp" title="${h(r.remarks)}">${h(r.remarks)}</div>` : '', cls: 'rm' },
+  { k: 'remarks', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp"${TIP.t(r.remarks)}>${h(r.remarks)}</div>` : '', cls: 'rm' },
   { k: 'by', h: LBL('Entered by', 'أدخلها'), w: 104, s: r => r._by || '', v: r => h((r._by || '').split(' (')[0]), cls: 'by' }
 ];
 const mpOk = async () => !S.ui.mpDirty || await confirmBox(LBL('The daily entry has unsaved changes. Continue without saving?', 'في الإدخال اليومي تعديلات غير محفوظة. هل تريد المتابعة بدون حفظ؟'), LBL('Continue', 'متابعة'), true);
@@ -3853,7 +4295,7 @@ PAGES.manpower = v => {
       <span style="flex:1"></span>
       <div class="mph ${mgr ? '' : 'ro'}" title="${h(hrsTip)}"><span>${LBL('Work hours / day', 'ساعات العمل / اليوم')}</span>${[['d', LBL('Day', 'نهاري')], ['n', LBL('Night', 'ليلي')]].map(([k, l]) => `<label><i>${l}</i><input class="in" type="number" min="1" max="24" step="0.5" data-mh="${k}" value="${MP_H[k]()}" ${mgr ? '' : 'disabled'} aria-label="${h(LBL('Work hours / day', 'ساعات العمل / اليوم') + ' – ' + l)}"></label>`).join('')}${mgr ? '' : ic('lock')}</div>
     </div>
-    <div class="mpk">${MPF.cards(s).map(([k, val, sub]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '')).join('')}</div>
+    <div class="mpk">${MPF.cards(s).map(([k, val, sub], i) => kpi(k, val, sub ? `<span>${sub}</span>` : '', '', CTIP('mp', i))).join('')}</div>
     <div class="tabs">${['entry', 'sum', 'log'].map(t => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${T({ entry: 'day_entry', sum: 'daily_summary', log: 'detail_log' }[t])}${t === 'entry' ? '' : ` <span class="tcnt">${fmtN(t === 'sum' ? s.days.length : rows.length)}</span>`}</div>`).join('')}</div><div data-tc></div>`;
   v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => mpGo(() => { S.ui.mpTab = t.dataset.t; }));
   MPF.KEYS.forEach(k => MSEL.wire(v, k, mopts(k), f[k], vals => mpGo(() => { f[k] = vals; if (S.ui.mpLog) S.ui.mpLog.page = 0; })));
@@ -3880,7 +4322,7 @@ function mpSummary(c, s, rows, adm) {
   const lab = s.days.filter(d => d.direct + d.indirect > 0); const avg = lab.length ? sum(lab, d => d.direct + d.indirect) / lab.length : 0;
   const W = ['9%', '7.5%', '9%', '9%', '9%', '9%', '9%', '9%', '', ...(adm ? ['5%'] : [])];
   c.innerHTML = days.length ? `<div class="tw mpw mpsum"><table class="t mpt"><colgroup>${W.map(w => `<col${w ? ` style="width:${w}"` : ''}>`).join('')}</colgroup><thead><tr>
-      <th>${LBL('Date', 'التاريخ')}</th><th>${LBL('Day', 'اليوم')}</th><th class="n">${LBL('Direct labour', 'عمالة مباشرة')}</th><th class="n">${LBL('Indirect labour', 'عمالة غير مباشرة')}</th><th class="n">${LBL('Total labour', 'إجمالي العمالة')}</th><th class="n">${LBL('Work hours', 'ساعات العمل')}</th><th class="n">${LBL('Equipment working', 'معدات عاملة')}</th><th class="n">${LBL('Equipment idle', 'معدات متوقفة')}</th><th>${LBL('Labour (direct | indirect)', 'العمالة (مباشرة | غير مباشرة)')}</th>${adm ? `<th>${LBL('Delete', 'حذف')}</th>` : ''}</tr></thead>
+      <th${TIP.a(LBL('Date', 'التاريخ'), LBL('Day with records; click a day for its daily entry.', 'يوم له سجلات؛ انقر اليوم لفتح إدخاله اليومي.'))}>${LBL('Date', 'التاريخ')}</th><th${TIP.a(LBL('Day', 'اليوم'), LBL('Day of the week.', 'يوم الأسبوع.'))}>${LBL('Day', 'اليوم')}</th><th class="n"${TIP.a(LBL('Direct labour', 'عمالة مباشرة'), LBL('Σ day + night shift of direct labour that day.', 'مجموع النهاري + الليلي للعمالة المباشرة في ذلك اليوم.'))}>${LBL('Direct labour', 'عمالة مباشرة')}</th><th class="n"${TIP.a(LBL('Indirect labour', 'عمالة غير مباشرة'), LBL('Σ day + night shift of indirect labour that day.', 'مجموع النهاري + الليلي للعمالة غير المباشرة في ذلك اليوم.'))}>${LBL('Indirect labour', 'عمالة غير مباشرة')}</th><th class="n"${TIP.a(LBL('Total labour', 'إجمالي العمالة'), LBL('Direct + indirect labour.', 'العمالة المباشرة + غير المباشرة.'))}>${LBL('Total labour', 'إجمالي العمالة')}</th><th class="n"${TIP.a(LBL('Work hours', 'ساعات العمل'), LBL('Labour man-days × day / night hours.', 'يوميات العمالة × ساعات النهاري / الليلي.'))}>${LBL('Work hours', 'ساعات العمل')}</th><th class="n"${TIP.a(LBL('Equipment working', 'معدات عاملة'), LBL('Equipment working (day + night).', 'المعدات العاملة (نهاري + ليلي).'))}>${LBL('Equipment working', 'معدات عاملة')}</th><th class="n"${TIP.a(LBL('Equipment idle', 'معدات متوقفة'), LBL('Equipment on site, not working.', 'معدات في الموقع لا تعمل.'))}>${LBL('Equipment idle', 'معدات متوقفة')}</th><th${TIP.a(LBL('Labour (direct | indirect)', 'العمالة (مباشرة | غير مباشرة)'), LBL('Bar of the day: direct (dark) and indirect (light) labour.', 'شريط اليوم: العمالة المباشرة (الداكن) وغير المباشرة (الفاتح).'))}>${LBL('Labour (direct | indirect)', 'العمالة (مباشرة | غير مباشرة)')}</th>${adm ? `<th>${LBL('Delete', 'حذف')}</th>` : ''}</tr></thead>
     <tbody>${days.map(d => { const tot = d.direct + d.indirect; return `<tr class="cl" data-d="${d.date}" title="${h(LBL('Open this day in the daily entry', 'فتح هذا اليوم في الإدخال اليومي'))}"><td>${D.fmt(d.date)}</td><td>${D.dow(d.date)}</td><td class="n">${fmtN(d.direct)}</td><td class="n">${fmtN(d.indirect)}</td><td class="n"><b>${fmtN(tot)}</b></td><td class="n">${fmtN(d.dH + d.iH)}</td><td class="n">${fmtN(d.eqW)}</td><td class="n">${fmtN(d.eqI)}</td><td><div class="mpbar" style="width:${Math.max(2, tot / mx * 100)}%"><i class="d" style="flex:${d.direct}"></i><i class="i" style="flex:${d.indirect}"></i></div></td>${adm ? `<td class="ac"><button class="ib del" data-dd="${d.date}" title="${h(LBL('Delete the records of this date', 'حذف سجلات هذا التاريخ'))}">${ic('trash')}</button></td>` : ''}</tr>`; }).join('')}</tbody>
     <tfoot><tr><td colspan="2">${T('total')} (${fmtN(days.length)} ${LBL('days', 'يوم')})</td><td class="n">${fmtN(s.dMD)}</td><td class="n">${fmtN(s.iMD)}</td><td class="n">${fmtN(s.dMD + s.iMD)}</td><td class="n">${fmtN(s.dMH + s.iMH)}</td><td class="n">${fmtN(s.eMD)}</td><td class="n">${fmtN(s.eI)}</td><td>${LBL('Average labour per working day', 'متوسط العمالة لكل يوم عمل')}: <b>${fmtN(avg)}</b></td>${adm ? '<td></td>' : ''}</tr></tfoot></table></div>
     <div class="pg mpleg"><span><i class="lg d"></i>${LBL('Direct', 'مباشرة')}</span><span><i class="lg i"></i>${LBL('Indirect', 'غير مباشرة')}</span><span>· ${LBL('Click a day to open it in the daily entry', 'اضغط على يوم لفتحه في الإدخال اليومي')}</span></div>`
@@ -3919,7 +4361,7 @@ function mpLog(c, rowsIn, adm, ed) {
     const tot = k => fmtN(sum(rows, r => C[k].s(r)));
     const allSel = pr.length && pr.every(r => st.sel.has(r._id));
     c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw mplog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
-        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}">${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل سجلات الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''}" data-s="${x.k}"${TIP.col('mp', x.k, x.h)}>${x.h}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
       <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.cls || ''}">${x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
       <tfoot><tr>${adm ? '<td></td>' : ''}<td colspan="5">${T('total')} (${fmtN(rows.length)} ${T('rows')})</td><td class="n">${tot('day')}</td><td class="n">${tot('night')}</td><td class="n">${tot('idle')}</td><td class="n">${tot('tw')}</td><td class="n">${tot('wh')}</td><td colspan="${adm ? 3 : 2}"></td></tr></tfoot></table></div>
       <div class="pg">${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
@@ -3967,7 +4409,7 @@ function mpEntry(c, ed) {
      <label class="small mpl ck2"><input type="checkbox" data-eo ${ef.only ? 'checked' : ''}>${LBL('Entered only', 'المُدخل فقط')}</label>
      <span class="tiny muted" data-esh></span></div>
    ${hist.length ? `<div class="notice info">${ic('info')}<div>${T('opening_note')} (${hist.map(r => `${listVal('resources', r.resource)}: ${fmtN(N(r.day) + N(r.night))}`).join(' · ')})</div></div>` : ''}
-   <div class="tw mpw mpent"><table class="t mpt mpgrid"><colgroup><col><col style="width:13%"><col style="width:13%"><col style="width:13%"><col style="width:12%"><col style="width:12%"></colgroup><thead><tr><th>${LBL('Position / equipment', 'الوظيفة / المعدة')}</th><th class="n">${LBL('Day shift', 'الوردية النهارية')}</th><th class="n">${LBL('Night shift', 'الوردية الليلية')}</th><th class="n">${LBL('Idle', 'متوقف')}</th><th class="n">${LBL('Total working', 'إجمالي العاملين')}</th><th class="n">${LBL('Work hours', 'ساعات العمل')}</th></tr></thead><tbody>
+   <div class="tw mpw mpent"><table class="t mpt mpgrid"><colgroup><col><col style="width:13%"><col style="width:13%"><col style="width:13%"><col style="width:12%"><col style="width:12%"></colgroup><thead><tr><th${TIP.a(LBL('Position / equipment', 'الوظيفة / المعدة'), LBL('Positions and equipment of the resources list, grouped by type.', 'الوظائف والمعدات من قائمة الموارد، مجمّعة حسب النوع.'))}>${LBL('Position / equipment', 'الوظيفة / المعدة')}</th><th class="n"${TIP.a(LBL('Day shift', 'الوردية النهارية'), LBL('Working the day shift on this date for the chosen contractor.', 'العاملون في الوردية النهارية في هذا التاريخ للمقاول المختار.'), { how: LBL('Head count from the daily attendance sheet; empty = 0. Save day writes every row.', 'العدد من كشف الحضور اليومي؛ الفارغ = صفر. «حفظ اليوم» يحفظ كل الصفوف.') })}>${LBL('Day shift', 'الوردية النهارية')}</th><th class="n"${TIP.a(LBL('Night shift', 'الوردية الليلية'), LBL('Working the night shift on this date.', 'العاملون في الوردية الليلية في هذا التاريخ.'), { how: LBL('Head count of the night shift; empty = 0.', 'عدد الوردية الليلية؛ الفارغ = صفر.') })}>${LBL('Night shift', 'الوردية الليلية')}</th><th class="n"${TIP.a(LBL('Idle', 'متوقف'), LBL('On site but not working – mainly equipment.', 'في الموقع ولا يعملون – غالباً المعدات.'), { how: LBL('Count of idle units; empty = 0.', 'عدد الوحدات المتوقفة؛ الفارغ = صفر.') })}>${LBL('Idle', 'متوقف')}</th><th class="n"${TIP.a(LBL('Total working', 'إجمالي العاملين'), LBL('Day + night shift – calculated.', 'النهاري + الليلي – محسوب.'))}>${LBL('Total working', 'إجمالي العاملين')}</th><th class="n"${TIP.a(LBL('Work hours', 'ساعات العمل'), LBL('Day × day hours + night × night hours – calculated.', 'النهاري × ساعاته + الليلي × ساعاته – محسوب.'))}>${LBL('Work hours', 'ساعات العمل')}</th></tr></thead><tbody>
    ${groups.map(([g, gl]) => `<tr class="gh" data-gh="${g}"><td>${gl}</td>${['day', 'night', 'idle', 'tw', 'wh'].map(k => `<td class="n" data-gt="${g}:${k}"></td>`).join('')}</tr>` + res.filter(r => r.type === g).map(r => `<tr data-r="${h(r.v)}" data-g="${g}" data-nm="${h((r.v + ' ' + (r.ar || '')).toLowerCase())}"><td class="rn">${h(LV(r))}${S.lang === 'ar' ? `<div class="tiny muted">${h(r.v)}</div>` : ''}</td>${['day', 'night', 'idle'].map(k => `<td class="n"><input class="in" type="number" min="0" step="1" data-f="${k}" value="${val(r.v, k)}" ${ed ? '' : 'disabled'} aria-label="${h(LV(r))}"></td>`).join('')}<td class="n" data-rt></td><td class="n" data-rh></td></tr>`).join('')).join('')}
    </tbody><tfoot><tr><td>${LBL('Total of the day', 'إجمالي اليوم')} <span class="tiny muted">(${LBL('all positions', 'كل الوظائف')})</span></td>${['day', 'night', 'idle', 'tw', 'wh'].map(k => `<td class="n" data-tt="${k}"></td>`).join('')}</tr></tfoot></table></div>`;
   const num = (tr, k) => N(tr.querySelector(`[data-f=${k}]`).value);
@@ -4994,10 +5436,10 @@ tfoot td{background:#E8EEF6;font-weight:700}
       { h: T('c_p6'), v: r => `${bdg(r.a.status)} ${fmtN(r.a.pct, 0)}%` }, { h: T('c_plan'), n: 1, v: r => r.pl === null ? '' : fmtN(r.pl, 0) + '%' },
       { h: T('c_ctr'), n: 1, v: r => pct((r.u || {}).ctr) }, { h: T('c_cons'), n: 1, v: r => pct((r.u || {}).cons) }, { h: T('c_own'), n: 1, v: r => pct((r.u || {}).own) },
       { h: T('c_as'), cls: 'nw', v: r => D.fmt(r.e.as) }, { h: T('c_af'), cls: 'nw', v: r => D.fmt(r.e.af) }, { h: T('c_rd'), n: 1, v: r => r.e.status === 'In Progress' ? r.e.rd : '' },
-      { h: '→ P6', v: r => `${bdg(r.e.status)} <b>${r.e.pctR}%</b>${r.behind ? ' ' + bdg('Behind') : ''}` },
+      { h: LBL('To P6', 'إلى P6'), v: r => `${bdg(r.e.status)} <b>${r.e.pctR}%</b>${r.behind ? ' ' + bdg('Behind') : ''}` },
       { h: T('c_cb'), v: r => esc(E((r.u || {}).causedBy || '')) }, { h: T('c_rsn'), v: r => esc((r.u || {}).reason || '') }, { h: T('c_mit'), v: r => esc((r.u || {}).mitigation || '') }];
     const cols = cols0.map((c, i) => Object.assign({}, c, { w: W[i] }));
-    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues', updC: 'upd_ctr', updCo: 'upd_cons', updO: 'upd_own' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (v) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(v)}`); });
+    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues', updC: 'upd_ctr', updCo: 'upd_cons', updO: 'upd_own' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (A_(v).length) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(A_(v).join(' / '))}`); });
     const behind = sm.rows.filter(r => r.behind && r.u && r.u.reason);
     return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned), `${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}${sm.plannedDD !== null && sch.upd ? ` · ${T('pl_at_dd')} ${(sm.plannedDD * 100).toFixed(2)}%` : ''}`], [T('contractor_act'), fmtP(sm.ctr), `${((sm.ctr - sm.planned) * 100).toFixed(1)} pp · SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('owner_rev'), fmtP(sm.own)], [T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
       `<div class="note">${T('activities')}: ${fmtN(sm.n)} · ${T('completed')}: ${fmtN(sm.comp)} · ${T('in_progress')}: ${fmtN(sm.inprog)} · ${T('not_started')}: ${fmtN(sm.ns)}${fl.length ? ` — ${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fl.join(' · ')}` : ''}</div>` +

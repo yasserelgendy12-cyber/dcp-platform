@@ -930,6 +930,30 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 @media print{.lap{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 .lap .lpt td.dt{white-space:nowrap;overflow-wrap:normal}.lap .lpt-d tr[class^=lg] td{text-align:start!important}.lap .lpt-d tr.lgz td b{letter-spacing:.3px;text-transform:uppercase}
 
+/* HSE daily page (same frame as Manpower & Equipment) */
+.mpk.hsk{grid-template-columns:repeat(10,minmax(0,1fr))}
+.mpk.hsk .kpi .k{white-space:normal;line-height:1.2;min-height:2.4em;display:flex;align-items:flex-end}
+.mpk.hsk .kpi .s{white-space:normal;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+@media (max-width:1500px){.mpk.hsk{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.btn.hsmp{background:#F2F6FB;color:var(--ink2);font-weight:600}
+table.t.mpt th.mpc{background:#1B3A5E}table.t.mpt td.mpc{background:#F4F7FB;color:var(--navy)}
+i.src{font-style:normal;color:#8FB3DA;font-weight:700}
+table.t.mpt td.os{font-size:11.5px;color:var(--ink2)}
+.lnk{border:0;background:transparent;color:var(--pri);cursor:pointer;font:inherit;font-size:11.5px;font-weight:600;padding:2px 0}.lnk:hover{text-decoration:underline}.lnk.need{color:var(--warn)}
+.tw.hslog,.tw.hssum{max-height:calc(100vh - 460px - var(--tb));min-height:240px}
+table.t.mpt tr.obr td{background:#F7F3EA}
+.hse-e{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px;align-items:start}
+.hsec{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;box-shadow:var(--sh)}
+.hsec.wide{grid-column:1/-1}
+.hsec h4{margin:0 0 8px;font-size:12.5px;color:var(--navy);border-bottom:1px solid var(--line2);padding-bottom:6px}
+.hfg{display:grid;grid-template-columns:repeat(auto-fill,minmax(122px,1fr));gap:8px 10px}
+.hf{display:flex;flex-direction:column;justify-content:flex-end;gap:3px;font-size:11.5px;color:var(--ink2);min-width:0}
+.hf span{line-height:1.2}.hf .in{width:100%;height:29px;padding:3px 8px;text-align:center}
+.hf select.in{text-align:start}
+.hf.wide{grid-column:1/-1}.hf.wide .in{height:auto;text-align:start}
+.hsec.mpsec{background:#F7FAFD}
+.hmp{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:6px}.hmp div{background:#fff;border:1px solid var(--line);border-radius:7px;padding:5px 8px}.hmp span{display:block;font-size:10.5px;color:var(--ink3)}.hmp b{font-size:16px;color:var(--navy)}
+
 </style>
 </head>
 <body>
@@ -1230,6 +1254,7 @@ en: {
 }};
 /* fixed enumerations (stored in English, displayed per language) */
 const ENUM_AR = {
+  'Clear': 'صافٍ', 'Hot': 'حار', 'Very hot (heat stress)': 'حار جداً (إجهاد حراري)', 'Dust / sandstorm': 'غبار / عاصفة رملية', 'Rain': 'أمطار', 'Strong wind': 'رياح قوية',
   'Working': 'يوم عمل', 'Weekend / Rest Day': 'عطلة / يوم راحة', 'Public Holiday': 'إجازة رسمية', 'Stopped - Weather': 'متوقف - طقس', 'Stopped - Other': 'متوقف - أخرى', 'Opening Balance': 'رصيد افتتاحي',
   'Outgoing': 'صادر', 'Incoming': 'وارد', 'Document': 'مستند', 'In Progress': 'جارٍ', 'Replied': 'تم الرد', 'Info Only': 'للعلم فقط', 'Under Review': 'قيد المراجعة', 'Overdue': 'متأخر',
   'Design Drawing': 'مخطط تصميمي', 'Shop Drawing': 'مخطط تنفيذي', 'As-Built Drawing': 'مخطط كما نُفّذ', 'Not Submitted': 'لم يُقدَّم', 'Late - Not Submitted': 'متأخر - لم يُقدَّم',
@@ -1741,7 +1766,9 @@ function stamp(rec) { rec._at = nowISO(); rec._by = S.user ? `${S.user.name} (${
 
 /* ---------- save & merge ---------- */
 let saveTimer = null, syncTimer = null;
+let _dbVer = 0;   // bumped on every change (caches that read the database)
 function touch(action, detail) {
+  _dbVer++;
   if (action) audit(action, detail);
   PRES.stamp();
   S.db._at = nowISO();
@@ -2181,6 +2208,26 @@ const L_ = {
 const F = (k, en, ar, t, o = {}) => Object.assign({ k, en, ar, t }, o);
 // work hours of a manpower record: day shift × day hours + night shift × night hours (night hours default to the day hours)
 const MP_H = { d: () => N(S.db.project.stdHours) || 8, n: () => N(S.db.project.nightHours) || MP_H.d(), wh: r => N(r.day) * MP_H.d() + N(r.night) * MP_H.n() };
+// HSE manpower / man-hours of a date = the labour of the Manpower & Equipment records of that date (all contractors);
+// opening-balance records keep their carried hours; an older record of a date without manpower records keeps its own values
+let _hseMpC = null;
+function hseMpDay(date) {
+  const src = S.db.manpower || [], hd = MP_H.d(), hn = MP_H.n();
+  const C = _hseMpC;
+  if (!C || C.src !== src || C.n !== src.length || C.hd !== hd || C.hn !== hn || C.v !== _dbVer || C.res !== S.db.lists.resources) {
+    const map = {}; const res = new Map((S.db.lists.resources || []).map(x => [x.v, x]));
+    src.forEach(r => { if (r._del || !r.date) return; const t = r.typeOverride || (res.get(r.resource) || {}).type; if (t !== 'Direct' && t !== 'Indirect') return; const m = map[r.date] = map[r.date] || { indirect: 0, direct: 0, manHours: 0 }; m[t === 'Direct' ? 'direct' : 'indirect'] += N(r.day) + N(r.night); m.manHours += N(r.day) * hd + N(r.night) * hn; });
+    _hseMpC = { src, n: src.length, hd, hn, v: _dbVer, res: S.db.lists.resources, map };
+  }
+  return _hseMpC.map[date];
+}
+const HSE_MP = r => {
+  if (!r) return { indirect: 0, direct: 0, manHours: 0, src: 'none' };
+  if (r.dayStatus === 'Opening Balance') return { indirect: N(r.indirect), direct: N(r.direct), manHours: isNum(r.obManHours) ? N(r.obManHours) : N(r.manHours), src: 'ob' };
+  const m = hseMpDay(r.date); if (m) return Object.assign({ src: 'mp' }, m);
+  return { indirect: N(r.indirect), direct: N(r.direct), manHours: N(r.manHours), src: (N(r.indirect) + N(r.direct) + N(r.manHours)) ? 'rec' : 'none' };
+};
+const hseLive = () => live(S.db.hse).map(r => Object.assign({}, r, HSE_MP(r)));   // HSE records with the manpower of their date
 const HSE_INC = ['fatal', 'lti', 'daysAway', 'rdi', 'daysRestricted', 'mtc', 'mva', 'fac', 'propDamage', 'fire', 'env', 'nearMiss', 'otherInc'];
 const HSE_INC_SUM = ['fatal', 'lti', 'rdi', 'mtc', 'mva', 'fac', 'propDamage', 'fire', 'env', 'nearMiss', 'otherInc'];
 
@@ -2193,32 +2240,48 @@ const MOD = {
       F('date', 'Date', 'التاريخ', 'date', { req: 1, tbl: 1, sec: 0, uniq: 1 }),
       F('day', 'Day', 'اليوم', 'calc', { tbl: 1, calc: r => D.dow(r.date), sec: 0 }),
       F('dayStatus', 'Day Status', 'حالة اليوم', 'enum', { opts: ['Working', 'Weekend / Rest Day', 'Public Holiday', 'Stopped - Weather', 'Stopped - Other', 'Opening Balance'], req: 1, tbl: 1, sec: 0, badge: 1 }),
-      F('indirect', 'Indirect Manpower', 'العمالة غير المباشرة', 'int', { sec: 1, tbl: 1 }),
-      F('direct', 'Direct Manpower', 'العمالة المباشرة', 'int', { sec: 1, tbl: 1 }),
-      F('totalMP', 'Total Manpower', 'إجمالي العمالة', 'calc', { calc: r => N(r.indirect) + N(r.direct), ft: 'int', sec: 1, tbl: 1, tot: 0 }),
-      F('manHours', 'Man-Hours Worked', 'ساعات العمل المنجزة', 'dec', { sec: 1, tbl: 1, tot: 1, hint: r => (N(r.indirect) + N(r.direct)) * N(S.db.project.stdHours || 8) }),
+      F('weather', 'Weather', 'حالة الطقس', 'enum', { opts: ['', 'Clear', 'Hot', 'Very hot (heat stress)', 'Dust / sandstorm', 'Rain', 'Strong wind'], sec: 0 }),
+      F('tempMax', 'Max Temperature (°C)', 'أعلى درجة حرارة (°م)', 'dec', { sec: 0 }),
+      // manpower and man-hours: read only, from the Manpower & Equipment records of the same date (entered once)
+      F('indirect', 'Indirect Manpower', 'العمالة غير المباشرة', 'calc', { ft: 'int', sec: 1, tbl: 1, mp: 1, calc: r => HSE_MP(r).indirect }),
+      F('direct', 'Direct Manpower', 'العمالة المباشرة', 'calc', { ft: 'int', sec: 1, tbl: 1, mp: 1, calc: r => HSE_MP(r).direct }),
+      F('totalMP', 'Total Manpower', 'إجمالي العمالة', 'calc', { calc: r => HSE_MP(r).indirect + HSE_MP(r).direct, ft: 'int', sec: 1, tbl: 1, tot: 0, mp: 1 }),
+      F('manHours', 'Man-Hours Worked', 'ساعات العمل المنجزة', 'calc', { ft: 'int', sec: 1, tbl: 1, tot: 1, mp: 1, calc: r => HSE_MP(r).manHours, note: { en: 'Read only – from Manpower & Equipment of the same date (day-shift man-days × day hours + night-shift man-days × night hours).', ar: 'للقراءة فقط – من صفحة العمالة والمعدات لنفس التاريخ (يوميات النهاري × ساعاته + يوميات الليلي × ساعاته).' } }),
+      F('obManHours', 'Opening-balance man-hours', 'ساعات العمل – رصيد افتتاحي', 'dec', { sec: 1, note: { en: 'Only for a record with Day Status = Opening Balance (hours carried from before the daily log).', ar: 'فقط لسجل حالة يومه "رصيد افتتاحي" (ساعات مرحّلة من قبل السجل اليومي).' } }),
+      F('hseStaff', 'HSE Staff on Site', 'موظفو السلامة في الموقع', 'int', { sec: 1 }), F('firstAiders', 'First Aiders on Site', 'المسعفون في الموقع', 'int', { sec: 1 }),
       F('fatal', 'Fatalities', 'الوفيات', 'int', { sec: 2 }), F('lti', 'Lost Time Injuries', 'إصابات مضيعة للوقت (LTI)', 'int', { sec: 2 }),
       F('daysAway', 'Days Away From Work', 'أيام الغياب عن العمل', 'int', { sec: 2 }), F('rdi', 'Restricted Duty Incidents', 'حالات العمل المقيّد', 'int', { sec: 2 }),
       F('daysRestricted', 'Days Restricted', 'أيام العمل المقيّد', 'int', { sec: 2 }), F('mtc', 'Medical Treatment Cases', 'حالات العلاج الطبي', 'int', { sec: 2 }),
       F('mva', 'Motor Vehicle Accidents', 'حوادث المركبات', 'int', { sec: 2 }), F('fac', 'First Aid Cases', 'حالات الإسعافات الأولية', 'int', { sec: 2 }),
       F('propDamage', 'Property Damage', 'أضرار الممتلكات', 'int', { sec: 2 }), F('fire', 'Fire Incidents', 'حوادث الحريق', 'int', { sec: 2 }),
       F('env', 'Environmental Incidents', 'الحوادث البيئية', 'int', { sec: 2 }), F('nearMiss', 'Near Misses', 'الحوادث الوشيكة', 'int', { sec: 2 }),
+      F('hipo', 'High-Potential Incidents (HiPo)', 'حوادث عالية الخطورة (HiPo)', 'int', { sec: 2 }),
       F('otherInc', 'Other Incidents', 'حوادث أخرى', 'int', { sec: 2 }), F('nonWork', 'Non-Work Related Incidents', 'حوادث غير متعلقة بالعمل', 'int', { sec: 2 }),
+      F('clinicVisits', 'Clinic / Medical Visits', 'زيارات العيادة', 'int', { sec: 2 }),
       F('totalInc', 'Total Incidents', 'إجمالي الحوادث', 'calc', { calc: r => sum(HSE_INC_SUM, k => r[k]), ft: 'int', sec: 2, tbl: 1, tot: 1 }),
+      F('incSummary', 'Incident Summary', 'ملخص الحوادث', 'area', { sec: 2, wide: 1 }),
       F('soRaised', 'Safety Observations Raised', 'ملاحظات السلامة المفتوحة', 'int', { sec: 3, tbl: 1, tot: 1 }), F('soClosed', 'Safety Observations Closed', 'ملاحظات السلامة المغلقة', 'int', { sec: 3, tbl: 1, tot: 1 }),
       F('eoRaised', 'Environmental Observations Raised', 'الملاحظات البيئية المفتوحة', 'int', { sec: 3 }), F('eoClosed', 'Environmental Observations Closed', 'الملاحظات البيئية المغلقة', 'int', { sec: 3 }),
+      F('ppeViol', 'PPE Violations', 'مخالفات معدات الوقاية (PPE)', 'int', { sec: 3 }), F('warnings', 'Violation / Warning Notices', 'إنذارات ومخالفات صادرة', 'int', { sec: 3 }),
       F('stopWork', 'Stop Work Issued', 'أوامر إيقاف العمل', 'int', { sec: 3 }),
-      F('tbt', 'Toolbox Talks', 'محاضرات التوعية (TBT)', 'int', { sec: 4, tbl: 1, tot: 1 }), F('inductions', 'HSE Inductions', 'التعريف بالسلامة للمنضمين', 'int', { sec: 4 }),
-      F('training', 'HSE Training Sessions', 'جلسات تدريب السلامة', 'int', { sec: 4 }), F('inspections', 'HSE Inspections', 'عمليات تفتيش السلامة', 'int', { sec: 4 }),
+      F('obsSummary', 'Observation Summary', 'ملخص ملاحظات السلامة', 'area', { sec: 3, wide: 1 }),
+      F('tbt', 'Toolbox Talks', 'محاضرات التوعية (TBT)', 'int', { sec: 4, tbl: 1, tot: 1 }), F('tbtAtt', 'Toolbox Talk Attendees', 'حضور محاضرات التوعية', 'int', { sec: 4 }),
+      F('inductions', 'HSE Inductions', 'التعريف بالسلامة للمنضمين', 'int', { sec: 4 }),
+      F('training', 'HSE Training Sessions', 'جلسات تدريب السلامة', 'int', { sec: 4 }), F('trainingAtt', 'Training Attendees', 'حضور التدريب', 'int', { sec: 4 }),
+      F('inspections', 'HSE Inspections', 'عمليات تفتيش السلامة', 'int', { sec: 4 }),
+      F('equipInsp', 'Plant / Lifting Equipment Inspections', 'فحص المعدات ومعدات الرفع', 'int', { sec: 4 }), F('scaffoldInsp', 'Scaffold Inspections', 'فحص السقالات', 'int', { sec: 4 }),
       F('leaderTours', 'Leadership Tours', 'جولات الإدارة العليا', 'int', { sec: 4 }), F('walkthroughs', 'Site Walkthroughs', 'الجولات الميدانية', 'int', { sec: 4 }),
       F('audits', 'HSE Audits', 'تدقيق السلامة', 'int', { sec: 4 }),
       F('permitsIssued', 'Permits Issued', 'تصاريح العمل الصادرة', 'int', { sec: 5, tbl: 1, tot: 1 }), F('permitsClosed', 'Permits Closed', 'تصاريح العمل المغلقة', 'int', { sec: 5 }),
-      F('drills', 'Emergency Drills', 'تمارين الطوارئ', 'int', { sec: 5 }), F('campaigns', 'HSE Campaigns', 'حملات التوعية', 'int', { sec: 5 }),
-      F('lessons', 'Lessons Learned', 'الدروس المستفادة', 'int', { sec: 5 }), F('meetings', 'HSE Meetings', 'اجتماعات السلامة', 'int', { sec: 5 }),
-      F('recognitions', 'HSE Recognitions', 'التكريمات', 'int', { sec: 5 }),
-      F('remarks', 'Remarks', 'ملاحظات', 'area', { sec: 6, tbl: 1 })
+      F('ptwHot', 'of which Hot Work', 'منها أعمال ساخنة', 'int', { sec: 5 }), F('ptwHeight', 'of which Work at Height', 'منها عمل على ارتفاع', 'int', { sec: 5 }),
+      F('ptwLift', 'of which Critical Lifts', 'منها رفع حرج', 'int', { sec: 5 }), F('ptwConfined', 'of which Confined Space', 'منها أماكن مغلقة', 'int', { sec: 5 }),
+      F('ptwExc', 'of which Excavation', 'منها حفريات', 'int', { sec: 5 }),
+      F('drills', 'Emergency Drills', 'تمارين الطوارئ', 'int', { sec: 6 }), F('campaigns', 'HSE Campaigns', 'حملات التوعية', 'int', { sec: 6 }),
+      F('lessons', 'Lessons Learned', 'الدروس المستفادة', 'int', { sec: 6 }), F('meetings', 'HSE Meetings', 'اجتماعات السلامة', 'int', { sec: 6 }),
+      F('recognitions', 'HSE Recognitions', 'التكريمات', 'int', { sec: 6 }), F('wasteLoads', 'Waste Removal Loads', 'نقلات إزالة المخلفات', 'int', { sec: 6 }),
+      F('remarks', 'Remarks', 'ملاحظات', 'area', { sec: 7, tbl: 1 })
     ],
-    secs: [{ en: 'Day', ar: 'اليوم' }, { en: 'Manpower & man-hours', ar: 'العمالة وساعات العمل' }, { en: 'Incidents', ar: 'الحوادث' }, { en: 'Observations', ar: 'الملاحظات' }, { en: 'Training & inspections', ar: 'التدريب والتفتيش' }, { en: 'Permits & other', ar: 'التصاريح وأخرى' }, { en: 'Remarks', ar: 'ملاحظات' }],
+    secs: [{ en: 'Day', ar: 'اليوم' }, { en: 'Manpower & man-hours', ar: 'العمالة وساعات العمل' }, { en: 'Incidents', ar: 'الحوادث' }, { en: 'Observations', ar: 'الملاحظات' }, { en: 'Training & inspections', ar: 'التدريب والتفتيش' }, { en: 'Permits to work', ar: 'تصاريح العمل' }, { en: 'Drills, campaigns & other', ar: 'التمارين والحملات وأخرى' }, { en: 'Remarks', ar: 'ملاحظات' }],
     filters: ['dayStatus']
   },
   dc: {
@@ -2531,7 +2594,7 @@ function runChecks() {
   _tgtCache = null;
   const db = S.db, rd = reportDate(), out = [];
   const add = (area, en, ar, fn, fixEn, fixAr, page) => { let v; try { v = fn(); } catch (e) { v = 'n/a'; } out.push({ area, en, ar, v, ok: v === 0, fixEn, fixAr, page }); };
-  const H = live(db.hse), DC = live(db.dc), MP = live(db.manpower), DR = live(db.drawings), TG = live(db.targets), IV = live(db.invoices), P = db.project;
+  const H = hseLive(), DC = live(db.dc), MP = live(db.manpower), DR = live(db.drawings), TG = live(db.targets), IV = live(db.invoices), P = db.project;
   const cut = activeCutoff();
   add('Setup', 'Open cut-off exists', 'يوجد تاريخ قطع مفتوح', () => cut ? 0 : 1, 'Open a cut-off in Cut-off & P6 Export.', 'افتح تاريخ قطع من صفحة تاريخ القطع وتصدير P6.', 'p6');
   add('Setup', 'Report date between commencement and completion', 'تاريخ التقرير بين تاريخ البدء والانتهاء', () => (P.commencement && P.completion && rd >= P.commencement && rd <= P.completion) ? 0 : 1, 'Check the cut-off date and the contract dates in Project Setup.', 'راجع تاريخ القطع وتواريخ العقد في إعداد المشروع.', 'project');
@@ -2540,9 +2603,9 @@ function runChecks() {
   add('Setup', 'Project identity filled (number, code, name)', 'بيانات المشروع مكتملة (الرقم، الكود، الاسم)', () => (!P.number) + (!P.code) + (!P.name), 'Complete Project Setup.', 'أكمل إعداد المشروع.', 'project');
   add('Setup', 'Working hours per man-day entered', 'ساعات العمل اليومية مُدخلة', () => N(P.stdHours) > 0 ? 0 : 1, 'Enter hours per man-day in Project Setup.', 'أدخل ساعات العمل اليومية في إعداد المشروع.', 'project');
   add('HSE', 'HSE log reaches the report date', 'سجل السلامة يصل إلى تاريخ التقرير', () => !H.length ? 1 : (H.map(r => r.date).sort().pop() >= D.add(rd, -1) ? 0 : 1), 'Add the missing daily rows in HSE Daily.', 'أضف الأيام الناقصة في السلامة اليومية.', 'hse');
-  add('HSE', 'Working days with no manpower entered', 'أيام عمل بدون عمالة مُدخلة', () => H.filter(r => r.dayStatus === 'Working' && !(N(r.indirect) + N(r.direct))).length, 'Enter indirect / direct manpower for each working day.', 'أدخل العمالة المباشرة وغير المباشرة لكل يوم عمل.', 'hse');
-  add('HSE', 'Working days without man-hours', 'أيام عمل بدون ساعات عمل', () => H.filter(r => r.dayStatus === 'Working' && !N(r.manHours)).length, 'Enter Man-Hours Worked for each working day.', 'أدخل ساعات العمل لكل يوم عمل.', 'hse');
-  add('HSE', 'Man-hours above 16 hours per person', 'ساعات عمل أكثر من 16 ساعة للفرد', () => H.filter(r => (N(r.indirect) + N(r.direct)) > 0 && N(r.manHours) > (N(r.indirect) + N(r.direct)) * 16).length, 'Verify the man-hours or manpower on the rows concerned.', 'تحقق من ساعات العمل أو العمالة في السجلات المعنية.', 'hse');
+  add('HSE', 'Working days with no manpower in Manpower & Equipment', 'أيام عمل بدون عمالة في صفحة العمالة والمعدات', () => H.filter(r => r.dayStatus === 'Working' && !(N(r.indirect) + N(r.direct))).length, 'HSE manpower comes from Manpower & Equipment: enter the day there.', 'عمالة السلامة تُقرأ من صفحة العمالة والمعدات: أدخل اليوم هناك.', 'manpower');
+  add('HSE', 'Working days without man-hours', 'أيام عمل بدون ساعات عمل', () => H.filter(r => r.dayStatus === 'Working' && !N(r.manHours)).length, 'Man-hours come from Manpower & Equipment (man-days × work hours / day): enter the day there.', 'ساعات العمل تُحسب من صفحة العمالة والمعدات (اليوميات × ساعات اليوم): أدخل اليوم هناك.', 'manpower');
+  add('HSE', 'Man-hours above 16 hours per person', 'ساعات عمل أكثر من 16 ساعة للفرد', () => H.filter(r => (N(r.indirect) + N(r.direct)) > 0 && N(r.manHours) > (N(r.indirect) + N(r.direct)) * 16).length, 'Check the work hours / day (day / night) in Manpower & Equipment.', 'راجع ساعات العمل / اليوم (نهاري / ليلي) في صفحة العمالة والمعدات.', 'manpower');
   add('HSE', 'Duplicate dates in HSE Daily', 'تواريخ مكررة في السلامة اليومية', () => { const c = {}; H.forEach(r => c[r.date] = (c[r.date] || 0) + 1); return Object.values(c).filter(x => x > 1).reduce((a, b) => a + b, 0); }, 'Keep one row per date.', 'احتفظ بسجل واحد لكل تاريخ.', 'hse');
   add('HSE', 'Safety observations closed exceed raised (PTD)', 'الملاحظات المغلقة أكثر من المفتوحة', () => sum(H, r => r.soClosed) > sum(H, r => r.soRaised) ? 1 : 0, 'Reconcile the raised / closed observation counts.', 'طابق أعداد الملاحظات المفتوحة والمغلقة.', 'hse');
   add('Document control', 'Documents without a reference number', 'مستندات بدون رقم مرجعي', () => DC.filter(r => r.docType && !r.ref && r.recordType !== 'Opening Balance').length, 'Enter the Document Ref No.', 'أدخل الرقم المرجعي للمستند.', 'dc');
@@ -2628,7 +2691,7 @@ const canSee = pg => !PAGE_GUARD[pg] || PAGE_GUARD[pg].some(hasPerm);
 const can = area => { const p = userPerms(); return p.includes('admin') || p.includes(area); };
 const NAV = [
   { g: 'nav_g_main', items: [{ k: 'home', i: 'home' }] },
-  { g: 'nav_g_input', items: [{ k: 'progress', i: 'chart', a: ['ctr', 'cons', 'own'] }, { k: 'hse', i: 'shield', a: ['hse'] }, { k: 'dc', i: 'doc', a: ['dc'] }, { k: 'manpower', i: 'users', a: ['manpower'] }, { k: 'drawings', i: 'layers', a: ['drawings'] }, { k: 'invoices', i: 'cash', a: ['invoices'] }] },
+  { g: 'nav_g_input', items: [{ k: 'progress', i: 'chart', a: ['ctr', 'cons', 'own'] }, { k: 'manpower', i: 'users', a: ['manpower'] }, { k: 'hse', i: 'shield', a: ['hse'] }, { k: 'dc', i: 'doc', a: ['dc'] }, { k: 'drawings', i: 'layers', a: ['drawings'] }, { k: 'invoices', i: 'cash', a: ['invoices'] }] },
   { g: 'nav_g_ctrl', items: [{ k: 'checks', i: 'check' }, { k: 'p6', i: 'p6', a: ['p6'], hide: true }, { k: 'database', i: 'db', a: ['database'], hide: true }] },
   { g: 'nav_g_admin', items: [{ k: 'users', i: 'user', a: ['users'], hide: true }, { k: 'project', i: 'building', a: ['project'], hide: true }, { k: 'lists', i: 'gear', a: ['lists', 'users'], hide: true }] }
 ];
@@ -2799,7 +2862,7 @@ function openRecord(mk, rec, after, o = {}) {
   const r = isNew ? Object.assign(m.defaults ? m.defaults() : {}) : clone(rec);
   const secs = m.secs.map((s, i) => {
     const fs = m.fields.filter(f => (f.sec || 0) === i); if (!fs.length) return '';
-    return `<div class="fsec"><h4>${S.lang === 'ar' ? s.ar : s.en}</h4><div class="fgrid">${fs.map(f => `<label class="f" style="${f.t === 'area' || f.wide ? 'grid-column:1/-1' : ''}"><span>${h(FL(f))}${f.req ? ' <span class="req">*</span>' : ''}</span>${f.t === 'calc' ? `<div class="calcv" data-cv="${f.k}"></div>` : inputFor(f, r[f.k], ro)}${f.hint ? `<span class="tiny muted" data-h="${f.k}"></span>` : ''}</label>`).join('')}</div></div>`;
+    return `<div class="fsec"><h4>${S.lang === 'ar' ? s.ar : s.en}</h4><div class="fgrid">${fs.map(f => `<label class="f" style="${f.t === 'area' || f.wide ? 'grid-column:1/-1' : ''}"><span>${h(FL(f))}${f.req ? ' <span class="req">*</span>' : ''}</span>${f.t === 'calc' ? `<div class="calcv" data-cv="${f.k}"></div>` : inputFor(f, r[f.k], ro)}${f.hint ? `<span class="tiny muted" data-h="${f.k}"></span>` : ''}${f.note ? `<span class="tiny muted">${h(LBL(f.note.en, f.note.ar))}</span>` : ''}</label>`).join('')}</div></div>`;
   }).join('');
   const meta = rec && rec._at ? `<span class="tiny muted">${T('created_by')}: ${h(rec._by || '')} · ${h(TS(rec._at, 16))}</span>` : '';
   modal({
@@ -2833,7 +2896,7 @@ const LBL = (en, ar) => S.lang === 'ar' ? ar : en;
 
 /* ---------- KPI helpers ---------- */
 function hseStats() {
-  const H = live(S.db.hse).sort((a, b) => a.date.localeCompare(b.date)); const rd = reportDate();
+  const H = hseLive().sort((a, b) => a.date.localeCompare(b.date)); const rd = reportDate();
   const inRange = from => H.filter(r => r.date >= from && r.date <= rd);
   let ltiFree = 0; for (let i = H.length - 1; i >= 0; i--) { if (N(H[i].fatal) + N(H[i].lti) > 0) break; ltiFree += N(H[i].manHours); }
   return { H, mh: sum(H, r => r.manHours), ltiFree, fatLti: sum(H, r => N(r.fatal) + N(r.lti)), inc: sum(H, r => MOD.hse.F.totalInc.calc(r)), openObs: sum(H, r => r.soRaised) - sum(H, r => r.soClosed), permits: sum(H, r => r.permitsIssued), last: H.length ? H[H.length - 1].date : '', inRange };
@@ -3084,7 +3147,6 @@ function setUpd(cid, id, f, val, silent) {
 }
 
 /* ---------- simple log pages ---------- */
-PAGES.hse = v => logPage(v, 'hse', { kpis: () => { const s = hseStats(); const l7 = s.inRange(D.add(reportDate(), -6)); return kpi(T('manhours') + ' (PTD)', fmtN(s.mh)) + kpi(T('lti_free'), fmtN(s.ltiFree), '', 'ok') + kpi(T('incidents') + ' (PTD)', s.inc, '', s.inc ? 'warn' : 'ok') + kpi(T('open_obs'), s.openObs, '', s.openObs > 0 ? 'warn' : 'ok') + kpi(T('manhours') + ' – ' + T('last7'), fmtN(sum(l7, r => r.manHours))) + kpi(T('last_day'), D.fmt(s.last) || '—', '', s.last && s.last >= D.add(reportDate(), -1) ? 'ok' : 'warn'); } });
 PAGES.dc = v => logPage(v, 'dc', { kpis: () => { const s = dcStats(); return kpi(T('total_subm'), fmtN(s.total)) + kpi(T('last7'), fmtN(s.last7)) + kpi(T('code_a'), fmtN(s.A)) + kpi(T('code_b'), fmtN(s.B)) + kpi(T('code_c'), fmtN(s.C)) + kpi(T('awaiting'), fmtN(s.awaiting), `${T('overdue')}: ${s.overdue}`, s.overdue ? 'bad' : ''); } });
 PAGES.invoices = v => logPage(v, 'invoices', { kpis: () => { const s = invStats(); return kpi(LBL('Invoices', 'المستخلصات'), s.n) + kpi(T('net_invoiced'), fmtM(s.net)) + kpi(T('released'), fmtM(s.rel), '', 'ok') + kpi(T('outstanding'), fmtM(s.out)) + kpi(T('overdue'), s.overdue, '', s.overdue ? 'bad' : 'ok') + kpi(LBL('Due in 30 days', 'مستحق خلال 30 يوم'), fmtM(s.due30)); } });
 PAGES.drawings = v => {
@@ -3094,6 +3156,242 @@ PAGES.drawings = v => {
   v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.ui.drwTab = t.dataset.t; render(true); });
   logPage(v.querySelector('[data-tc]'), st === 'log' ? 'drawings' : 'targets', { embedded: true });
 };
+
+/* ---------- HSE DAILY ---------- */
+// Same frame as Manpower & Equipment: one filter bar for the cards, the tables and the print; manpower and man-hours
+// come from Manpower & Equipment (read only); editing / deleting saved days only in record management (user manager).
+const HS_REC = r => N(r.fatal) + N(r.lti) + N(r.rdi) + N(r.mtc);           // recordable injuries
+const HS_OR = r => N(r.soRaised) + N(r.eoRaised), HS_OC = r => N(r.soClosed) + N(r.eoClosed);
+const HSF = {
+  FOCUS: () => [
+    ['inc', LBL('Days with incidents', 'أيام بها حوادث'), r => MOD.hse.F.totalInc.calc(r) > 0],
+    ['rec', LBL('Recordable injuries', 'إصابات مسجلة (وفاة / LTI / RDI / MTC)'), r => HS_REC(r) > 0],
+    ['nm', LBL('Near misses', 'حوادث وشيكة'), r => N(r.nearMiss) > 0],
+    ['obs', LBL('Open observations', 'ملاحظات مفتوحة'), r => HS_OR(r) > HS_OC(r)],
+    ['nosum', LBL('Observations without summary', 'ملاحظات بدون ملخص'), r => HS_OR(r) > 0 && !String(r.obsSummary || '').trim()],
+    ['stop', LBL('Stop work', 'أوامر إيقاف عمل'), r => N(r.stopWork) > 0],
+    ['nomp', LBL('Working day without manpower', 'يوم عمل بدون عمالة'), r => r.dayStatus === 'Working' && !(N(r.indirect) + N(r.direct))]
+  ],
+  st: () => { const f = S.ui.hsF = S.ui.hsF || {}; ['from', 'to', 'status', 'focus'].forEach(k => { f[k] = f[k] || ''; }); return f; },
+  pass(r, f, except) {
+    if (except !== 'date') { if (f.from && r.date < f.from) return false; if (f.to && r.date > f.to) return false; }
+    if (except !== 'status' && f.status && r.dayStatus !== f.status) return false;
+    if (except !== 'focus' && f.focus) { const x = HSF.FOCUS().find(q => q[0] === f.focus); if (x && !x[2](r)) return false; }
+    return true;
+  },
+  rows: except => { const f = HSF.st(); return hseLive().filter(r => r.date && HSF.pass(r, f, except)).sort((a, b) => a.date.localeCompare(b.date)); },
+  active: () => { const f = HSF.st(); return ['from', 'to', 'status', 'focus'].some(k => f[k]); },
+  clear: () => { S.ui.hsF = {}; S.ui.hsSec = ''; if (S.ui.hsLog) { S.ui.hsLog.q = ''; S.ui.hsLog.page = 0; S.ui.hsLog.sel = new Set(); } },
+  note() { const f = HSF.st(); const p = []; if (f.from || f.to) p.push(`${LBL('Date', 'التاريخ')}: ${MPF.range(f)}`); if (f.status) p.push(`${LBL('Day status', 'حالة اليوم')}: ${E(f.status)}`); if (f.focus) { const x = HSF.FOCUS().find(q => q[0] === f.focus); if (x) p.push(`${LBL('Show', 'عرض')}: ${x[1]}`); } return p; },
+  stats(rows) {
+    const S_ = k => sum(rows, r => r[k]); const D_ = rows.filter(r => r.dayStatus !== 'Opening Balance');
+    let safe = 0, lastLti = ''; for (let i = rows.length - 1; i >= 0; i--) { if (N(rows[i].fatal) + N(rows[i].lti) > 0) { lastLti = rows[i].date; break; } safe += N(rows[i].manHours); }
+    const wd = D_.filter(r => r.dayStatus === 'Working'), wmp = wd.filter(r => N(r.indirect) + N(r.direct) > 0);
+    const mh = S_('manHours'), rec = sum(rows, HS_REC), lti = S_('fatal') + S_('lti'), oR = sum(rows, HS_OR), oC = sum(rows, HS_OC);
+    return { n: D_.length, wd: wd.length, last: D_.length ? D_[D_.length - 1].date : '', mh, avg: wmp.length ? sum(wmp, r => N(r.indirect) + N(r.direct)) / wmp.length : 0, safe, lastLti,
+      inc: sum(rows, r => MOD.hse.F.totalInc.calc(r)), lti, rdi: S_('rdi'), mtc: S_('mtc'), fac: S_('fac'), nm: S_('nearMiss'), hipo: S_('hipo'), fire: S_('fire'), env: S_('env'), rec,
+      trir: mh ? rec * 200000 / mh : 0, ltifr: mh ? lti * 1e6 / mh : 0, oR, oC, open: Math.max(0, oR - oC), tbt: S_('tbt'), ind: S_('inductions'), trn: S_('training'),
+      insp: S_('inspections'), aud: S_('audits'), tours: S_('leaderTours') + S_('walkthroughs'), pi: S_('permitsIssued'), pc: S_('permitsClosed'), stop: S_('stopWork') };
+  },
+  cards(s) {   // [label, value, sub-line, class] – the same cards on the page and in the print
+    return [
+      [LBL('Last day recorded', 'آخر يوم مسجل'), D.fmt(s.last) || '—', `${fmtN(s.n)} ${LBL('days', 'يوم')} · ${fmtN(s.wd)} ${LBL('working', 'عمل')}`, s.last && s.last >= D.add(reportDate(), -1) ? 'ok' : ''],
+      [LBL('Man-hours worked', 'ساعات العمل المنجزة'), fmtN(s.mh), `${LBL('avg. manpower', 'متوسط العمالة')} ${fmtN(s.avg)} / ${LBL('day', 'يوم')}`],
+      [LBL('Safe man-hours (no LTI)', 'ساعات آمنة بدون إصابة مضيعة'), fmtN(s.safe), s.lastLti ? `${LBL('since', 'منذ')} ${D.fmt(s.lastLti)}` : LBL('no lost-time injury', 'بدون إصابة مضيعة للوقت'), 'ok'],
+      [LBL('Incidents', 'الحوادث'), fmtN(s.inc), `LTI ${fmtN(s.lti)} · RDI ${fmtN(s.rdi)} · MTC ${fmtN(s.mtc)} · FAC ${fmtN(s.fac)}`, s.lti ? 'bad' : s.inc ? 'warn' : 'ok'],
+      [LBL('Near misses', 'الحوادث الوشيكة'), fmtN(s.nm), `HiPo ${fmtN(s.hipo)} · ${LBL('fire', 'حريق')} ${fmtN(s.fire)} · ${LBL('env.', 'بيئة')} ${fmtN(s.env)}`, s.nm ? 'warn' : ''],
+      [LBL('TRIR (per 200,000 h)', 'معدل الإصابات المسجلة TRIR'), fmtN(s.trir, 2), `LTIFR ${fmtN(s.ltifr, 2)} (${LBL('per 1M h', 'لكل مليون ساعة')})`, s.rec ? 'warn' : 'ok'],
+      [LBL('Observations raised', 'الملاحظات المسجلة'), fmtN(s.oR), `${LBL('closed', 'مغلقة')} ${fmtN(s.oC)} · ${LBL('open', 'مفتوحة')} ${fmtN(s.open)}${s.oR ? ` (${fmtN(s.oC / s.oR * 100)}% ${LBL('closed', 'إغلاق')})` : ''}`, s.open ? 'warn' : ''],
+      [LBL('Toolbox talks', 'محاضرات التوعية'), fmtN(s.tbt), `${LBL('inductions', 'تعريف')} ${fmtN(s.ind)} · ${LBL('training', 'تدريب')} ${fmtN(s.trn)}`],
+      [LBL('Inspections', 'عمليات التفتيش'), fmtN(s.insp), `${LBL('audits', 'تدقيق')} ${fmtN(s.aud)} · ${LBL('tours', 'جولات')} ${fmtN(s.tours)}`],
+      [LBL('Permits issued', 'تصاريح العمل الصادرة'), fmtN(s.pi), `${LBL('closed', 'مغلقة')} ${fmtN(s.pc)} · ${LBL('stop work', 'إيقاف عمل')} ${fmtN(s.stop)}`, s.stop ? 'warn' : '']
+    ];
+  },
+  // report weeks end the day before the cut-off weekday (as the weekly HSE report); or calendar months
+  period(d, mode) {
+    if (mode === 'month') { const a = d.slice(0, 7) + '-01'; return { k: a, from: a, to: monthEnd(a) }; }
+    const c = activeCutoff() || lastCutoff(); const end0 = D.add(c ? c.date : reportDate(), -1); const k = Math.floor(D.diff(end0, d) / 7); const to = D.add(end0, -7 * k); return { k: to, from: D.add(to, -6), to };
+  },
+  periods(rows, mode) {
+    const g = new Map(); let ob = null;
+    rows.forEach(r => { if (r.dayStatus === 'Opening Balance') { (ob = ob || []).push(r); return; } const p = HSF.period(r.date, mode); const x = g.get(p.k) || Object.assign(p, { rows: [] }); x.rows.push(r); g.set(p.k, x); });
+    const out = [...g.values()].sort((a, b) => a.from.localeCompare(b.from)); let cum = sum(ob || [], r => HS_OR(r) - HS_OC(r));
+    out.forEach(x => { x.s = HSF.stats(x.rows); cum += x.s.oR - x.s.oC; x.openCum = Math.max(0, cum); });
+    return { list: out, ob: ob ? Object.assign({ rows: ob, s: HSF.stats(ob) }) : null };
+  }
+};
+function monthEnd(a) { const y = +a.slice(0, 4), m = +a.slice(5, 7); return new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10); }
+const hsOk = async () => !S.ui.hsDirty || await confirmBox(LBL('The daily entry has unsaved changes. Continue without saving?', 'في الإدخال اليومي تعديلات غير محفوظة. هل تريد المتابعة بدون حفظ؟'), LBL('Continue', 'متابعة'), true);
+async function hsGo(fn) { if (!(await hsOk())) return; S.ui.hsDirty = false; fn(); render(true); }
+PAGES.hse = v => {
+  const tab = S.ui.hsTab = S.ui.hsTab || 'entry'; const ed = can('hse'), mgr = canUsers();
+  if (!mgr) S.ui.hsAdm = false; const adm = !!S.ui.hsAdm; S.ui.hsDirty = false;
+  const f = HSF.st(); const all = hseLive(); const rows = HSF.rows(); const s = HSF.stats(rows);
+  const dates = all.map(r => r.date).filter(Boolean).sort(); const dMin = dates[0] || '', dMax = dates[dates.length - 1] || '';
+  const stCnt = new Map(); HSF.rows('status').forEach(r => stCnt.set(r.dayStatus, (stCnt.get(r.dayStatus) || 0) + 1));
+  const fcRows = HSF.rows('focus');
+  v.innerHTML = pageHead(T('hse'), LBL('Daily HSE log: incidents, observations, training, inspections and permits – one record per day. Manpower and man-hours are read from Manpower & Equipment.', 'سجل السلامة اليومي: الحوادث، الملاحظات، التدريب، التفتيش والتصاريح – سجل واحد لكل يوم. العمالة وساعات العمل تُقرأ من صفحة العمالة والمعدات.'), mgr ? `<button class="btn ${adm ? 'adm' : ''}" data-hadm title="${h(LBL('Edit or delete any saved day (user manager)', 'تعديل أو حذف أي يوم مسجل (مدير المستخدمين)'))}">${ic(adm ? 'x' : 'pen')}${adm ? LBL('Close record management', 'إنهاء إدارة السجلات') : LBL('Manage records', 'إدارة السجلات')}</button>` : '') + roNotice('hse') +
+    (adm ? `<div class="notice warn">${ic('warn')}<div><b>${LBL('Record management is on.', 'وضع إدارة السجلات مفعّل.')}</b> ${LBL('Daily log: edit (✎) or delete (🗑) any day, or tick several days and delete them together. Manpower and man-hours stay read only (they come from Manpower & Equipment). Every change is kept in the activity log.', 'السجل اليومي: تعديل (✎) أو حذف (🗑) أي يوم، أو تحديد عدة أيام وحذفها معاً. العمالة وساعات العمل تبقى للقراءة فقط (من صفحة العمالة والمعدات). كل تغيير يُحفظ في سجل النشاط.')}</div></div>` : '') +
+    `<div class="tbar mpf">
+      <div class="mpd ${f.from || f.to ? 'on' : ''}" title="${h(LBL('Pick a date to show that day only; add the second date for a period', 'اختر تاريخاً لعرض بيانات ذلك اليوم فقط، وأضف التاريخ الثاني لعرض فترة'))}"><b>${LBL('Date', 'التاريخ')}</b><input class="in" type="date" data-fd="from" value="${h(f.from)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('From', 'من'))}"><span>${LBL('to', 'إلى')}</span><input class="in" type="date" data-fd="to" value="${h(f.to)}" min="${dMin}" max="${dMax}" aria-label="${h(LBL('To', 'إلى'))}"></div>
+      <select class="in fsel ${f.status ? 'on' : ''}" data-hf="status"><option value="">${LBL('Day status', 'حالة اليوم')}: ${T('all')}</option>${MOD.hse.F.dayStatus.opts.filter(o => stCnt.has(o) || o === f.status).map(o => `<option value="${h(o)}" ${o === f.status ? 'selected' : ''}>${o === f.status ? LBL('Day status', 'حالة اليوم') + ': ' : ''}${h(E(o))} (${fmtN(stCnt.get(o) || 0)})</option>`).join('')}</select>
+      <select class="in fsel ${f.focus ? 'on' : ''}" data-hf="focus"><option value="">${LBL('Show', 'عرض')}: ${LBL('all days', 'كل الأيام')}</option>${HSF.FOCUS().map(([k, l, fn]) => `<option value="${k}" ${k === f.focus ? 'selected' : ''}>${k === f.focus ? LBL('Show', 'عرض') + ': ' : ''}${h(l)} (${fmtN(fcRows.filter(fn).length)})</option>`).join('')}</select>
+      <button class="btn sm" data-hclr ${HSF.active() ? '' : 'disabled'}>${ic('x')}${LBL('Clear filters', 'مسح الفلاتر')}</button>
+      <span style="flex:1"></span>
+      <button class="btn sm hsmp" data-hgomp title="${h(LBL('Manpower and man-hours of this page are read from Manpower & Equipment (entered once)', 'العمالة وساعات العمل في هذه الصفحة تُقرأ من صفحة العمالة والمعدات (تُسجَّل مرة واحدة)'))}">${ic('users')}${LBL('Manpower from Manpower & Equipment', 'العمالة من صفحة العمالة والمعدات')} · ${LBL('day', 'نهاري')} ${MP_H.d()} ${LBL('h', 'س')} / ${LBL('night', 'ليلي')} ${MP_H.n()} ${LBL('h', 'س')}</button>
+    </div>
+    <div class="mpk hsk">${HSF.cards(s).map(([k, val, sub, cls]) => kpi(k, val, sub ? `<span title="${h(sub)}">${sub}</span>` : '', cls)).join('')}</div>
+    <div class="tabs">${[['entry', LBL('Daily entry', 'الإدخال اليومي')], ['log', LBL('Daily log', 'السجل اليومي'), rows.length], ['sum', LBL('Weekly / monthly summary', 'الملخص الأسبوعي / الشهري')]].map(([t, l, n]) => `<div class="tb ${tab === t ? 'on' : ''}" data-t="${t}">${l}${n !== undefined ? ` <span class="tcnt">${fmtN(n)}</span>` : ''}</div>`).join('')}</div><div data-tc></div>`;
+  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => hsGo(() => { S.ui.hsTab = t.dataset.t; }));
+  v.querySelectorAll('[data-hf]').forEach(x => x.onchange = () => hsGo(() => { f[x.dataset.hf] = x.value; if (S.ui.hsLog) S.ui.hsLog.page = 0; }));
+  v.querySelectorAll('[data-fd]').forEach(x => x.onchange = () => hsGo(() => {
+    const k = x.dataset.fd; f[k] = x.value;
+    if (k === 'from' && f.from && (!f.to || f.to < f.from)) f.to = f.from;
+    if (k === 'to' && f.to && f.from && f.from > f.to) f.from = f.to;
+    if (S.ui.hsLog) S.ui.hsLog.page = 0;
+  }));
+  v.querySelector('[data-hclr]').onclick = () => hsGo(HSF.clear);
+  v.querySelector('[data-hgomp]').onclick = async () => { if (await hsOk()) { S.ui.hsDirty = false; go('manpower'); } };
+  const ab = v.querySelector('[data-hadm]'); if (ab) ab.onclick = () => hsGo(() => { S.ui.hsAdm = !adm; if (S.ui.hsLog) S.ui.hsLog.sel = new Set(); });
+  const c = v.querySelector('[data-tc]');
+  if (tab === 'log') return hsLog(c, rows, adm, ed, mgr);
+  if (tab === 'sum') return hsSum(c, rows);
+  hsEntry(c, ed);
+};
+function hsSumDialog(rec, after) {   // observation summary of a day (HSE users and the user manager)
+  modal({ title: `${LBL('Observation summary', 'ملخص ملاحظات السلامة')} — ${D.fmt(rec.date)}`, size: 'md',
+    body: `<div class="tiny muted" style="margin-bottom:6px">${LBL('Observations raised', 'الملاحظات المسجلة')}: ${fmtN(HS_OR(rec))} · ${LBL('closed', 'مغلقة')}: ${fmtN(HS_OC(rec))}</div><textarea class="in" data-os rows="6" style="width:100%" placeholder="${h(LBL('What was observed, where, who is responsible and the action taken…', 'ما الملاحظة، أين، المسؤول، والإجراء المتخذ…'))}">${h(rec.obsSummary || '')}</textarea>`,
+    foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-sv>${T('save')}</button>`,
+    onMount: (el, close) => {
+      el.querySelector('[data-c]').onclick = close; setTimeout(() => el.querySelector('[data-os]').focus(), 50);
+      el.querySelector('[data-sv]').onclick = () => { const t = el.querySelector('[data-os]').value.trim(); const i = S.db.hse.findIndex(x => x._id === rec._id); const nr = Object.assign({}, S.db.hse[i]); if (t) nr.obsSummary = t; else delete nr.obsSummary; S.db.hse[i] = stamp(nr); touch('hse observation summary', rec.date); toast(T('saved'), 'ok'); close(); after && after(); };
+    } });
+}
+function hsDelete(recs, what) {
+  const ids = new Set(recs.map(r => r._id));
+  S.db.hse = S.db.hse.map(r => ids.has(r._id) ? stamp({ _id: r._id, _del: true }) : r);
+  if (S.ui.hsLog) S.ui.hsLog.sel = new Set();
+  touch('delete', `hse: ${what} (${ids.size})`); toast(`${T('deleted')} (${fmtN(ids.size)})`, 'ok'); render(true);
+}
+const HS_LOGC = () => [
+  { k: 'date', h: LBL('Date', 'التاريخ'), w: 88, s: r => r.date, v: r => `${D.fmt(r.date)}<div class="tiny muted">${D.dow(r.date)}</div>`, cls: 'nw' },
+  { k: 'st', h: LBL('Day status', 'حالة اليوم'), w: 98, s: r => E(r.dayStatus), v: r => bdg(r.dayStatus) },
+  { k: 'ind', h: LBL('Indirect manpower', 'العمالة غير المباشرة'), w: 70, n: 1, mp: 1, s: r => N(r.indirect), v: r => fmtN(r.indirect) },
+  { k: 'dir', h: LBL('Direct manpower', 'العمالة المباشرة'), w: 70, n: 1, mp: 1, s: r => N(r.direct), v: r => fmtN(r.direct) },
+  { k: 'mh', h: LBL('Man-hours worked', 'ساعات العمل المنجزة'), w: 78, n: 1, mp: 1, s: r => N(r.manHours), v: r => `<b>${fmtN(r.manHours)}</b>` },
+  { k: 'inc', h: LBL('Incidents', 'الحوادث'), w: 62, n: 1, s: r => MOD.hse.F.totalInc.calc(r), v: r => { const x = MOD.hse.F.totalInc.calc(r); return x ? `<span class="bdg ${HS_REC(r) ? 'bad' : 'warn'}">${fmtN(x)}</span>` : '0'; } },
+  { k: 'nm', h: LBL('Near misses', 'حوادث وشيكة'), w: 60, n: 1, s: r => N(r.nearMiss), v: r => fmtN(N(r.nearMiss)) },
+  { k: 'or', h: LBL('Observations raised', 'ملاحظات مسجلة'), w: 68, n: 1, s: HS_OR, v: r => fmtN(HS_OR(r)) },
+  { k: 'oc', h: LBL('Observations closed', 'ملاحظات مغلقة'), w: 68, n: 1, s: HS_OC, v: r => fmtN(HS_OC(r)) },
+  { k: 'sw', h: LBL('Stop work', 'إيقاف عمل'), w: 56, n: 1, s: r => N(r.stopWork), v: r => N(r.stopWork) ? `<span class="bdg warn">${fmtN(r.stopWork)}</span>` : '0' },
+  { k: 'tbt', h: LBL('Toolbox talks', 'محاضرات توعية'), w: 60, n: 1, s: r => N(r.tbt), v: r => fmtN(N(r.tbt)) },
+  { k: 'insp', h: LBL('Inspections', 'تفتيش'), w: 58, n: 1, s: r => N(r.inspections), v: r => fmtN(N(r.inspections)) },
+  { k: 'pi', h: LBL('Permits issued', 'تصاريح صادرة'), w: 62, n: 1, s: r => N(r.permitsIssued), v: r => fmtN(N(r.permitsIssued)) },
+  { k: 'os', h: LBL('Observation summary', 'ملخص ملاحظات السلامة'), w: '', s: r => r.obsSummary || '', cls: 'rm os' },
+  { k: 'rm', h: LBL('Remarks', 'ملاحظات'), w: '', s: r => r.remarks || '', v: r => r.remarks ? `<div class="clamp" title="${h(r.remarks)}">${h(r.remarks)}</div>` : '', cls: 'rm' },
+  { k: 'by', h: LBL('Entered by', 'أدخلها'), w: 92, s: r => r._by || '', v: r => h((r._by || '').split(' (')[0]), cls: 'by' }
+];
+function hsLog(c, rowsIn, adm, ed, mgr) {
+  const st = S.ui.hsLog = S.ui.hsLog || { q: '', sort: { k: 'date', dir: -1 }, page: 0, sel: new Set() };
+  if (!(st.sel instanceof Set)) st.sel = new Set();
+  const cols = HS_LOGC(); const C = Object.fromEntries(cols.map(x => [x.k, x])); const canSum = ed || mgr;
+  if ((c.clientWidth || innerWidth) < 1500) cols.forEach(x => { if (x.k === 'mh') x.w = 64; else if (x.n) x.w = 50; else if (x.k === 'date') x.w = 80; else if (x.k === 'st') x.w = 86; else if (x.k === 'by') x.w = 70; });   // narrow screens: more room for the summary and remarks
+  const sumCell = r => { const t = String(r.obsSummary || '').trim(); const need = HS_OR(r) > 0 && !t; return `${t ? `<div class="clamp" title="${h(t)}">${h(t)}</div>` : ''}${canSum && (t || HS_OR(r) > 0 || adm) ? `<button class="lnk ${need ? 'need' : ''}" data-os title="${h(LBL('Write the summary of the observations of this day', 'اكتب ملخص ملاحظات السلامة لهذا اليوم'))}">${t ? '✎' : '＋ ' + LBL('Add summary', 'إضافة ملخص')}</button>` : (need ? `<span class="tiny muted">${LBL('no summary', 'بدون ملخص')}</span>` : '')}`; };
+  c.innerHTML = `<div class="tbar"><input class="in search" style="min-width:300px" placeholder="${h(LBL('Search date, status, summary, remarks…', 'بحث في التاريخ، الحالة، الملخص، الملاحظات…'))}" value="${h(st.q)}" data-q>
+    ${adm ? `<button class="btn sm danger" data-dsel disabled>${ic('trash')}${LBL('Delete selected', 'حذف المحدد')} <span data-nsel>(0)</span></button>` : ''}
+    <span style="flex:1"></span>${ed ? `<button class="btn sm" data-imp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn sm" data-xl title="${h(LBL('Exports the days shown (current filters)', 'يصدّر الأيام المعروضة (حسب الفلاتر الحالية)'))}">${ic('dl')}${T('export_xlsx')}</button></div><div data-tb></div>`;
+  const draw = () => {
+    const q = st.q.trim().toLowerCase();
+    let rows = !q ? rowsIn.slice() : rowsIn.filter(r => [D.fmt(r.date), r.date, E(r.dayStatus), r.obsSummary, r.incSummary, r.remarks, r._by].some(x => String(x || '').toLowerCase().includes(q)));
+    const sk = C[st.sort.k] || C.date; rows.sort((a, b) => { const x = sk.s(a), y = sk.s(b); return x === y ? (b.date || '').localeCompare(a.date || '') : (x > y ? 1 : -1) * st.sort.dir; });
+    st.view = rows.map(r => r._id);
+    const PS = 100, pages = Math.max(1, Math.ceil(rows.length / PS)); if (st.page >= pages) st.page = pages - 1;
+    const pr = rows.slice(st.page * PS, st.page * PS + PS); const allSel = pr.length && pr.every(r => st.sel.has(r._id));
+    const tot = k => fmtN(sum(rows, r => C[k].s(r)));
+    c.querySelector('[data-tb]').innerHTML = rows.length ? `<div class="tw mpw hslog"><table class="t mpt"><colgroup>${adm ? '<col style="width:34px">' : ''}${cols.map(x => `<col${x.w ? ` style="width:${x.w}px"` : ''}>`).join('')}${adm ? '<col style="width:66px">' : ''}</colgroup><thead><tr>
+        ${adm ? `<th class="ck" title="${h(LBL('Select all on this page', 'تحديد كل أيام الصفحة'))}"><input type="checkbox" data-sall ${allSel ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></th>` : ''}${cols.map(x => `<th class="srt ${x.n ? 'n' : ''} ${x.mp ? 'mpc' : ''}" data-s="${x.k}" ${x.mp ? `title="${h(LBL('Read only – from Manpower & Equipment', 'للقراءة فقط – من صفحة العمالة والمعدات'))}"` : ''}>${x.h}${x.mp ? ' <i class="src">↺</i>' : ''}${st.sort.k === x.k ? (st.sort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('')}${adm ? `<th>${LBL('Actions', 'إجراءات')}</th>` : ''}</tr></thead>
+      <tbody>${pr.map(r => `<tr class="cl ${st.sel.has(r._id) ? 'sel' : ''}" data-id="${r._id}">${adm ? `<td class="ck"><input type="checkbox" data-ck ${st.sel.has(r._id) ? 'checked' : ''} aria-label="${h(LBL('Select', 'تحديد'))}"></td>` : ''}${cols.map(x => `<td class="${x.n ? 'n' : ''} ${x.mp ? 'mpc' : ''} ${x.cls || ''}" ${x.mp && r.src === 'rec' ? `title="${h(LBL('Older record: no Manpower & Equipment entries for this date', 'سجل قديم: لا توجد إدخالات عمالة لهذا التاريخ'))}"` : ''}>${x.k === 'os' ? sumCell(r) : x.v(r)}</td>`).join('')}${adm ? `<td class="ac"><button class="ib" data-ed title="${h(T('edit'))}">${ic('pen')}</button><button class="ib del" data-del title="${h(T('del'))}">${ic('trash')}</button></td>` : ''}</tr>`).join('')}</tbody>
+      <tfoot><tr>${adm ? '<td></td>' : ''}<td colspan="2">${T('total')} (${fmtN(rows.length)} ${LBL('days', 'يوم')})</td><td class="n mpc">${tot('ind')}</td><td class="n mpc">${tot('dir')}</td><td class="n mpc">${tot('mh')}</td>${['inc', 'nm', 'or', 'oc', 'sw', 'tbt', 'insp', 'pi'].map(k => `<td class="n">${tot(k)}</td>`).join('')}<td colspan="${adm ? 4 : 3}"></td></tr></tfoot></table></div>
+      <div class="pg mpleg"><span><i class="src">↺</i> ${LBL('read only – from Manpower & Equipment', 'للقراءة فقط – من صفحة العمالة والمعدات')}</span><span style="flex:1"></span>${fmtN(rows.length)} ${T('rows')} ${pages > 1 ? `· <button class="btn sm" data-pp ${st.page ? '' : 'disabled'}>${T('prev')}</button> ${T('page')} ${st.page + 1} ${T('of')} ${pages} <button class="btn sm" data-pn ${st.page < pages - 1 ? '' : 'disabled'}>${T('next')}</button>` : ''}</div>`
+      : `<div class="card empty">${T('none')}</div>`;
+    const tb = c.querySelector('[data-tb]'); const recOf = tr => S.db.hse.find(x => x._id === tr.dataset.id);
+    const nsel = () => { const n = [...st.sel].filter(id => rows.some(r => r._id === id)).length; const b = c.querySelector('[data-dsel]'); if (b) { b.disabled = !n; b.querySelector('[data-nsel]').textContent = `(${fmtN(n)})`; } };
+    tb.querySelectorAll('[data-s]').forEach(th => th.onclick = () => { const k = th.dataset.s; st.sort = { k, dir: st.sort.k === k ? -st.sort.dir : (k === 'date' ? -1 : 1) }; draw(); });
+    tb.querySelectorAll('tr[data-id]').forEach(tr => tr.onclick = e => { if (e.target.closest('[data-ck],[data-del],[data-os]')) return; openRecord('hse', recOf(tr), () => render(true), { ro: !adm }); });
+    tb.querySelectorAll('[data-os]').forEach(b => b.onclick = () => hsSumDialog(recOf(b.closest('tr')), () => render(true)));
+    tb.querySelectorAll('[data-ck]').forEach(x => x.onchange = () => { const id = x.closest('tr').dataset.id; x.checked ? st.sel.add(id) : st.sel.delete(id); x.closest('tr').classList.toggle('sel', x.checked); nsel(); });
+    const sa = tb.querySelector('[data-sall]'); if (sa) sa.onchange = () => { pr.forEach(r => sa.checked ? st.sel.add(r._id) : st.sel.delete(r._id)); draw(); };
+    tb.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => { const r = recOf(b.closest('tr')); if (!(await confirmBox(`${T('confirm_del')}<div class="tiny muted" style="margin-top:6px">${D.fmt(r.date)} · ${h(E(r.dayStatus))}</div>`, T('del'), true))) return; hsDelete([r], r.date); });
+    const pp = tb.querySelector('[data-pp]'), pn = tb.querySelector('[data-pn]'); if (pp) pp.onclick = () => { st.page--; draw(); }; if (pn) pn.onclick = () => { st.page++; draw(); };
+    nsel(); mpFit(c);
+  };
+  c.querySelector('[data-q]').oninput = e => { st.q = e.target.value; st.page = 0; draw(); };
+  const ds = c.querySelector('[data-dsel]'); if (ds) ds.onclick = async () => { const sel = rowsIn.filter(r => st.sel.has(r._id)); if (!sel.length || !(await confirmBox(`${LBL('Delete the selected days?', 'حذف الأيام المحددة؟')} (${fmtN(sel.length)})`, T('del'), true))) return; hsDelete(sel, LBL('selected days', 'أيام محددة')); };
+  const im = c.querySelector('[data-imp]'); if (im) im.onclick = () => IMP.open('module', 'hse', { after: () => render(true) });
+  c.querySelector('[data-xl]').onclick = () => { const byId = new Map(live(S.db.hse).map(r => [r._id, r])); exportModule('hse', (st.view || []).map(id => byId.get(id)).filter(Boolean)); };
+  draw();
+}
+function hsSum(c, rows) {
+  const mode = S.ui.hsPer = S.ui.hsPer || 'week'; const P = HSF.periods(rows, mode); const all = HSF.stats(rows);
+  const cell = (s, k) => fmtN(s[k]);
+  const row = (lbl, s, x, cls, extra) => `<tr class="${cls || ''}" ${extra || ''}><td>${lbl}</td><td class="n">${fmtN(s.n)}</td><td class="n"><b>${fmtN(s.mh)}</b></td><td class="n">${fmtN(s.avg)}</td><td class="n">${s.inc ? `<span class="bdg ${s.rec ? 'bad' : 'warn'}">${fmtN(s.inc)}</span>` : '0'}</td><td class="n">${cell(s, 'rec')}</td><td class="n">${cell(s, 'nm')}</td><td class="n">${cell(s, 'oR')}</td><td class="n">${cell(s, 'oC')}</td><td class="n">${x === undefined ? '' : fmtN(x)}</td><td class="n">${cell(s, 'tbt')}</td><td class="n">${cell(s, 'insp')}</td><td class="n">${cell(s, 'pi')}</td><td class="n">${cell(s, 'stop')}</td></tr>`;
+  const lab = p => mode === 'month' ? `${D.fmt(p.from).slice(3)}` : `${D.fmt(p.from)} ${LBL('→', 'إلى')} ${D.fmt(p.to)}`;
+  c.innerHTML = `<div class="tbar"><div class="mpseg" role="group">${[['week', LBL('By report week', 'حسب أسبوع التقرير')], ['month', LBL('By month', 'حسب الشهر')]].map(([k, l]) => `<button data-per="${k}" class="${mode === k ? 'on' : ''}">${l}</button>`).join('')}</div><span class="tiny muted">${LBL('Report weeks end the day before the cut-off weekday, as the weekly HSE report. Click a period to open its days in the daily log.', 'أسبوع التقرير ينتهي في اليوم السابق ليوم تاريخ القطع، مثل تقرير السلامة الأسبوعي. اضغط على فترة لفتح أيامها في السجل اليومي.')}</span></div>
+    ${P.list.length || P.ob ? `<div class="tw mpw hssum"><table class="t mpt"><colgroup><col style="width:17%">${Array(13).fill('<col>').join('')}</colgroup><thead><tr><th>${mode === 'month' ? LBL('Month', 'الشهر') : LBL('Report week', 'أسبوع التقرير')}</th><th class="n">${LBL('Days', 'الأيام')}</th><th class="n">${LBL('Man-hours', 'ساعات العمل')} <i class="src">↺</i></th><th class="n">${LBL('Avg. manpower / day', 'متوسط العمالة / يوم')} <i class="src">↺</i></th><th class="n">${LBL('Incidents', 'الحوادث')}</th><th class="n">${LBL('Recordable injuries', 'إصابات مسجلة')}</th><th class="n">${LBL('Near misses', 'حوادث وشيكة')}</th><th class="n">${LBL('Observations raised', 'ملاحظات مسجلة')}</th><th class="n">${LBL('Observations closed', 'ملاحظات مغلقة')}</th><th class="n">${LBL('Open observations (end of period)', 'الملاحظات المفتوحة (نهاية الفترة)')}</th><th class="n">${LBL('Toolbox talks', 'محاضرات توعية')}</th><th class="n">${LBL('Inspections', 'تفتيش')}</th><th class="n">${LBL('Permits issued', 'تصاريح صادرة')}</th><th class="n">${LBL('Stop work', 'إيقاف عمل')}</th></tr></thead>
+    <tbody>${P.ob ? row(`${bdg('Opening Balance')}`, P.ob.s, undefined, 'obr') : ''}${P.list.slice().reverse().map(p => row(lab(p), p.s, p.openCum, 'cl', `data-pf="${p.from}" data-pt="${p.to}"`)).join('')}</tbody>
+    <tfoot><tr><td>${T('total')} (${fmtN(P.list.length)} ${mode === 'month' ? LBL('months', 'شهر') : LBL('weeks', 'أسبوع')})</td><td class="n">${fmtN(all.n)}</td><td class="n">${fmtN(all.mh)}</td><td class="n">${fmtN(all.avg)}</td><td class="n">${fmtN(all.inc)}</td><td class="n">${fmtN(all.rec)}</td><td class="n">${fmtN(all.nm)}</td><td class="n">${fmtN(all.oR)}</td><td class="n">${fmtN(all.oC)}</td><td class="n">${fmtN(all.open)}</td><td class="n">${fmtN(all.tbt)}</td><td class="n">${fmtN(all.insp)}</td><td class="n">${fmtN(all.pi)}</td><td class="n">${fmtN(all.stop)}</td></tr></tfoot></table></div>` : `<div class="card empty">${T('none')}</div>`}`;
+  c.querySelectorAll('[data-per]').forEach(b => b.onclick = () => { S.ui.hsPer = b.dataset.per; render(true); });
+  c.querySelectorAll('tr[data-pf]').forEach(tr => tr.onclick = () => { const f = HSF.st(); f.from = tr.dataset.pf; f.to = tr.dataset.pt; S.ui.hsTab = 'log'; if (S.ui.hsLog) S.ui.hsLog.page = 0; render(true); });
+  mpFit(c);
+}
+function hsEntry(c, ed) {
+  const H = live(S.db.hse); const last = H.filter(r => r.dayStatus !== 'Opening Balance').map(r => r.date).sort().pop();
+  const date = S.ui.hsDate = S.ui.hsDate || (last && last < reportDate() ? D.add(last, 1) : reportDate());
+  const rec = H.find(r => r.date === date); const r = rec ? clone(rec) : Object.assign(MOD.hse.defaults(), { date });
+  const mp = HSE_MP(Object.assign({}, r, { date })); const m = MOD.hse;
+  const openBefore = Math.max(0, sum(H.filter(x => x.date < date), x => HS_OR(x) - HS_OC(x)));
+  const nextFree = (() => { let d = D.add(last || reportDate(), 1); return d <= reportDate() ? d : ''; })();
+  const sel = S.ui.hsSec || ''; const SECS = [['', LBL('All sections', 'كل الأقسام')], ['2', LBL('Incidents', 'الحوادث')], ['3', LBL('Observations', 'الملاحظات')], ['4', LBL('Training & inspections', 'التدريب والتفتيش')], ['5', LBL('Permits', 'التصاريح')], ['6', LBL('Other', 'أخرى')]];
+  const ro = !ed; const fld = f => {
+    if (f.t === 'calc' || f.k === 'date') return '';
+    if (f.k === 'obManHours' && r.dayStatus !== 'Opening Balance') return '';
+    const wide = f.t === 'area';
+    return `<label class="hf ${wide ? 'wide' : ''}"><span>${h(FL(f))}</span>${inputFor(f, r[f.k], ro)}</label>`;
+  };
+  const sec = (i, cls) => `<div class="hsec ${cls || ''}" data-sec="${i}"><h4>${S.lang === 'ar' ? m.secs[i].ar : m.secs[i].en}</h4><div class="hfg">${m.fields.filter(f => (f.sec || 0) === i).map(fld).join('')}</div></div>`;
+  c.innerHTML = `<div class="tbar mpe"><label class="small mpl"><b>${T('date')}</b><button class="btn sm" data-dn="-1" title="${h(LBL('Previous day', 'اليوم السابق'))}">‹</button><input class="in" type="date" value="${date}" max="${reportDate()}" data-hd><button class="btn sm" data-dn="1" title="${h(LBL('Next day', 'اليوم التالي'))}">›</button></label><span class="chip">${D.dow(date)}</span>
+      <span class="chip ${rec ? 'co' : 'sync-no'}">${rec ? LBL('Recorded – changes update the day', 'مسجل – التعديل يحدّث اليوم') : LBL('New day – not recorded yet', 'يوم جديد – غير مسجل')}</span>
+      ${nextFree && nextFree !== date ? `<button class="btn sm" data-nf>${LBL('Next day to record', 'أول يوم غير مسجل')}: ${D.fmt(nextFree)}</button>` : ''}
+      <span class="chip ${openBefore ? 'sync-no' : ''}" title="${h(LBL('Observations raised minus closed before this day', 'الملاحظات المسجلة ناقص المغلقة قبل هذا اليوم'))}">${LBL('Open observations before this day', 'الملاحظات المفتوحة قبل هذا اليوم')}: <b>${fmtN(openBefore)}</b></span>
+      <span style="flex:1"></span>${ed ? `<button class="btn pri" data-hsv>${rec ? LBL('Save changes', 'حفظ التعديلات') : T('save_day')}</button>` : ''}</div>
+    <div class="tbar mpe2"><div class="mpseg" role="group" aria-label="${h(LBL('Sections', 'الأقسام'))}">${SECS.map(([k, l]) => `<button data-hs="${k}" class="${sel === k ? 'on' : ''}">${l}</button>`).join('')}</div></div>
+    <div class="hse-e">
+      ${sec(0)}
+      <div class="hsec mpsec" data-sec="1"><h4>${S.lang === 'ar' ? m.secs[1].ar : m.secs[1].en} <i class="src">↺</i></h4>
+        <div class="hmp"><div><span>${LBL('Indirect', 'غير مباشرة')}</span><b>${fmtN(mp.indirect)}</b></div><div><span>${LBL('Direct', 'مباشرة')}</span><b>${fmtN(mp.direct)}</b></div><div><span>${LBL('Total', 'الإجمالي')}</span><b>${fmtN(mp.indirect + mp.direct)}</b></div><div><span>${LBL('Man-hours', 'ساعات العمل')}</span><b>${fmtN(mp.manHours)}</b></div></div>
+        <div class="tiny muted">${mp.src === 'mp' ? LBL('Read only – from Manpower & Equipment of this date.', 'للقراءة فقط – من صفحة العمالة والمعدات لهذا التاريخ.') : mp.src === 'ob' ? LBL('Opening balance: the hours carried below.', 'رصيد افتتاحي: الساعات المرحّلة أدناه.') : mp.src === 'rec' ? LBL('Older record – no Manpower & Equipment entries for this date.', 'سجل قديم – لا توجد إدخالات عمالة لهذا التاريخ.') : LBL('No manpower recorded for this date yet.', 'لا توجد عمالة مسجلة لهذا التاريخ بعد.')} <button class="lnk" data-gmp>${LBL('Open this day in Manpower & Equipment', 'فتح هذا اليوم في العمالة والمعدات')}</button></div>
+        <div class="hfg">${m.fields.filter(f => f.sec === 1).map(fld).join('')}</div></div>
+      ${[2, 3, 4, 5, 6, 7].map(i => sec(i, i === 7 ? 'wide' : '')).join('')}
+    </div>`;
+  c.querySelectorAll('.hsec[data-sec]').forEach(x => { x.hidden = !!sel && !['0', '1', '7', sel].includes(x.dataset.sec); });
+  c.querySelectorAll('[data-hs]').forEach(b => b.onclick = () => { S.ui.hsSec = b.dataset.hs; c.querySelectorAll('[data-hs]').forEach(x => x.classList.toggle('on', x === b)); const s2 = S.ui.hsSec; c.querySelectorAll('.hsec[data-sec]').forEach(x => { x.hidden = !!s2 && !['0', '1', '7', s2].includes(x.dataset.sec); }); });
+  c.querySelectorAll('[data-k]').forEach(i => { i.addEventListener('input', () => { S.ui.hsDirty = true; }); i.addEventListener('change', () => { S.ui.hsDirty = true; }); });
+  const ds = c.querySelector('[data-k=dayStatus]'); if (ds) ds.addEventListener('change', () => { r.dayStatus = ds.value; });
+  const goDate = d => { if (d && d !== date) hsGo(() => { S.ui.hsDate = d; }); };
+  c.querySelector('[data-hd]').onchange = e => { const nv = e.target.value; e.target.value = date; goDate(nv); };
+  c.querySelectorAll('[data-dn]').forEach(b => b.onclick = () => { const d = D.add(date, +b.dataset.dn); if (d <= reportDate()) goDate(d); });
+  const nf = c.querySelector('[data-nf]'); if (nf) nf.onclick = () => goDate(nextFree);
+  c.querySelector('[data-gmp]').onclick = async () => { if (await hsOk()) { S.ui.hsDirty = false; S.ui.mpDate = date; S.ui.mpTab = 'entry'; go('manpower'); } };
+  const sv = c.querySelector('[data-hsv]');
+  if (sv) sv.onclick = () => {
+    const nr = rec ? clone(rec) : { _id: uid(), date };
+    c.querySelectorAll('[data-k]').forEach(i => { const f = m.F[i.dataset.k]; let val = i.value; if (['int', 'dec', 'money'].includes(f.t)) val = val === '' ? '' : Number(val); if (val === '' || val === null) delete nr[f.k]; else nr[f.k] = val; });
+    if (!nr.dayStatus) { toast(T('required'), 'bad'); return; }
+    const bad = m.fields.find(f => ['int', 'dec'].includes(f.t) && isNum(nr[f.k]) && N(nr[f.k]) < 0); if (bad) { toast(`${FL(bad)}: ≥ 0`, 'bad'); return; }
+    if (rec) { const i = S.db.hse.findIndex(x => x._id === rec._id); S.db.hse[i] = stamp(nr); } else S.db.hse.push(stamp(nr));
+    S.ui.hsDirty = false; touch(rec ? 'edit' : 'add', `hse: ${date}`); toast(T('saved'), 'ok'); render(true);
+  };
+}
 
 /* ---------- MANPOWER ---------- */
 // One filter for the whole page: cards, daily summary, detailed log and the printed report follow it.
@@ -4253,15 +4551,23 @@ tfoot td{background:#E8EEF6;font-weight:700}
 
   /* ---------- page reports ---------- */
   const R = {};
-  R.hse = () => {
-    const s = hseStats(), pr = period(), H = live(S.db.hse), rd = reportDate();
-    const inR = (a, b) => H.filter(r => r.date >= a && r.date <= b);
-    const per = inR(pr.from, pr.to), mtd = inR(rd.slice(0, 8) + '01', rd), ptd = H.filter(r => r.date <= rd);
-    const ind = MOD.hse.fields.filter(f => ['int', 'dec'].includes(f.t) || f.k === 'totalInc' || f.k === 'totalMP').filter(f => f.k !== 'totalMP');
-    const stats = table([{ h: LBL('Indicator', 'المؤشر'), v: f => esc(FL(f)) }, { h: `${LBL('This period', 'هذه الفترة')} (${D.fmt(pr.from)} → ${D.fmt(pr.to)})`, n: 1, v: f => fmtN(sum(per, r => cv(MOD.hse, f, r))) }, { h: T('mtd'), n: 1, v: f => fmtN(sum(mtd, r => cv(MOD.hse, f, r))) }, { h: T('ptd'), n: 1, v: f => fmtN(sum(ptd, r => cv(MOD.hse, f, r))) }], ind);
-    const rows = viewRows('hse');
-    return doc(T('hse'), LBL('Weekly HSE report', 'تقرير السلامة الأسبوعي'), kp([[T('manhours') + ' (PTD)', fmtN(s.mh)], [T('lti_free'), fmtN(s.ltiFree), '', 'ok'], [LBL('Fatalities + LTI', 'الوفيات + LTI'), s.fatLti, '', s.fatLti ? 'bad' : 'ok'], [T('incidents') + ' (PTD)', s.inc, '', s.inc ? 'warn' : ''], [T('open_obs'), s.openObs, '', s.openObs > 0 ? 'warn' : 'ok'], [T('permits') + ' (PTD)', fmtN(s.permits)]]) +
-      sec(LBL('HSE statistics', 'إحصائيات السلامة'), stats) + sec(LBL('Daily HSE log', 'سجل السلامة اليومي'), filterNote('hse') + modTable('hse', rows), rows.length));
+  R.hse = () => {   // follows the page filters (date, day status, show); manpower and man-hours from Manpower & Equipment
+    const rows = HSF.rows(), s = HSF.stats(rows), fn = HSF.note(); const mode = S.ui.hsPer || 'week';
+    const note = `<div class="note">${fn.length ? `${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fn.map(esc).join(' · ')}` : LBL('All days – no filter applied', 'كل الأيام – بدون فلاتر')} · ${LBL('Manpower and man-hours from Manpower & Equipment', 'العمالة وساعات العمل من صفحة العمالة والمعدات')} (${LBL('day', 'نهاري')} ${MP_H.d()} ${LBL('h', 'س')} / ${LBL('night', 'ليلي')} ${MP_H.n()} ${LBL('h', 'س')})</div>`;
+    const cards = `<div class="kp" style="grid-template-columns:repeat(5,1fr)">${HSF.cards(s).map(([k, v, sub, c]) => `<div><span>${esc(k)}</span><b class="${c || ''}">${v}</b>${sub ? `<i>${sub}</i>` : ''}</div>`).join('')}</div>`;
+    const end = rows.length ? rows[rows.length - 1].date : reportDate(); const ptd = hseLive().filter(r => r.date <= end);
+    const ind = MOD.hse.fields.filter(f => ['int', 'dec'].includes(f.t) || ['totalInc', 'indirect', 'direct', 'manHours'].includes(f.k)).filter(f => f.k !== 'obManHours');
+    const stats = table([{ h: LBL('Indicator', 'المؤشر'), v: f => esc(FL(f)) + (f.mp ? ' ↺' : '') }, { h: LBL('Days shown (filters)', 'الأيام المعروضة (الفلاتر)'), n: 1, v: f => fmtN(sum(rows, r => cv(MOD.hse, f, r))) }, { h: `${LBL('Project to date', 'حتى تاريخه')} (${D.fmt(end)})`, n: 1, v: f => fmtN(sum(ptd, r => cv(MOD.hse, f, r))) }], ind.filter(f => sum(ptd, r => N(cv(MOD.hse, f, r)))));
+    const P = HSF.periods(rows, mode);
+    const per = table([{ h: mode === 'month' ? LBL('Month', 'الشهر') : LBL('Report week', 'أسبوع التقرير'), cls: 'nw', v: p => p.ob ? E('Opening Balance') : mode === 'month' ? D.fmt(p.from).slice(3) : `${D.fmt(p.from)} → ${D.fmt(p.to)}` }, { h: LBL('Days', 'الأيام'), n: 1, v: p => fmtN(p.s.n) }, { h: LBL('Man-hours', 'ساعات العمل'), n: 1, v: p => fmtN(p.s.mh) }, { h: LBL('Incidents', 'الحوادث'), n: 1, v: p => fmtN(p.s.inc) }, { h: LBL('Recordable', 'مسجلة'), n: 1, v: p => fmtN(p.s.rec) }, { h: LBL('Near misses', 'وشيكة'), n: 1, v: p => fmtN(p.s.nm) }, { h: LBL('Obs. raised', 'ملاحظات مسجلة'), n: 1, v: p => fmtN(p.s.oR) }, { h: LBL('Obs. closed', 'ملاحظات مغلقة'), n: 1, v: p => fmtN(p.s.oC) }, { h: LBL('Open (end)', 'مفتوحة (النهاية)'), n: 1, v: p => p.ob ? '' : fmtN(p.openCum) }, { h: LBL('TBT', 'توعية'), n: 1, v: p => fmtN(p.s.tbt) }, { h: LBL('Inspections', 'تفتيش'), n: 1, v: p => fmtN(p.s.insp) }, { h: LBL('Permits', 'تصاريح'), n: 1, v: p => fmtN(p.s.pi) }, { h: LBL('Stop work', 'إيقاف'), n: 1, v: p => fmtN(p.s.stop) }],
+      [...(P.ob ? [Object.assign({ ob: 1 }, P.ob)] : []), ...P.list], [T('total'), fmtN(s.n), fmtN(s.mh), fmtN(s.inc), fmtN(s.rec), fmtN(s.nm), fmtN(s.oR), fmtN(s.oC), fmtN(s.open), fmtN(s.tbt), fmtN(s.insp), fmtN(s.pi), fmtN(s.stop)]);
+    const st = S.ui.hsLog || {}; const byId = new Map(rows.map(r => [r._id, r])); const L = (S.ui.hsTab === 'log' && st.view) ? st.view.map(id => byId.get(id)).filter(Boolean) : rows.slice().reverse();
+    const C = HS_LOGC().filter(x => x.k !== 'by');
+    const log = table(C.map(x => ({ h: x.h + (x.mp ? ' ↺' : ''), n: x.n, cls: x.k === 'os' || x.k === 'rm' ? 'w' : (x.k === 'date' ? 'nw' : ''), v: r => x.k === 'os' ? esc(r.obsSummary || '') : x.k === 'rm' ? esc(r.remarks || '') : x.k === 'date' ? D.fmt(r.date) : x.v(r) })), L,
+      [`${T('total')} (${fmtN(L.length)})`, '', ...['ind', 'dir', 'mh', 'inc', 'nm', 'or', 'oc', 'sw', 'tbt', 'insp', 'pi'].map(k => fmtN(sum(L, r => C.find(x => x.k === k).s(r)))), '', ''], 'wide');
+    const txt = rows.filter(r => String(r.obsSummary || r.incSummary || '').trim()).reverse();
+    const sums = txt.length ? table([{ h: T('date'), cls: 'nw', v: r => D.fmt(r.date) }, { h: LBL('Incident summary', 'ملخص الحوادث'), cls: 'w', v: r => esc(r.incSummary || '') }, { h: LBL('Observation summary', 'ملخص ملاحظات السلامة'), cls: 'w', v: r => esc(r.obsSummary || '') }], txt) : '';
+    return doc(T('hse'), LBL('HSE report', 'تقرير السلامة'), note + cards + sec(LBL('HSE statistics', 'إحصائيات السلامة'), stats) + sec(mode === 'month' ? LBL('Summary by month', 'الملخص حسب الشهر') : LBL('Summary by report week', 'الملخص حسب أسبوع التقرير'), per, P.list.length) + sec(LBL('Daily HSE log', 'سجل السلامة اليومي'), log, L.length) + (sums ? sec(LBL('Incident and observation summaries', 'ملخصات الحوادث والملاحظات'), sums, txt.length) : ''), 'landscape');
   };
   R.dc = () => {
     const D_ = live(S.db.dc), q = r => N(r.qty) || 1, pr = period(), s = dcStats();

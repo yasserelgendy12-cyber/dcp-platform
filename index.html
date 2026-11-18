@@ -1198,6 +1198,36 @@ table.t.mpt.ivt tfoot td{font-weight:700}table.t.mpt.ivt tfoot td.ivft{text-alig
 .dtx>input.need+.dtv{color:var(--ok);font-weight:600}.dtx>input.need+.dtv.dtph{color:var(--ok);opacity:.55}
 .dtx>input.err+.dtv{color:var(--bad)}
 @media print{.dtx>.dtv{position:static}}
+/* ===== Lists & settings (18-Nov-2026, decision 93) ===== */
+.lsw{display:grid;grid-template-columns:232px minmax(0,1fr);gap:16px;align-items:start}
+.lsn{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:8px;box-shadow:var(--sh);position:sticky;top:0}
+.lsg{font-size:10.5px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;padding:10px 8px 4px}html[dir=rtl] .lsg{letter-spacing:0}
+.lst{display:flex;align-items:center;justify-content:space-between;gap:6px;width:100%;border:0;background:none;padding:8px 10px;border-radius:8px;font:inherit;font-size:13px;color:var(--ink2);cursor:pointer;text-align:start}
+.lst:hover{background:var(--line2)}.lst.on{background:var(--pri-l);color:var(--navy);font-weight:700}
+.lst em{font-style:normal;font-size:11px;color:var(--ink3);white-space:nowrap;background:var(--line2);border-radius:9px;padding:1px 7px}.lst em b{color:var(--ok)}.lst.on em{background:#fff}
+.lsc{min-width:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
+.lsh{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}.lsh h3{margin:0;font-size:16px;color:var(--navy)}
+.lsb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.lsb .search{min-width:240px;flex:0 1 320px}
+.lss{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}.lss button{border:0;background:#fff;padding:6px 11px;font:inherit;font-size:12.5px;color:var(--ink2);cursor:pointer;border-inline-end:1px solid var(--line)}.lss button:last-child{border-inline-end:0}
+.lss button.on{background:var(--navy);color:#fff}.lss em{font-style:normal;font-size:11px;opacity:.8;margin-inline-start:3px}
+.lslg{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--ink3)}.lslg i{width:22px;height:14px;border-radius:7px;background:var(--ok)}html[dir=rtl] .lslg i{box-shadow:inset -3px 0 0 var(--ok)}
+.lstw{max-height:calc(100vh - 330px);overflow:auto}
+table.t.lstb{table-layout:fixed;width:100%}table.t.lstb td{padding:4px 6px;vertical-align:middle}table.t.lstb .in{width:100%;min-width:0}
+table.t.lstb tr.lsu td{background:#E9F7EF}td.lsno{text-align:center;color:var(--ink3);font-size:12px}td.lsno span{display:inline-block;min-width:24px;padding:1px 5px;border-radius:9px}table.t.lstb tr.lsu td.lsno span{background:var(--ok);color:#fff;font-weight:700}table.t.lstb tr.lsu .in{border-color:#BFE3CF}table.t.lstb tr.lsu td:first-child{box-shadow:inset 3px 0 0 var(--ok)}html[dir=rtl] table.t.lstb tr.lsu td:first-child{box-shadow:inset -3px 0 0 var(--ok)}
+table.t.lstb tr.sel td{background:var(--pri-l)!important}
+.lsbd{display:inline-block;font-size:11px;font-weight:700;color:var(--ok);background:#E3F5EE;border-radius:9px;padding:1px 8px;white-space:nowrap;cursor:help}
+td.lsuc{text-align:center}
+.lsroles{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:12px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#F8FAFD}
+.lsroles label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;font-weight:600;color:var(--navy);min-width:0}.lsroles select{font-size:12px}
+@media (max-width:1500px){.lsroles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.lscw{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:start}.lsct .lstw{max-height:46vh}
+.lsck{font-size:12px;color:var(--navy);font-weight:600;overflow-wrap:anywhere;display:block;text-align:start}html[dir=rtl] .lsck{text-align:right}
+table.t.lsctb td.n,table.t.lsctb td.c{text-align:center}
+.lscv{min-width:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px;align-items:start}.lsvh{grid-column:1/-1;font-size:13.5px;color:var(--navy)}.lsvw{max-height:40vh}.lsold{margin-top:0!important}
+.lsold{margin-top:12px;border:1px solid #F3D9A4;background:#FFF9EC;border-radius:10px;padding:10px}.lsoh{display:flex;flex-direction:column;gap:2px;margin-bottom:8px;color:var(--warn)}.lsoh svg{width:15px;height:15px}
+.lsold .btn{margin-top:8px}
+table.t.lsimp td.n{text-align:center}
+@media (max-width:1250px){.lsw{grid-template-columns:1fr}.lsn{position:static;display:flex;flex-wrap:wrap;gap:4px}.lsg{width:100%}.lst{width:auto}.lscw{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -1902,8 +1932,8 @@ const fmtM = v => { if (!isNum(v)) return ''; const a = Math.abs(v); return a >=
 const sum = (arr, f) => arr.reduce((a, r) => a + N(f(r)), 0);
 const live = arr => (arr || []).filter(r => !r._del);
 const clone = o => JSON.parse(JSON.stringify(o));
-const LV = (item) => item ? ((S.lang === 'ar' && item.ar) ? item.ar : item.v) : '';
-const listVal = (listKey, v) => { const it = (S.db.lists[listKey] || []).find(x => x.v === v); return it ? LV(it) : E(v); };
+const LV = (item) => item ? ((S.lang === 'ar' && item.ar) ? item.ar : item.en || item.v) : '';
+const listVal = (listKey, v) => { const it = LISTS(listKey).find(x => x.v === v); return it ? LV(it) : E(v); };
 
 /* ---------- IndexedDB ---------- */
 const IDB = (() => {
@@ -1958,7 +1988,7 @@ function SCH(db = S.db) {
   if (!db) return null;
   const u = db.schedule || null, b = db.baseline || null, src = u || b;
   if (!src) return null;
-  if (_sch && _sch.upd === u && _sch.bl === b) return _sch;
+  if (_sch && _sch.upd === u && _sch.bl === b && _sch.cc === db.codeCfg) return _sch;
   const bm = new Map(); if (b) b.activities.forEach(a => bm.set(a.id, a));
   const ids = new Set();
   const activities = src.activities.map(a => {
@@ -1973,8 +2003,35 @@ function SCH(db = S.db) {
   const glob = codeTypes.filter(k => meta[k] && meta[k][0] === 'G').sort((x, y) => (meta[x][1] - meta[y][1]) || num(x, y));
   // filters = the Global activity codes of the XER files (files imported before code scopes were read keep the former numbered-code rule)
   const cand = glob.length ? glob : Object.keys(meta).length ? codeTypes : codeTypes.filter(k => /^0[2-9] /.test(k) || /^1\d /.test(k)).slice(0, 7);
-  return (_sch = Object.assign({}, src, { upd: u, bl: b, src, activities, byId: new Map(activities.map(a => [a.id, a])), codeTypes, codeMeta: meta, codeVals: vals, globalCodes: glob, filterKeys: cand.filter(k => vals[k].size > 1 && !NOFILT.test(k)), codeScoped: Object.keys(meta).length > 0,
+  const cfl = db.codeCfg && Array.isArray(db.codeCfg.filters) ? db.codeCfg.filters.filter(k => vals[k]) : null;   // filters chosen on Lists & settings → P6 activity codes (decision 93), else the Global codes with more than one value
+  return (_sch = Object.assign({}, src, { upd: u, bl: b, cc: db.codeCfg, src, activities, byId: new Map(activities.map(a => [a.id, a])), codeTypes, codeMeta: meta, codeVals: vals, globalCodes: glob, filterKeys: cfl || cand.filter(k => vals[k].size > 1 && !NOFILT.test(k)), codeScoped: Object.keys(meta).length > 0,
     newIds: b && u ? activities.filter(a => !a.bl).length : 0, goneIds: b && u ? b.activities.filter(a => !ids.has(a.id)).length : 0 }));
+}
+/* ---------- P6 activity codes of the project (decision 93): display names, value names, roles, filters ----------
+   db.codeCfg = { names: {code: name}, vals: {code: {value: name}}, roles: {zone, building, level, work, life, disc, main: code}, filters: [codes] | absent, _at }
+   The P6 code keys never change (they key the activities, the report summaries and the records); only what is shown and which code
+   plays which part on the pages. Roles left empty follow the code names (Zone & Phase, Building, Level, Work Type, …). */
+const CODE = {
+  ROLES: [['zone', /zone|phase/i, 'Zone & phase', 'المنطقة والمرحلة'], ['building', /building/i, 'Building', 'المبنى'], ['level', /level|floor/i, 'Level', 'المستوى'], ['work', /work type/i, 'Work type', 'نوع العمل'],
+    ['life', /life cycle/i, 'Project life cycle', 'دورة حياة المشروع'], ['main', /main work/i, 'Main work', 'الأعمال الرئيسية'], ['disc', /discipline/i, 'Discipline', 'التخصص']],
+  cfg: () => (S.db && S.db.codeCfg) || {},
+  name: k => (CODE.cfg().names || {})[k] || k,   // display name (renamed on Lists & settings, else the P6 name)
+  short: k => (CODE.cfg().names || {})[k] || String(k || '').replace(/^\d+\s*-?\s*/, ''),   // label of filters / slicers (no number)
+  val: (k, v) => { const m = (CODE.cfg().vals || {})[k]; return (m && m[v]) || v; },
+  any(v) { const all = CODE.cfg().vals || {}; for (const k in all) if (all[k] && all[k][v]) return all[k][v]; return v; },   // value name when the code is not known (report trees)
+  types: () => { const s = SCH(); return s ? s.codeTypes : []; },
+  role(r, not) { const c = CODE.cfg().roles || {}, ks = CODE.types(); if (c[r] && ks.includes(c[r]) && c[r] !== not) return c[r]; if (c[r] === '-') return '';
+    const R = CODE.ROLES.find(x => x[0] === r); if (!R) return ''; const s = SCH(); const pool = s && s.globalCodes.length ? s.globalCodes : ks;
+    return pool.find(k => R[1].test(k) && k !== not && !NOFILT.test(k)) || ks.find(k => R[1].test(k) && k !== not && !NOFILT.test(k)) || ''; },
+  lab: (r, en, ar) => { const k = CODE.role(r), n = k && (CODE.cfg().names || {})[k]; return n || LBL(en, ar); },   // heading of a part: the code's display name when renamed, else the generic word
+  roleOf: k => (CODE.ROLES.find(r => CODE.role(r[0]) === k) || [])[0] || '',
+  values: k => { const s = SCH(); return s && k && s.codeVals[k] ? [...s.codeVals[k]].sort((a, b) => String(a).localeCompare(String(b), 'en', { numeric: true })) : []; }
+};
+// list items of a field: phases and buildings / zones come from the P6 codes (roles zone and building) when the project has an XER; the other lists from Lists & settings
+const LIST_CODE = { phases: 'zone', zones: 'building' };
+function LISTS(key) {
+  const r = LIST_CODE[key]; if (r && S.db) { const k = CODE.role(r); const vs = CODE.values(k); if (vs.length) return vs.map(v => { const n = CODE.val(k, v); return n !== v ? { v, ar: n, en: n } : { v }; }); }
+  return (S.db && S.db.lists[key]) || [];
 }
 /* ---------- presence: who is on the platform (shown to User-management holders) ---------- */
 const PRES = {
@@ -3245,7 +3302,7 @@ function inputFor(f, val, ro) {
   const v = val ?? '';
   if (f.t === 'date') return `<input class="in" type="date" data-k="${f.k}" value="${h(v)}" ${dis}>`;
   if (['int', 'dec', 'money'].includes(f.t)) return `<input class="in num" type="number" step="${f.t === 'int' ? 1 : 'any'}" min="0" data-k="${f.k}" value="${h(v)}" ${dis}>`;
-  if (f.t === 'list') { const L = S.db.lists[f.list] || []; const has = !v || L.some(x => x.v === v); return `<select class="in" data-k="${f.k}" ${dis}><option value=""></option>${L.map(x => `<option value="${h(x.v)}" ${x.v === v ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}${has ? '' : `<option selected value="${h(v)}">${h(v)} ⚠</option>`}</select>`; }
+  if (f.t === 'list') { const L = LISTS(f.list); const has = !v || L.some(x => x.v === v); return `<select class="in" data-k="${f.k}" ${dis}><option value=""></option>${L.map(x => `<option value="${h(x.v)}" ${x.v === v ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}${has ? '' : `<option selected value="${h(v)}">${h(v)} ⚠</option>`}</select>`; }
   if (f.t === 'enum') return `<select class="in" data-k="${f.k}" ${dis}>${f.opts.map(o => `<option value="${h(o)}" ${o === v ? 'selected' : ''}>${h(o ? E(o) : '')}</option>`).join('')}</select>`;
   if (f.t === 'url') return `<input class="in" type="url" dir="ltr" placeholder="https://…  (OneDrive / SharePoint / Google Drive)" data-k="${f.k}" value="${h(v)}" ${dis}>`;
   if (f.t === 'area') return `<textarea class="in" data-k="${f.k}" rows="3" ${dis}>${h(v)}</textarea>`;
@@ -3703,7 +3760,7 @@ PAGES.home = v => {
   if (sm) {
     const bar = (lbl, val, cls, t) => `<div class="dbr"${tip(lbl, t)}><span>${lbl}</span><div class="bar"><i class="${cls}" style="width:${Math.min(100, val * 100)}%"></i></div><b>${pct(val)}</b></div>`;
     const n = sm.n || 1, sp = (x, c) => `<i class="${c}" style="width:${x / n * 100}%"></i>`;
-    const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || (sch.codeTypes || [])[0];
+    const key = CODE.role('life') || sch.filterKeys[0] || (sch.codeTypes || [])[0];
     const grp = {}; const { w } = PROG.weights();
     sm.rows.forEach(r => { const g = (r.a.codes[key] || '—'); const o = grp[g] = grp[g] || { n: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
     const G = Object.entries(grp).sort((a, b) => b[1].w - a[1].w).slice(0, 6);
@@ -3711,7 +3768,7 @@ PAGES.home = v => {
       <div class="dbst"${tip(T('activities'), L('Status after the team entries (as sent to P6).', 'الحالة بعد إدخالات الفريق (كما تُرسل إلى P6).'))}><div class="sb">${sp(sm.comp, 'c')}${sp(sm.inprog, 'i')}${sp(sm.ns, 'n')}</div><div class="lg"><span><i class="c"></i>${T('completed')} <b>${fmtN(sm.comp)}</b></span><span><i class="i"></i>${T('in_progress')} <b>${fmtN(sm.inprog)}</b></span><span><i class="n"></i>${T('not_started')} <b>${fmtN(sm.ns)}</b></span><span class="beh">${T('behind')} <b>${fmtN(sm.behind)}</b></span></div></div>
       <div class="dbtr"${tip(L('Progress trend', 'منحنى الإنجاز'), L('Cumulative planned and earned % of every P6 update (report sources), and the current cut-off.', 'النسبة التراكمية المخططة والمكتسبة لكل تحديث P6 (مصادر التقرير)، وتاريخ القطع الحالي.'))}><div class="tt"><span>${L('Progress trend', 'منحنى الإنجاز')}</span><em><i class="pl"></i>${T('planned')}</em><em><i class="ac"></i>${L('Actual', 'الفعلي')}</em></div><div class="dbch" data-trend></div></div>
       <table class="dbt"><thead><tr><th${tip(h(key || ''), L('Activity code of the P6 schedule.', 'كود النشاط في برنامج P6.'))}>${h(String(key || '').replace(/^\d\d /, ''))}</th><th class="n"${tip(T('activities'), L('Activities of the group.', 'أنشطة المجموعة.'))}>${T('activities')}</th><th${tip(`${T('planned')} / ${L('Actual', 'الفعلي')}`, L('Weighted planned % at the cut-off (light) and contractor actual (dark).', 'المخطط المرجّح في تاريخ القطع (الفاتح) وفعلي المقاول (الداكن).'))}>${T('planned')} / ${L('Actual', 'الفعلي')}</th><th class="n"${tip(T('behind'), L('Activities of the group behind plan.', 'أنشطة المجموعة المتأخرة عن الخطة.'))}>${T('behind')}</th></tr></thead>
-      <tbody>${G.map(([g, o]) => { const pl = o.w ? o.pl / o.w : 0, ac = o.w ? o.ac / o.w : 0; return `<tr><td>${h(g)}</td><td class="n">${fmtN(o.n)}</td><td><div class="b2"><i class="pl" style="width:${pl}%"></i><i style="width:${ac}%"></i></div><span class="pp">${pl.toFixed(0)}% / <b class="${ac + 0.5 < pl ? 'bad' : ''}">${ac.toFixed(0)}%</b></span></td><td class="n ${o.beh ? 'bad' : ''}">${fmtN(o.beh)}</td></tr>`; }).join('')}</tbody></table>`;
+      <tbody>${G.map(([g, o]) => { const pl = o.w ? o.pl / o.w : 0, ac = o.w ? o.ac / o.w : 0; return `<tr><td>${h(CODE.val(key, g))}</td><td class="n">${fmtN(o.n)}</td><td><div class="b2"><i class="pl" style="width:${pl}%"></i><i style="width:${ac}%"></i></div><span class="pp">${pl.toFixed(0)}% / <b class="${ac + 0.5 < pl ? 'bad' : ''}">${ac.toFixed(0)}%</b></span></td><td class="n ${o.beh ? 'bad' : ''}">${fmtN(o.beh)}</td></tr>`; }).join('')}</tbody></table>`;
   }
   const mini = (k, val, sub, cls, t) => `<div class="dbm ${cls || ''}"${tip(k, t)}><div class="k">${k}</div><div class="v">${val}</div>${sub ? `<div class="s">${sub}</div>` : ''}</div>`;
   const hseC = mini(L('Man-hours', 'ساعات العمل'), fmtN(hs.mh), L('project to date', 'حتى تاريخه'), '', L('Σ man-hours to date (from Manpower & Equipment).', 'مجموع ساعات العمل حتى تاريخه (من العمالة والمعدات).')) +
@@ -3790,7 +3847,7 @@ PAGES.progress = v => {
   const codeKeys = sch.filterKeys;   // Global activity codes of the XER files (the latest update wins)
   Object.keys(st.codes).forEach(k => { if (!codeKeys.includes(k)) delete st.codes[k]; else st.codes[k] = A_(st.codes[k]); });
   if (st.focus === 'updated') st.focus = 'updC';
-  const codeLabel = k => k.replace(/^\d\d /, '');
+  const codeLabel = k => CODE.short(k);   // display name of the code (Lists & settings → P6 activity codes)
   // one focus at a time: status · needs attention (one segment "Show") and updated in this cut-off by (second segment)
   const FG = [['fs-sh', LBL('Show', 'عرض'), [['all', LBL('All', 'الكل')], ['inprog', T('f_inprog')], ['ns', T('f_ns')], ['comp', T('f_comp')], '|', ['behind', T('f_behind')], ['issues', T('f_issues')], ['due', LBL('Due within', 'مطلوب خلال')]]],
     ['fs-up', LBL('Updated by', 'تم تحديثه من'), [['updC', T('r_ctr_s')], ['updCo', T('r_cons_s')], ['updO', T('r_own_s')]]]];
@@ -3852,8 +3909,8 @@ PAGES.progress = v => {
     v.querySelectorAll('[data-n]').forEach(b => { b.textContent = fmtN(qc.filter(r => passFocus(r, b.dataset.n, la)).length); });
     v.querySelectorAll('[data-cs]').forEach(slot => {   // cascading: each list shows the values present under the other filters, with counts
       const k = slot.dataset.cs, base = all.filter(r => passQ(r) && passFocus(r, st.focus, la) && passCodes(r, k));
-      const opts = MSEL.opts(base, r => r.a.codes[k], null, (a, b) => String(a.v).localeCompare(String(b.v), 'en', { numeric: true }));
-      A_(st.codes[k]).forEach(x => { if (!opts.some(o => o.v === x)) opts.unshift({ v: x, l: x, n: 0 }); });
+      const opts = MSEL.opts(base, r => r.a.codes[k], v => CODE.val(k, v), (a, b) => String(a.v).localeCompare(String(b.v), 'en', { numeric: true }));
+      A_(st.codes[k]).forEach(x => { if (!opts.some(o => o.v === x)) opts.unshift({ v: x, l: CODE.val(k, x), n: 0 }); });
       slot.innerHTML = MSEL.btn(k, codeLabel(k), opts, st.codes[k]);
       const b = slot.querySelector('.msel'); if (b) { b.removeAttribute('title'); b.setAttribute('data-tip', JSON.stringify([codeLabel(k), LBL(`Activity code "${k}" of the P6 schedule.`, `كود النشاط «${k}» في برنامج P6.`), LBL('Choose one or more values; the other lists show only what remains.', 'اختر قيمة أو أكثر؛ تعرض باقي القوائم ما يتبقى فقط.'), A_(st.codes[k]).length ? [LBL('Selected', 'المحدد'), A_(st.codes[k]).join(' · ')] : ''])); }
       MSEL.wire(slot, k, opts, st.codes[k], vals => { st.codes[k] = vals; st.page = 0; draw(); });
@@ -4260,8 +4317,8 @@ const DW_CFG = {
   key: 'dwF', mk: 'drawings', sort0: 'date', all: () => live(S.db.drawings).filter(r => r.no), date: DW_DATE, dateLbl: () => LBL('Submission date', 'تاريخ التقديم'),
   defs: [
     { k: 'category', l: () => LBL('Category', 'الفئة'), get: r => r.category || '', lab: DW_CAT },
-    { k: 'phase', l: () => LBL('Phase', 'المرحلة'), get: r => r.phase || '', lab: v => listVal('phases', v) },
-    { k: 'zone', l: () => LBL('Building / zone', 'المبنى / المنطقة'), get: r => r.zone || '', lab: v => listVal('zones', v) },
+    { k: 'phase', l: () => CODE.lab('zone', 'Phase', 'المرحلة'), get: r => r.phase || '', lab: v => listVal('phases', v) },
+    { k: 'zone', l: () => CODE.lab('building', 'Building / zone', 'المبنى / المنطقة'), get: r => r.zone || '', lab: v => listVal('zones', v) },
     { k: 'element', l: () => LBL('Element', 'العنصر'), get: r => r.element || '', lab: v => listVal('elements', v) },
     { k: 'discipline', l: () => LBL('Discipline', 'التخصص'), get: r => r.discipline || '', lab: v => listVal('disciplines', v) },
     { k: 'status', l: () => LBL('Status', 'الحالة'), get: DW_ST, lab: v => E(v) },
@@ -5045,40 +5102,9 @@ const LIST_DEF = {
   reviewCodes: { en: 'Review codes & credits', ar: 'أكواد المراجعة والأوزان', cols: [['v', 'Review Code', 'كود المراجعة'], ['status', 'Review Status', 'حالة المراجعة'], ['shop', 'Shop Credit', 'وزن التنفيذي', 'n'], ['design', 'Design Credit', 'وزن التصميمي', 'n']] },
   disciplines: { en: 'Disciplines', ar: 'التخصصات', cols: [['v', 'Discipline', 'التخصص'], ['ar', 'Arabic name', 'الاسم العربي']] },
   contractors: { en: 'Contractors', ar: 'المقاولون', cols: [['v', 'Contractor', 'المقاول'], ['ar', 'Arabic name', 'الاسم العربي']] },
-  elements: { en: 'Drawing elements', ar: 'عناصر المخططات', cols: [['v', 'Element', 'العنصر'], ['ar', 'Arabic name', 'الاسم العربي']] },
-  phases: { en: 'Phases', ar: 'المراحل', cols: [['v', 'Phase', 'المرحلة'], ['ar', 'Arabic name', 'الاسم العربي']] },
-  zones: { en: 'Buildings / zones', ar: 'المباني / المناطق', cols: [['v', 'Building / Zone', 'المبنى / المنطقة'], ['ar', 'Arabic name', 'الاسم العربي']] }
-};
-PAGES.lists = v => {
-  const full = hasPerm('lists');
-  if (S.ui.lsTab === 'pins' && !canUsers()) S.ui.lsTab = 'resources';
-  if (!full) S.ui.lsTab = 'pins';
-  const tab = S.ui.lsTab = S.ui.lsTab || 'resources'; const ed = tab === 'pins' ? canUsers() : full;
-  const tabs = full ? [...Object.keys(LIST_DEF), 'params', ...(canUsers() ? ['pins'] : [])] : ['pins'];
-  v.innerHTML = pageHead(T('lists'), T('lists_desc'), ed ? `${LIST_DEF[tab] ? `<button class="btn" data-limp>${ic('up')}${T('imp_btn')}</button>` : ''}<button class="btn pri" data-sv>${T('save')}</button>` : '') + (ed ? '' : roNotice('lists')) +
-    `<div class="tabs" style="flex-wrap:wrap">${tabs.map(k => `<div class="tb ${tab === k ? 'on' : ''}" data-t="${k}">${LIST_DEF[k] ? LBL(LIST_DEF[k].en, LIST_DEF[k].ar) : T(k)}</div>`).join('')}</div><div data-tc></div>`;
-  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.ui.lsTab = t.dataset.t; render(true); });
-  const c = v.querySelector('[data-tc]'); const dis = ed ? '' : 'disabled';
-  const li = v.querySelector('[data-limp]'); if (li) li.onclick = () => IMP.open('list', tab);
-  if (LIST_DEF[tab]) {
-    const def = LIST_DEF[tab]; const items = clone(S.db.lists[tab] || []);
-    const draw = () => { c.innerHTML = `<div class="tw" style="max-height:calc(100vh - 300px)"><table class="t egrid"><thead><tr><th>#</th>${def.cols.map(x => `<th>${LBL(x[1], x[2])}</th>`).join('')}<th></th></tr></thead><tbody>${items.map((it, i) => `<tr data-i="${i}"><td class="muted">${i + 1}</td>${def.cols.map(x => `<td>${Array.isArray(x[3]) ? `<select class="in" data-c="${x[0]}" ${dis}>${x[3].map(o => `<option ${it[x[0]] === o ? 'selected' : ''} value="${o}">${E(o)}</option>`).join('')}</select>` : `<input class="in" ${x[3] === 'n' ? 'type="number" step="any" style="width:90px"' : 'style="min-width:220px"'} data-c="${x[0]}" value="${h(it[x[0]] ?? '')}" ${dis}>`}</td>`).join('')}<td>${ed ? `<button class="btn sm ghost" data-rm>${ic('trash')}</button>` : ''}</td></tr>`).join('')}</tbody></table></div>${ed ? `<button class="btn" style="margin-top:10px" data-ad>${ic('plus')}${T('add_item')}</button>` : ''}`;
-      c.querySelectorAll('[data-c]').forEach(i => i.onchange = () => { const it = items[+i.closest('tr').dataset.i]; const x = def.cols.find(cc => cc[0] === i.dataset.c); it[i.dataset.c] = x[3] === 'n' ? (i.value === '' ? '' : Number(i.value)) : i.value; });
-      c.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { items.splice(+b.closest('tr').dataset.i, 1); draw(); });
-      const ad = c.querySelector('[data-ad]'); if (ad) ad.onclick = () => { const o = {}; def.cols.forEach(x => o[x[0]] = Array.isArray(x[3]) ? x[3][0] : ''); items.push(o); draw(); c.querySelector('.tw').scrollTop = 1e6; }; };
-    draw();
-    const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const L = clone(S.db.lists); L[tab] = items.filter(x => String(x.v || '').trim()).map(x => { Object.keys(x).forEach(k => { if (x[k] === '') delete x[k]; }); x.v = String(x.v).trim(); return x; }); S.db.lists = stamp(L); touch('lists', tab); toast(T('saved'), 'ok'); render(true); };
-  } else if (tab === 'params') {
-    const P = S.db.params; const prm = [['designWeight', 'Design drawings weight in engineering progress', 'وزن المخططات التصميمية في الإنجاز الهندسي'], ['shopWeight', 'Shop drawings weight in engineering progress', 'وزن المخططات التنفيذية في الإنجاز الهندسي'], ['creditURShop', 'Credit – shop drawing submitted, review pending', 'نسبة احتساب المخطط التنفيذي المقدم قيد المراجعة'], ['creditURDesign', 'Credit – design drawing submitted', 'نسبة احتساب المخطط التصميمي المقدم'], ['drwReviewDays', 'Drawing review period (calendar days)', 'مدة مراجعة المخططات (يوم تقويمي)'], ['lookahead', 'Progress look-ahead window (days)', 'نافذة النظرة المستقبلية للإنجاز (يوم)']];
-    c.innerHTML = `<div class="fsec"><div class="fgrid">${prm.map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<input class="in" type="number" step="any" data-pp="${k}" value="${h(P[k] ?? '')}" ${dis}></label>`).join('')}
-      <label class="f" style="grid-column:1/-1;max-width:560px">${T('pl_basis')}<select class="in" data-pb ${dis}><option value="bl" ${P.planBasis !== 'upd' ? 'selected' : ''}>${T('pl_basis_bl')}</option><option value="upd" ${P.planBasis === 'upd' ? 'selected' : ''}>${T('pl_basis_upd')}</option></select><span class="tiny muted">${T('pl_basis_d')}</span></label></div></div>`;
-    const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const np = clone(P); c.querySelectorAll('[data-pp]').forEach(i => np[i.dataset.pp] = Number(i.value)); np.planBasis = c.querySelector('[data-pb]').value; S.db.params = stamp(np); touch('parameters'); toast(T('saved'), 'ok'); render(true); };
-  } else {
-    const pins = S.db.security.pins;
-    c.innerHTML = `<div class="notice ${userMode() ? 'warn' : 'info'}">${ic('info')}<div>${userMode() ? T('pins_note_u') : T('pins_note')}</div></div><div class="fsec"><div class="fgrid">${['admin', 'contractor', 'consultant', 'owner'].map(k => `<label class="f">${T('pin_' + k)}<input class="in" type="text" data-pin="${k}" value="${h(ed ? pins[k] : '••••')}" ${dis}></label>`).join('')}</div></div>`;
-    const sv = v.querySelector('[data-sv]'); if (sv) sv.onclick = () => { const np = {}; c.querySelectorAll('[data-pin]').forEach(i => np[i.dataset.pin] = i.value.trim()); S.db.security = stamp({ pins: np }); touch('PINs changed'); toast(T('saved'), 'ok'); };
-  }
-};
+  elements: { en: 'Drawing elements', ar: 'عناصر المخططات', cols: [['v', 'Element', 'العنصر'], ['ar', 'Arabic name', 'الاسم العربي']] }
+};   // phases and buildings / zones come from the P6 codes (LISTS in core.js, decision 93)
+/* PAGES.lists: src/lists.js (rebuilt 18-Nov-2026) */
 
 /* ---------- LOGIN & STARTUP ---------- */
 async function savePrefs() { try { await IDB.put('meta', 'prefs', { lang: S.lang, name: S.ui.lname, role: S.ui.lrole, user: S.ui.luser }); } catch (e) { } }
@@ -5387,6 +5413,209 @@ const INVF = {
   }
 };
 
+/* ---------- LISTS & SETTINGS (rebuilt 18-Nov-2026, decision 93) ----------
+   Side navigation by group (lists of the pages · P6 schedule · settings) with counts; every list row used by the records of the
+   open project is highlighted with its count and pages; search and Show all / used / not used; P6 activity codes tab: the codes of
+   the project XER with their display name, the part they play on the pages (role), filter on / off, the value names, and a tool
+   that replaces old phase / building values in the records by the P6 values; the whole page exports to one Excel workbook and
+   imports back (preview, then apply). Phases and buildings / zones are no longer lists: they come from the P6 codes (roles zone /
+   building, LISTS() in core.js). */
+const LS_GROUPS = () => [
+  [LBL('Lists of the pages', 'قوائم الصفحات'), ['resources', 'docTypes', 'invTypes', 'reviewCodes', 'disciplines', 'contractors', 'elements']],
+  [LBL('P6 schedule', 'برنامج P6'), ['codes']],
+  [LBL('Settings', 'الإعدادات'), ['params', 'pins']]
+];
+const LS_PAGE = { hse: 'hse', dc: 'dc', manpower: 'manpower', drawings: 'drawings', targets: 'drawings', invoices: 'invoices' };
+// value → {n records, pages} of a list (or of the phase / building values when key = phases / zones)
+function lsUse(key) {
+  const m = new Map();
+  Object.keys(MOD).forEach(mk => (MOD[mk].fields || []).filter(f => f.t === 'list' && f.list === key).forEach(f => live(S.db[mk] || []).forEach(r => { const v = r[f.k]; if (v === undefined || v === null || v === '') return; const x = m.get(v) || { n: 0, pages: new Set() }; x.n++; x.pages.add(T(LS_PAGE[mk] || mk)); m.set(v, x); })));
+  return m;
+}
+const lsUsedTip = x => x ? TIP.a(LBL('Used in the project', 'مستخدم في المشروع'), [LBL('Records', 'السجلات'), fmtN(x.n)], [LBL('Pages', 'الصفحات'), [...x.pages].join('، ')]) : '';
+const lsTabName = k => LIST_DEF[k] ? LBL(LIST_DEF[k].en, LIST_DEF[k].ar) : k === 'codes' ? LBL('P6 activity codes', 'أكواد أنشطة P6') : T(k);
+
+PAGES.lists = v => {
+  const full = hasPerm('lists');
+  if (S.ui.lsTab === 'pins' && !canUsers()) S.ui.lsTab = 'resources';
+  if (!full) S.ui.lsTab = 'pins';
+  if (S.ui.lsTab && !LIST_DEF[S.ui.lsTab] && !['codes', 'params', 'pins'].includes(S.ui.lsTab)) S.ui.lsTab = 'resources';   // phases / zones tabs are gone (P6 codes)
+  const tab = S.ui.lsTab = S.ui.lsTab || 'resources'; const ed = tab === 'pins' ? canUsers() : full;
+  const groups = LS_GROUPS().map(([g, ks]) => [g, ks.filter(k => full ? (k !== 'pins' || canUsers()) : k === 'pins')]).filter(([, ks]) => ks.length);
+  const cnt = k => { if (LIST_DEF[k]) { const u = lsUse(k); const it = S.db.lists[k] || []; return [it.length, it.filter(x => u.has(x.v)).length]; } if (k === 'codes') { const s = SCH(); return s ? [s.codeTypes.length, s.codeTypes.filter(c => s.codeVals[c].size).length] : [0, 0]; } return null; };
+  const st = S.ui.ls = S.ui.ls || { q: '', show: 'all' };
+  v.innerHTML = pageHead(T('lists'), LBL('Lists used by the data-entry pages, the P6 activity codes of the project and the settings. Rows used by the records of the open project are highlighted.', 'القوائم التي تستخدمها صفحات الإدخال، وأكواد أنشطة P6 للمشروع، والإعدادات. الصفوف المستخدمة في سجلات المشروع المفتوح مظللة.'),
+      `${full ? `<button class="btn" data-lxx title="${h(LBL('All tabs in one Excel workbook (lists, P6 codes and their values, parameters)', 'كل التبويبات في ملف Excel واحد (القوائم، أكواد P6 وقيمها، المعايير)'))}">${ic('dl')}${LBL('Export Excel', 'تصدير Excel')}</button><button class="btn" data-lxi title="${h(LBL('Import the edited workbook: preview, then apply', 'استيراد الملف بعد التعديل: معاينة ثم تطبيق'))}">${ic('up')}${LBL('Import Excel', 'استيراد Excel')}</button>` : ''}${ed && LIST_DEF[tab] ? `<button class="btn" data-limp title="${h(LBL('Import this list only (template)', 'استيراد هذه القائمة فقط (قالب)'))}">${ic('up')}${T('imp_btn')} · ${LBL('this list', 'هذه القائمة')}</button>` : ''}${ed ? `<button class="btn pri" data-sv>${T('save')}</button>` : ''}`) + (ed ? '' : roNotice('lists')) +
+    `<div class="lsw"><nav class="lsn">${groups.map(([g, ks]) => `<div class="lsg">${g}</div>${ks.map(k => { const c = cnt(k); return `<button class="lst ${tab === k ? 'on' : ''}" data-t="${k}"><span>${h(lsTabName(k))}</span>${c ? `<em${TIP.a(lsTabName(k), [LBL('Rows', 'الصفوف'), fmtN(c[0])], [LBL('Used in the project', 'مستخدم في المشروع'), fmtN(c[1])])}><b>${fmtN(c[1])}</b>/${fmtN(c[0])}</em>` : ''}</button>`; }).join('')}`).join('')}</nav><section class="lsc" data-tc></section></div>`;
+  v.querySelectorAll('[data-t]').forEach(t => t.onclick = () => { S.ui.lsTab = t.dataset.t; st.q = ''; st.show = 'all'; render(true); });
+  const c = v.querySelector('[data-tc]'); const dis = ed ? '' : 'disabled';
+  const li = v.querySelector('[data-limp]'); if (li) li.onclick = () => IMP.open('list', tab);
+  const xx = v.querySelector('[data-lxx]'); if (xx) xx.onclick = () => LSX.export();
+  const xi = v.querySelector('[data-lxi]'); if (xi) xi.onclick = () => LSX.import();
+  const sv = v.querySelector('[data-sv]');
+  // toolbar of a table tab: search, show all / used / not used, legend
+  const bar = (n, nu, extra) => `<div class="lsb"><input class="in search" placeholder="${h(LBL('Search…', 'بحث…'))}" value="${h(st.q)}" data-lq><div class="lss">${[['all', LBL('All', 'الكل'), n], ['used', LBL('Used in the project', 'مستخدم في المشروع'), nu], ['free', LBL('Not used', 'غير مستخدم'), n - nu]].map(([k, l, x]) => `<button class="${st.show === k ? 'on' : ''}" data-ls="${k}">${l} <em>${fmtN(x)}</em></button>`).join('')}</div><span class="lslg"><i></i>${LBL('Used by the records of the open project', 'مستخدم في سجلات المشروع المفتوح')}</span>${extra || ''}</div>`;
+  const wireBar = (redraw) => { const q = c.querySelector('[data-lq]'); if (q) q.oninput = () => { st.q = q.value; redraw(); }; c.querySelectorAll('[data-ls]').forEach(b => b.onclick = () => { st.show = b.dataset.ls; c.querySelectorAll('[data-ls]').forEach(x => x.classList.toggle('on', x === b)); redraw(); }); };
+  const pass = (txt, used) => (!st.q || txt.toLowerCase().includes(st.q.toLowerCase())) && (st.show === 'all' || (st.show === 'used') === !!used);
+
+  if (LIST_DEF[tab]) {
+    const def = LIST_DEF[tab]; const items = clone(S.db.lists[tab] || []); const U = lsUse(tab);
+    c.innerHTML = `<div class="lsh"><h3>${h(lsTabName(tab))}</h3><span class="tiny muted">${LBL('Used on', 'تستخدمها')}: ${[...new Set(Object.keys(MOD).filter(mk => (MOD[mk].fields || []).some(f => f.list === tab)).map(mk => T(LS_PAGE[mk] || mk)))].join('، ') || '—'}</span></div>${bar(items.length, items.filter(x => U.has(x.v)).length)}<div data-lt></div>`;
+    const t = c.querySelector('[data-lt]');
+    const draw = () => {
+      const rows = items.map((it, i) => [it, i]).filter(([it]) => pass(def.cols.map(x => it[x[0]] ?? '').join(' '), U.get(it.v)));
+      t.innerHTML = `<div class="tw lstw"><table class="t egrid lstb"><colgroup><col style="width:44px">${def.cols.map(x => `<col${Array.isArray(x[3]) || x[3] === 'n' ? ' style="width:150px"' : ''}>`).join('')}<col style="width:118px"><col style="width:44px"></colgroup>
+        <thead><tr><th>#</th>${def.cols.map(x => `<th>${LBL(x[1], x[2])}</th>`).join('')}<th${TIP.a(LBL('Used', 'الاستخدام'), LBL('Records of the open project that use this row, and their pages.', 'سجلات المشروع المفتوح التي تستخدم هذا الصف وصفحاتها.'))}>${LBL('Used', 'الاستخدام')}</th><th></th></tr></thead>
+        <tbody>${rows.map(([it, i]) => { const u = U.get(it.v); return `<tr data-i="${i}" class="${u ? 'lsu' : ''}"><td class="lsno"><span>${i + 1}</span></td>${def.cols.map(x => `<td>${Array.isArray(x[3]) ? `<select class="in" data-c="${x[0]}" ${dis}>${x[3].map(o => `<option ${it[x[0]] === o ? 'selected' : ''} value="${o}">${E(o)}</option>`).join('')}</select>` : `<input class="in" ${x[3] === 'n' ? 'type="number" step="any"' : 'dir="auto"'} data-c="${x[0]}" value="${h(it[x[0]] ?? '')}" ${dis}>`}</td>`).join('')}<td class="lsuc">${u ? `<span class="lsbd"${lsUsedTip(u)}>${fmtN(u.n)} ${LBL('records', 'سجل')}</span>` : '<span class="muted tiny">—</span>'}</td><td>${ed ? `<button class="btn sm ghost" data-rm title="${h(T('del'))}">${ic('trash')}</button>` : ''}</td></tr>`; }).join('') || `<tr><td colspan="${def.cols.length + 3}" class="empty">${T('none')}</td></tr>`}</tbody></table></div>${ed ? `<button class="btn" style="margin-top:10px" data-ad>${ic('plus')}${T('add_item')}</button>` : ''}`;
+      t.querySelectorAll('[data-c]').forEach(i => i.onchange = () => { const it = items[+i.closest('tr').dataset.i]; const x = def.cols.find(cc => cc[0] === i.dataset.c); it[i.dataset.c] = x[3] === 'n' ? (i.value === '' ? '' : Number(i.value)) : i.value; });
+      t.querySelectorAll('[data-rm]').forEach(b => b.onclick = async () => { const i = +b.closest('tr').dataset.i, u = U.get(items[i].v); if (u && !(await confirmBox(`${LBL('This row is used by', 'هذا الصف مستخدم في')} ${fmtN(u.n)} ${LBL('records', 'سجل')} (${[...u.pages].join('، ')}). ${LBL('Remove it from the list? The records keep their value.', 'حذفه من القائمة؟ تحتفظ السجلات بقيمتها.')}`, T('del'), true))) return; items.splice(i, 1); draw(); });
+      const ad = t.querySelector('[data-ad]'); if (ad) ad.onclick = () => { const o = {}; def.cols.forEach(x => o[x[0]] = Array.isArray(x[3]) ? x[3][0] : ''); items.push(o); st.q = ''; st.show = 'all'; draw(); t.querySelector('.tw').scrollTop = 1e6; };
+    };
+    wireBar(draw); draw();
+    if (sv) sv.onclick = () => { const L = clone(S.db.lists); L[tab] = items.filter(x => String(x.v || '').trim()).map(x => { Object.keys(x).forEach(k => { if (x[k] === '') delete x[k]; }); x.v = String(x.v).trim(); return x; }); S.db.lists = stamp(L); touch('lists', tab); toast(T('saved'), 'ok'); render(true); };
+  } else if (tab === 'codes') LSC.page(c, ed, sv, bar, wireBar, pass);
+  else if (tab === 'params') {
+    const P = S.db.params; const prm = [['designWeight', 'Design drawings weight in engineering progress', 'وزن المخططات التصميمية في الإنجاز الهندسي'], ['shopWeight', 'Shop drawings weight in engineering progress', 'وزن المخططات التنفيذية في الإنجاز الهندسي'], ['creditURShop', 'Credit – shop drawing submitted, review pending', 'نسبة احتساب المخطط التنفيذي المقدم قيد المراجعة'], ['creditURDesign', 'Credit – design drawing submitted', 'نسبة احتساب المخطط التصميمي المقدم'], ['drwReviewDays', 'Drawing review period (calendar days)', 'مدة مراجعة المخططات (يوم تقويمي)'], ['lookahead', 'Progress look-ahead window (days)', 'نافذة النظرة المستقبلية للإنجاز (يوم)']];
+    c.innerHTML = `<div class="lsh"><h3>${T('params')}</h3></div><div class="fsec"><div class="fgrid">${prm.map(([k, en, ar]) => `<label class="f">${LBL(en, ar)}<input class="in" type="number" step="any" data-pp="${k}" value="${h(P[k] ?? '')}" ${dis}></label>`).join('')}
+      <label class="f" style="grid-column:1/-1;max-width:560px">${T('pl_basis')}<select class="in" data-pb ${dis}><option value="bl" ${P.planBasis !== 'upd' ? 'selected' : ''}>${T('pl_basis_bl')}</option><option value="upd" ${P.planBasis === 'upd' ? 'selected' : ''}>${T('pl_basis_upd')}</option></select><span class="tiny muted">${T('pl_basis_d')}</span></label></div></div>`;
+    if (sv) sv.onclick = () => { const np = clone(P); c.querySelectorAll('[data-pp]').forEach(i => np[i.dataset.pp] = Number(i.value)); np.planBasis = c.querySelector('[data-pb]').value; S.db.params = stamp(np); touch('parameters'); toast(T('saved'), 'ok'); render(true); };
+  } else {
+    const pins = S.db.security.pins;
+    c.innerHTML = `<div class="lsh"><h3>${T('pins')}</h3></div><div class="notice ${userMode() ? 'warn' : 'info'}">${ic('info')}<div>${userMode() ? T('pins_note_u') : T('pins_note')}</div></div><div class="fsec"><div class="fgrid">${['admin', 'contractor', 'consultant', 'owner'].map(k => `<label class="f">${T('pin_' + k)}<input class="in" type="text" data-pin="${k}" value="${h(ed ? pins[k] : '••••')}" ${dis}></label>`).join('')}</div></div>`;
+    if (sv) sv.onclick = () => { const np = {}; c.querySelectorAll('[data-pin]').forEach(i => np[i.dataset.pin] = i.value.trim()); S.db.security = stamp({ pins: np }); touch('PINs changed'); toast(T('saved'), 'ok'); };
+  }
+};
+
+/* ---- P6 activity codes tab ---- */
+const LSC = {
+  scope: k => { const s = SCH(), m = s && s.codeMeta[k]; return m ? ({ G: LBL('Global', 'عام'), E: 'EPS', P: LBL('Project', 'المشروع') })[m[0]] || m[0] : '—'; },
+  acts(k) { const s = SCH(), m = new Map(); if (s) s.activities.forEach(a => { const v = a.codes[k]; if (v) m.set(v, (m.get(v) || 0) + 1); }); return m; },
+  page(c, ed, sv, bar, wireBar, pass) {
+    const s = SCH(); const dis = ed ? '' : 'disabled';
+    if (!s) { c.innerHTML = `<div class="lsh"><h3>${lsTabName('codes')}</h3></div><div class="notice warn">${ic('warn')}<div>${LBL('Load the baseline or the update XER on Cut-off & P6 Export: the activity codes come from the XER files.', 'حمّل ملف XER الأساسي أو التحديث من صفحة تاريخ القطع وتصدير P6: الأكواد تُقرأ من ملفات XER.')}</div></div>`; return; }
+    const cfg = clone(S.db.codeCfg || {}); cfg.names = cfg.names || {}; cfg.vals = cfg.vals || {}; cfg.roles = cfg.roles || {};
+    const st = S.ui.lsc = S.ui.lsc || {}; const ks = s.codeTypes; if (!ks.includes(st.k)) st.k = CODE.role('zone') || ks[0];
+    let filt = Array.isArray(cfg.filters) ? cfg.filters.slice() : s.filterKeys.slice();
+    const AC = {}; ks.forEach(k => AC[k] = LSC.acts(k));
+    const nAct = k => sum([...AC[k].values()], x => x);
+    const roleOpts = r => `<option value="">${LBL('Automatic', 'تلقائي')}${LSC.autoRole(r) ? ` – \u2066${h(LSC.autoRole(r))}\u2069` : ''}</option><option value="-" ${cfg.roles[r] === '-' ? 'selected' : ''}>${LBL('Not used', 'غير مستخدم')}</option>${ks.map(k => `<option value="${h(k)}" ${cfg.roles[r] === k ? 'selected' : ''}>\u2066${h(k)}\u2069</option>`).join('')}`;
+    c.innerHTML = `<div class="lsh"><h3>${lsTabName('codes')}</h3><span class="tiny muted">${h(s.upd ? s.upd.fileName || '' : '')}${s.bl ? ` · ${h(s.bl.fileName || '')}` : ''} · ${LBL('the P6 codes never change; names and roles are used by every page of both portals', 'أكواد P6 نفسها لا تتغير؛ الأسماء والأدوار تستخدمها كل صفحات البوابتين')}</span></div>
+      <div class="lsroles"${TIP.a(LBL('Part on the pages', 'الدور في الصفحات'), LBL('Which P6 code is the zone / phase, building, level, work type … of the pages: drawings and manpower lists (phase, building), report trees and charts (zone → building → level), dashboard (life cycle). Automatic = found by the code name.', 'أي كود P6 يمثل المنطقة / المرحلة، المبنى، المستوى، نوع العمل… في الصفحات: قوائم المخططات والعمالة (المرحلة، المبنى)، أشجار ورسوم التقرير (منطقة ← مبنى ← مستوى)، لوحة المعلومات (دورة الحياة). تلقائي = يُحدد من اسم الكود.'))}>${CODE.ROLES.map(([r, , en, ar]) => `<label><span>${LBL(en, ar)}</span><select class="in" data-role="${r}" ${dis}>${roleOpts(r)}</select></label>`).join('')}</div>
+      ${bar(ks.length, ks.filter(k => nAct(k)).length)}
+      <div class="lscw"><div class="lsct" data-ct></div><div class="lscv" data-cv></div></div>`;
+    const ct = c.querySelector('[data-ct]'), cv = c.querySelector('[data-cv]');
+    const roleOfK = k => (CODE.ROLES.find(r => LSC.roleKey(cfg, r[0]) === k) || []);
+    const drawT = () => {
+      const rows = ks.filter(k => pass(`${k} ${cfg.names[k] || ''}`, nAct(k)));
+      ct.innerHTML = `<div class="tw lstw"><table class="t egrid lstb lsctb"><colgroup><col style="width:44px"><col style="width:26%"><col style="width:84px"><col style="width:70px"><col style="width:84px"><col><col style="width:150px"><col style="width:60px"></colgroup>
+        <thead><tr><th>#</th><th${TIP.a(LBL('P6 code', 'كود P6'), LBL('Activity code type of the XER files (key, never changed).', 'نوع كود النشاط في ملفات XER (المفتاح، لا يتغير).'))}>${LBL('P6 code', 'كود P6')}</th><th>${LBL('Scope', 'النطاق')}</th><th${TIP.a(LBL('Values', 'القيم'), LBL('Values of the code in the project.', 'قيم الكود في المشروع.'))}>${LBL('Values', 'القيم')}</th><th${TIP.a(LBL('Activities', 'الأنشطة'), LBL('Activities with a value of this code.', 'الأنشطة التي لها قيمة لهذا الكود.'))}>${LBL('Activities', 'الأنشطة')}</th><th${TIP.a(LBL('Display name', 'اسم العرض'), LBL('Name shown on the pages (filters, slicers, columns). Empty = the P6 name without its number.', 'الاسم الذي يظهر في الصفحات (الفلاتر، المقسمات، الأعمدة). فارغ = اسم P6 بدون رقمه.'))}>${LBL('Display name', 'اسم العرض')}</th><th>${LBL('Part on the pages', 'الدور')}</th><th${TIP.a(LBL('Filter', 'فلتر'), LBL('Shown as a filter on Progress Updates and as a slicer of the report (the first 7). Changing the filters makes the report read its update summaries again.', 'يظهر فلتراً في تحديث نسب الإنجاز ومقسماً في التقرير (أول 7). تغيير الفلاتر يجعل التقرير يعيد قراءة ملخصات التحديثات.'))}>${LBL('Filter', 'فلتر')}</th></tr></thead>
+        <tbody>${rows.map((k, i) => { const n = nAct(k), R = roleOfK(k); return `<tr data-k="${h(k)}" class="cl ${n ? 'lsu' : ''} ${st.k === k ? 'sel' : ''}"><td class="lsno"><span>${ks.indexOf(k) + 1}</span></td><td><span class="mono lsck" dir="ltr">${h(k)}</span></td><td class="tiny c">${LSC.scope(k)}</td><td class="n">${fmtN(s.codeVals[k].size)}</td><td class="n">${n ? fmtN(n) : '<span class="muted">—</span>'}</td><td><input class="in" dir="auto" data-nm="${h(k)}" value="${h(cfg.names[k] || '')}" placeholder="${h(String(k).replace(/^\d+\s*-?\s*/, ''))}" ${dis}></td><td>${R[0] ? `<span class="bdg navy">${LBL(R[2], R[3])}</span>` : ''}</td><td class="c"><input type="checkbox" data-fl="${h(k)}" ${filt.includes(k) ? 'checked' : ''} ${dis}></td></tr>`; }).join('') || `<tr><td colspan="8" class="empty">${T('none')}</td></tr>`}</tbody></table></div>`;
+      ct.querySelectorAll('tr[data-k]').forEach(tr => tr.onclick = e => { if (e.target.closest('input')) return; st.k = tr.dataset.k; ct.querySelectorAll('tr[data-k]').forEach(x => x.classList.toggle('sel', x === tr)); drawV(); });
+      ct.querySelectorAll('[data-nm]').forEach(i => i.oninput = () => { const v = i.value.trim(); if (v) cfg.names[i.dataset.nm] = v; else delete cfg.names[i.dataset.nm]; });
+      ct.querySelectorAll('[data-fl]').forEach(i => i.onchange = () => { const k = i.dataset.fl; filt = filt.filter(x => x !== k); if (i.checked) filt.push(k); filt.sort((a, b) => ks.indexOf(a) - ks.indexOf(b)); });
+    };
+    // values of the selected code + replace old values in the records (phase / building roles)
+    const drawV = () => {
+      const k = st.k; if (!k) { cv.innerHTML = ''; return; } const A = AC[k], vals = [...s.codeVals[k]].sort((a, b) => String(a).localeCompare(String(b), 'en', { numeric: true }));
+      const R = roleOfK(k)[0], lk = R === 'zone' ? 'phases' : R === 'building' ? 'zones' : '', RU = lk ? lsUse(lk) : new Map(); cfg.vals[k] = cfg.vals[k] || {};
+      const old = lk ? [...RU.entries()].filter(([v]) => !vals.includes(v)) : [];
+      cv.innerHTML = `<div class="lsvh">${LBL('Values of', 'قيم')} <b>${h(cfg.names[k] || CODE.short(k))}</b> <span class="tiny muted mono" dir="ltr">${h(k)}</span> <span class="tiny muted">· ${LBL('click a code above to see its values', 'اضغط على كود في الجدول لعرض قيمه')}</span></div>
+        <div class="tw lstw lsvw"><table class="t egrid lstb"><colgroup><col><col style="width:64px">${lk ? '<col style="width:64px">' : ''}<col></colgroup><thead><tr><th>${LBL('Value (P6)', 'القيمة (P6)')}</th><th>${LBL('Activities', 'الأنشطة')}</th>${lk ? `<th${TIP.a(LBL('Records', 'السجلات'), LBL('Drawings, targets, documents and manpower records with this value.', 'سجلات المخططات والمستهدفات والوثائق والعمالة بهذه القيمة.'))}>${LBL('Records', 'السجلات')}</th>` : ''}<th${TIP.a(LBL('Display name', 'اسم العرض'), LBL('Name shown for this value on the pages (filters, lists, report trees). Empty = the P6 value.', 'الاسم الذي يظهر لهذه القيمة في الصفحات (الفلاتر، القوائم، أشجار التقرير). فارغ = قيمة P6.'))}>${LBL('Display name', 'اسم العرض')}</th></tr></thead>
+        <tbody>${vals.map(x => `<tr class="${A.get(x) ? 'lsu' : ''}"><td dir="auto"><span class="lsvd"></span>${h(x)}</td><td class="n">${fmtN(A.get(x) || 0)}</td>${lk ? `<td class="n">${RU.get(x) ? `<span class="lsbd"${lsUsedTip(RU.get(x))}>${fmtN(RU.get(x).n)}</span>` : '<span class="muted">—</span>'}</td>` : ''}<td><input class="in" dir="auto" data-vn="${h(x)}" value="${h(cfg.vals[k][x] || '')}" placeholder="${h(x)}" ${dis}></td></tr>`).join('')}</tbody></table></div>
+        ${old.length ? `<div class="lsold"><div class="lsoh">${ic('warn')}<b>${LBL('Values in the records that are not in this P6 code', 'قيم في السجلات غير موجودة في كود P6 هذا')}</b><span class="tiny muted">${LBL('Replace each by its P6 value so the drawings / manpower pages and the report use the same names.', 'استبدل كل قيمة بقيمة P6 المقابلة لتستخدم صفحات المخططات والعمالة والتقرير نفس الأسماء.')}</span></div>
+          <table class="t lstb"><tbody>${old.map(([o, x]) => `<tr><td dir="auto"><b>${h(o)}</b> <span class="lsbd"${lsUsedTip(x)}>${fmtN(x.n)}</span></td><td><select class="in" data-map="${h(o)}" ${dis}><option value="">${LBL('— keep —', '— إبقاء —')}</option>${vals.map(y => `<option value="${h(y)}">${h(CODE.val(k, y))}</option>`).join('')}</select></td></tr>`).join('')}</tbody></table>
+          ${ed ? `<button class="btn sm" data-rep>${ic('sync')}${LBL('Replace in the records', 'استبدال في السجلات')}</button>` : ''}</div>` : ''}`;
+      cv.querySelectorAll('[data-vn]').forEach(i => i.oninput = () => { const v = i.value.trim(); if (v) cfg.vals[k][i.dataset.vn] = v; else delete cfg.vals[k][i.dataset.vn]; });
+      const rb = cv.querySelector('[data-rep]'); if (rb) rb.onclick = async () => {
+        const M = {}; cv.querySelectorAll('[data-map]').forEach(sl => { if (sl.value) M[sl.dataset.map] = sl.value; }); const keys = Object.keys(M); if (!keys.length) return toast(LBL('Choose the P6 value of at least one old value.', 'اختر قيمة P6 لقيمة قديمة واحدة على الأقل.'), 'warn');
+        const n = sum(keys, o => RU.get(o).n); if (!(await confirmBox(`${LBL('Replace the values in', 'استبدال القيم في')} ${fmtN(n)} ${LBL('records?', 'سجل؟')}<div class="tiny muted" style="margin-top:6px">${keys.map(o => `${h(o)} → ${h(M[o])}`).join('<br>')}</div>`, LBL('Replace', 'استبدال')))) return;
+        let c2 = 0; Object.keys(MOD).forEach(mk => (MOD[mk].fields || []).filter(f => f.t === 'list' && f.list === lk).forEach(f => { S.db[mk] = S.db[mk].map(r => (!r._del && M[r[f.k]] !== undefined) ? (c2++, stamp(Object.assign(clone(r), { [f.k]: M[r[f.k]] }))) : r); }));
+        touch('replace code values', `${k}: ${keys.map(o => `${o} → ${M[o]}`).join('; ')} (${c2})`); toast(`${LBL('Replaced', 'تم الاستبدال')}: ${fmtN(c2)}`, 'ok'); render(true);
+      };
+    };
+    wireBar(drawT); drawT(); drawV();
+    c.querySelectorAll('[data-role]').forEach(sl => sl.onchange = () => { const r = sl.dataset.role; if (sl.value) cfg.roles[r] = sl.value; else delete cfg.roles[r]; drawT(); drawV(); });
+    if (sv) sv.onclick = () => {
+      const clean = o => { Object.keys(o).forEach(x => { if (o[x] && typeof o[x] === 'object') { clean(o[x]); if (!Object.keys(o[x]).length) delete o[x]; } else if (o[x] === '' || o[x] == null) delete o[x]; }); return o; };
+      const nc = clean({ names: cfg.names, vals: cfg.vals, roles: cfg.roles }); const auto = s.filterKeys; const same = (S.db.codeCfg && Array.isArray(S.db.codeCfg.filters)) ? false : filt.length === auto.length && filt.every((k, i) => auto[i] === k);
+      if (!same) nc.filters = filt;
+      S.db.codeCfg = stamp(nc); touch('P6 activity codes', `${Object.keys(nc.names || {}).length} names · ${Object.keys(nc.roles || {}).length} roles${nc.filters ? ' · filters ' + nc.filters.length : ''}`); toast(T('saved'), 'ok'); render(true);
+    };
+  },
+  roleKey: (cfg, r) => { const k = cfg.roles[r]; if (k === '-') return ''; if (k && CODE.types().includes(k)) return k; return LSC.autoRole(r); },
+  autoRole(r) { const R = CODE.ROLES.find(x => x[0] === r), s = SCH(); if (!R || !s) return ''; const pool = s.globalCodes.length ? s.globalCodes : s.codeTypes; return pool.find(k => R[1].test(k) && !NOFILT.test(k)) || s.codeTypes.find(k => R[1].test(k) && !NOFILT.test(k)) || ''; }
+};
+
+/* ---- the whole page to / from one Excel workbook ---- */
+const LSX = {
+  SH: { codes: 'P6 Codes', vals: 'P6 Code Values', params: 'Parameters' },
+  sheetOf: k => (LIST_DEF[k].en.replace(/[\\/?*[\]:]/g, '-')).slice(0, 31),
+  async export() {
+    const sheets = [], yn = b => b ? 'Yes' : 'No';
+    Object.keys(LIST_DEF).forEach(k => { const def = LIST_DEF[k], U = lsUse(k); sheets.push({ name: LSX.sheetOf(k), rows: [[...def.cols.map(x => x[1]), 'Used (records)'], ...(S.db.lists[k] || []).map(it => [...def.cols.map(x => it[x[0]] ?? null), U.get(it.v) ? U.get(it.v).n : 0])], styles: { headerRows: [0] }, widths: [...def.cols.map(x => Array.isArray(x[3]) || x[3] === 'n' ? 18 : 34), 14], freeze: 'A2', autoFilter: 1 }); });
+    const s = SCH(), cf = S.db.codeCfg || {};
+    if (s) {
+      const roles = {}; CODE.ROLES.forEach(r => { const k = CODE.role(r[0]); if (k) roles[k] = r[2]; });
+      sheets.push({ name: LSX.SH.codes, rows: [['P6 Code', 'Scope', 'Values', 'Activities', 'Display Name', 'Role', 'Filter'], ...s.codeTypes.map(k => [k, (s.codeMeta[k] || [''])[0], s.codeVals[k].size, sum([...LSC.acts(k).values()], x => x), (cf.names || {})[k] || null, roles[k] || null, yn(s.filterKeys.includes(k))])], styles: { headerRows: [0] }, widths: [30, 8, 8, 10, 34, 20, 8], freeze: 'A2', autoFilter: 1 });
+      sheets.push({ name: LSX.SH.vals, rows: [['P6 Code', 'Value', 'Activities', 'Display Name'], ...s.codeTypes.flatMap(k => { const A = LSC.acts(k); return [...s.codeVals[k]].sort((a, b) => String(a).localeCompare(String(b), 'en', { numeric: true })).map(v => [k, v, A.get(v) || 0, ((cf.vals || {})[k] || {})[v] || null]); })], styles: { headerRows: [0] }, widths: [30, 34, 10, 34], freeze: 'A2', autoFilter: 1 });
+    }
+    const P = S.db.params; sheets.push({ name: LSX.SH.params, rows: [['Key', 'Value'], ...['designWeight', 'shopWeight', 'creditURShop', 'creditURDesign', 'drwReviewDays', 'lookahead', 'planBasis'].map(k => [k, P[k] ?? null])], styles: { headerRows: [0] }, widths: [24, 16] });
+    sheets.push({ name: 'README', rows: [['Lists & settings – ' + (S.db.project.code || '')], ['Edit the rows and import the workbook on Lists & settings → Import Excel. A list sheet replaces the whole list (rows you delete are removed). "Used (records)", "Scope", "Values" and "Activities" are information only.'], ['P6 Codes: change "Display Name", "Role" (' + CODE.ROLES.map(r => r[2]).join(', ') + ') and "Filter" (Yes / No). P6 Code Values: change "Display Name". The P6 code and value columns must not change.']], widths: [140] });
+    saveOutput(`${S.db.project.code}_Lists_and_Settings_${todayISO()}.xlsx`, await XLSXW.build(sheets), 'Exports');
+  },
+  import() {
+    const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.xlsx'; inp.onchange = async () => { const f = inp.files[0]; if (!f) return; let book; try { book = await XLSXR.read(f); } catch (e) { return toast(e.message, 'bad'); } LSX.preview(book, f.name); }; inp.click();
+  },
+  // analyse the workbook: per sheet the changes it brings; nothing is written before Apply
+  analyse(book) {
+    const out = [], sh = n => book.sheets.find(s => s.name.trim().toLowerCase() === n.toLowerCase());
+    const cell = v => v === null || v === undefined ? '' : (typeof v === 'object' && v.d ? v.d : String(v).trim());
+    Object.keys(LIST_DEF).forEach(k => {
+      const def = LIST_DEF[k], s = sh(LSX.sheetOf(k)) || sh(k); if (!s || !s.rows.length) return;
+      const hd = s.rows[0].map(cell), idx = def.cols.map(x => hd.findIndex(h0 => [x[1], x[2], x[0]].some(n => n.toLowerCase() === h0.toLowerCase())));
+      if (idx[0] < 0) { out.push({ k, name: LBL(def.en, def.ar), err: [LBL('Column not found', 'العمود غير موجود') + ': ' + def.cols[0][1]] }); return; }
+      const err = [], items = [];
+      s.rows.slice(1).forEach((r, ri) => { const it = {}; def.cols.forEach((x, ci) => { if (idx[ci] < 0) return; let v = cell(r[idx[ci]]); if (v === '') return; if (x[3] === 'n') { const n = Number(v); if (!isFinite(n)) { err.push(`${LBL('Row', 'صف')} ${ri + 2}: ${x[1]}`); return; } v = n; } else if (Array.isArray(x[3])) { const o = x[3].find(o2 => o2.toLowerCase() === String(v).toLowerCase() || E(o2) === v); if (!o) { err.push(`${LBL('Row', 'صف')} ${ri + 2}: ${x[1]} “${v}”`); return; } v = o; } it[x[0]] = v; }); if (it.v !== undefined && String(it.v).trim()) { it.v = String(it.v).trim(); items.push(it); } });
+      const cur = S.db.lists[k] || [], cm = new Map(cur.map(x => [x.v, x])), nm = new Set(items.map(x => x.v)), U = lsUse(k);
+      const add = items.filter(x => !cm.has(x.v)).length, chg = items.filter(x => cm.has(x.v) && def.cols.some(c => String(cm.get(x.v)[c[0]] ?? '') !== String(x[c[0]] ?? ''))).length, rem = cur.filter(x => !nm.has(x.v));
+      out.push({ k, name: LBL(def.en, def.ar), items, add, chg, rem: rem.length, remUsed: rem.filter(x => U.has(x.v)).length, err, n: items.length });
+    });
+    const s = SCH(), cs = sh(LSX.SH.codes), vs = sh(LSX.SH.vals);
+    if (s && (cs || vs)) {
+      const cfg = clone(S.db.codeCfg || {}); cfg.names = cfg.names || {}; cfg.vals = cfg.vals || {}; cfg.roles = cfg.roles || {}; const err = []; let chg = 0; let filt = null;
+      if (cs) { const hd = cs.rows[0].map(cell), ix = n => hd.findIndex(x => x.toLowerCase() === n.toLowerCase()); const iK = ix('P6 Code'), iN = ix('Display Name'), iR = ix('Role'), iF = ix('Filter'); filt = [];
+        const roles = {}; cs.rows.slice(1).forEach((r, ri) => { const k = cell(r[iK]); if (!k) return; if (!s.codeTypes.includes(k)) { err.push(`${LSX.SH.codes} ${LBL('row', 'صف')} ${ri + 2}: ${LBL('code not in the XER', 'كود غير موجود في XER')} “${k}”`); return; }
+          if (iN >= 0) { const n = cell(r[iN]); if ((cfg.names[k] || '') !== n) chg++; if (n) cfg.names[k] = n; else delete cfg.names[k]; }
+          if (iR >= 0) { const rl = cell(r[iR]); if (rl) { const R = CODE.ROLES.find(x => x[2].toLowerCase() === rl.toLowerCase() || x[3] === rl || x[0] === rl.toLowerCase()); if (!R) err.push(`${LSX.SH.codes} ${LBL('row', 'صف')} ${ri + 2}: ${LBL('role', 'الدور')} “${rl}”`); else roles[R[0]] = k; } }
+          if (iF >= 0 && /^(yes|y|1|true|نعم)$/i.test(cell(r[iF]))) filt.push(k); });
+        if (iR >= 0) { CODE.ROLES.forEach(([r]) => { const want = roles[r] || '-'; const now = LSC.roleKey(cfg, r) || '-'; if (want !== now) chg++; if (roles[r]) cfg.roles[r] = roles[r]; else cfg.roles[r] = '-'; }); }
+        if (iF >= 0) { if (filt.join('|') !== s.filterKeys.join('|')) chg++; } else filt = null; }
+      if (vs) { const hd = vs.rows[0].map(cell), ix = n => hd.findIndex(x => x.toLowerCase() === n.toLowerCase()); const iK = ix('P6 Code'), iV = ix('Value'), iN = ix('Display Name');
+        vs.rows.slice(1).forEach((r, ri) => { const k = cell(r[iK]), v = cell(r[iV]); if (!k || !v) return; if (!s.codeTypes.includes(k) || !s.codeVals[k].has(v)) { err.push(`${LSX.SH.vals} ${LBL('row', 'صف')} ${ri + 2}: “${k} / ${v}”`); return; } const n = iN >= 0 ? cell(r[iN]) : ''; const m = cfg.vals[k] = cfg.vals[k] || {}; if ((m[v] || '') !== n) chg++; if (n) m[v] = n; else delete m[v]; }); }
+      out.push({ k: 'codes', name: lsTabName('codes'), cfg, filt, chg, err });
+    }
+    const ps = sh(LSX.SH.params); if (ps) { const P = clone(S.db.params); let chg = 0; ps.rows.slice(1).forEach(r => { const k = cell(r[0]), v = cell(r[1]); if (!k || !['designWeight', 'shopWeight', 'creditURShop', 'creditURDesign', 'drwReviewDays', 'lookahead', 'planBasis'].includes(k)) return; const nv = k === 'planBasis' ? (v === 'upd' ? 'upd' : 'bl') : Number(v); if (k !== 'planBasis' && !isFinite(nv)) return; if (String(P[k] ?? '') !== String(nv)) chg++; P[k] = nv; }); out.push({ k: 'params', name: T('params'), P, chg, err: [] }); }
+    return out;
+  },
+  preview(book, fname) {
+    const A = LSX.analyse(book); if (!A.length) return toast(LBL('No sheet of Lists & settings found in this file.', 'لا توجد أوراق القوائم والإعدادات في هذا الملف.'), 'bad');
+    modal({ title: `${LBL('Import Excel', 'استيراد Excel')} — ${h(fname)}`, body: `<div class="tiny muted" style="margin-bottom:8px">${LBL('Tick the sheets to apply. A list sheet replaces the whole list.', 'حدد الأوراق المطلوب تطبيقها. ورقة القائمة تستبدل القائمة كاملة.')}</div>
+      <table class="t lsimp"><thead><tr><th></th><th>${LBL('Tab', 'التبويب')}</th><th>${LBL('Rows', 'الصفوف')}</th><th>${LBL('New', 'جديد')}</th><th>${LBL('Changed', 'معدل')}</th><th>${LBL('Removed', 'محذوف')}</th><th>${LBL('Errors', 'أخطاء')}</th></tr></thead><tbody>${A.map((a, i) => `<tr><td><input type="checkbox" data-ap="${i}" ${a.items || a.cfg || a.P ? 'checked' : 'disabled'}></td><td><b>${h(a.name)}</b></td><td class="n">${a.n != null ? fmtN(a.n) : '—'}</td><td class="n">${a.add != null ? fmtN(a.add) : '—'}</td><td class="n">${fmtN(a.chg || 0)}</td><td class="n ${a.remUsed ? 'bad' : ''}">${a.rem != null ? fmtN(a.rem) + (a.remUsed ? ` (${fmtN(a.remUsed)} ${LBL('used', 'مستخدم')})` : '') : '—'}</td><td class="n ${a.err.length ? 'bad' : ''}"${a.err.length ? TIP.a(LBL('Errors', 'أخطاء'), ...a.err.slice(0, 12).map(e => ({ warn: e }))) : ''}>${fmtN(a.err.length)}</td></tr>`).join('')}</tbody></table>
+      ${A.some(a => a.err.length) ? `<div class="notice warn" style="margin-top:10px">${ic('warn')}<div>${LBL('Rows or cells with errors are skipped (hover the count for the details).', 'الصفوف أو الخلايا التي بها أخطاء يتم تخطيها (قف على العدد للتفاصيل).')}</div></div>` : ''}`,
+      foot: `<span class="sp"></span><button class="btn" data-c>${T('cancel')}</button><button class="btn pri" data-ok>${LBL('Apply', 'تطبيق')}</button>`,
+      onMount: (el, close) => {
+        el.querySelector('[data-c]').onclick = close;
+        el.querySelector('[data-ok]').onclick = () => {
+          const pick = [...el.querySelectorAll('[data-ap]:checked')].map(x => A[+x.dataset.ap]); if (!pick.length) return close();
+          const L = clone(S.db.lists); let lists = 0; const done = [];
+          pick.forEach(a => { if (a.items) { L[a.k] = a.items; lists++; done.push(a.k); } else if (a.cfg) { const nc = { names: a.cfg.names, vals: a.cfg.vals, roles: a.cfg.roles }; if (a.filt) nc.filters = a.filt; S.db.codeCfg = stamp(nc); done.push('codes'); } else if (a.P) { S.db.params = stamp(a.P); done.push('params'); } });
+          if (lists) S.db.lists = stamp(L);
+          touch('import excel', `lists & settings: ${done.join(', ')}`); toast(`${T('saved')} – ${done.length} ${LBL('tabs', 'تبويب')}`, 'ok'); close(); render(true);
+        };
+      } });
+  }
+};
+
 /* ===== USERS & PERMISSIONS ===== */
 const PERM_AREAS = [
   { k: 'admin', en: 'Planner / Project Control – edit all data pages and all progress columns (the administration pages below are separate permissions)', ar: 'التخطيط والتحكم – تعديل كل صفحات البيانات وكل أعمدة الإنجاز (صفحات الإدارة أدناه صلاحيات منفصلة)', g: 0 },
@@ -5618,7 +5847,7 @@ const IMP = (() => {
     const m = MOD[mk];
     return m.fields.map(f => {
       const d = { k: f.k, t: f.t, f, req: f.req, calc: f.t === 'calc', names: [f.en, f.ar, f.k, ...((ALIAS[mk] || {})[f.k] || [])] };
-      if (f.t === 'list') d.map = listLookup(S.db.lists[f.list] || [], f.list === 'reviewCodes' ? RC_EXTRA : null);
+      if (f.t === 'list') d.map = listLookup(LISTS(f.list), f.list === 'reviewCodes' ? RC_EXTRA : null);
       if (f.t === 'enum') d.map = enumLookup(f.opts);
       return d;
     });
@@ -5813,7 +6042,7 @@ const IMP = (() => {
   async function templateModule(mk) {
     const m = MOD[mk]; const fs = m.fields.filter(f => f.t !== 'calc');
     const head = fs.map(f => FL(f)); const listCols = []; const lists = [];
-    fs.forEach((f, i) => { let vals = null; if (f.t === 'list') vals = (S.db.lists[f.list] || []).map(LV); else if (f.t === 'enum') vals = f.opts.filter(Boolean).map(E); if (vals && vals.length) { lists.push([FL(f), ...vals]); listCols.push({ i, n: vals.length, li: lists.length - 1 }); } });
+    fs.forEach((f, i) => { let vals = null; if (f.t === 'list') vals = LISTS(f.list).map(LV); else if (f.t === 'enum') vals = f.opts.filter(Boolean).map(E); if (vals && vals.length) { lists.push([FL(f), ...vals]); listCols.push({ i, n: vals.length, li: lists.length - 1 }); } });
     const maxL = Math.max(0, ...lists.map(l => l.length));
     const lrows = []; for (let r = 0; r < maxL; r++) lrows.push(lists.map(l => l[r] ?? null));
     let data = [];
@@ -6018,7 +6247,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const rows = RG.rows(DW_CFG), s = dwStats(rows), L = rgView(DW_CFG, rows);
     const grp = {}; rows.forEach(r => { const k = `${r.category}|${r.zone}`; const o = grp[k] = grp[k] || { cat: r.category, zone: r.zone, rows: [] }; o.rows.push(r); });
     const G = Object.values(grp).map(o => Object.assign(o, { s: dwStats(o.rows) })).sort((a, b) => String(a.cat).localeCompare(String(b.cat)) || String(listVal('zones', a.zone)).localeCompare(String(listVal('zones', b.zone))));
-    const sumT = table([{ h: LBL('Category', 'الفئة'), v: o => esc(DW_CAT(o.cat)) }, { h: LBL('Building / zone', 'المبنى / المنطقة'), v: o => esc(listVal('zones', o.zone)) }, ...[['n', LBL('Registered', 'مسجل')], ['sub', LBL('Submitted', 'مقدَّم')], ['ur', LBL('Under review', 'قيد المراجعة')], ['A', 'A'], ['B', 'B'], ['C', 'C'], ['Dd', 'D'], ['late', LBL('Late', 'متأخر')]].map(([k, l]) => ({ h: l, n: 1, v: o => fmtN(o.s[k]) }))], G, [T('total'), '', ...['n', 'sub', 'ur', 'A', 'B', 'C', 'Dd', 'late'].map(k => fmtN(s[k]))]);
+    const sumT = table([{ h: LBL('Category', 'الفئة'), v: o => esc(DW_CAT(o.cat)) }, { h: CODE.lab('building', 'Building / zone', 'المبنى / المنطقة'), v: o => esc(listVal('zones', o.zone)) }, ...[['n', LBL('Registered', 'مسجل')], ['sub', LBL('Submitted', 'مقدَّم')], ['ur', LBL('Under review', 'قيد المراجعة')], ['A', 'A'], ['B', 'B'], ['C', 'C'], ['Dd', 'D'], ['late', LBL('Late', 'متأخر')]].map(([k, l]) => ({ h: l, n: 1, v: o => fmtN(o.s[k]) }))], G, [T('total'), '', ...['n', 'sub', 'ur', 'A', 'B', 'C', 'Dd', 'late'].map(k => fmtN(s[k]))]);
     const reg = table([{ h: LBL('Drawing no / rev', 'رقم المخطط / المراجعة'), cls: 'nw', v: r => `${esc(r.no || '')}${r.rev ? ' / ' + esc(r.rev) : ''}` }, { h: LBL('Title', 'العنوان'), cls: 'w', v: r => esc(r.title || '') }, { h: LBL('Category', 'الفئة'), v: r => esc(DW_CAT(r.category)) }, { h: LBL('Phase', 'المرحلة'), v: r => esc(listVal('phases', r.phase)) }, { h: LBL('Building', 'المبنى'), v: r => esc(listVal('zones', r.zone)) }, { h: LBL('Element', 'العنصر'), v: r => esc(listVal('elements', r.element)) }, { h: LBL('Planned', 'المخطط'), cls: 'nw', v: r => D.fmt(r.plannedSub) }, { h: LBL('Submitted', 'المقدَّم'), cls: 'nw', v: r => D.fmt(r.actualSub) }, { h: LBL('Status', 'الحالة'), v: r => `<span class="bdg ${badgeCls(DW_ST(r))}">${esc(E(DW_ST(r)))}</span>` }, { h: LBL('Last reply', 'آخر رد'), v: r => rgReplyTxt(r.reviewDate, r.reviewCode, r.replyRef, r.replyLink) }, { h: LBL('Credit', 'المحتسب'), n: 1, v: r => fmtP(MOD.drawings.F.credit.calc(r), 0) }, { h: LBL('Copy', 'النسخة'), v: r => safeUrl(r.docLink) ? `<a href="${esc(safeUrl(r.docLink))}">${LBL('open', 'فتح')}</a>` : '' }], L, [`${T('total')} (${fmtN(L.length)})`, '', '', '', '', '', '', '', '', '', '', ''], 'wide');
     return doc(T('drawings'), LBL('Engineering / drawings status', 'موقف الأعمال الهندسية والمخططات'), rgNote(DW_CFG) + rgKp(dwCards(s)) + sec(LBL('Status by category and building', 'الموقف حسب الفئة والمبنى'), sumT, G.length) + sec(LBL('Drawings register', 'سجل المخططات'), reg, L.length), 'landscape');
   };
@@ -6057,7 +6286,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
       { h: LBL('To P6', 'إلى P6'), v: r => `${bdg(r.e.status)} <b>${r.e.pctR}%</b>${r.behind ? ' ' + bdg('Behind') : ''}` },
       { h: T('c_cb'), v: r => esc(E((r.u || {}).causedBy || '')) }, { h: T('c_rsn'), v: r => esc((r.u || {}).reason || '') }, { h: T('c_mit'), v: r => esc((r.u || {}).mitigation || '') }];
     const cols = cols0.map((c, i) => Object.assign({}, c, { w: W[i] }));
-    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues', updC: 'upd_ctr', updCo: 'upd_cons', updO: 'upd_own' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (A_(v).length) fl.push(`${esc(k.replace(/^\d\d /, ''))}: ${esc(A_(v).join(' / '))}`); });
+    const fl = []; if (st.focus && st.focus !== 'all') fl.push(T({ due: 'f_due', inprog: 'f_inprog', ns: 'f_ns', comp: 'f_comp', behind: 'f_behind', updated: 'f_updated', issues: 'f_issues', updC: 'upd_ctr', updCo: 'upd_cons', updO: 'upd_own' }[st.focus])); if (st.q) fl.push(`“${esc(st.q)}”`); Object.entries(st.codes || {}).forEach(([k, v]) => { if (A_(v).length) fl.push(`${esc(CODE.short(k))}: ${esc(A_(v).map(x => CODE.val(k, x)).join(' / '))}`); });
     const behind = sm.rows.filter(r => r.behind && r.u && r.u.reason);
     return doc(T('progress'), `${T('cutoff')} ${D.fmt(cut.date)} — ${LBL('Site progress update', 'تحديث إنجاز الموقع')}`, kp([[T('planned'), fmtP(sm.planned), `${T(sm.basis === 'bl' ? 'pl_bl' : 'pl_upd')}${sm.plannedDD !== null && sch.upd ? ` · ${T('pl_at_dd')} ${(sm.plannedDD * 100).toFixed(2)}%` : ''}`], [T('contractor_act'), fmtP(sm.ctr), `${((sm.ctr - sm.planned) * 100).toFixed(1)} pp · SPI ${sm.planned ? (sm.ctr / sm.planned).toFixed(2) : '—'}`, sm.ctr >= sm.planned ? 'ok' : 'warn'], [T('consultant_rev'), fmtP(sm.cons)], [T('owner_rev'), fmtP(sm.own)], [T('updated'), fmtN(sm.updated), `${T('r_ctr_s')} ${fmtN(sm.updC)} · ${T('r_cons_s')} ${fmtN(sm.updCo)} · ${T('r_own_s')} ${fmtN(sm.updO)}`], [T('behind'), fmtN(sm.behind), `${sm.behindNoReason} ${LBL('without reason', 'بدون سبب')}`, sm.behind ? 'warn' : 'ok']]) +
       `<div class="note">${T('activities')}: ${fmtN(sm.n)} · ${T('completed')}: ${fmtN(sm.comp)} · ${T('in_progress')}: ${fmtN(sm.inprog)} · ${T('not_started')}: ${fmtN(sm.ns)}${fl.length ? ` — ${LBL('Filters applied', 'الفلاتر المطبقة')}: ${fl.join(' · ')}` : ''}</div>` +
@@ -6071,7 +6300,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const sch = SCH(); const sm = (cut && sch) ? PROG.summary(cut._id) : null;
     let lc = '';
     if (sm) {
-      const key = (sch.codeTypes || []).find(k => /life cycle/i.test(k)) || sch.filterKeys[0] || ''; const grp = {}; const { w } = PROG.weights();
+      const key = CODE.role('life') || sch.filterKeys[0] || ''; const grp = {}; const { w } = PROG.weights();
       sm.rows.forEach(r => { const g = r.a.codes[key] || '—'; const o = grp[g] = grp[g] || { g, n: 0, c: 0, ip: 0, ns: 0, w: 0, pl: 0, ac: 0, beh: 0 }; o.n++; o[r.e.status === 'Completed' ? 'c' : r.e.status === 'In Progress' ? 'ip' : 'ns']++; const wt = w(r.a); o.w += wt; o.pl += wt * N(r.pl); o.ac += wt * r.e.pct; if (r.behind) o.beh++; });
       const G = Object.values(grp).sort((a, b) => b.w - a.w);
       lc = table([{ h: key.replace(/^\d\d /, ''), v: o => `<b>${esc(o.g)}</b>` }, { h: T('activities'), n: 1, v: o => o.n }, { h: T('completed'), n: 1, v: o => o.c }, { h: T('in_progress'), n: 1, v: o => o.ip }, { h: T('not_started'), n: 1, v: o => o.ns }, { h: T('planned'), n: 1, v: o => fmtN(o.w ? o.pl / o.w : 0, 1) + '%' }, { h: T('contractor_act'), n: 1, v: o => fmtN(o.w ? o.ac / o.w : 0, 1) + '%' }, { h: '', v: o => `<div class="bar"><i class="pl" style="width:${o.w ? o.pl / o.w : 0}%"></i></div><div class="bar" style="margin-top:.6mm"><i style="width:${o.w ? o.ac / o.w : 0}%"></i></div>` }, { h: T('behind'), n: 1, v: o => o.beh }], G);
@@ -6097,7 +6326,10 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const p = P(); const kv = [[LBL('Project Number', 'رقم المشروع'), p.number], [LBL('Project Code', 'كود المشروع'), p.code], [LBL('Project Name', 'اسم المشروع'), p.name], [LBL('Location', 'الموقع'), p.location], [LBL('Owner', 'المالك'), p.owner], [LBL('Consultant', 'الاستشاري'), p.consultant], [LBL('Contractor', 'المقاول'), p.contractor], [LBL('Contract Value (SAR)', 'قيمة العقد (ريال)'), fmtN(p.contractValue, 2)], [LBL('Total V.O', 'الأوامر التغييرية'), fmtN(p.totalVO || 0, 2)], ['BAC', fmtN(N(p.contractValue) + N(p.totalVO), 2)], [LBL('Land Area (m²)', 'مساحة الأرض (م²)'), fmtN(p.landArea)], ['BUA (m²)', fmtN(p.bua)], [LBL('% General Retention', 'نسبة المحتجزات'), fmtP(p.retPct, 0)], [LBL('% Down payment Retention', 'نسبة استرداد المقدمة'), fmtP(p.dpPct, 0)], [LBL('Contract Sign Date', 'تاريخ توقيع العقد'), D.fmt(p.signDate)], [LBL('Down payment Date', 'تاريخ الدفعة المقدمة'), D.fmt(p.dpDate)], [LBL('Site Handover Date', 'تاريخ استلام الموقع'), D.fmt(p.handoverDate)], [LBL('Commencement', 'تاريخ البدء'), D.fmt(p.commencement)], [LBL('Completion', 'تاريخ الانتهاء'), D.fmt(p.completion)], [LBL('Working Hours / Man-Day', 'ساعات العمل اليومية'), p.stdHours]];
     return doc(LBL('Project information', 'بيانات المشروع'), '', `<div class="kv">${kv.map(([k, v]) => `<span>${esc(k)}</span><b>${esc(v ?? '')}</b>`).join('')}</div>` + (p.overview ? sec(LBL('Project overview', 'نبذة عن المشروع'), `<div class="ov">${esc(p.overview)}</div>`) : ''), 'portrait');
   };
-  R.lists = () => { const tab = S.ui.lsTab || 'resources'; if (!LIST_DEF[tab]) return R.project(); const def = LIST_DEF[tab]; const items = S.db.lists[tab] || []; return doc(LBL(def.en, def.ar), T('lists'), table(def.cols.map(c => ({ h: LBL(c[1], c[2]), n: c[3] === 'n', v: it => esc(it[c[0]] ?? '') })), items), 'portrait'); };
+  R.lists = () => { const tab = S.ui.lsTab || 'resources';
+    if (tab === 'codes') { const s = SCH(); if (!s) return R.project(); const roles = {}; CODE.ROLES.forEach(r => { const k = CODE.role(r[0]); if (k) roles[k] = LBL(r[2], r[3]); });   // P6 activity codes with their names, roles and filters
+      return doc(LBL('P6 activity codes', 'أكواد أنشطة P6'), T('lists'), table([{ h: LBL('P6 code', 'كود P6'), cls: 'nw', v: k => esc(k) }, { h: LBL('Display name', 'اسم العرض'), v: k => esc(CODE.short(k)) }, { h: LBL('Values', 'القيم'), n: 1, v: k => fmtN(s.codeVals[k].size) }, { h: LBL('Part on the pages', 'الدور'), v: k => esc(roles[k] || '') }, { h: LBL('Filter', 'فلتر'), v: k => s.filterKeys.includes(k) ? '✓' : '' }], s.codeTypes), 'portrait'); }
+    if (!LIST_DEF[tab]) return R.project(); const def = LIST_DEF[tab]; const items = S.db.lists[tab] || []; const U = lsUse(tab); return doc(LBL(def.en, def.ar), T('lists'), table([...def.cols.map(c => ({ h: LBL(c[1], c[2]), n: c[3] === 'n', v: it => esc(it[c[0]] ?? '') })), { h: LBL('Used (records)', 'الاستخدام (سجل)'), n: 1, v: it => U.get(it.v) ? fmtN(U.get(it.v).n) : '' }], items), 'portrait'); };
   R.database = () => { const a = [...S.db.audit].reverse().slice(0, 300); return doc(T('database'), T('audit'), table([{ h: T('date'), cls: 'nw', v: x => esc(TS(x.at)) }, { h: T('by'), v: x => esc(x.by) }, { h: T('role'), v: x => esc(x.role ? T('r_' + x.role) : '') }, { h: 'Action', v: x => esc(x.action) }, { h: 'Detail', cls: 'w', v: x => esc(x.detail) }], a), 'portrait'); };
 
   function build(page) { return (R[page] || R.home)(); }
@@ -6675,7 +6907,9 @@ function rpRows() { // progress rows of the report cut-off (cached until the dat
   return { rows: RPX.rows, w: RPX.w, cut };
 }
 const codeTypes = () => { const s = SCH(); return s ? (s.filterKeys || []) : []; };
-const pickCode = (re, not) => { const ks = codeTypes(); return ks.find(k => re.test(k) && k !== not) || ks.find(k => k !== not) || ''; };
+// code of a part of the page (zone, building, level, work type …): the role set on Lists & settings → P6 activity codes, else by name (decision 93)
+const PICK_ROLE = [[/zone|phase/i, 'zone'], [/building/i, 'building'], [/level|floor/i, 'level'], [/work type/i, 'work'], [/life cycle/i, 'life']];
+const pickCode = (re, not) => { const r = (PICK_ROLE.find(x => String(x[0]) === String(re)) || [])[1]; const k = r ? CODE.role(r, not) : ''; if (k) return k; const ks = codeTypes(); return ks.find(k => re.test(k) && k !== not) || ks.find(k => k !== not) || ''; };
 function byCode(type) { // planned (cut-off) vs actual (contractor) per value of one activity code
   const X = rpRows(); if (!X) return []; const sch = SCH(), g = new Map();
   X.rows.forEach(r => { const v = (actCodes(sch, r.a)[type]) || '—'; const o = g.get(v) || { v, W: 0, pl: 0, ac: 0, n: 0, cost: 0, behind: 0 }; const wt = X.w(r.a); o.W += wt; o.pl += wt * N(PROG.planRaw(r.a, X.cut.date)); o.ac += wt * r.e.pct / 100; o.n++; o.cost += N(r.a.cost); if (r.behind) o.behind++; g.set(v, o); });
@@ -6719,7 +6953,7 @@ RP.P.baseline = (el, pg) => {
 /* ---------- Executive summary ---------- */
 RP.P.executive = (el, pg) => {
   const X = rpRows(); if (!X) return rpNeed(el, pg, needSch());
-  const sm = PROG.summary(X.cut._id); const a = S.ui.rpExA || pickCode(/zone|phase/i), b = S.ui.rpExB || pickCode(/work type|building/i, a);
+  const sm = PROG.summary(X.cut._id); const a = S.ui.rpExA || pickCode(/zone|phase/i), b = S.ui.rpExB || CODE.role('work', a) || CODE.role('building', a) || pickCode(/work type|building/i, a);
   el.innerHTML = `<div class="up">${rpHead(LBL('Executive summary', 'الملخص التنفيذي'), `${T('cutoff')} <b dir="ltr">${D.fmt(X.cut.date)}</b>`)}
     <div class="up-kpis">${rpK(LBL('Planned', 'المخطط'), fmtPct(sm.planned, 2), LBL('at the cut-off date', 'عند تاريخ القطع'))}${rpK(LBL('Actual – contractor', 'الفعلي – المقاول'), fmtPct(sm.ctr, 2), `${sm.ctr - sm.planned >= 0 ? '+' : ''}${((sm.ctr - sm.planned) * 100).toFixed(2)} pp`, sm.ctr + 0.005 < sm.planned ? 'bad' : 'ok')}${rpK(LBL('Consultant', 'الاستشاري'), fmtPct(sm.cons, 2))}${rpK(LBL('Owner', 'المالك'), sm.hasOwn ? fmtPct(sm.own, 2) : '—')}${rpK(LBL('Behind plan', 'متأخر عن المخطط'), fmtN(sm.behind), `${fmtN(sm.n)} ${T('activities')}`, sm.behind ? 'bad' : 'ok')}${rpK(LBL('Status', 'الحالة'), `${fmtN(sm.comp)} / ${fmtN(sm.inprog)}`, LBL('completed / in progress', 'مكتمل / جارٍ'))}</div>
     <div class="up-b"><div class="up-t"><div class="up-ct">${LBL('By', 'حسب')} ${codeSel('rpExA', a)}</div>${hbars(byCode(a))}${hbLeg()}</div><div class="up-t"><div class="up-ct">${LBL('By', 'حسب')} ${codeSel('rpExB', b)}</div>${hbars(byCode(b))}${hbLeg()}</div></div></div>`;
@@ -6812,15 +7046,15 @@ const RPF = {
     const s = SCH(); if (!s) return '<span class="sp"></span>'; const ks = codeTypes().slice(0, 7);
     return `<div class="pb-sl">${ks.map(k => { const cnt = new Map(), sel = RPF.vals(k); s.activities.forEach(a => { if (!RPF.pass(a, k)) return; const v = a.codes[k]; if (v) cnt.set(v, (cnt.get(v) || 0) + 1); }); sel.forEach(v => { if (!cnt.has(v)) cnt.set(v, 0); });
       RPF.opts[k] = [...cnt.keys()].sort((x, y) => x.localeCompare(y, 'en', { numeric: true })).map(v => [v, cnt.get(v)]);
-      const txt = !sel.length ? LBL('All', 'الكل') : sel.length === 1 ? sel[0] : `${sel.length} ${LBL('selected', 'محدد')}`;
-      return `<div class="pb-s ${sel.length ? 'on' : ''}" title="${h(k)}${sel.length ? ': ' + h(sel.join(', ')) : ''}"><span>${h(k.replace(/^\d+\s*/, ''))}</span><button type="button" class="pb-sb" data-sl="${h(k)}" aria-haspopup="listbox" aria-expanded="false"><em dir="auto">${h(txt)}</em><i>▾</i></button></div>`; }).join('')}</div>`;
+      const txt = !sel.length ? LBL('All', 'الكل') : sel.length === 1 ? CODE.val(k, sel[0]) : `${sel.length} ${LBL('selected', 'محدد')}`;
+      return `<div class="pb-s ${sel.length ? 'on' : ''}" title="${h(k)}${sel.length ? ': ' + h(sel.map(v => CODE.val(k, v)).join(', ')) : ''}"><span>${h(CODE.short(k))}</span><button type="button" class="pb-sb" data-sl="${h(k)}" aria-haspopup="listbox" aria-expanded="false"><em dir="auto">${h(txt)}</em><i>▾</i></button></div>`; }).join('')}</div>`;
   },
   /* drop-down with check boxes: tick several values, Apply (or click outside) filters every page */
   open(btn) {
     const k = btn.dataset.sl, box = btn.parentElement, old = document.querySelector('.pb-pop'); if (old) { const same = old.parentElement === box; old._done(false); if (same) return; }
     const sel = new Set(RPF.vals(k)), O = RPF.opts[k] || [], pop = document.createElement('div'); pop.className = 'pb-pop'; pop.setAttribute('role', 'listbox'); pop.setAttribute('aria-multiselectable', 'true');
     pop.innerHTML = `${O.length > 10 ? `<input class="pb-q" type="search" placeholder="${LBL('Search', 'بحث')}" aria-label="${LBL('Search', 'بحث')}">` : ''}<div class="pb-pa"><button type="button" data-pa="1">${LBL('Select all', 'تحديد الكل')}</button><button type="button" data-pa="0">${LBL('Clear', 'إلغاء التحديد')}</button></div>
-      <div class="pb-ol">${O.map(([v, n]) => `<label><input type="checkbox" value="${h(v)}" ${sel.has(v) ? 'checked' : ''}><span dir="auto">${h(v)}</span><em>${fmtN(n)}</em></label>`).join('') || `<div class="pb-oe">—</div>`}</div>
+      <div class="pb-ol">${O.map(([v, n]) => `<label><input type="checkbox" value="${h(v)}" ${sel.has(v) ? 'checked' : ''}><span dir="auto">${h(CODE.val(k, v))}</span><em>${fmtN(n)}</em></label>`).join('') || `<div class="pb-oe">—</div>`}</div>
       <div class="pb-pf"><button type="button" class="ok" data-pok>${LBL('Apply', 'تطبيق')}</button></div>`;
     box.appendChild(pop); btn.setAttribute('aria-expanded', 'true');
     const cbs = () => [...pop.querySelectorAll('.pb-ol input')];
@@ -6833,7 +7067,7 @@ const RPF = {
     pop.querySelector('[data-pok]').onclick = () => done(true);
     const q = pop.querySelector('.pb-q'); if (q) { q.oninput = () => { const s = q.value.trim().toLowerCase(); cbs().forEach(c => c.parentElement.style.display = !s || c.value.toLowerCase().includes(s) ? '' : 'none'); }; q.focus(); } else { const c = cbs()[0]; if (c) c.focus(); }
   },
-  label: () => Object.keys(RPF.get()).filter(k => RPF.vals(k).length).map(k => `${h(k.replace(/^\d+\s*/, ''))}: <b>${h(RPF.vals(k).join(', '))}</b>`).join(' · ')
+  label: () => Object.keys(RPF.get()).filter(k => RPF.vals(k).length).map(k => `${h(CODE.short(k))}: <b>${h(RPF.vals(k).map(v => CODE.val(k, v)).join(', '))}</b>`).join(' · ')
 };
 const rpRowsAll = rpRows;
 function rpRowsF() { // progress rows of the report cut-off, filtered by the slicers (weights re-based on the selection)
@@ -6899,7 +7133,7 @@ RP.P.layout = (el, pg) => {
   const R = rows.sort((a, b) => (M.order || []).indexOf(a.k) - (M.order || []).indexOf(b.k));
   el.innerHTML = `<div class="up ly">${rpHead('', `${X ? `${T('cutoff')} <b dir="ltr">${D.fmt(X.cut.date)}</b>` : ''} ${rpFNote()}`)}
     <div class="up-b"><div class="up-c ly-c">${svg || `<img src="${p.layoutImg}" alt="" class="ly-img">`}<div class="up-lg">${[['#7A8A99', LBL('Completed', 'مكتمل')], ['#1E8A5A', LBL('Ahead', 'متقدم')], ['#D9A21B', LBL('On plan', 'حسب المخطط')], ['#C2410C', LBL('Behind > 5 pp', 'متأخر > 5 نقاط')], ['#D5DCE3', LBL('Not started', 'لم يبدأ')]].map(([c, l]) => `<span><i style="background:${c};height:10px"></i>${l}</span>`).join('')}</div></div>
-      <div class="up-t"><div class="up-ct">${LBL('Progress by building / zone', 'التقدم حسب المبنى / المنطقة')}</div><div class="up-tw"><table class="t"><thead><tr><th>${LBL('Building / zone', 'المبنى / المنطقة')}</th><th>${LBL('Planned', 'المخطط')}</th><th>${LBL('Actual', 'الفعلي')}</th><th>${LBL('BL finish', 'نهاية أساسي')}</th><th>${LBL('Forecast', 'المتوقع')}</th></tr></thead><tbody>${R.map(o => `<tr><td><b dir="ltr">${h(o.k)}</b> <span class="small" dir="auto">${h(nm(o.k))}</span></td><td dir="ltr">${fmtPct(o.pl)}</td><td dir="ltr" class="${o.ac + 0.05 < o.pl ? 'neg' : ''}">${fmtPct(o.ac)}</td><td dir="ltr">${D.fmt(o.bf)}</td><td dir="ltr" class="${o.ff > o.bf ? 'neg' : ''}">${D.fmt(o.ff)}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div>
+      <div class="up-t"><div class="up-ct">${LBL('Progress by building / zone', 'التقدم حسب المبنى / المنطقة')}</div><div class="up-tw"><table class="t"><thead><tr><th>${CODE.lab('building', 'Building / zone', 'المبنى / المنطقة')}</th><th>${LBL('Planned', 'المخطط')}</th><th>${LBL('Actual', 'الفعلي')}</th><th>${LBL('BL finish', 'نهاية أساسي')}</th><th>${LBL('Forecast', 'المتوقع')}</th></tr></thead><tbody>${R.map(o => `<tr><td><b dir="ltr">${h(o.k)}</b> <span class="small" dir="auto">${h(nm(o.k))}</span></td><td dir="ltr">${fmtPct(o.pl)}</td><td dir="ltr" class="${o.ac + 0.05 < o.pl ? 'neg' : ''}">${fmtPct(o.ac)}</td><td dir="ltr">${D.fmt(o.bf)}</td><td dir="ltr" class="${o.ff > o.bf ? 'neg' : ''}">${D.fmt(o.ff)}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div>
       ${p.cover ? `<img class="ly-ph" src="${p.cover}" alt="">` : ''}</div></div></div>`;
 };
 
@@ -8781,7 +9015,7 @@ function rpTree(id, o) { // o = { items, levels:[fn], root, name, title, cols:[{
   const NK = {}, IT = [], iid = it => 'i:' + (o.title ? o.title(it) : IT.indexOf(it));
   const IN = o.ind || 16, IL = o.ind ? 14 + o.ind : 30;   // indentation step (o.ind for compact trees)
   const draw = () => { const out = []; IT.length = 0; const walk = n => { const d = n.d - R, op = isOpen(n); NK[n.key] = n;
-      out.push(`<tr class="tgp d${Math.min(d, 3)}${st.sel === 'n:' + n.key ? ' sel' : ''}" data-nk="${h(n.key)}"><td class="tn" style="padding-inline-start:${8 + d * IN}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(n.label)}">${h(n.label)}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
+      out.push(`<tr class="tgp d${Math.min(d, 3)}${st.sel === 'n:' + n.key ? ' sel' : ''}" data-nk="${h(n.key)}"><td class="tn" style="padding-inline-start:${8 + d * IN}px"><button class="tt" data-tk="${h(n.key)}" aria-expanded="${op}" aria-label="${op ? LBL('Collapse', 'طي') : LBL('Expand', 'توسيع')}">${op ? '▾' : '▸'}</button><b dir="auto" title="${h(CODE.any(n.label))}">${h(CODE.any(n.label))}</b><span class="tc">${fmtN(n.all.length)}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.g ? c.g(n) : ''}</td>`).join('')}${gx ? gcell(n.s, n.f, `gb gd${Math.min(d, 3)}`, n.label, G.cost ? sum(n.all, G.cost) : 0) : ''}</tr>`);
       if (!op) return; kids(n).forEach(walk);
       n.items.forEach(it => { const sp = G ? G.span(it) : null; IT.push(it); out.push(`<tr class="tl${st.sel === iid(it) ? ' sel' : ''}" data-ii="${IT.length - 1}"><td class="tn" style="padding-inline-start:${IL + (d + 1) * IN}px" title="${h(o.title ? o.title(it) : '')}"><span dir="auto">${h(o.name(it))}</span></td>${o.cols.map(c => `<td class="${c.cls || ''}">${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? gcell(sp && sp[0], sp && sp[1], sp && sp[2] ? 'ms' : 'ga', o.name(it), G.cost ? G.cost(it) : 0) : ''}</tr>`); }); };
     if (o.root) walk(top); else { kids(top).forEach(walk); top.items.forEach(it => out.push(`<tr class="tl"><td class="tn">${h(o.name(it))}</td>${o.cols.map(c => `<td>${c.l ? c.l(it) : ''}</td>`).join('')}${gx ? '<td class="tg"></td>' : ''}</tr>`)); }
@@ -9076,7 +9310,7 @@ RP.P.critical = (el, pg) => {
   const cells = (x, bf) => { const f = fc(x), d = bf && f ? D.diff(f, bf) : null, op = open(x); return { nc: x.nc == null ? '—' : fmtN(x.nc), lp: x.lp ? `<b class="neg">${fmtN(x.lp)}</b>` : '—', mt: op ? tfC(x.mt) : '—', spi: op ? spiC(spiOf(x)) : '—', bf: D.fmt(bf), f: D.fmt(f), d: d != null && op ? `<span dir="ltr" class="${d > 0.5 ? 'neg' : ''}">${d > 0 ? '+' : ''}${fmtN(d)}</span>` : '—', st: rpStChip(stOf(x, bf)) }; };
   const cN = n => cells(rpAgg(n.all), blF.get(n.label)), cL = it => cells(it, two ? blF.get(it.k) : blF.get(it.b));
   const col = (k, hd, w, cls) => ({ h: hd, w, cls, g: n => cN(n)[k], l: it => cL(it)[k] });
-  const tree = rpTree('crb', { items, levels: two ? [it => it.b] : [], depth0: 0, collapse: 0, name: it => it.t, head: two ? LBL('Building · work type', 'المبنى · نوع العمل') : LBL('Building', 'المبنى'),
+  const tree = rpTree('crb', { items, levels: two ? [it => it.b] : [], depth0: 0, collapse: 0, name: it => it.t, head: two ? `${CODE.lab('building', 'Building', 'المبنى')} · ${CODE.lab('work', 'work type', 'نوع العمل')}` : CODE.lab('building', 'Building', 'المبنى'),
     sort: (a, b) => slipB(b.label) - slipB(a.label) || String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
     cols: [col('nc', LBL('Critical', 'حرجة'), 50, 'nm'), col('lp', LBL('Longest path', 'المسار الأطول'), 82, 'nm'), col('mt', LBL('Worst float', 'أسوأ فائض'), 72, 'nm'), col('spi', 'SPI', 38, 'nm'), col('bf', LBL('BL finish', 'نهاية أساسي'), S.lang === 'ar' ? 80 : 70, 'dt'), col('f', LBL('Forecast', 'المتوقع'), S.lang === 'ar' ? 80 : 70, 'dt'), col('d', LBL('Slip', 'الانزلاق'), 44, 'nm'), col('st', T('status'), 64, '')] });
   items.sort((a, b) => { const sl = it => { const bf = two ? blF.get(it.k) : blF.get(it.b), f = fc(it); return open(it) && bf && f ? D.diff(f, bf) : -1e6; }; return sl(b) - sl(a) || String(a.t).localeCompare(String(b.t), undefined, { numeric: true }); });   // work types by slip too
@@ -9365,13 +9599,13 @@ function rpLaPin(X, R, H, hit) {
   const same = x => x.c.z === hit.z && x.c.lv === hit.lv, mine = x => same(x) && laEl(x.c.e) === hit.e, all = X.acts.filter(same), cd = (xs, k) => { const m = new Map(); xs.forEach(x => { const v = RPF.codes(x.a)[k]; if (v) m.set(v, (m.get(v) || 0) + 1); }); return [...m].sort((a, b) => b[1] - a[1]).map(x => x[0])[0] || ''; };
   const la = R.filter(mine), el = all.filter(mine), src = el.length ? el : all, M = X.M || {}, bm = ((M.buildings || {})[hit.z] || (M.zones || {})[hit.z] || {}), ph = cd(src, H.z) || ((M.zones || {})[hit.z] || {}).name || '', bd = cd(src, H.b), lvT = cd(src, H.l);
   const isB = !!(M.buildings || {})[hit.z], mName = (S.lang === 'ar' && bm.nameAr ? bm.nameAr : bm.name) || '', bName = mName || bd || hit.z;   // building / zone name from the project 4D model (the code values can be generic)
-  const lvName = /^L\d+$/.test(hit.lv) ? `${LBL('Level', 'الدور')} ${hit.lv.slice(1)}` : /^B\d$/.test(hit.lv) ? `${LBL('Basement', 'البدروم')} ${hit.lv.slice(1)}` : ({ RAFT: LBL('Raft', 'اللبشة'), GF: LBL('Ground floor', 'الدور الأرضي'), RF: LBL('Roof', 'السطح') }[hit.lv] || lvT || hit.lv);
+  const lvName = /^L\d+$/.test(hit.lv) ? `${CODE.lab('level', 'Level', 'الدور')} ${hit.lv.slice(1)}` : /^B\d$/.test(hit.lv) ? `${LBL('Basement', 'البدروم')} ${hit.lv.slice(1)}` : ({ RAFT: LBL('Raft', 'اللبشة'), GF: LBL('Ground floor', 'الدور الأرضي'), RF: LBL('Roof', 'السطح') }[hit.lv] || lvT || hit.lv);
   const eName = { s: LBL('Slab', 'البلاطة'), c: LBL('Columns', 'الأعمدة'), w: LBL('Walls / masonry', 'الحوائط / البلوك') }[hit.e] || '';
   const s0 = la.map(x => x.s0).filter(Boolean).sort()[0], f0 = la.map(x => x.f0).filter(Boolean).sort().pop();
   const foot = la.length ? `<b>${LBL('Look-ahead', 'ضمن الفترة القادمة')}</b> · ${fmtN(la.length)} ${LBL(la.length > 1 ? 'activities' : 'activity', la.length > 1 ? 'أنشطة' : 'نشاط')} · <bdi dir="ltr">${laD(s0)} → ${laD(f0)}</bdi>`
     : hit.v === 1 ? LBL('Built at the data date', 'منفذ حتى تاريخ البيانات') : LBL('Not in this look-ahead', 'ليس ضمن الفترة القادمة');
   return `<div class="ph"><i class="${hit.v === 2 ? 'g' : 'b'}"></i><bdi dir="auto">${h(bName)}</bdi><button data-x title="${LBL('Close', 'إغلاق')}">×</button></div>
-    <div class="pr"><span>${LBL('Phase', 'المرحلة')}</span><b><bdi>${h(ph || '—')}</bdi></b><span>${isB ? LBL('Building', 'المبنى') : LBL('Area', 'المنطقة')}</span><b><bdi>${h(bName)}</bdi></b><span>${LBL('Level', 'الدور')}</span><b><bdi>${h(lvName)}</bdi></b><span>${LBL('Element', 'العنصر')}</span><b>${eName}</b></div><div class="pf">${foot}</div>`;
+    <div class="pr"><span>${LBL('Phase', 'المرحلة')}</span><b><bdi>${h(ph || '—')}</bdi></b><span>${isB ? CODE.lab('building', 'Building', 'المبنى') : LBL('Area', 'المنطقة')}</span><b><bdi>${h(bName)}</bdi></b><span>${CODE.lab('level', 'Level', 'الدور')}</span><b><bdi>${h(lvName)}</bdi></b><span>${LBL('Element', 'العنصر')}</span><b>${eName}</b></div><div class="pf">${foot}</div>`;
 }
 /* ---------- Look-Ahead meeting sheet (print / PDF) ----------
    The look-ahead of the page with its current choices (window, Show filter, slicers), A4 landscape sheets ready for the progress meeting:
@@ -9404,7 +9638,7 @@ RP.laPrint = async el => {
       [LBL('Milestones due', 'معالم مستحقة'), fmtN(kp.ms), '']].map(([l, v, s2]) => `<div><span>${l}</span><b dir="ltr">${v}</b><em>${s2}</em></div>`).join('')}</div>`;
   /* summary by zone / building */
   const SUMC = `<colgroup><col><col style="width:20mm"><col style="width:18mm"><col style="width:18mm"><col style="width:18mm"><col style="width:18mm"><col style="width:30mm"><col style="width:26mm"><col style="width:38mm"></colgroup>`;
-  const sumHead = `<thead><tr><th>${LBL('Zone / building', 'المنطقة / المبنى')}</th><th>${LBL('Activities', 'الأنشطة')}</th><th>${LBL('Start', 'تبدأ')}</th><th>${LBL('Continue', 'مستمرة')}</th><th>${LBL('Finish', 'تنتهي')}</th><th>${LBL('Critical', 'حرجة')}</th><th>${LBL('Work planned', 'قيمة الأعمال')} (${cur})</th><th>${LBL('Labour (man-days)', 'العمالة (يوم-عامل)')}</th><th>${LBL('Window', 'الفترة')}</th></tr></thead>`;
+  const sumHead = `<thead><tr><th>${`${CODE.lab('zone', 'Zone', 'المنطقة')} / ${CODE.lab('building', 'building', 'المبنى')}`}</th><th>${LBL('Activities', 'الأنشطة')}</th><th>${LBL('Start', 'تبدأ')}</th><th>${LBL('Continue', 'مستمرة')}</th><th>${LBL('Finish', 'تنتهي')}</th><th>${LBL('Critical', 'حرجة')}</th><th>${LBL('Work planned', 'قيمة الأعمال')} (${cur})</th><th>${LBL('Labour (man-days)', 'العمالة (يوم-عامل)')}</th><th>${LBL('Window', 'الفترة')}</th></tr></thead>`;
   const sumRow = (cls, name, xs) => { const s0 = xs.map(x => x.s0).filter(Boolean).sort()[0], f0 = xs.map(x => x.f0).filter(Boolean).sort().pop();
     return `<tr class="${cls}"><td dir="auto">${h(name)}</td><td>${fmtN(xs.length)}</td><td>${fmtN(xs.filter(x => x.k === 'start' || x.k === 'both').length)}</td><td>${fmtN(xs.filter(x => x.k === 'cont').length)}</td><td>${fmtN(xs.filter(x => x.k === 'finish' || x.k === 'both').length)}</td><td class="${xs.some(x => x.crit) ? 'neg' : ''}">${fmtN(xs.filter(x => x.crit).length)}</td><td dir="ltr">${fmtN(sum(xs, val))}</td><td dir="ltr">${fmtN(sum(xs, md))}</td><td dir="ltr" class="dt">${laD(s0)} → ${laD(f0)}</td></tr>`; };
   /* activities table */
@@ -9496,7 +9730,7 @@ RP.P.lookahead = (el, pg) => {
     const bar = (a, p) => `<span class="lab" title="${LBL('Actual now', 'الفعلي الآن')} ${fmtN(a, 0)}% · ${LBL('planned by the end of the window', 'المخطط بنهاية الفترة')} ${fmtN(p, 0)}%"><i class="p" style="width:${Math.min(100, p).toFixed(1)}%"></i><i class="a" style="width:${Math.min(100, a).toFixed(1)}%"></i></span>`;
     const kT = x => ({ start: LBL('starts in the window', 'تبدأ خلال الفترة'), both: LBL('starts and finishes in the window', 'تبدأ وتنتهي خلال الفترة'), finish: LBL('finishes in the window', 'تنتهي خلال الفترة'), cont: LBL('continues after the window', 'مستمرة بعد نهاية الفترة') }[x.k]);
     const dS = laD;
-    const tree = rpTree('la', { items: R, ind: 10, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => `${x.a.id} · ${kT(x)}`, head: LBL('Zone · building · level · work type · activity', 'المنطقة · المبنى · المستوى · نوع العمل · النشاط'),
+    const tree = rpTree('la', { items: R, ind: 10, levels: [x => RPF.codes(x.a)[H.z], x => RPF.codes(x.a)[H.b], x => RPF.codes(x.a)[H.l], ...(wt ? [x => RPF.codes(x.a)[wt]] : [])], depth0: 1, collapse: 1, name: x => x.a.name, title: x => `${x.a.id} · ${kT(x)}`, head: [CODE.lab('zone', 'Zone', 'المنطقة'), CODE.lab('building', 'building', 'المبنى'), CODE.lab('level', 'level', 'المستوى'), CODE.lab('work', 'work type', 'نوع العمل'), LBL('activity', 'النشاط')].join(' · '),
       sort: (a, b) => String(a.label).localeCompare(String(b.label), undefined, { numeric: true }),
       cols: [{ h: LBL('Start', 'البداية'), w: S.lang === 'ar' ? 62 : 70, cls: 'dt', g: n => dS(n.all.map(x => x.s0).sort()[0]), l: x => `<span class="${x.st === 0 && x.s0 < X.dd ? 'neg' : ''}">${dS(x.s0)}</span>` },
         { h: LBL('Finish', 'النهاية'), w: S.lang === 'ar' ? 62 : 70, cls: 'dt', g: n => dS(n.all.map(x => x.f0).sort().pop()), l: x => dS(x.f0) },

@@ -500,12 +500,7 @@ html[dir=rtl] .rp-ar{transform:scaleX(-1)}
   @page{size:A4 landscape;margin:0}
   body.printing>*:not(#rpPrint){display:none!important}
   body.printing #rpPrint{display:block}
-  .rpp{width:297mm;height:210mm;box-sizing:border-box;padding:6mm 8mm;display:flex;flex-direction:column;gap:3mm;page-break-after:always;break-after:page;overflow:hidden;background:#fff}
-  .rpp:last-child{page-break-after:auto;break-after:auto}
-  .rpp header{display:flex;gap:6mm;align-items:baseline;font-size:9pt;color:#0E4A55;border-bottom:.4mm solid #E8A33D;padding-bottom:1.5mm}.rpp header b{font-size:11pt;flex:1}
-  .rpp .rp-page{zoom:.86;box-shadow:none;transform:none!important;margin:auto;flex:0 0 auto}.rpp{justify-content:center}
-  .rpp footer{font-size:7pt;color:#5B6B7A;text-align:center;margin-top:auto}
-  .rpp .np{pointer-events:none}.rpp .up-tw,.rpp .hb,.rpp .gb{overflow:hidden!important}
+  .rpp{page-break-after:always;break-after:page}.rpp:last-child{page-break-after:auto;break-after:auto}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 .pb-main .up-t>.hb{flex:1;justify-content:space-evenly}
@@ -899,36 +894,36 @@ html[dir=rtl] .xdb-t>div{margin-left:auto;flex-direction:row-reverse}
 .xla-pr:hover{background:rgba(232,163,61,.3)}.xla-pr svg{width:15px;height:15px;flex:0 0 15px;color:#E8A33D}
 @media print{.xla-pr{display:none!important}}
 /* Look-Ahead meeting sheets (A4 landscape, paginated in RP.laPrint) */
-.lap .lps{width:297mm;height:210mm;box-sizing:border-box;padding:7mm 8mm 6mm;display:flex;flex-direction:column;gap:2.2mm;background:#fff;color:#12202B;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",sans-serif;page-break-after:always;break-after:page;overflow:hidden}
-.lap .lps:last-child{page-break-after:auto;break-after:auto}
-.lap .lps-h{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6mm;border-bottom:.6mm solid #0E4A55;padding-bottom:2mm}
-.lap .lps-co{display:flex;align-items:center;gap:3mm;min-width:0}.lap .lps-co img{height:11mm;max-width:30mm;object-fit:contain}.lap .lps-co div{display:flex;flex-direction:column;min-width:0}.lap .lps-co b{font-size:9.5pt;color:#0E4A55}.lap .lps-co span{font-size:8pt;color:#3E4F5C}
-.lap .lps-t{text-align:center;display:flex;flex-direction:column;gap:.6mm}.lap .lps-t b{font-size:15pt;color:#0E4A55;letter-spacing:.2px}.lap .lps-t span{font-size:9pt;color:#12202B;font-weight:600;background:#FCF3E4;border:.3mm solid #E8A33D;border-radius:3mm;padding:.6mm 4mm;align-self:center}
-.lap .lps-m{display:flex;flex-direction:column;align-items:flex-end;gap:.5mm;font-size:7.6pt;color:#5B6B7A}[dir=rtl] .lap .lps-m{align-items:flex-start}.lap .lps-m b{color:#12202B}
-.lap .lps-sel{font-size:7.6pt;color:#3E4F5C;background:#F2F6F7;border-radius:1.5mm;padding:1.2mm 3mm}.lap .lps-sel>span{color:#0E4A55;font-weight:700}
-.lap .lps-b{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:2mm}
-.lap .lps-k{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm}.lap .lps-k div{border:.3mm solid #DCE4E8;border-top:.8mm solid #0E4A55;border-radius:1.5mm;padding:1.4mm 2.4mm;display:flex;flex-direction:column;gap:.3mm}
-.lap .lps-k span{font-size:6.8pt;color:#1E7A8A;font-weight:700;text-transform:uppercase;letter-spacing:.2px}.lap .lps-k b{font-size:13pt;color:#12202B}.lap .lps-k em{font-style:normal;font-size:6.8pt;color:#5B6B7A}
-.lap .lps-st{font-size:9pt;font-weight:700;color:#0E4A55;border-inline-start:1.2mm solid #E8A33D;padding-inline-start:2mm;margin-top:.5mm}
-.lap .lpt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:7.4pt}
-.lap .lpt th{background:#0E4A55;color:#fff;font-weight:600;font-size:7pt;padding:1.3mm 1.4mm;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:.2mm solid #0E4A55}
-.lap .lpt td{padding:.9mm 1.4mm;border-bottom:.2mm solid #E3E9ED;vertical-align:middle;overflow:hidden;overflow-wrap:anywhere;line-height:1.3}
-.lap .lpt-s td:not(:first-child),.lap .lpt-s th:not(:first-child){text-align:center}.lap .lpt-s tr.z td{background:#E4EEF0;font-weight:700;color:#0E4A55}.lap .lpt-s tr.b td:first-child{padding-inline-start:5mm}
-.lap .lpt-s tr.tot td{background:#0E4A55;color:#fff;font-weight:700}.lap .lpt-s tr.tot td.neg{color:#FFD3C2}
-.lap .lpt-d td:nth-child(n+5):nth-child(-n+10),.lap .lpt-d th:nth-child(n+5):nth-child(-n+10),.lap .lpt-d td:first-child,.lap .lpt-d th:first-child{text-align:center}
-.lap .lpt-d td.n{color:#7B8C99;font-size:6.6pt}.lap .lpt-d td.id{font-size:6.8pt;color:#3E4F5C;white-space:nowrap;text-overflow:ellipsis}.lap .lpt-d td.wt{font-size:6.8pt;color:#3E4F5C}
-.lap .lpt-d tr.a:nth-child(even) td{background:#FAFCFC}.lap .lpt-d tr.a td:nth-last-child(-n+2){border-inline-start:.2mm solid #E3E9ED;background:#fff}
-.lap .lpt-d tr.lgz td{background:#0E4A55;color:#fff;font-size:8.2pt;padding:1.3mm 2mm}.lap .lpt-d tr.lgb td{background:#D7E8EB;color:#0A3A43;font-size:7.8pt;padding:1.1mm 2mm 1.1mm 4mm}[dir=rtl] .lap .lpt-d tr.lgb td{padding:1.1mm 4mm 1.1mm 2mm}
-.lap .lpt-d tr.lgl td{background:#F1F6F7;color:#0E4A55;font-size:7.4pt;padding:.9mm 2mm .9mm 7mm;border-bottom:.3mm solid #C9D9DD}[dir=rtl] .lap .lpt-d tr.lgl td{padding:.9mm 7mm .9mm 2mm}
-.lap .lpt-d tr.lgc td{background:#FCF3E4;color:#7A5418;font-size:7.2pt;padding:.9mm 2mm}
-.lap .lpt-d tr[class^=lg] em{font-style:normal;font-weight:400;margin-inline-start:3mm;opacity:.85}
-.lap .lpt .neg{color:#C2410C;font-weight:700}.lap .lpt-d tr.cr td.id{box-shadow:inset .8mm 0 0 #C2410C}[dir=rtl] .lap .lpt-d tr.cr td.id{box-shadow:inset -.8mm 0 0 #C2410C}
-.lap .lpt .k{display:inline-block;border-radius:2mm;padding:.2mm 1.6mm;font-size:6.6pt;font-weight:600;white-space:nowrap}.lap .k.st{background:#E3EEF8;color:#1E5C8A}.lap .k.co{background:#EEF1F4;color:#4A5668}.lap .k.fi{background:#E3F5EC;color:#1E7A45}.lap .k.bo{background:#FCF0DC;color:#8A5A10}
-.lap .lps-lg{font-size:6.8pt;color:#5B6B7A}
-.lap .lps-sg{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:1mm}.lap .lps-sg div{border:.3mm solid #CFDCE1;border-radius:1.5mm;padding:1.4mm 2.5mm 2mm;display:flex;flex-direction:column;gap:1.6mm;font-size:7pt}.lap .lps-sg b{color:#0E4A55}.lap .lps-sg p{margin:0;display:grid;grid-template-columns:1.3fr 1fr .8fr;gap:2mm}.lap .lps-sg span{color:#5B6B7A;border-bottom:.2mm dotted #9AA8B3;padding-top:3.5mm;font-size:6.6pt}
-.lap .lps-f{display:flex;align-items:center;gap:4mm;font-size:6.8pt;color:#5B6B7A;border-top:.3mm solid #DCE4E8;padding-top:1.4mm}.lap .lps-f img{height:5mm}.lap .lps-f .pg{font-weight:700;color:#0E4A55}.lap .lps-f .sp{flex:1}.lap .lps-f .cf{color:#C2410C;font-size:6pt;letter-spacing:.6px;text-transform:uppercase}
-@media print{.lap{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
-.lap .lpt td.dt{white-space:nowrap;overflow-wrap:normal}.lap .lpt-d tr[class^=lg] td{text-align:start!important}.lap .lpt-d tr.lgz td b{letter-spacing:.3px;text-transform:uppercase}
+#rpPrint .lps{width:297mm;height:210mm;box-sizing:border-box;padding:7mm 8mm 6mm;display:flex;flex-direction:column;gap:2.2mm;background:#fff;color:#12202B;font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",sans-serif;page-break-after:always;break-after:page;overflow:hidden}
+#rpPrint .lps:last-child{page-break-after:auto;break-after:auto}
+#rpPrint .lps-h{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6mm;border-bottom:.6mm solid #0E4A55;padding-bottom:2mm}
+#rpPrint .lps-co{display:flex;align-items:center;gap:3mm;min-width:0}#rpPrint .lps-co img{height:11mm;max-width:30mm;object-fit:contain}#rpPrint .lps-co div{display:flex;flex-direction:column;min-width:0}#rpPrint .lps-co b{font-size:9.5pt;color:#0E4A55}#rpPrint .lps-co span{font-size:8pt;color:#3E4F5C}
+#rpPrint .lps-t{text-align:center;display:flex;flex-direction:column;gap:.6mm}#rpPrint .lps-t b{font-size:15pt;color:#0E4A55;letter-spacing:.2px}#rpPrint .lps-t span{font-size:9pt;color:#12202B;font-weight:600;background:#FCF3E4;border:.3mm solid #E8A33D;border-radius:3mm;padding:.6mm 4mm;align-self:center}
+#rpPrint .lps-m{display:flex;flex-direction:column;align-items:flex-end;gap:.5mm;font-size:7.6pt;color:#5B6B7A}[dir=rtl] #rpPrint .lps-m{align-items:flex-start}#rpPrint .lps-m b{color:#12202B}
+#rpPrint .lps-sel{font-size:7.6pt;color:#3E4F5C;background:#F2F6F7;border-radius:1.5mm;padding:1.2mm 3mm}#rpPrint .lps-sel>span{color:#0E4A55;font-weight:700}
+#rpPrint .lps-b{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:2mm}
+#rpPrint .lps-k{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm}#rpPrint .lps-k div{border:.3mm solid #DCE4E8;border-top:.8mm solid #0E4A55;border-radius:1.5mm;padding:1.4mm 2.4mm;display:flex;flex-direction:column;gap:.3mm}
+#rpPrint .lps-k span{font-size:6.8pt;color:#1E7A8A;font-weight:700;text-transform:uppercase;letter-spacing:.2px}#rpPrint .lps-k b{font-size:13pt;color:#12202B}#rpPrint .lps-k em{font-style:normal;font-size:6.8pt;color:#5B6B7A}
+#rpPrint .lps-st{font-size:9pt;font-weight:700;color:#0E4A55;border-inline-start:1.2mm solid #E8A33D;padding-inline-start:2mm;margin-top:.5mm}
+#rpPrint .lpt{width:100%;border-collapse:collapse;table-layout:fixed;font-size:7.4pt}
+#rpPrint .lpt th{background:#0E4A55;color:#fff;font-weight:600;font-size:7pt;padding:1.3mm 1.4mm;text-align:start;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:.2mm solid #0E4A55}
+#rpPrint .lpt td{padding:.9mm 1.4mm;border-bottom:.2mm solid #E3E9ED;vertical-align:middle;overflow:hidden;overflow-wrap:anywhere;line-height:1.3}
+#rpPrint .lpt-s td:not(:first-child),#rpPrint .lpt-s th:not(:first-child){text-align:center}#rpPrint .lpt-s tr.z td{background:#E4EEF0;font-weight:700;color:#0E4A55}#rpPrint .lpt-s tr.b td:first-child{padding-inline-start:5mm}
+#rpPrint .lpt-s tr.tot td{background:#0E4A55;color:#fff;font-weight:700}#rpPrint .lpt-s tr.tot td.neg{color:#FFD3C2}
+#rpPrint .lpt-d td:nth-child(n+5):nth-child(-n+10),#rpPrint .lpt-d th:nth-child(n+5):nth-child(-n+10),#rpPrint .lpt-d td:first-child,#rpPrint .lpt-d th:first-child{text-align:center}
+#rpPrint .lpt-d td.n{color:#7B8C99;font-size:6.6pt}#rpPrint .lpt-d td.id{font-size:6.8pt;color:#3E4F5C;white-space:nowrap;text-overflow:ellipsis}#rpPrint .lpt-d td.wt{font-size:6.8pt;color:#3E4F5C}
+#rpPrint .lpt-d tr.a:nth-child(even) td{background:#FAFCFC}#rpPrint .lpt-d tr.a td:nth-last-child(-n+2){border-inline-start:.2mm solid #E3E9ED;background:#fff}
+#rpPrint .lpt-d tr.lgz td{background:#0E4A55;color:#fff;font-size:8.2pt;padding:1.3mm 2mm}#rpPrint .lpt-d tr.lgb td{background:#D7E8EB;color:#0A3A43;font-size:7.8pt;padding:1.1mm 2mm 1.1mm 4mm}[dir=rtl] #rpPrint .lpt-d tr.lgb td{padding:1.1mm 4mm 1.1mm 2mm}
+#rpPrint .lpt-d tr.lgl td{background:#F1F6F7;color:#0E4A55;font-size:7.4pt;padding:.9mm 2mm .9mm 7mm;border-bottom:.3mm solid #C9D9DD}[dir=rtl] #rpPrint .lpt-d tr.lgl td{padding:.9mm 7mm .9mm 2mm}
+#rpPrint .lpt-d tr.lgc td{background:#FCF3E4;color:#7A5418;font-size:7.2pt;padding:.9mm 2mm}
+#rpPrint .lpt-d tr[class^=lg] em{font-style:normal;font-weight:400;margin-inline-start:3mm;opacity:.85}
+#rpPrint .lpt .neg{color:#C2410C;font-weight:700}#rpPrint .lpt-d tr.cr td.id{box-shadow:inset .8mm 0 0 #C2410C}[dir=rtl] #rpPrint .lpt-d tr.cr td.id{box-shadow:inset -.8mm 0 0 #C2410C}
+#rpPrint .lpt .k{display:inline-block;border-radius:2mm;padding:.2mm 1.6mm;font-size:6.6pt;font-weight:600;white-space:nowrap}#rpPrint .k.st{background:#E3EEF8;color:#1E5C8A}#rpPrint .k.co{background:#EEF1F4;color:#4A5668}#rpPrint .k.fi{background:#E3F5EC;color:#1E7A45}#rpPrint .k.bo{background:#FCF0DC;color:#8A5A10}
+#rpPrint .lps-lg{font-size:6.8pt;color:#5B6B7A}
+#rpPrint .lps-sg{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:1mm}#rpPrint .lps-sg div{border:.3mm solid #CFDCE1;border-radius:1.5mm;padding:1.4mm 2.5mm 2mm;display:flex;flex-direction:column;gap:1.6mm;font-size:7pt}#rpPrint .lps-sg b{color:#0E4A55}#rpPrint .lps-sg p{margin:0;display:grid;grid-template-columns:1.3fr 1fr .8fr;gap:2mm}#rpPrint .lps-sg span{color:#5B6B7A;border-bottom:.2mm dotted #9AA8B3;padding-top:3.5mm;font-size:6.6pt}
+#rpPrint .lps-f{display:flex;align-items:center;gap:4mm;font-size:6.8pt;color:#5B6B7A;border-top:.3mm solid #DCE4E8;padding-top:1.4mm}#rpPrint .lps-f img{height:5mm}#rpPrint .lps-f .lps-pn{font-weight:700;color:#0E4A55}#rpPrint .lps-f .sp{flex:1}#rpPrint .lps-f .cf{color:#C2410C;font-size:6pt;letter-spacing:.6px;text-transform:uppercase}
+@media print{#rpPrint{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+#rpPrint .lpt td.dt{white-space:nowrap;overflow-wrap:normal}#rpPrint .lpt-d tr[class^=lg] td{text-align:start!important}#rpPrint .lpt-d tr.lgz td b{letter-spacing:.3px;text-transform:uppercase}
 
 /* HSE daily page (same frame as Manpower & Equipment) */
 .mpk.hsk{grid-template-columns:repeat(10,minmax(0,1fr))}
@@ -1228,6 +1223,33 @@ table.t.lsctb td.n,table.t.lsctb td.c{text-align:center}
 .lsold .btn{margin-top:8px}
 table.t.lsimp td.n{text-align:center}
 @media (max-width:1250px){.lsw{grid-template-columns:1fr}.lsn{position:static;display:flex;flex-wrap:wrap;gap:4px}.lsg{width:100%}.lst{width:auto}.lscw{grid-template-columns:1fr}}
+
+/* ===== hide mode and unified print (18-Nov-2026) ===== */
+.rv-hx{display:none!important}
+.rv-xe{opacity:.25!important;outline:1.5px dashed #C2410C;outline-offset:-1px;background-image:repeating-linear-gradient(135deg,rgba(194,65,12,.12) 0 4px,transparent 4px 8px)}
+.rv-ed .pb-main,.rv-ed .pb-main *{cursor:pointer}.rv-ed .pb-main .rv-eye,.rv-ed .pb-main [data-tk]{cursor:pointer}
+#rvhl{position:fixed;pointer-events:none;z-index:9998;border:2px solid #E8A33D;border-radius:5px;background:rgba(232,163,61,.12);box-shadow:0 0 0 1px rgba(255,255,255,.7);display:none}
+#rvpop{position:fixed;z-index:9999;background:#fff;border:1px solid #D5DCE3;border-radius:12px;box-shadow:0 12px 34px rgba(10,30,40,.28);padding:6px;min-width:260px;max-width:420px;max-height:70vh;overflow:auto;font-size:12.5px;color:#12202B}
+#rvpop .rvp-h{display:flex;align-items:center;gap:8px;padding:6px 8px 8px;border-bottom:1px solid #EEF2F5;margin-bottom:4px;color:#0E4A55}#rvpop .rvp-h svg{width:16px;height:16px;flex:0 0 16px}#rvpop .rvp-h b{flex:1;font-size:12px}
+#rvpop .rvp-x{border:0;background:none;font-size:18px;line-height:1;color:#5B6B7A;cursor:pointer;padding:0 4px}
+#rvpop .rvp-o{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;text-align:start;padding:7px 8px;border-radius:8px;cursor:pointer;font:inherit;color:inherit}
+#rvpop .rvp-o:hover{background:#FFF4E0}#rvpop .rvp-o svg{width:15px;height:15px;flex:0 0 15px;color:#C2410C}#rvpop .rvp-o.off svg{color:#1E8A5A}
+#rvpop .rvp-k{font-size:11px;font-weight:700;color:#0E4A55;white-space:nowrap}#rvpop .rvp-o.off .rvp-k{color:#1E8A5A}#rvpop .rvp-l{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3E4F5C}
+#rvpop .rvp-o>i{width:10px;height:10px;border-radius:3px;flex:0 0 10px}#rvpop .rvp-n{padding:10px;color:#5B6B7A}
+.rv-bar [data-rvls] b{margin-inline-start:4px}
+.op-r{position:relative}
+.op-prb{position:absolute;top:10px;inset-inline-end:12px;display:inline-flex;align-items:center;gap:6px;background:#fff;color:#0E4A55;border:1px solid #CFDCE1;border-radius:8px;padding:5px 10px;font:inherit;font-size:11.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(10,30,40,.12);z-index:3}.op-prb svg{width:14px;height:14px}.op-prb:hover{background:#FFF4E0;border-color:#E8A33D}
+/* printed report sheets: header, selection line, page body fitted to the sheet, footer (same frame as the Look-Ahead meeting sheet) */
+#rpPrint .rps-b{position:relative;padding:0;gap:0}
+#rpPrint .rps-pg{position:absolute;top:0;width:1280px;transform-origin:0 0;box-shadow:none;margin:0;border-radius:0}
+#rpPrint .rps-pg .pb-main{background:#fff}
+@media print{#rpPrint .rps-pg{transform:none!important;zoom:var(--z);left:var(--lz)!important}}
+#rpPrint .lps-sel{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:0 0 auto}
+#rpPrint .rps-cov{padding:0}#rpPrint .rps-cov .rps-b{flex:1}
+#rpPrint .rps-end .rps-b{flex:1}
+#rpPrint .rpp .xs-h>.xu,#rpPrint .rpp .rv-tool,#rpPrint .rpp .rv-eye,#rpPrint .rpp .pb-nx,#rpPrint .rpp .en-b,#rpPrint .rpp [data-tx],#rpPrint .rpp .dl-x,#rpPrint .rpp .la-tg,#rpPrint .rpp .op-ph span,#rpPrint .rpp .xla-pr{display:none!important}
+#rpPrint .rpp .np{pointer-events:none}#rpPrint .rpp .up-tw,#rpPrint .rpp .hb,#rpPrint .rpp .gb{overflow:hidden!important}
+#rpPrint .rpp .tt{border:0;background:none;color:#5B6B7A}
 
 </style>
 </head>
@@ -6557,7 +6579,7 @@ const RP_IMPLIED = { layout: 'executive', resources: 'update', lookahead: 'delay
 const RP_IMPLIED3 = { summary: ['executive', 'cover'], actions: ['executive', 'cover'], critical: ['analysis', 'update'], design: ['analysis', 'update'], ncr: ['documents'], dq: ['health', 'update'] };
 const RP_IMPLIED4 = { critical: ['milestones', 'summary', 'update'], rescost: ['resources', 'cost'], qhse: ['ncr', 'hse'], checks: ['dq', 'health', 'update'] };   // 14-Nov-2026 (pages merged into the 14 dashboards)
 const RP_ADMIN = [{ k: 'rusers', en: 'Report users', ar: 'مستخدمو التقرير', admin: true }];
-const RP_XPERM = [{ k: 'rcfg', en: 'Customise the report: hide visuals, presentation pages, cover image', ar: 'تخصيص التقرير: إخفاء العناصر، صفحات العرض، صورة الغلاف', xp: true }];
+const RP_XPERM = [{ k: 'rcfg', en: 'Customise the report: hide mode (hide any information), presentation pages, cover image', ar: 'تخصيص التقرير: وضع الإخفاء (إخفاء أي معلومة)، صفحات العرض، صورة الغلاف', xp: true }];
 const RP_ALL = [...RP_PAGES.map(p => p.k), 'rusers', 'rcfg'];
 const rpinHash = (id, pin) => SHA256(`dcp-r:${id}:${String(pin).trim()}`);
 const rpHas = (u, k) => { const P = (u && u.perms) || []; if (P.includes(k)) return true; if (k === 'rcfg' && P.includes('rusers')) return true;   // report user managers can always customise
@@ -6582,8 +6604,8 @@ const RP = {
       <header class="rp-h">${id.logo ? `<span class="rp-logo"><img src="${id.logo}" alt=""></span>` : ''}<div class="rp-pt"><b dir="auto">${h(projTitle(p))}</b><span><bdi>${h(p.number)} · ${h(p.code)}</bdi> · ${LBL('Reports & 4D', 'التقارير و4D')}</span></div><span class="sp"></span>
         ${cut ? `<span class="chip co">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span><span class="chip">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="chip">${T('data_date')}: <b>${D.fmt(sch.dataDate)}</b></span>` : ''}
         <span class="chip" id="syncChip"></span><span class="rp-u">${ic('user')}<b>${h(S.user.name)}</b></span>
-        ${cfg ? `<button class="btn sm ${edit ? 'on' : ''}" data-rvedit title="${LBL('Hide or show visuals on the report pages', 'إخفاء أو إظهار العناصر في صفحات التقرير')}">${ic('pen')}${LBL('Customise', 'تخصيص')}</button>` : ''}<button class="btn sm pres" data-rppres title="${LBL('Presentation mode – choose the pages to show', 'وضع العرض – اختر الصفحات التي تُعرض')}">${ic('play')}${LBL('Present', 'عرض تقديمي')}</button>
-        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – all report pages', 'طباعة / PDF – كل صفحات التقرير')}">${ic('print')}${LBL('Print', 'طباعة')}</button><button class="btn sm ghost" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
+        ${cfg ? `<button class="btn sm ${edit ? 'on' : ''}" data-rvedit title="${LBL('Hide mode – hide any information of the report (cards, items, table columns and rows, chart series) from the view, presentation and print; nothing is deleted', 'وضع الإخفاء – إخفاء أي معلومة في التقرير (كروت، عناصر، أعمدة وصفوف الجداول، سلاسل الرسوم) من العرض والتقديم والطباعة؛ لا يُحذف شيء')}">${ic('eyeoff')}${LBL('Hide mode', 'وضع الإخفاء')}</button>` : ''}<button class="btn sm pres" data-rppres title="${LBL('Presentation mode – choose the pages to show', 'وضع العرض – اختر الصفحات التي تُعرض')}">${ic('play')}${LBL('Present', 'عرض تقديمي')}</button>
+        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – this page as it is set now (the whole report: button “Print report” on the cover)', 'طباعة / PDF – هذه الصفحة بحالتها الحالية (التقرير كاملاً: زر "طباعة التقرير" في الغلاف)')}">${ic('print')}${LBL('Print page', 'طباعة الصفحة')}</button><button class="btn sm ghost" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
       <nav class="rp-nav2" aria-label="${LBL('Report pages', 'صفحات التقرير')}"><button class="rp-ar" data-prev ${i <= 0 ? 'disabled' : ''} aria-label="${LBL('Previous page', 'الصفحة السابقة')}">‹</button><div class="rp-tb">${main.map((x, m) => `<button class="rp-tab2 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}"><span><i dir="ltr">${String(m + 1).padStart(2, '0')}</i>${LBL(...x.t)}</span></button>`).join('')}${adm.map(x => `<button class="rp-tab2 adm ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}" aria-label="${rpLbl(x)}"><span>${ic(x.k === 'rsrc' ? 'folder' : 'user')}</span></button>`).join('')}</div><span class="rp-cnt" dir="ltr">${pg && !pg.admin ? `${n} / ${main.length}` : ''}</span><button class="rp-ar" data-next ${i < 0 || i >= pgs.length - 1 ? 'disabled' : ''} aria-label="${LBL('Next page', 'الصفحة التالية')}">›</button></nav>
       ${edit && pg && !pg.admin ? RV.bar(pg) : ''}
       <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${pg ? RP.frame(pg, n, main.length) : ''}</div></div>
@@ -6924,8 +6946,8 @@ function svgCols({ w, h: hh, cats, bars = [], lines = [], fmt = v => fmtN(v), yM
   const Y = v => T + (1 - N(v) / M) * (hh - T - B), X = i => L + bw * i + bw / 2;
   const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${L}" x2="${w - R}" y1="${Y(f * M)}" y2="${Y(f * M)}" stroke="#E6EBF0"/><text x="${L - 6}" y="${Y(f * M) + 4}" text-anchor="end" font-size="10.5" fill="#5B6B7A">${fmt(f * M)}</text>`).join('');
   const nb = bars.length, gw = Math.min(46, bw * 0.72), cw = gw / Math.max(1, nb);
-  const bs = bars.map((b, j) => b.v.map((v, i) => N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${Y(v).toFixed(1)}" width="${(cw - 1).toFixed(1)}" height="${(Y(0) - Y(v)).toFixed(1)}" fill="${b.c}" rx="2"><title>${h(cats[i])}: ${fmt(v)}</title></rect>` : '').join('')).join('');
-  const ls = lines.map(l => { const q = l.v.map((v, i) => [v, i]).filter(([v]) => v != null); return `<polyline fill="none" stroke="${l.c}" stroke-width="2.5" points="${q.map(([v, i]) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}"/>${q.map(([v, i]) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3" fill="#fff" stroke="${l.c}" stroke-width="2"/>`).join('')}`; }).join('');   // a null value leaves the point out (no data that month)
+  const bs = bars.map((b, j) => `<g data-c="${b.c}">` + b.v.map((v, i) => N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${Y(v).toFixed(1)}" width="${(cw - 1).toFixed(1)}" height="${(Y(0) - Y(v)).toFixed(1)}" fill="${b.c}" rx="2"><title>${h(cats[i])}: ${fmt(v)}</title></rect>` : '').join('') + '</g>').join('');
+  const ls = lines.map(l => { const q = l.v.map((v, i) => [v, i]).filter(([v]) => v != null); return `<g data-c="${l.c}"><polyline fill="none" stroke="${l.c}" stroke-width="2.5" points="${q.map(([v, i]) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ')}"/>${q.map(([v, i]) => `<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3" fill="#fff" stroke="${l.c}" stroke-width="2"/>`).join('')}</g>`; }).join('');   // a null value leaves the point out (no data that month)
   const step = Math.ceil(n / 12); const xl = cats.map((c, i) => i % step ? '' : `<text x="${X(i)}" y="${hh - B + 16}" text-anchor="middle" font-size="10.5" fill="#5B6B7A">${h(String(c).slice(0, 14))}</text>`).join('');
   return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img"><line x1="${L}" x2="${w - R}" y1="${Y(0)}" y2="${Y(0)}" stroke="#B4C0CA"/>${grid}${bs}${ls}${xl}</svg>`;
 }
@@ -9050,9 +9072,9 @@ function _svgCombo({ w, h: hh, cats, bars = [], lines = [], fmtL = v => fmtN(v),
   const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${L}" x2="${w - Rm}" y1="${YL(f * mL)}" y2="${YL(f * mL)}" stroke="#EEF2F5"/><text x="${L - 6}" y="${YL(f * mL) + 4}" text-anchor="end" font-size="10" fill="#5B6B7A">${fmtL(f * mL)}</text>`).join('')
     + (tot ? [0, .25, .5, .75, 1].map(f => { const v = f * tot; return v <= mR ? `<text x="${w - Rm + 6}" y="${YR(v) + 4}" font-size="10" fill="#5B6B7A">${Math.round(f * 100)}%</text>` : ''; }).join('') : '');
   const nb = bars.length, gw = Math.min(bars.gw || 30, bw * 0.78), cw = gw / Math.max(1, nb);
-  const bs = bars.map((b, j) => b.v.map((v, i) => v != null && N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${YL(v).toFixed(1)}" width="${Math.max(1, cw - 1).toFixed(1)}" height="${Math.max(0, YL(0) - YL(v)).toFixed(1)}" fill="${b.c}" rx="1.5"${b.op && b.op(i) < 1 ? ` opacity="${b.op(i)}"` : ''}><title>${h(cats[i])} · ${h(b.n || '')}: ${fmtL(v)}</title></rect>${b.lbl && b.lbl(i, v) ? `<text x="${(X(i) - gw / 2 + j * cw + cw / 2).toFixed(1)}" y="${(YL(v) - 4).toFixed(1)}" text-anchor="middle" font-size="${b.fs || 9.5}" font-weight="700" fill="${b.lc || '#2F3D4A'}">${b.lbl(i, v)}</text>` : ''}` : '').join('')).join('');
-  const ls = lines.map(l => { const q = l.v.map((v, i) => [v, i]).filter(([v]) => v != null); return `<polyline fill="none" stroke="${l.c}" stroke-width="${l.wd || 2.4}" ${l.dash ? `stroke-dasharray="${l.dash}"` : ''} points="${q.map(([v, i]) => `${X(i).toFixed(1)},${YR(v).toFixed(1)}`).join(' ')}"/>`
-    + q.map(([v, i]) => `${l.marks ? `<circle cx="${X(i).toFixed(1)}" cy="${YR(v).toFixed(1)}" r="3.2" fill="#fff" stroke="${l.c}" stroke-width="2"/>` : ''}${l.lbl && l.lbl(i, v) ? (l.box ? (() => { const s = l.lbl(i, v), wd = s.length * 5.6 + 8, y = l.below ? YR(v) + 5 : YR(v) - 15; return `<rect x="${(X(i) - wd / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${wd.toFixed(1)}" height="13" rx="3" fill="${l.c}" opacity=".9"/><text x="${X(i).toFixed(1)}" y="${(y + 9.5).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">${s}</text>`; })() : `<text x="${X(i).toFixed(1)}" y="${(YR(v) + (l.below ? 15 : -8)).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${l.c}" paint-order="stroke" stroke="#fff" stroke-width="3">${l.lbl(i, v)}</text>`) : ''}`).join(''); }).join('');
+  const bs = bars.map((b, j) => `<g data-c="${b.c}">` + b.v.map((v, i) => v != null && N(v) ? `<rect x="${(X(i) - gw / 2 + j * cw).toFixed(1)}" y="${YL(v).toFixed(1)}" width="${Math.max(1, cw - 1).toFixed(1)}" height="${Math.max(0, YL(0) - YL(v)).toFixed(1)}" fill="${b.c}" rx="1.5"${b.op && b.op(i) < 1 ? ` opacity="${b.op(i)}"` : ''}><title>${h(cats[i])} · ${h(b.n || '')}: ${fmtL(v)}</title></rect>${b.lbl && b.lbl(i, v) ? `<text x="${(X(i) - gw / 2 + j * cw + cw / 2).toFixed(1)}" y="${(YL(v) - 4).toFixed(1)}" text-anchor="middle" font-size="${b.fs || 9.5}" font-weight="700" fill="${b.lc || '#2F3D4A'}">${b.lbl(i, v)}</text>` : ''}` : '').join('') + '</g>').join('');
+  const ls = lines.map(l => { const q = l.v.map((v, i) => [v, i]).filter(([v]) => v != null); return `<g data-c="${l.c}"><polyline fill="none" stroke="${l.c}" stroke-width="${l.wd || 2.4}" ${l.dash ? `stroke-dasharray="${l.dash}"` : ''} points="${q.map(([v, i]) => `${X(i).toFixed(1)},${YR(v).toFixed(1)}`).join(' ')}"/>`
+    + q.map(([v, i]) => `${l.marks ? `<circle cx="${X(i).toFixed(1)}" cy="${YR(v).toFixed(1)}" r="3.2" fill="#fff" stroke="${l.c}" stroke-width="2"/>` : ''}${l.lbl && l.lbl(i, v) ? (l.box ? (() => { const s = l.lbl(i, v), wd = s.length * 5.6 + 8, y = l.below ? YR(v) + 5 : YR(v) - 15; return `<rect x="${(X(i) - wd / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${wd.toFixed(1)}" height="13" rx="3" fill="${l.c}" opacity=".9"/><text x="${X(i).toFixed(1)}" y="${(y + 9.5).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#fff">${s}</text>`; })() : `<text x="${X(i).toFixed(1)}" y="${(YR(v) + (l.below ? 15 : -8)).toFixed(1)}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${l.c}" paint-order="stroke" stroke="#fff" stroke-width="3">${l.lbl(i, v)}</text>`) : ''}`).join('') + '</g>'; }).join('');
   const step = Math.max(1, Math.ceil(n / Math.max(4, (w - L - Rm) / 54))), xl = cats.map((c, i) => i % step ? '' : `<text x="${X(i)}" y="${hh - B + 15}" text-anchor="middle" font-size="10" fill="#5B6B7A">${h(c)}</text>`).join('');
   const vl = vline != null ? `<line x1="${X(vline)}" x2="${X(vline)}" y1="${T}" y2="${hh - B}" stroke="#C2410C" stroke-dasharray="4 4" opacity=".7"/>` : '';
   const tp = tips ? cats.map((c, i) => tips[i] ? `<rect class="ctp" x="${(X(i) - bw / 2).toFixed(1)}" y="${T}" width="${bw.toFixed(1)}" height="${hh - T - B}" data-tp="${tips[i]}"/>` : '').join('') : '';
@@ -9625,11 +9647,9 @@ RP.laPrint = async el => {
   const zones = [...tree.keys()].sort(num);
   /* --- sheet parts --- */
   const crit = R.filter(x => x.crit).length, cnt = k => R.filter(x => k === 'start' ? (x.k === 'start' || x.k === 'both') : k === 'finish' ? (x.k === 'finish' || x.k === 'both') : x.k === k).length;
-  const head = `<header class="lps-h"><div class="lps-co">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<div><b dir="auto">${h(ar ? (id.nameAr || id.name) : (id.name || id.nameAr) || p.contractor || '')}</b><span dir="auto">${h(projTitle(p))} · <bdi dir="ltr">${h(p.number || '')}</bdi></span></div></div>
-    <div class="lps-t"><b>${LBL('Look-Ahead Programme', 'برنامج الأعمال القادمة')}</b><span>${fmtN(wk)} ${LBL('weeks', 'أسابيع')} · <bdi dir="ltr">${D.fmt(X.dd)} → ${D.fmt(WE)}</bdi></span></div>
-    <div class="lps-m"><span>${LBL('Based on', 'على أساس')} <b dir="ltr">${h(X.lbl)}</b></span><span>${LBL('Data date', 'تاريخ البيانات')} <b dir="ltr">${D.fmt(X.dd)}</b></span>${cut ? `<span>${T('report_no')} <b>${h(cut.reportNo || '')}</b> · ${T('cutoff')} <b dir="ltr">${D.fmt(cut.date)}</b></span>` : ''}</div></header>
+  const head = RP.shHead({ t: LBL('Look-Ahead Programme', 'برنامج الأعمال القادمة'), chip: `${fmtN(wk)} ${LBL('weeks', 'أسابيع')} · <bdi dir="ltr">${D.fmt(X.dd)} → ${D.fmt(WE)}</bdi>`, meta: [[LBL('Based on', 'على أساس'), h(X.lbl)], [LBL('Data date', 'تاريخ البيانات'), D.fmt(X.dd)], cut && [`${T('report_no')} <b>${h(cut.reportNo || '')}</b> · ${T('cutoff')}`, D.fmt(cut.date)]] }) + `
     <div class="lps-sel"><span>${LBL('Selection', 'الاختيار')}:</span> ${RPF.on() ? RPF.label() : `<b>${LBL('Whole project', 'المشروع كاملاً')}</b>`} · ${LBL('Show', 'العرض')}: <b>${FX[fx] || FX.all}</b> · <b>${fmtN(R.length)}</b> ${LBL('activities', 'نشاط')}</div>`;
-  const foot = `<footer class="lps-f" dir="ltr">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<span class="pg" dir="auto">${LBL('Page', 'صفحة')} <bdi dir="ltr" data-pn></bdi></span><span dir="auto">${h(projTitle(p))}</span><span>${LBL('Printed', 'طُبع')} ${TS(nowISO(), 16)}</span><span class="sp"></span>${p.preparedBy ? `<span dir="auto">${LBL('Prepared by', 'إعداد')}: ${h(p.preparedBy)}</span>` : ''}<span class="cf">${LBL('Confidential', 'سري')}</span></footer>`;
+  const foot = RP.shFoot();
   const kpis = `<div class="lps-k">${[[LBL('Activities in the window', 'أنشطة الفترة'), fmtN(R.length), `${fmtN(cnt('start'))} ${LBL('start', 'تبدأ')} · ${fmtN(cnt('cont'))} ${LBL('continue', 'مستمرة')} · ${fmtN(cnt('finish'))} ${LBL('finish', 'تنتهي')}`],
       [LBL('Work planned in the window', 'قيمة الأعمال المخططة'), rpM(kp.val), `${kp.bac ? fmtPct(kp.val / kp.bac, 1) : '—'} ${LBL('of the budget', 'من الميزانية')} · ${cur}`],
       [LBL('Labour planned', 'العمالة المخططة'), kp.md ? fmtN(kp.md) : '—', kp.md ? `${LBL('man-days', 'يوم-عامل')} · ≈ ${fmtN(kp.md / (wk * 7))} ${LBL('workers / day', 'عامل يومياً')}` : ''],
@@ -9820,9 +9840,9 @@ RP.P.checks = (el, pg) => {
 RP.presDialog = () => {
   const all = RP.main(), cfg = RV.cfg(), saved = (cfg.pres || []).filter(k => all.some(p => p.k === k)), can = RV.can();
   const sel = new Set((S.ui.presSel || (saved.length ? saved : all.map(p => p.k))).filter(k => all.some(p => p.k === k))); if (all.some(p => p.k === 'cover')) sel.add('cover');
-  modal({ title: LBL('Presentation – choose the pages', 'العرض التقديمي – اختر الصفحات'), size: 'lg', body: `<div class="pr-d"><div class="muted small">${LBL('Tick the pages to present, in report order. The cover always comes first. Visuals hidden in Customise stay hidden. Keys: ← → / Space / PageDown, Home, End, Esc to leave.', 'اختر الصفحات التي تُعرض بترتيب التقرير. الغلاف أولاً دائماً. العناصر المخفية من التخصيص تبقى مخفية. المفاتيح: ← → / المسافة / PageDown و Home و End و Esc للخروج.')}</div>
+  modal({ title: LBL('Presentation – choose the pages', 'العرض التقديمي – اختر الصفحات'), size: 'lg', body: `<div class="pr-d"><div class="muted small">${LBL('Tick the pages to present, in report order. The cover always comes first. Items hidden in Hide mode stay hidden. Keys: ← → / Space / PageDown, Home, End, Esc to leave.', 'اختر الصفحات التي تُعرض بترتيب التقرير. الغلاف أولاً دائماً. العناصر المخفية من وضع الإخفاء تبقى مخفية. المفاتيح: ← → / المسافة / PageDown و Home و End و Esc للخروج.')}</div>
       <div class="pr-sh"><span class="sp"></span><button class="btn sm ghost" data-sa="1">${LBL('All', 'الكل')}</button><button class="btn sm ghost" data-sa="0">${LBL('None', 'لا شيء')}</button></div>
-      <div class="pr-ss pr-flat">${all.map((p, i) => { const n = RV.hidden(p.k).length; return `<label class="${p.k === 'cover' ? 'lock' : ''}"><input type="checkbox" data-pk="${p.k}" ${sel.has(p.k) ? 'checked' : ''} ${p.k === 'cover' ? 'disabled' : ''}><span dir="ltr">${String(i + 1).padStart(2, '0')}</span><b>${rpLbl(p)}</b>${n ? `<em>${n} ${LBL('hidden', 'مخفي')}</em>` : ''}</label>`; }).join('')}</div></div>`,
+      <div class="pr-ss pr-flat">${all.map((p, i) => { const n = RV.count(p.k); return `<label class="${p.k === 'cover' ? 'lock' : ''}"><input type="checkbox" data-pk="${p.k}" ${sel.has(p.k) ? 'checked' : ''} ${p.k === 'cover' ? 'disabled' : ''}><span dir="ltr">${String(i + 1).padStart(2, '0')}</span><b>${rpLbl(p)}</b>${n ? `<em>${n} ${LBL('hidden', 'مخفي')}</em>` : ''}</label>`; }).join('')}</div></div>`,
     foot: `<button class="btn" data-prp>${ic('print')}${LBL('Print these pages', 'طباعة هذه الصفحات')}</button>${can ? `<button class="btn" data-prs>${LBL('Save as default', 'حفظ كاختيار افتراضي')}</button>` : ''}<span class="sp"></span><span class="muted small" data-pcn></span><button class="btn pri" data-prgo>${ic('play')}${LBL('Start presentation', 'بدء العرض')}</button>`,
     onMount: (el, close) => {
       const keys = () => all.map(p => p.k).filter(k => k === 'cover' || (el.querySelector(`[data-pk="${k}"]`) || {}).checked);
@@ -9845,6 +9865,182 @@ async function rpImgData(blob, name) {
   const k = Math.min(1, 1600 / Math.max(w, hh)), c2 = document.createElement('canvas'); c2.width = Math.round(w * k); c2.height = Math.round(hh * k); const x = c2.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c2.width, c2.height); x.drawImage(c1, 0, 0, c2.width, c2.height);
   return c2.toDataURL('image/jpeg', 0.8);
 }
+
+/* ===== REPORT – hide mode and unified print (18-Nov-2026) =====
+   Hide mode (permission 'rcfg', button "Hide mode" in the top bar): any information of a report page can be hidden – not deleted – from the view, the
+   presentation and print: a whole visual (eye), an item inside a card or a visual (label, value, sub-line, note, legend…), a table column, a table row,
+   or a chart series / category (by its legend colour). Stored per page in db.rview:
+     rview.hide[page] = [visual ids]                         (decision 45)
+     rview.hx[page]   = [{k:'e'|'c'|'r'|'s', v, p, t, ti, c, r, col, l}]   e = element (child path p + tag chain t under visual v), c = column c of table ti,
+                                                              r = row whose first cell reads r, s = series of colour col; v = visual id or '_' = page body
+   Print: the Print button of the top bar prints the page on screen, as it is set (filters, update, side choices, hidden items); the cover page holds
+   "Print report" (choose the pages). Every printed page is one formal A4 landscape sheet: the same header (company, project, page title, report no.,
+   cut-off, data date, update), selection line and footer (Page n / N, printed, prepared by, CONFIDENTIAL) as the Look-Ahead meeting sheet. */
+
+/* ---------- hide mode: items inside the visuals ---------- */
+const RV_LEG = '.up-lg > span, .xlg > span, .gg-l > span, .la-lg > span, .op-lg > span';
+const RV_KIND = { e: ['Item', 'عنصر'], c: ['Column', 'عمود'], r: ['Row', 'صف'], s: ['Series / category', 'سلسلة / فئة'], v: ['Whole visual', 'العنصر كاملاً'] };
+Object.assign(RV, {
+  hx: k => ((RV.cfg().hx || {})[k]) || [],
+  count: k => RV.hidden(k).length + RV.hx(k).length,
+  key: it => [it.k, it.v, it.p || '', it.ti == null ? '' : it.ti, it.c || '', it.r || '', it.col || ''].join('|'),
+  has: (k, it) => RV.hx(k).some(x => RV.key(x) === RV.key(it)),
+  txt: e => ((e && (e.innerText || e.textContent)) || '').replace(/\s+/g, ' ').trim(),
+  ttl: r => { const t = r.querySelector('.up-ct, .xc-t, .gg-t, .la-tt'); const own = t ? [...t.childNodes].filter(n => n.nodeType === 3 || (n.nodeType === 1 && !n.matches('.xlg, .up-lg, button, .rv-eye'))).map(n => n.textContent).join(' ') : ''; return RV.snip(own || r.dataset.vl || ''); },
+  snip: s => (s = String(s || '').replace(/\s+/g, ' ').trim()).length > 54 ? s.slice(0, 52) + '…' : s,
+  hex(c) { c = String(c || '').trim().toLowerCase(); if (!c || c === 'none' || c.startsWith('url')) return ''; const m = c.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)$/); if (m) { if (m[4] != null && +m[4] === 0) return ''; return '#' + [m[1], m[2], m[3]].map(x => (+x).toString(16).padStart(2, '0')).join(''); } if (/^#[0-9a-f]{3}$/.test(c)) return '#' + c.slice(1).split('').map(x => x + x).join(''); return /^#[0-9a-f]{6}$/.test(c) ? c : ''; },
+  neutral: c => !c || /^#(f{6}|0{6})$/.test(c) || (() => { const r = parseInt(c.slice(1, 3), 16), g = parseInt(c.slice(3, 5), 16), b = parseInt(c.slice(5, 7), 16); return Math.max(r, g, b) - Math.min(r, g, b) < 14 && r > 150; })(),   // white, black, light greys (grid, axes) are not a series
+  root: (main, v) => v === '_' ? main : main.querySelector(`[data-vid="${CSS.escape(v)}"]`),
+  path(root, e) { const p = [], t = []; while (e && e !== root) { const par = e.parentElement; if (!par) return null; p.unshift([...par.children].indexOf(e)); t.unshift(e.tagName); e = par; } return e === root ? { p: p.join('.'), t: t.join('>') } : null; },
+  resolve(root, it) { let e = root; const p = String(it.p).split('.').map(Number), t = String(it.t || '').split('>'); for (let i = 0; i < p.length; i++) { e = e && e.children[p[i]]; if (!e || (t[i] && e.tagName !== t[i])) return null; } return e; },
+  rowKey: tr => { const c = tr && tr.cells && tr.cells[0]; if (!c) return ''; return RV.snip([...c.childNodes].filter(n => !(n.nodeType === 1 && (n.matches('button, .tc, .rv-eye')))).map(n => n.textContent).join(' ')); },
+  colHead(tbl, c) { const hr = tbl.tHead && tbl.tHead.rows[tbl.tHead.rows.length - 1]; const th = hr && hr.children[c - 1]; return RV.snip(RV.txt(th)) || `#${c}`; },
+  legCol: s => { const i = s && s.querySelector('i'); return i ? RV.hex(getComputedStyle(i).backgroundColor) || RV.hex(i.style.borderColor) : ''; },
+  svgCol(e) { const g = e.closest('g[data-c]'); if (g) return RV.hex(g.dataset.c); for (const a of ['fill', 'stroke']) { const c = RV.hex(e.getAttribute(a)); if (c && !RV.neutral(c)) return c; } return ''; },
+  /* elements an item stands for (also used for the preview outline) */
+  targets(main, it) {
+    const root = RV.root(main, it.v); if (!root) return [];
+    if (it.k === 'v') return [root];
+    if (it.k === 'e') { const e = RV.resolve(root, it); return e ? [e] : []; }
+    const tb = it.ti == null ? null : root.querySelectorAll('table')[it.ti];
+    if (it.k === 'c') return tb ? [...tb.querySelectorAll(`:scope > * > tr > :nth-child(${it.c}):not([colspan])`)] : [];
+    if (it.k === 'r') return tb ? [...tb.querySelectorAll(':scope > tbody > tr')].filter(tr => RV.rowKey(tr) === it.r) : [];
+    if (it.k === 's') return [...root.querySelectorAll('svg *')].filter(e => { if (e.tagName === 'title') return false; const g = e.parentElement && e.parentElement.closest('g[data-c]');
+        if (g) return false; if (e.matches('g[data-c]')) return RV.hex(e.dataset.c) === it.col; return ['fill', 'stroke'].some(a => RV.hex(e.getAttribute(a)) === it.col); })
+      .concat([...root.querySelectorAll(RV_LEG)].filter(s => RV.legCol(s) === it.col));
+    return [];
+  },
+  /* apply the hidden items of the page: edit = faded and hatched (click to show again), else left out */
+  applyX(main, pg) {
+    if (!main || !pg || pg.admin) return; const edit = !!main._rvEdit, cls = edit ? 'rv-xe' : 'rv-hx';
+    main.querySelectorAll('.rv-hx, .rv-xe').forEach(e => e.classList.remove('rv-hx', 'rv-xe')); main.querySelectorAll('[data-rvt]').forEach(t => t.removeAttribute('data-rvt'));
+    const old = main.querySelector(':scope > style[data-rvs]'); if (old) old.remove();
+    const css = []; let tn = 0;
+    RV.hx(pg.k).forEach(it => { if (it.k === 'c') { const root = RV.root(main, it.v), tb = root && root.querySelectorAll('table')[it.ti]; if (!tb) return; const id = tb.dataset.rvt || (tb.dataset.rvt = 't' + (tn++)); css.push(`table[data-rvt="${id}"] > * > tr > :nth-child(${it.c}):not([colspan]), table[data-rvt="${id}"] > colgroup > col:nth-child(${it.c})`); return; }
+      RV.targets(main, it).forEach(e => e.classList.add(cls)); });
+    if (css.length) main.insertAdjacentHTML('afterbegin', `<style data-rvs>${css.join(',')}{${edit ? 'opacity:.25;background-image:repeating-linear-gradient(135deg,rgba(194,65,12,.12) 0 4px,transparent 4px 8px)' : 'display:none!important'}}</style>`);
+    /* trees, charts and lists redraw parts of the page later (expand / collapse, resize): hidden items follow them */
+    if (!main._rvo) { main._rvo = new MutationObserver(() => { if (main._rvq) return; main._rvq = requestAnimationFrame(() => { main._rvq = 0; if (main.isConnected || main.closest('#rpPrint')) RV.applyX(main, main._rvpg); }); }); main._rvo.observe(main, { childList: true, subtree: true }); }
+    main._rvpg = pg; main._rvo.takeRecords();
+  },
+  /* options for a click in hide mode, from the smallest piece of information to the whole visual */
+  opts(t, main) {
+    const root = (t.closest('[data-vid]') && main.contains(t.closest('[data-vid]'))) ? t.closest('[data-vid]') : main, v = root === main ? '_' : root.dataset.vid, O = [];
+    const svg = t.closest('svg'), leg = t.closest(RV_LEG), cell = !svg && t.closest('td, th');
+    const ser = col => { if (!col || RV.neutral(col)) return; const ls = [...root.querySelectorAll(RV_LEG)].find(s => RV.legCol(s) === col); O.push({ k: 's', v, col, l: RV.snip(ls ? RV.txt(ls) : col), sw: col }); };
+    if (svg) ser(RV.svgCol(t)); if (leg) ser(RV.legCol(leg));
+    if (cell && root.contains(cell)) { const tb = cell.closest('table'), ti = [...root.querySelectorAll('table')].indexOf(tb), c = [...cell.parentElement.children].indexOf(cell) + 1;
+      if (ti >= 0 && cell.parentElement.children.length > 1) O.push({ k: 'c', v, ti, c, l: RV.colHead(tb, c) });
+      const tr = cell.parentElement; if (ti >= 0 && tr.parentElement && tr.parentElement.tagName === 'TBODY') { const r = RV.rowKey(tr); if (r) O.push({ k: 'r', v, ti, r, l: r }); } }
+    if (!svg && !cell) { let e = t, last = '', n = 0; while (e && e !== root && root.contains(e) && n < 3) { const x = RV.txt(e); if (x && x !== last && !e.matches('.rv-eye, style, script')) { const P = RV.path(root, e); if (P) { O.push({ k: 'e', v, ...P, l: RV.snip(x) }); n++; } last = x; } e = e.parentElement; } }
+    if (root !== main) O.push({ k: 'v', v, l: RV.ttl(root) });
+    return O;
+  },
+  toggleX(pg, it, main) {
+    const on = RV.has(pg.k, it); RV.save(c => { c.hx = c.hx || {}; const a = (c.hx[pg.k] || []).filter(x => RV.key(x) !== RV.key(it)); if (!on) { const { sw, ...x } = it; a.push(x); } if (a.length) c.hx[pg.k] = a; else delete c.hx[pg.k]; }, `${pg.k}: ${on ? 'show' : 'hide'} ${it.k} ${it.l || ''}`);
+    if (main && main.isConnected) { RV.applyX(main, pg); RV.barRefresh(pg); } else RP.render();
+  },
+  /* pointer: outline the piece under the mouse; click: the choice card */
+  hl(els) { let o = document.getElementById('rvhl'); if (!o) { o = document.createElement('div'); o.id = 'rvhl'; document.body.appendChild(o); }
+    const R = (els || []).map(e => e.getBoundingClientRect()).filter(r => r.width || r.height); if (!R.length) { o.style.display = 'none'; return; }
+    const x0 = Math.min(...R.map(r => r.left)), y0 = Math.min(...R.map(r => r.top)), x1 = Math.max(...R.map(r => r.right)), y1 = Math.max(...R.map(r => r.bottom));
+    Object.assign(o.style, { display: 'block', left: x0 - 2 + 'px', top: y0 - 2 + 'px', width: x1 - x0 + 4 + 'px', height: y1 - y0 + 4 + 'px' }); },
+  wirePick(main, pg) {
+    if (main._rvPick) return; main._rvPick = 1;
+    const pass = t => t.closest('.rv-eye, [data-tk], [data-tx], .tt');
+    main.addEventListener('mousemove', e => { if (!main._rvEdit || document.getElementById('rvpop')) return; const t = e.target; if (!t || pass(t) || t === main) return RV.hl([]);
+      const O = RV.opts(t, main); RV.hl(O.length ? RV.targets(main, O[0]).slice(0, 400) : []); }, true);
+    main.addEventListener('mouseleave', () => { if (!document.getElementById('rvpop')) RV.hl([]); });
+    main.addEventListener('click', e => { if (!main._rvEdit) return; const t = e.target; if (!t || pass(t)) return; e.preventDefault(); e.stopPropagation(); const O = RV.opts(t, main); if (O.length) RV.pop(e.clientX, e.clientY, O, main, pg); }, true);
+  },
+  pop(x, y, O, main, pg, title) {
+    RV.popClose(); const vis = new Set(RV.hidden(pg.k));
+    const st = it => it.k === 'v' ? vis.has(it.v) : RV.has(pg.k, it);
+    const p = document.createElement('div'); p.id = 'rvpop'; p.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+    p.innerHTML = `<div class="rvp-h">${ic('eyeoff')}<b>${title || LBL('Hide from the view, presentation and print', 'إخفاء من العرض والتقديم والطباعة')}</b><button class="rvp-x" data-rpx aria-label="${LBL('Close', 'إغلاق')}">×</button></div>
+      ${O.map((it, i) => { const off = st(it); return `<button class="rvp-o ${off ? 'off' : ''}" data-ro="${i}">${ic(off ? 'eye' : 'eyeoff')}<span class="rvp-k">${off ? LBL('Show', 'إظهار') : LBL('Hide', 'إخفاء')} · ${LBL(...RV_KIND[it.k])}</span>${it.sw ? `<i style="background:${it.sw}"></i>` : ''}<span class="rvp-l" dir="auto">${h(it.l || '—')}</span></button>`; }).join('') || `<div class="rvp-n">${LBL('Nothing hidden on this page.', 'لا يوجد شيء مخفي في هذه الصفحة.')}</div>`}`;
+    document.body.appendChild(p); const W = p.offsetWidth, H = p.offsetHeight; p.style.left = Math.max(6, Math.min(x + 8, innerWidth - W - 8)) + 'px'; p.style.top = Math.max(6, Math.min(y + 8, innerHeight - H - 8)) + 'px';
+    p.querySelectorAll('[data-ro]').forEach(b => { const it = O[+b.dataset.ro]; b.onmouseenter = () => RV.hl(RV.targets(main, it).slice(0, 400)); b.onmouseleave = () => RV.hl([]);
+      b.onclick = () => { RV.popClose(); RV.hl([]); if (it.k === 'v') RV.toggle(pg.k, it.v); else RV.toggleX(pg, it, main); }; });
+    p.querySelector('[data-rpx]').onclick = () => { RV.popClose(); RV.hl([]); };
+    setTimeout(() => { RV._pc = e => { if (!p.contains(e.target)) { RV.popClose(); RV.hl([]); } }; document.addEventListener('mousedown', RV._pc, true); RV._pk = e => { if (e.key === 'Escape') { RV.popClose(); RV.hl([]); } }; document.addEventListener('keydown', RV._pk, true); }, 0);
+  },
+  popClose() { const p = document.getElementById('rvpop'); if (p) p.remove(); if (RV._pc) document.removeEventListener('mousedown', RV._pc, true); if (RV._pk) document.removeEventListener('keydown', RV._pk, true); RV._pc = RV._pk = null; },
+  list(pg) { const main = document.querySelector('#rpPage .pb-main'); if (!main) return; const b = document.querySelector('[data-rvls]').getBoundingClientRect();
+    const O = [...RV.hidden(pg.k).map(v => { const r = RV.root(main, v); return { k: 'v', v, l: r ? RV.ttl(r) : v }; }), ...RV.hx(pg.k).map(it => ({ ...it, sw: it.col }))];
+    RV.pop(b.left, b.bottom, O, main, pg, LBL('Hidden on this page – click to show', 'المخفي في هذه الصفحة – اضغط للإظهار')); },
+  bar(pg) { const n = RV.count(pg.k), tot = sum(RP.main(), p => RV.count(p.k));
+    return `<div class="rv-bar">${ic('eyeoff')}<span>${LBL('Hide mode – point at any information (a card value, label or note, a table column or row, a chart series by its legend) and click it to hide it; the eye hides a whole visual. Hidden items are kept, not deleted: they are left out of the report, the presentation and print. Click a faded item to show it again.', 'وضع الإخفاء – أشر إلى أي معلومة (قيمة أو عنوان أو ملاحظة في كارد، عمود أو صف في جدول، سلسلة في رسم من مفتاحه) واضغطها لإخفائها؛ والعين تخفي العنصر كاملاً. المخفي لا يُحذف: لا يظهر في التقرير ولا في العرض ولا في الطباعة. اضغط أي عنصر باهت لإظهاره مرة أخرى.')}</span><span class="sp"></span><button class="btn sm" data-rvls ${n ? '' : 'disabled'}>${ic('eye')}${LBL('Hidden on this page', 'المخفي في هذه الصفحة')}: <b>${n}</b>${tot !== n ? ` · ${LBL('report', 'التقرير')}: ${tot}` : ''}</button>${n ? `<button class="btn sm" data-rvall>${LBL('Show all on this page', 'إظهار الكل في هذه الصفحة')}</button>` : ''}<button class="btn sm pri" data-rvdone>${LBL('Done', 'تم')}</button></div>`; },
+  wireBar(app, pg) { const a = app.querySelector('[data-rvall]'); if (a) a.onclick = () => { RV.save(c => { if (c.hide) delete c.hide[pg.k]; if (c.hx) delete c.hx[pg.k]; }, `${pg.k}: show all`); RP.render(); };
+    const d = app.querySelector('[data-rvdone]'); if (d) d.onclick = () => { S.ui.rvEdit = false; RV.popClose(); RV.hl([]); RP.render(); };
+    const l = app.querySelector('[data-rvls]'); if (l) l.onclick = () => RV.list(pg); },
+  barRefresh(pg) { const b = document.querySelector('.rv-bar'); if (!b) return; b.outerHTML = RV.bar(pg); RV.wireBar(document.getElementById('app'), pg); }
+});
+{ const base = RV.apply; RV.apply = (main, pg) => { base(main, pg); if (!main || !pg || pg.admin) return;
+  main._rvEdit = !!(S.ui.rvEdit && RV.can() && !S.ui.pres && !main.closest('.rpp')); RV.applyX(main, pg); if (main._rvEdit) RV.wirePick(main, pg); }; }
+
+/* ---------- print: one formal A4 landscape sheet per page ---------- */
+RP.repTitle = () => LBL('Weekly Progress Report', 'تقرير التقدم الأسبوعي');
+RP.shHead = ({ t, chip, meta }) => { const p = S.db.project, id = IDENT(S.db), ar = S.lang === 'ar';
+  return `<header class="lps-h"><div class="lps-co">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<div><b dir="auto">${h(ar ? (id.nameAr || id.name) : (id.name || id.nameAr) || p.contractor || '')}</b><span dir="auto">${h(projTitle(p))} · <bdi dir="ltr">${h(p.number || '')}</bdi></span></div></div>
+    <div class="lps-t"><b>${t}</b>${chip ? `<span>${chip}</span>` : ''}</div><div class="lps-m">${meta.filter(Boolean).map(([k, v]) => `<span>${k} <b dir="ltr">${v}</b></span>`).join('')}</div></header>`; };
+RP.shFoot = () => { const p = S.db.project, id = IDENT(S.db);
+  return `<footer class="lps-f" dir="ltr">${id.logo ? `<img src="${id.logo}" alt="">` : ''}<span class="lps-pn" dir="auto">${LBL('Page', 'صفحة')} <bdi dir="ltr" data-pn></bdi></span><span dir="auto">${h(projTitle(p))}</span><span>${LBL('Printed', 'طُبع')} ${TS(nowISO(), 16)}</span><span class="sp"></span>${p.preparedBy ? `<span dir="auto">${LBL('Prepared by', 'إعداد')}: ${h(p.preparedBy)}</span>` : ''}<span class="cf">${LBL('Confidential', 'سري')}</span></footer>`; };
+/* the choices of the page on screen, written in the selection line of its sheet (the side filters are not printed) */
+RP.prSel = (pg, el) => { const o = [];
+  if (pg.slc) o.push(`<span>${LBL('Selection', 'الاختيار')}:</span> ${RPF.on() ? RPF.label() : `<b>${LBL('Whole project', 'المشروع كاملاً')}</b>`}`);
+  if (pg.k === 'delays') { const cb = S.ui.dlCb || [], fx = { all: LBL('All delays', 'كل التأخيرات'), crit: LBL('Critical (TF ≤ 0)', 'حرجة (فائض ≤ 0)'), gap: LBL('Missing reason / plan', 'بدون سبب أو معالجة') };
+    o.push(`${LBL('Caused by', 'المتسبب')}: <b>${cb.length ? cb.map(k => h(rpCbL(k))).join(', ') : LBL('All', 'الكل')}</b>`, `${LBL('Focus', 'التركيز')}: <b>${fx[S.ui.dlFx || 'all'] || fx.all}</b>`); }
+  if (pg.k === 'lookahead' && el && el._lap) { const L = el._lap, fx = { all: LBL('All activities', 'كل الأنشطة'), start: LBL('Starting', 'تبدأ'), cont: LBL('Continuing', 'مستمرة'), finish: LBL('Finishing', 'تنتهي'), crit: LBL('Critical', 'حرجة') };
+    o.push(`${LBL('Window', 'الفترة')}: <b>${fmtN(L.wk)} ${LBL('weeks', 'أسابيع')}</b> <bdi dir="ltr">${D.fmt(L.X.dd)} → ${D.fmt(L.WE)}</bdi>`, `${LBL('Show', 'العرض')}: <b>${fx[L.fx] || fx.all}</b>`, `${LBL('Based on', 'على أساس')} <b dir="ltr">${h(L.X.lbl || '')}</b>`); }
+  return o.join(' · '); };
+RP.prHead = (pg, el) => { const cut = rpCut(), sch = SCH(), u = pg.upd ? rpUpd() : null;
+  return RP.shHead({ t: rpLbl(pg), chip: `${RP.repTitle()}${cut ? ` · ${T('report_no')} <bdi dir="ltr">${h(cut.reportNo || '')}</bdi>` : ''}`,
+    meta: [cut && [T('cutoff'), D.fmt(cut.date)], sch && [T('data_date'), D.fmt(sch.dataDate)], u && [LBL('Update', 'التحديث'), `${h(u.lbl)} · ${D.fmt(u.ddp || u.dd)}`]] }); };
+RP.print = async keys => {   // keys: the pages to print in report order (default: the page on screen)
+  if (RP.printing) return; const pgs = RP.main().filter(p => (keys || [S.ui.rpPage]).includes(p.k)); if (!pgs.length) return toast(LBL('Open a report page to print it.', 'افتح صفحة من التقرير لطباعتها.'), 'bad');
+  RP.printing = true; RV.popClose(); toast(pgs.length > 1 ? LBL(`Preparing ${pgs.length} pages for printing…`, `جارٍ تجهيز ${pgs.length} صفحة للطباعة…`) : LBL('Preparing the page for printing…', 'جارٍ تجهيز الصفحة للطباعة…'));
+  const box = document.createElement('div'); box.id = 'rpPrint'; box.className = 'rps'; box.dir = document.documentElement.dir; box.style.cssText = 'display:block;position:fixed;left:-20000px;top:0'; document.body.appendChild(box);
+  try {
+    for (const pg of pgs) {
+      const kind = pg.k === 'cover' ? 'cov' : pg.k === 'end' ? 'end' : 'std', sh = document.createElement('section'); sh.className = `rpp lps rps-${kind}`; sh.dataset.pk = pg.k;
+      sh.innerHTML = `${kind === 'std' ? RP.prHead(pg) + `<div class="lps-sel" data-psel>${RP.prSel(pg)}</div>` : ''}<div class="lps-b rps-b"><div class="rp-page rps-pg"><div class="pb-main ${kind === 'cov' ? 'pb-bare' : ''}"></div></div></div>${kind === 'cov' ? '' : RP.shFoot()}`;
+      box.appendChild(sh); const sl = sh.querySelector('[data-psel]'); if (sl && !sl.textContent.trim()) sl.remove();
+      /* the 1280 px page body is fitted to the free height of the sheet (more rows and taller charts, same type size) */
+      const b = sh.querySelector('.rps-b'), pe = sh.querySelector('.rps-pg'), W = b.clientWidth, H = b.clientHeight; let s = W / 1280, ph = Math.round(H / s); if (ph < 600) { ph = 600; s = H / 600; }
+      const lx = (W - 1280 * s) / 2; Object.assign(pe.style, { height: ph + 'px', transform: `scale(${s})`, left: lx + 'px' }); pe.style.setProperty('--z', s); pe.style.setProperty('--lz', (lx / s) + 'px');   // print: zoom (charts redrawn in a transformed box drop out of the PDF)
+      const el = sh.querySelector('.pb-main');
+      try { if (pg.k === 'sim4d') await RP.print4d(el, pg); else { const r = RP.fill(el, pg); if (r && r.then) await r; if (pg.o4d) { await new Promise(r => setTimeout(r, 1200)); O4D.still(el); } } } catch (e) { el.innerHTML = `<div class="rp-ph"><div class="rp-phs">${h(e.message)}</div></div>`; }
+      if (pg.k === 'lookahead') await new Promise(r => setTimeout(r, 400));
+      RV.apply(el, pg); RP.rechart(el); el.querySelectorAll('select,button,input').forEach(x => x.classList.add('np'));
+      if (pg.k === 'lookahead' && sl) sl.innerHTML = RP.prSel(pg, el);
+    }
+    const S2 = [...box.querySelectorAll('section.rpp')]; S2.forEach((s, i) => { const n = s.querySelector('[data-pn]'); if (n) n.textContent = `${i + 1} / ${S2.length}`; });
+    await Promise.race([Promise.all([...box.querySelectorAll('img')].map(im => im.complete ? 1 : new Promise(r => { im.onload = im.onerror = r; }))), new Promise(r => setTimeout(r, 8000))]);
+    box.style.cssText = ''; RP.prSheets = S2.length;
+    document.body.classList.add('printing'); await new Promise(r => setTimeout(r, 300));
+    window.print();
+  } finally { document.body.classList.remove('printing'); if (!RP.keepPrint) box.remove(); RP.printing = false; }
+};
+/* whole report (button on the cover): choose the pages */
+RP.printDialog = () => {
+  const all = RP.main(), sel = new Set((S.ui.prSel || all.map(p => p.k)).filter(k => all.some(p => p.k === k)));
+  modal({ title: LBL('Print the report – choose the pages', 'طباعة التقرير – اختر الصفحات'), size: 'lg', body: `<div class="pr-d"><div class="muted small">${LBL('Each page prints on one A4 landscape sheet with the report header and footer, as it is set now: filters, update, side choices and hidden items.', 'كل صفحة تُطبع على ورقة A4 أفقية بترويسة التقرير وتذييله، بالحالة الحالية: الفلاتر والتحديث واختيارات الجانب والعناصر المخفية.')}</div>
+      <div class="pr-sh"><span class="sp"></span><button class="btn sm ghost" data-sa="1">${LBL('All', 'الكل')}</button><button class="btn sm ghost" data-sa="0">${LBL('None', 'لا شيء')}</button></div>
+      <div class="pr-ss pr-flat">${all.map((p, i) => { const n = RV.count(p.k); return `<label><input type="checkbox" data-pk="${p.k}" ${sel.has(p.k) ? 'checked' : ''}><span dir="ltr">${String(i + 1).padStart(2, '0')}</span><b>${rpLbl(p)}</b>${n ? `<em>${n} ${LBL('hidden', 'مخفي')}</em>` : ''}</label>`; }).join('')}</div></div>`,
+    foot: `<span class="muted small" data-pcn></span><span class="sp"></span><button class="btn pri" data-prgo>${ic('print')}${LBL('Print', 'طباعة')}</button>`,
+    onMount: (el, close) => {
+      const keys = () => all.map(p => p.k).filter(k => (el.querySelector(`[data-pk="${k}"]`) || {}).checked);
+      const cnt = () => { const n = keys().length; el.querySelector('[data-pcn]').textContent = `${n} ${LBL('pages', 'صفحة')}`; el.querySelector('[data-prgo]').disabled = !n; }; cnt();
+      el.querySelectorAll('[data-pk]').forEach(c => c.onchange = cnt);
+      el.querySelectorAll('[data-sa]').forEach(b => b.onclick = () => { el.querySelectorAll('[data-pk]').forEach(c => { c.checked = b.dataset.sa === '1'; }); cnt(); });
+      el.querySelector('[data-prgo]').onclick = () => { const k = keys(); if (!k.length) return; S.ui.prSel = k; close(); RP.print(k); };
+    } });
+};
+{ const base = RP.P.cover; RP.P.cover = (el, pg) => { base(el, pg); if (S.ui.pres || el.closest('.rpp')) return; const r = el.querySelector('.op-r'); if (!r) return;
+  r.insertAdjacentHTML('afterbegin', `<button class="rv-tool op-prb" data-prall title="${LBL('Print the whole report or chosen pages', 'طباعة التقرير كاملاً أو صفحات مختارة')}">${ic('print')}${LBL('Print report', 'طباعة التقرير')}</button>`);
+  r.querySelector('[data-prall]').onclick = RP.printDialog; }; }
+document.addEventListener('keydown', e => { if (S.portal !== 'rp' || S.ui.pres || !(e.ctrlKey || e.metaKey) || (e.key || '').toLowerCase() !== 'p') return; const pg = RP.main().find(p => p.k === S.ui.rpPage); if (!pg) return; e.preventDefault(); RP.print([pg.k]); }, true);
 
 /* ---------- installable app (PWA) – online copy only (https) ----------
    The online tool (GitHub Pages) can be installed as an app from Edge / Chrome (desktop and Android) or Safari (iPhone / iPad: Share → Add to Home Screen).

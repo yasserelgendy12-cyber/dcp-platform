@@ -1121,6 +1121,13 @@ table.dbt .pp{font-size:10.5px;color:var(--ink3);font-variant-numeric:tabular-nu
 @media (max-width:1460px){.dbm .k{font-size:9.5px}.dbms.m5{gap:4px}.dbms.m5 .dbm{padding:3px 4px}.dbk .k{font-size:10.5px}.dbms.m1 .dbm .v{font-size:13.5px}}
 @media (max-height:800px){.dbx{gap:7px}.dbk{padding:4px 9px}.dbk .v{font-size:16px}.dbc .bd{padding:6px 10px;gap:5px}.dbc>header{padding:5px 10px}table.dbt td,table.dbt th{padding:2px 4px}.dbal .al{padding:3px 7px}}
 @media print{.dbx{height:auto!important}}
+/* carried entries (decision 88): dates of an earlier cut-off locked with a padlock, ✎ for the user manager; carried delay fields tinted */
+table.t.pgt .cfw{position:relative}
+table.t.pgt .cfw.lkd .in.dt{color:var(--ink);font-weight:500;background:#EEF2F7;border-color:#D5DEE9}
+table.t.pgt .cfw .cfl,table.t.pgt .cfw .cfe{position:absolute;inset-inline-end:-5px;top:-7px;display:flex;align-items:center;justify-content:center;width:17px;height:17px;padding:0;border:1px solid #D5DEE9;border-radius:50%;background:#fff;color:#7C8AA0;font-style:normal;z-index:1}
+table.t.pgt .cfw .cfl svg,table.t.pgt .cfw .cfe svg{width:10px;height:10px}
+table.t.pgt .cfw .cfe{cursor:pointer;color:var(--pri);border-color:var(--pri)}table.t.pgt .cfw .cfe:hover{background:var(--info-l)}
+table.t.pgt .in.cf:not(.dt):not(.err):not(.wrn){background:#F2F7FD;border-color:#D3E2F3}
 
 </style>
 </head>
@@ -1255,7 +1262,8 @@ en: {
   c_bl: 'BL', c_notbl: 'Not in baseline', c_bls: 'BL start', c_blf: 'BL finish', need_date: 'Required for this status – enter the date',
   pl_at_dd: 'P6 data date', pl_at_cut: 'Cut-off date', rev_n: 'reviewed', rev_none: 'No reviews yet – equals the P6 %', rev_none_o: 'No owner entries yet', f_upd_lbl: 'Updated in this cut-off by:',
   e_pct: 'Progress must be between 0% and 100%.', e_as_cut: 'Actual start must be on or before the cut-off date', e_af_cut: 'Actual finish must be on or before the cut-off date',
-  e_as_0: 'Actual start is allowed only when the contractor % is above 0.', e_af_100: 'Actual finish is allowed only when the contractor % is 100.', e_bulk_skip: '{n} date(s) skipped: start needs a % above 0, finish needs 100%',
+  e_cf_lock: 'This date was entered in an earlier cut-off – only the user manager can change it.',
+  e_as_0: 'Actual start is allowed only when the contractor % is above 0.', e_af_100: 'Actual finish is allowed only when the contractor % is 100.', e_bulk_skip: '{n} date(s) skipped: start needs a % above 0, finish needs 100%, a date of an earlier cut-off is changed by the user manager only',
   v_as_np: 'Actual start entered but progress is 0%', v_rd_np: 'Remaining duration applies to activities in progress only',
   pl_upd: 'Latest update XER', pl_bl: 'Baseline XER', pl_basis: 'Plan % basis', pl_basis_upd: 'Planned dates of the latest update XER', pl_basis_bl: 'Baseline XER dates (update dates for activities not in the baseline)',
   pl_basis_d: 'Plan % is counted like P6 “Schedule % Complete”: days elapsed between the start and finish of each activity, weighted by cost. The Progress page shows it at the P6 data date and at the cut-off date. P6 moves the planned dates of delayed activities that have not started at every re-schedule, so the update XER gives a lower plan than the baseline.',
@@ -1395,7 +1403,8 @@ en: {
   c_bl: 'الأساسي', c_notbl: 'ليس في الأساسي', c_bls: 'البدء الأساسي', c_blf: 'الانتهاء الأساسي', need_date: 'مطلوب لهذه الحالة – أدخل التاريخ',
   pl_at_dd: 'تاريخ بيانات ⁦P6⁩', pl_at_cut: 'تاريخ القطع', rev_n: 'مراجعة', rev_none: 'لا توجد مراجعات – تساوي نسبة ⁦P6⁩', rev_none_o: 'لا توجد مدخلات من المالك', f_upd_lbl: 'تم تحديثه في هذا القطع من:',
   e_pct: 'نسبة الإنجاز يجب أن تكون بين 0% و 100%.', e_as_cut: 'تاريخ البدء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع', e_af_cut: 'تاريخ الانتهاء الفعلي يجب أن يكون أقل من أو يساوي تاريخ القطع',
-  e_as_0: 'تاريخ البدء الفعلي يُدخل فقط عندما تكون نسبة المقاول أكبر من 0.', e_af_100: 'تاريخ الانتهاء الفعلي يُدخل فقط عندما تكون نسبة المقاول 100.', e_bulk_skip: 'تم تخطي {n} تاريخ: البدء يحتاج نسبة أكبر من 0 والانتهاء يحتاج 100%',
+  e_cf_lock: 'هذا التاريخ أُدخل في تاريخ قطع سابق – التعديل لمدير المستخدمين فقط.',
+  e_as_0: 'تاريخ البدء الفعلي يُدخل فقط عندما تكون نسبة المقاول أكبر من 0.', e_af_100: 'تاريخ الانتهاء الفعلي يُدخل فقط عندما تكون نسبة المقاول 100.', e_bulk_skip: 'تم تخطي {n} تاريخ: البدء يحتاج نسبة أكبر من 0 والانتهاء يحتاج 100%، وتاريخ القطع السابق يعدّله مدير المستخدمين فقط',
   v_as_np: 'تم إدخال بدء فعلي والنسبة 0%', v_rd_np: 'المدة المتبقية للأنشطة الجارية فقط',
   pl_upd: 'آخر تحديث ⁦XER⁩', pl_bl: 'الجدول الأساسي ⁦XER⁩', pl_basis: 'أساس حساب النسبة المخططة', pl_basis_upd: 'التواريخ المخططة في آخر ملف تحديث ⁦XER⁩', pl_basis_bl: 'تواريخ الجدول الأساسي ⁦XER⁩ (وتواريخ التحديث للأنشطة غير الموجودة في الأساسي)',
   pl_basis_d: 'النسبة المخططة تُحسب مثل ⁦Schedule % Complete⁩ في ⁦P6⁩: الأيام المنقضية بين بداية ونهاية كل نشاط مرجحة بالتكلفة. صفحة تحديث الإنجاز تعرضها عند تاريخ بيانات ⁦P6⁩ وعند تاريخ القطع. برنامج ⁦P6⁩ يرحّل التواريخ المخططة للأنشطة المتأخرة التي لم تبدأ مع كل إعادة جدولة، لذلك يعطي ملف التحديث نسبة مخططة أقل من الجدول الأساسي.',
@@ -2637,6 +2646,35 @@ function tgtAgg(t) {
 const PROG = {
   acts: () => { const m = SCH(); return m ? m.activities : []; },
   upd: cid => (cid && S.db.updates[cid]) || {},
+  // carried entries (decision 88): actual dates and the delay fields entered in earlier cut-offs carry into the later ones.
+  // CARRY = the fields carried; LOCK = carried fields that are read only (the user manager unlocks them with ✎).
+  CARRY: ['as', 'af', 'causedBy', 'reason', 'mitigation'], LOCK: ['as', 'af'],
+  _pc: null,
+  // prior(cid) = Map activity → {field: {v, cid, date, rep, by, at}} – the last value of every carried field in the cut-offs dated before this one
+  // (oldest first, a later value wins; a value cleared in a later cut-off – stored as null – stops the carry)
+  prior(cid) {
+    const k = `${cid}|${_dbVer}`; if (PROG._pc && PROG._pc.k === k) return PROG._pc.m;
+    const m = new Map(), cut = (S.db.cutoffs.find(c => c._id === cid) || {}).date || '';
+    if (cut) live(S.db.cutoffs).filter(c => c._id !== cid && c.date < cut).sort((a, b) => a.date.localeCompare(b.date)).forEach(c => {
+      Object.entries(S.db.updates[c._id] || {}).forEach(([id, u]) => PROG.CARRY.forEach(f => {
+        if (!u || u[f] === undefined) return; let x = m.get(id);
+        if (u[f] === null || u[f] === '') { if (x) delete x[f]; return; }
+        if (!x) m.set(id, x = {}); x[f] = { v: u[f], cid: c._id, date: c.date, rep: c.reportNo, by: String(u._by || '').split(' (')[0], at: (u._t || {})[f] || '' };
+      }));
+    });
+    PROG._pc = { k, m }; return m;
+  },
+  // entries of an activity in a cut-off with the carried values filled in: what the grid, the P6 file and the reports read.
+  // _cf = {field: carried entry} for the values taken from an earlier cut-off. A field set in this cut-off (even cleared = null) wins.
+  um(cid, id) {
+    const u = PROG.upd(cid)[id], p = cid ? PROG.prior(cid).get(id) : null;
+    if (!p || !Object.keys(p).length) return u;
+    const r = Object.assign({}, u || {}), cf = {};
+    Object.entries(p).forEach(([f, x]) => { if (u && u[f] !== undefined) return; r[f] = x.v; cf[f] = x; });
+    if (Object.keys(cf).length) r._cf = cf; return r;
+  },
+  // carried & locked: the box holds a date entered in an earlier cut-off
+  locked: (u, f) => !!(u && u._cf && u._cf[f] && PROG.LOCK.includes(f)),
   // baseline dates of an activity (from the baseline XER); null when the activity is not in the baseline
   blDates: a => a.bl ? { s: a.bl.ps || a.bl.es || '', f: a.bl.pf || a.bl.ef || '', od: a.bl.od } : null,
   // dates the plan % is measured on: parameter planBasis = 'bl' (baseline XER dates where available – default) or 'upd' (planned dates of the latest update XER)
@@ -2699,7 +2737,7 @@ const PROG = {
   rows(cid) {
     const cut = (S.db.cutoffs.find(c => c._id === cid) || {}).date || reportDate();
     const U = PROG.upd(cid);
-    return PROG.acts().map(a => { const u = U[a.id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cut); return { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5, iss: PROG.issues(a, u, e, cut) }; });
+    return PROG.acts().map(a => { const uo = U[a.id], u = PROG.um(cid, a.id); const e = PROG.eff(a, u); const pl = PROG.planned(a, cut); return { a, u, uo, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5, iss: PROG.issues(a, u, e, cut) }; });
   },
   weights() { const acts = PROG.acts(); const tc = sum(acts, a => a.cost); return { tc, w: a => tc > 0 ? N(a.cost) / tc : (N(a.od) / (sum(acts, x => x.od) || 1)) }; },
   summary(cid) {
@@ -2709,7 +2747,7 @@ const PROG = {
     let pl = 0, plD = 0, ctr = 0, cons = 0, own = 0, hasOwn = false;
     rows.forEach(r => { const wt = w(r.a); pl += wt * N(PROG.planRaw(r.a, cdate)); if (ddate) plD += wt * N(PROG.planRaw(r.a, ddate)); ctr += wt * r.e.pct / 100; const u = r.u || {}; cons += wt * (isNum(u.cons) ? N(u.cons) : N(r.a.pct)) / 100; if (isNum(u.own)) hasOwn = true; own += wt * (isNum(u.own) ? N(u.own) : 0) / 100; });
     const c = s => rows.filter(r => r.e.status === s).length;
-    return { rows, planned: pl, plannedDD: ddate ? plD : null, cdate, ddate: m.dataDate || '', basis: PROG.planBasis() === 'bl' && m.bl ? 'bl' : 'upd', ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.u && Object.keys(r.u).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.u)).length, updCo: rows.filter(r => PROG.byCo(r.u)).length, updO: rows.filter(r => PROG.byO(r.u)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
+    return { rows, planned: pl, plannedDD: ddate ? plD : null, cdate, ddate: m.dataDate || '', basis: PROG.planBasis() === 'bl' && m.bl ? 'bl' : 'upd', ctr, cons, own, hasOwn, n: rows.length, comp: c('Completed'), inprog: c('In Progress'), ns: c('Not Started'), behind: rows.filter(r => r.behind).length, behindNoReason: rows.filter(r => r.behind && !(r.u && r.u.reason)).length, updated: rows.filter(r => r.uo && Object.keys(r.uo).some(k => !k.startsWith('_'))).length, updC: rows.filter(r => PROG.byC(r.uo)).length, updCo: rows.filter(r => PROG.byCo(r.uo)).length, updO: rows.filter(r => PROG.byO(r.uo)).length, changed: rows.filter(r => r.e.changed).length, bad: rows.filter(r => r.iss.some(i => i.sev === 'bad')).length };
   }
 };
 
@@ -3431,7 +3469,7 @@ function homeAlerts(ctx) {
   if (sm) {
     const la = D.add(sm.cdate, N(S.db.params.lookahead) || 14);
     const due = sm.rows.filter(r => r.e.status !== 'Completed' && (r.e.status === 'In Progress' || (r.a.ps && r.a.ps <= la) || (r.a.pf && r.a.pf <= la)));
-    add('warn', T('progress'), CT, L('Due activities not updated', 'أنشطة مطلوبة لم تُحدَّث'), L(`In progress or planned within ${N(S.db.params.lookahead) || 14} days, no contractor entry in this cut-off.`, `جارية أو مخططة خلال ${N(S.db.params.lookahead) || 14} يوماً، بدون إدخال من المقاول في هذا القطع.`), due.filter(r => !PROG.byC(r.u)).length, 'progress');
+    add('warn', T('progress'), CT, L('Due activities not updated', 'أنشطة مطلوبة لم تُحدَّث'), L(`In progress or planned within ${N(S.db.params.lookahead) || 14} days, no contractor entry in this cut-off.`, `جارية أو مخططة خلال ${N(S.db.params.lookahead) || 14} يوماً، بدون إدخال من المقاول في هذا القطع.`), due.filter(r => !PROG.byC(r.uo)).length, 'progress');
     add('warn', T('progress'), CT, L('Behind plan without reason', 'متأخر عن الخطة بدون سبب'), L('Caused by, reason and mitigation are required.', 'المتسبب والسبب والإجراء التصحيحي مطلوبة.'), sm.rows.filter(r => r.behind && !((r.u || {}).reason && (r.u || {}).causedBy)).length, 'progress');
     add('bad', T('progress'), CT, L('Errors in the progress entries', 'أخطاء في إدخالات الإنجاز'), L('Missing actual dates or wrong values – they stop the P6 file.', 'تواريخ فعلية ناقصة أو قيم خاطئة – تمنع ملف P6.'), sm.bad, 'progress');
     add('info', T('progress'), CO, L('Contractor updates awaiting review', 'تحديثات المقاول بانتظار المراجعة'), L('Contractor % entered, no consultant review yet.', 'نسبة المقاول مُدخلة ولا توجد مراجعة استشاري بعد.'), sm.rows.filter(r => r.u && isNum(r.u.ctr) && !isNum(r.u.cons)).length, 'progress');
@@ -3625,8 +3663,8 @@ PAGES.progress = v => {
     switch (f) {
       case 'inprog': return e.status === 'In Progress'; case 'ns': return e.status === 'Not Started'; case 'comp': return e.status === 'Completed';
       case 'behind': return r.behind; case 'issues': return r.iss.length > 0;
-      case 'updC': return PROG.byC(r.u); case 'updCo': return PROG.byCo(r.u); case 'updO': return PROG.byO(r.u);
-      case 'due': { const upd = r.u && Object.keys(r.u).some(k => !k.startsWith('_')); return upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'); }
+      case 'updC': return PROG.byC(r.uo); case 'updCo': return PROG.byCo(r.uo); case 'updO': return PROG.byO(r.uo);
+      case 'due': { const upd = r.uo && Object.keys(r.uo).some(k => !k.startsWith('_')); return upd || e.status === 'In Progress' || (e.status === 'Not Started' && a.ps && a.ps <= la) || (e.status !== 'Completed' && a.pf && a.pf <= la) || (a.es && a.es <= la && e.status !== 'Completed'); }
       default: return true; } };
   let all = [];
   const filtered = () => {
@@ -3649,12 +3687,20 @@ PAGES.progress = v => {
   /* ---- table ---- */
   // actual dates and remaining duration are entered by the team only (nothing is pre-filled from the XER files). A box opens when the contractor % allows it:
   // actual start above 0 %, actual finish at 100 %, remaining duration while in progress; a box that already holds a value stays open so it can be corrected.
+  // Carried entries (decision 88): a date entered in an earlier cut-off is carried and locked (🔒); the user manager unlocks it with ✎ (st.unl, this session only).
+  // Caused by / reason / mitigation of earlier cut-offs are carried too and stay editable for the contractor role.
   const MISS = ['v_as', 'v_af'];   // "date missing" issues: shown as a green box to fill, still listed in the To P6 column
-  const openFor = (a, u, e) => { u = u || {}; return { as: canC && a.type !== 'TT_FinMile' && (e.pct > 0 || !!u.as), af: canC && a.type !== 'TT_Mile' && (e.pct >= 100 || !!u.af), rd: canC && !PROG.isMs(a) && (e.status === 'In Progress' || isNum(u.rd)) }; };
+  const mgr = canUsers() && !!cut; st.unl = st.unl || new Set();
+  const lk = (a, u, f) => PROG.locked(u, f) && !(mgr && st.unl.has(a.id + '|' + f));   // carried date still locked for this user
+  const dOpen = (a, u, f, base) => PROG.locked(u, f) ? !lk(a, u, f) : canC && base;   // a carried date opens only after ✎ (user manager)
+  const openFor = (a, u, e) => { u = u || {}; return { as: a.type !== 'TT_FinMile' && dOpen(a, u, 'as', e.pct > 0 || !!u.as), af: a.type !== 'TT_Mile' && dOpen(a, u, 'af', e.pct >= 100 || !!u.af), rd: canC && !PROG.isMs(a) && (e.status === 'In Progress' || isNum(u.rd)) }; };
   const needFor = (a, u, e) => { u = u || {}; return { as: e.pct > 0 && a.type !== 'TT_FinMile' && !u.as, af: e.pct >= 100 && a.type !== 'TT_Mile' && !u.af }; };   // green = the date is due for this status and not entered yet
   const CB = ['Contractor', 'Consultant', 'Client', 'Concurrent'];
   const cell = (r, f, cls, type, en, need) => { const u = r.u || {}; const val = u[f] ?? ''; const isErr = r.iss.some(i => i.f === f && i.sev === 'bad' && !(need && en && MISS.includes(i.k))), isW = r.iss.some(i => i.f === f && i.sev === 'warn');
-    const ec = `${isErr ? 'err' : isW ? 'wrn' : ''} ${need && en && !isErr ? 'need' : ''}`;
+    const cf = u._cf && u._cf[f];   // value carried from an earlier cut-off
+    const ec = `${isErr ? 'err' : isW ? 'wrn' : ''} ${need && en && !isErr ? 'need' : ''} ${cf ? 'cf' : ''}`;
+    if (cf && PROG.LOCK.includes(f)) { const l = lk(r.a, u, f);   // carried date: locked box with a padlock; ✎ for the user manager
+      return `<div class="cfw ${l ? 'lkd' : 'unl'}"><input class="in ${cls} ${ec}" type="date" max="${cdate}" data-u="${f}" value="${h(val)}" ${en && !l ? '' : 'disabled'}>${l ? (mgr ? `<button type="button" class="cfe" data-unl="${f}" aria-label="${h(LBL('Edit the date (user manager)', 'تعديل التاريخ (مدير المستخدمين)'))}">${ic('pen')}</button>` : `<i class="cfl" aria-hidden="true">${ic('lock')}</i>`) : ''}</div>`; }
     if (type === 'sel') return `<select class="in ${ec}" data-u="${f}" ${en ? '' : 'disabled'}><option value=""></option>${CB.map(o => `<option value="${o}" ${val === o ? 'selected' : ''}>${E(o)}</option>`).join('')}</select>`;
     if (type === 'area') return `<textarea class="in tx ${ec}" rows="2" data-u="${f}" ${en ? '' : 'disabled'}>${h(val)}</textarea>`;
     const pc = ['ctr', 'cons', 'own'].includes(f);
@@ -3681,20 +3727,22 @@ PAGES.progress = v => {
     ctr: [T('c_ctr'), LBL('Physical progress at the cut-off date, entered by the contractor.', 'نسبة الإنجاز الفعلية في تاريخ القطع، يدخلها المقاول.'), { how: LBL('Type 0–100. Leave it empty to keep the P6 % (grey). P6 receives the higher of the two.', 'اكتب رقماً من 0 إلى 100. اتركه فارغاً للإبقاء على نسبة P6 (الرقم الرمادي). يُرسل إلى P6 الأعلى بين النسبتين.') }],
     cons: [T('c_cons'), LBL("The consultant's review of the progress.", 'مراجعة الاستشاري لنسبة الإنجاز.'), { how: LBL('Type 0–100 after site verification. Empty = the P6 %. Not above the % sent to P6.', 'اكتب من 0 إلى 100 بعد التحقق في الموقع. الفارغ = نسبة P6. لا تتجاوز النسبة المرسلة إلى P6.') }],
     own: [T('c_own'), LBL("The owner's assessment of the progress.", 'تقييم المالك لنسبة الإنجاز.'), { how: LBL('Type 0–100. An activity left empty counts 0 in the owner actual.', 'اكتب من 0 إلى 100. النشاط الفارغ يُحتسب صفراً في فعلي المالك.') }],
-    as: [T('c_as'), LBL('The date the work actually started.', 'تاريخ البدء الفعلي للعمل.'), { how: LBL('Opens when the % is above 0; green = required. A date on or before the cut-off.', 'تُفتح عندما تكون النسبة أكبر من 0، والأخضر = مطلوب. تاريخ لا يتجاوز تاريخ القطع.') }, LBL('◆ Finish milestones take the actual finish only (—).', '◆ معالم النهاية تأخذ تاريخ الانتهاء فقط (—).')],
-    af: [T('c_af'), LBL('The date the work actually finished.', 'تاريخ الانتهاء الفعلي للعمل.'), { how: LBL('Opens at 100 %; green = required. On or before the cut-off and not before the actual start.', 'تُفتح عند 100%، والأخضر = مطلوب. لا يتجاوز تاريخ القطع ولا يسبق البدء الفعلي.') }, LBL('◆ Start milestones take the actual start only (—).', '◆ معالم البداية تأخذ تاريخ البدء فقط (—).')],
+    as: [T('c_as'), LBL('The date the work actually started.', 'تاريخ البدء الفعلي للعمل.'), { how: LBL('Opens when the % is above 0; green = required. A date on or before the cut-off. A date of an earlier cut-off is carried and locked 🔒 – only the user manager changes it (✎).', 'تُفتح عندما تكون النسبة أكبر من 0، والأخضر = مطلوب. تاريخ لا يتجاوز تاريخ القطع. تاريخ القطع السابق يُرحَّل ويُغلق 🔒 – يعدّله مدير المستخدمين فقط (✎).') }, LBL('◆ Finish milestones take the actual finish only (—).', '◆ معالم النهاية تأخذ تاريخ الانتهاء فقط (—).')],
+    af: [T('c_af'), LBL('The date the work actually finished.', 'تاريخ الانتهاء الفعلي للعمل.'), { how: LBL('Opens at 100 %; green = required. On or before the cut-off and not before the actual start. A date of an earlier cut-off is carried and locked 🔒 – only the user manager changes it (✎).', 'تُفتح عند 100%، والأخضر = مطلوب. لا يتجاوز تاريخ القطع ولا يسبق البدء الفعلي. تاريخ القطع السابق يُرحَّل ويُغلق 🔒 – يعدّله مدير المستخدمين فقط (✎).') }, LBL('◆ Start milestones take the actual start only (—).', '◆ معالم البداية تأخذ تاريخ البدء فقط (—).')],
     rd: [LBL('Remaining duration', 'المدة المتبقية'), LBL('Working days left for an activity in progress.', 'أيام العمل المتبقية لنشاط جارٍ.'), { how: LBL('A whole number above 0. Empty = calculated (grey): duration × (1 − %).', 'رقم صحيح أكبر من 0. الفارغ = محسوب تلقائياً (الرمادي): المدة × (1 − النسبة).') }],
-    causedBy: [T('c_cb'), LBL('The party responsible for the delay.', 'الجهة المسؤولة عن التأخير.'), { how: LBL('For an activity behind plan choose Contractor, Consultant, Client or Concurrent – required with the reason.', 'للنشاط المتأخر اختر: المقاول أو الاستشاري أو المالك أو متزامن – مطلوب مع السبب.') }],
-    reason: [T('c_rsn'), LBL('Why the activity is behind plan.', 'سبب تأخر النشاط عن الخطة.'), { how: LBL('One short sentence: what is late and why (e.g. "Rebar delivery late 5 days – supplier"). Hover a cell to read the full text.', 'جملة قصيرة: ما المتأخر ولماذا (مثال: «تأخر توريد حديد التسليح 5 أيام – المورد»). مرّر المؤشر على الخانة لقراءة النص كاملاً.') }],
-    mitigation: [T('c_mit'), LBL('The action that recovers the delay.', 'الإجراء الذي يستعيد التأخير.'), { how: LBL('What will be done, by whom and by when (e.g. "Second shift on formwork until 30-Nov").', 'ماذا سيتم، ومن المسؤول، ومتى (مثال: «وردية ثانية للشدات حتى 30-نوفمبر»).') }],
+    causedBy: [T('c_cb'), LBL('The party responsible for the delay. Carried from the earlier cut-offs (light blue) – edit it if it changed.', 'الجهة المسؤولة عن التأخير. يُرحَّل من القطع السابق (أزرق فاتح) – عدّله إذا تغيّر.'), { how: LBL('For an activity behind plan choose Contractor, Consultant, Client or Concurrent – required with the reason.', 'للنشاط المتأخر اختر: المقاول أو الاستشاري أو المالك أو متزامن – مطلوب مع السبب.') }],
+    reason: [T('c_rsn'), LBL('Why the activity is behind plan. Carried from the earlier cut-offs (light blue).', 'سبب تأخر النشاط عن الخطة. يُرحَّل من القطع السابق (أزرق فاتح).'), { how: LBL('One short sentence: what is late and why (e.g. "Rebar delivery late 5 days – supplier"). Hover a cell to read the full text.', 'جملة قصيرة: ما المتأخر ولماذا (مثال: «تأخر توريد حديد التسليح 5 أيام – المورد»). مرّر المؤشر على الخانة لقراءة النص كاملاً.') }],
+    mitigation: [T('c_mit'), LBL('The action that recovers the delay. Carried from the earlier cut-offs (light blue).', 'الإجراء الذي يستعيد التأخير. يُرحَّل من القطع السابق (أزرق فاتح).'), { how: LBL('What will be done, by whom and by when (e.g. "Second shift on formwork until 30-Nov").', 'ماذا سيتم، ومن المسؤول، ومتى (مثال: «وردية ثانية للشدات حتى 30-نوفمبر»).') }],
     x: [LBL('To P6', 'إلى P6'), LBL('What goes to P6 in the "Last Updates TO P6" file: status and % (the higher of the P6 % and the contractor %); actual dates and remaining duration in the bookmark of the cell.', 'ما يُرسل إلى P6 في ملف Last Updates TO P6: الحالة والنسبة (الأعلى بين نسبة P6 ونسبة المقاول)، والتواريخ الفعلية والمتبقي في بطاقة الخانة.'), LBL('↑ changes P6 · ! error – fix before the P6 file · ? warning', '↑ يغيّر P6 · ! خطأ – يُصحَّح قبل ملف P6 · ? تنبيه')]
   };
   // bookmark of a cell: this activity's data, and for an entry column how to enter it
-  const rowOf = id => { const a = sch.byId.get(id); const u = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate); const r = { a, u, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate); return r; };
+  const rowOf = id => { const a = sch.byId.get(id); const u = PROG.um(cid, id), uo = (S.db.updates[cid] || {})[id]; const e = PROG.eff(a, u); const pl = PROG.planned(a, cdate); const r = { a, u, uo, e, pl, behind: pl !== null && e.status !== 'Completed' && pl > e.pct + 0.5 }; r.iss = PROG.issues(a, u, e, cdate); return r; };
   TIP.fn.pg = el => {
     const tr = el.closest('tr[data-a]'); if (!tr || !sch.byId.get(tr.dataset.a)) return null; const r = rowOf(tr.dataset.a), a = r.a, u = r.u || {}, e = r.e, c = el.dataset.c;
     const op = openFor(a, u, e), nd = needFor(a, u, e), b = PROG.blDates(a), d = x => x ? D.fmt(x) : '—';
     const how = k => HTIP[k].find(x => x && x.how), lock = (en, why) => en ? null : { warn: why || LBL('Read only for your role or with no open cut-off.', 'للقراءة فقط لدورك أو لعدم وجود تاريخ قطع مفتوح.') };
+    const cfl = k => { const x = u._cf && u._cf[k]; return x ? [LBL('Carried from', 'مُرحَّل من'), `${LBL('cut-off', 'قطع')} ${D.fmt(x.date)}${x.rep ? ` · ${LBL('report', 'تقرير')} ${x.rep}` : ''}${x.by ? ` · ${x.by}` : ''}`] : ''; };
+    const lkw = k => PROG.locked(u, k) ? { warn: lk(a, u, k) ? (mgr ? LBL('Entered in an earlier cut-off – locked. Click ✎ to change it (user manager).', 'أُدخل في تاريخ قطع سابق – مغلق. اضغط ✎ لتعديله (مدير المستخدمين).') : LBL('Entered in an earlier cut-off – locked. Only the user manager can change it.', 'أُدخل في تاريخ قطع سابق – مغلق. التعديل لمدير المستخدمين فقط.')) : LBL('Unlocked for the user manager – the change is saved in this cut-off.', 'مفتوح لمدير المستخدمين – يُحفظ التعديل في هذا القطع.') } : null;
     const ent = k => [LBL('Entered', 'المُدخل'), isNum(u[k]) || (u[k] && typeof u[k] === 'string') ? (['ctr', 'cons', 'own'].includes(k) ? pgPct(u[k]) : ['as', 'af'].includes(k) ? D.fmt(u[k]) : String(u[k])) : '—'];
     switch (c) {
       case 'act': return [a.bl ? a.bl.name : a.name, [LBL('Activity ID', 'كود النشاط'), a.id], [LBL('Start', 'البدء'), d(b ? b.s : a.ps)], [LBL('Finish', 'الانتهاء'), d(b ? b.f : a.pf)], [LBL('Original duration', 'المدة الأصلية'), `${fmtN(b ? N(b.od) : N(a.od), 0)} ${LBL('d', 'يوم')}`], a.bl && a.bl.name !== a.name ? [LBL('Name in the update', 'الاسم في التحديث'), a.name] : '', PROG.isMs(a) ? LBL('◆ Milestone', '◆ معلم رئيسي') : '', sch.bl && !a.bl ? { warn: LBL('Not in the baseline – dates from the update.', 'غير موجود في البرنامج الأساسي – التواريخ من التحديث.') } : (b ? { src: LBL('Approved baseline XER', 'البرنامج الأساسي المعتمد XER') } : '')];
@@ -3704,14 +3752,14 @@ PAGES.progress = v => {
       case 'cons': return [T('c_cons'), ent('cons'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('cons'), lock(canCo)];
       case 'own': return [T('c_own'), ent('own'), [LBL('Sent to P6', 'المرسل إلى P6'), pgPct(e.pctR)], how('own'), lock(canO)];
       case 'as': if (a.type === 'TT_FinMile') return [T('c_as'), LBL('◆ Finish milestone: only the actual finish date is entered.', '◆ معلم نهاية: يُدخل تاريخ الانتهاء الفعلي فقط.')];
-        return [T('c_as'), ent('as'), a.type === 'TT_Mile' ? LBL('◆ Start milestone: only this date is entered.', '◆ معلم بداية: يُدخل هذا التاريخ فقط.') : '', [LBL('In P6', 'في P6'), a.as ? D.fmt(a.as) : '—'], nd.as ? { warn: LBL('Required: the activity has started.', 'مطلوب: النشاط بدأ.') } : '', how('as'), lock(op.as, canC ? LBL('Opens when the % is above 0.', 'تُفتح عندما تكون النسبة أكبر من 0.') : null)];
+        return [T('c_as'), ent('as'), a.type === 'TT_Mile' ? LBL('◆ Start milestone: only this date is entered.', '◆ معلم بداية: يُدخل هذا التاريخ فقط.') : '', cfl('as'), [LBL('In P6', 'في P6'), a.as ? D.fmt(a.as) : '—'], nd.as ? { warn: LBL('Required: the activity has started.', 'مطلوب: النشاط بدأ.') } : '', how('as'), lkw('as') || lock(op.as, canC ? LBL('Opens when the % is above 0.', 'تُفتح عندما تكون النسبة أكبر من 0.') : null)];
       case 'af': if (a.type === 'TT_Mile') return [T('c_af'), LBL('◆ Start milestone: only the actual start date is entered.', '◆ معلم بداية: يُدخل تاريخ البدء الفعلي فقط.')];
-        return [T('c_af'), ent('af'), a.type === 'TT_FinMile' ? LBL('◆ Finish milestone: only this date is entered.', '◆ معلم نهاية: يُدخل هذا التاريخ فقط.') : '', [LBL('In P6', 'في P6'), a.af ? D.fmt(a.af) : '—'], nd.af ? { warn: LBL('Required: the activity is at 100 %.', 'مطلوب: النشاط عند 100%.') } : '', how('af'), lock(op.af, canC ? LBL('Opens at 100 %.', 'تُفتح عند 100%.') : null)];
+        return [T('c_af'), ent('af'), a.type === 'TT_FinMile' ? LBL('◆ Finish milestone: only this date is entered.', '◆ معلم نهاية: يُدخل هذا التاريخ فقط.') : '', cfl('af'), [LBL('In P6', 'في P6'), a.af ? D.fmt(a.af) : '—'], nd.af ? { warn: LBL('Required: the activity is at 100 %.', 'مطلوب: النشاط عند 100%.') } : '', how('af'), lkw('af') || lock(op.af, canC ? LBL('Opens at 100 %.', 'تُفتح عند 100%.') : null)];
       case 'rd': if (PROG.isMs(a)) return [LBL('Remaining duration', 'المدة المتبقية'), LBL('◆ Milestone: no remaining duration.', '◆ معلم رئيسي: لا توجد مدة متبقية.')];
         return [LBL('Remaining duration', 'المدة المتبقية'), ent('rd'), [LBL('Sent to P6', 'المرسل إلى P6'), `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], how('rd'), lock(op.rd, canC ? LBL('Only for an activity in progress.', 'لنشاط جارٍ فقط.') : null)];
-      case 'causedBy': return [T('c_cb'), [LBL('Entered', 'المُدخل'), u.causedBy ? E(u.causedBy) : '—'], r.behind && !u.causedBy ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how('causedBy'), lock(canC)];
-      case 'reason': case 'mitigation': { const t = u[c]; const by = (u._by || '').split(' (')[0], at = u._t && u._t[c] ? TS(u._t[c], 16) : '';
-        return t ? [HTIP[c][0], { txt: t }, [LBL('Entered by', 'أدخله'), by ? `${by}${at ? ' · ' + at : ''}` : '']] : [HTIP[c][0], LBL('Nothing entered yet.', 'لم يُدخل شيء بعد.'), r.behind && c === 'reason' ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how(c), lock(canC)]; }
+      case 'causedBy': return [T('c_cb'), [LBL('Entered', 'المُدخل'), u.causedBy ? E(u.causedBy) : '—'], cfl('causedBy'), r.behind && !u.causedBy ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how('causedBy'), lock(canC)];
+      case 'reason': case 'mitigation': { const t = u[c], x = u._cf && u._cf[c]; const by = x ? x.by : (u._by || '').split(' (')[0], at = x ? (x.at ? TS(x.at, 16) : '') : u._t && u._t[c] ? TS(u._t[c], 16) : '';
+        return t ? [HTIP[c][0], { txt: t }, [LBL('Entered by', 'أدخله'), by ? `${by}${at ? ' · ' + at : ''}` : ''], cfl(c), x && canC ? LBL('Carried from the earlier cut-off – edit it if it changed.', 'مُرحَّل من القطع السابق – عدّله إذا تغيّر.') : ''] : [HTIP[c][0], LBL('Nothing entered yet.', 'لم يُدخل شيء بعد.'), r.behind && c === 'reason' ? { warn: LBL('Behind plan – required.', 'متأخر عن الخطة – مطلوب.') } : '', how(c), lock(canC)]; }
       case 'x': return [LBL('Sent to P6', 'المرسل إلى P6'), [LBL('Status', 'الحالة'), pgSt(e.status)], [LBL('% complete', 'نسبة الإنجاز'), pgPct(e.pctR)], [T('c_as'), e.as ? D.fmt(e.as) : ''], [T('c_af'), e.af ? D.fmt(e.af) : ''], [LBL('Remaining duration', 'المدة المتبقية'), e.status === 'Completed' ? '' : `${fmtN(e.rd)} ${LBL('d', 'يوم')}`], e.changed ? LBL('↑ Differs from P6 – will update it.', '↑ يختلف عن P6 – سيحدّثه.') : LBL('Same as P6.', 'مطابق لـ P6.'), ...r.iss.map(i => ({ warn: `${i.sev === 'bad' ? '!' : '?'} ${T(i.k)}` }))];
     }
     return null;
@@ -3747,13 +3795,16 @@ PAGES.progress = v => {
       if (as && as > cdate) return toast(`${T('e_as_cut')} (${D.fmt(cdate)})`, 'bad'); if (af && af > cdate) return toast(`${T('e_af_cut')} (${D.fmt(cdate)})`, 'bad');
       let skip = 0;   // the same rules as typing in the grid: start above 0 %, finish at 100 %
       st.sel.forEach(id => { const a = sch.byId.get(id); if (p !== '') setUpd(cid, id, 'ctr', Number(p), true); const e = PROG.eff(a, (S.db.updates[cid] || {})[id]);
-        if (as) { if (e.pct > 0 && a.type !== 'TT_FinMile') setUpd(cid, id, 'as', as, true); else skip++; }
-        if (af) { if (e.pct >= 100 && a.type !== 'TT_Mile') setUpd(cid, id, 'af', af, true); else skip++; } });
+        const um = PROG.um(cid, id);   // carried (locked) dates are changed by the user manager only
+        if (as) { if (e.pct > 0 && a.type !== 'TT_FinMile' && (mgr || !PROG.locked(um, 'as'))) setUpd(cid, id, 'as', as, true); else skip++; }
+        if (af) { if (e.pct >= 100 && a.type !== 'TT_Mile' && (mgr || !PROG.locked(um, 'af'))) setUpd(cid, id, 'af', af, true); else skip++; } });
       touch('bulk update', `${st.sel.size} activities`); toast(skip ? `${T('saved')} – ${T('e_bulk_skip').replace('{n}', skip)}` : T('saved'), skip ? 'warn' : 'ok'); draw(); };
-    b.querySelector('[data-bc]').onclick = async () => { if (!(await confirmBox(`${T('bulk_clear')} (${st.sel.size})?`, T('clear'), true))) return; st.sel.forEach(id => ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].forEach(f => setUpd(cid, id, f, '', true))); touch('bulk clear', `${st.sel.size} activities`); draw(); };
+    b.querySelector('[data-bc]').onclick = async () => { if (!(await confirmBox(`${T('bulk_clear')} (${st.sel.size})?`, T('clear'), true))) return; st.sel.forEach(id => { const um = PROG.um(cid, id); ['ctr', 'as', 'af', 'rd', 'causedBy', 'reason', 'mitigation'].forEach(f => { if (mgr || !PROG.locked(um, f)) setUpd(cid, id, f, '', true); }); }); touch('bulk clear', `${st.sel.size} activities`); draw(); };
   };
   const g = v.querySelector('[data-g]');
-  g.addEventListener('click', e => { const t = e.target; if (t.matches && t.matches('input.dt:not(:disabled)') && t.showPicker) { try { t.showPicker(); } catch (x) { } } });
+  g.addEventListener('click', e => { const t = e.target; if (t.matches && t.matches('input.dt:not(:disabled)') && t.showPicker) { try { t.showPicker(); } catch (x) { } }
+    const ub = t.closest && t.closest('[data-unl]'); if (ub && mgr) { const tr = ub.closest('tr[data-a]'), f = ub.dataset.unl; st.unl.add(tr.dataset.a + '|' + f); const r = rowOf(tr.dataset.a), op = openFor(r.a, r.u, r.e), nd = needFor(r.a, r.u, r.e);
+      const td = ub.closest('td'); td.innerHTML = cell(r, f, 'dt', 'date', op[f], nd[f]); const i = td.querySelector('input'); if (i && !i.disabled) { i.focus(); if (i.showPicker) { try { i.showPicker(); } catch (x) { } } } } });
   g.addEventListener('change', e => {
     const t = e.target; const tr = t.closest('tr[data-a]'); if (!tr) return;
     if (t.matches('[data-sel]')) { t.checked ? st.sel.add(tr.dataset.a) : st.sel.delete(tr.dataset.a); tr.classList.toggle('sel', t.checked); drawBulk(); return; }
@@ -3761,12 +3812,16 @@ PAGES.progress = v => {
     let val = t.value; const f = t.dataset.u; if (['ctr', 'cons', 'own', 'rd'].includes(f) && val !== '') val = Number(val);
     if (['reason', 'mitigation'].includes(f)) val = String(val).trim();
     // entry limits: a value that breaks one is not saved – the box goes back to what it held and a short message says why
-    const no = msg => { const cur = ((S.db.updates[cid] || {})[tr.dataset.a] || {})[f]; t.value = cur ?? ''; toast(msg, 'bad'); };
+    const no = msg => { const cur = (PROG.um(cid, tr.dataset.a) || {})[f]; t.value = cur ?? ''; toast(msg, 'bad'); };
+    if (PROG.locked(PROG.um(cid, tr.dataset.a), f) && !(mgr && st.unl.has(tr.dataset.a + '|' + f))) return no(T('e_cf_lock'));
     if (['ctr', 'cons', 'own'].includes(f) && val !== '' && !(val >= 0 && val <= 100)) return no(T('e_pct'));
     if (f === 'as' && val && val > cdate) return no(`${T('e_as_cut')} (${D.fmt(cdate)})`);
     if (f === 'af' && val && val > cdate) return no(`${T('e_af_cut')} (${D.fmt(cdate)})`);
     if (f === 'rd' && val !== '' && !(val > 0 && Number.isInteger(val))) return no(T('v_rd'));
-    setUpd(cid, tr.dataset.a, f, val); const r = refreshRow(tr); all = PROG.rows(cid); kpis(PROG.summary(cid)); drawFilters();
+    const wasCf = PROG.locked(PROG.um(cid, tr.dataset.a), f);
+    setUpd(cid, tr.dataset.a, f, val); if (wasCf) { st.unl.delete(tr.dataset.a + '|' + f); audit('edit carried date', `${tr.dataset.a} · ${f} → ${val || '—'}`); }
+    if (wasCf) { const td = t.closest('td'), r0 = rowOf(tr.dataset.a); td.innerHTML = cell(r0, f, 'dt', 'date', openFor(r0.a, r0.u, r0.e)[f], needFor(r0.a, r0.u, r0.e)[f]); }
+    const r = refreshRow(tr); all = PROG.rows(cid); kpis(PROG.summary(cid)); drawFilters();
     if (f === 'ctr') { const u = r.u || {}; if (u.af && r.e.pct < 100) toast(T('e_af_100'), 'bad'); else if (u.as && r.e.pct <= 0) toast(T('e_as_0'), 'bad'); }   // lowering the % left a date that is no longer allowed
   });
   v.querySelectorAll('[data-fo]').forEach(p => p.onclick = () => { st.focus = p.dataset.fo; st.page = 0; v.querySelectorAll('[data-fo]').forEach(x => x.classList.toggle('on', x === p)); draw(); });
@@ -3784,7 +3839,8 @@ PAGES.progress = v => {
 function setUpd(cid, id, f, val, silent) {
   const U = S.db.updates[cid] = S.db.updates[cid] || {};
   const r = U[id] = U[id] || { _t: {} };
-  if (val === '' || val === null || val === undefined) delete r[f]; else r[f] = val;
+  if (val === '' || val === null || val === undefined) { const p = PROG.CARRY.includes(f) && PROG.prior(cid).get(id); if (p && p[f]) r[f] = null; else delete r[f]; }   // null = cleared in this cut-off: stops the carried value
+  else r[f] = val;
   r._t = r._t || {}; r._t[f] = nowISO(); r._by = `${S.user.name} (${userLabel()})`;
   if (!silent) touch();
 }
@@ -5269,7 +5325,7 @@ const IMP = (() => {
       row.rec = {}; row.err = []; row.ch = [];
       const id = String(row.raw.id ?? '').trim(); row.key = id; const a = acts.get(id);
       if (!a) { row.st = 'err'; row.msg = T('imp_e_act'); return; }
-      const u = U[id] || {}; const p6 = PROG.p6(a);
+      const u = PROG.um(cid, id) || {}; const p6 = PROG.p6(a);   // with the values carried from earlier cut-offs
       defs.forEach(d => {
         if (d.k === 'id' || !(d.k in row.raw) || !allowed.has(d.k)) return;
         const c = convert(d, row.raw[d.k]); if (c.e) { row.err.push(`${label(d.k)}: ${c.e === 'date' ? T('imp_e_date') : c.e === 'num' ? T('imp_e_num') : T('imp_e_list') + ' “' + c.x + '”'}`); return; }
@@ -5282,6 +5338,7 @@ const IMP = (() => {
         // the same limits as typing in the grid; the % the dates are checked against = this row's contractor % (or the one already entered), never below P6
         const pctNow = () => { let p = Math.max(N(a.pct), isNum(row.rec.ctr) ? N(row.rec.ctr) : isNum(u.ctr) ? N(u.ctr) : 0); if (PROG.isMs(a) && p > 0) p = 100; return p; };
         if (d.k === 'as' || d.k === 'af') {
+          if (PROG.locked(u, d.k) && !canUsers()) { row.err.push(`${label(d.k)}: ${T('e_cf_lock')}`); return; }   // carried date: user manager only
           if (v > cut.date) { row.err.push(`${label(d.k)}: ${T(d.k === 'as' ? 'e_as_cut' : 'e_af_cut')} (${D.fmt(cut.date)})`); return; }
           if (d.k === 'as' && pctNow() <= 0) { row.err.push(`${label(d.k)}: ${T('e_as_0')}`); return; }
           if (d.k === 'af' && pctNow() < 100) { row.err.push(`${label(d.k)}: ${T('e_af_100')}`); return; }
@@ -5348,7 +5405,7 @@ const IMP = (() => {
   async function templateProgress(rowsList) {
     const cut = activeCutoff(); const U = PROG.upd(cut._id);
     const head = [T('c_id'), T('c_name'), T('c_wbs'), T('c_ps'), T('c_pf'), 'P6 Status', 'P6 %', T('c_ctr'), T('c_cons'), T('c_own'), T('c_as'), T('c_af'), T('c_rd'), T('c_cb'), T('c_rsn'), T('c_mit')];
-    const data = rowsList.map(a => { const u = U[a.id] || {};   // only what the team entered – no dates are pre-filled from the XER files
+    const data = rowsList.map(a => { const u = PROG.um(cut._id, a.id) || {};   // only what the team entered (this cut-off + carried from earlier ones) – no dates are pre-filled from the XER files
       return [a.id, a.name, a.wbs, a.ps ? { d: a.ps } : null, a.pf ? { d: a.pf } : null, E(a.status), Math.round(a.pct), isNum(u.ctr) ? N(u.ctr) : null, isNum(u.cons) ? N(u.cons) : null, isNum(u.own) ? N(u.own) : null, u.as ? { d: u.as } : null, u.af ? { d: u.af } : null, isNum(u.rd) ? N(u.rd) : null, u.causedBy ? E(u.causedBy) : null, u.reason || null, u.mitigation || null]; });
     const blob = await XLSXW.build([
       { name: 'Progress', rows: [head, ...data], styles: { headerRows: [0] }, widths: [24, 55, 30, 12, 12, 12, 8, 13, 13, 13, 13, 13, 12, 14, 40, 40], freeze: 'C2', autoFilter: 1, validations: [{ sqref: `N2:N${data.length + 1}`, ref: `Lists!$A$2:$A$5` }], rtl: S.lang === 'ar' },

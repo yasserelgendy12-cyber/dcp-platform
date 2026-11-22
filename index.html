@@ -1368,18 +1368,35 @@ table.fcy td.dt.opn{color:#B7791F;font-style:italic}table.fcy tr.fc-av td{white-
 /* 10 · Drawings (22-Nov-2026, decision 107) – report8.js; frame and cards of the Financial Status page (.xfn, .fn-k) */
 .xlg i.cdl{width:0;height:11px;border-radius:0;border-left:2px dotted #C2410C;background:none!important}
 .dw-k .xk{padding:4px 7px 5px}.dw-k .xk-v{font-size:13.5px}.dw-k .nw{white-space:nowrap}.pb-bfw.dwbf .pb-bf .pb-s{flex:0 0 118px;max-width:124px}
-table.dwt th{font-size:9.2px;padding:2px 3px}table.dwt td{font-size:9.8px;padding:2px 3px}table.dwt td.dt{font-size:9.4px}table.dwt th{white-space:normal;word-break:normal;hyphens:none}
-table.dwt.c1 td{padding-top:1px;padding-bottom:1px;line-height:1.1}table.dwt.c1 .dw-g>div{height:12px}table.dwt.c2 td{padding-top:0;padding-bottom:0;font-size:9.2px;line-height:1.05}table.dwt.c2 td.dt{font-size:8.8px}table.dwt.c2 .dw-g>div{height:10px}table.dwt.c2 .dw-g i.tr{height:8px;top:1px}table.dwt.c2 .dw-g i.rc,table.dwt.c2 .dw-g i.bh{top:2px;height:5px}
-.dw-cm{gap:3px}.dw-tw{overflow-y:auto;overflow-x:hidden}
-table.dwt td.dw-n{font-weight:700;color:#12202B;white-space:normal;line-height:1.15}table.dwt td.dw-p{font-size:9.4px;color:#5B6B7A;white-space:normal;line-height:1.15}
-table.dwt td.nm small{font-size:8.6px;color:#B7791F;font-weight:700}table.dwt td.ok{color:#1E7A50}table.dwt td.wr{color:#9A6B0E}table.dwt td.pos{color:#1E8A5A}table.dwt td.neg,table.dwt td.dt.neg{color:#C2410C;font-weight:700}
-table.dwt tbody tr[data-dwz]{cursor:pointer}table.dwt tbody tr[data-dwz]:hover td{background:#F6FAFB}table.dwt tbody tr.on td{background:#FFF6E7}
-table.dwt tr.fc-av td{white-space:nowrap}table.dwt tr.fc-av td.dw-n{color:#0E4A55}
-.dw-g>div{height:14px}.dw-g i.tr{background:#CFE7E3!important;border:1px solid #9CCFC6;box-sizing:border-box;border-radius:3px!important;top:2px;height:10px}
-.dw-g i.rc{background:#7B5EA7!important;top:4px;height:6px;border-radius:2px!important}
-.dw-g i.bh{background:#C2410C!important;top:4px;height:6px;border-radius:0!important;background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.55) 0 2px,transparent 2px 4px)!important;opacity:.85}
-.dw-g b.fx{position:absolute;top:6px;height:0;border-top:2px dashed #C2410C}.dw-g b.fx::after{content:'';position:absolute;right:-1px;top:-5px;width:2px;height:8px;background:#C2410C}
-.dw-g em.now{top:-2px;height:18px}table.dwt td.dw-g{overflow:visible}
+
+/* 10 · Drawings rev. 2 (22-Nov-2026, decision 108) – by building and level; 3D layout in two colours; status of the total; cumulative; table with level strip */
+.xdw2{gap:8px;padding:10px 14px}.xdw2 .dw-m{flex:0 0 200px}.xdw2 .fn-k .xk em{line-height:1.2}.xdw2 .xc{padding:8px 11px}.xdw2 .xc-t{font-size:12.5px}
+.dw3{position:relative}.dw3-v{position:relative;flex:1 1 0;min-height:0;border-radius:8px;overflow:hidden;background:#F2F5F7}.dw3-v .la-f{position:absolute;inset:0}.dw3-v .la-img{position:absolute;inset:0}
+.dw3-v .la-ld,.dw3-v .empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#5B6B7A;text-align:center;padding:10px}
+.dw3 .la-ctl{top:6px;gap:3px}.dw3 .la-ctl button{width:22px;height:22px;font-size:12px;border-radius:6px}
+.dw3-lg{position:absolute;bottom:5px;inset-inline-start:6px;display:flex;gap:9px;font-size:9.6px;color:#3E4F5C;background:rgba(255,255,255,.82);border-radius:6px;padding:2px 7px;pointer-events:none;flex-wrap:wrap}.dw3-lg span{display:inline-flex;align-items:center;gap:4px}.dw3-lg i{width:10px;height:10px;border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dws{gap:2px}.dws-b{display:flex;height:11px;border-radius:4px;overflow:hidden;gap:1px;margin:1px 0 3px;flex:0 0 auto}.dws-b i{display:block;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dws-l{display:flex;flex-direction:column;gap:1px;flex:1 1 0;min-height:0}.dws-h{display:grid;grid-template-columns:1fr auto 34px;gap:5px;font-weight:700;font-size:10.6px;color:#12202B;border-bottom:1px solid #E8EDF1;padding:2px 0 1px;margin-top:2px}
+.dws-r{display:grid;grid-template-columns:9px 1fr auto 34px;gap:5px;align-items:center;font-size:10px;line-height:1.25;color:#3E4F5C;padding-inline-start:3px}.dws-r i{width:9px;height:9px;border-radius:2px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.dws-r em{color:#9A6B0E;font-style:normal;font-size:9.4px}
+.dws-r b{color:#12202B;text-align:end}.dws u,.dws-h u{text-decoration:none;color:#5B6B7A;text-align:end;font-weight:500}.dws-f{display:flex;justify-content:space-between;gap:4px 8px;font-size:9.6px;color:#5B6B7A;border-top:1px solid #E8EDF1;padding-top:3px;flex-wrap:wrap}.dws-f b{color:#12202B}
+.xlg i.dsh2{border-top:2px dashed #2E9E8F;height:0;background:none!important}
+.dw-tw table.dw2t{table-layout:fixed;width:100%}.dw-tw table.dw2t th{font-size:9.2px;padding:2px 3px;white-space:normal;line-height:1.15}.dw-tw table.dw2t td{font-size:9.8px;padding:1px 3px;white-space:nowrap;vertical-align:middle;line-height:1.2}.dw-tw table.dw2t td.dt{font-size:9.3px}.dw-tw table.dw2t th.dw-sth{text-align:start}
+.dw-tw table.dw2t td small{font-size:8.3px;color:#7B8C99;margin-inline-start:3px;font-weight:500}.dw-tw table.dw2t td small.wr{color:#B7791F;font-weight:700}
+.dw-tw table.dw2t td.ok{color:#1E7A50}.dw-tw table.dw2t td.rj{color:#C2410C}.dw-tw table.dw2t td.am{color:#9A5B10;font-weight:700}.dw-tw table.dw2t td.neg,.dw-tw table.dw2t td.dt.neg{color:#C2410C;font-weight:700}.dw-tw table.dw2t td.pos{color:#1E8A5A}.dw-tw table.dw2t td .ok{color:#1E7A50}
+.dw-tw table.dw2t tr.dwsec td{background:#EAF2F3;color:#0E4A55;font-size:10px;padding:2px 6px;white-space:nowrap;overflow:hidden}.dw-tw table.dw2t tr.dwsec b{margin-inline-end:8px}.dw-tw table.dw2t tr.dwsec span{color:#5B6B7A}.dw-tw table.dw2t tr.dwsec .r{float:right;color:#0E4A55}html[dir=rtl] .dw-tw table.dw2t tr.dwsec .r{float:left}
+.dw-tw table.dw2t tr.dwg{cursor:pointer}.dw-tw table.dw2t tr.dwg:hover td{background:#F6FAFB}.dw-tw table.dw2t tr.dwg.op td{background:#F7F5FB}
+.dw-tw table.dw2t td.dw-n{overflow:hidden;text-overflow:ellipsis}.dw-tw table.dw2t td.dw-c{font-weight:700;color:#0E4A55}.dw-tw table.dw2t td.dw-n b{font-weight:700;color:#12202B}.dw-tw table.dw2t td.dw-n i{font-style:normal;color:#7B8C99;font-size:8.8px;padding:0 5px}.dw-tw table.dw2t .dw-a{display:inline-block;width:11px;color:#0E4A55;font-size:9px}
+.dw-tw table.dw2t tr.dwv td{font-size:9.3px;color:#3E4F5C;background:#FCFCFE;padding-top:1px;padding-bottom:1px}.dw-tw table.dw2t tr.dwv td.dw-n{padding-inline-start:20px}.dw-tw table.dw2t tr.dwv.dn td.dw-n{color:#4E3775}
+.dw-tw table.dw2t tr.dwt0 td{background:#F1F4F6;font-weight:700;border-top:1px solid #CFD8DE}.dw-tw table.dw2t tr.dwt0 td.dw-n b{color:#0E4A55}
+.dwl{display:flex;align-items:center;gap:2px;direction:ltr;height:14px}.dwl i{flex:1 1 0;max-width:12px;min-width:3px;height:13px;border-radius:2px;background:linear-gradient(to top,#7B5EA7 var(--s),var(--b) var(--s));-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dwl i.dn{box-shadow:inset 0 0 0 1px #4E3775}.dwl i.lt{box-shadow:inset 0 -2px 0 #C2410C}.dwl i.dn.lt{box-shadow:inset 0 0 0 1px #4E3775}.dwl-k i.g.lt{box-shadow:inset 0 -2px 0 #C2410C}.dwl em{font-style:normal;font-size:8px;color:#7B8C99;padding:0 2px;flex:0 0 auto}
+.dwl-k{gap:10px;font-size:9px;color:#5B6B7A;font-weight:500}.dwl-k span{display:inline-flex;align-items:center;gap:3px}.dwl-k i{flex:0 0 9px;height:9px;background:none}.dwl-k i.s{background:#7B5EA7}.dwl-k i.t{background:#E8A33D}.dwl-k i.g{background:#DCE3E8}
+.dwb{display:flex;height:8px;width:70%;max-width:240px;background:#DCE3E8;border-radius:3px;overflow:hidden;direction:ltr}.dwb i{display:block;height:100%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dw-tw table.dw2t.c1 td{padding-top:1px;padding-bottom:1px;line-height:1.1}.dw-tw table.dw2t.c2 td{padding-top:0;padding-bottom:0;font-size:9.2px;line-height:1.05}.dw-tw table.dw2t.c2 td.dt{font-size:8.8px}.dw-tw table.dw2t.c2 .dwl{height:11px}.dw-tw table.dw2t.c2 .dwl i{height:10px}
+.dw-tw{overflow-y:auto;overflow-x:hidden}
+#xtip .dwp-c{display:inline-block;width:9px;height:9px;border-radius:2px;margin-inline-end:6px;vertical-align:-1px;-webkit-print-color-adjust:exact;print-color-adjust:exact}.xdw2 .fn-lg .dw-nt{margin-inline-start:auto;font-size:9.4px;color:#7B8C99}.xdw2 .fn-lg{display:flex;align-items:center;gap:8px}
+#xtip.dwp{max-width:300px}.dw3 .la-ctl button.on{background:#0E4A55;color:#fff;border-color:#0E4A55}
+#rpPrint .dw-a{display:none}
 
 </style>
 </head>
@@ -9707,18 +9724,28 @@ function LA3D_APP(P) {
     const pts = []; SITE.forEach((a, i) => { const b = SITE[(i + 1) % SITE.length]; pts.push(a[0], 0.05, a[1], b[0], 0.05, b[1]); }); const lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(pts, 3)); scene.add(new T.LineSegments(lg, new T.LineBasicMaterial({ color: 0x7B8C99 }))); }
   const MB = new T.MeshLambertMaterial({ color: 0xA9AEB3 }), MG = new T.MeshLambertMaterial({ color: 0x2BA35F, emissive: 0x0b3d20, emissiveIntensity: 0.25 }), EB = new T.LineBasicMaterial({ color: 0x7E858C }), EG = new T.LineBasicMaterial({ color: 0x15693A });
   const fd = (m, op) => { const c = m.clone(); c.transparent = true; c.opacity = op; c.depthWrite = false; return c; }, MBf = fd(MB, 0.16), MGf = fd(MG, 0.22), EBf = fd(EB, 0.12), EGf = fd(EG, 0.18);
+  /* optional palette (Drawings page, decision 108): state → [colour, opacity, edge colour]; state 0 may be a faint ghost instead of hidden */
+  const PALM = P.pal ? Object.fromEntries(Object.entries(P.pal).map(([k, [c, op, ec]]) => { const m = new T.MeshLambertMaterial({ color: c }), e = new T.LineBasicMaterial({ color: ec || c });
+    if (op < 1) { m.transparent = true; m.opacity = op; m.depthWrite = false; e.transparent = true; e.opacity = Math.min(1, op * 1.4); }
+    const mt = m.clone(), et = e.clone(); mt.transparent = et.transparent = true; mt.opacity = Math.min(op, 0.42); mt.depthWrite = false; et.opacity = Math.min(1, op * 0.9);   // below ground: see-through, so every basement shows
+    return [k, { m, e, op, mt, et }]; })) : null;
+  let SUBO = !!P.subOnly;   // show the floors below ground only
   let FZ = null, FL = null, ST = P.st;   // focus: zones kept solid (others faded), optional single level
   const OBJ = [], PICK = [], UB = new T.BoxGeometry(1, 1, 1); UB.translate(0, 0.5, 0); const tag = (m, e) => { m.userData = { o: OBJ.length, e }; PICK.push(m); };
-  P.lv.forEach(L => { const g = lvGeom(L); if (!g) return; const raft = L.lv === 'RAFT', top = g.y0 + g.h, th = raft ? RAFTT : L.lv === 'GF' ? 0.35 : 0.3, bb = bbox(g.polys), o = { L, bb, y0: g.y0, h: g.h, parts: { s: [], c: [], w: [] } };
-    const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; tag(sm, 's'); const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; scene.add(sm, se); o.parts.s.push([sm, se]);
+  P.lv.forEach(L => { const g = lvGeom(L); if (!g) return; const raft = L.lv === 'RAFT', top = g.y0 + g.h, th = raft ? RAFTT : L.lv === 'GF' ? 0.35 : 0.3, bb = bbox(g.polys), o = { L, bb, y0: g.y0, h: g.h, parts: { s: [], c: [], w: [] } }, grp = new T.Group(); o.g = grp; scene.add(grp);
+    const sg = extr(g.polys, th), sm = new T.Mesh(sg, MB); sm.position.y = raft ? g.y0 : top - th; sm.castShadow = sm.receiveShadow = true; tag(sm, 's'); const se = new T.LineSegments(new T.EdgesGeometry(sg), EB); se.position.y = sm.position.y; grp.add(sm, se); o.parts.s.push([sm, se]);
     if (!raft) { const sp = ZN[L.z] ? 10.5 : 8, pts = []; for (const p of g.polys) { const b = bbox([p]); for (let x = b.x0 + 1.2; x <= b.x1 - 1; x += sp) for (let z = b.z0 + 1.2; z <= b.z1 - 1; z += sp) if (inPoly(x, z, p)) pts.push([x, z]); for (const q of p) pts.push([q[0] + (q[0] < b.cx ? 0.8 : -0.8), q[1] + (q[1] < b.cz ? 0.8 : -0.8)]); }
-      const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; tag(im, 'c'); scene.add(im); o.parts.c.push([im]);
-      for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; tag(w, 'w'); scene.add(w); o.parts.w.push([w]); } }
+      const im = new T.InstancedMesh(UB, MB, pts.length), m4 = new T.Matrix4(); pts.forEach((q, i) => { m4.makeScale(0.75, g.h - th, 0.75); m4.setPosition(q[0], g.y0, q[1]); im.setMatrixAt(i, m4); }); im.castShadow = im.receiveShadow = true; tag(im, 'c'); grp.add(im); o.parts.c.push([im]);
+      for (const p of g.polys) for (let i = 0; i < p.length; i++) { const a = p[i], b = p[(i + 1) % p.length], len = Math.hypot(b[0] - a[0], b[1] - a[1]); if (len < 1) continue; const w = new T.Mesh(UB, MB); w.scale.set(len, g.h - th, 0.22); w.position.set((a[0] + b[0]) / 2, g.y0, (a[1] + b[1]) / 2); w.rotation.y = -Math.atan2(b[1] - a[1], b[0] - a[0]); w.castShadow = w.receiveShadow = true; tag(w, 'w'); grp.add(w); o.parts.w.push([w]); } }
     OBJ.push(o); });
-  const apply = st => { ST = st; OBJ.forEach(o => { const key = o.L.z + '|' + o.L.lv, s = st[key] || {}, dim = FZ && !(FZ.has(o.L.z) && (!FL || key === FL)); ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? (dim ? MGf : MG) : (dim ? MBf : MB); m.castShadow = !dim; if (e) { e.visible = v > 0; e.material = v === 2 ? (dim ? EGf : EG) : (dim ? EBf : EB); } }); }); }); kick(); };
+  const SUBR = [...new Set(P.lv.map(L => L.ord).filter(v => v < 0))].sort((a, b) => a - b), SUBH = PITD + 6 + SUBR.length * BH * 2.6;
+  const explode = () => OBJ.forEach(o => { o.g.position.y = SUBO && o.L.ord < 0 ? PITD + 6 + SUBR.indexOf(o.L.ord) * BH * 2.6 : 0; });   // below ground only: the floors lifted apart, foundation at the bottom
+  const apply = st => { ST = st; if (PALM) { explode(); OBJ.forEach(o => { const s = st[o.L.z + '|' + o.L.lv] || {}, ug = P.subSee && !SUBO && o.L.ord < 0, off = SUBO && o.L.ord > 0;
+      ['s', 'c', 'w'].forEach(k => { const q = off || (SUBO && k !== 's') ? null : PALM[s[k] || 0]; /* exploded floors: slabs only */ o.parts[k].forEach(([m, e]) => { m.visible = !!q; if (q) { m.material = ug ? q.mt : q.m; m.castShadow = !ug && q.op >= 1; } if (e) { e.visible = !!q; if (q) e.material = ug ? q.et : q.e; } }); }); }); return kick(); }
+    OBJ.forEach(o => { const key = o.L.z + '|' + o.L.lv, s = st[key] || {}, dim = FZ && !(FZ.has(o.L.z) && (!FL || key === FL)); ['s', 'c', 'w'].forEach(k => { const v = s[k] || 0; o.parts[k].forEach(([m, e]) => { m.visible = v > 0; m.material = v === 2 ? (dim ? MGf : MG) : (dim ? MBf : MB); m.castShadow = !dim; if (e) { e.visible = v > 0; e.material = v === 2 ? (dim ? EGf : EG) : (dim ? EBf : EB); } }); }); }); kick(); };
   const unfocus = () => { if (FZ) { FZ = FL = null; apply(ST); } };
   /* camera: drag to rotate, right-drag / shift to pan, wheel to zoom, double-click to reset */
-  const SB = bbox([SITE]), C0 = { tx: SB.cx, ty: 6, tz: SB.cz, r: Math.max(150, Math.hypot(SB.x1 - SB.x0, SB.z1 - SB.z0) * 1.7), th: 0.62, ph: 0.98 }, CAM = Object.assign({}, C0, P.cam || {});
+  const SB = bbox([SITE]), C0 = { tx: SB.cx, ty: P.ty || 6, tz: SB.cz, r: Math.max(150, Math.hypot(SB.x1 - SB.x0, SB.z1 - SB.z0) * 1.7) * (P.rk || 1), th: 0.62, ph: 0.98 }, CAM = Object.assign({}, C0, P.cam || {});
   const aspK = () => Math.max(1, 0.95 / (cv.clientWidth / Math.max(1, cv.clientHeight)));
   const place = () => { const r = CAM.r * aspK(); cam.position.set(CAM.tx + r * Math.sin(CAM.ph) * Math.sin(CAM.th), CAM.ty + r * Math.cos(CAM.ph), CAM.tz + r * Math.sin(CAM.ph) * Math.cos(CAM.th)); cam.lookAt(CAM.tx, CAM.ty, CAM.tz); };
   /* bookmark: click an element → a small label pinned to it (text from the report page), follows the model */
@@ -9730,7 +9757,7 @@ function LA3D_APP(P) {
   const unpin = tell => { PA = null; if (PIN) { PIN.hidden = true; PIN.innerHTML = ''; } if (tell) try { parent.postMessage({ la3hit: null }, '*'); } catch (e) { } };
   let raf = 0; function kick() { if (!raf) raf = requestAnimationFrame(() => { raf = 0; place(); R.render(scene, cam); pinPos(); }); }
   let SH = P.shift || 0; const resize = () => { const w = cv.clientWidth, h = cv.clientHeight; if (!w || !h) return; R.setSize(w, h, false); cam.aspect = w / h; if (SH) cam.setViewOffset(w, h, -SH * w, 0, w, h); else cam.clearViewOffset(); cam.updateProjectionMatrix(); kick(); }; window.addEventListener('resize', resize);
-  const clamp = (v, a, b) => v < a ? a : v > b ? b : v, save = () => { try { parent.postMessage({ la3cam: Object.assign({}, CAM) }, '*'); } catch (e) { } };
+  const clamp = (v, a, b) => v < a ? a : v > b ? b : v, save = () => { try { parent.postMessage({ la3cam: Object.assign({}, CAM), ck: P.ck || '' }, '*'); } catch (e) { } };
   const RC = new T.Raycaster(), MV = new T.Vector2();
   const pick = (cx, cy) => { const r = cv.getBoundingClientRect(); MV.set((cx - r.left) / r.width * 2 - 1, -((cy - r.top) / r.height) * 2 + 1); RC.setFromCamera(MV, cam);
     const hs = RC.intersectObjects(PICK.filter(m => m.visible), false); const hit = hs.find(x => !x.object.material.transparent) || hs[0];
@@ -9740,18 +9767,25 @@ function LA3D_APP(P) {
   cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); d0 = { x: e.clientX, y: e.clientY, b: e.button }; drag = { x: e.clientX, y: e.clientY, pan: e.button === 2 || e.shiftKey }; cv.style.cursor = 'grabbing'; });
   cv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag.x, dy = e.clientY - drag.y; drag.x = e.clientX; drag.y = e.clientY;
     if (drag.pan) { const k = CAM.r * aspK() * 0.0016, c = Math.cos(CAM.th), s = Math.sin(CAM.th); CAM.tx -= dx * c * k; CAM.tz -= -dx * s * k; CAM.ty += dy * k; } else { CAM.th -= dx * 0.006; CAM.ph = clamp(CAM.ph - dy * 0.005, 0.05, 1.5); } kick(); });
-  cv.addEventListener('pointerup', e => { drag = null; cv.style.cursor = ''; if (d0 && d0.b === 0 && Math.hypot(e.clientX - d0.x, e.clientY - d0.y) < 5) pick(e.clientX, e.clientY); else save(); d0 = null; });
+  cv.addEventListener('pointerup', e => { drag = null; cv.style.cursor = ''; if (d0 && d0.b === 0 && Math.hypot(e.clientX - d0.x, e.clientY - d0.y) < 5) { if (!P.hover) pick(e.clientX, e.clientY); } else save(); d0 = null; });
   if (PIN) PIN.addEventListener('click', e => { if (e.target.closest('[data-x]')) unpin(1); });
+  /* hover mode (Drawings page): the bookmark follows the element under the pointer */
+  if (P.hover) { let hk = '', tm = 0; const hov = (cx, cy) => { const r = cv.getBoundingClientRect(); MV.set((cx - r.left) / r.width * 2 - 1, -((cy - r.top) / r.height) * 2 + 1); RC.setFromCamera(MV, cam);
+      const hs = RC.intersectObjects(PICK.filter(m => m.visible), false), hit = hs.find(x => !x.object.material.transparent) || hs[0];
+      if (!hit) { if (hk) { hk = ''; try { parent.postMessage({ la3hit: null }, '*'); } catch (x) { } } return; } const o = OBJ[hit.object.userData.o], e = hit.object.userData.e; hk = o.L.z + '|' + o.L.lv + '|' + e;
+      try { parent.postMessage({ la3hit: { z: o.L.z, lv: o.L.lv, e, v: ((ST[o.L.z + '|' + o.L.lv] || {})[e]) || 0, hv: 1, x: cx - r.left, y: cy - r.top } }, '*'); } catch (x) { } };   // the page draws the card
+    cv.addEventListener('pointermove', e => { if (drag || tm) return; tm = setTimeout(() => { tm = 0; }, 40); hov(e.clientX, e.clientY); });
+    cv.addEventListener('pointerleave', () => { if (hk) { hk = ''; try { parent.postMessage({ la3hit: null }, '*'); } catch (x) { } } }); }
   cv.addEventListener('wheel', e => { e.preventDefault(); CAM.r = clamp(CAM.r * Math.exp(e.deltaY * 0.0012), 15, 1600); kick(); clearTimeout(window.__sv); window.__sv = setTimeout(save, 300); }, { passive: false });
   cv.addEventListener('dblclick', () => { Object.assign(CAM, C0); unfocus(); unpin(1); kick(); save(); try { parent.postMessage({ la3sel: null }, '*'); } catch (e) { } });
-  window.LA = { update: st => apply(st), shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); unfocus(); kick(); save(); },
+  window.LA = { update: st => apply(st), sub: on => { SUBO = !!on; apply(ST); Object.assign(CAM, C0, SUBO ? { ty: SUBH * 0.55, r: C0.r * 0.72, ph: 1.18 } : {}); kick(); save(); }, shift: v => { SH = v || 0; resize(); }, zoom: f => { CAM.r = clamp(CAM.r * f, 15, 1600); kick(); save(); }, reset: () => { Object.assign(CAM, C0); unfocus(); kick(); save(); },
     safe: v => { SAFE = v; pinPos(); }, pin: (html, dir) => { if (!PIN || !PA) return; if (!html) return unpin(0); PIN.innerHTML = html; PIN.dir = dir || 'ltr'; PIN.hidden = false; PIN.style.visibility = 'hidden'; requestAnimationFrame(pinPos); }, unpin: () => unpin(0),
     focus: (zs, lv) => { zs = [].concat(zs || []).filter(z => BLD[z] || ZN[z]); if (!zs.length) return 0; const bs = zs.map(z => (BLD[z] || ZN[z]).bb), b = { x0: Math.min(...bs.map(q => q.x0)), x1: Math.max(...bs.map(q => q.x1)), z0: Math.min(...bs.map(q => q.z0)), z1: Math.max(...bs.map(q => q.z1)) };
       const top = Math.max(0, ...zs.map(z => BLD[z] ? GFH + BLD[z].maxN * BLD[z].h : 0)), o = lv ? OBJ.find(q => q.L.z + '|' + q.L.lv === lv) : null, d = Math.hypot(b.x1 - b.x0, b.z1 - b.z0);
       FZ = new Set(zs); FL = o ? lv : null; apply(ST);
       Object.assign(CAM, { tx: (b.x0 + b.x1) / 2, tz: (b.z0 + b.z1) / 2, ty: o ? o.y0 + o.h / 2 : top / 3, r: Math.max(o ? 120 : 150, d * 2.1 + top * 1.3), th: CAM.th, ph: o ? 0.95 : 0.88 }); kick(); save(); return 1; },
     snap: () => { place(); R.render(scene, cam); return cv.toDataURL('image/jpeg', 0.92); }, ready: true };
-  apply(P.st); resize(); try { parent.postMessage({ la3: 'ready' }, '*'); } catch (e) { }
+  if (SUBO) Object.assign(CAM, { ty: SUBH * 0.55, r: C0.r * 0.72, ph: 1.18 }); apply(P.st); resize(); try { parent.postMessage({ la3: 'ready' }, '*'); } catch (e) { }
 }
 /* bookmark label on the model (inside the 3D frame): anchored at the clicked point, pointer tail, flips below near the top edge */
 const LA_PIN_CSS = `#pin{position:absolute;z-index:5;transform:translateY(calc(-100% - 11px));background:#fff;border:1px solid #CFDCE1;border-top:3px solid #0E4A55;border-radius:8px;box-shadow:0 6px 18px rgba(14,74,85,.22);padding:6px 9px 7px;min-width:150px;max-width:250px;font-size:11px;line-height:1.4;color:#12202B;pointer-events:auto;white-space:normal}
@@ -9934,7 +9968,7 @@ RP.P.lookahead = (el, pg) => {
   if (prt) return ready().then(async w => { if (w) { await new Promise(r => setTimeout(r, 300)); const url = w.snap(); host.remove(); box.innerHTML = `<img class="la-img" src="${url}" alt="">`; } else if (host.remove() || 1) box.innerHTML = `<div class="empty">${LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).')}</div>`; });
   ready();
 };
-if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (!e.data) return; if (e.data.la3cam) S.ui.laCam = e.data.la3cam; if ('la3hit' in e.data) { RPLA.hit = e.data.la3hit; if (RPLA.pin) RPLA.pin(); } if ('la3sel' in e.data && RT.la) { RT.la.st.sel = null; document.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); } }); }
+if (!RPLA.msg) { RPLA.msg = 1; window.addEventListener('message', e => { if (!e.data) return; if (e.data.la3cam) S.ui[e.data.ck || 'laCam'] = e.data.la3cam; if ('la3hit' in e.data) { RPLA.hit = e.data.la3hit; if (RPLA.pin) RPLA.pin(); } if ('la3sel' in e.data && RT.la) { RT.la.st.sel = null; document.querySelectorAll('.la-tl tr.sel').forEach(r => r.classList.remove('sel')); } }); }
 const D_fmt = d => d ? D.fmt(d) : '—';
 
 /* ---------- 9 · Resources & Cost ---------- */
@@ -10654,7 +10688,11 @@ RP.P.finance = (el, pg) => {
    (db.targets – planned quantities per phase / building / element, opening balances), the same records and formulas as the Drawings page and the
    Dashboard of Data Collection (tgtAgg, MOD.drawings status / credit, params design / shop weights). Status date = the report cut-off (reportDate()).
    Look of the Financial Status page (decision 106): page filters in the title band (several values), small cards with every word shown, comparison
-   columns with the gap drawn and written, a table with dates, days and a timeline, cumulative curves. */
+   columns with the gap drawn and written, a table with dates, days and a timeline, cumulative curves.
+   Rev. 2 (22-Nov-2026, decision 108 – Yasser's notes): the page is read by building and level, not by drawing count – Substructure (foundation → ground floor)
+   by the phase, Superstructure (level 01 → roof) by the building, each with its levels; the level of a drawing is read from its number / title and named with
+   the values of the P6 level code; a small 3D layout of the project model in two colours (submitted · to submit by the end of the chosen window) with a hover
+   bookmark; totals, approved, rejected (C / D) and remaining by building and level with their dates. */
 const RDW_C = { pl: RCOL.pv, sub: RCOL.ev, cpl: RCOL.p, csub: RCOL.acc, apr: '#1E8A5A', gap: '#C2410C', trk: '#CFE7E3' };
 const RDW_CAT = ['Design Drawing', 'Shop Drawing', 'As-Built Drawing'];
 const RDW_APR = ['Approved', 'Approved as Noted', 'Closed'], RDW_RSB = ['Revise & Resubmit', 'Rejected'];
@@ -10667,11 +10705,11 @@ const RDW_ST = () => [['apr', LBL('Approved', 'معتمد'), '#1E8A5A', LBL('Cod
   ['ns', LBL('Not due yet', 'لم يحن موعده'), '#D5DCE3', LBL('Not submitted, planned date still ahead (or not set)', 'لم يُقدَّم وتاريخه المخطط لم يأتِ بعد (أو غير محدد)')]];
 const rdwSt = r => { const s = MOD.drawings.F.status.calc(r); if (s === 'Late - Not Submitted') return 'late'; if (s === 'Not Submitted') return 'ns'; if (s === 'Overdue Review') return 'ovr'; if (s === 'Under Review' || s === 'Check Code') return 'rev';
   return RDW_APR.includes(s) ? 'apr' : RDW_RSB.includes(s) ? 'rsb' : 'rev'; };
-const RDW_WIN = () => [['14', LBL('2 weeks', 'أسبوعان')], ['21', LBL('3 weeks', '3 أسابيع')], ['28', LBL('4 weeks', '4 أسابيع')], ['56', LBL('8 weeks', '8 أسابيع')]];
+const RDW_WIN = () => [['7', LBL('1 week', 'أسبوع')], ['14', LBL('2 weeks', 'أسبوعان')], ['21', LBL('3 weeks', '3 أسابيع')], ['28', LBL('4 weeks', '4 أسابيع')], ['42', LBL('6 weeks', '6 أسابيع')], ['56', LBL('8 weeks', '8 أسابيع')], ['84', LBL('12 weeks', '12 أسبوعاً')]];
 const RDW_GRP = () => [['el', LBL('Element', 'العنصر')], ['zn', CODE.lab('building', 'Building', 'المبنى')], ['cat', LBL('Category', 'الفئة')]];
 const rdwK = x => Math.abs(x) >= 1e4 ? `${Math.round(x / 1e3)}k` : fmtN(Math.round(x));   // counts: whole numbers
 const rdwZn = v => v === 'ALL' ? LBL('General – all buildings', 'عام – كل المباني') : listVal('zones', v), rdwPh = v => v === 'ALL' ? LBL('General', 'عام') : listVal('phases', v);
-const rdwStO = () => { const st = S.ui.dw = S.ui.dw || {}; ['cat', 'ph', 'zn', 'el', 'dis'].forEach(k => { st[k] = A_(st[k]); }); st.win = st.win || '14'; st.per = st.per || 'M'; st.grp = st.grp || 'el'; return st; };
+const rdwStO = () => { const st = S.ui.dw = S.ui.dw || {}; ['cat', 'ph', 'zn', 'el', 'dis'].forEach(k => { st[k] = A_(st[k]); }); st.win = st.win || '14'; st.per = st.per || 'M'; st.grp = st.grp || 'el'; st.op = st.op || {}; st.el = []; return st; };   // element filter removed in rev. 2 (decision 108)
 
 /* one set of figures for any group of drawings (scope, a building, an element, a category) */
 function rdwAgg(R, Tg, X) {
@@ -10731,112 +10769,216 @@ function rpDW() {
   return X;
 }
 
-/* ---------- comparison columns: planned to date vs submitted per group, the shortfall drawn as a dashed box and written under the group ---------- */
-function _dwCmp({ w, h: hh, G, more }) {
-  const L = 34, R = 8, T = 16, B = 38, n = G.length || 1, gw = (w - L - R) / n, bw = Math.max(5, Math.min(20, gw * 0.3)), X = i => L + gw * i + gw / 2;
-  const M = Math.max(1, ...G.map(g => Math.max(g.plan, g.sub))) * 1.18, Y = v => T + (1 - v / M) * (hh - T - B), ar = S.lang === 'ar';
-  const grid = [0, .25, .5, .75, 1].map(f => `<line x1="${L}" x2="${w - R}" y1="${Y(f * M).toFixed(1)}" y2="${Y(f * M).toFixed(1)}" stroke="#EEF2F5"/><text x="${L - 5}" y="${(Y(f * M) + 3.5).toFixed(1)}" text-anchor="end" font-size="9" fill="#5B6B7A">${rdwK(f * M)}</text>`).join('');
-  const kf = v => v >= 1e3 ? `${fmtN(v / 1e3, v >= 1e4 ? 0 : 1)}k` : fmtN(v), vl = (x, y, v, c) => gw >= 26 ? `<text x="${x.toFixed(1)}" y="${(y - 3).toFixed(1)}" text-anchor="middle" font-size="${gw >= 44 ? 8.6 : 8}" font-weight="700" fill="${c}">${kf(v)}</text>` : '';
-  const pl = G.map((g, i) => { const x = X(i) - bw - 1, y = Y(g.plan); return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, Y(0) - y).toFixed(1)}" fill="${RDW_C.pl}" rx="1.5"/>${vl(x + bw / 2, y, g.plan, '#1F7A6E')}`; }).join('');
-  const sb = G.map((g, i) => { const x = X(i) + 1, y = Y(g.sub); return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, Y(0) - y).toFixed(1)}" fill="${RDW_C.sub}" rx="1.5"/>${vl(x + bw / 2, y, g.sub, '#5B3F87')}`; }).join('');
-  const gp = G.map((g, i) => g.gap > 0 ? `<rect x="${(X(i) + 1).toFixed(1)}" y="${Y(g.plan).toFixed(1)}" width="${bw.toFixed(1)}" height="${(Y(g.sub) - Y(g.plan)).toFixed(1)}" fill="${RDW_C.gap}" fill-opacity=".08" stroke="${RDW_C.gap}" stroke-width="1" stroke-dasharray="3 2"/>` : '').join('');
-  const cut = (s, k) => s.length > k ? s.slice(0, k - 1) + '…' : s, kk = Math.max(5, Math.floor(gw / 5.4));
-  const lb = G.map((g, i) => `<text x="${X(i).toFixed(1)}" y="${hh - B + 12}" text-anchor="middle" font-size="9.2" fill="#3E4F5C" direction="${ar ? 'rtl' : 'ltr'}">${h(cut(g.l, kk))}</text><text x="${X(i).toFixed(1)}" y="${hh - B + 25}" text-anchor="middle" font-size="9.5" font-weight="700" fill="${g.gap > 0 ? RDW_C.gap : '#1E8A5A'}" direction="ltr">${g.gap > 0 ? '−' + fmtN(g.gap) : g.gap < 0 ? '+' + fmtN(-g.gap) : '='}</text>`).join('');
-  const hit = G.map((g, i) => `<rect class="ctp" x="${(X(i) - gw / 2).toFixed(1)}" y="${T}" width="${gw.toFixed(1)}" height="${hh - T - 4}" data-tp="${g.tip}"/>`).join('');
-  return `<svg viewBox="0 0 ${w} ${hh}" width="${w}" height="${hh}" role="img"><line x1="${L}" x2="${w - R}" y1="${Y(0).toFixed(1)}" y2="${Y(0).toFixed(1)}" stroke="#B4C0CA"/>${grid}<g data-c="${RDW_C.pl}">${pl}</g><g data-c="${RDW_C.sub}">${sb}</g><g data-c="${RDW_C.gap}">${gp}</g>${lb}${hit}</svg>`;
-}
-const svgDwCmp = o => { if (RCH.size > 600) RCH.clear(); const id = 'c' + (++rchN); RCH.set(id, [_dwCmp, o]); return _dwCmp(o).replace('<svg ', `<svg data-ch="${id}" `); };
-const rdwTip = (t, g) => rpTip(t, [[LBL('Drawings (target)', 'المخططات (المستهدف)'), fmtN(g.tot)], [LBL('Planned to the cut-off', 'المخطط حتى تاريخ القطع'), `${fmtN(g.plan)} · ${fmtPct(g.pP, 0)}`], [LBL('Submitted', 'المقدَّم'), `${fmtN(g.sub)} · ${fmtPct(g.pS, 0)}`],
-  [g.gap >= 0 ? LBL('Behind the plan', 'متأخر عن المخطط') : LBL('Ahead of the plan', 'متقدم على المخطط'), fmtN(Math.abs(g.gap))], [LBL('Approved', 'المعتمد'), `${fmtN(g.apr)} · ${fmtPct(g.pA, 0)} ${LBL('of submitted', 'من المقدَّم')}`], [LBL('Under review', 'قيد المراجعة'), `${fmtN(g.ur)}${g.ovr ? ` · ${LBL('overdue', 'متأخرة')} ${fmtN(g.ovr)}` : ''}`],
-  [LBL('To revise (C / D)', 'للتعديل (C / D)'), fmtN(g.rsb)], [LBL('Late – not submitted', 'متأخر – لم يُقدَّم'), fmtN(g.late)], [LBL('Delay', 'التأخير'), rdwDl(g.dl)]]);
 const rdwDl = d => d > 0 ? `${fmtN(d)} ${LBL('days behind', 'يوم تأخير')}` : d < 0 ? `${fmtN(-d)} ${LBL('days ahead', 'يوم تقدم')}` : LBL('on plan', 'حسب المخطط');
 
-/* ---------- status donut ---------- */
-function rdwDonut(X) {
-  const A = X.A, T = sum(RDW_ST(), s => A.cnt[s[0]]);
-  return `<div class="fd"><div class="fd-d">${donutSVG(RDW_ST().map(s => [A.cnt[s[0]], s[2]]), fmtN(T), LBL('drawings', 'مخطط'), 132).replace(/<text /g, '<text direction="ltr" unicode-bidi="plaintext" ')}</div>
-    <div class="fd-l">${RDW_ST().map(([k, l, c, d]) => `<div class="fd-r" data-tp="${rpTip(l, [[LBL('Drawings', 'المخططات'), fmtN(A.cnt[k])], [LBL('Share', 'النسبة'), T ? fmtPct(A.cnt[k] / T, 1) : ''], [LBL('What it is', 'المقصود'), d]])}"><i style="background:${c}"></i><span>${l}</span><b dir="ltr">${fmtN(A.cnt[k])}</b><em dir="ltr">${T ? fmtPct(A.cnt[k] / T, 0) : ''}</em></div>`).join('')}</div></div>`;
+/* ---------- level of a drawing (decision 108): from the drawing number (tokens), else the title, else the element; named with the P6 level code ----------
+   keys: FDN (foundation / raft) · B1…Bn · GF · L1…Ln · RF · GEN (several levels / no level). A basement beyond the deepest basement of the project
+   (P6 level values, else the 4D model) is the foundation level (KSQ: B04 = the raft under B3). Generic: any project numbering B01 / BF1 / GF / L03 / F03 / ROOF. */
+const RDW_LVN = [[/^(?:MUL|MULTI|TYP|TYPICAL)$/, () => 'GEN'], [/^(?:B|BF|BSMT|BASEMENT)0*([1-9]\d?)$/, m => 'B' + +m[1]], [/^(?:GF|GRF|LGF|UGF|GRD)$/, () => 'GF'],
+  [/^(?:L|F|LV|LVL|FLR|LEVEL)0*([1-9]\d{0,2})$/, m => 'L' + +m[1]], [/^(?:RF|ROOF|LRF|URF)$/, () => 'RF'], [/^(?:FDN|FND|RAFT|FOUNDATION)$/, () => 'FDN']];
+const RDW_LVT = [[/\bBASE?MENT[\s\-_]*0*([1-9]\d?)\b/, m => 'B' + +m[1]], [/\bGROUND\b/, () => 'GF'], [/\b(?:LEVEL|FLOOR|LVL)[\s\-_]*0*([1-9]\d{0,2})\b/, m => 'L' + +m[1]],
+  [/\bROOF\b/, () => 'RF'], [/\b(?:FOUNDATION|RAFT)\b/, () => 'FDN']];
+const rdwLvTxt = t => { for (const [re, f] of RDW_LVT) { const m = re.exec(t); if (m) return f(m); } return null; };
+const rdwLvOrd = k => k === 'FDN' ? -100 : k === 'GF' ? 0 : k === 'RF' ? 1000 : k === 'GEN' ? 2000 : k[0] === 'B' ? -(+k.slice(1)) : +k.slice(1);
+const rdwNk = s => { const m = /^([A-Za-z]+)[\s\-_.]*0*(\d+)/.exec(String(s || '').trim()); return m ? [m[1][0].toLowerCase(), +m[2]] : null; };   // "Phase-01" / "PH1" / "T05" / "Tower 05" → [letter, number]
+const rdwAllV = v => !v || v === 'ALL' || /^(all\b|project[\s-]*wide|general|multiple)/i.test(String(v));   // a phase / building value meaning the whole project
+function rdwLvCtx() {   // P6 level code: names of the levels and the deepest basement
+  const k = CODE.role('level'), lab = {}; let maxB = 0;
+  (k ? CODE.values(k) : []).forEach(v => { const q = rdwLvTxt(String(v).toUpperCase()); if (!q) return; if (!lab[q]) lab[q] = CODE.val(k, v); const m = /^B(\d+)$/.exec(q); if (m) maxB = Math.max(maxB, +m[1]); });
+  const M = M4(); if (!maxB && M && M.levels && Array.isArray(M.levels.basement)) maxB = M.levels.basement.length;
+  return { lab, maxB };
+}
+function rdwLvOf(r, C) {
+  const nz = x => String(x || '').toUpperCase().replace(/[^A-Z0-9]/g, ''), skip = new Set([r.zone, r.phase, ...String(r.zone || '').split(/[&,+/]/)].map(nz).filter(Boolean));
+  const toks = String(r.no || '').toUpperCase().split(/[^A-Z0-9]+/).filter(t => t && !skip.has(t)).slice(1); let q = null;
+  for (const t of toks) { for (const [re, f] of RDW_LVN) { const m = re.exec(t); if (m) { q = f(m); break; } } if (q) break; }
+  if (!q) q = rdwLvTxt(String(r.title || '').toUpperCase());
+  if (!q && /foundation|raft|pile/i.test(r.element || '')) q = 'FDN';
+  q = q || 'GEN'; const m = /^B(\d+)$/.exec(q); if (m && C.maxB && +m[1] > C.maxB) q = 'FDN';
+  return q;
+}
+const rdwLvL = (k, C) => (C && C.lab[k]) || (k === 'FDN' ? LBL('Foundation', 'الأساسات') : k === 'GF' ? LBL('Ground floor', 'الدور الأرضي') : k === 'RF' ? LBL('Roof', 'السطح') : k === 'GEN' ? LBL('Several levels / general', 'عدة أدوار / عام')
+  : k[0] === 'B' ? LBL(`Basement ${k.slice(1)}`, `البدروم ${k.slice(1)}`) : LBL(`Level ${k.slice(1).padStart(2, '0')}`, `الدور ${k.slice(1).padStart(2, '0')}`));
+const rdwLvS = k => k === 'GEN' ? '…' : k[0] === 'L' ? k.slice(1) : k;   // short name in the level strip
+
+/* ---------- the drawings by building and level: Substructure (by phase) · Superstructure (by building) · general ---------- */
+function rdwTree(X) {
+  const C = rdwLvCtx(), cd = X.cd, WE = D.add(cd, +X.st.win), X0 = { ...X, tk: new Set() }, isSub = r => r.actualSub && r.actualSub <= cd;
+  const zPh = new Map(); X.all.forEach(r => { if (!rdwAllV(r.zone) && !rdwAllV(r.phase)) { const m = zPh.get(r.zone) || new Map(); m.set(r.phase, (m.get(r.phase) || 0) + 1); zPh.set(r.zone, m); } });
+  const phOf = z => { const m = zPh.get(z); return m ? [...m.entries()].sort((a, b) => b[1] - a[1])[0][0] : ''; };
+  const agg = rows => { const a = rdwAgg(rows, [], X0), rem = rows.filter(r => !isSub(r)), nx = rem.map(r => r.plannedSub).filter(Boolean).sort();
+    return { ...a, rem: rem.length, tgt: rem.filter(r => r.plannedSub && r.plannedSub >= cd && r.plannedSub <= WE).length, nx: nx[0] || null, late2: rem.filter(r => r.plannedSub && r.plannedSub < cd).length }; };
+  const G = new Map();
+  let nGen = 0; X.R.forEach(r => { const k = rdwLvOf(r, C), o = rdwLvOrd(k), bz = !rdwAllV(r.zone); if (k === 'GEN') nGen++;   // nothing is written on the records
+    let sec, v; if (o <= 0) { sec = 'sub'; v = !rdwAllV(r.phase) ? r.phase : bz ? (phOf(r.zone) || 'ALL') : 'ALL'; } else if (k !== 'GEN' || bz) { sec = 'sup'; v = bz ? r.zone : 'ALL'; } else { sec = 'gen'; v = '_'; }
+    const gk = sec + '|' + v; if (!G.has(gk)) G.set(gk, { key: gk, sec, v, rows: [], lv: new Map() }); const g = G.get(gk); g.rows.push(r); if (!g.lv.has(k)) g.lv.set(k, []); g.lv.get(k).push(r); });
+  const out = [...G.values()].map(g => { const ph = g.sec === 'sup' && g.v !== 'ALL' ? phOf(g.v) : g.sec === 'sub' ? g.v : '';
+    const l = g.sec === 'sub' ? (g.v === 'ALL' ? LBL('General – all phases', 'عام – كل المراحل') : rdwPh(g.v)) : g.sec === 'sup' ? (g.v === 'ALL' ? LBL('General – all buildings', 'عام – كل المباني') : rdwZn(g.v)) : LBL('General – no level', 'عامة – بدون دور');
+    const L = [...g.lv.entries()].map(([k, rows]) => ({ k, o: rdwLvOrd(k), l: rdwLvL(k, C), rows, ...agg(rows) })).sort((a, b) => a.o - b.o); L.forEach(x => { x.done = x.tot > 0 && x.sub >= x.tot; });
+    const Lc = L.filter(x => x.k !== 'GEN');
+    return { ...g, ph, phl: ph && !rdwAllV(ph) ? rdwPh(ph) : '', l, L, nL: Lc.length, dL: Lc.filter(x => x.done).length, ...agg(g.rows) }; });
+  const ord = { sub: 0, sup: 1, gen: 2 }, num = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true });
+  out.sort((a, b) => ord[a.sec] - ord[b.sec] || (a.v === 'ALL') - (b.v === 'ALL') || (a.sec === 'sup' ? num(a.phl, b.phl) : 0) || num(a.l, b.l));
+  const sec = k => { const gs = out.filter(g => g.sec === k), rows = gs.flatMap(g => g.rows); return { gs, n: rows.length, nL: sum(gs, g => g.nL), dL: sum(gs, g => g.dL), ...agg(rows) }; };
+  return { C, WE, nGen, G: out, sub: sec('sub'), sup: sec('sup'), gen: sec('gen'), T: { ...agg(X.R), nL: sum(out, g => g.nL), dL: sum(out, g => g.dL) } };
 }
 
-/* ---------- table by building: quantities, dates, delay in days and a timeline (plan span, reached, behind, forecast) ---------- */
-function rdwTable(X, prt) {
-  const Z = X.Z, A = X.A, cd = X.cd, ar = S.lang === 'ar', df = d => d ? D.fmt(d) : '—';
-  const ds = [cd, ...Z.flatMap(z => [z.p0, z.p1, z.fin, z.last])].filter(Boolean).sort(), g0 = ds[0], g1 = ds[ds.length - 1], span = Math.max(1, D.diff(g1, g0)), P = d => Math.max(0, Math.min(100, D.diff(d, g0) / span * 100));
-  const ms = rpMonths(g0, g1), step = ms.length > 12 ? 3 : ms.length > 6 ? 2 : 1, tks = ms.filter((m, i) => i % step === 0).map(m => m + '-01').filter(d => d >= g0 && P(d) <= 93);
-  const grid = tks.map(d => `<s style="left:${P(d).toFixed(2)}%"></s>`).join(''), cdl = `<em class="now" style="left:${P(cd).toFixed(2)}%"></em>`;
-  const tl = z => { if (!z.p0) return `<div>${grid}${cdl}</div>`; const reach = z.done ? z.p1 : z.es && z.dl > 0 ? z.es : z.sub ? (z.es && z.dl < 0 ? z.es : [cd, z.p1].sort()[0]) : z.p0;
-    return `<div>${grid}<i class="tr" style="left:${P(z.p0).toFixed(2)}%;width:${Math.max(0.6, P(z.p1) - P(z.p0)).toFixed(2)}%"></i>${z.sub ? `<i class="rc" style="left:${P(z.p0).toFixed(2)}%;width:${Math.max(0.6, P(reach) - P(z.p0)).toFixed(2)}%"></i>` : ''}${z.dl > 0 && z.es ? `<i class="bh" style="left:${P(z.es).toFixed(2)}%;width:${(P(cd) - P(z.es)).toFixed(2)}%"></i>` : ''}${z.dl > 0 && z.p1 && !z.done ? `<b class="fx" style="left:${P(z.p1).toFixed(2)}%;width:${(P(z.fin) - P(z.p1)).toFixed(2)}%"></b>` : ''}${cdl}</div>`; };
-  const tip = z => rpTip(z.l, [[CODE.lab('zone', 'Phase', 'المرحلة'), z.phl], [LBL('Drawings (target)', 'المخططات (المستهدف)'), fmtN(z.tot)], [LBL('Planned to the cut-off', 'المخطط حتى تاريخ القطع'), `${fmtN(z.plan)} · ${fmtPct(z.pP, 0)}`], [LBL('Submitted', 'المقدَّم'), `${fmtN(z.sub)} · ${fmtPct(z.pS, 0)}`], [LBL('Approved', 'المعتمد'), fmtN(z.apr)],
-    [LBL('Planned submissions', 'التقديم المخطط'), `${df(z.p0)} → ${df(z.p1)}`], [LBL('Last submitted', 'آخر تقديم'), df(z.last)], [LBL('Delay', 'التأخير'), rdwDl(z.dl) + (z.dl > 0 && z.es ? ` · ${LBL('first drawing not reached due', 'أول مخطط لم يُبلغ كان مستحقاً')} ${df(z.es)}` : '')], [LBL('Forecast finish', 'الانتهاء المتوقع'), z.fin ? `${df(z.fin)}${z.done ? ` (${LBL('all submitted', 'قُدِّم الكل')})` : z.dl > 0 ? ` (${LBL('plan finish + delay', 'نهاية المخطط + التأخير')})` : ''}` : '—'],
-    [LBL('Consultant review', 'مراجعة الاستشاري'), z.rvd != null ? `${fmtN(z.rvd, 1)} ${LBL('days on average', 'يوم في المتوسط')} · ${fmtN(z.nRv)} ${LBL('reviewed', 'تمت مراجعتها')}` : '—'], [LBL('Rate – last 4 weeks', 'المعدل – آخر 4 أسابيع'), `${fmtN(z.r4, 1)} ${LBL('/ week', '/ أسبوع')}`], [LBL('Needed to finish on plan', 'المطلوب للانتهاء حسب المخطط'), z.need ? `${fmtN(z.need, 1)} ${LBL('/ week', '/ أسبوع')}` : '—'], [' ', LBL('Click: show this building only', 'نقرة: عرض هذا المبنى فقط')]]);
-  const num = (v, c) => `<td dir="ltr" class="nm ${c || ''}">${v}</td>`, gapC = g => g > 0 ? 'neg' : g < 0 ? 'pos' : '', dlT = d => d > 0 ? fmtN(d) : d < 0 ? `−${fmtN(-d)}` : '0';
-  const row = (z, cls, attr) => `<tr class="${cls || ''}${z.dl > 0 ? ' lt' : ''}" ${attr || ''} data-tp="${tip(z)}"><td class="dw-n" dir="auto">${h(z.l)}</td><td class="dw-p" dir="auto">${h(z.phl)}</td>${num(fmtN(z.tot))}${num(fmtN(z.plan))}${num(fmtN(z.sub))}${num(z.gap > 0 ? '−' + fmtN(z.gap) : z.gap < 0 ? '+' + fmtN(-z.gap) : '0', gapC(z.gap))}${num(fmtN(z.apr), 'ok')}${num(`${fmtN(z.ur)}${z.ovr ? `<small> · ${fmtN(z.ovr)}</small>` : ''}`, z.ovr ? 'wr' : '')}${num(fmtN(z.rsb))}${num(fmtN(z.late), z.late ? 'neg' : '')}${num(fmtN(z.due))}
-    <td dir="ltr" class="dt">${df(z.p0)}</td><td dir="ltr" class="dt">${df(z.p1)}</td><td dir="ltr" class="dt">${df(z.last)}</td>${num(dlT(z.dl), z.dl > 0 ? 'neg' : z.dl < 0 ? 'pos' : '')}<td dir="ltr" class="dt ${z.dl > 0 && !z.done ? 'neg' : ''}">${df(z.fin)}</td><td class="fc-g dw-g">${tl(z)}</td></tr>`;
-  const wk = LBL(`${+X.st.win / 7} wks`, `${+X.st.win / 7} أسابيع`), th = (t, tt) => `<th${tt ? ` title="${h(tt)}"` : ''}>${t}</th>`, w = (en, a) => ar ? a : en;
-  const head = `<div class="fc-h">${tks.map(d => `<em style="left:${P(d).toFixed(2)}%">${D.my(d)}</em>`).join('')}</div>`;
-  return `<table class="t fcy dwt"><colgroup><col><col style="width:${w(62, 66)}px"><col style="width:${w(44, 46)}px"><col style="width:${w(50, 54)}px"><col style="width:${w(52, 50)}px"><col style="width:${w(42, 44)}px"><col style="width:${w(56, 46)}px"><col style="width:${w(56, 58)}px"><col style="width:${w(34, 40)}px"><col style="width:${w(38, 40)}px"><col style="width:${w(42, 48)}px"><col style="width:${w(60, 60)}px"><col style="width:${w(60, 60)}px"><col style="width:${w(60, 60)}px"><col style="width:${w(42, 44)}px"><col style="width:${w(60, 62)}px"><col style="width:25%"></colgroup>
-    <thead><tr>${th(CODE.lab('building', 'Building', 'المبنى'))}${th(CODE.lab('zone', 'Phase', 'المرحلة'))}${th(LBL('Total', 'الإجمالي'), LBL('Drawings of the building: the targets (Drawing targets) or the registered drawings when more', 'مخططات المبنى: المستهدف (مستهدفات المخططات) أو المسجل إن كان أكثر'))}${th(LBL('Planned', 'المخطط'), LBL('Planned to be submitted by the cut-off', 'المخطط تقديمه حتى تاريخ القطع'))}${th(LBL('Submitted', 'المقدَّم'), LBL('Submitted by the cut-off', 'المقدَّم حتى تاريخ القطع'))}${th(LBL('Gap', 'الفرق'), LBL('Submitted − planned (− behind, + ahead)', 'المقدَّم − المخطط (− متأخر، + متقدم)'))}${th(LBL('Approved', 'معتمد'), LBL('Code A, Code B and closed', 'كود A وكود B والمغلق'))}${th(LBL('Under review', 'قيد المراجعة'), LBL('Under review · of which the review is overdue', 'قيد المراجعة · منها متأخر الرد'))}${th('C / D', LBL('To revise (C) or rejected (D)', 'للتعديل (C) أو مرفوض (D)'))}${th(LBL('Late', 'متأخر'), LBL('Planned date passed, not submitted', 'تجاوز التاريخ المخطط ولم يُقدَّم'))}${th(`${LBL('Due', 'مستحق')} ${wk}`, LBL('Planned in the next weeks after the cut-off (band filter Due in)', 'مخطط تقديمه في الأسابيع التالية لتاريخ القطع (فلتر «المستحق خلال»)'))}${th(LBL('First planned', 'أول تقديم مخطط'))}${th(LBL('Last planned', 'آخر تقديم مخطط'))}${th(LBL('Last submitted', 'آخر تقديم فعلي'))}${th(`${LBL('Delay', 'التأخير')} (${LBL('d', 'ي')})`, LBL('Days since the planned date of the first drawing the submissions have not reached (− = ahead)', 'الأيام منذ التاريخ المخطط لأول مخطط لم تصل إليه التقديمات (− = متقدم)'))}${th(LBL('Forecast finish', 'الانتهاء المتوقع'), LBL('Last planned submission + the delay (or the last submission when all are submitted)', 'آخر تقديم مخطط + التأخير (أو آخر تقديم عند اكتمال التقديم)'))}<th class="fc-th">${head}</th></tr></thead>
-    <tbody>${Z.map(z => row(z, X.st.zn.includes(z.v) ? 'on' : '', `data-dwz="${h(z.v)}"`)).join('') || `<tr><td colspan="17" class="empty">${LBL('No drawing for this choice.', 'لا توجد مخططات لهذا الاختيار.')}</td></tr>`}</tbody>
-    <tfoot>${row({ ...A, l: X.filt ? LBL('Total – drawings shown', 'الإجمالي – المخططات المعروضة') : LBL('Total – project', 'الإجمالي – المشروع'), phl: '' }, 'fc-av')}</tfoot></table>`;
+/* ---------- 3D layout (project 4D model): per level and element – submitted (violet) · to submit by the window end (amber) · remaining later (light) ---------- */
+const RDW3 = { pal: { 0: ['#E9EDF0', 0.28, '#D3DAE0'], 1: ['#7B5EA7', 1, '#4E3775'], 2: ['#E8A33D', 1, '#A8701C'], 3: ['#C7CFD6', 0.5, '#9AA7B2'], 4: ['#C7CFD6', 0.62, '#C2410C'], 5: ['#E8A33D', 1, '#C2410C'] } };   // 0 no drawing · 1 all submitted · 2 to submit in the window · 3 later · 4 late (red edges) · 5 window + late
+const rdwPart = e => /column/i.test(e || '') ? 'c' : /wall|core/i.test(e || '') ? 'w' : /slab|foundation|raft|roof|post|tendon/i.test(e || '') ? 's' : '*';
+function rdw3D(X, TR) {
+  const M = M4(); if (!M || !M.buildings) return null;
+  const nk = (id, name) => [rdwNk(id), ...String(name || '').split(/[&,+/]/).map(rdwNk)].filter(Boolean), same = (a, b) => a[0] === b[0] && a[1] === b[1];
+  const BK = Object.entries(M.buildings).map(([id, b]) => ({ id, k: nk(id, b.name) })), ZK = Object.entries(M.zones || {}).map(([id, z]) => ({ id, k: nk(id, z.name) }));
+  const mapB = v => { const ps = String(v || '').split(/[&,+/]/).map(rdwNk).filter(Boolean).concat([rdwNk(rdwZn(v))].filter(Boolean)); return [...new Set(BK.filter(b => b.k.some(x => ps.some(p => same(x, p)))).map(b => b.id))]; };
+  const mapZ = v => { const ps = [rdwNk(v), rdwNk(rdwPh(v))].filter(Boolean); return [...new Set(ZK.filter(z => z.k.some(x => ps.some(p => same(x, p)))).map(z => z.id))]; };
+  /* levels of the model: from the latest update classified with the model (as the Look-Ahead); without an update, the levels the drawings name */
+  const LV = new Map(), addL = (z, lv) => { const q = z + '|' + lv; if (!LV.has(q)) LV.set(q, { z, lv, ord: LA_LVORD(lv) }); };
+  const LD = SCH() && SCH().upd ? rpLaData() : null; if (LD) LD.acts.forEach(x => { if (laEl(x.c.e) && x.c.lv && x.c.z) addL(x.c.z, x.c.lv); }); const fromX = LV.size > 0;
+  const mlv = (z, k) => { if (k === 'FDN') return 'RAFT'; if (k[0] !== 'L') return k; const n = k.slice(1), c = ['L' + n, 'L' + n.padStart(2, '0'), 'L' + n.padStart(3, '0')].find(x => LV.has(z + '|' + x)); return c || 'L' + n.padStart(2, '0'); };   // model level key (L01 / L1 as the activity IDs)
+  const info = new Map(), put = (z, lv, r, g, gen) => { const q = z + '|' + lv; if (!info.has(q)) info.set(q, { z, lv, rows: [], parts: { s: [], c: [], w: [], '*': [] }, gs: new Set(), nGen: 0 }); const o = info.get(q); o.rows.push(r); o.parts[rdwPart(r.element)].push(r); o.gs.add(g); if (gen) o.nGen++; };
+  const zones = TR.G.filter(g => g.sec === 'sub' && g.v !== 'ALL').map(g => ({ g, zs: mapZ(g.v) })), allZ = [...new Set(zones.flatMap(x => x.zs))];
+  TR.G.forEach(g => { if (g.sec === 'gen') return;
+    const zs = g.sec === 'sub' ? (g.v === 'ALL' ? allZ : mapZ(g.v)) : g.v === 'ALL' ? [] : mapB(g.v);
+    g.L.forEach(l => { if (l.k === 'GEN') return; zs.forEach(z => { const m = mlv(z, l.k); if (fromX && !LV.has(z + '|' + m)) return; addL(z, m); l.rows.forEach(r => put(z, m, r, g.l, g.v === 'ALL')); }); }); });
+  if (!LV.size) return null;
+  const cd = X.cd, WE = TR.WE, sbm = r => r.actualSub && r.actualSub <= cd, stOf = rows => { if (!rows.length) return 0; const rm = rows.filter(r => !sbm(r)); if (!rm.length) return 1;
+    const w = rm.some(r => r.plannedSub && r.plannedSub >= cd && r.plannedSub <= WE), l = rm.some(r => r.plannedSub && r.plannedSub < cd); return w ? (l ? 5 : 2) : l ? 4 : 3; };
+  const st = {}; LV.forEach((L, q) => { const o = info.get(q); if (!o) { st[q] = { s: 0, c: 0, w: 0 }; return; } const lvS = stOf(o.rows), p = k => { const rs = [...o.parts[k], ...o.parts['*']]; return rs.length ? stOf(rs) : lvS; }; st[q] = { s: p('s'), c: p('c'), w: p('w') }; });
+  return { lv: [...LV.values()], st, info, M, nMap: info.size };
+}
+/* bookmark of the 3D layout (hover card of the report, drawn by the page so it is never cut by the small frame): where (building / phase · level),
+   the element under the pointer, totals, and when the remaining drawings are expected */
+function rdwPin(D3, TR, X, hit) {
+  if (!hit || !D3) return null; const o = D3.info.get(hit.z + '|' + hit.lv), M = D3.M, nm = (M.buildings[hit.z] || (M.zones || {})[hit.z] || {}), ar = S.lang === 'ar';
+  const zl = (ar && nm.nameAr) || nm.name || hit.z, lvk = hit.lv === 'RAFT' ? 'FDN' : hit.lv.replace(/^L0*(\d+)$/, 'L$1'), t = `${zl} · ${rdwLvL(lvk, TR.C)}`;
+  if (!o) return { t, c: '#E9EDF0', rows: [[LBL('Drawings', 'المخططات'), LBL('none registered for this level', 'لا توجد مخططات مسجلة لهذا الدور')]] };
+  const cd = X.cd, sb = r => r.actualSub && r.actualSub <= cd, a = rdwAgg(o.rows, [], { ...X, tk: new Set() }), rem = o.rows.filter(r => !sb(r)), late = rem.filter(r => r.plannedSub && r.plannedSub < cd).length;
+  const tgt = rem.filter(r => r.plannedSub && r.plannedSub >= cd && r.plannedSub <= TR.WE).length, nxt = rem.map(r => r.plannedSub).filter(Boolean).sort(), df = d => d ? D.fmt(d) : '—';
+  const el = { s: LBL('Slab', 'البلاطة'), c: LBL('Columns', 'الأعمدة'), w: LBL('Walls / cores', 'الحوائط / الأنوية') }[hit.e] || '', pr = [...(o.parts[hit.e] || []), ...o.parts['*']], done = a.sub >= a.tot;
+  return { t, c: done ? '#7B5EA7' : tgt ? '#E8A33D' : '#C7CFD6', red: !done && late > 0, rows: [
+    [LBL('Drawings', 'المخططات'), `${fmtN(a.tot)}${o.nGen ? ` (${fmtN(o.nGen)} ${LBL('general', 'عامة')})` : ''}`], [LBL('Submitted', 'المقدَّم'), `${fmtN(a.sub)} · ${fmtPct(a.pS, 0)}`],
+    [LBL('Approved', 'المعتمد'), fmtN(a.apr)], [LBL('Rejected (C / D)', 'مرفوض (C / D)'), fmtN(a.rsb)], [LBL('Under review', 'قيد المراجعة'), fmtN(a.ur)],
+    ...(el && pr.length ? [[el, `${fmtN(pr.filter(sb).length)} / ${fmtN(pr.length)} ${LBL('submitted', 'مقدَّم')}`]] : []),
+    [LBL('Status', 'الحالة'), done ? `${LBL('all submitted', 'قُدِّم الكل')}${a.last ? ` · ${df(a.last)}` : ''}` : `${fmtN(rem.length)} ${LBL('remaining', 'متبقي')}${late ? ` · ${fmtN(late)} ${LBL('late', 'متأخر')}` : ''}`],
+    ...(done ? [] : [[`${LBL('To submit by', 'مستهدف حتى')} ${D.fmt(TR.WE)}`, fmtN(tgt)], [LBL('Planned submission', 'التقديم المخطط'), nxt.length ? `${df(nxt[0])}${nxt[nxt.length - 1] !== nxt[0] ? ` → ${df(nxt[nxt.length - 1])}` : ''}` : '—'],
+      [LBL('Expected submission', 'التقديم المتوقع'), a.fin ? `${df(a.fin)}${a.dl > 0 ? ` (+${fmtN(a.dl)} ${LBL('d', 'ي')})` : ''}` : '—']])] };
+}
+function rdwPinShow(f, p, hit) {   // the report hover card (#xtip) beside the pointer, outside the frame
+  const tp = document.getElementById('xtip'); if (!tp) return; if (!p || !hit || hit.x == null || !f.isConnected) { tp.style.display = 'none'; tp._c = null; return; }
+  tp._c = f; tp.dir = S.lang === 'ar' ? 'rtl' : 'ltr'; tp.classList.add('dwp');
+  tp.innerHTML = `<b dir="auto"><i class="dwp-c" style="background:${p.c}${p.red ? ';box-shadow:inset 0 0 0 2px #C2410C' : ''}"></i>${h(p.t)}</b>${p.rows.map(([k, v]) => `<span><em>${h(k)}</em><i dir="ltr">${h(v)}</i></span>`).join('')}`;
+  const r = f.getBoundingClientRect(), k = r.width / Math.max(1, f.clientWidth), x0 = r.left + hit.x * k, y0 = r.top + hit.y * k; tp.style.display = 'block';
+  const w = tp.offsetWidth, hh = tp.offsetHeight; let x = x0 + 16, y = y0 + 12; if (x + w > innerWidth - 6) x = x0 - w - 16; if (y + hh > innerHeight - 6) y = Math.max(6, y0 - hh - 12); tp.style.left = x + 'px'; tp.style.top = y + 'px';
+}
+
+/* ---------- where the drawings stand – of the total ---------- */
+function rdwStat(X, TR) {
+  const A = X.A, R = X.R, cd = X.cd, WE = TR.WE, T = A.tot || 1, nsW = R.filter(r => rdwSt(r) === 'ns' && r.plannedSub && r.plannedSub <= WE).length, later = Math.max(0, A.tot - A.sub - A.late - nsW);
+  const sb = [['apr', LBL('Approved (A / B)', 'معتمد (A / B)'), A.apr, '#5B3F87'], ['ur', LBL('Under review', 'قيد المراجعة'), A.ur, '#9B85C4', A.ovr ? `${fmtN(A.ovr)} ${LBL('overdue', 'متأخر الرد')}` : ''], ['rsb', LBL('Rejected – to revise (C / D)', 'مرفوض – للتعديل (C / D)'), A.rsb, '#C2410C']];
+  const ns = [['late', LBL('Late – not submitted', 'متأخر – لم يُقدَّم'), A.late, '#C2410C'], ['tgt', `${LBL('To submit by', 'مستهدف حتى')} <bdi dir="ltr">${D.fmt(WE)}</bdi>`, nsW, '#E8A33D'], ['later', LBL('Later', 'لاحقاً'), later, '#C7CFD6']];
+  const bar = `<div class="dws-b">${[...sb, ...ns].map(([k, l, v, c]) => v ? `<i style="flex:${v};background:${c}" data-tp="${rpTip(l.replace(/<[^>]+>/g, ''), [[LBL('Drawings', 'المخططات'), fmtN(v)], [LBL('of the total', 'من الإجمالي'), fmtPct(v / T, 1)]])}"></i>` : '').join('')}</div>`;
+  const row = ([k, l, v, c, x]) => `<div class="dws-r" data-tp="${rpTip(l.replace(/<[^>]+>/g, ''), [[LBL('Drawings', 'المخططات'), fmtN(v)], [LBL('of the total', 'من الإجمالي'), fmtPct(v / T, 1)], ...(x ? [[' ', x]] : [])])}"><i style="background:${c}"></i><span>${l}${x ? ` <em>· ${x}</em>` : ''}</span><b dir="ltr">${fmtN(v)}</b><u dir="ltr">${fmtPct(v / T, 0)}</u></div>`;
+  const blk = (t, v, list, c) => `<div class="dws-h"><span>${t}</span><b dir="ltr" style="color:${c}">${fmtN(v)}</b><u dir="ltr">${fmtPct(v / T, 0)}</u></div>${list.map(row).join('')}`;
+  return `${bar}<div class="dws-l">${blk(LBL('Submitted', 'المقدَّم'), A.sub, sb, '#5B3F87')}${blk(LBL('Not submitted', 'لم يُقدَّم'), Math.max(0, A.tot - A.sub), ns, '#9A5B10')}</div>
+    <div class="dws-f"><span>${LBL('Engineering progress', 'إنجاز الأعمال الهندسية')} <b dir="ltr">${fmtPct(X.E.O, 1)}</b></span><span>${LBL('Rate', 'المعدل')} <b dir="ltr">${fmtN(A.r4, A.r4 < 10 ? 1 : 0)}</b> ${LBL('/ wk', '/ أسبوع')} · ${LBL('needed', 'المطلوب')} <b dir="ltr">${fmtN(A.need, 0)}</b></span></div>`;
+}
+
+/* ---------- table: Substructure by phase · Superstructure by building, each with its levels (click a row) and a level strip ---------- */
+function rdwTable(X, TR, prt) {
+  const st = X.st, op = st.op, ar = S.lang === 'ar', df = d => d ? D.fmt(d) : '—', WE = TR.WE, wk = `<bdi dir="ltr">${D.fmt(WE)}</bdi>`;
+  const cellTip = (g, l) => rpTip(`${g.l} · ${l.l}`, [[LBL('Drawings', 'المخططات'), fmtN(l.tot)], [LBL('Submitted', 'المقدَّم'), `${fmtN(l.sub)} · ${fmtPct(l.pS, 0)}`], [LBL('Approved', 'المعتمد'), fmtN(l.apr)], [LBL('Rejected (C / D)', 'مرفوض (C / D)'), fmtN(l.rsb)],
+    [LBL('Remaining', 'المتبقي'), l.rem ? `${fmtN(l.rem)}${l.late2 ? ` · ${LBL('late', 'متأخر')} ${fmtN(l.late2)}` : ''}` : LBL('none – all submitted', 'لا يوجد – قُدِّم الكل')], [`${LBL('To submit by', 'مستهدف حتى')} ${D.fmt(WE)}`, fmtN(l.tgt)],
+    [LBL('Planned submissions', 'التقديم المخطط'), l.p0 ? `${df(l.p0)} → ${df(l.p1)}` : '—'], [LBL('Expected submission', 'التقديم المتوقع'), l.done ? `${LBL('done', 'تم')} ${df(l.last)}` : df(l.fin)]]);
+  const cellC = l => `--s:${(l.tot ? l.sub / l.tot * 100 : 0).toFixed(1)}%;--b:${l.tgt ? '#E8A33D' : '#DCE3E8'}`;   // violet share submitted over amber (to submit in the window) or grey; a red foot = late drawings
+  const strip = g => { const L = g.L.filter(l => l.k !== 'GEN'); if (!L.length) return ''; return `<div class="dwl"><em>${h(rdwLvS(L[0].k))}</em>${L.map(l => `<i class="${l.done ? 'dn' : ''}${l.late2 ? ' lt' : ''}" style="${cellC(l)}" data-tp="${cellTip(g, l)}"></i>`).join('')}<em>${h(rdwLvS(L[L.length - 1].k))}</em></div>`; };
+  const lbar = l => `<div class="dwb" data-tp="${cellTip({ l: '' }, l).replace(/^ · /, '')}"><i style="width:${(l.tot ? l.sub / l.tot * 100 : 0).toFixed(1)}%;background:#7B5EA7"></i><i style="width:${(l.tot ? l.late2 / l.tot * 100 : 0).toFixed(1)}%;background:#C2410C"></i><i style="width:${(l.tot ? l.tgt / l.tot * 100 : 0).toFixed(1)}%;background:#E8A33D"></i></div>`;
+  const pc = (n, t) => `${fmtN(n)}<small>${t ? fmtPct(n / t, 0) : ''}</small>`, num = (v, c) => `<td dir="ltr" class="nm ${c || ''}">${v}</td>`, dlT = d => d > 0 ? `+${fmtN(d)}` : d < 0 ? `−${fmtN(-d)}` : '0';
+  const tip = g => rpTip(g.l, [[CODE.lab('zone', 'Phase', 'المرحلة'), g.phl], [CODE.lab('level', 'Levels', 'الأدوار'), `${fmtN(g.dL)} / ${fmtN(g.nL)} ${LBL('with all drawings submitted', 'قُدِّمت كل مخططاتها')}`], [LBL('Drawings', 'المخططات'), fmtN(g.tot)],
+    [LBL('Submitted', 'المقدَّم'), `${fmtN(g.sub)} · ${fmtPct(g.pS, 0)}`], [LBL('Planned to the cut-off', 'المخطط حتى تاريخ القطع'), fmtN(g.plan)], [LBL('Approved', 'المعتمد'), fmtN(g.apr)], [LBL('Rejected (C / D)', 'مرفوض (C / D)'), fmtN(g.rsb)], [LBL('Under review', 'قيد المراجعة'), `${fmtN(g.ur)}${g.ovr ? ` · ${LBL('overdue', 'متأخر')} ${fmtN(g.ovr)}` : ''}`],
+    [LBL('Planned submissions', 'التقديم المخطط'), g.p0 ? `${df(g.p0)} → ${df(g.p1)}` : '—'], [LBL('Delay', 'التأخير'), rdwDl(g.dl)], [LBL('Forecast finish', 'الانتهاء المتوقع'), g.done ? `${LBL('all submitted', 'قُدِّم الكل')} ${df(g.last)}` : df(g.fin)], [' ', prt ? '' : LBL('Click: show / hide its levels', 'نقرة: إظهار / إخفاء أدواره')]]);
+  const cells = (x, lv) => `<td class="dw-c" dir="ltr">${lv ? (x.done ? `<b class="ok">✓</b>` : `<span class="muted">${fmtN(x.rem)} ${LBL('left', 'متبقي')}</span>`) : `${fmtN(x.dL)}<small>/ ${fmtN(x.nL)}</small>`}</td>${num(fmtN(x.tot))}<td dir="ltr" class="nm dw-s">${pc(x.sub, x.tot)}</td>${num(pc(x.apr, x.sub), 'ok')}${num(pc(x.rsb, x.sub), x.rsb ? 'rj' : '')}
+    ${num(`${fmtN(x.ur)}${x.ovr ? `<small class="wr">${fmtN(x.ovr)}</small>` : ''}`)}${num(fmtN(x.late2), x.late2 ? 'neg' : '')}${num(fmtN(x.tgt), x.tgt ? 'am' : '')}<td dir="ltr" class="dt ${x.nx && x.nx < X.cd ? 'neg' : ''}">${x.rem ? df(x.nx) : '—'}</td><td dir="ltr" class="dt">${df(x.p1)}</td>
+    <td dir="ltr" class="dt ${x.dl > 0 && !x.done ? 'neg' : ''}">${x.done ? df(x.last) : df(x.fin)}</td>${num(x.done ? '—' : dlT(x.dl), x.dl > 0 && !x.done ? 'neg' : x.dl < 0 ? 'pos' : '')}`;
+  const gRow = g => { const o = !!op[g.key] && g.L.length > 0;
+    return `<tr class="dwg ${o ? 'op' : ''}" data-dwk="${h(g.key)}" data-tp="${tip(g)}"><td class="dw-n"><span class="dw-a">${g.L.length ? (o ? '▾' : '▸') : ''}</span><b dir="auto">${h(g.l)}</b>${g.sec === 'sup' && g.phl ? `<i dir="auto">${h(g.phl)}</i>` : ''}</td>${cells(g)}<td class="dw-st">${strip(g)}</td></tr>`
+      + (o ? g.L.map(l => `<tr class="dwv ${l.done ? 'dn' : ''}" data-dwk="${h(g.key)}"><td class="dw-n"><span dir="auto">${h(l.l)}</span></td>${cells(l, 1)}<td class="dw-st">${lbar(l)}</td></tr>`).join('') : ''); };
+  const secRow = (s, t, sub) => s.gs.length ? `<tr class="dwsec"><td colspan="14"><b>${t}</b><span>${sub}</span><span class="r" dir="ltr">${fmtN(s.n)} ${LBL('drawings', 'مخطط')} · ${fmtN(s.sub)} ${LBL('submitted', 'مقدَّم')} (${fmtPct(s.pS, 0)}) · ${CODE.lab('level', 'levels', 'الأدوار')} ${fmtN(s.dL)} / ${fmtN(s.nL)}</span></td></tr>${s.gs.map(gRow).join('')}` : '';
+  const T = TR.T, w = (en, a) => ar ? a : en, th = (t, tt, c) => `<th${c ? ` class="${c}"` : ''}${tt ? ` title="${h(tt)}"` : ''}>${t}</th>`;
+  return `<table class="t dw2t"><colgroup><col style="width:${w(138, 140)}px"><col style="width:${w(48, 52)}px"><col style="width:${w(46, 48)}px"><col style="width:${w(66, 66)}px"><col style="width:${w(60, 60)}px"><col style="width:${w(60, 64)}px"><col style="width:${w(48, 54)}px"><col style="width:${w(38, 42)}px"><col style="width:${w(54, 58)}px"><col style="width:${w(60, 62)}px"><col style="width:${w(60, 62)}px"><col style="width:${w(62, 62)}px"><col style="width:${w(38, 44)}px"><col></colgroup>
+    <thead><tr>${th(`${CODE.lab('building', 'Building', 'المبنى')} / ${CODE.lab('level', 'level', 'الدور')}`)}${th(CODE.lab('level', 'Levels', 'الأدوار'), LBL('Levels with all their drawings submitted / levels', 'الأدوار التي قُدِّمت كل مخططاتها / عدد الأدوار'))}${th(LBL('Total', 'الإجمالي'), LBL('Drawings registered', 'المخططات المسجلة'))}${th(LBL('Submitted', 'المقدَّم'), LBL('Submitted by the cut-off · % of the total', 'المقدَّم حتى تاريخ القطع · % من الإجمالي'))}${th(LBL('Approved', 'معتمد'), LBL('Code A, Code B and closed · % of submitted', 'كود A وكود B والمغلق · % من المقدَّم'))}${th(LBL('Rejected', 'مرفوض'), LBL('Code C (revise and resubmit) or D (rejected) · % of submitted', 'كود C (يُعدَّل ويُعاد) أو D (مرفوض) · % من المقدَّم'))}${th(LBL('Review', 'مراجعة'), LBL('Under review at the consultant · of which overdue', 'قيد المراجعة لدى الاستشاري · منها متأخر الرد'))}${th(LBL('Late', 'متأخر'), LBL('Planned date passed, not submitted', 'تجاوز التاريخ المخطط ولم يُقدَّم'))}${th(LBL('By', 'حتى') + ` ${D.dm(WE)}`, LBL('Not submitted, planned from the cut-off to the end of the chosen window (the late ones are in Late)', 'لم يُقدَّم ومخطط تقديمه من تاريخ القطع حتى نهاية الفترة المختارة (المتأخر في عمود متأخر)'))}${th(LBL('Next due', 'التالي'), LBL('Planned date of the first drawing not submitted', 'التاريخ المخطط لأول مخطط لم يُقدَّم'))}${th(LBL('Planned finish', 'نهاية المخطط'), LBL('Last planned submission', 'آخر تقديم مخطط'))}${th(LBL('Forecast', 'المتوقع'), LBL('Last planned submission + the delay (or the last submission when all are submitted)', 'آخر تقديم مخطط + التأخير (أو آخر تقديم عند اكتمال التقديم)'))}${th(LBL('Delay', 'تأخير') + ` (${LBL('d', 'ي')})`, LBL('Days since the planned date of the first drawing the submissions have not reached', 'الأيام منذ التاريخ المخطط لأول مخطط لم تصل إليه التقديمات'))}${th(`${CODE.lab('level', 'Levels', 'الأدوار')} – ${LBL('bottom → top', 'من الأسفل للأعلى')}`, LBL('One box per level: violet = share submitted, amber = drawings to submit in the chosen window, grey = later, red foot = late drawings', 'مربع لكل دور: البنفسجي = نسبة المقدَّم، الكهرماني = مخططات مستهدفة خلال الفترة المختارة، الرمادي = لاحقاً، الخط الأحمر أسفله = مخططات متأخرة'), 'dw-sth')}</tr></thead>
+    <tbody>${secRow(TR.sub, LBL('Substructure', 'الأعمال أسفل سطح الأرض'), `${LBL('by', 'حسب')} ${CODE.lab('zone', 'phase', 'المرحلة')} · ${LBL('foundation → ground floor', 'الأساسات ← الدور الأرضي')}`)}${secRow(TR.sup, LBL('Superstructure', 'الأعمال أعلى سطح الأرض'), `${LBL('by', 'حسب')} ${CODE.lab('building', 'building', 'المبنى')} · ${LBL('level 01 → roof', 'الدور 01 ← السطح')}`)}${TR.gen.gs.map(gRow).join('')}
+      ${TR.G.length ? '' : `<tr><td colspan="14" class="empty">${LBL('No drawing for this choice.', 'لا توجد مخططات لهذا الاختيار.')}</td></tr>`}</tbody>
+    <tfoot><tr class="dwt0"><td class="dw-n"><b>${X.filt ? LBL('Total – drawings shown', 'الإجمالي – المخططات المعروضة') : LBL('Total – project', 'الإجمالي – المشروع')}</b></td>${cells(T)}<td class="dw-st"><div class="dwl dwl-k"><span><i class="s"></i>${LBL('submitted', 'مقدَّم')}</span><span><i class="t"></i>${LBL('to submit by', 'مستهدف حتى')} ${wk}</span><span><i class="g"></i>${LBL('later', 'لاحقاً')}</span><span><i class="g lt"></i>${LBL('late', 'متأخر')}</span></div></td></tr></tfoot></table>`;
 }
 
 RP.P.drawings = (el, pg) => {
   const X = rpDW(); if (!X) return rpNeed(el, pg, LBL('No drawing recorded (Data Collection › Drawings: the register and the targets).', 'لا توجد مخططات مسجلة (جمع البيانات › المخططات: السجل والمستهدفات).'));
-  const st = X.st, A = X.A, E_ = X.E, prt = !!el.closest('.rpp'), cd = X.cd, pT = v => A.tot ? fmtPct(v / A.tot, 1) : '—', wkN = +st.win / 7;
-  const behind = A.gap > 0, k = [
-    xk('k1', LBL('Drawings', 'المخططات'), fmtN(A.tot), `${LBL('design', 'تصميمي')} ${fmtN(E_.nD)} · ${LBL('shop', 'تنفيذي')} ${fmtN(E_.nS)}${E_.nA ? ` · ${LBL('as-built', 'كما نُفّذ')} ${fmtN(E_.nA)}` : ''}`),
-    xk('k2', LBL('Planned to date', 'المخطط حتى تاريخه'), fmtN(A.plan), `${pT(A.plan)} · ${LBL('due in', 'خلال')} ${fmtN(wkN)} ${LBL('wks', 'أسابيع')} ${fmtN(A.due)}`),
-    xk('k3', LBL('Submitted', 'المقدَّم'), fmtN(A.sub), `${pT(A.sub)} · ${behind ? LBL('behind', 'متأخر') : LBL('ahead', 'متقدم')} <b class="${behind ? 'neg' : 'pos'}" dir="ltr">${behind ? '−' : '+'}${fmtN(Math.abs(A.gap))}</b>`, behind && A.gap > A.plan * 0.05 ? 'bad' : 'ok'),
-    xk('k4', A.dl < 0 ? LBL('Ahead of the plan', 'متقدم على المخطط') : LBL('Delay', 'التأخير'), `${fmtN(Math.abs(A.dl))} ${LBL('days', 'يوم')}`, A.dl > 0 && A.es ? `${LBL('due since', 'مستحق منذ')} <bdi dir="ltr">${D.fmt(A.es)}</bdi>` : LBL('submissions on the plan', 'التقديم حسب المخطط'), A.dl > 14 ? 'bad' : A.dl > 0 ? 'warn' : 'ok'),
-    xk('k5', LBL('Late – not submitted', 'متأخر – لم يُقدَّم'), fmtN(A.late), `${pT(A.late)} ${LBL('of the drawings', 'من المخططات')}`, A.late ? 'bad' : 'ok'),
-    xk('k6', LBL('Under review', 'قيد المراجعة'), fmtN(A.ur), `${A.ovr ? `${LBL('overdue', 'متأخر الرد')} ${fmtN(A.ovr)}` : LBL('none overdue', 'لا يوجد متأخر')}${A.rvd != null ? ` · <span class="nw">${LBL('review', 'الرد')} ${fmtN(A.rvd, 1)} ${LBL('d avg', 'ي متوسط')}</span>` : ''}`, A.ovr ? 'warn' : ''),
-    xk('k7', LBL('Approved', 'المعتمد'), fmtN(A.apr), `${fmtPct(A.pA, 0)} ${LBL('of submitted', 'من المقدَّم')} · <span class="nw">C / D ${fmtN(A.rsb)}</span>`, 'ok'),
-    xk('k8', LBL('Rate – last 4 weeks', 'المعدل – آخر 4 أسابيع'), `${fmtN(A.r4, A.r4 < 10 ? 1 : 0)} ${LBL('/ wk', '/ أسبوع')}`, A.need ? `${LBL('needed', 'المطلوب')} ${fmtN(A.need, 0)} ${LBL('/ wk', '/ أسبوع')} ${A.p1 ? `${LBL('to', 'حتى')} <bdi class="nw" dir="ltr">${D.fmt(A.p1)}</bdi>` : ''}` : LBL('all submitted', 'قُدِّم الكل'), A.need > A.r4 * 1.1 ? 'warn' : 'ok'),
-    xk('k9', LBL('Engineering progress', 'إنجاز الأعمال الهندسية'), fmtPct(E_.O, 1), `${LBL('design', 'تصميمي')} ${fmtPct(E_.dP, 0)} · ${LBL('shop', 'تنفيذي')} ${fmtPct(E_.sP, 0)}`, '')].join('');
-  /* cumulative curves + submissions per period (svgCombo: bars on the left axis, cumulative lines on the right axis with % of the drawings) */
-  const CS = X.CS, ic0 = X.icd, nC = CS.length, tipC = CS.map(c => rpTip(`${c.lb}${c.cur ? ` · ${LBL('to the cut-off', 'حتى تاريخ القطع')} ${D.fmt(cd)}` : ''}`, [[LBL('Planned in the period', 'المخطط في الفترة'), fmtN(c.pl)], [LBL('Submitted in the period', 'المقدَّم في الفترة'), c.sb != null ? fmtN(c.sb) : ''],
-    [LBL('Planned – cumulative', 'المخطط – تراكمي'), `${fmtN(c.cpl)} · ${pT(c.cpl)}`], [LBL('Submitted – cumulative', 'المقدَّم – تراكمي'), c.csb != null ? `${fmtN(c.csb)} · ${pT(c.csb)}` : ''], [LBL('Approved – cumulative', 'المعتمد – تراكمي'), c.cap != null ? `${fmtN(c.cap)}` : ''], [LBL('Gap', 'الفرق'), c.csb != null ? fmtN(c.csb - (c.cur ? A.plan : c.cpl)) : '']]));
-  const bars = [{ v: CS.map(c => c.pl), c: RDW_C.pl, n: LBL('Planned', 'المخطط'), lbl: (i, v) => nC <= 12 && v ? rdwK(v) : '', fs: 8.5 }, { v: CS.map(c => c.sb), c: RDW_C.sub, n: LBL('Submitted', 'المقدَّم'), lbl: (i, v) => nC <= 12 && v ? rdwK(v) : '', fs: 8.5, lc: '#5B3F87' }]; bars.gw = nC > 20 ? 14 : 30;
-  const pctL = v => `${Math.round(v / (A.tot || 1) * 100)}%`;
-  const lines = [{ v: CS.map(c => c.cpl), c: RDW_C.cpl, dash: '5 3', wd: 2, box: 1, lbl: (i, v) => i === ic0 || i === nC - 1 ? pctL(v) : '' }, { v: CS.map(c => c.csb), c: RDW_C.csub, wd: 2.6, box: 1, below: 1, lbl: (i, v) => i === ic0 ? pctL(v) : '' }, { v: CS.map(c => c.cap), c: RDW_C.apr, wd: 1.8 }];
-  const chart = svgCombo({ w: 520, h: 214, cats: CS.map(c => c.lb), bars, lines, tot: A.tot, fmtL: rdwK, vline: ic0 >= 0 ? ic0 : null, tips: tipC });
+  const st = X.st, A = X.A, prt = !!el.closest('.rpp'), cd = X.cd, TR = rdwTree(X), WE = TR.WE, pT = v => A.tot ? fmtPct(v / A.tot, 1) : '—', pS = v => A.sub ? fmtPct(v / A.sub, 0) : '—', dB = d => `<bdi class="nw" dir="ltr">${D.fmt(d)}</bdi>`;
+  const behind = A.gap > 0, rem = Math.max(0, A.tot - A.sub), nsW = X.R.filter(r => !(r.actualSub && r.actualSub <= cd) && r.plannedSub && r.plannedSub >= cd && r.plannedSub <= WE).length;
+  const k = [
+    xk('k1', LBL('Drawings – total', 'المخططات – الإجمالي'), fmtN(A.tot), `${LBL('substructure', 'أسفل الأرض')} ${fmtN(TR.sub.n)} · ${LBL('superstructure', 'أعلى الأرض')} ${fmtN(TR.sup.n)}`),
+    xk('k2', LBL('Submitted', 'المقدَّم'), fmtN(A.sub), `${pT(A.sub)} · ${LBL('planned to date', 'المخطط حتى تاريخه')} ${fmtN(A.plan)} <b class="${behind ? 'neg' : 'pos'}" dir="ltr">${behind ? '−' : '+'}${fmtN(Math.abs(A.gap))}</b>`, behind && A.gap > A.plan * 0.05 ? 'bad' : 'ok'),
+    xk('k3', LBL('Approved (A / B)', 'المعتمد (A / B)'), fmtN(A.apr), `${pS(A.apr)} ${LBL('of submitted', 'من المقدَّم')}`, 'ok'),
+    xk('k4', LBL('Rejected (C / D)', 'مرفوض (C / D)'), fmtN(A.rsb), `${pS(A.rsb)} ${LBL('of submitted', 'من المقدَّم')}`, A.rsb ? 'bad' : 'ok'),
+    xk('k5', LBL('Under review', 'قيد المراجعة'), fmtN(A.ur), `${A.ovr ? `${LBL('overdue', 'متأخر الرد')} ${fmtN(A.ovr)}` : LBL('none overdue', 'لا يوجد متأخر')}${A.rvd != null ? ` · <span class="nw">${LBL('reply', 'الرد')} ${fmtN(A.rvd, 1)} ${LBL('d avg', 'ي متوسط')}</span>` : ''}`, A.ovr ? 'warn' : ''),
+    xk('k6', LBL('Not submitted', 'لم يُقدَّم'), fmtN(rem), `${LBL('late', 'متأخر')} <b class="neg" dir="ltr">${fmtN(A.late)}</b> · ${LBL('to submit by', 'مستهدف حتى')} ${dB(WE)} <b dir="ltr">${fmtN(nsW)}</b>`, A.late ? 'bad' : ''),
+    xk('k7', A.dl < 0 ? LBL('Ahead of the plan', 'متقدم على المخطط') : LBL('Delay', 'التأخير'), `${fmtN(Math.abs(A.dl))} ${LBL('days', 'يوم')}`, `${A.dl > 0 && A.es ? `${LBL('due since', 'مستحق منذ')} ${dB(A.es)} · ` : ''}${LBL('forecast finish', 'الانتهاء المتوقع')} ${A.fin ? dB(A.fin) : '—'}`, A.dl > 14 ? 'bad' : A.dl > 0 ? 'warn' : 'ok'),
+    xk('k8', LBL('Levels complete', 'أدوار مكتملة'), `${fmtN(TR.T.dL)} / ${fmtN(TR.T.nL)}`, `${LBL('substructure', 'أسفل الأرض')} ${fmtN(TR.sub.dL)} / ${fmtN(TR.sub.nL)} · ${LBL('superstructure', 'أعلى الأرض')} ${fmtN(TR.sup.dL)} / ${fmtN(TR.sup.nL)}`, '')].join('');
+  /* cumulative – planned · submitted · approved (count and % of the drawings), cut-off line */
+  const CS = X.CS, ic0 = X.icd, nC = CS.length, pctL = v => `${Math.round(v / (A.tot || 1) * 100)}%`;
+  const tipC = CS.map(c => rpTip(`${c.lb}${c.cur ? ` · ${LBL('to the cut-off', 'حتى تاريخ القطع')} ${D.fmt(cd)}` : ''}`, [[LBL('Planned – cumulative', 'المخطط – تراكمي'), `${fmtN(c.cpl)} · ${pT(c.cpl)}`], [LBL('Submitted – cumulative', 'المقدَّم – تراكمي'), c.csb != null ? `${fmtN(c.csb)} · ${pT(c.csb)}` : ''],
+    [LBL('Approved – cumulative', 'المعتمد – تراكمي'), c.cap != null ? fmtN(c.cap) : ''], [LBL('Planned in the period', 'المخطط في الفترة'), fmtN(c.pl)], [LBL('Submitted in the period', 'المقدَّم في الفترة'), c.sb != null ? fmtN(c.sb) : ''], [LBL('Gap', 'الفرق'), c.csb != null ? fmtN(c.csb - (c.cur ? A.plan : c.cpl)) : '']]));
+  const lines = [{ v: CS.map(c => c.cpl), c: RCOL.pv, dash: '5 3', wd: 2.2, box: 1, lbl: (i, v) => i === ic0 || i === nC - 1 ? pctL(v) : '' }, { v: CS.map(c => c.csb), c: RCOL.ev, wd: 2.8, box: 1, below: 1, lbl: (i, v) => i === ic0 ? pctL(v) : '' }, { v: CS.map(c => c.cap), c: '#1E8A5A', wd: 1.8 }];
+  const bars = [{ v: CS.map(c => c.pl), c: RCOL.pv, n: LBL('Planned', 'المخطط'), op: () => 0.4 }, { v: CS.map(c => c.sb), c: RCOL.ev, n: LBL('Submitted', 'المقدَّم'), op: () => 0.55 }]; bars.gw = nC > 20 ? 12 : 22;
+  const chart = svgCombo({ w: 400, h: 196, cats: CS.map(c => c.lb), bars, lines, tot: A.tot, fmtL: rdwK, vline: ic0 >= 0 ? ic0 : null, tips: tipC });
   const pBtn = `<button class="xper" data-dwp title="${LBL('Monthly ↔ weekly', 'شهري ↔ أسبوعي')}">${ic('sync')}${st.per === 'W' ? LBL('Weekly', 'أسبوعي') : LBL('Monthly', 'شهري')}</button>`;
-  /* comparison by group: the groups that fit, the rest together */
-  const maxG = prt ? 9 : 8, C0 = X.C, CG = C0.length > maxG ? [...C0.slice(0, maxG - 1), (() => { const r = C0.slice(maxG - 1), s = f => sum(r, g => g[f]); return { v: '_o', l: `${LBL('Others', 'أخرى')} (${r.length})`, tot: s('tot'), plan: s('plan'), sub: s('sub'), gap: s('gap'), apr: s('apr'), ur: s('ur'), ovr: s('ovr'), rsb: s('rsb'), late: s('late'), dl: Math.max(...r.map(g => g.dl)), pP: s('tot') ? s('plan') / s('tot') : 0, pS: s('tot') ? s('sub') / s('tot') : 0, pA: s('sub') ? s('apr') / s('sub') : 0 }; })()] : C0;
-  CG.forEach(g => { g.tip = rdwTip(g.l, g); });
-  const gBtn = `<button class="xper" data-dwg title="${LBL('Group by element → building → category', 'التجميع حسب العنصر ← المبنى ← الفئة')}">${ic('sync')}${(RDW_GRP().find(x => x[0] === st.grp) || RDW_GRP()[0])[1]}</button>`;
-  const cmp = CG.length ? svgDwCmp({ w: 470, h: 214, G: CG }) : `<div class="empty">${LBL('No drawing for this choice.', 'لا توجد مخططات لهذا الاختيار.')}</div>`;
   const wp = X.filt ? `<span class="xsub fn-wp">${LBL('filtered', 'مفلتر')}</span>` : '';
-  el.innerHTML = `<div class="xs xfn xdw">
+  const nGen = TR.nGen, D3 = rdw3D(X, TR), lyLg = `<div class="dw3-lg"><span><i style="background:#7B5EA7"></i>${LBL('Submitted', 'مقدَّم')}</span><span><i style="background:#E8A33D"></i>${LBL('To submit by', 'مستهدف حتى')} <bdi dir="ltr">${D.fmt(WE)}</bdi></span><span><i style="background:#C7CFD6"></i>${LBL('Later', 'لاحقاً')}</span><span><i style="background:#C7CFD6;box-shadow:inset 0 0 0 2px #C2410C"></i>${LBL('Late', 'متأخر')}</span></div>`;
+  el.innerHTML = `<div class="xs xfn xdw2">
     <div class="xs-r xs-k fn-k dw-k">${k}</div>
-    <div class="xs-r xs-m fn-m"><div class="xc xg" data-v="cum" style="flex:1.3"><div class="xc-t">${LBL('Drawing submissions – planned vs actual', 'تقديم المخططات – المخطط مقابل الفعلي')}${wp}${prt ? '' : pBtn}</div><div class="fn-lg">${lg([[RDW_C.pl, LBL('Planned / period', 'المخطط / فترة')], [RDW_C.sub, LBL('Submitted / period', 'المقدَّم / فترة')], [RDW_C.cpl, LBL('Planned – cumulative', 'المخطط – تراكمي')], [RDW_C.csub, LBL('Submitted – cumulative', 'المقدَّم – تراكمي')], [RDW_C.apr, LBL('Approved – cumulative', 'المعتمد – تراكمي')]])}</div>${chart}</div>
-      <div class="xc xg dw-cm" data-v="cmp" style="flex:1.12"><div class="xc-t">${LBL('Planned vs submitted to date', 'المخطط مقابل المقدَّم حتى تاريخه')}<span class="xsub">${LBL('by', 'حسب')} ${(RDW_GRP().find(x => x[0] === st.grp) || RDW_GRP()[0])[1]}</span>${prt ? '' : gBtn}</div><div class="fn-lg">${lg([[RDW_C.pl, LBL('Planned to the cut-off', 'المخطط حتى تاريخ القطع')], [RDW_C.sub, LBL('Submitted', 'المقدَّم')], [RDW_C.gap, LBL('Shortfall', 'العجز'), 'dsh']])}</div>${cmp}</div>
-      <div class="xc fdn" data-v="ist" style="flex:.74"><div class="xc-t">${LBL('Drawing status', 'حالة المخططات')}<span class="xsub">${LBL('at the cut-off', 'عند تاريخ القطع')}</span></div>${rdwDonut(X)}</div></div>
-    <div class="xs-r xs-m" style="flex:1.22"><div class="xc fc" data-v="tbl"><div class="xc-t">${LBL('Drawings by building – quantities, dates and delay', 'المخططات حسب المبنى – الكميات والتواريخ والتأخير')}<span class="xsub0">${LBL('timeline of the planned submissions', 'الخط الزمني للتقديم المخطط')}</span>${lg([[RDW_C.trk, LBL('Planned span', 'فترة التقديم المخطط')], [RDW_C.sub, LBL('Reached', 'المُنجز')], [RDW_C.gap, LBL('Behind', 'التأخير')], ['#C2410C', LBL('Forecast', 'المتوقع'), 'dsh'], ['#C2410C', LBL('Cut-off', 'تاريخ القطع'), 'cdl']])}</div><div class="xtw fc-w dw-tw">${rdwTable(X, prt)}</div></div></div></div>`;
-  el._dw = { n: X.R.length };
+    <div class="xs-r dw-m"><div class="xc dw3" data-v="lay" style="flex:1.3"><div class="xc-t">${LBL('Drawings layout – by building and level', 'مخطط المخططات – حسب المبنى والدور')}${wp}</div>
+        <div class="dw3-v">${D3 ? `<div class="la-ld">${LBL('Loading the 3D model…', 'جارٍ تحميل الموديل ثلاثي الأبعاد…')}</div>` : `<div class="empty">${LBL('Import the project 4D model on Report sources to see the layout.', 'استورد موديل 4D للمشروع من مصادر التقرير لعرض المخطط.')}</div>`}
+        ${D3 && !prt ? `<div class="la-ctl"><button data-dz="0.8" title="${LBL('Zoom in', 'تكبير')}">+</button><button data-dz="1.25" title="${LBL('Zoom out', 'تصغير')}">−</button><button data-dr title="${LBL('Reset the view', 'إعادة العرض')}">⟲</button><button data-dsub class="${st.sub ? 'on' : ''}" title="${LBL('Below ground only (substructure) / whole project', 'أسفل سطح الأرض فقط / المشروع كاملاً')}">⇩</button></div>` : ''}${lyLg}</div></div>
+      <div class="xc dws" data-v="st" style="flex:.86"><div class="xc-t">${LBL('Where the drawings stand', 'موقف المخططات')}<span class="xsub">${LBL('of the total', 'من الإجمالي')} ${fmtN(A.tot)}</span></div>${rdwStat(X, TR)}</div>
+      <div class="xc xg" data-v="cum" style="flex:1"><div class="xc-t">${LBL('Submissions over time', 'التقديم عبر الزمن')}${prt ? '' : pBtn}</div><div class="fn-lg">${lg([[RCOL.pv, LBL('Planned', 'المخطط'), 'dsh2'], [RCOL.ev, LBL('Submitted', 'المقدَّم')], ['#1E8A5A', LBL('Approved', 'المعتمد')]])}<span class="dw-nt">${LBL('bars per', 'الأعمدة لكل')} ${st.per === 'W' ? LBL('week', 'أسبوع') : LBL('month', 'شهر')} · ${LBL('lines cumulative', 'الخطوط تراكمية')}</span></div>${chart}</div></div>
+    <div class="xs-r xs-m"><div class="xc fc" data-v="tbl"><div class="xc-t">${LBL('Drawings by building and level', 'المخططات حسب المبنى والدور')}<span class="xsub0">${LBL('totals, submitted, approved, rejected and dates', 'الإجمالي والمقدَّم والمعتمد والمرفوض والتواريخ')}</span>${nGen > X.R.length * 0.05 ? `<span class="xsub fn-wp" title="${LBL('The level is read from the drawing number or title (B01, GF, L03, ROOF …); these drawings name no level and are shown as several levels / general', 'يُقرأ الدور من رقم المخطط أو عنوانه (B01، GF، L03، ROOF …)؛ هذه المخططات لا تذكر دوراً فتظهر كعدة أدوار / عام')}">${fmtN(nGen)} ${LBL('without a level in their number', 'بدون دور في رقمها')}</span>` : ''}${prt ? '' : `<span class="dl-x"><button data-dwx="1" title="${LBL('Show the levels of every row', 'إظهار أدوار كل الصفوف')}">+</button><button data-dwx="0" title="${LBL('Hide the levels', 'إخفاء الأدوار')}">−</button></span>`}</div><div class="xtw fc-w dw-tw">${rdwTable(X, TR, prt)}</div></div></div></div>`;
+  el._dw = { n: X.R.length, TR, D3 };
   rpTipWire();
-  const fit = () => { const w = el.querySelector('.dw-tw'), t = w && w.querySelector('table.dwt'); if (!w || !t || !w.clientHeight) return; t.classList.remove('c1', 'c2'); if (t.offsetHeight > w.clientHeight + 1) t.classList.add('c1'); if (t.offsetHeight > w.clientHeight + 1) { t.classList.remove('c1'); t.classList.add('c2'); } };
+  const fit = () => { const w = el.querySelector('.dw-tw'), t = w && w.querySelector('table.dw2t'); if (!w || !t || !w.clientHeight) return; t.classList.remove('c1', 'c2'); if (t.offsetHeight > w.clientHeight + 1) t.classList.add('c1'); if (t.offsetHeight > w.clientHeight + 1) { t.classList.remove('c1'); t.classList.add('c2'); } };
   fit(); requestAnimationFrame(fit); const fw = el.querySelector('.dw-tw'); if (fw && window.ResizeObserver) { let lh = 0; new ResizeObserver(() => { if (fw.clientHeight && Math.abs(fw.clientHeight - lh) > 1) { lh = fw.clientHeight; fit(); } }).observe(fw); }
   const pb = el.querySelector('[data-dwp]'); if (pb) pb.onclick = () => { st.per = st.per === 'W' ? 'M' : 'W'; RP.render(); };
-  const gb = el.querySelector('[data-dwg]'); if (gb) gb.onclick = () => { const L_ = RDW_GRP(), i = L_.findIndex(x => x[0] === st.grp); st.grp = L_[(i + 1) % L_.length][0]; RP.render(); };
-  if (!prt) el.querySelectorAll('[data-dwz]').forEach(tr => tr.onclick = e => { if (S.ui.rvEdit) return; const v = tr.dataset.dwz; st.zn = st.zn.length === 1 && st.zn[0] === v ? [] : [v]; RP.render(); });
+  if (!prt) { el.querySelectorAll('tr.dwg[data-dwk]').forEach(tr => tr.onclick = () => { if (S.ui.rvEdit) return; const q = tr.dataset.dwk; st.op[q] = !st.op[q]; RP.render(); });
+    el.querySelectorAll('[data-dwx]').forEach(b => b.onclick = () => { TR.G.forEach(g => { st.op[g.key] = b.dataset.dwx === '1'; }); RP.render(); }); }
   const bf = RBF.box(el); if (bf) {
-    const opt = (k, f, lab, order) => { const c = new Map(); X.all.filter(r => X.FK.every(q => q === k || !st[q].length || st[q].includes(X.fv(r)[q] || ''))).forEach(r => { const v = r[f] || ''; c.set(v, (c.get(v) || 0) + 1); });
-      st[k].forEach(v => { if (!c.has(v)) c.set(v, 0); }); return [...c.entries()].sort(order || ((a, b) => lab(a[0]).localeCompare(lab(b[0])))).map(([v, n]) => [v, lab(v), n]); };
+    const opt = (k2, f, lab, order) => { const c = new Map(); X.all.filter(r => X.FK.every(q => q === k2 || !st[q].length || st[q].includes(X.fv(r)[q] || ''))).forEach(r => { const v = r[f] || ''; c.set(v, (c.get(v) || 0) + 1); });
+      st[k2].forEach(v => { if (!c.has(v)) c.set(v, 0); }); return [...c.entries()].sort(order || ((a, b) => String(lab(a[0])).localeCompare(String(lab(b[0])), undefined, { numeric: true }))).map(([v, n]) => [v, lab(v), n]); };
     const defs = [{ k: 'cat', l: LBL('Category', 'الفئة'), o: opt('cat', 'category', DW_CAT, (a, b) => RDW_CAT.indexOf(a[0]) - RDW_CAT.indexOf(b[0])), v: st.cat, multi: 1 },
       { k: 'ph', l: CODE.lab('zone', 'Phase', 'المرحلة'), o: opt('ph', 'phase', rdwPh), v: st.ph, multi: 1 },
       { k: 'zn', l: CODE.lab('building', 'Building', 'المبنى'), o: opt('zn', 'zone', rdwZn), v: st.zn, multi: 1 },
-      { k: 'el', l: LBL('Element', 'العنصر'), o: opt('el', 'element', v => listVal('elements', v)), v: st.el, multi: 1 },
       { k: 'dis', l: LBL('Discipline', 'التخصص'), o: opt('dis', 'discipline', v => v ? listVal('disciplines', v) : '—'), v: st.dis, multi: 1 },
-      { k: 'win', l: LBL('Due in', 'المستحق خلال'), o: RDW_WIN(), v: st.win }];
-    bf.classList.add('dwbf'); bf.innerHTML = RBF.html(defs, X.filt || st.win !== '14' || st.per !== 'M' || st.grp !== 'el'); RBF.wire(bf, defs, (k2, v) => { st[k2] = v; RP.render(); }, () => { S.ui.dw = {}; RP.render(); }); }
+      { k: 'win', l: LBL('Target window', 'فترة الاستهداف'), o: RDW_WIN(), v: st.win }];
+    bf.classList.add('dwbf'); bf.innerHTML = RBF.html(defs, X.filt || st.win !== '14' || st.per !== 'M'); RBF.wire(bf, defs, (k2, v) => { st[k2] = v; RP.render(); }, () => { S.ui.dw = {}; RP.render(); }); }
+  /* the 3D layout in its own frame (geometry of the project 4D model, two colours, hover bookmark); print: drawn off-screen and kept as an image */
+  if (!D3) return;
+  const box = el.querySelector('.dw3-v'), f = document.createElement('iframe'), lw = () => f.contentWindow && f.contentWindow.LA;
+  f.className = 'la-f'; f.title = LBL('Drawings layout 3D', 'مخطط المخططات ثلاثي الأبعاد');
+  f.srcdoc = laDoc({ geo: rpLaGeo(D3.M), lv: D3.lv, st: D3.st, pal: RDW3.pal, hover: 1, subSee: 1, subOnly: !!st.sub, ck: 'dwCam', rk: 0.74, ty: 24, cam: st.sub ? null : (S.ui.dwCam || null), shift: 0 });
+  RPLA.hit = null; RPLA.pin = () => { if (!el.isConnected) return; const hit = RPLA.hit; if (hit && hit.x == null) return; rdwPinShow(f, hit && rdwPin(D3, TR, X, hit), hit); };
+  let host = null; if (prt) { host = document.createElement('div'); host.style.cssText = 'position:fixed;left:-3000px;top:0;width:520px;height:300px'; document.body.appendChild(host); host.appendChild(f); } else box.insertBefore(f, box.firstChild);
+  el.querySelectorAll('[data-dz]').forEach(b => b.onclick = () => { const w = lw(); if (w) w.zoom(+b.dataset.dz); });
+  const rs = el.querySelector('[data-dr]'); if (rs) rs.onclick = () => { const w = lw(); if (w) w.reset(); };
+  const sb = el.querySelector('[data-dsub]'); if (sb) sb.onclick = () => { st.sub = !st.sub; sb.classList.toggle('on', st.sub); const w = lw(); if (w) w.sub(st.sub); };
+  const ready = () => new Promise(res => { let i = 0; const t = () => { const w = lw(); if (w && w.ready) { const l = box.querySelector('.la-ld'); if (l) l.remove(); return res(w); } if ((!prt && !el.isConnected) || ++i > 150) return res(null); setTimeout(t, 100); }; t(); });
+  if (prt) return ready().then(async w => { if (w) { await new Promise(r => setTimeout(r, 300)); const url = w.snap(); host.remove(); const l = box.querySelector('.la-ld, .empty'); if (l) l.remove(); box.insertAdjacentHTML('afterbegin', `<img class="la-img" src="${url}" alt="">`); } else { host.remove(); box.querySelector('.la-ld') && (box.querySelector('.la-ld').outerHTML = `<div class="empty">${LBL('The 3D view needs the internet (three.js).', 'العرض ثلاثي الأبعاد يحتاج الإنترنت (three.js).')}</div>`); } });
+  ready();
 };
 
 /* print: the selection line names the page filters (the band is not printed) */
 { const ps0 = RP.prSel; RP.prSel = (pg, el) => { const s = ps0(pg, el); if (pg.k !== 'drawings') return s;
-  const st = rdwStO(), L_ = (k, f) => st[k].length ? st[k].map(v => h(f(v))).join(', ') : LBL('All', 'الكل');
-  return [s, `${LBL('Category', 'الفئة')}: <b>${L_('cat', DW_CAT)}</b>`, `${CODE.lab('zone', 'Phase', 'المرحلة')}: <b>${L_('ph', rdwPh)}</b>`, `${CODE.lab('building', 'Building', 'المبنى')}: <b>${L_('zn', rdwZn)}</b>`, `${LBL('Element', 'العنصر')}: <b>${L_('el', v => listVal('elements', v))}</b>`, `${LBL('Discipline', 'التخصص')}: <b>${L_('dis', v => listVal('disciplines', v))}</b>`,
-    `${LBL('Due in', 'المستحق خلال')}: <b>${h((RDW_WIN().find(o => o[0] === st.win) || RDW_WIN()[0])[1])}</b>`, `${LBL('Chart', 'الرسم')}: <b>${st.per === 'W' ? LBL('Weekly', 'أسبوعي') : LBL('Monthly', 'شهري')}</b> · ${LBL('by', 'حسب')} <b>${h((RDW_GRP().find(x => x[0] === st.grp) || RDW_GRP()[0])[1])}</b>`, `${LBL('Status at the cut-off', 'الحالة عند تاريخ القطع')} <bdi dir="ltr">${D.fmt(reportDate())}</bdi>`].join(' · '); }; }
+  const st = rdwStO(), L_ = (k, f) => st[k].length ? st[k].map(v => h(f(v))).join(', ') : LBL('All', 'الكل'), WE = D.add(reportDate(), +st.win);
+  return [s, `${LBL('Category', 'الفئة')}: <b>${L_('cat', DW_CAT)}</b>`, `${CODE.lab('zone', 'Phase', 'المرحلة')}: <b>${L_('ph', rdwPh)}</b>`, `${CODE.lab('building', 'Building', 'المبنى')}: <b>${L_('zn', rdwZn)}</b>`, `${LBL('Discipline', 'التخصص')}: <b>${L_('dis', v => listVal('disciplines', v))}</b>`,
+    `${LBL('Target window', 'فترة الاستهداف')}: <b>${h((RDW_WIN().find(o => o[0] === st.win) || RDW_WIN()[1])[1])}</b> (${LBL('to', 'حتى')} <bdi dir="ltr">${D.fmt(WE)}</bdi>)`, `${LBL('Chart', 'الرسم')}: <b>${st.per === 'W' ? LBL('Weekly', 'أسبوعي') : LBL('Monthly', 'شهري')}</b>`, ...(st.sub ? [`${LBL('Layout', 'المخطط')}: <b>${LBL('below ground only', 'أسفل سطح الأرض فقط')}</b>`] : []), `${LBL('Status at the cut-off', 'الحالة عند تاريخ القطع')} <bdi dir="ltr">${D.fmt(reportDate())}</bdi>`].filter(Boolean).join(' · '); }; }
 
 /* ---------- installable app (PWA) – online copy only (https) ----------
    The online tool (GitHub Pages) can be installed as an app from Edge / Chrome (desktop and Android) or Safari (iPhone / iPad: Share → Add to Home Screen).

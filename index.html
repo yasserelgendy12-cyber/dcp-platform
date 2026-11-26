@@ -1548,6 +1548,19 @@ dl.iokv{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:0;font-s
 .pcok{display:inline-flex;align-items:center;gap:3px;color:var(--ok);font-size:10.5px;flex:1}.pcok svg{width:12px;height:12px}
 .pcds{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.pcfl{grid-column:1/-1;padding:0}
 .pc details.lsold summary{cursor:pointer;list-style:none;display:flex;gap:6px;align-items:center}.pc details.lsold summary::-webkit-details-marker{display:none}.pc details.lsold summary b{font-size:12px}.pc details.lsold:not([open]){padding:6px 10px}
+/* invoices register (decision 118): title = type + number, one deductions column, status + next-step column */
+table.t.mpt.ivt .ivnm{font-weight:700;color:var(--navy);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;cursor:help}
+table.t.mpt.ivt .ivty{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+table.t.mpt.ivt .ivwt{display:inline-block;font-size:10.5px;font-weight:700;color:var(--warn);background:#FFF6E5;border:1px dashed #E8B65A;border-radius:10px;padding:1px 8px;line-height:1.5}
+table.t.mpt.ivt td.ivsc{padding:5px 8px}
+.ivs1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ivs1 .bdg{white-space:nowrap}
+.ivch{display:inline-flex;gap:3px;align-items:center}.ivch i{width:9px;height:9px;border-radius:50%;background:var(--line);display:inline-block;cursor:help}
+.ivch i.on{background:var(--ok)}.ivch i.nx{background:#fff;box-shadow:inset 0 0 0 2px var(--warn)}
+.ivs2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px}
+.ivnx{font:inherit;font-size:11.5px;font-weight:700;color:#fff;background:var(--pri);border:0;border-radius:7px;padding:3px 10px;cursor:pointer;white-space:nowrap;line-height:1.5}
+.ivnx:hover{filter:brightness(1.1)}.ivnx2{font-size:11px!important}
+.ivttl{display:flex;align-items:center;gap:10px;background:#F2F6FC;border:1px solid #D6E2F2;border-radius:9px;padding:7px 12px;margin:0 0 10px;cursor:help}
+.ivttl span{font-size:11.5px;color:var(--ink3);font-weight:600}.ivttl b{font-size:15px;color:var(--navy)}
 
 </style>
 </head>
@@ -3045,7 +3058,8 @@ const MOD = {
     fields: [
       F('no', 'Inv No', 'رقم المستخلص', 'int', { req: 1, tbl: 1, sec: 0 }),
       F('type', 'Invoice Type', 'نوع المستخلص', 'list', { list: 'invTypes', req: 1, tbl: 1, sec: 0 }),
-      F('name', 'Invoice Name', 'اسم المستخلص', 'text', { tbl: 1, sec: 0 }),
+      F('title', 'Invoice Title', 'عنوان المستخلص', 'calc', { sec: 0, calc: r => INV.label(r) }),
+      F('name', 'Invoice Description', 'وصف المستخلص (الفترة)', 'text', { tbl: 1, sec: 0 }),
       F('amount', 'Invoice Total Amount', 'إجمالي قيمة المستخلص', 'money', { req: 1, tbl: 1, sec: 0, tot: 1 }),
       F('retention', 'Retention', 'المحتجزات', 'calc', { ft: 'money', tbl: 1, sec: 0, tot: 1, calc: r => { const t = L_.inv(r.type); return N(r.amount) * (t && t.ret === 'Yes' ? N(S.db.project.retPct) : 0); } }),
       F('advRec', 'Advance Payment Recovery', 'استرداد الدفعة المقدمة', 'calc', { ft: 'money', tbl: 1, sec: 0, tot: 1, calc: r => { const t = L_.inv(r.type); return N(r.amount) * (t && t.adv === 'Yes' ? N(S.db.project.dpPct) : 0); } }),
@@ -3105,6 +3119,11 @@ const INV = {
   SEQ: ['submittal', 'consApproval', 'clientApproval', 'releaseDate'],
   DATES: ['submittal', 'consApproval', 'clientApproval', 'taxDate', 'releaseDate'],
   lbl: k => FL(MOD.invoices.F[k]),
+  // invoice title = short type name + the invoice number ("Interim Invoice No. 3" / "مستخلص جاري رقم 3"), worked out when shown
+  // (decision 118): the name field is now a free description (period / scope); the database is not rewritten
+  TN: { 'Advance Payment': ['Advance Payment Invoice', 'مستخلص الدفعة المقدمة'], 'Interim Monthly Payment': ['Interim Invoice', 'مستخلص جاري'], 'Variation Order Invoice': ['Variation Order Invoice', 'مستخلص أمر تغييري'], 'Retention Release': ['Retention Release Invoice', 'مستخلص الإفراج عن المحتجزات'], 'Final Account': ['Final Account Invoice', 'المستخلص الختامي'] },
+  tname(r) { const t = INV.TN[r.type]; return t ? LBL(t[0], t[1]) : r.type ? listVal('invTypes', r.type) : LBL('Invoice', 'مستخلص'); },
+  label(r) { const n = r.no; return `${INV.tname(r)}${n !== undefined && n !== null && n !== '' ? ` ${LBL('No.', 'رقم')} ${n}` : ''}`; },
   kind: r => r.type === 'Advance Payment' ? 'adv' : r.type === 'Retention Release' ? 'ret' : 'work',   // work = interim, variation order, final account
   consOpt: r => INV.kind(r) !== 'work',
   // the step before k that must hold a date → [key, date ('' = missing)]
@@ -5623,9 +5642,9 @@ const IV_CFG = {
     { k: 'status', l: () => LBL('Status', 'الحالة'), get: r => INV.status(r), lab: v => E(v), order: (a, b) => INV.ORDER.indexOf(a.v) - INV.ORDER.indexOf(b.v) },
     { k: 'show', fixed: () => IV_SHOW().map(x => x[0]), l: () => LBL('Show', 'عرض'), get: r => IV_SHOW().filter(x => x[2](r)).map(x => x[0]), lab: v => (IV_SHOW().find(x => x[0] === v) || [, v])[1], order: (a, b) => IV_SHOW().findIndex(x => x[0] === a.v) - IV_SHOW().findIndex(x => x[0] === b.v) }
   ],
-  qph: () => LBL('Search invoice no, name, type, remarks…', 'بحث في رقم المستخلص، الاسم، النوع، الملاحظات…'),
-  text: r => [r.no, r.name, r.type, listVal('invTypes', r.type), r.remarks],
-  name: r => `${r.no ?? ''} · ${r.name || ''}`
+  qph: () => LBL('Search invoice no, title, description, remarks…', 'بحث في رقم المستخلص، العنوان، الوصف، الملاحظات…'),
+  text: r => [r.no, INV.label(r), r.name, r.type, listVal('invTypes', r.type), r.remarks],
+  name: r => INV.label(r) + (r.name ? ` · ${r.name}` : '')
 };
 
 /* ---- cards: the financial status of the project (not affected by the filters) ---- */
@@ -5665,56 +5684,71 @@ function ivBar(o) {
 /* ---- register columns ---- */
 const IV_COLTIP = {
   no: ['Invoice number. The register is ordered by it (click to reverse).', 'رقم المستخلص. السجل مرتب به (اضغط لعكس الترتيب).'],
-  inv: ['Name of the invoice and its type (the type sets the deductions and the payment term).', 'اسم المستخلص ونوعه (النوع يحدد الاستقطاعات ومدة الدفع).'],
+  inv: ['Invoice title = type + number (e.g. Interim Invoice No. 3); the grey line is its description (period).', 'عنوان المستخلص = النوع + الرقم (مثال: مستخلص جاري رقم 3)؛ والسطر الرمادي وصفه (الفترة).'],
   amount: ['Gross amount before deductions, SAR.', 'القيمة الإجمالية قبل الاستقطاعات، بالريال.'],
-  ret: ['Gross × retention % (Project setup), when the type retains.', 'الإجمالي × نسبة المحتجزات (إعداد المشروع)، إذا كان النوع يخصمها.'],
-  adv: ['Gross × advance-payment % (Project setup), when the type recovers it.', 'الإجمالي × نسبة الدفعة المقدمة (إعداد المشروع)، إذا كان النوع يستردها.'],
+  ded: ['Retention + advance-payment recovery (Project setup %), when the type deducts them. Hover a value for the split.', 'المحتجزات + استرداد الدفعة المقدمة (نسب إعداد المشروع)، إذا كان النوع يخصمها. مرّر على القيمة لرؤية التفصيل.'],
   net: ['Gross − retention − advance recovery = the amount to receive.', 'الإجمالي − المحتجزات − استرداد المقدمة = المبلغ المستحق.'],
-  submittal: ['Date the invoice was submitted. ＋ Record = the next step.', 'تاريخ تقديم المستخلص. ＋ تسجيل = الخطوة التالية.'],
+  submittal: ['Date the invoice was submitted. "Awaited" = the step to record next.', 'تاريخ تقديم المستخلص. "بانتظاره" = الخطوة المطلوب تسجيلها.'],
   consApproval: ['Consultant approval: on or after the submission.', 'اعتماد الاستشاري: في تاريخ التقديم أو بعده.'],
   clientApproval: ['Owner approval: on or after the consultant approval.', 'اعتماد المالك: في تاريخ اعتماد الاستشاري أو بعده.'],
   due: ['Payment due date = payment basis date + payment days of the type (Lists). Grey line: days left or days late.', 'تاريخ استحقاق الدفع = تاريخ أساس الدفع + مدة الدفع للنوع (القوائم). السطر الرمادي: الأيام المتبقية أو أيام التأخير.'],
   releaseDate: ['Date the payment was received: on or after the owner approval.', 'تاريخ استلام الدفعة: في تاريخ اعتماد المالك أو بعده.'],
-  st: ['Where the invoice stands: under review, approved, overdue or paid.', 'موقف المستخلص: تحت المراجعة، معتمد، متأخر أو مدفوع.']
+  st: ['Where the invoice stands, its approval chain (submitted · consultant · owner · paid) and the button to record the next step.', 'موقف المستخلص، وسلسلة اعتماده (تقديم · استشاري · مالك · صرف)، وزر تسجيل الخطوة التالية.']
 };
 const ivDays = (n, en, ar) => `${fmtN(Math.abs(n))} ${LBL(en, ar)}`;
+// steps a user of the page can record now on a saved invoice: [main, …optional] (main = INV.next; tax invoice first when the due date waits for it)
+function ivNext(r) {
+  if (!isNum(r.amount) && !r.submittal) return [];
+  const out = [], n = INV.next(r); if (INV.needTax(r) && r.clientApproval) out.push('taxDate'); if (n) out.push(n);
+  if (INV.consOpt(r) && r.submittal && !r.consApproval && !r.clientApproval && !r.releaseDate) out.push('consApproval');
+  return [...new Set(out)];
+}
 function ivCols(o) {
   const F = MOD.invoices.F, act = o.act;
-  const btn = (k, r) => `<button class="lnk need" data-act="${k}"${TIP.a(ivStep(k), LBL(IV_STEP[k][2], IV_STEP[k][3]), { how: LBL(`On or after ${D.fmt(INV.minOf(r, k)) || '—'}, not after today.`, `في ${D.fmt(INV.minOf(r, k)) || '—'} أو بعده، ولا يتجاوز اليوم.`) })}>＋ ${LBL('Record', 'تسجيل')}</button>`;
-  const can = (r, k) => act && (k === INV.next(r) || (k === 'consApproval' && INV.consOpt(r) && r.submittal && !r.consApproval && !r.clientApproval && !r.releaseDate));
-  const dc = k => r => r[k] ? `<span class="nw">${ivD(r[k])}</span>` : can(r, k) ? btn(k, r) : (k === 'consApproval' && INV.consOpt(r) && r.clientApproval ? `<span class="muted"${TIP.a(ivStep(k), LBL('Not required for this type.', 'غير مطلوب لهذا النوع.'))}>—</span>` : '<span class="muted">—</span>');
+  const how = (r, k) => ({ how: LBL(`On or after ${D.fmt(INV.minOf(r, k)) || '—'}, not after today.`, `في ${D.fmt(INV.minOf(r, k)) || '—'} أو بعده، ولا يتجاوز اليوم.`) });
+  const btn = (k, r, main) => `<button class="${main ? 'ivnx' : 'lnk ivnx2'}" data-act="${k}"${TIP.a(ivStep(k), LBL(IV_STEP[k][2], IV_STEP[k][3]), how(r, k))}>＋ ${ivStep(k)}</button>`;
+  const wait = `<span class="ivwt">${LBL('awaited', 'بانتظاره')}</span>`;
+  const dc = k => r => r[k] ? `<span class="nw">${ivD(r[k])}</span>` : INV.next(r) === k ? wait
+    : k === 'consApproval' && INV.consOpt(r) && (r.clientApproval || r.releaseDate) ? `<span class="muted"${TIP.a(ivStep(k), LBL('Not required for this type.', 'غير مطلوب لهذا النوع.'))}>—</span>` : '<span class="muted">—</span>';
   const errs = r => { const e = INV.check(r); return e.length ? `<span class="iver"${TIP.a(LBL('Date errors', 'أخطاء في التواريخ'), ...e.map(x => ({ warn: x.msg })))}>!</span>` : ''; };
+  const chain = r => { const ok = [!!r.submittal, !!(r.consApproval || (INV.consOpt(r) && r.clientApproval)), !!r.clientApproval, !!r.releaseDate], nx = INV.next(r), at = { submittal: 0, consApproval: 1, clientApproval: 2, releaseDate: 3 }[nx];
+    return `<span class="ivch">${['submittal', 'consApproval', 'clientApproval', 'releaseDate'].map((k, i) => `<i class="${ok[i] ? 'on' : i === at ? 'nx' : ''}"${TIP.a(ivStep(k), r[k] ? D.fmt(r[k]) : ok[i] ? LBL('Not required for this type.', 'غير مطلوب لهذا النوع.') : i === at ? LBL('Next step', 'الخطوة التالية') : '—')}></i>`).join('')}</span>`; };
   return [
-    { k: 'no', h: '#', w: 46, d0: 1, s: r => N(r.no), v: r => `<b class="ivno">${h(r.no ?? '')}</b>${errs(r)}`, cls: 'c' },
-    { k: 'inv', h: LBL('Invoice', 'المستخلص'), w: '', s: r => r.name || '', v: r => `<div class="ivnm clamp"${r.remarks ? TIP.a(r.name || '', { txt: r.remarks }) : ''}>${h(r.name || '—')}</div><div class="ivty">${h(listVal('invTypes', r.type))}</div>` },
-    { k: 'amount', h: LBL('Gross amount', 'القيمة الإجمالية'), w: 114, wn: 98, s: r => N(r.amount), v: r => IVM(r.amount), cls: 'mn' },
-    { k: 'ret', h: LBL('Retention', 'المحتجزات'), w: 98, wn: 86, s: r => F.retention.calc(r), v: r => { const x = F.retention.calc(r); return x ? IVM(x) : '<span class="muted">—</span>'; }, cls: 'mn' },
-    { k: 'adv', h: LBL('Advance recovery', 'استرداد المقدمة'), w: 98, wn: 86, s: r => F.advRec.calc(r), v: r => { const x = F.advRec.calc(r); return x ? IVM(x) : '<span class="muted">—</span>'; }, cls: 'mn' },
-    { k: 'net', h: LBL('Net amount', 'صافي المستخلص'), w: 114, wn: 98, s: r => F.net.calc(r), v: r => `<b>${IVM(F.net.calc(r))}</b>`, cls: 'mn' },
-    { k: 'submittal', h: LBL('Submitted', 'التقديم'), w: 92, wn: 84, s: r => r.submittal || '', v: dc('submittal'), cls: 'dt' },
-    { k: 'consApproval', h: LBL('Consultant approval', 'اعتماد الاستشاري'), w: 92, wn: 84, s: r => r.consApproval || '', v: dc('consApproval'), cls: 'dt' },
-    { k: 'clientApproval', h: LBL('Owner approval', 'اعتماد المالك'), w: 92, wn: 84, s: r => r.clientApproval || '', v: dc('clientApproval'), cls: 'dt' },
+    { k: 'no', h: '#', w: 42, d0: 1, s: r => N(r.no), v: r => `<b class="ivno">${h(r.no ?? '')}</b>${errs(r)}`, cls: 'c' },
+    { k: 'inv', h: LBL('Invoice', 'المستخلص'), w: 172, wn: 146, s: r => N(r.no), v: r => `<div class="ivnm"${TIP.a(INV.label(r), [LBL('Type', 'النوع'), listVal('invTypes', r.type)], r.name ? [LBL('Description', 'الوصف'), r.name] : '', r.remarks ? { txt: r.remarks } : '')}>${h(INV.label(r))}</div>${r.name ? `<div class="ivty">${h(r.name)}</div>` : ''}` },
+    { k: 'amount', h: LBL('Gross amount', 'القيمة الإجمالية'), w: 116, wn: 98, s: r => N(r.amount), v: r => IVM(r.amount), cls: 'mn' },
+    { k: 'ded', h: LBL('Deductions', 'الاستقطاعات'), w: 110, wn: 94, s: r => F.retention.calc(r) + F.advRec.calc(r), cls: 'mn', v: r => { const a = F.retention.calc(r), b = F.advRec.calc(r); if (!a && !b) return '<span class="muted">—</span>';
+      return `<span${TIP.a(LBL('Deductions', 'الاستقطاعات'), [LBL('Retention', 'المحتجزات'), IVM(a)], [LBL('Advance recovery', 'استرداد المقدمة'), IVM(b)])}>${IVM(a + b)}</span><div class="ivsub">${[a ? LBL('ret.', 'محتجزات') : '', b ? LBL('adv.', 'مقدمة') : ''].filter(Boolean).join(' + ')}</div>`; } },
+    { k: 'net', h: LBL('Net amount', 'صافي المستخلص'), w: 116, wn: 98, s: r => F.net.calc(r), v: r => `<b>${IVM(F.net.calc(r))}</b>`, cls: 'mn' },
+    { k: 'submittal', h: LBL('Submitted', 'التقديم'), w: 90, wn: 82, s: r => r.submittal || '', v: dc('submittal'), cls: 'dt' },
+    { k: 'consApproval', h: LBL('Consultant approval', 'اعتماد الاستشاري'), w: 90, wn: 82, s: r => r.consApproval || '', v: dc('consApproval'), cls: 'dt' },
+    { k: 'clientApproval', h: LBL('Owner approval', 'اعتماد المالك'), w: 90, wn: 82, s: r => r.clientApproval || '', v: dc('clientApproval'), cls: 'dt' },
     { k: 'due', h: LBL('Payment due', 'استحقاق الدفع'), w: 96, wn: 86, s: r => F.dueDate.calc(r) || '', cls: 'dt', v: r => {
       const d = F.dueDate.calc(r), b = F.basis.calc(r), tip = TIP.a(LBL('Payment due', 'استحقاق الدفع'), [LBL('Basis', 'أساس الدفع'), E(b)], [LBL('Basis date', 'تاريخ الأساس'), D.fmt(F.basisDate.calc(r)) || '—'], [LBL('Payment days', 'مدة الدفع'), `${fmtN(F.payDays.calc(r))} ${LBL('d', 'يوم')}`]);
       if (d) { const left = D.diff(d, reportDate()); const dy = INV.delay(r); const dt = !r.releaseDate && dy && dy.cal ? TIP.a(LBL('Payment delay', 'تأخير الصرف'), [LBL('Calendar days', 'أيام تقويمية'), fmtN(dy.cal)], [LBL('Working days', 'أيام عمل'), fmtN(dy.work)]) : '';
         return `<span class="nw"${tip}>${ivD(d)}</span>${r.releaseDate ? '' : `<div class="ivsub ${left < 0 ? 'bad' : left <= 7 ? 'warn' : ''}"${dt}>${left < 0 ? ivDays(left, 'd late', 'يوم تأخير') : left === 0 ? LBL('due today', 'مستحق اليوم') : ivDays(left, 'd left', 'يوم متبقٍ')}</div>`}`; }
-      if (r.clientApproval && INV.needTax(r)) return act ? btn('taxDate', r).replace(`＋ ${LBL('Record', 'تسجيل')}`, `＋ ${LBL('Tax invoice', 'فاتورة ضريبية')}`) : `<span class="ivsub warn"${tip}>${LBL('awaiting tax invoice', 'بانتظار الفاتورة الضريبية')}</span>`;
+      if (r.clientApproval && INV.needTax(r)) return `<span class="ivsub warn"${tip}>${LBL('awaiting tax invoice', 'بانتظار الفاتورة الضريبية')}</span>`;
       return `<span class="muted"${tip}>—</span>`; } },
     { k: 'releaseDate', h: LBL('Paid on', 'تاريخ الصرف'), w: 96, wn: 86, s: r => r.releaseDate || '', cls: 'dt', v: r => {
       if (!r.releaseDate) return dc('releaseDate')(r); const d = F.dueDate.calc(r), dl = d ? D.diff(r.releaseDate, d) : 0;
       const dy = INV.delay(r); const dt = dy && dy.cal ? TIP.a(LBL('Payment delay', 'تأخير الصرف'), [LBL('Calendar days', 'أيام تقويمية'), fmtN(dy.cal)], [LBL('Working days', 'أيام عمل'), fmtN(dy.work)]) : '';
       return `<span class="nw">${ivD(r.releaseDate)}</span>${d ? `<div class="ivsub ${dl > 0 ? 'warn' : 'ok'}"${dt}>${dl > 0 ? ivDays(dl, 'd late', 'يوم تأخير') : dl < 0 ? ivDays(dl, 'd early', 'يوم مبكراً') : LBL('on the due date', 'في تاريخ الاستحقاق')}</div>` : ''}`; } },
-    { k: 'st', h: LBL('Status', 'الحالة'), w: 112, wn: 96, s: r => INV.ORDER.indexOf(INV.status(r)), v: r => bdg(INV.status(r)), cls: 'c' }
+    { k: 'st', h: LBL('Status · next step', 'الحالة · الخطوة التالية'), w: 176, wn: 150, s: r => INV.ORDER.indexOf(INV.status(r)), cls: 'ivsc', v: r => {
+      const nx = act ? ivNext(r) : [];
+      return `<div class="ivs1">${bdg(INV.status(r))}${chain(r)}</div>${nx.length ? `<div class="ivs2">${nx.map((k, i) => btn(k, r, !i)).join('')}</div>` : ''}`; } }
   ];
 }
 
+// the eight cards can be hidden on this browser (more register rows while recording)
+const ivCardsOn = () => { try { const x = localStorage.getItem('dcp.ivCards'); if (x !== null) return x !== '0'; } catch (e) { } return S.ui.ivCards !== false; };
 PAGES.invoices = v => {
   const ed = can('invoices'), mgr = canRM('invoices');
   if (!mgr) S.ui.ivAdm = false; const adm = !!S.ui.ivAdm;
   const rows = RG.rows(IV_CFG), o = INV.fin(), gaps = INV.gaps();
   v.innerHTML = RG.head('invoices', T('invoices'), LBL('Invoices & payments: every invoice with its deductions, the approval chain (submission → consultant → owner → payment) and the financial position of the project against the earned value.', 'المستخلصات والمدفوعات: كل مستخلص باستقطاعاته ومراحل اعتماده (تقديم ← استشاري ← مالك ← صرف) والموقف المالي للمشروع مقارنة بالقيمة المكتسبة.'), ed, mgr, adm, LBL('New invoice', 'مستخلص جديد')) +
-    RG.bar(IV_CFG) + `<div class="mpk ivk">${ivCards(o).map(([k, val, sub, cls, tip, x]) => { const c = kpi(k, val, sub ? `<span>${sub}</span>` : '', cls, [...tip, { src: LBL('Whole project – not affected by the filters', 'المشروع بالكامل – لا تتأثر بالفلاتر') }]);
-      return x === 'wd' ? c.replace('<div class="k"', `<button class="ivwd" data-wd${TIP.a(LBL('Working days per week', 'أيام العمل في الأسبوع'), `${fmtN(o.wd)} · ${LBL('off', 'إجازة')}: ${INV.offDays(o.wd).map(ivDay).join('، ') || '—'}`, mgr ? { how: LBL('Click to change (1–7).', 'اضغط للتغيير (1–7).') } : { warn: LBL('Changed by the record manager.', 'يغيّرها مدير السجلات.') })} aria-label="${h(LBL('Working days per week', 'أيام العمل في الأسبوع'))}">${ic('gear')}</button><div class="k"`).replace('class="kpi ', 'class="kpi ivdk ') : c; }).join('')}</div>` + ivBar(o) + `<div data-tc></div>`;
+    RG.bar(IV_CFG, `<button class="btn sm ${ivCardsOn() ? '' : 'on'}" data-ivc${TIP.a(LBL('Financial cards', 'البطاقات المالية'), LBL('Hide the eight cards to give the register more rows while recording; the financial bar stays.', 'إخفاء البطاقات الثماني لإظهار صفوف أكثر في السجل أثناء التسجيل؛ ويبقى شريط الموقف المالي.'))}>${ic(ivCardsOn() ? 'eyeoff' : 'eye')}${ivCardsOn() ? LBL('Hide cards', 'إخفاء البطاقات') : LBL('Show cards', 'عرض البطاقات')}</button>`) + (!ivCardsOn() ? '' : `<div class="mpk ivk">${ivCards(o).map(([k, val, sub, cls, tip, x]) => { const c = kpi(k, val, sub ? `<span>${sub}</span>` : '', cls, [...tip, { src: LBL('Whole project – not affected by the filters', 'المشروع بالكامل – لا تتأثر بالفلاتر') }]);
+      return x === 'wd' ? c.replace('<div class="k"', `<button class="ivwd" data-wd${TIP.a(LBL('Working days per week', 'أيام العمل في الأسبوع'), `${fmtN(o.wd)} · ${LBL('off', 'إجازة')}: ${INV.offDays(o.wd).map(ivDay).join('، ') || '—'}`, mgr ? { how: LBL('Click to change (1–7).', 'اضغط للتغيير (1–7).') } : { warn: LBL('Changed by the record manager.', 'يغيّرها مدير السجلات.') })} aria-label="${h(LBL('Working days per week', 'أيام العمل في الأسبوع'))}">${ic('gear')}</button><div class="k"`).replace('class="kpi ', 'class="kpi ivdk ') : c; }).join('')}</div>`) + ivBar(o) + `<div data-tc></div>`;
+  const vc = v.querySelector('[data-ivc]'); if (vc) vc.onclick = () => { try { localStorage.setItem('dcp.ivCards', ivCardsOn() ? '0' : '1'); } catch (e) { S.ui.ivCards = !ivCardsOn(); } render(true); };
   RG.wire(IV_CFG, v, RG.go);
   const a = v.querySelector('[data-radd]'); if (a) a.onclick = () => INVF.open(null);
   const im = v.querySelector('[data-rimp]'); if (im) im.onclick = () => IMP.open('module', 'invoices', { after: () => render(true) });
@@ -5727,7 +5761,7 @@ PAGES.invoices = v => {
     colTip: x => { const d = IV_COLTIP[x.k]; return d ? TIP.a(x.h === '#' ? LBL('Invoice no', 'رقم المستخلص') : x.h, S.lang === 'ar' ? d[1] : d[0]) : ''; },
     rowCls: r => INV.status(r) === 'Overdue' ? 'ivod' : '',
     open: (r, adm2) => INVF.open(r, { edit: adm2 }),
-    foot: (rs) => `<td colspan="2">${T('total')} (${fmtN(rs.length)})</td>${['amount', 'ret', 'adv', 'net'].map(k => `<td class="mn">${IVM(sum(rs, k === 'amount' ? (r => N(r.amount)) : k === 'ret' ? (r => F.retention.calc(r)) : k === 'adv' ? (r => F.advRec.calc(r)) : (r => F.net.calc(r))))}</td>`).join('')}<td colspan="6" class="ivft">${LBL('Received', 'المُحصَّل')} <b>${IVM(sum(rs.filter(r => r.releaseDate), r => F.net.calc(r)))}</b> · ${LBL('Outstanding', 'المتبقي')} <b>${IVM(sum(rs.filter(r => r.submittal && !r.releaseDate), r => F.net.calc(r)))}</b></td>`
+    foot: (rs) => `<td colspan="2">${T('total')} (${fmtN(rs.length)})</td>${[r => N(r.amount), r => F.retention.calc(r) + F.advRec.calc(r), r => F.net.calc(r)].map(fn => `<td class="mn">${IVM(sum(rs, fn))}</td>`).join('')}<td colspan="6" class="ivft">${LBL('Received', 'المُحصَّل')} <b>${IVM(sum(rs.filter(r => r.releaseDate), r => F.net.calc(r)))}</b> · ${LBL('Outstanding', 'المتبقي')} <b>${IVM(sum(rs.filter(r => r.submittal && !r.releaseDate), r => F.net.calc(r)))}</b></td>`
   }), rows, { adm, tbar: gp, act: (k, r) => INVF.step(r, k) });
 };
 
@@ -5743,9 +5777,10 @@ const INVF = {
     const step = (k, i) => `<div class="ivs" data-s="${k}"><div class="ivsn">${i}</div>${fl(k)}<input class="in" type="date" data-k="${k}" value="${h(r[k] || '')}" max="${today}" ${dis}><div class="ive" data-e="${k}"></div></div>`;
     const body = `<div class="ivf"><div class="ivf-l">
         <h4>${LBL('Invoice', 'المستخلص')}</h4>
+        <div class="ivttl"${TIP.a(LBL('Invoice title', 'عنوان المستخلص'), LBL('Made from the type and the number – it is how the invoice appears in the register and the reports.', 'يتكوّن من النوع والرقم – وبه يظهر المستخلص في السجل والتقارير.'))}><span>${LBL('Title', 'العنوان')}</span><b data-ttl></b></div>
         <div class="fgrid ivg"><label class="f">${fl('no')}<input class="in num" type="number" min="0" step="1" data-k="no" value="${h(r.no ?? '')}" ${dis}><div class="ive" data-e="no"></div></label>
           <label class="f">${fl('type')}<select class="in" data-k="type" ${dis}>${types.map(x => `<option value="${h(x.v)}" ${x.v === r.type ? 'selected' : ''}>${h(LV(x))}</option>`).join('')}</select></label>
-          <label class="f" style="grid-column:1/-1">${fl('name')}<input class="in" type="text" data-k="name" value="${h(r.name || '')}" placeholder="${h(LBL('e.g. IPA-11 – November 2026', 'مثال: المستخلص 11 – نوفمبر 2026'))}" ${dis}></label>
+          <label class="f" style="grid-column:1/-1">${fl('name')}<input class="in" type="text" data-k="name" value="${h(r.name || '')}" placeholder="${h(LBL('Optional – e.g. Works of June 2026', 'اختياري – مثال: أعمال شهر يونيو 2026'))}" ${dis}></label>
           <label class="f" style="grid-column:1/-1">${fl('amount')}<input class="in num ivam" type="number" min="0" step="any" data-k="amount" value="${h(r.amount ?? '')}" ${dis}><div class="ive" data-e="amount"></div></label></div>
         <h4>${LBL('Approval & payment – in this order', 'الاعتماد والصرف – بهذا الترتيب')}</h4>
         <div class="ivst">${['submittal', 'consApproval', 'clientApproval', 'releaseDate'].map((k, i) => step(k, i + 1)).join('<span class="ivar">›</span>')}</div>
@@ -5755,13 +5790,13 @@ const INVF = {
       </div><div class="ivf-r" data-sm></div></div>`;
     const nxt = !isNew && ro && (can('invoices') || canRM('invoices')) ? INV.next(rec) : null;
     const meta = rec && rec._at ? `<span class="tiny muted">${T('created_by')}: ${h(rec._by || '')} · ${h(TS(rec._at, 16))}</span>` : '';
-    modal({ title: `${T('invoices')} — ${isNew ? LBL('New invoice', 'مستخلص جديد') : `${LBL('Invoice', 'مستخلص')} ${h(rec.no)}${o.edit ? ' · ' + T('edit') : ''}`}`, body,
+    modal({ title: `${T('invoices')} — ${isNew ? LBL('New invoice', 'مستخلص جديد') : `${h(INV.label(rec))}${o.edit ? ' · ' + T('edit') : ''}`}`, body,
       foot: `${meta}<span class="sp"></span>${o.edit ? `<button class="btn danger" data-del>${ic('trash')}${T('del')}</button>` : ''}${nxt ? `<button class="btn ok" data-nx>＋ ${ivStep(nxt)}</button>` : ''}<button class="btn" data-c>${T('close')}</button>${ro ? '' : `<button class="btn pri" data-sv>${T('save')}</button>`}`,
       onMount: (el, close) => {
         const read = () => el.querySelectorAll('[data-k]').forEach(i => { const k = i.dataset.k; let val = i.value; if (['no', 'amount'].includes(k)) val = val === '' ? '' : Number(val); if (typeof val === 'string') val = val.trim(); if (val === '' || val == null) delete r[k]; else r[k] = val; });
         const errs = () => { const e = INV.check(r); if (r.no !== undefined && live(S.db.invoices).some(x => N(x.no) === N(r.no) && x._id !== r._id)) e.unshift({ k: 'no', msg: `${FL(m.F.no)}: ${LBL(`${r.no} is already used.`, `${r.no} مستخدم من قبل.`)}` }); return e; };
         const upd = () => {
-          read(); const s = INVF.sum(r), e = errs();
+          read(); const s = INVF.sum(r), e = errs(); el.querySelector('[data-ttl]').textContent = INV.label(r);
           el.querySelectorAll('[data-e]').forEach(d => { const x = e.find(y => y.k === d.dataset.e); d.textContent = x ? x.msg.split(': ').slice(1).join(': ') : ''; const i = el.querySelector(`[data-k="${d.dataset.e}"]`); if (i) i.classList.toggle('err', !!x); });
           if (!ro) INV.DATES.forEach(k => { const i = el.querySelector(`[data-k="${k}"]`); if (!i) return; const mn = INV.minOf(r, k); if (mn) i.min = mn; else i.removeAttribute('min');
             const p = k === 'taxDate' ? (r.submittal ? null : ['submittal', '']) : INV.prev(r, k); const off = !!p && !p[1] && !r[k]; i.disabled = off; i.closest('.ivs,label').classList.toggle('off', off); });
@@ -5788,7 +5823,7 @@ const INVF = {
           if (miss.length) return toast(`${T('required')}: ${miss.map(FL).join('، ')}`, 'bad');
           if (e.length) return toast(e[0].msg, 'bad');
           if (isNew) { r._id = uid(); stamp(r); S.db.invoices.push(r); } else { const i = S.db.invoices.findIndex(x => x._id === r._id); stamp(r); S.db.invoices[i] = r; }
-          touch(isNew ? 'add' : 'edit', `invoices: ${r.no}`); toast(T('saved'), 'ok'); close(); render(true);
+          touch(isNew ? 'add' : 'edit', `invoices: ${INV.label(r)}`); toast(T('saved'), 'ok'); close(); render(true);
         };
         const dl = el.querySelector('[data-del]');
         if (dl) dl.onclick = async () => { if (!(await confirmBox(`${T('confirm_del')}<div class="tiny muted" style="margin-top:6px">${h(IV_CFG.name(rec))}</div>`, T('del'), true))) return; close(); RG.del('invoices', [rec], IV_CFG.name(rec)); };
@@ -5813,8 +5848,8 @@ const INVF = {
     if (k === 'clientApproval' && INV.needTax(rec)) keys.push('taxDate');   // the payment term counts from the tax invoice
     const s = INVF.sum(rec), pv = k === 'taxDate' ? ['submittal', rec.submittal] : INV.prev(rec, k);
     const inp = x => `<label class="f"><span class="fll"${TIP.fa('invoices', F[x])}>${h(FL(F[x]))}${x === k ? ' <span class="req">*</span>' : ''}</span><input class="in" type="date" data-k="${x}" value="${h(rec[x] || '')}" max="${today}" ${INV.minOf(rec, x) ? `min="${INV.minOf(rec, x)}"` : ''}><div class="ive" data-e="${x}"></div>${x === 'taxDate' && k !== 'taxDate' ? `<span class="tiny muted">${LBL('Optional now – the payment term counts from it.', 'اختياري الآن – تُحسب منه مدة الدفع.')}</span>` : ''}</label>`;
-    modal({ title: `${ivStep(k)} — ${LBL('Invoice', 'مستخلص')} ${h(rec.no)}`, size: 'sm',
-      body: `<div class="ivsd"><div class="tiny muted">${h(rec.name || '')} · ${h(listVal('invTypes', rec.type))}</div>
+    modal({ title: `${ivStep(k)} — ${h(INV.label(rec))}`, size: 'sm',
+      body: `<div class="ivsd">${rec.name ? `<div class="tiny muted">${h(rec.name)}</div>` : ''}
         <div class="ivsdv"><span>${LBL('Gross', 'الإجمالي')} <b>${IVM(N(rec.amount))}</b></span><span>${LBL('Net', 'الصافي')} <b>${IVM(s.net)}</b></span>${k === 'releaseDate' && s.due ? `<span>${LBL('Due', 'الاستحقاق')} <b>${D.fmt(s.due)}</b></span>` : ''}</div>
         ${pv && pv[1] ? `<div class="tiny">${LBL('Previous step', 'الخطوة السابقة')}: ${h(FL(F[pv[0]]))} <b>${D.fmt(pv[1])}</b></div>` : ''}
         <div class="tiny muted" style="margin:4px 0 8px">${LBL(IV_STEP[k][2], IV_STEP[k][3])}</div><div class="fgrid">${keys.map(inp).join('')}</div></div>`,
@@ -5827,7 +5862,7 @@ const INVF = {
         el.querySelector('[data-sv]').onclick = () => {
           const e = show(); if (!r[k]) { el.querySelector(`[data-k="${k}"]`).classList.add('err'); return toast(`${FL(F[k])}: ${T('required')}`, 'bad'); }
           if (e.length) return toast(e[0].msg, 'bad');
-          const i = S.db.invoices.findIndex(x => x._id === rec._id); S.db.invoices[i] = stamp(r); touch('edit', `invoices: ${rec.no} (${keys.filter(x => r[x]).join(', ')})`); toast(T('saved'), 'ok'); close(); render(true);
+          const i = S.db.invoices.findIndex(x => x._id === rec._id); S.db.invoices[i] = stamp(r); touch('edit', `invoices: ${INV.label(rec)} (${keys.filter(x => r[x]).join(', ')})`); toast(T('saved'), 'ok'); close(); render(true);
         };
       } });
   }
@@ -6436,7 +6471,7 @@ const IMP = (() => {
   const ALIAS = {
     dc: { ref: ['Document Ref No', 'Document Ref', 'Ref No', 'Reference'], issueDate: ['Issue Date', 'Date'] },
     manpower: { resource: ['Resource', 'Position', 'Equipment'] },
-    invoices: { no: ['Inv No', 'Inv. NO.', 'Invoice No'], amount: ['Invoice Total Amount', 'Amount'] },
+    invoices: { no: ['Inv No', 'Inv. NO.', 'Invoice No'], name: ['Invoice Name', 'اسم المستخلص', 'Description', 'Period'], amount: ['Invoice Total Amount', 'Amount'] },
     drawings: { no: ['Drawing No', 'Drawing Number'] }
   };
   const KEYS = { hse: ['date'], dc: ['docType', 'ref', 'rev'], manpower: ['date', 'resource', 'contractor', 'area'], drawings: ['no', 'rev'], targets: ['phase', 'zone', 'element'], invoices: ['no'] };
@@ -6835,7 +6870,7 @@ tfoot td{background:#E8EEF6;font-weight:700}
     const cards = `<div class="kp" style="grid-template-columns:repeat(5,1fr)">${ivCards(o).map(([k, v, sub, c]) => `<div><span>${esc(k)}</span><b class="${c === 'iv-ev' ? '' : c || ''}">${v}</b>${sub ? `<i>${esc(sub)}</i>` : ''}</div>`).join('')}</div>`;
     const pc = x => o.bac ? fmtN(x / o.bac * 100, 1) + '%' : '—';
     const pos = `<div class="note">${LBL('Financial position – % of contract value', 'الموقف المالي – % من قيمة العقد')}: ${LBL('Planned', 'المخطط')} <b>${o.pv === null ? '—' : pc(o.pv)}</b> · ${LBL('Earned', 'المكتسب')} <b>${o.ev === null ? '—' : pc(o.ev)}</b> · ${LBL('Invoiced', 'المُفوتر')} <b>${pc(o.inv)}</b> · ${LBL('Paid', 'المدفوع')} <b>${pc(o.invPaid)}</b> · ${LBL('Cut-off', 'تاريخ القطع')} ${D.fmt(o.cut)}</div>`;
-    const reg = table([{ h: '#', n: 1, v: r => esc(r.no) }, { h: LBL('Invoice', 'المستخلص'), cls: 'w', v: r => `${esc(r.name || '')}<br><small>${esc(listVal('invTypes', r.type))}</small>` },
+    const reg = table([{ h: '#', n: 1, v: r => esc(r.no) }, { h: LBL('Invoice', 'المستخلص'), cls: 'w', v: r => `${esc(INV.label(r))}${r.name ? `<br><small>${esc(r.name)}</small>` : ''}` },
       { h: LBL('Gross amount', 'القيمة الإجمالية'), n: 1, v: r => m(r.amount) }, { h: LBL('Retention', 'المحتجزات'), n: 1, v: r => m(F.retention.calc(r)) }, { h: LBL('Advance recovery', 'استرداد المقدمة'), n: 1, v: r => m(F.advRec.calc(r)) }, { h: LBL('Net amount', 'صافي المستخلص'), n: 1, v: r => `<b>${m(F.net.calc(r))}</b>` },
       { h: LBL('Submitted', 'التقديم'), cls: 'nw', v: r => dd(r.submittal) }, { h: LBL('Consultant approval', 'اعتماد الاستشاري'), cls: 'nw', v: r => dd(r.consApproval) }, { h: LBL('Owner approval', 'اعتماد المالك'), cls: 'nw', v: r => dd(r.clientApproval) },
       { h: LBL('Payment due', 'استحقاق الدفع'), cls: 'nw', v: r => dd(F.dueDate.calc(r)) }, { h: LBL('Paid on', 'تاريخ الصرف'), cls: 'nw', v: r => dd(r.releaseDate) }, { h: LBL('Delay (d)', 'التأخير (يوم)'), n: 1, v: r => { const x = F.delayDays.calc(r); return x ? fmtN(x) : ''; } }, { h: T('status'), v: r => bdg(INV.status(r)) }],
@@ -7615,7 +7650,7 @@ RP.P.cost = (el, pg) => {
   el.innerHTML = `<div class="up">${rpHead(LBL('Cost & invoices', 'التكلفة والمستخلصات'), `${LBL('Contract value', 'قيمة العقد')} <b dir="ltr">${rpM(bac)}</b> SAR`)}
     <div class="up-kpis">${rpK(LBL('Net invoiced', 'صافي المستخلصات'), rpM(st.net), `${fmtN(st.n)} ${LBL('invoices', 'مستخلص')}`)}${rpK(LBL('Released', 'المصروف'), rpM(st.rel), st.net ? fmtPct(st.rel / st.net) : '')}${rpK(LBL('Outstanding', 'المتبقي'), rpM(st.out), `${LBL('due in 30 days', 'مستحق خلال 30 يوم')} ${rpM(st.due30)}`)}${rpK(LBL('Overdue', 'متأخر الدفع'), fmtN(st.overdue), '', st.overdue ? 'bad' : 'ok')}${rpK(LBL('Down payment', 'الدفعة المقدمة'), rpM(N(p.contractValue) * N(p.dpPct)), p.dpPct ? fmtPct(p.dpPct, 0) : '')}${rpK(LBL('Retention', 'المحتجزات'), rpM(sum(I, r => f.retention.calc(r))), p.retPct ? fmtPct(p.retPct, 0) : '')}</div>
     <div class="up-b"><div class="up-c" style="flex:0 0 560px"><div class="up-ct">${LBL('Cumulative: earned value vs net invoiced vs released (SAR M)', 'تراكمي: القيمة المكتسبة مقابل صافي المستخلصات مقابل المصروف (مليون ريال)')}</div>${svgCols({ w: 548, h: 400, cats: mk.map(monthLbl), bars: [{ v: inv, c: '#A9B8C4' }, { v: rel, c: '#1E88C7' }], lines: H.length ? [{ v: ev, c: '#0E4A55' }] : [], fmt: v => fmtN(v / 1e6, 0) })}<div class="up-lg"><span><i style="background:#A9B8C4"></i>${LBL('Net invoiced', 'صافي المستخلصات')}</span><span><i style="background:#1E88C7"></i>${LBL('Released', 'المصروف')}</span>${H.length ? `<span><i style="background:#0E4A55"></i>${LBL('Earned value', 'القيمة المكتسبة')}</span>` : ''}</div></div>
-      <div class="up-t"><div class="up-ct">${LBL('Invoices', 'المستخلصات')}</div><div class="up-tw"><table class="t"><thead><tr><th>#</th><th>${LBL('Invoice', 'المستخلص')}</th><th>${LBL('Net', 'الصافي')}</th><th>${LBL('Submitted', 'التقديم')}</th><th>${LBL('Due', 'الاستحقاق')}</th><th>${LBL('Released', 'الصرف')}</th><th>${T('status')}</th></tr></thead><tbody>${[...I].reverse().map(r => `<tr><td>${h(r.no)}</td><td class="small" dir="auto">${h(r.name || E(r.type))}</td><td dir="ltr">${fmtN(f.net.calc(r) / 1e6, 2)} M</td><td dir="ltr">${D.fmt(r.submittal)}</td><td dir="ltr">${D.fmt(f.dueDate.calc(r))}</td><td dir="ltr">${D.fmt(r.releaseDate)}</td><td>${bdg(f.status.calc(r))}</td></tr>`).join('') || `<tr><td colspan="7" class="empty">—</td></tr>`}</tbody></table></div></div></div></div>`;
+      <div class="up-t"><div class="up-ct">${LBL('Invoices', 'المستخلصات')}</div><div class="up-tw"><table class="t"><thead><tr><th>#</th><th>${LBL('Invoice', 'المستخلص')}</th><th>${LBL('Net', 'الصافي')}</th><th>${LBL('Submitted', 'التقديم')}</th><th>${LBL('Due', 'الاستحقاق')}</th><th>${LBL('Released', 'الصرف')}</th><th>${T('status')}</th></tr></thead><tbody>${[...I].reverse().map(r => `<tr><td>${h(r.no)}</td><td class="small" dir="auto">${h(INV.label(r))}</td><td dir="ltr">${fmtN(f.net.calc(r) / 1e6, 2)} M</td><td dir="ltr">${D.fmt(r.submittal)}</td><td dir="ltr">${D.fmt(f.dueDate.calc(r))}</td><td dir="ltr">${D.fmt(r.releaseDate)}</td><td>${bdg(f.status.calc(r))}</td></tr>`).join('') || `<tr><td colspan="7" class="empty">—</td></tr>`}</tbody></table></div></div></div></div>`;
 };
 
 /* ---------- Documents ---------- */
@@ -10428,7 +10463,7 @@ RP.P.rescost = (el, pg) => {
     <div class="xs-r xs-m" style="flex:1.3"><div class="xc xg" data-v="mp" style="flex:1"><div class="xc-t">${LBL('Daily manpower per week – planned vs actual', 'العمالة اليومية أسبوعياً – المخطط مقابل الفعلي')}${lg([[RCOL.p, LBL('Planned', 'المخطط')], [RCOL.act, LBL('Actual direct', 'مباشر فعلي')], [RCOL.pl, LBL('Actual indirect', 'غير مباشر فعلي')]])}</div>${C && C.wks.length ? svgCols({ w: 580, h: 230, cats: idx.map(i => D.dm(C.wks[i])), bars: [{ v: idx.map(i => C.acD[i]), c: RCOL.act }, { v: idx.map(i => C.acI[i]), c: RCOL.pl }], lines: [{ v: idx.map(i => C.plW[i]), c: RCOL.p }], fmt: v => fmtN(v, 0) }) : '<div class="empty">—</div>'}</div>
       <div class="xc xg" data-v="cash" style="flex:1"><div class="xc-t">${LBL('Cumulative: earned value vs invoiced vs released (SAR M)', 'تراكمي: المكتسب مقابل المستخلص مقابل المصروف (مليون)')}${lg([[RCOL.pl, LBL('Invoiced', 'مستخلص')], ['#E8A33D', LBL('Released', 'مصروف')], [RCOL.p, LBL('Earned', 'مكتسب')]])}</div>${svgCols({ w: 580, h: 230, cats: mk.map(monthLbl), bars: [{ v: inv, c: RCOL.pl }, { v: rel, c: '#E8A33D' }], lines: [{ v: ev, c: RCOL.p }], fmt: v => fmtN(v / 1e6, 0) })}</div></div>
     <div class="xs-r xs-m"><div class="xc" data-v="craft" style="flex:1"><div class="xc-t">${LBL('Planned labour by craft (baseline)', 'العمالة المخططة حسب الحرفة (الأساسي)')}</div><div class="rs-cr">${C ? C.crafts.slice(0, 8).map((c, i) => { const tot = sum(Object.values(C.cr[c]), x => x) * 7, td = sum(Object.entries(C.cr[c]).filter(([k]) => k <= C.cd), ([, v]) => v) * 7; return `<div class="rs-k" style="--c:${PAL[i % PAL.length]}"><b dir="auto">${h(c)}</b><span>${LBL('total', 'الإجمالي')} <em dir="ltr">${fmtN(tot)}</em> · ${LBL('to date', 'حتى تاريخه')} <em dir="ltr">${fmtN(td)}</em></span></div>`; }).join('') : ''}</div></div>
-      <div class="xc" data-v="inv" style="flex:1"><div class="xc-t">${LBL('Latest invoices', 'آخر المستخلصات')}</div><div class="xtw"><table class="t"><thead><tr><th>#</th><th>${LBL('Invoice', 'المستخلص')}</th><th>${LBL('Net', 'الصافي')}</th><th>${LBL('Submitted', 'التقديم')}</th><th>${T('status')}</th></tr></thead><tbody>${[...I].reverse().slice(0, 5).map(r => `<tr><td>${h(r.no)}</td><td class="small" dir="auto">${h(r.name || E(r.type))}</td><td dir="ltr">${fmtN(f.net.calc(r) / 1e6, 2)} M</td><td dir="ltr">${D.fmt(r.submittal)}</td><td>${bdg(f.status.calc(r))}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div></div></div></div>`;
+      <div class="xc" data-v="inv" style="flex:1"><div class="xc-t">${LBL('Latest invoices', 'آخر المستخلصات')}</div><div class="xtw"><table class="t"><thead><tr><th>#</th><th>${LBL('Invoice', 'المستخلص')}</th><th>${LBL('Net', 'الصافي')}</th><th>${LBL('Submitted', 'التقديم')}</th><th>${T('status')}</th></tr></thead><tbody>${[...I].reverse().slice(0, 5).map(r => `<tr><td>${h(r.no)}</td><td class="small" dir="auto">${h(INV.label(r))}</td><td dir="ltr">${fmtN(f.net.calc(r) / 1e6, 2)} M</td><td dir="ltr">${D.fmt(r.submittal)}</td><td>${bdg(f.status.calc(r))}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div></div></div></div>`;
 };
 
 /* ---------- 10 · Quality & Safety ---------- */
@@ -11012,7 +11047,7 @@ function rpFN() {
   const st = rfnSt(), F = MOD.invoices.F, o = INV.fin(), rd = reportDate(), wd = st.days === 'work', span = (a, b) => a && b ? (wd ? (b <= a ? 0 : INV.workBetween(a, b)) : Math.max(0, D.diff(b, a))) : null;
   const I = live(S.db.invoices).filter(r => isNum(r.amount)).sort((a, b) => N(a.no) - N(b.no));
   const R = I.map(r => { const due = F.dueDate.calc(r), dl = INV.delay(r), from = r.consApproval || (INV.consOpt(r) ? r.submittal : null), end = r.releaseDate || (r.submittal ? rd : null);
-    return { r, no: r.no, nm: r.name || E(r.type), type: r.type, k: INV.kind(r), gross: N(r.amount), net: F.net.calc(r), sub: r.submittal, cons: r.consApproval, own: r.clientApproval, tax: r.taxDate, rel: r.releaseDate, due, st: F.status.calc(r), needTax: INV.needTax(r),
+    return { r, no: r.no, nm: INV.label(r), type: r.type, k: INV.kind(r), gross: N(r.amount), net: F.net.calc(r), sub: r.submittal, cons: r.consApproval, own: r.clientApproval, tax: r.taxDate, rel: r.releaseDate, due, st: F.status.calc(r), needTax: INV.needTax(r),
       dC: r.submittal && r.consApproval ? span(r.submittal, r.consApproval) : null, dO: r.clientApproval && (from || r.submittal) ? span(from || r.submittal, r.clientApproval) : null,
       dP: r.clientApproval ? span(r.clientApproval, r.releaseDate || rd) : null, dT: r.submittal ? span(r.submittal, end) : null, dA: r.submittal && due ? span(r.submittal, due) : null,
       lateC: dl ? dl.cal : 0, lateW: dl ? dl.work : 0, late: dl ? (wd ? dl.work : dl.cal) : 0, open: !r.releaseDate, end }; });
@@ -11076,7 +11111,7 @@ function rpFNcycle(X, rows) {
   const th = (t, tt) => `<th${tt ? ` title="${h(tt)}"` : ''}>${t}</th>`;
   return `<table class="t fcy"><colgroup><col style="width:24px"><col><col style="width:44px"><col style="width:${ar ? 58 : 56}px"><col style="width:${ar ? 58 : 56}px"><col style="width:${ar ? 50 : 46}px"><col style="width:${ar ? 44 : 42}px"><col style="width:${ar ? 58 : 56}px"><col style="width:${ar ? 58 : 56}px"><col style="width:${ar ? 44 : 46}px"><col style="width:${ar ? 46 : 42}px"><col style="width:${ar ? 50 : 46}px"><col style="width:100px"><col style="width:27%"></colgroup>
     <thead><tr>${th('#')}${th(LBL('Invoice', 'المستخلص'))}${th(LBL('Gross M', 'الإجمالي م'))}${th(LBL('Submitted', 'التقديم'))}${th(LBL('Tax invoice', 'الفاتورة الضريبية'), LBL('Tax invoice date', 'تاريخ الفاتورة الضريبية'))}${th(`${LBL('Cons.', 'الاستشاري')} (${dU})`, LBL('Submission → consultant approval', 'من التقديم إلى اعتماد الاستشاري'))}${th(`${LBL('Owner', 'المالك')} (${dU})`, LBL('Consultant approval → owner approval', 'من اعتماد الاستشاري إلى اعتماد المالك'))}${th(LBL('Payment due', 'استحقاق الصرف'), LBL('Due date = basis date + payment days', 'تاريخ الاستحقاق = تاريخ الأساس + مدة الدفع'))}${th(LBL('Paid on', 'تاريخ الصرف'), LBL('Actual payment date', 'تاريخ الصرف الفعلي'))}${th(`${LBL('Payment', 'الصرف')} (${dU})`, LBL('Owner approval → payment (or to the report date while unpaid)', 'من اعتماد المالك إلى الصرف (أو تاريخ التقرير إن لم يُصرف)'))}${th(`${LBL('Delay', 'التأخير')} (${LBL('d', 'ي')})`, LBL('Payment delay after the due date – calendar days', 'تأخير الصرف بعد الاستحقاق – أيام تقويمية'))}${th(`${LBL('Delay', 'التأخير')} (${LBL('wd', 'ي.ع')})`, LBL('Payment delay after the due date – working days (days off excluded)', 'تأخير الصرف بعد الاستحقاق – أيام عمل (بدون الإجازات)'))}${th(T('status'))}<th class="fc-th">${head}</th></tr></thead>
-    <tbody>${rows.map(x => `<tr data-tp="${tip(x)}" class="${x.lateC > 0 ? 'lt' : ''}"><td dir="ltr">${h(x.no)}</td><td class="fc-n" dir="auto">${h(x.nm)}${x.k !== 'work' && x.nm !== E(x.type) ? ` <span class="fc-tg">${h(E(x.type))}</span>` : ''}</td><td dir="ltr" class="nm">${fmtN(x.gross / 1e6, 2)}</td><td dir="ltr" class="dt">${df(x.sub) || '—'}</td><td dir="ltr" class="dt ${x.needTax ? 'opn' : ''}">${df(x.tax) || (x.needTax ? LBL('awaited', 'بانتظارها') : '—')}</td><td dir="ltr" class="nm">${dd(x.dC)}</td><td dir="ltr" class="nm">${dd(x.dO)}</td><td dir="ltr" class="dt">${df(x.due) || '—'}</td><td dir="ltr" class="dt ${x.open ? 'opn' : ''}">${x.rel ? df(x.rel) : x.sub ? LBL('not paid', 'لم يُصرف') : ''}</td><td dir="ltr" class="nm ${x.open && x.own ? 'opn' : ''}">${x.own ? dd(x.dP) : ''}</td><td dir="ltr" class="nm ${x.lateC > 0 ? 'neg' : ''}">${x.sub ? fmtN(x.lateC) : ''}</td><td dir="ltr" class="nm ${x.lateW > 0 ? 'neg' : ''}">${x.sub ? fmtN(x.lateW) : ''}</td><td>${bdg(x.st)}</td><td class="fc-g"><div>${grid}${seg(x)}</div></td></tr>`).join('') || `<tr><td colspan="14" class="empty">${LBL('No invoice for this choice.', 'لا توجد مستخلصات لهذا الاختيار.')}</td></tr>`}</tbody>
+    <tbody>${rows.map(x => `<tr data-tp="${tip(x)}" class="${x.lateC > 0 ? 'lt' : ''}"><td dir="ltr">${h(x.no)}</td><td class="fc-n" dir="auto">${h(x.nm)}</td><td dir="ltr" class="nm">${fmtN(x.gross / 1e6, 2)}</td><td dir="ltr" class="dt">${df(x.sub) || '—'}</td><td dir="ltr" class="dt ${x.needTax ? 'opn' : ''}">${df(x.tax) || (x.needTax ? LBL('awaited', 'بانتظارها') : '—')}</td><td dir="ltr" class="nm">${dd(x.dC)}</td><td dir="ltr" class="nm">${dd(x.dO)}</td><td dir="ltr" class="dt">${df(x.due) || '—'}</td><td dir="ltr" class="dt ${x.open ? 'opn' : ''}">${x.rel ? df(x.rel) : x.sub ? LBL('not paid', 'لم يُصرف') : ''}</td><td dir="ltr" class="nm ${x.open && x.own ? 'opn' : ''}">${x.own ? dd(x.dP) : ''}</td><td dir="ltr" class="nm ${x.lateC > 0 ? 'neg' : ''}">${x.sub ? fmtN(x.lateC) : ''}</td><td dir="ltr" class="nm ${x.lateW > 0 ? 'neg' : ''}">${x.sub ? fmtN(x.lateW) : ''}</td><td>${bdg(x.st)}</td><td class="fc-g"><div>${grid}${seg(x)}</div></td></tr>`).join('') || `<tr><td colspan="14" class="empty">${LBL('No invoice for this choice.', 'لا توجد مستخلصات لهذا الاختيار.')}</td></tr>`}</tbody>
     <tfoot><tr class="fc-av"><td></td><td>${X.filt ? LBL('Average – invoices shown', 'المتوسط – المستخلصات المعروضة') : LBL('Average – submitted invoices', 'المتوسط – المستخلصات المقدمة')}</td><td></td><td></td><td></td><td dir="ltr" class="nm">${A.cons != null ? fmtN(A.cons, 1) : '—'}</td><td dir="ltr" class="nm">${A.own != null ? fmtN(A.own, 1) : '—'}</td><td></td><td></td><td dir="ltr" class="nm">${A.pay != null ? fmtN(A.pay, 1) : '—'}</td><td dir="ltr" class="nm ${A.sC ? 'neg' : ''}" title="${LBL('Total payment delay – calendar days', 'إجمالي تأخير الصرف – أيام تقويمية')}">Σ ${fmtN(A.sC)}</td><td dir="ltr" class="nm ${A.sW ? 'neg' : ''}" title="${LBL('Total payment delay – working days', 'إجمالي تأخير الصرف – أيام عمل')}">Σ ${fmtN(A.sW)}</td><td colspan="2" class="fc-avs">${LBL('Paid on time', 'صُرف في موعده')} <b dir="ltr" class="${A.onTime < A.nPaid ? 'neg' : ''}">${fmtN(A.onTime)} / ${fmtN(A.nPaid)}</b> · ${LBL('late', 'متأخر')} <b dir="ltr" class="${A.nLate ? 'neg' : ''}">${fmtN(A.nLate)}</b> · ${LBL('submission → payment', 'من التقديم للصرف')} <b dir="ltr">${A.cyc != null ? fmtN(A.cyc, 1) : '—'} ${dU}</b></td></tr></tfoot></table>`;
 }
 RP.P.finance = (el, pg) => {

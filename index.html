@@ -6094,7 +6094,8 @@ const NODV = {
       const acts = [n.status !== 'void' && can ? `<button class="lnk" data-ndpr="${h(n._id)}"${TIP.a(LBL('Print', 'طباعة'), LBL('Prints the letter in the platform language (now: English). Every print is logged.', 'يطبع الخطاب بلغة المنصة الحالية (الآن: العربية). كل طباعة مسجلة.'))}>${ic('print')}${LBL('Print', 'طباعة')}</button>` : '',
         n.status === 'issued' && can ? `<button class="lnk" data-ndsub="${h(n._id)}">${ic('check')}${LBL('Record submission', 'تسجيل التقديم')}</button>` : '',
         n.status === 'submitted' && mgr ? `<button class="lnk" data-ndsub="${h(n._id)}">${ic('pen')}${LBL('Edit submission', 'تعديل التقديم')}</button>` : '',
-        n.status !== 'void' && mgr ? `<button class="lnk bad" data-ndvoid="${h(n._id)}">${ic('x')}${LBL('Cancel', 'إلغاء')}</button>` : ''].filter(Boolean).join('');
+        n.status !== 'void' && mgr ? `<button class="lnk bad" data-ndvoid="${h(n._id)}">${ic('x')}${LBL('Cancel', 'إلغاء')}</button>` : '',
+        canUsers() ? `<button class="lnk bad" data-nddel="${h(n._id)}"${TIP.a(LBL('Delete permanently', 'حذف نهائي'), LBL('Platform manager only: removes the letter from the register (e.g. a letter issued as a test or a preview). Its invoices need a notice again. Kept in the activity log.', 'لمدير المنصة فقط: يحذف الخطاب من السجل (مثل خطاب صدر للمعاينة أو التجربة). وتعود مستخلصاته لتحتاج إخطاراً. ويبقى الحذف في سجل النشاط.'))}>${ic('trash')}${LBL('Delete', 'حذف')}</button>` : ''].filter(Boolean).join('');
       return `<tr class="${n.status === 'void' ? 'ndv' : ''}" data-ndr="${h(n._id)}"><td><b class="mono">${h(n.ref)}</b><div class="ivsub">${D.fmt(n.date)}${(n.prior || []).length ? ` · ${LBL('follow-up', 'لاحق')}` : ''}</div></td><td>${h(NOD.role(n.to))}<div class="ivsub">${h(NOD.party(n.to))}</div></td><td>${I.map(x => `<div class="ndi">${h(INV.label({ type: x.type, no: x.no }))}</div>`).join('')}</td>
         <td class="mn"><b>${fmtN(sum(o.length ? o : I, x => x.net), 2)}</b><div class="ivsub">${o.length ? LBL('outstanding', 'غير مصروف') : LBL('paid late', 'صُرف متأخراً')} · ${fmtN(Math.max(...I.map(x => x.cal)))} ${LBL('d', 'يوم')}</div></td>
         <td>${fmtN(pr.length)}× ${[...new Set(pr.map(x => (x.lang || 'en').toUpperCase()))].map(x => `<span class="bdg">${x}</span>`).join(' ')}${lp ? `<div class="ivsub">${h(TS(lp.at, 16))} · ${h(lp.by || '')}</div>` : ''}</td>
@@ -6113,6 +6114,7 @@ const NODV = {
     v.querySelectorAll('[data-ndpr]').forEach(b => b.onclick = () => { const n = NOD.all().find(x => x._id === b.dataset.ndpr); NOD.print(n); render(true); });
     v.querySelectorAll('[data-ndsub]').forEach(b => b.onclick = () => NODV.submit(NOD.all().find(x => x._id === b.dataset.ndsub)));
     v.querySelectorAll('[data-ndvoid]').forEach(b => b.onclick = () => NODV.cancel(NOD.all().find(x => x._id === b.dataset.ndvoid)));
+    v.querySelectorAll('[data-nddel]').forEach(b => b.onclick = () => NODV.del(NOD.all().find(x => x._id === b.dataset.nddel)));
   },
   // notice period and follow-up period (record manager of Invoices)
   periods(mgr) {
@@ -6189,6 +6191,13 @@ const NODV = {
           touch(was ? 'notice of delay submission edited' : 'notice of delay submitted', `invoices: ${r.ref} · ${D.fmt(s.date)} · ${s.ref || s.link}`); toast(T('saved'), 'ok'); close(); render(true);
         };
       } });
+  },
+  // delete a letter permanently (platform manager only): a synced tombstone, audited; its invoices need a notice again
+  async del(n) {
+    if (!n || !canUsers()) return;
+    const ok = await confirmBox(`${LBL('Delete this notice permanently from the register?', 'حذف هذا الإخطار نهائياً من السجل؟')}<div style="margin-top:8px"><b class="mono">${h(n.ref)}</b> · ${D.fmt(n.date)} · ${h((n.inv || []).map(x => INV.label({ type: x.type, no: x.no })).join('، '))}</div><div class="tiny muted" style="margin-top:6px">${LBL('This cannot be undone. Use Cancel instead for a letter that was delivered – a cancelled letter stays in the register.', 'لا يمكن التراجع. لخطاب تم تسليمه استخدم «إلغاء» بدلاً من ذلك – الخطاب الملغى يبقى في السجل.')}</div>`, LBL('Delete permanently', 'حذف نهائي'), true);
+    if (!ok) return; const i = S.db.nods.findIndex(x => x._id === n._id); if (i < 0) return;
+    S.db.nods[i] = stamp({ _id: n._id, _del: true }); touch('notice of delay deleted', `invoices: ${n.ref} · ${(n.inv || []).map(x => x.no).join(', ')}`); toast(`${T('deleted')}: ${n.ref}`, 'ok'); render(true);
   },
   // cancel a letter (record manager): it stays in the register with the reason; its invoices need a notice again
   async cancel(n) {
@@ -6714,7 +6723,7 @@ function rolePinsDialog() {
 }
 
 /* ---------- Activity log (platform manager only): the last 50 changes, who made them, and a Go button to the place ---------- */
-const AL_ACT = { 'notice of delay issued': ['Notice of delay issued', 'إصدار إخطار تأخير'], 'notice of delay printed': ['Notice of delay printed', 'طباعة إخطار تأخير'], 'notice of delay submitted': ['Notice of delay submitted', 'تسجيل تقديم إخطار تأخير'], 'notice of delay submission edited': ['Notice submission edited', 'تعديل تقديم إخطار'], 'notice of delay cancelled': ['Notice of delay cancelled', 'إلغاء إخطار تأخير'], 'notice period': ['Notice periods', 'مدد الإخطار'],
+const AL_ACT = { 'notice of delay issued': ['Notice of delay issued', 'إصدار إخطار تأخير'], 'notice of delay printed': ['Notice of delay printed', 'طباعة إخطار تأخير'], 'notice of delay submitted': ['Notice of delay submitted', 'تسجيل تقديم إخطار تأخير'], 'notice of delay submission edited': ['Notice submission edited', 'تعديل تقديم إخطار'], 'notice of delay cancelled': ['Notice of delay cancelled', 'إلغاء إخطار تأخير'], 'notice of delay deleted': ['Notice of delay deleted', 'حذف إخطار تأخير'], 'notice period': ['Notice periods', 'مدد الإخطار'],
   'user added': ['User added', 'إضافة مستخدم'], 'user edited': ['User edited', 'تعديل مستخدم'], 'user deleted': ['User deleted', 'حذف مستخدم'], 'PIN changed': ['PIN changed', 'تغيير الرمز'], 'PINs changed': ['Access PINs changed', 'تغيير رموز الدخول'],
   'open cut-off': ['Cut-off opened', 'فتح تاريخ قطع'], 'close cut-off': ['Cut-off closed', 'إغلاق تاريخ قطع'], 'edit cut-off': ['Cut-off edited', 'تعديل تاريخ القطع'], 'reopen cut-off': ['Cut-off reopened', 'إعادة فتح تاريخ القطع'], 'import XER': ['Update XER loaded', 'تحميل XER التحديث'], 'import baseline XER': ['Baseline XER loaded', 'تحميل XER الأساسي'], 'P6 export': ['P6 file generated', 'إنشاء ملف P6'],
   'update history scanned': ['XER folder read', 'قراءة فولدر XER'], 'report source': ['Report source linked', 'ربط مصدر التقرير'], '4D model imported': ['4D model imported', 'استيراد موديل 4D'], '4D model removed': ['4D model removed', 'إزالة موديل 4D'], 'opening image': ['Cover image', 'صورة الغلاف'], 'opening image removed': ['Cover image removed', 'إزالة صورة الغلاف'],

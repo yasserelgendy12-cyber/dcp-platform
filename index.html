@@ -1596,6 +1596,110 @@ tr.ndv td{opacity:.55}
 .ndfr{min-height:0}.ndpv{height:min(66vh,640px);overflow:auto;border:1px solid var(--line);border-radius:8px;background:#E9EDF2}
 .ndpv iframe{display:block;width:834px;height:1180px;border:0;zoom:.66;background:#E9EDF2}
 .ndto{display:flex;flex-direction:column;gap:4px;font-size:12.5px}
+/* ===== Report portal – top bar, page navigator that fits the screen, Users & visits (28-Nov-2026, decision 123) ===== */
+.rp-h.rh{flex-wrap:nowrap;gap:8px;padding:6px 12px;min-height:50px;box-sizing:border-box;background:#0A3A43}
+.rh .rp-logo{flex:0 0 auto;padding:3px 7px}.rh .rp-logo img{height:24px;max-width:120px}
+.rh .rp-pt{min-width:0;flex:0 1 auto;max-width:260px}.rh .rp-pt b{font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rh .rp-pt span{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rh-meta{display:flex;align-items:center;gap:4px;flex:0 1 auto;min-width:0;overflow:hidden;margin-inline-start:6px}
+.rh-c{display:inline-flex;align-items:baseline;gap:5px;white-space:nowrap;font-size:11px;color:#A9C6CC;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:3px 8px}.rh-c b{color:#fff;font-size:12px;font-weight:700}
+.rh-c.co{background:#E8A33D;border-color:#E8A33D;color:#4A3305}.rh-c.co b{color:#12202B}
+.rh .rh-sy{max-width:150px;overflow:hidden;text-overflow:ellipsis;font-size:11px;padding:3px 9px;flex:0 1 auto}
+.rh-g{display:flex;align-items:center;gap:3px;flex:0 0 auto;padding-inline-start:8px;border-inline-start:1px solid rgba(255,255,255,.14)}
+.rh-b{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 11px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;white-space:nowrap}
+.rh-b svg{width:15px;height:15px;flex:0 0 15px}.rh-b:hover{background:rgba(255,255,255,.15)}
+.rh-b.pres{background:#E8A33D;border-color:#E8A33D;color:#12202B}.rh-b.pres:hover{background:#F0B65A}.rh-b.on{background:#fff;color:#0E4A55;border-color:#fff}
+.rh-i{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:7px;border:1px solid transparent;background:transparent;color:#D6E6E9;cursor:pointer;font:inherit;font-weight:700;font-size:13px;position:relative}
+.rh-i svg{width:17px;height:17px}.rh-i:hover{background:rgba(255,255,255,.12);color:#fff}
+.rh-tools .rh-i{border-color:rgba(232,163,61,.45);color:#F3D9AE}.rh-tools .rh-i.on{background:#E8A33D;border-color:#E8A33D;color:#12202B}
+.rh-lg{font-family:'IBM Plex Sans Arabic',Inter,sans-serif;font-size:13.5px}
+.rh-u{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 9px;border-radius:7px;border:1px solid rgba(255,255,255,.14);background:transparent;color:#fff;font:inherit;font-size:12.5px;cursor:pointer;min-width:0;flex:0 1 auto;max-width:190px;margin-inline-start:4px}
+.rh-u b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}.rh-u svg{width:15px;height:15px;flex:0 0 15px;color:#A9C6CC}.rh-u svg.k{width:13px;height:13px;flex-basis:13px;opacity:.7}
+button.rh-u:hover{background:rgba(255,255,255,.1)}
+@media (max-width:1500px){.rh-c.dd{display:none}.rh .rp-pt{max-width:210px}}
+@media (max-width:1360px){.rh-act .rh-b:not(.pres) span{display:none}.rh-act .rh-b:not(.pres){padding:0 8px}.rh .rp-pt span{display:none}.rh-u{max-width:130px}}
+@media (max-width:1150px){.rh-meta{display:none}.rh-u b{display:none}.rh-act .rh-b span{display:none}.rh-act .rh-b{padding:0 8px}}
+/* page navigator: every tab on the screen – the tabs share the width, labels wrap on two lines, no side scrolling */
+.rp-nav2.fit{gap:6px;padding:5px 10px;min-height:48px}
+.rp-nav2.fit .rp-ar{width:28px;height:28px;flex:0 0 28px;font-size:17px}
+.rp-nav2.fit .rp-tb{display:flex;gap:3px;overflow:visible;padding:0 6px;min-width:0;flex:1 1 auto}
+.rp-nav2.fit .rp-tab2{transform:skewX(-12deg)}.rp-nav2.fit .rp-tb .rp-tab2{flex:1 1 0;min-width:0;min-height:38px}
+.rp-nav2.fit .rp-tab2>span{transform:skewX(12deg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:3px 2px;white-space:normal;text-align:center;line-height:1.12;height:100%;box-sizing:border-box}
+.rp-nav2.fit .rp-tab2 i{font-size:9px;line-height:1.1;letter-spacing:.3px}
+.rp-nav2.fit .rp-tab2 em{font-style:normal;font-size:11px;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-width:100%;letter-spacing:-.1px}
+.rp-nav2.fit .rp-g4{gap:3px;padding:0;flex:0 0 auto}
+.rp-nav2.fit .rp-g4s{margin:4px 5px 4px 0}
+.rp-nav2.fit .rp-tab2.g4{flex:0 0 auto;width:96px;min-height:38px}
+.rp-nav2.fit .rp-tab2.g4>span{flex-direction:row;gap:5px}.rp-nav2.fit .rp-tab2.g4 svg{width:14px;height:14px;flex:0 0 14px}.rp-nav2.fit .rp-tab2.g4 em{font-size:11px;text-align:start}
+.rp-nav2.fit .rp-cnt{min-width:34px;font-size:11px}
+html[dir=rtl] .rp-nav2.fit .rp-tab2{transform:skewX(12deg)}html[dir=rtl] .rp-nav2.fit .rp-tab2>span{transform:skewX(-12deg)}
+html[dir=rtl] .rp-nav2.fit .rp-tab2 em{font-size:12px}
+@media (min-width:1600px){.rp-nav2.fit .rp-tab2 em{font-size:12px}}@media (min-width:1700px){.rp-nav2.fit .rp-tab2 em{font-size:12.5px}.rp-nav2.fit .rp-tab2 i{font-size:10px}.rp-nav2.fit .rp-tab2.g4{width:128px}}
+@media (max-width:1180px){.rp-nav2.fit .rp-tab2 em{font-size:10.5px}.rp-nav2.fit .rp-tab2.g4{width:80px}.rp-nav2.fit .rp-cnt{display:none}}
+/* Users & visits (portal manager) – inside the 1280 × 720 report frame */
+.ru2{height:100%;display:flex;flex-direction:column;gap:8px;padding:10px 14px 10px;box-sizing:border-box;font-size:12px}
+.ru2-top{display:flex;align-items:center;gap:10px;flex:0 0 auto}.ru2-top .sp{flex:1}
+.ru2-tabs{display:flex;gap:4px;background:#E9EFF2;border-radius:9px;padding:3px}
+.ru2-tabs button{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;border-radius:7px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:600;color:#3B4C5A;cursor:pointer}
+.ru2-tabs button svg{width:15px;height:15px}.ru2-tabs button b{background:#fff;color:#0E4A55;border-radius:9px;padding:0 7px;font-size:11px}
+.ru2-tabs button.on{background:#0E4A55;color:#fff}.ru2-tabs button.on b{background:#E8A33D;color:#12202B}
+.ru2-on{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:#5B6B7A}.ru2-on i{width:8px;height:8px;border-radius:50%;background:#C8D1DC}.ru2-on.ok i{background:#1E8A5A;box-shadow:0 0 0 3px #1E8A5A22}.ru2-on b{color:#12202B}
+.ru2-tb{display:flex;align-items:center;gap:6px}.ru2-tb .in.sm,.ru2-tb select.in{height:28px;font-size:12px;padding:2px 22px 2px 8px;max-width:170px}
+.ru2-k{display:flex;gap:4px}.ru2-k span{font-size:11px;color:#5B6B7A;background:#F2F5F7;border-radius:6px;padding:4px 8px;white-space:nowrap}.ru2-k b{color:#0E4A55;font-size:12px}.ru2-k span.warn b{color:#B45309}
+.ru2-body{flex:1;min-height:0;display:flex;flex-direction:column}
+.ru2-w{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);gap:10px}
+.ru2-l{display:flex;flex-direction:column;gap:6px;min-height:0;background:#fff;border:1px solid #E1E7EC;border-radius:10px;padding:8px}
+.ru2-l .usb .search{height:28px;font-size:12px}.ru2-l .seg button{padding:3px 9px;font-size:11.5px}
+.ru2-t{flex:1;min-height:0;max-height:none!important;overflow:auto}.ru2-t table{table-layout:fixed;font-size:12px}.ru2-t th{font-size:11px}
+.ru2-t tr.sel td{background:#E7F2F3}.ru2-t tr.off td{opacity:.6}.ru2-t td{vertical-align:top}
+.ru2-t .usc .bdg{font-size:10px;margin:1px 0;display:inline-flex;align-items:center;gap:3px}.ru2-t .usc .bdg svg{width:11px;height:11px}.bdg.ru-x{background:#EEF4F5;color:#0E4A55}
+.ru2-vn{display:block;font-size:10.5px;padding:0;margin-top:1px;color:#0E7C86;background:none;border:0;cursor:pointer}
+.ru2-e{background:#fff;border:1px solid #E1E7EC;border-radius:10px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.ru2-e .ueh{display:flex;align-items:flex-start;gap:10px;padding:8px 12px;border-bottom:1px solid #EEF2F5}.ru2-e .ueh>div{flex:1;min-width:0}.ru2-e .ueh h3{margin:0;font-size:15px;color:#0E4A55}
+.ru2-e .umgr{height:30px;font-size:12px;padding:0 10px;border-color:#E8C77A;color:#8A5A00;background:#FFF9EC}.ru2-e .umgr.on{background:#E8A33D;border-color:#E8A33D;color:#12202B}.ru2-e .umgr svg{width:14px;height:14px}
+.ru2-e .ueb{flex:1;min-height:0;overflow:auto;padding:7px 12px;display:flex;flex-direction:column;gap:7px}
+.ru2-e .uef.ru2-f{display:grid;grid-template-columns:1.1fr 1.1fr .7fr;gap:6px 8px}.ru2-e .f{font-size:11px;gap:2px;display:flex;flex-direction:column}.ru2-e .in{height:28px;font-size:12px;padding:3px 8px}
+.ru2-e .uepin{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:end;background:#F2F6F7;border-radius:8px;padding:5px 10px}.ru2-e .uepc{display:flex;flex-direction:column;min-width:104px}.ru2-e .uepc b{font-size:15px;color:#0E4A55;display:flex;align-items:center;gap:4px;min-height:22px}
+.ru2-e .uebar{display:flex;align-items:end;gap:6px}.ru2-e .ueT{flex:1;min-width:0}
+.ru2-e .uep{display:flex;flex-direction:column;gap:5px}
+.ru2-e .upg{border:1px solid #E1E7EC;border-radius:8px;overflow:hidden}.ru2-e .upgh{display:flex;align-items:center;gap:6px;padding:3px 8px;background:#F5F8F9;font-size:11.5px;color:#0E4A55}.ru2-e .upgh svg{width:13px;height:13px}.ru2-e .upgh b{flex:1}.ru2-e .upgh em{font-style:normal;font-size:10.5px;color:#5B6B7A}
+.ru2-e .upgb{display:flex;flex-wrap:wrap;gap:3px;padding:5px 7px}
+.ru2-e .upc{display:inline-flex;align-items:center;gap:4px;border:1px solid #DCE3E8;border-radius:13px;padding:1px 8px 1px 5px;font-size:11px;cursor:pointer;background:#fff;user-select:none;white-space:nowrap}
+.ru2-e .upc i{font-style:normal;font-size:9.5px;font-weight:700;color:#7FA3AA}.ru2-e .upc input{margin:0;width:12px;height:12px}
+.ru2-e .upc.on{background:#E3F0F1;border-color:#9FCDD2;color:#0E4A55;font-weight:600}.ru2-e .upc.on i{color:#0E7C86}
+.ru2-e .ru2-g-act .upc.on,.ru2-e .ru2-g-tools .upc.on{background:#FFF3DC;border-color:#E8C77A;color:#7A4E00}
+.ru2-e .uef2{display:flex;gap:8px;align-items:center;padding:7px 12px;border-top:1px solid #EEF2F5}.ru2-e .uef2 .sp{flex:1}
+.ru2-e .notice{font-size:11px;padding:6px 9px}
+/* visit history */
+.ru2-vk{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px;flex:0 0 auto;margin-bottom:8px}
+.ru2-k1{background:#fff;border:1px solid #E1E7EC;border-top:3px solid #0E4A55;border-radius:9px;padding:5px 10px;display:flex;flex-direction:column;min-width:0}
+.ru2-k1 span{font-size:10.5px;color:#5B6B7A;text-transform:uppercase;letter-spacing:.3px}.ru2-k1 b{font-size:17px;color:#12202B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ru2-k1 em{font-style:normal;font-size:10.5px;color:#5B6B7A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ru2-k1.ok{border-top-color:#1E8A5A}.ru2-k1:nth-child(2){border-top-color:#2E9E8F}.ru2-k1:nth-child(3){border-top-color:#7B5EA7}.ru2-k1:nth-child(4){border-top-color:#E8A33D}
+.ru2-vw{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:10px}
+.ru2-vl{display:flex;flex-direction:column;min-height:0;background:#fff;border:1px solid #E1E7EC;border-radius:10px;padding:6px}
+.ru2-vt{flex:1;min-height:0;max-height:none!important;overflow:auto}.ru2-vt table{table-layout:fixed;font-size:11.5px}.ru2-vt th{font-size:10.5px}.ru2-vt td{vertical-align:top;padding:5px 6px}.ru2-vt tr.live td{background:#F1FAF5}
+.ru2-vn2{padding:4px 4px 0}
+.rvps{line-height:1.9}
+.rvp{display:inline-flex;align-items:center;gap:3px;border:1px solid #DCE3E8;border-radius:11px;padding:0 6px 0 4px;margin:0 3px 0 0;font-size:10.5px;background:#F7FAFB;white-space:nowrap;line-height:17px}
+html[dir=rtl] .rvp{margin:0 0 0 3px}
+.rvp i{font-style:normal;font-size:9px;font-weight:700;color:#0E7C86}.rvp em{font-style:normal;font-size:9.5px;color:#7B8A97}.rvp.pr{border-color:#E8C77A;background:#FFF9EC}
+.ru2-vr{display:flex;flex-direction:column;gap:8px;min-height:0}
+.ru2-c{background:#fff;border:1px solid #E1E7EC;border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;min-height:0}
+.ru2-c .xc-t{font-size:12px;font-weight:700;color:#2F3D4A;margin-bottom:6px}
+.ru2-bars{display:flex;flex-direction:column;gap:4px}
+.ru2-br{display:grid;grid-template-columns:104px 1fr 30px 46px;gap:6px;align-items:center;font-size:11px}
+.ru2-br span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ru2-br span i{font-style:normal;font-size:9px;font-weight:700;color:#0E7C86;margin-inline-end:4px}
+.ru2-br>div{height:9px;background:#EEF2F5;border-radius:5px;overflow:hidden}.ru2-br>div i{display:block;height:100%;background:#0E4A55;border-radius:5px}
+.ru2-br b{text-align:end;color:#12202B}.ru2-br em{font-style:normal;color:#7B8A97;font-size:10px;text-align:end}
+.ru2-cu{flex:1}.ru2-cu .tw{flex:1;min-height:0;max-height:none!important;overflow:auto}.ru2-cu table{font-size:11px}.ru2-cu td,.ru2-cu th{padding:4px 5px}.ru2-cu tr.sel td{background:#E7F2F3}
+.ru2-e .btn.sm{height:28px}.ru2-e .uepc b .muted{font-family:'IBM Plex Sans Arabic',Inter,sans-serif;font-weight:500}.ru2-e .in.mono::placeholder{font-family:'IBM Plex Sans Arabic',Inter,sans-serif}
+.ru2-vw{grid-template-columns:minmax(0,1fr) 318px}.ru2-cu table{table-layout:fixed;width:100%}.ru2-cu th:first-child,.ru2-cu td:first-child{width:auto}.ru2-cu th:not(:first-child),.ru2-cu td:not(:first-child){width:44px;text-align:center}.ru2-cu th:nth-child(4),.ru2-cu td:nth-child(4){width:54px}.ru2-cu th:last-child,.ru2-cu td:last-child{width:62px}
+.ru2-cu td:first-child b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ru2-vt th svg{width:13px;height:13px}.ru2-br span{display:flex;align-items:center;gap:4px}.ru2-br span i{margin:0}
+.ru2-t td,.ru2-vt td{white-space:normal}.ru2-t .usc{line-height:1.5}
+.ru2-vt td.rvps{white-space:normal;overflow:visible}.ru2-vt td:last-child{text-align:center;padding:5px 2px}.ru2-vt td:last-child .bdg{display:inline-flex;align-items:center;gap:2px;padding:1px 5px}.ru2-vt td:last-child .bdg svg{width:11px;height:11px}
+.ru2-vt .usn .bdg{font-size:9.5px;padding:0 5px;margin-top:2px}
+.ru2-cu th:not(:first-child),.ru2-cu td:not(:first-child){width:38px}.ru2-cu th:nth-child(4),.ru2-cu td:nth-child(4){width:48px}.ru2-cu th:last-child,.ru2-cu td:last-child{width:64px;font-size:10px;padding:4px 2px}
+.ru2 table.t td{white-space:normal}.ru2 table.t th{background:#0E4A55}
 
 </style>
 </head>
@@ -2432,7 +2536,7 @@ const PRES = {
     PRES.stamp(); S.ui.cloudDirty = true; IDB.put('projects', S.db.id, S.db).catch(() => { }); return true;
   }
 };
-const coreSig = db => { const p = db.presence; db.presence = undefined; const s = JSON.stringify(db); db.presence = p; return s; }; // database content without the presence stamps
+const coreSig = db => { const p = db.presence, v = db.rvisits; db.presence = undefined; db.rvisits = undefined; const s = JSON.stringify(db); db.presence = p; db.rvisits = v; return s; }; // database content without the presence stamps and the report visit log
 const DEFAULT_LISTS = {"resources": [{"v": "Project Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير المشروع"}, {"v": "Construction Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير الإنشاءات"}, {"v": "HSE Manager", "cat": "Labor", "type": "Indirect", "ar": "مدير السلامة والصحة المهنية"}, {"v": "Managers (Other)", "cat": "Labor", "type": "Indirect", "ar": "مديرون (أخرى)"}, {"v": "Engineers", "cat": "Labor", "type": "Indirect", "ar": "مهندسون"}, {"v": "QA/QC Engineers / Inspectors", "cat": "Labor", "type": "Indirect", "ar": "مهندسو / مفتشو الجودة"}, {"v": "Planning Engineer", "cat": "Labor", "type": "Indirect", "ar": "مهندس تخطيط"}, {"v": "Quantity Surveyor / Commercial", "cat": "Labor", "type": "Indirect", "ar": "مهندس كميات / تجاري"}, {"v": "Surveyor", "cat": "Labor", "type": "Indirect", "ar": "مسّاح"}, {"v": "Safety", "cat": "Labor", "type": "Indirect", "ar": "مسؤول سلامة"}, {"v": "Time Keeper", "cat": "Labor", "type": "Indirect", "ar": "مراقب دوام"}, {"v": "Storekeeper", "cat": "Labor", "type": "Indirect", "ar": "أمين مخزن"}, {"v": "Commercial / Coordinator", "cat": "Labor", "type": "Indirect", "ar": "تجاري / منسّق"}, {"v": "DC / Admin / Draftsman", "cat": "Labor", "type": "Indirect", "ar": "مراقب وثائق / إداري / رسّام"}, {"v": "Foremen / Supervisors / Engineers", "cat": "Labor", "type": "Indirect", "ar": "ملاحظون / مشرفون / مهندسون"}, {"v": "Safety Helper", "cat": "Labor", "type": "Direct", "ar": "مساعد سلامة"}, {"v": "Surveyor Helper", "cat": "Labor", "type": "Direct", "ar": "مساعد مسّاح"}, {"v": "Mason", "cat": "Labor", "type": "Direct", "ar": "بنّاء"}, {"v": "Carpenter", "cat": "Labor", "type": "Direct", "ar": "نجّار مسلح"}, {"v": "Steel Fixer", "cat": "Labor", "type": "Direct", "ar": "حدّاد مسلح"}, {"v": "Post Tension Worker", "cat": "Labor", "type": "Direct", "ar": "عامل شدّ لاحق"}, {"v": "Waterproofing Membrane", "cat": "Labor", "type": "Direct", "ar": "عامل عزل مائي"}, {"v": "Riggers", "cat": "Labor", "type": "Direct", "ar": "عامل ربط أحمال (Rigger)"}, {"v": "Scaffolder", "cat": "Labor", "type": "Direct", "ar": "عامل سقالات"}, {"v": "Concrete Crew / Finisher", "cat": "Labor", "type": "Direct", "ar": "طاقم خرسانة / تشطيب خرسانة"}, {"v": "Equipment Operator", "cat": "Labor", "type": "Direct", "ar": "مشغّل معدات"}, {"v": "Crane Operator", "cat": "Labor", "type": "Direct", "ar": "مشغّل رافعة"}, {"v": "Bus / Pick-up Driver", "cat": "Labor", "type": "Direct", "ar": "سائق حافلة / بيك أب"}, {"v": "Trailer Driver", "cat": "Labor", "type": "Direct", "ar": "سائق تريلا"}, {"v": "Technician / Labor / Cleaner", "cat": "Labor", "type": "Direct", "ar": "فني / عامل / عامل نظافة"}, {"v": "Security Guard", "cat": "Labor", "type": "Direct", "ar": "حارس أمن"}, {"v": "Plumber", "cat": "Labor", "type": "Direct", "ar": "سبّاك"}, {"v": "Electrician", "cat": "Labor", "type": "Direct", "ar": "كهربائي"}, {"v": "HVAC Technician", "cat": "Labor", "type": "Direct", "ar": "فني تكييف"}, {"v": "Fire Fighting Technician", "cat": "Labor", "type": "Direct", "ar": "فني مكافحة حريق"}, {"v": "Welder", "cat": "Labor", "type": "Direct", "ar": "لحّام"}, {"v": "Painter", "cat": "Labor", "type": "Direct", "ar": "دهّان"}, {"v": "Plasterer", "cat": "Labor", "type": "Direct", "ar": "ليّاس"}, {"v": "Tiler", "cat": "Labor", "type": "Direct", "ar": "مبلّط"}, {"v": "Gypsum / Ceiling Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب جبس / أسقف"}, {"v": "Aluminium & Glazing Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب ألمنيوم وزجاج"}, {"v": "Insulation Installer", "cat": "Labor", "type": "Direct", "ar": "مركّب عزل"}, {"v": "Asphalt / Road Crew", "cat": "Labor", "type": "Direct", "ar": "طاقم أسفلت / طرق"}, {"v": "Other Direct Labor", "cat": "Labor", "type": "Direct", "ar": "عمالة مباشرة أخرى"}, {"v": "Dump Truck", "cat": "Equipment", "type": "Equipment", "ar": "قلّاب"}, {"v": "Excavator Liebherr (100 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار ليبهر (100 طن)"}, {"v": "Excavator with Bucket (40 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بجردل (40 طن)"}, {"v": "Excavator with Jack Hammer (40 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بمطرقة هيدروليكية (40 طن)"}, {"v": "Excavator with Bucket (20 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بجردل (20 طن)"}, {"v": "Excavator with Jack Hammer (20 Tons)", "cat": "Equipment", "type": "Equipment", "ar": "حفّار بمطرقة هيدروليكية (20 طن)"}, {"v": "Wheel Loader", "cat": "Equipment", "type": "Equipment", "ar": "لودر بعجلات"}, {"v": "Bulldozer (D11)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D11)"}, {"v": "Bulldozer (D375)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D375)"}, {"v": "Bulldozer (D8)", "cat": "Equipment", "type": "Equipment", "ar": "بلدوزر (D8)"}, {"v": "Water Tanker", "cat": "Equipment", "type": "Equipment", "ar": "صهريج مياه"}, {"v": "Diesel Tanker", "cat": "Equipment", "type": "Equipment", "ar": "صهريج ديزل"}, {"v": "Grader", "cat": "Equipment", "type": "Equipment", "ar": "ممهّدة (جريدر)"}, {"v": "Bobcat", "cat": "Equipment", "type": "Equipment", "ar": "بوبكات"}, {"v": "Bobcat Sweeper", "cat": "Equipment", "type": "Equipment", "ar": "بوبكات كنّاسة"}, {"v": "Man Lift / Scissor Lift / Spider Lift", "cat": "Equipment", "type": "Equipment", "ar": "رافعة أفراد / مقصّية / عنكبوتية"}, {"v": "Fork Lift", "cat": "Equipment", "type": "Equipment", "ar": "رافعة شوكية"}, {"v": "Mobile Crane", "cat": "Equipment", "type": "Equipment", "ar": "رافعة متحركة"}, {"v": "Single Mast Aerial (12 m)", "cat": "Equipment", "type": "Equipment", "ar": "رافعة صاري مفرد (12 م)"}, {"v": "Drum Roller / Flat Compactor", "cat": "Equipment", "type": "Equipment", "ar": "هرّاس أسطواني / دكّاك"}, {"v": "Ambulance", "cat": "Equipment", "type": "Equipment", "ar": "سيارة إسعاف"}, {"v": "Concrete Pump / Stationary Pump & Mixers", "cat": "Equipment", "type": "Equipment", "ar": "مضخة خرسانة / مضخة ثابتة وخلاطات"}, {"v": "Boom Truck", "cat": "Equipment", "type": "Equipment", "ar": "شاحنة بذراع (Boom Truck)"}, {"v": "Pick-up", "cat": "Equipment", "type": "Equipment", "ar": "بيك أب"}, {"v": "Generator", "cat": "Equipment", "type": "Equipment", "ar": "مولّد كهربائي"}, {"v": "Road Sweeper", "cat": "Equipment", "type": "Equipment", "ar": "كنّاسة طرق"}, {"v": "Cutter Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة قص"}, {"v": "Bar Bending Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة ثني حديد"}, {"v": "Compressor", "cat": "Equipment", "type": "Equipment", "ar": "ضاغط هواء"}, {"v": "Trailer", "cat": "Equipment", "type": "Equipment", "ar": "تريلا"}, {"v": "Dyna Truck", "cat": "Equipment", "type": "Equipment", "ar": "دينّا"}, {"v": "Telehandler", "cat": "Equipment", "type": "Equipment", "ar": "رافعة تلسكوبية (Telehandler)"}, {"v": "Monorail with Hoist", "cat": "Equipment", "type": "Equipment", "ar": "مونوريل مع ونش"}, {"v": "Cranes (Tower / Fixed)", "cat": "Equipment", "type": "Equipment", "ar": "رافعات (برجية / ثابتة)"}, {"v": "Transit Mixer", "cat": "Equipment", "type": "Equipment", "ar": "خلاطة خرسانة متنقلة"}, {"v": "Concrete Vibrator Set", "cat": "Equipment", "type": "Equipment", "ar": "طقم هزّاز خرسانة"}, {"v": "Welding Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة لحام"}, {"v": "Core Cutting Machine", "cat": "Equipment", "type": "Equipment", "ar": "ماكينة أخذ عينات (Core)"}, {"v": "Light Tower", "cat": "Equipment", "type": "Equipment", "ar": "برج إنارة"}, {"v": "Other Equipment", "cat": "Equipment", "type": "Equipment", "ar": "معدات أخرى"}, {"v": "Historical Summary - Direct Labor", "cat": "Labor", "type": "Direct", "ar": "ملخص تاريخي - عمالة مباشرة"}, {"v": "Historical Summary - Indirect Labor", "cat": "Labor", "type": "Indirect", "ar": "ملخص تاريخي - عمالة غير مباشرة"}, {"v": "Historical Summary - Equipment", "cat": "Equipment", "type": "Equipment", "ar": "ملخص تاريخي - معدات"}], "docTypes": [{"v": "Material Submittal (MAS)", "code": "MAS", "resp": "Yes", "days": 14, "ar": "اعتماد مواد (MAS)"}, {"v": "Request For Information (RFI)", "code": "RFI", "resp": "Yes", "days": 7, "ar": "طلب استيضاح (RFI)"}, {"v": "Material Inspection Request (MIR)", "code": "MIR", "resp": "Yes", "days": 2, "ar": "طلب فحص مواد (MIR)"}, {"v": "Work Inspection Request (WIR)", "code": "WIR", "resp": "Yes", "days": 2, "ar": "طلب فحص أعمال (WIR)"}, {"v": "Non-Conformance Report (NCR)", "code": "NCR", "resp": "Yes", "days": 7, "ar": "تقرير عدم مطابقة (NCR)"}, {"v": "NCR - Safety", "code": "NCR-S", "resp": "Yes", "days": 7, "ar": "عدم مطابقة - سلامة (NCR-S)"}, {"v": "Site Observation Report (SOR)", "code": "SOR", "resp": "Yes", "days": 7, "ar": "تقرير ملاحظة موقع (SOR)"}, {"v": "Method Statement (MST)", "code": "MST", "resp": "Yes", "days": 14, "ar": "طريقة تنفيذ (MST)"}, {"v": "Pre-Qualification (PRQ)", "code": "PRQ", "resp": "Yes", "days": 21, "ar": "تأهيل مسبق (PRQ)"}, {"v": "Inspection & Test Plan (ITP)", "code": "ITP", "resp": "Yes", "days": 14, "ar": "خطة الفحص والاختبار (ITP)"}, {"v": "Technical Query (TQ)", "code": "TQ", "resp": "Yes", "days": 7, "ar": "استفسار فني (TQ)"}, {"v": "Variation / Change Request (VOR)", "code": "VOR", "resp": "Yes", "days": 21, "ar": "طلب تغيير / أمر تغييري (VOR)"}, {"v": "Notice / Claim (EOT)", "code": "NOT", "resp": "Yes", "days": 14, "ar": "إشعار / مطالبة (تمديد مدة) (NOT)"}, {"v": "Programme / Schedule Submission (SCH)", "code": "SCH", "resp": "Yes", "days": 14, "ar": "تقديم برنامج زمني (SCH)"}, {"v": "Test / Commissioning Report (TST)", "code": "TST", "resp": "Yes", "days": 7, "ar": "تقرير اختبار / تشغيل (TST)"}, {"v": "Sample Submission (SMP)", "code": "SMP", "resp": "Yes", "days": 7, "ar": "تقديم عينات (SMP)"}, {"v": "O&M Manual / Handover Document (OAM)", "code": "OAM", "resp": "Yes", "days": 21, "ar": "كتيبات التشغيل والصيانة / وثائق التسليم (OAM)"}, {"v": "Insurance / Bond / Guarantee (INS)", "code": "INS", "resp": "Yes", "days": 14, "ar": "تأمين / ضمان / كفالة (INS)"}, {"v": "Letter / Correspondence (LTR)", "code": "LTR", "resp": "Yes", "days": 7, "ar": "خطاب / مراسلة (LTR)"}, {"v": "Minutes of Meeting (MOM)", "code": "MOM", "resp": "No", "ar": "محضر اجتماع (MOM)"}, {"v": "Progress / Status Report (RPT)", "code": "RPT", "resp": "No", "ar": "تقرير تقدم / حالة (RPT)"}, {"v": "Transmittal / Other (OTH)", "code": "OTH", "resp": "No", "ar": "خطاب إرسال / أخرى (OTH)"}], "invTypes": [{"v": "Advance Payment", "ret": "No", "adv": "No", "basis": "Submittal Date", "days": 14, "ar": "دفعة مقدمة"}, {"v": "Interim Monthly Payment", "ret": "Yes", "adv": "Yes", "basis": "Tax Invoice Date", "days": 14, "ar": "مستخلص شهري جاري"}, {"v": "Variation Order Invoice", "ret": "Yes", "adv": "Yes", "basis": "Tax Invoice Date", "days": 14, "ar": "مستخلص أمر تغييري"}, {"v": "Retention Release", "ret": "No", "adv": "No", "basis": "Client Approval Date", "days": 14, "ar": "الإفراج عن المحتجزات"}, {"v": "Final Account", "ret": "Yes", "adv": "Yes", "basis": "Client Approval Date", "days": 14, "ar": "المستخلص الختامي"}], "reviewCodes": [{"v": "Code A", "status": "Approved", "shop": 1, "design": 1, "statusAr": "معتمد"}, {"v": "Code B", "status": "Approved as Noted", "shop": 0.7, "design": 1, "statusAr": "معتمد مع ملاحظات"}, {"v": "Code C", "status": "Revise & Resubmit", "shop": 0.3, "design": 1, "statusAr": "يُعدَّل ويُعاد تقديمه"}, {"v": "Code D", "status": "Rejected", "shop": 0, "design": 0, "statusAr": "مرفوض"}, {"v": "Closed / Info", "status": "Closed", "shop": 1, "design": 1, "statusAr": "مغلق"}], "disciplines": [{"v": "Civil / Structural", "ar": "مدني / إنشائي"}, {"v": "Architectural", "ar": "معماري"}, {"v": "Mechanical (HVAC)", "ar": "ميكانيكا (تكييف)"}, {"v": "Electrical", "ar": "كهرباء"}, {"v": "Plumbing & Drainage", "ar": "صحي وصرف"}, {"v": "Fire Fighting & Fire Alarm", "ar": "مكافحة وإنذار حريق"}, {"v": "ELV / Low Current", "ar": "تيار خفيف"}, {"v": "Infrastructure & Roads", "ar": "بنية تحتية وطرق"}, {"v": "Landscape", "ar": "تنسيق مواقع"}, {"v": "Facade", "ar": "واجهات"}, {"v": "Elevators", "ar": "مصاعد"}, {"v": "Interior / Fit-out", "ar": "تشطيبات داخلية"}, {"v": "QA/QC", "ar": "ضبط الجودة"}, {"v": "HSE", "ar": "السلامة"}, {"v": "Planning", "ar": "التخطيط"}, {"v": "Commercial / Contracts", "ar": "تجاري / عقود"}, {"v": "General", "ar": "عام"}], "contractors": [{"v": "Main Contractor", "ar": "المقاول الرئيسي"}, {"v": "Subcontractor A", "ar": "مقاول باطن A"}, {"v": "Subcontractor B", "ar": "مقاول باطن B"}, {"v": "Subcontractor C", "ar": "مقاول باطن C"}], "elements": [{"v": "General Drawings", "ar": "مخططات عامة"}, {"v": "Temporary Drawings", "ar": "مخططات أعمال مؤقتة"}, {"v": "Foundation", "ar": "أساسات"}, {"v": "Slabs", "ar": "بلاطات"}, {"v": "Columns", "ar": "أعمدة"}, {"v": "Shear Walls & Cores", "ar": "جدران قص وأنوية"}, {"v": "Beams", "ar": "كمرات"}, {"v": "Walls", "ar": "جدران"}, {"v": "Stairs", "ar": "سلالم"}, {"v": "Roof", "ar": "سطح"}, {"v": "Facade / Cladding", "ar": "واجهات / تكسيات"}, {"v": "Waterproofing", "ar": "عزل مائي"}, {"v": "Finishes", "ar": "تشطيبات"}, {"v": "Doors & Windows", "ar": "أبواب ونوافذ"}, {"v": "Ceilings", "ar": "أسقف"}, {"v": "Flooring", "ar": "أرضيات"}, {"v": "Electrical", "ar": "كهرباء"}, {"v": "HVAC", "ar": "تكييف"}, {"v": "Plumbing", "ar": "أعمال صحية"}, {"v": "Fire Fighting", "ar": "مكافحة حريق"}, {"v": "ELV / Low Current", "ar": "تيار خفيف"}, {"v": "Elevators", "ar": "مصاعد"}, {"v": "Landscape", "ar": "تنسيق مواقع"}, {"v": "Infrastructure", "ar": "بنية تحتية"}, {"v": "Fit-out", "ar": "تشطيبات داخلية"}], "phases": [{"v": "ALL", "ar": "الكل"}], "zones": [{"v": "ALL", "ar": "الكل"}], "_at": ""};
 
 function activeCutoff(db = S.db) { return live(db.cutoffs).filter(c => c.status === 'open').sort((a, b) => b.date.localeCompare(a.date))[0] || null; }
@@ -2465,17 +2569,22 @@ async function saveLocal() {
   if (S.cloud) { S.ui.cloudDirty = true; clearTimeout(syncTimer); syncTimer = setTimeout(() => syncCloud(false), 4000); }
   else if (S.dir) { clearTimeout(syncTimer); syncTimer = setTimeout(() => syncFolder(false), 1500); }
 }
+/* report visit log (28-Nov-2026, decision 123): db.rvisits = { _at, v: { <session id>: { u, n, t, in, at, out, dev, e, p: [[page, s, d, f]], pr: [[pages, s, n]] } } } – merged per sign-in (newest stamp wins);
+   the stamp _at lets a page still running an older tool keep the newest copy. Kept for 365 days, at most 1500 sign-ins – the same rule on every copy, so pruned entries never come back */
+function rvPrune(db) { const V = db.rvisits && db.rvisits.v; if (!V) return; const lim = new Date(Date.now() - 365 * 864e5).toISOString(); let ks = Object.keys(V).filter(k => { if ((V[k].in || '') < lim) { delete V[k]; return false; } return true; });
+  if (ks.length > 1500) ks.sort((a, b) => (V[b].in || '').localeCompare(V[a].in || '')).slice(1500).forEach(k => delete V[k]); }
 const newer = (a, b) => ((a && a._at) || '') >= ((b && b._at) || '') ? a : b;
 function mergeDB(A, B) { // returns merged copy (A = local, B = remote)
   if (!B) return A; if (!A) return B;
   const M = clone(A);
   ['project', 'params', 'lists', 'security', 'rsrc', 'xhist', 'model4d'].forEach(k => { if (A[k] || B[k]) M[k] = clone(newer(A[k], B[k])); });
-  Object.keys(B).forEach(k => { if (!(k in M)) M[k] = clone(B[k]); else if (M[k] && B[k] && typeof B[k] === 'object' && !Array.isArray(B[k]) && B[k]._at && !['presence', 'updates', 'schedule', 'baseline', 'pinv'].includes(k)) M[k] = clone(newer(M[k], B[k])); });   // keys added by newer tools are carried, never dropped
+  Object.keys(B).forEach(k => { if (!(k in M)) M[k] = clone(B[k]); else if (M[k] && B[k] && typeof B[k] === 'object' && !Array.isArray(B[k]) && B[k]._at && !['presence', 'updates', 'schedule', 'baseline', 'pinv', 'rvisits'].includes(k)) M[k] = clone(newer(M[k], B[k])); });   // keys added by newer tools are carried, never dropped
   if (B.schedule && (!A.schedule || (B.schedule.importedAt || '') > (A.schedule.importedAt || ''))) M.schedule = clone(B.schedule);
   if (B.baseline && (!A.baseline || (B.baseline.importedAt || '') > (A.baseline.importedAt || ''))) M.baseline = clone(B.baseline);
   M.schema = Math.max(A.schema || 1, B.schema || 1);
   M.pinv = M.pinv || {}; Object.entries(B.pinv || {}).forEach(([k, e]) => { const a = M.pinv[k]; if (!a || (e.at || '') > (a.at || '')) M.pinv[k] = clone(e); });   // viewable PINs (platform manager), per user
   M.presence = M.presence || {}; Object.entries(B.presence || {}).forEach(([k, e]) => { const a = M.presence[k]; if (!a || (e.at || '') > (a.at || '')) M.presence[k] = clone(e); });
+  if (A.rvisits || B.rvisits) { const R = M.rvisits = clone(A.rvisits || { v: {} }), bv = (B.rvisits || {}).v || {}; R.v = R.v || {}; Object.entries(bv).forEach(([k, e]) => { const a = R.v[k]; if (!a || (e.at || '') > (a.at || '')) R.v[k] = clone(e); }); R._at = [(A.rvisits || {})._at, (B.rvisits || {})._at].filter(Boolean).sort().pop() || ''; rvPrune(M); }   // report visit log (28-Nov-2026): one entry per sign-in, newest stamp wins
   COLLS.forEach(k => {
     const map = new Map(); (A[k] || []).forEach(r => map.set(r._id, r));
     (B[k] || []).forEach(r => { const a = map.get(r._id); if (!a || (r._at || '') > (a._at || '')) map.set(r._id, r); });
@@ -7489,6 +7598,7 @@ function ptGate(ctx) {
   lg.querySelectorAll('[data-r]').forEach(b => b.onclick = () => { r = b.dataset.r; lg.querySelectorAll('[data-r]').forEach(x => x.classList.toggle('on', x === b)); updPin(); });
   const enter = async (db, user, audAction, portal) => {
     S.db = db; S.user = user; S.portal = portal; S.page = 'home'; S.ui.rpPage = null; lg.remove();
+    if (portal === 'rp' && typeof RVIS !== 'undefined') RVIS.start(user, audAction === 'emergency sign in');   // report visit log (28-Nov-2026)
     PRES.stamp('in');   // sign-in time is kept in the presence register (the user record is not re-stamped, so a manager's newer edit of it is never overridden)
     audit(audAction || 'sign in', `${user.name} (${user.title || user.role})${portal === 'rp' ? ' · report' : ''}`);
     S.cloud = null; S.dir = null; S.ui.cloudAuth = false; S.ui.cloudAuthShown = false; S.ui.cloudDirty = true;
@@ -7506,6 +7616,7 @@ function ptGate(ctx) {
     if (g === 'rp') {
       const u = live(db.rusers || []).find(x => x._id === lg.querySelector('[data-us]').value && x.active !== false);
       if (!u || (await rpinHash(u._id, pin)) !== u.pinHash) { toast(T('wrong_pin'), 'bad'); return; }
+      if (PINV.dec(u, db) !== pin) PINV.set(db, u._id, pin);   // report PIN set before 28-Nov-2026: viewable for the portal manager from now on
       S.ui.luser = u._id; savePrefs();
       return enter(db, { id: u._id, name: u.name, title: u.title || '', role: 'viewer', perms: (u.perms || []).slice(), pv: u.pv || 0 }, 'sign in', 'rp');
     }
@@ -7554,9 +7665,8 @@ const RP_PAGES = [   // 15 numbered dashboard pages (13 until 22-Nov-2026, 14 un
   { k: 'qhse', en: 'Quality & Safety', ar: 'الجودة والسلامة', t: ['Quality & Safety', 'الجودة والسلامة'] },
   { k: 'documents', en: 'Documents', ar: 'المستندات', t: ['Documents', 'المستندات'] },
   { k: 'photos', en: 'Project Photos', ar: 'صور المشروع', t: ['Photos', 'الصور'] },
-  { k: 'end', en: 'End', ar: 'الختام', t: ['End', 'الختام'] },
-  { k: 'checks', en: 'Information Check', ar: 'فحص المعلومات', t: ['Info Check', 'فحص المعلومات'] }
-];
+  { k: 'end', en: 'End', ar: 'الختام', t: ['End', 'الختام'] }
+];   // 28-Nov-2026 (decision 123): Information Check left the report pages – it is a portal tool (RP_ADMIN, icon in the top bar, own permission 'checks')
 // pages added after report users were set up: open for users who hold a related page, until their permissions are saved again (pv = 2 / 3 / 4)
 const RP_IMPLIED = { layout: 'executive', resources: 'update', lookahead: 'delays', milestones: 'update', cycle: 'sim4d', analysis: 'update', health: 'update', end: 'cover' };
 const RP_IMPLIED3 = { summary: ['executive', 'cover'], actions: ['executive', 'cover'], critical: ['analysis', 'update'], design: ['analysis', 'update'], ncr: ['documents'], dq: ['health', 'update'] };
@@ -7564,12 +7674,17 @@ const RP_IMPLIED4 = { critical: ['milestones', 'summary', 'update'], rescost: ['
 const RP_IMPLIED5 = { playout: ['sim4d', 'layout'] };
 const RP_IMPLIED6 = { manres: ['rescost', 'resources'], finance: ['rescost', 'cost'] };   // 22-Nov-2026: Resources & Cost split into Resources and Financial Status – open for users who held it (pv < 6)   // 18-Nov-2026: the Vertical Progress Layout page opens for users who hold the 4D page (pv < 5)
 const RP_IMPLIED7 = { drawings: ['documents', 'design'] };   // 22-Nov-2026 (decision 107): the Drawings page opens for users who hold the Documents page (pv < 7)
-const RP_ADMIN = [{ k: 'rusers', en: 'Report users', ar: 'مستخدمو التقرير', admin: true }];
-const RP_XPERM = [{ k: 'rcfg', en: 'Customise the report: hide mode (hide any information), presentation pages, cover image', ar: 'تخصيص التقرير: وضع الإخفاء (إخفاء أي معلومة)، صفحات العرض، صورة الغلاف', xp: true }];
+/* portal tools (28-Nov-2026, decision 123): icons in the top bar, not report pages – Information Check (a dashboard in the report frame, own view permission 'checks', tool: 1),
+   Users & visits (portal manager only, admin) and Report sources (admin, pushed below); none is numbered, presented or part of "Print report" */
+const RP_ADMIN = [{ k: 'checks', en: 'Information Check', ar: 'فحص المعلومات', t: ['Info Check', 'فحص المعلومات'], tool: 1, i: 'check' }, { k: 'rusers', en: 'Users & visits', ar: 'المستخدمون والزيارات', admin: true, i: 'users' }];
+const RP_XPERM = [{ k: 'rcfg', en: 'Customise the report: hide mode (hide any information), presentation pages, cover image', ar: 'تخصيص التقرير: وضع الإخفاء (إخفاء أي معلومة)، صفحات العرض، صورة الغلاف', xp: true }, { k: 'rprint', en: 'Print / PDF: print a page, the whole report and the Look-Ahead meeting sheet', ar: 'الطباعة / PDF: طباعة صفحة، التقرير كاملاً وجدول اجتماع الأعمال القادمة', xp: true }];
 const rpCo = (id, p) => (S.lang === 'ar' && id.nameAr ? id.nameAr : id.name || id.nameAr || (p && p.contractor) || '');   // company name from the project database (Project setup › Company identity), in the report language
-const RP_ALL = [...RP_PAGES.map(p => p.k), 'rusers', 'rcfg'];
+const RP_ALL = [...RP_PAGES.map(p => p.k), 'checks', 'rusers', 'rcfg', 'rprint'];
 const rpinHash = (id, pin) => SHA256(`dcp-r:${id}:${String(pin).trim()}`);
-const rpHas = (u, k) => { const P = (u && u.perms) || []; if (P.includes(k)) return true; if (k === 'rcfg' && P.includes('rusers')) return true;   // report user managers can always customise
+const rpHas = (u, k) => { const P = (u && u.perms) || []; if (P.includes('rusers')) return true;   // 28-Nov-2026 (decision 123): the portal manager ('rusers') holds every page, tool and action
+  if (k === 'checks') return ((u || {}).pv || 0) >= 8 && P.includes('checks');   // Information Check: only when the portal manager ticked it (users saved before 28-Nov-2026 lose it – decision 123)
+  if (k === 'rprint') return P.includes('rprint');   // print: only the users the portal manager chose
+  if (P.includes(k)) return true;
   const old = x => !u.pv && !!RP_IMPLIED[x] && P.includes(RP_IMPLIED[x]), v3 = x => (u.pv || 0) < 3 && (RP_IMPLIED3[x] || []).some(y => P.includes(y) || old(y));
   if (old(k) || v3(k)) return true; if ((u.pv || 0) < 5 && (RP_IMPLIED5[k] || []).some(y => P.includes(y) || old(y) || v3(y))) return true; if ((u.pv || 0) < 6 && (RP_IMPLIED6[k] || []).some(y => P.includes(y) || old(y) || v3(y) || ((u.pv || 0) < 4 && (RP_IMPLIED4[y] || []).some(z => P.includes(z))))) return true; if ((u.pv || 0) < 7 && (RP_IMPLIED7[k] || []).some(y => P.includes(y) || old(y) || v3(y))) return true; return (u.pv || 0) < 4 && (RP_IMPLIED4[k] || []).some(y => P.includes(y) || old(y) || v3(y)); };
 const rpCan = k => !!S.user && rpHas(S.user, k);
@@ -7578,6 +7693,7 @@ const fmtPct = (x, d = 1) => isNum(x) ? `${(x * 100).toFixed(d)}%` : '—';
 
 const RP = {
   pages: () => [...RP_PAGES, ...RP_ADMIN].filter(p => rpCan(p.k)),
+  tools: () => RP_ADMIN.filter(p => rpCan(p.k)),   // portal tools of the top bar (Information Check, Users & visits, Report sources)
   main: () => RP_PAGES.filter(p => rpCan(p.k)),   // report pages (no admin pages), in report order – the 4D group included (presentation, print, hide mode)
   num: () => RP_PAGES.filter(p => !p.grp && rpCan(p.k)),   // numbered report pages (tabs 01…15)
   grp: g => RP_PAGES.filter(p => p.grp === g && rpCan(p.k)),   // pages of a separate group (4D)
@@ -7588,17 +7704,20 @@ const RP = {
     const pgs = RP.pages(); if (!pgs.some(p => p.k === S.ui.rpPage)) S.ui.rpPage = pgs.length ? pgs[0].k : null;
     const p = S.db.project, cut = activeCutoff() || lastCutoff(), sch = SCH(), id = IDENT(S.db);
     const i = pgs.findIndex(x => x.k === S.ui.rpPage), pg = pgs[i], main = RP.num(), g4 = RP.grp('4d'), n = pg ? (pg.grp ? `4D·${g4.indexOf(pg) + 1}` : main.indexOf(pg) + 1) : 0;
-    const adm = pgs.filter(x => x.admin);
-    const cfg = rpCan('rcfg'), edit = !!(S.ui.rvEdit && cfg);
-    document.getElementById('app').innerHTML = `<div class="rpo ${edit ? 'rv-ed' : ''}">
-      <header class="rp-h">${id.logo ? `<span class="rp-logo"><img src="${id.logo}" alt=""></span>` : ''}<div class="rp-pt"><b dir="auto">${h(projTitle(p))}</b><span><bdi>${h(p.number)} · ${h(p.code)}</bdi> · ${LBL('Reports & 4D', 'التقارير و4D')}</span></div><span class="sp"></span>
-        ${cut ? `<span class="chip co">${T('report_no')} <b>${h(cut.reportNo || '')}</b></span><span class="chip">${T('cutoff')}: <b>${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="chip">${T('data_date')}: <b>${D.fmt(sch.dataDate)}</b></span>` : ''}
-        <span class="chip" id="syncChip"></span><span class="rp-u">${ic('user')}<b>${h(S.user.name)}</b></span>
-        ${cfg ? `<button class="btn sm ${edit ? 'on' : ''}" data-rvedit title="${LBL('Hide mode – hide any information of the report (cards, items, table columns and rows, chart series) from the view, presentation and print; nothing is deleted', 'وضع الإخفاء – إخفاء أي معلومة في التقرير (كروت، عناصر، أعمدة وصفوف الجداول، سلاسل الرسوم) من العرض والتقديم والطباعة؛ لا يُحذف شيء')}">${ic('eyeoff')}${LBL('Hide mode', 'وضع الإخفاء')}</button>` : ''}<button class="btn sm pres" data-rppres title="${LBL('Presentation mode – choose the pages to show', 'وضع العرض – اختر الصفحات التي تُعرض')}">${ic('play')}${LBL('Present', 'عرض تقديمي')}</button>
-        <button class="btn sm" data-rpprint title="${LBL('Print / PDF – this page as it is set now (the whole report: button “Print report” on the cover)', 'طباعة / PDF – هذه الصفحة بحالتها الحالية (التقرير كاملاً: زر "طباعة التقرير" في الغلاف)')}">${ic('print')}${LBL('Print page', 'طباعة الصفحة')}</button><button class="btn sm ghost" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="btn sm ghost" data-lang title="${T('switch_lang')}">${ic('globe')}</button>${S.user.id ? `<button class="btn sm ghost" data-mypin title="${T('u_change_mine')}">${ic('key')}</button>` : ''}<button class="btn sm ghost" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></header>
-      <nav class="rp-nav2" aria-label="${LBL('Report pages', 'صفحات التقرير')}"><button class="rp-ar" data-prev ${i <= 0 ? 'disabled' : ''} aria-label="${LBL('Previous page', 'الصفحة السابقة')}">‹</button><div class="rp-tb">${main.map((x, m) => `<button class="rp-tab2 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}"><span><i dir="ltr">${String(m + 1).padStart(2, '0')}</i>${LBL(...x.t)}</span></button>`).join('')}${adm.map(x => `<button class="rp-tab2 adm ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}" aria-label="${rpLbl(x)}"><span>${ic(x.k === 'rsrc' ? 'folder' : 'user')}</span></button>`).join('')}</div>${g4.length ? `<div class="rp-g4" role="group" aria-label="4D"><span class="rp-g4s" aria-hidden="true"></span>${g4.map(x => `<button class="rp-tab2 g4 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}"><span>${ic(x.k === 'sim4d' ? 'cube' : 'layers')}${LBL(...x.t)}</span></button>`).join('')}</div>` : ''}<span class="rp-cnt" dir="ltr">${pg && !pg.admin ? (pg.grp ? `${n}` : `${n} / ${main.length}`) : ''}</span><button class="rp-ar" data-next ${i < 0 || i >= pgs.length - 1 ? 'disabled' : ''} aria-label="${LBL('Next page', 'الصفحة التالية')}">›</button></nav>
-      ${edit && pg && !pg.admin ? RV.bar(pg) : ''}
-      <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${pg ? RP.frame(pg, n, pg.grp ? 0 : main.length) : ''}</div></div>
+    const tools = RP.tools(), onTool = !!(pg && (pg.admin || pg.tool)), mn = RP.main(), mi = mn.findIndex(x => x.k === S.ui.rpPage);
+    const cfg = rpCan('rcfg'), edit = !!(S.ui.rvEdit && cfg && pg && !pg.admin), prn = rpCan('rprint');
+    const tb = (k, icon, en, ar, tip, x = '') => `<button class="rh-b ${x}" ${k} title="${h(tip || LBL(en, ar))}">${ic(icon)}<span>${LBL(en, ar)}</span></button>`;
+    /* top bar (28-Nov-2026, decision 123): identity · report chips · actions (Hide, Present, Print) · portal tools (icons) · user · utilities – one row, nothing wraps or scrolls */
+    document.getElementById('app').innerHTML = `<div class="rpo rpo3 ${edit ? 'rv-ed' : ''}">
+      <header class="rp-h rh">${id.logo ? `<span class="rp-logo"><img src="${id.logo}" alt=""></span>` : ''}<div class="rp-pt"><b dir="auto" title="${h(projTitle(p))}">${h(projTitle(p))}</b><span><bdi>${h(p.number)} · ${h(p.code)}</bdi> · ${LBL('Reports & 4D', 'التقارير و4D')}</span></div>
+        <div class="rh-meta">${cut ? `<span class="rh-c co" title="${T('report_no')}">${LBL('Report', 'تقرير')} <b dir="ltr">${h(cut.reportNo || '')}</b></span><span class="rh-c" title="${T('cutoff')}">${LBL('Cut-off', 'القطع')} <b dir="ltr">${D.fmt(cut.date)}</b></span>` : ''}${sch ? `<span class="rh-c dd" title="${T('data_date')}">${LBL('Data date', 'تاريخ البيانات')} <b dir="ltr">${D.fmt(sch.dataDate)}</b></span>` : ''}<span class="chip rh-sy" id="syncChip"></span></div><span class="sp"></span>
+        <div class="rh-g rh-act">${cfg ? tb('data-rvedit', 'eyeoff', 'Hide mode', 'وضع الإخفاء', LBL('Hide mode – hide any information of the report (cards, items, table columns and rows, chart series) from the view, presentation and print; nothing is deleted', 'وضع الإخفاء – إخفاء أي معلومة في التقرير (كروت، عناصر، أعمدة وصفوف الجداول، سلاسل الرسوم) من العرض والتقديم والطباعة؛ لا يُحذف شيء'), edit ? 'on' : '') : ''}${tb('data-rppres', 'play', 'Present', 'عرض تقديمي', LBL('Presentation mode – choose the pages to show', 'وضع العرض – اختر الصفحات التي تُعرض'), 'pres')}${prn ? tb('data-rpprint', 'print', 'Print', 'طباعة', LBL('Print / PDF – this page as it is set now (the whole report: button “Print report” on the cover)', 'طباعة / PDF – هذه الصفحة بحالتها الحالية (التقرير كاملاً: زر "طباعة التقرير" في الغلاف)')) : ''}</div>
+        ${tools.length ? `<div class="rh-g rh-tools" role="group" aria-label="${LBL('Portal tools', 'أدوات البوابة')}">${tools.map(x => `<button class="rh-i ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" data-tool="${x.k}" title="${rpLbl(x)}" aria-label="${rpLbl(x)}">${ic(x.i || 'folder')}</button>`).join('')}</div>` : ''}
+        ${S.user.id ? `<button class="rh-u" data-mypin title="${h(T('u_change_mine'))}">${ic('user')}<b dir="auto">${h(S.user.name)}</b>${ic('key', 'k')}</button>` : `<span class="rh-u" title="${h(S.user.name)}">${ic('user')}<b dir="auto">${h(S.user.name)}</b></span>`}
+        <div class="rh-g rh-ut"><button class="rh-i" data-reload title="${PWA.tip()}">${ic('reload')}</button><button class="rh-i rh-lg" data-lang title="${T('switch_lang')}">${S.lang === 'ar' ? 'EN' : 'ع'}</button><button class="rh-i" data-out title="${LBL('Sign out', 'خروج')}">${ic('out')}</button></div></header>
+      <nav class="rp-nav2 fit" aria-label="${LBL('Report pages', 'صفحات التقرير')}"><button class="rp-ar" data-prev ${mi <= 0 ? 'disabled' : ''} aria-label="${LBL('Previous page', 'الصفحة السابقة')}">‹</button><div class="rp-tb">${main.map((x, m) => `<button class="rp-tab2 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${String(m + 1).padStart(2, '0')} · ${rpLbl(x)}"><span><i dir="ltr">${String(m + 1).padStart(2, '0')}</i><em>${LBL(...x.t)}</em></span></button>`).join('')}</div>${g4.length ? `<div class="rp-g4" role="group" aria-label="4D"><span class="rp-g4s" aria-hidden="true"></span>${g4.map(x => `<button class="rp-tab2 g4 ${x.k === S.ui.rpPage ? 'on' : ''}" data-rp="${x.k}" title="${rpLbl(x)}"><span>${ic(x.k === 'sim4d' ? 'cube' : 'layers')}<em>${LBL(...x.t)}</em></span></button>`).join('')}</div>` : ''}<span class="rp-cnt" dir="ltr">${pg && !onTool ? (pg.grp ? `${n}` : `${n} / ${main.length}`) : ''}</span><button class="rp-ar" data-next ${mi < 0 || mi >= mn.length - 1 ? 'disabled' : ''} aria-label="${LBL('Next page', 'الصفحة التالية')}">›</button></nav>
+      ${edit ? RV.bar(pg) : ''}
+      <div class="rp-stage" id="rpStage"><div class="rp-page" id="rpPage">${pg ? RP.frame(pg, onTool ? 0 : n, pg.grp || onTool ? 0 : main.length) : ''}</div></div>
       <footer class="rp-f" dir="ltr">${h(sigLine())}</footer></div>`;
     const app = document.getElementById('app');
     app.querySelectorAll('[data-rp]').forEach(b => b.onclick = () => RP.go(b.dataset.rp));
@@ -7606,14 +7725,14 @@ const RP = {
     app.querySelector('[data-lang]').onclick = () => { S.lang = S.lang === 'ar' ? 'en' : 'ar'; savePrefs(); RP.render(); };
     const mp = app.querySelector('[data-mypin]'); if (mp) mp.onclick = RP.changeMyPin;
     app.querySelector('[data-out]').onclick = () => { S.ui.pres = null; S.ui.rvEdit = false; signOut(); };
-    app.querySelector('[data-rpprint]').onclick = () => RP.print();
+    const pp = app.querySelector('[data-rpprint]'); if (pp) pp.onclick = () => RP.print();
     app.querySelector('[data-rppres]').onclick = () => RP.presDialog();
     const ce = app.querySelector('[data-rvedit]'); if (ce) ce.onclick = () => { S.ui.rvEdit = !S.ui.rvEdit; RP.render(); };
     if (edit) RV.wireBar(app, pg);
     const pgEl = document.getElementById('rpPage');
     if (!S.ui.rpPage) pgEl.innerHTML = `<div class="rp-ph"><h2>${LBL('No report page is open for this user.', 'لا توجد صفحات تقرير متاحة لهذا المستخدم.')}</h2></div>`;
     else RP.show(pgEl, pg);
-    const on = app.querySelector('.rp-tab2.on'); if (on) on.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    const on = app.querySelector('.rp-tab2.on'); if (on && on.scrollIntoViewIfNeeded) on.scrollIntoViewIfNeeded(false);
     RP.fit(); setSync(S.sync.state, S.sync.msg);
     if (S.db.rsrc && S.db.rsrc.xer && S.ui.xscanned !== S.db.id && typeof scanXER === 'function') { S.ui.xscanned = S.db.id; setTimeout(() => scanXER(false, false), 1500); }   // pick up new update XER files silently (only where the folder is reachable without a prompt)
   },
@@ -7647,7 +7766,7 @@ const RP = {
   },
   step(d) {
     if (S.ui.pres) { const P = S.ui.pres, i = P.i + d; if (i >= 0 && i < P.pages.length) RP.go(P.pages[i]); return; }
-    const pgs = RP.pages(); const i = pgs.findIndex(x => x.k === S.ui.rpPage) + d; if (i >= 0 && i < pgs.length) RP.go(pgs[i].k);
+    const pgs = RP.main(); const i0 = pgs.findIndex(x => x.k === S.ui.rpPage); if (i0 < 0) return; const i = i0 + d; if (i >= 0 && i < pgs.length) RP.go(pgs[i].k);   // previous / next: the report pages only (not the portal tools)
   },
   fit() { // scale the fixed 1280×720 page to the free space (Power BI "fit to page")
     const st = document.getElementById('rpStage'), pg = document.getElementById('rpPage'); if (!st || !pg) return;
@@ -7655,7 +7774,7 @@ const RP = {
   },
   changeMyPin() {
     modal({ title: T('u_change_mine'), size: 'sm', body: `<label class="f">${LBL('New PIN (min. 4)', 'الرمز الجديد (4 على الأقل)')}<input class="in" type="password" data-p1></label><label class="f" style="margin-top:8px">${LBL('Repeat', 'تأكيد')}<input class="in" type="password" data-p2></label>`, foot: `<span class="sp"></span><button class="btn pri" data-k>${T('save')}</button>`,
-      onMount: (el, close) => el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-p1]').value.trim(); if (a.length < 4 || a !== el.querySelector('[data-p2]').value.trim()) return toast(LBL('PINs do not match or are too short', 'الرمزان غير متطابقين أو قصيران'), 'bad'); const u = (S.db.rusers || []).find(x => x._id === S.user.id); if (!u) return; u.pinHash = await rpinHash(u._id, a); u.pinSetAt = nowISO(); stamp(u); touch('report PIN changed', u.name); close(); toast(T('saved'), 'ok'); } });
+      onMount: (el, close) => el.querySelector('[data-k]').onclick = async () => { const a = el.querySelector('[data-p1]').value.trim(); if (a.length < 4 || a !== el.querySelector('[data-p2]').value.trim()) return toast(LBL('PINs do not match or are too short', 'الرمزان غير متطابقين أو قصيران'), 'bad'); const u = (S.db.rusers || []).find(x => x._id === S.user.id); if (!u) return; u.pinHash = await rpinHash(u._id, a); PINV.set(S.db, u._id, a); u.pinSetAt = nowISO(); stamp(u); touch('report PIN changed', u.name); close(); toast(T('saved'), 'ok'); } });
   },
   P: {}
 };
@@ -7689,51 +7808,13 @@ RP.P._plan = (el, pg) => {
     <ul>${items.map(x => `<li>${h(x)}</li>`).join('')}</ul></div>`;
 };
 
-/* ---------- page: report users (separate from the data-collection users) ---------- */
-RP.P.rusers = el => {
-  const us = live(S.db.rusers || []).sort((a, b) => a.name.localeCompare(b.name));
-  el.innerHTML = `<div class="ru"><div class="ru-h"><div><h2>${LBL('Report users', 'مستخدمو التقرير')}</h2><div class="muted small">${LBL('Users of the Reports & 4D portal and the pages each one may open. They are separate from the Data Collection users.', 'مستخدمو بوابة التقارير و4D والصفحات المسموح لكل منهم بفتحها. وهم منفصلون عن مستخدمي جمع البيانات.')}</div></div><span class="sp"></span><button class="btn pri" data-add>${ic('plus')}${LBL('Add user', 'إضافة مستخدم')}</button></div>
-    <div class="tw ru-t"><table class="t"><thead><tr><th>${T('u_name')}</th><th>${LBL('Title', 'الصفة')}</th><th>${LBL('Pages', 'الصفحات')}</th><th>${T('status')}</th><th></th></tr></thead><tbody>${us.map(u => `<tr><td><b>${h(u.name)}</b>${u._id === S.user.id ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}</td><td>${h(u.title || '')}</td><td class="small">${RP_PAGES.filter(p => rpHas(u, p.k)).map(rpLbl).join(' · ')}${(u.perms || []).includes('rusers') ? ` <span class="bdg navy">${LBL('User management', 'إدارة المستخدمين')}</span>` : ''}${(u.perms || []).includes('rcfg') ? ` <span class="bdg">${LBL('Customise', 'تخصيص')}</span>` : ''}</td><td>${u.active === false ? `<span class="bdg">${T('u_inactive')}</span>` : `<span class="bdg ok">${LBL('Active', 'نشط')}</span>`}</td><td><button class="btn sm" data-ed="${u._id}">${ic('pen')}</button></td></tr>`).join('') || `<tr><td colspan="5" class="empty">${LBL('No report users yet – add the first one (it must hold User management).', 'لا يوجد مستخدمون بعد – أضف أول مستخدم (ويجب أن يملك صلاحية إدارة المستخدمين).')}</td></tr>`}</tbody></table></div></div>`;
-  el.querySelector('[data-add]').onclick = () => RP.userDialog(null);
-  el.querySelectorAll('[data-ed]').forEach(b => b.onclick = () => RP.userDialog(b.dataset.ed));
-};
-RP.userDialog = uid_ => {
-  const all = S.db.rusers = S.db.rusers || []; const u0 = uid_ ? all.find(x => x._id === uid_) : null; const u = u0 ? clone(u0) : { _id: 'ru_' + uid(), name: '', title: '', perms: ['cover'], active: true };
-  const opts = [...RP_PAGES, ...RP_ADMIN, ...RP_XPERM];
-  modal({ title: u0 ? LBL('Edit report user', 'تعديل مستخدم التقرير') : LBL('New report user', 'مستخدم تقرير جديد'), body: `<div class="fgrid"><label class="f">${T('u_name')}<input class="in" data-n value="${h(u.name)}"></label><label class="f">${LBL('Title / organisation', 'الصفة / الجهة')}<input class="in" data-t value="${h(u.title || '')}"></label>
-      <label class="f">${u0 ? LBL('New PIN (leave empty to keep)', 'رمز جديد (اتركه فارغاً للإبقاء)') : LBL('PIN (min. 4)', 'الرمز (4 على الأقل)')}<input class="in" type="text" data-pn autocomplete="off"></label><label class="f" style="flex-direction:row;align-items:center;gap:8px;margin-top:22px"><input type="checkbox" data-ac ${u.active !== false ? 'checked' : ''}>${LBL('Active', 'نشط')}</label></div>
-      <div class="fsec" style="margin-top:12px"><h4>${LBL('Pages this user may open', 'الصفحات المسموح بفتحها')}</h4><div class="ru-pp">${opts.map(p => `<label><input type="checkbox" data-pm="${p.k}" ${rpHas(u, p.k) ? 'checked' : ''}>${p.xp ? `<b>${rpLbl(p)}</b>` : p.admin ? `<b>${rpLbl(p)} – ${LBL('user management', 'إدارة المستخدمين')}</b>` : rpLbl(p)}</label>`).join('')}</div>
-      <div class="ru-qb"><button class="btn sm" data-allp>${LBL('All report pages', 'كل صفحات التقرير')}</button></div></div>`,
-    foot: `${u0 && u0._id !== S.user.id ? `<button class="btn danger" data-del>${ic('trash')}${T('del')}</button>` : ''}<span class="sp"></span><button class="btn pri" data-k>${T('save')}</button>`,
-    onMount: (el, close) => {
-      el.querySelector('[data-allp]').onclick = () => el.querySelectorAll('[data-pm]').forEach(c => { if (!['rusers', 'rcfg'].includes(c.dataset.pm)) c.checked = true; });
-      const holders = list => list.filter(x => !x._del && x.active !== false && (x.perms || []).includes('rusers')).length;
-      const save = async del => {
-        const n = el.querySelector('[data-n]').value.trim(); if (!n && !del) return toast(T('name_req'), 'bad');
-        const nu = { ...u, name: n, title: el.querySelector('[data-t]').value.trim(), active: el.querySelector('[data-ac]').checked, perms: [...el.querySelectorAll('[data-pm]:checked')].map(c => c.dataset.pm), pv: 7 };
-        if (del) nu._del = true;
-        if (!del && live(all).some(x => x._id !== nu._id && x.name.toLowerCase() === n.toLowerCase())) return toast(LBL('This name is already used', 'هذا الاسم مستخدم بالفعل'), 'bad');
-        const pin = el.querySelector('[data-pn]').value.trim();
-        if (!u0 && pin.length < 4) return toast(LBL('PIN: at least 4 characters', 'الرمز: 4 أحرف على الأقل'), 'bad');
-        if (pin) { if (pin.length < 4) return toast(LBL('PIN: at least 4 characters', 'الرمز: 4 أحرف على الأقل'), 'bad'); nu.pinHash = await rpinHash(nu._id, pin); nu.pinSetAt = nowISO(); }
-        const after = [...all.filter(x => x._id !== nu._id), nu];
-        if (!holders(after)) return toast(LBL('At least one active user must keep Report user management.', 'يجب أن يبقى مستخدم نشط واحد على الأقل بصلاحية إدارة مستخدمي التقرير.'), 'bad');
-        if (nu._id === S.user.id && !nu.active) return toast(LBL('You cannot deactivate yourself.', 'لا يمكنك إيقاف حسابك.'), 'bad');
-        stamp(nu); const i = all.findIndex(x => x._id === nu._id); if (i >= 0) all[i] = nu; else all.push(nu);
-        touch(del ? 'report user deleted' : u0 ? 'report user changed' : 'report user added', nu.name);
-        if (nu._id === S.user.id) { S.user.perms = nu.perms.slice(); S.user.pv = 5; }
-        close(); toast(T('saved'), 'ok'); RP.render();
-      };
-      el.querySelector('[data-k]').onclick = () => save(false);
-      const d = el.querySelector('[data-del]'); if (d) d.onclick = async () => { if (await confirmBox(`${T('del')}: <b>${h(u.name)}</b>?`, T('del'), true)) save(true); };
-    } });
-};
+/* ---------- page: report users – rebuilt 28-Nov-2026 (decision 123) as "Users & visits" in report9.js ---------- */
 
 /* ===== REPORT SOURCES: P6 update history (XER folder) and site photos (folder) – chosen per project on the "Report sources" page =====
    db.rsrc = { xer: src, photos: src, _at, _by }   src = { kind: 'cloud', name, link, driveId, itemId, webUrl } | { kind: 'local', name }  (a local folder handle stays on the device that chose it: IDB meta 'rsrc:<project>:<kind>')
    db.xhist = { updates: [ { f, size, dd, fin, mf, n, ns, ip, cp, pv, ev, w } ], scannedAt, _at, _by }   – compact summary of every update XER, shared through the database
    The XER files and photos stay in their folders; only the summary above is stored. */
-RP_ADMIN.push({ k: 'rsrc', en: 'Report sources', ar: 'مصادر التقرير', admin: true }); RP_ALL.push('rsrc');
+RP_ADMIN.push({ k: 'rsrc', en: 'Report sources', ar: 'مصادر التقرير', admin: true, i: 'folder' }); RP_ALL.push('rsrc');
 
 const SRC = {
   key: kind => `rsrc:${S.db.id}:${kind}`,
@@ -10749,7 +10830,7 @@ RP.P.lookahead = (el, pg) => {
     el.querySelector('[data-las]').innerHTML = `<div class="xu-t">${LBL('Look-ahead', 'الفترة القادمة')}</div><div class="xla-w">${LA_WIN.map(n => `<button class="${n === wk ? 'on' : ''}" data-law="${n}"><b>${n}</b><span>${LBL('weeks', 'أسابيع')}</span></button>`).join('')}</div>
       <div class="xla-b"><span>${LBL('Based on', 'على أساس')}</span><b dir="ltr">${h(X.lbl)}</b><span>${LBL('Data date', 'تاريخ البيانات')}</span><b dir="ltr">${D_fmt(X.dd)}</b><span>${LBL('Window end', 'نهاية الفترة')}</span><b dir="ltr">${D_fmt(WE)}</b></div>
       <div class="xu-t">${LBL('Show', 'العرض')}</div><div class="xdl-f">${[['all', LBL('All activities', 'كل الأنشطة')], ['start', LBL('Starting', 'تبدأ')], ['cont', LBL('Continuing', 'مستمرة')], ['finish', LBL('Finishing', 'تنتهي')], ['crit', LBL('Critical', 'حرجة')]].map(([k, t]) => `<button class="xdl-x xla-x ${fx === k ? 'on' : ''}" data-lafx="${k}"><span>${t}</span><b>${fmtN(R0.filter(x => isK(x, k)).length)}</b></button>`).join('')}</div>
-      ${prt ? '' : `<button class="xla-pr" data-lapr title="${LBL('Print the look-ahead table of this selection for the progress meeting (A4, by zone, building and level)', 'طباعة جدول الأعمال القادمة لهذا الاختيار لاجتماع المتابعة (A4، حسب المنطقة والمبنى والمستوى)')}">${ic('print')}<span>${LBL('Print look-ahead sheet', 'طباعة جدول الأعمال القادمة')}</span></button>`}`;
+      ${prt || !rpCan('rprint') ? '' : `<button class="xla-pr" data-lapr title="${LBL('Print the look-ahead table of this selection for the progress meeting (A4, by zone, building and level)', 'طباعة جدول الأعمال القادمة لهذا الاختيار لاجتماع المتابعة (A4، حسب المنطقة والمبنى والمستوى)')}">${ic('print')}<span>${LBL('Print look-ahead sheet', 'طباعة جدول الأعمال القادمة')}</span></button>`}`;
     /* cards */
     el.querySelector('[data-lak]').innerHTML = `${xk('k1', LBL('Activities in the window', 'أنشطة الفترة'), fmtN(R.length), `${fmtN(nSt)} ${LBL('start', 'تبدأ')} · ${fmtN(nCo)} ${LBL('continue', 'مستمرة')} · ${fmtN(nFi)} ${LBL('finish', 'تنتهي')}`, '')}
       ${xk('k2', LBL('Work planned in the window', 'قيمة الأعمال المخططة'), rpM(val), `${bac ? fmtPct(val / bac, 1) : '—'} ${LBL('of the budget', 'من الميزانية')} · ${cur}`, '')}
@@ -10855,14 +10936,14 @@ RP.presDialog = () => {
   modal({ title: LBL('Presentation – choose the pages', 'العرض التقديمي – اختر الصفحات'), size: 'lg', body: `<div class="pr-d"><div class="muted small">${LBL('Tick the pages to present, in report order. The cover always comes first. Items hidden in Hide mode stay hidden. Keys: ← → / Space / PageDown, Home, End, Esc to leave.', 'اختر الصفحات التي تُعرض بترتيب التقرير. الغلاف أولاً دائماً. العناصر المخفية من وضع الإخفاء تبقى مخفية. المفاتيح: ← → / المسافة / PageDown و Home و End و Esc للخروج.')}</div>
       <div class="pr-sh"><span class="sp"></span><button class="btn sm ghost" data-sa="1">${LBL('All', 'الكل')}</button><button class="btn sm ghost" data-sa="0">${LBL('None', 'لا شيء')}</button></div>
       <div class="pr-ss pr-flat">${all.map((p, i) => { const n = RV.count(p.k); return `${p.grp && !(all[i - 1] || {}).grp ? `<div class="pr-gh">${ic('cube')}${LBL('4D & vertical progress – separate pages, included where ticked', 'صفحات 4D والتقدم الرأسي – صفحات منفصلة تُضم عند اختيارها')}</div>` : ''}<label class="${p.k === 'cover' ? 'lock' : ''}"><input type="checkbox" data-pk="${p.k}" ${sel.has(p.k) ? 'checked' : ''} ${p.k === 'cover' ? 'disabled' : ''}><span dir="ltr">${RP.no(p)}</span><b>${rpLbl(p)}</b>${n ? `<em>${n} ${LBL('hidden', 'مخفي')}</em>` : ''}</label>`; }).join('')}</div></div>`,
-    foot: `<button class="btn" data-prp>${ic('print')}${LBL('Print these pages', 'طباعة هذه الصفحات')}</button>${can ? `<button class="btn" data-prs>${LBL('Save as default', 'حفظ كاختيار افتراضي')}</button>` : ''}<span class="sp"></span><span class="muted small" data-pcn></span><button class="btn pri" data-prgo>${ic('play')}${LBL('Start presentation', 'بدء العرض')}</button>`,
+    foot: `${rpCan('rprint') ? `<button class="btn" data-prp>${ic('print')}${LBL('Print these pages', 'طباعة هذه الصفحات')}</button>` : ''}${can ? `<button class="btn" data-prs>${LBL('Save as default', 'حفظ كاختيار افتراضي')}</button>` : ''}<span class="sp"></span><span class="muted small" data-pcn></span><button class="btn pri" data-prgo>${ic('play')}${LBL('Start presentation', 'بدء العرض')}</button>`,
     onMount: (el, close) => {
       const keys = () => all.map(p => p.k).filter(k => k === 'cover' || (el.querySelector(`[data-pk="${k}"]`) || {}).checked);
       const cnt = () => { el.querySelector('[data-pcn]').textContent = `${keys().length} ${LBL('pages', 'صفحة')}`; }; cnt();
       el.querySelectorAll('[data-pk]').forEach(c => c.onchange = cnt);
       el.querySelectorAll('[data-sa]').forEach(b => b.onclick = () => { el.querySelectorAll('[data-pk]:not([disabled])').forEach(c => { c.checked = b.dataset.sa === '1'; }); cnt(); });
       el.querySelector('[data-prgo]').onclick = () => { const k = keys(); S.ui.presSel = k; close(); RP.startPres(k); };
-      el.querySelector('[data-prp]').onclick = () => { const k = keys(); S.ui.presSel = k; close(); RP.print(k); };
+      const pp = el.querySelector('[data-prp]'); if (pp) pp.onclick = () => { const k = keys(); S.ui.presSel = k; close(); RP.print(k); };
       const sv = el.querySelector('[data-prs]'); if (sv) sv.onclick = () => { const k = keys(); RV.save(c => { c.pres = k; }, `presentation: ${k.length} pages`); S.ui.presSel = k; toast(T('saved'), 'ok'); };
     } });
 };
@@ -11021,7 +11102,7 @@ RP.prHead = (pg, el) => { const cut = rpCut(), sch = SCH(), u = pg.upd ? rpUpd()
   return RP.shHead({ t: rpLbl(pg), chip: `${RP.repTitle()}${cut ? ` · ${T('report_no')} <bdi dir="ltr">${h(cut.reportNo || '')}</bdi>` : ''}`,
     meta: [cut && [T('cutoff'), D.fmt(cut.date)], sch && [T('data_date'), D.fmt(sch.dataDate)], u && [LBL('Update', 'التحديث'), `${h(u.lbl)} · ${D.fmt(u.ddp || u.dd)}`]] }); };
 RP.print = async keys => {   // keys: the pages to print in report order (default: the page on screen)
-  if (RP.printing) return; const pgs = RP.main().filter(p => (keys || [S.ui.rpPage]).includes(p.k)); if (!pgs.length) return toast(LBL('Open a report page to print it.', 'افتح صفحة من التقرير لطباعتها.'), 'bad');
+  if (RP.printing) return; const pgs = [...RP.main(), ...RP.tools().filter(p => p.tool)].filter(p => (keys || [S.ui.rpPage]).includes(p.k));   // a portal tool page (Information Check) prints from its own Print button if (!pgs.length) return toast(LBL('Open a report page to print it.', 'افتح صفحة من التقرير لطباعتها.'), 'bad');
   RP.printing = true; RV.popClose(); toast(pgs.length > 1 ? LBL(`Preparing ${pgs.length} pages for printing…`, `جارٍ تجهيز ${pgs.length} صفحة للطباعة…`) : LBL('Preparing the page for printing…', 'جارٍ تجهيز الصفحة للطباعة…'));
   const box = document.createElement('div'); box.id = 'rpPrint'; box.className = 'rps'; box.dir = document.documentElement.dir; box.style.cssText = 'display:block;position:fixed;left:-20000px;top:0'; document.body.appendChild(box);
   try {
@@ -11060,10 +11141,10 @@ RP.printDialog = () => {
       el.querySelector('[data-prgo]').onclick = () => { const k = keys(); if (!k.length) return; S.ui.prSel = k; close(); RP.print(k); };
     } });
 };
-{ const base = RP.P.cover; RP.P.cover = (el, pg) => { base(el, pg); if (S.ui.pres || el.closest('.rpp')) return; const r = el.querySelector('.op-r'); if (!r) return;
+{ const base = RP.P.cover; RP.P.cover = (el, pg) => { base(el, pg); if (S.ui.pres || el.closest('.rpp') || !rpCan('rprint')) return; const r = el.querySelector('.op-r'); if (!r) return;
   r.insertAdjacentHTML('afterbegin', `<button class="rv-tool op-prb" data-prall title="${LBL('Print the whole report or chosen pages', 'طباعة التقرير كاملاً أو صفحات مختارة')}">${ic('print')}${LBL('Print report', 'طباعة التقرير')}</button>`);
   r.querySelector('[data-prall]').onclick = RP.printDialog; }; }
-document.addEventListener('keydown', e => { if (S.portal !== 'rp' || S.ui.pres || !(e.ctrlKey || e.metaKey) || (e.key || '').toLowerCase() !== 'p') return; const pg = RP.main().find(p => p.k === S.ui.rpPage); if (!pg) return; e.preventDefault(); RP.print([pg.k]); }, true);
+document.addEventListener('keydown', e => { if (S.portal !== 'rp' || S.ui.pres || !(e.ctrlKey || e.metaKey) || (e.key || '').toLowerCase() !== 'p') return; const pg = RP.pages().find(p => p.k === S.ui.rpPage && !p.admin); if (!pg) return; e.preventDefault(); RP.print([pg.k]); }, true);
 
 /* 4D page (22-Nov-2026): the page filters in the title band – building, level, show (planned / actual), look-ahead – driving the 4D app in its frame */
 RP.s4sync = () => { const box = document.querySelector('#rpPage [data-4f]'), f = document.querySelector('#rpPage iframe.o4d-f[data-view="viewer"]'), w = f && f.contentWindow; if (!box || !w || !w.__KSQ) return;
@@ -11815,6 +11896,225 @@ RP.P.drawings = (el, pg) => {
   const st = rdwStO(), L_ = (k, f) => st[k].length ? st[k].map(v => h(f(v))).join(', ') : LBL('All', 'الكل'), WE = D.add(reportDate(), +st.win);
   return [s, `${LBL('Category', 'الفئة')}: <b>${L_('cat', DW_CAT)}</b>`, `${CODE.lab('zone', 'Phase', 'المرحلة')}: <b>${L_('ph', rdwPh)}</b>`, `${CODE.lab('building', 'Building', 'المبنى')}: <b>${L_('zn', rdwZn)}</b>`, `${CODE.lab('level', 'Level', 'الدور')}: <b>${L_('lv', v => rdwLvL(v, rdwLvCtx()))}</b>`, `${LBL('Discipline', 'التخصص')}: <b>${L_('dis', v => listVal('disciplines', v))}</b>`,
     `${LBL('Target window', 'فترة الاستهداف')}: <b>${h((RDW_WIN().find(o => o[0] === st.win) || RDW_WIN()[1])[1])}</b> (${LBL('to', 'حتى')} <bdi dir="ltr">${D.fmt(WE)}</bdi>)`, `${LBL('Chart', 'الرسم')}: <b>${st.per === 'W' ? LBL('Weekly', 'أسبوعي') : LBL('Monthly', 'شهري')}</b>`, ...(st.sub ? [`${LBL('Layout', 'المخطط')}: <b>${LBL('below ground only', 'أسفل سطح الأرض فقط')}</b>`] : []), `${LBL('Status at the cut-off', 'الحالة عند تاريخ القطع')} <bdi dir="ltr">${D.fmt(reportDate())}</bdi>`].filter(Boolean).join(' · '); }; }
+
+/* ===== REPORTS & 4D PORTAL – administration (28-Nov-2026, decision 123) =====
+   - Users & visits (portal manager only, icon in the top bar): one screen with two tabs
+       · Users & permissions – the report users with their PIN (shown to the portal manager), access, last visit; editor of the selected / new user:
+         identity, PIN (current shown on demand, new PIN, suggest), Portal manager button, access templates, Grant all / Remove all,
+         permissions by group (report pages, 4D group, actions: print / customise, portal tools: Information Check / report sources);
+       · Visit history – who signed in to the portal, when, how long, from which device, the pages viewed (with the time on each) and what was printed.
+   - Visit log RVIS (db.rvisits, merged per sign-in in mergeDB – core.js): one entry per sign-in, the pages in the order they were opened, prints.
+   - Print permission 'rprint': the Print buttons (top bar, cover "Print report", presentation "Print these pages", Look-Ahead meeting sheet, Ctrl / Cmd + P) work only for the users the portal manager chose.
+   Permissions (rpHas, report.js): 'rusers' = Portal manager (every page, tool and action); report pages; 'rprint'; 'rcfg'; 'checks' (Information Check); 'rsrc' (Report sources). */
+
+/* ---------- visit log ---------- */
+const RVIS = {
+  ON: 15,   // minutes: a sign-in without sign-out and with activity in the last 15 minutes is "online now"
+  rec() { const V = S.db && S.db.rvisits && S.db.rvisits.v; return V && S.ui.rvSid ? V[S.ui.rvSid] || null : null; },
+  dirty() { if (!S.db || !S.db.rvisits) return; S.db.rvisits._at = nowISO(); S.ui.cloudDirty = true; clearTimeout(RVIS._t); RVIS._t = setTimeout(() => { if (S.db) IDB.put('projects', S.db.id, S.db).catch(() => { }); }, 2500); },
+  start(user, emg) {
+    if (!S.db) return; const R = S.db.rvisits = S.db.rvisits && S.db.rvisits.v ? S.db.rvisits : { v: {} }, now = nowISO(), sid = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    R.v[sid] = Object.assign({ u: user.id || '', n: user.name, t: user.title || '', in: now, at: now, dev: PRES.dev(), p: [] }, emg ? { e: 1 } : {}); S.ui.rvSid = sid; rvPrune(S.db); RVIS.dirty();
+  },
+  sec: r => Math.max(0, Math.round((Date.now() - Date.parse(r.in)) / 1000)),
+  close(r) { const l = r.p[r.p.length - 1]; if (l) l[2] = Math.max(0, RVIS.sec(r) - l[1]); },
+  page(k, pres) {   // a page shown (navigation, presentation); the same page again only extends its time
+    const r = RVIS.rec(); if (!r || !k || r.out) return; const l = r.p[r.p.length - 1]; r.at = nowISO(); RVIS.close(r);
+    if (l && l[0] === k) return; r.p.push(pres ? [k, RVIS.sec(r), 0, 1] : [k, RVIS.sec(r), 0]); if (r.p.length > 400) r.p.splice(0, r.p.length - 400); RVIS.dirty();
+  },
+  print(keys) { const r = RVIS.rec(); if (!r) return; (r.pr = r.pr || []).push([keys.join(' '), RVIS.sec(r), keys.length]); r.at = nowISO(); RVIS.dirty(); },
+  beat() { const r = RVIS.rec(); if (!r || r.out || document.visibilityState !== 'visible' || !(S.ui.lastInput > Date.parse(r.at))) return; r.at = nowISO(); RVIS.close(r); S.db.rvisits._at = r.at; S.ui.cloudDirty = true; },
+  end() { const r = RVIS.rec(); if (!r) return; RVIS.close(r); r.out = r.at = nowISO(); S.db.rvisits._at = r.at; S.ui.rvSid = null; },
+  /* every sign-in of the portal, newest first: the visit log + the report sign-ins of the activity log written before the visit log existed (pages not recorded) */
+  list(db = S.db) {
+    const V = (db.rvisits && db.rvisits.v) || {}, now = Date.now(), out = [];
+    Object.entries(V).forEach(([k, r]) => { const end = r.out || r.at || r.in, live = !r.out && (now - Date.parse(r.at || r.in)) / 60000 <= RVIS.ON;
+      const pages = (r.p || []).map((x, i, a) => ({ k: x[0], s: x[1], d: i === a.length - 1 && !r.out ? Math.max(x[2] || 0, Math.round((Date.parse(end) - Date.parse(r.in)) / 1000) - x[1]) : x[2] || 0, f: x[3] }));
+      out.push({ k, u: r.u, n: r.n, t: r.t || '', in: r.in, end, dur: Math.max(0, Math.round((Date.parse(end) - Date.parse(r.in)) / 1000)), dev: r.dev || '', e: !!r.e, out: r.out || '', live, pages, pr: r.pr || [] }); });
+    const A = db.audit || [], seen = out.map(x => [x.n, Date.parse(x.in)]);
+    A.forEach((a, i) => { if (!/sign in$/.test(a.action || '') || !/ · report$/.test(a.detail || '')) return; const t = Date.parse(a.at); if (seen.some(([n, x]) => n === a.by && Math.abs(x - t) < 180000)) return;
+      let end = ''; for (let j = i + 1; j < A.length && Date.parse(A[j].at) - t < 12 * 3600e3; j++) { if (A[j].by !== a.by) continue; if (/sign in$/.test(A[j].action)) break; if (A[j].action === 'sign out') { end = A[j].at; break; } }
+      const ru = live(db.rusers || []).find(u => u.name === a.by);
+      out.push({ k: 'a' + i, u: ru ? ru._id : '', n: a.by, t: ru ? ru.title || '' : '', in: a.at, end: end || a.at, dur: end ? Math.round((Date.parse(end) - t) / 1000) : null, dev: '', e: a.action === 'emergency sign in', out: end, live: false, pages: null, pr: [], legacy: 1 }); });
+    return out.sort((a, b) => (b.in || '').localeCompare(a.in || ''));
+  }
+};
+setInterval(() => { if (S.portal === 'rp') RVIS.beat(); }, 60000);
+{ const ps = PRES.stamp; PRES.stamp = ev => { if (ev === 'out' && S.portal === 'rp') try { RVIS.end(); } catch (e) { } return ps(ev); }; }   // sign-out and the Update button close the visit
+{ const r0 = RP.render; RP.render = (...a) => { const r = r0(...a); try { if (S.ui.pres) RVIS.page(S.ui.pres.pages[S.ui.pres.i], 1); else RVIS.page(S.ui.rpPage); } catch (e) { } return r; }; }
+
+/* ---------- print permission ---------- */
+const rpNoPrint = () => toast(LBL('Printing is not enabled for your user – ask the portal manager.', 'الطباعة غير مفعّلة لمستخدمك – اطلبها من مدير البوابة.'), 'warn');
+{ const p0 = RP.print; RP.print = async keys => { if (!rpCan('rprint')) return rpNoPrint(); try { RVIS.print(keys || [S.ui.rpPage]); } catch (e) { } return p0(keys); }; }
+{ const d0 = RP.printDialog; RP.printDialog = () => rpCan('rprint') ? d0() : rpNoPrint(); }
+{ const l0 = RP.laPrint; RP.laPrint = async el => { if (!rpCan('rprint')) return rpNoPrint(); try { RVIS.print(['lookahead-sheet']); } catch (e) { } return l0(el); }; }
+
+/* ---------- permissions of a report user ---------- */
+const RU_GROUPS = () => [
+  ['pages', LBL('Report pages', 'صفحات التقرير'), 'doc', RP_PAGES.filter(p => !p.grp).map(p => p.k)],
+  ['g4', LBL('4D group', 'مجموعة 4D'), 'cube', RP_PAGES.filter(p => p.grp).map(p => p.k)],
+  ['act', LBL('Actions', 'الإجراءات'), 'print', ['rprint', 'rcfg']],
+  ['tools', LBL('Portal tools', 'أدوات البوابة'), 'gear', ['checks', 'rsrc']]];
+const RU_ALLK = () => RU_GROUPS().flatMap(g => g[3]);
+const RU_PAGEK = () => RP_PAGES.map(p => p.k);
+const RU_DESC = {
+  rprint: ['Print / PDF – the Print button of every page, “Print report” on the cover, “Print these pages” of the presentation and the Look-Ahead meeting sheet', 'الطباعة / PDF – زر الطباعة في كل صفحة، «طباعة التقرير» في الغلاف، «طباعة هذه الصفحات» في العرض التقديمي، وجدول اجتماع الأعمال القادمة'],
+  rcfg: ['Customise – Hide mode (hide any information for every user), the default presentation pages and the cover image', 'التخصيص – وضع الإخفاء (إخفاء أي معلومة لكل المستخدمين)، صفحات العرض الافتراضية وصورة الغلاف'],
+  checks: ['Information Check – programme health of the latest update, report data checks and the failing Data Collection checks (icon in the top bar)', 'فحص المعلومات – جودة برنامج آخر تحديث، فحوص بيانات التقرير وفحوص جمع البيانات غير المستوفاة (أيقونة في الشريط العلوي)'],
+  rsrc: ['Report sources – the XER folder, the photos folder, the 4D model and the cover image (icon in the top bar)', 'مصادر التقرير – فولدر XER، فولدر الصور، موديل 4D وصورة الغلاف (أيقونة في الشريط العلوي)'],
+  rusers: ['Portal manager – every page, tool and action, the users & permissions and the visit history (only the portal manager sees them)', 'مدير البوابة – كل الصفحات والأدوات والإجراءات، المستخدمون والصلاحيات وسجل الزيارات (لا يراها إلا مدير البوابة)']
+};
+const RU_SHORT = { rprint: ['Print / PDF', 'الطباعة / PDF'], rcfg: ['Customise', 'التخصيص'], checks: ['Information Check', 'فحص المعلومات'], rsrc: ['Report sources', 'مصادر التقرير'], rusers: ['Portal manager', 'مدير البوابة'] };
+const ruName = k => { const p = RP_PAGES.find(x => x.k === k) || RP_ADMIN.find(x => x.k === k); return RU_SHORT[k] ? LBL(...RU_SHORT[k]) : p ? (p.t ? LBL(...p.t) : rpLbl(p)) : k; };
+const ruNo = k => { const p = RP_PAGES.find(x => x.k === k); return p ? (p.grp ? '4D' : RP.no(p)) : ''; };
+/* access templates: fill the boxes in one click (the boxes can still be changed) */
+const RU_TPL = () => { const pages = RU_PAGEK(); return [
+  ['view', LBL('Owner / consultant – view only', 'المالك / الاستشاري – عرض فقط'), pages],
+  ['viewp', LBL('Owner / consultant – view and print', 'المالك / الاستشاري – عرض وطباعة'), [...pages, 'rprint']],
+  ['team', LBL('Project team – planning & control', 'فريق المشروع – التخطيط والتحكم'), [...pages, 'rprint', 'rcfg', 'checks', 'rsrc']],
+  ['sum', LBL('Management summary', 'ملخص للإدارة'), ['cover', 'layout', 'update', 'critical', 'delays', 'lookahead', 'sim4d', 'finance', 'end']]]; };
+const ruEff = u => (u.perms || []).includes('rusers') ? new Set([...RU_ALLK(), 'rusers']) : new Set([...RU_ALLK()].filter(k => rpHas(u, k)));   // what the user can open now (older users: pages added later)
+const ruMgr = u => (u.perms || []).includes('rusers');
+const ruChips = u => { if (ruMgr(u)) return `<span class="bdg warn">${ic('key')}${LBL('Portal manager', 'مدير البوابة')}</span>`;
+  const E = ruEff(u), pg = RU_PAGEK().filter(k => E.has(k)), all = RU_PAGEK().length;
+  return [`<span class="bdg ${pg.length === all ? 'ok' : 'info'}"${TIP.a(LBL('Report pages', 'صفحات التقرير'), pg.map(ruName).join(' · ') || '—')}>${ic('doc')}${pg.length === all ? LBL('All pages', 'كل الصفحات') : `${fmtN(pg.length)} / ${fmtN(all)}`}</span>`,
+    ...['rprint', 'rcfg', 'checks', 'rsrc'].filter(k => E.has(k)).map(k => `<span class="bdg ru-x"${TIP.a(LBL(...RU_SHORT[k]), LBL(...RU_DESC[k]))}>${ic({ rprint: 'print', rcfg: 'eyeoff', checks: 'check', rsrc: 'folder' }[k])}${LBL(...RU_SHORT[k])}</span>`)].join(' '); };
+const ruDur = s => { if (s == null) return '—'; s = Math.round(s); if (s < 60) return LBL(`${s} s`, `${s} ث`); const m = Math.round(s / 60); if (m < 60) return LBL(`${m} min`, `${m} د`); const hh = Math.floor(m / 60), mm = m % 60; return LBL(`${hh} h ${String(mm).padStart(2, '0')}`, `${hh} س ${String(mm).padStart(2, '0')} د`); };
+const ruWhen = iso => iso ? `${D.fmt(iso.slice(0, 10))} <span class="muted">${new Date(iso).toTimeString().slice(0, 5)}</span>` : '—';
+
+/* ---------- page: Users & visits ---------- */
+RP.P.rusers = el => {
+  if (!rpCan('rusers')) { el.innerHTML = `<div class="rp-ph"><h2>${LBL('Only the portal manager opens this page.', 'هذه الصفحة لمدير البوابة فقط.')}</h2></div>`; return; }
+  const st = S.ui.ru = S.ui.ru || { tab: 'users', q: '', show: 'active', sel: null, eye: new Set(), per: '30', fu: '', fp: '' };
+  const all = live(S.db.rusers || []).sort((a, b) => (b.active !== false) - (a.active !== false) || ruMgr(b) - ruMgr(a) || a.name.localeCompare(b.name));
+  const V = RVIS.list(), lastOf = {}, cntOf = {}; V.forEach(v => { const k = v.u || v.n; cntOf[k] = (cntOf[k] || 0) + 1; if (!lastOf[k]) lastOf[k] = v; });
+  const on = V.filter(v => v.live).length, lim30 = new Date(Date.now() - 30 * 864e5).toISOString(), n30 = V.filter(v => v.in >= lim30).length;
+  el.innerHTML = `<div class="ru2"><div class="ru2-top"><div class="ru2-tabs" role="tablist"><button class="${st.tab === 'users' ? 'on' : ''}" data-rt="users">${ic('users')}${LBL('Users & permissions', 'المستخدمون والصلاحيات')}<b>${fmtN(all.length)}</b></button><button class="${st.tab === 'visits' ? 'on' : ''}" data-rt="visits">${ic('chart')}${LBL('Visit history', 'سجل الزيارات')}<b title="${h(LBL('sign-ins in the last 30 days', 'دخول خلال آخر 30 يوماً'))}">${fmtN(n30)}</b></button></div>
+    <span class="ru2-on ${on ? 'ok' : ''}"><i></i>${LBL('Online now', 'متصل الآن')}: <b>${fmtN(on)}</b></span><span class="sp"></span><div class="ru2-tb" data-tb></div></div>
+    <div class="ru2-body" data-body></div></div>`;
+  el.querySelectorAll('[data-rt]').forEach(b => b.onclick = () => { st.tab = b.dataset.rt; RP.P.rusers(el); });
+  if (st.tab === 'visits') return ruVisits(el, st, V);
+  ruUsers(el, st, all, lastOf, cntOf, V);
+};
+function ruUsers(el, st, all, lastOf, cntOf, V) {
+  if (st.sel !== 'new' && !all.some(u => u._id === st.sel)) st.sel = all.length ? (all.find(u => u._id === S.user.id) || all[0])._id : 'new';
+  const mgrs = all.filter(u => u.active !== false && ruMgr(u)).length, prn = all.filter(u => u.active !== false && ruEff(u).has('rprint')).length, noPin = all.filter(u => u.active !== false && !PINV.dec(u)).length;
+  el.querySelector('[data-tb]').innerHTML = `<div class="ru2-k">${[[LBL('Active', 'نشط'), `${fmtN(all.filter(u => u.active !== false).length)} / ${fmtN(all.length)}`], [LBL('Portal managers', 'مديرو البوابة'), fmtN(mgrs)], [LBL('Can print', 'لهم الطباعة'), fmtN(prn)], [LBL('PIN not viewable yet', 'رمز غير ظاهر بعد'), fmtN(noPin), noPin ? 'warn' : '']].map(([k, x, c]) => `<span class="${c || ''}">${k} <b>${x}</b></span>`).join('')}</div><button class="btn pri sm" data-add>${ic('plus')}${LBL('Add user', 'إضافة مستخدم')}</button>`;
+  el.querySelector('[data-body]').innerHTML = `<div class="ru2-w"><section class="ru2-l"><div class="usb"><input class="in search" data-q placeholder="${h(LBL('Search name or title…', 'بحث بالاسم أو الصفة…'))}" value="${h(st.q)}"><div class="seg">${[['active', LBL('Active', 'النشطون')], ['all', LBL('All', 'الكل')], ['off', LBL('Inactive', 'غير نشط')]].map(([k, l]) => `<button class="${st.show === k ? 'on' : ''}" data-sh="${k}">${l}</button>`).join('')}</div></div>
+      <div class="tw ru2-t"><table class="t"><colgroup><col><col style="width:84px"><col style="width:38%"><col style="width:104px"></colgroup><thead><tr><th>${LBL('User', 'المستخدم')}</th><th${TIP.a(LBL('PIN', 'الرمز'), LBL('The personal PIN of the user – shown to the portal manager only. Click the eye to show it.', 'رمز الدخول الشخصي – يظهر لمدير البوابة فقط. اضغط العين لإظهاره.'))}>${LBL('PIN', 'الرمز')}</th><th>${LBL('Access', 'الصلاحيات')}</th><th>${LBL('Last visit', 'آخر زيارة')}</th></tr></thead><tbody data-ub></tbody></table></div></section>
+    <section class="ru2-e" data-ed></section></div>`;
+  const drawL = () => {
+    const q = st.q.toLowerCase(), rows = all.filter(u => (st.show === 'all' || (st.show === 'off') === (u.active === false)) && (!q || `${u.name} ${u.title || ''}`.toLowerCase().includes(q)));
+    el.querySelector('[data-ub]').innerHTML = rows.map(u => { const pin = PINV.dec(u), eye = st.eye.has(u._id), lv = lastOf[u._id] || lastOf[u.name], nv = (cntOf[u._id] || 0) + (lastOf[u._id] ? 0 : cntOf[u.name] || 0);
+      return `<tr data-id="${u._id}" class="cl ${st.sel === u._id ? 'sel' : ''} ${u.active === false ? 'off' : ''}"><td><div class="usn"><i class="usd ${lv && lv.live ? 'on' : ''}"></i><div><b>${h(u.name)}</b>${S.user.id === u._id ? ` <span class="bdg ok">${T('u_you')}</span>` : ''}${u.active === false ? ` <span class="bdg">${T('u_inactive')}</span>` : ''}<div class="tiny muted">${h(u.title || '')}</div></div></div></td>
+        <td class="uspin">${pin ? `<span class="mono">${eye ? h(pin) : '••••'}</span><button class="btn sm ghost" data-eye="${u._id}" title="${h(eye ? LBL('Hide', 'إخفاء') : LBL('Show PIN', 'إظهار الرمز'))}">${ic(eye ? 'eyeoff' : 'eye')}</button>` : `<span class="muted tiny"${TIP.a(LBL('PIN not viewable yet', 'الرمز غير ظاهر بعد'), LBL('Set before the portal kept PINs for the manager – shown after the next sign-in of this user, or set a new PIN.', 'حُدد قبل أن تحتفظ البوابة بالرموز – يظهر بعد الدخول التالي لهذا المستخدم، أو حدد له رمزاً جديداً.'))}>—</span>`}</td>
+        <td class="usc">${ruChips(u)}</td><td class="tiny">${lv ? `<span title="${h(TS(lv.in, 16))}">${h(agoTxt(lv.live ? nowISO() : lv.end || lv.in))}</span><button class="lnk ru2-vn" data-vu="${u._id}" title="${h(LBL('Open the visits of this user', 'فتح زيارات هذا المستخدم'))}">${fmtN(nv)} ${LBL('visits', 'زيارة')} ›</button>` : `<span class="muted">${LBL('never', 'لم يدخل')}</span>`}</td></tr>`; }).join('') || `<tr><td colspan="4" class="empty">${LBL('No report users yet – add the first one (it becomes the portal manager).', 'لا يوجد مستخدمون بعد – أضف أول مستخدم (ويكون مدير البوابة).')}</td></tr>`;
+    el.querySelectorAll('[data-ub] tr[data-id]').forEach(tr => tr.onclick = e => { const eb = e.target.closest('[data-eye]'); if (eb) { const id = eb.dataset.eye; st.eye.has(id) ? st.eye.delete(id) : st.eye.add(id); return drawL(); }
+      const vb = e.target.closest('[data-vu]'); if (vb) { st.tab = 'visits'; st.fu = vb.dataset.vu; return RP.P.rusers(el); } st.sel = tr.dataset.id; drawL(); drawE(); });
+  };
+  const drawE = () => ruEditor(el.querySelector('[data-ed]'), st.sel === 'new' ? null : all.find(u => u._id === st.sel), st, el);
+  drawL(); drawE();
+  el.querySelector('[data-q]').oninput = e => { st.q = e.target.value; drawL(); };
+  el.querySelectorAll('[data-sh]').forEach(b => b.onclick = () => { st.show = b.dataset.sh; el.querySelectorAll('[data-sh]').forEach(x => x.classList.toggle('on', x === b)); drawL(); });
+  el.querySelector('[data-add]').onclick = () => { st.sel = 'new'; drawL(); drawE(); };
+}
+function ruEditor(box, u, st, root) {
+  const isNew = !u, first = !live(S.db.rusers || []).length;
+  const r = isNew ? { _id: 'ru_' + uid(), name: '', title: '', perms: first ? ['rusers', ...RU_PAGEK()] : RU_TPL()[0][2].slice(), active: true } : clone(u);
+  const P = isNew ? new Set(r.perms) : ruEff(u), cur = isNew ? '' : PINV.dec(u); if (ruMgr(r)) P.add('rusers');
+  const mgr = () => P.has('rusers'), ALL = RU_ALLK();
+  const tplOf = () => { if (mgr()) return ''; const t = RU_TPL().find(([, , ks]) => ks.length === [...P].filter(k => ALL.includes(k)).length && ks.every(k => P.has(k))); return t ? t[0] : ''; };
+  const draw = () => {
+    const self = r._id === S.user.id, n = ALL.filter(k => P.has(k)).length, tp = tplOf();
+    box.innerHTML = `<div class="ueh"><div><h3>${isNew ? LBL('New report user', 'مستخدم تقرير جديد') : h(r.name)}</h3><span class="tiny muted">${isNew ? (first ? LBL('The first user is the portal manager.', 'أول مستخدم هو مدير البوابة.') : LBL('Fill the name and the PIN, choose the access, then Save.', 'أدخل الاسم والرمز، اختر الصلاحيات، ثم احفظ.')) : `${h(r.title || '')}${u._by ? ` · ${LBL('last change', 'آخر تعديل')}: ${h(String(u._by).replace(/ \(.*\)$/, ''))} <bdi>${h(TS(u._at, 10))}</bdi>` : ''}`}</span></div>
+        <button class="btn umgr ${mgr() ? 'on' : ''}" data-mgr${TIP.a(LBL('Portal manager', 'مدير البوابة'), LBL(...RU_DESC.rusers) + '. ' + LBL('Click again to take it back (the other boxes stay).', 'اضغط مرة أخرى لسحبها (تبقى باقي الخانات).'), { warn: LBL('At least one active portal manager must remain.', 'يجب أن يبقى مدير بوابة نشط واحد على الأقل.') })}>${ic('key')}${LBL('Portal manager', 'مدير البوابة')}${mgr() ? ' ✓' : ''}</button></div>
+      <div class="ueb">
+        <div class="uef ru2-f"><label class="f"><span>${T('u_name')} <span class="req">*</span></span><input class="in" data-k="name" value="${h(r.name)}" placeholder="${h(LBL('e.g. Eng. Ahmed Ali', 'مثال: م. أحمد علي'))}"></label>
+          <label class="f">${LBL('Title / organisation', 'الصفة / الجهة')}<input class="in" data-k="title" value="${h(r.title || '')}" placeholder="${h(LBL('e.g. Owner – Project Manager', 'مثال: المالك – مدير المشروع'))}"></label>
+          <label class="f">${T('status')}<select class="in" data-k="active"><option value="1" ${r.active !== false ? 'selected' : ''}>${LBL('Active', 'نشط')}</option><option value="0" ${r.active === false ? 'selected' : ''}>${T('u_inactive')}</option></select></label></div>
+        <div class="uepin"><div class="uepc"><span class="tiny muted">${LBL('Current PIN', 'الرمز الحالي')}</span><b class="mono" data-cur>${isNew ? '—' : cur ? '••••' : `<span class="muted tiny">${LBL('viewable after the next sign-in', 'يظهر بعد الدخول التالي')}</span>`}</b>${cur ? `<button class="btn sm ghost" data-ce title="${h(LBL('Show / hide', 'إظهار / إخفاء'))}">${ic('eye')}</button>` : ''}</div>
+          <label class="f"><span>${isNew ? `${T('pin')} <span class="req">*</span>` : LBL('New PIN (leave empty to keep)', 'رمز جديد (اتركه فارغاً للإبقاء)')}</span><input class="in mono" data-k="pin" autocomplete="off" value="${h(r._pin || '')}" placeholder="${h(LBL('4 characters or more', '4 خانات أو أكثر'))}"></label>
+          <button class="btn sm" data-gen title="${h(LBL('Suggest a 4-digit PIN', 'اقتراح رمز من 4 أرقام'))}">${ic('sync')}${LBL('Suggest', 'اقتراح')}</button></div>
+        <div class="uebar"><label class="f ueT">${LBL('Access template', 'قالب الصلاحيات')}<select class="in" data-tpl ${mgr() ? 'disabled' : ''}><option value="">${mgr() ? LBL('Portal manager – everything', 'مدير البوابة – كل شيء') : LBL('Custom', 'مخصص')}</option>${RU_TPL().map(([k, l]) => `<option value="${k}" ${tp === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+          <button class="btn sm" data-all ${mgr() ? 'disabled' : ''}>${ic('ok')}${LBL('Grant all', 'منح الكل')}</button><button class="btn sm" data-none ${mgr() ? 'disabled' : ''}>${ic('x')}${LBL('Remove all', 'سحب الكل')}</button><span class="tiny muted" data-pc>${fmtN(mgr() ? ALL.length : n)} / ${fmtN(ALL.length)}</span></div>
+        <div class="uep">${RU_GROUPS().map(([g, gl, gi, ks]) => { const m = ks.filter(k => P.has(k)).length;
+          return `<div class="upg ru2-g-${g}"><div class="upgh">${ic(gi)}<b>${gl}</b><em>${fmtN(mgr() ? ks.length : m)} / ${fmtN(ks.length)}</em>${mgr() ? '' : `<button class="lnk" data-ga="${g}">${m === ks.length ? LBL('none', 'لا شيء') : LBL('all', 'الكل')}</button>`}</div><div class="upgb">${ks.map(k => { const d = RU_DESC[k], on = mgr() || P.has(k), no = ruNo(k);
+            return `<label class="upc ${on ? 'on' : ''}"${d ? TIP.a(LBL(...RU_SHORT[k]), LBL(...d)) : ` title="${h(rpLbl(RP_PAGES.find(p => p.k === k)))}"`}><input type="checkbox" data-p="${k}" ${on ? 'checked' : ''} ${mgr() ? 'disabled' : ''}>${no && no !== '4D' ? `<i dir="ltr">${no}</i>` : ''}${ruName(k)}</label>`; }).join('')}</div></div>`; }).join('')}
+          ${mgr() ? `<div class="notice warn" style="margin:0">${ic('key')}<div>${LBL('Portal manager: every page, tool and action, and the only user who sees Users & visits. Click “Portal manager” to take it back.', 'مدير البوابة: كل الصفحات والأدوات والإجراءات، وهو وحده من يرى المستخدمين والزيارات. اضغط «مدير البوابة» لسحبها.')}</div></div>` : `<div class="tiny muted">${LBL('Users & visits is shown to the portal manager only. Information Check and printing are off unless ticked here.', 'المستخدمون والزيارات تظهر لمدير البوابة فقط. فحص المعلومات والطباعة غير مفعّلين إلا بالاختيار هنا.')}</div>`}</div></div>
+      <div class="uef2">${!isNew && !self ? `<button class="btn danger" data-del>${ic('trash')}${T('del')}</button>` : ''}<span class="sp"></span>${isNew && live(S.db.rusers || []).length ? `<button class="btn" data-cx>${T('cancel')}</button>` : ''}<button class="btn pri" data-sv>${ic('ok')}${T('save')}</button></div>`;
+    const keep = () => box.querySelectorAll('[data-k]').forEach(i => { if (i.dataset.k === 'pin') r._pin = i.value; else r[i.dataset.k] = i.dataset.k === 'active' ? i.value === '1' : i.value; });
+    const setP = arr => { keep(); P.clear(); arr.forEach(x => P.add(x)); draw(); };
+    box.querySelector('[data-mgr]').onclick = () => setP(mgr() ? ALL.filter(k => P.has(k)) : ['rusers', ...ALL]);
+    box.querySelector('[data-all]').onclick = () => setP(ALL);
+    box.querySelector('[data-none]').onclick = () => setP([]);
+    box.querySelector('[data-tpl]').onchange = e => { const t = RU_TPL().find(x => x[0] === e.target.value); if (t) setP(t[2]); };
+    box.querySelectorAll('[data-ga]').forEach(b => b.onclick = () => { const ks = RU_GROUPS().find(g => g[0] === b.dataset.ga)[3], a = ks.every(k => P.has(k)); setP(a ? [...P].filter(k => !ks.includes(k)) : [...new Set([...P, ...ks])]); });
+    box.querySelectorAll('[data-p]').forEach(c => c.onchange = () => { c.checked ? P.add(c.dataset.p) : P.delete(c.dataset.p); c.closest('.upc').classList.toggle('on', c.checked); keep(); draw(); });
+    box.querySelector('[data-gen]').onclick = () => { box.querySelector('[data-k=pin]').value = String(1000 + Math.floor(Math.random() * 9000)); };
+    const ce = box.querySelector('[data-ce]'); if (ce) ce.onclick = () => { const b = box.querySelector('[data-cur]'); b.textContent = b.textContent === '••••' ? cur : '••••'; };
+    const cx = box.querySelector('[data-cx]'); if (cx) cx.onclick = () => { st.sel = null; RP.P.rusers(root); };
+    box.querySelector('[data-sv]').onclick = () => ruSave(box, r, P, isNew, u, st, root);
+    const dl = box.querySelector('[data-del]'); if (dl) dl.onclick = async () => { if (!(await confirmBox(`${T('del')}: <b>${h(u.name)}</b>?<br><span class="small muted">${LBL('The user disappears from the sign-in list; the visit history keeps the name.', 'يختفي المستخدم من قائمة الدخول؛ ويبقى اسمه في سجل الزيارات.')}</span>`, T('del'), true))) return;
+      const rest = live(S.db.rusers || []).filter(x => x._id !== u._id && x.active !== false && ruMgr(x)); if (ruMgr(u) && !rest.length) return toast(LBL('At least one active portal manager must remain.', 'يجب أن يبقى مدير بوابة نشط واحد على الأقل.'), 'bad');
+      const o = Object.assign(clone(u), { _del: true }); stamp(o); const i = S.db.rusers.findIndex(x => x._id === o._id); S.db.rusers[i] = o; touch('report user deleted', o.name); st.sel = null; toast(T('saved'), 'ok'); RP.render(); };
+  };
+  draw();
+}
+async function ruSave(box, r, P, isNew, u, st, root) {
+  const g = k => (box.querySelector(`[data-k=${k}]`).value || '').trim(), all = S.db.rusers = S.db.rusers || [], L = live(all);
+  const name = g('name'), pin = g('pin'), active = g('active') === '1', ALL = RU_ALLK();
+  const perms = P.has('rusers') ? ['rusers', ...ALL] : ALL.filter(k => P.has(k));
+  if (!name) return toast(T('name_req'), 'bad');
+  if (L.some(x => x._id !== r._id && x.name.trim().toLowerCase() === name.toLowerCase())) return toast(LBL('This name is already used', 'هذا الاسم مستخدم بالفعل'), 'bad');
+  if ((isNew || pin) && pin.length < 4) return toast(LBL('PIN: at least 4 characters', 'الرمز: 4 أحرف على الأقل'), 'bad');
+  if (!(active && perms.includes('rusers')) && !L.some(x => x._id !== r._id && x.active !== false && ruMgr(x))) return toast(LBL('At least one active portal manager must remain.', 'يجب أن يبقى مدير بوابة نشط واحد على الأقل.'), 'bad');
+  if (r._id === S.user.id && !active) return toast(LBL('You cannot deactivate yourself.', 'لا يمكنك إيقاف حسابك.'), 'bad');
+  const was = isNew ? [] : [...ruEff(u)], add = perms.filter(k => !was.includes(k)), rem = was.filter(k => !perms.includes(k));
+  const o = Object.assign(clone(r), { name, title: g('title'), perms, active, pv: 8 }); delete o._pin;
+  if (pin) { o.pinHash = await rpinHash(o._id, pin); PINV.set(S.db, o._id, pin); o.pinSetAt = nowISO(); }
+  stamp(o); const i = all.findIndex(x => x._id === o._id); if (i >= 0) all[i] = o; else all.push(o);
+  touch(isNew ? 'report user added' : 'report user changed', `${name}${isNew ? ' · ' + (perms.includes('rusers') ? 'portal manager' : perms.join('+')) : [add.length ? ' · +' + add.join('+') : '', rem.length ? ' · −' + rem.join('−') : ''].join('')}${active ? '' : ' · inactive'}${pin && !isNew ? ' · PIN reset' : ''}`);
+  if (o._id === S.user.id) { S.user.perms = perms.slice(); S.user.pv = 8; S.user.name = name; S.user.title = o.title; }
+  st.sel = o._id; toast(T('saved'), 'ok'); RP.render();
+}
+
+/* ---------- visit history ---------- */
+function ruVisits(el, st, V0) {
+  const users = live(S.db.rusers || []).sort((a, b) => a.name.localeCompare(b.name)), per = st.per, lim = per === 'all' ? '' : per === 'd' ? todayISO() : new Date(Date.now() - (+per) * 864e5).toISOString();
+  const known = new Set(V0.flatMap(v => (v.pages || []).map(p => p.k))), pgOpts = [...RP_PAGES, ...RP_ADMIN].filter(p => known.has(p.k));
+  const V = V0.filter(v => (!lim || v.in >= lim) && (!st.fu || v.u === st.fu || (!v.u && st.fu === '_e' && v.e)) && (!st.fp || (v.pages || []).some(p => p.k === st.fp)));
+  const pv = {}, byU = {}; let views = 0, tsum = 0, tn = 0;
+  V.forEach(v => { if (v.dur != null) { tsum += v.dur; tn++; } const k = v.u || (v.e ? '_e' : v.n), b = byU[k] = byU[k] || { k, n: v.e && !v.u ? LBL('Emergency access', 'دخول طوارئ') : v.n, t: v.t, v: 0, p: 0, s: 0, last: '' }; b.v++; b.s += v.dur || 0; if (!b.last) b.last = v.in;
+    (v.pages || []).forEach(p => { if (st.fp && p.k !== st.fp) return; views++; b.p++; const o = pv[p.k] = pv[p.k] || { k: p.k, n: 0, s: 0, u: new Set() }; o.n++; o.s += p.d || 0; o.u.add(k); }); });
+  const top = Object.values(pv).sort((a, b) => b.n - a.n || b.s - a.s), mx = Math.max(1, ...top.map(x => x.n)), on = V0.filter(v => v.live).length, uv = Object.keys(byU).length;
+  const perL = { d: LBL('Today', 'اليوم'), 7: LBL('7 days', '7 أيام'), 30: LBL('30 days', '30 يوماً'), 90: LBL('90 days', '90 يوماً'), all: LBL('All', 'الكل') };
+  el.querySelector('[data-tb]').innerHTML = `<div class="seg ru2-per">${Object.entries(perL).map(([k, l]) => `<button class="${per === k ? 'on' : ''}" data-per="${k}">${l}</button>`).join('')}</div>
+    <select class="in sm" data-fu><option value="">${LBL('All users', 'كل المستخدمين')}</option>${users.map(u => `<option value="${u._id}" ${st.fu === u._id ? 'selected' : ''}>${h(u.name)}</option>`).join('')}<option value="_e" ${st.fu === '_e' ? 'selected' : ''}>${LBL('Emergency access', 'دخول طوارئ')}</option></select>
+    <select class="in sm" data-fp><option value="">${LBL('All pages', 'كل الصفحات')}</option>${pgOpts.map(p => `<option value="${p.k}" ${st.fp === p.k ? 'selected' : ''}>${ruNo(p.k) ? ruNo(p.k) + ' · ' : ''}${rpLbl(p)}</option>`).join('')}</select>
+    ${st.fu || st.fp ? `<button class="btn sm ghost" data-fx>${ic('x')}${LBL('Clear', 'مسح')}</button>` : ''}<button class="btn sm" data-vx title="${h(LBL('Export the visits shown to Excel', 'تصدير الزيارات المعروضة إلى Excel'))}">${ic('dl')}Excel</button>`;
+  const chip = p => `<span class="rvp ${p.f ? 'pr' : ''}" title="${h(`${ruNo(p.k) ? ruNo(p.k) + ' · ' : ''}${ruName(p.k)} · ${ruDur(p.d)}${p.f ? ' · ' + LBL('presentation', 'عرض تقديمي') : ''}`)}">${ruNo(p.k) && ruNo(p.k) !== '4D' ? `<i dir="ltr">${ruNo(p.k)}</i>` : ruNo(p.k) === '4D' ? `<i>4D</i>` : ''}${h(ruName(p.k))}<em dir="ltr">${ruDur(p.d)}</em></span>`;
+  const rowsH = V.slice(0, 300).map(v => `<tr class="${v.live ? 'live' : ''}"><td><div class="usn"><i class="usd ${v.live ? 'on' : ''}"></i><div><b>${h(v.e && !v.u ? LBL('Emergency access', 'دخول طوارئ') : v.n)}</b><div class="tiny muted">${h(v.t || '')}</div>${v.live ? `<span class="bdg ok">${LBL('online now', 'متصل الآن')}</span>` : ''}</div></div></td>
+      <td class="small" dir="auto">${ruWhen(v.in)}</td><td class="small" title="${h(v.out ? LBL('Signed out', 'خرج') + ' ' + TS(v.out, 16) : v.legacy ? '' : LBL('Last activity', 'آخر نشاط') + ' ' + TS(v.end, 16))}">${ruDur(v.dur)}${!v.out && !v.live && !v.legacy ? '<span class="tiny muted"> *</span>' : ''}</td><td class="tiny muted">${h(v.dev || '—')}</td>
+      <td class="rvps">${v.pages ? (v.pages.length ? v.pages.map(chip).join('') : `<span class="muted tiny">${LBL('signed in only', 'دخول فقط')}</span>`) : `<span class="muted tiny">${LBL('pages not recorded (before 28-Nov-26)', 'الصفحات غير مسجلة (قبل 28-Nov-26)')}</span>`}</td>
+      <td class="small">${v.pr.length ? `<span class="bdg warn" title="${h(v.pr.map(x => x[0].split(' ').map(ruName).join(', ')).join(' | '))}">${ic('print')}${fmtN(v.pr.reduce((a, x) => a + x[2], 0))}</span>` : ''}</td></tr>`).join('');
+  el.querySelector('[data-body]').innerHTML = `<div class="ru2-vk">${[[LBL('Visits', 'الزيارات'), fmtN(V.length), perL[per]], [LBL('Users who visited', 'مستخدمون زاروا'), `${fmtN(uv)}`, `${LBL('of', 'من')} ${fmtN(users.filter(u => u.active !== false).length)} ${LBL('active', 'نشط')}`], [LBL('Page views', 'مشاهدات الصفحات'), fmtN(views), V.length ? `${(views / Math.max(1, V.filter(v => v.pages).length)).toFixed(1)} ${LBL('per visit', 'لكل زيارة')}` : ''], [LBL('Average visit', 'متوسط الزيارة'), ruDur(tn ? tsum / tn : null), `${LBL('total', 'الإجمالي')} ${ruDur(tsum)}`], [LBL('Most viewed page', 'الصفحة الأكثر مشاهدة'), top[0] ? h(ruName(top[0].k)) : '—', top[0] ? `${fmtN(top[0].n)} ${LBL('views', 'مشاهدة')} · ${ruDur(top[0].s)}` : ''], [LBL('Online now', 'متصل الآن'), fmtN(on), on ? V0.filter(v => v.live).map(v => h(v.n)).join(' · ') : LBL('nobody', 'لا أحد'), on ? 'ok' : '']].map(([k, x, sub, c]) => `<div class="ru2-k1 ${c || ''}"><span>${k}</span><b>${x}</b><em>${sub || ''}</em></div>`).join('')}</div>
+    <div class="ru2-vw"><section class="ru2-vl"><div class="tw ru2-vt"><table class="t"><colgroup><col style="width:150px"><col style="width:112px"><col style="width:70px"><col style="width:92px"><col><col style="width:46px"></colgroup><thead><tr><th>${LBL('User', 'المستخدم')}</th><th>${LBL('Signed in', 'وقت الدخول')}</th><th>${LBL('Time', 'المدة')}</th><th>${LBL('Device', 'الجهاز')}</th><th>${LBL('Pages viewed – in order, with the time on each', 'الصفحات التي اطّلع عليها – بالترتيب ومدة كل صفحة')}</th><th title="${h(LBL('Pages printed', 'الصفحات المطبوعة'))}">${ic('print')}</th></tr></thead><tbody>${rowsH || `<tr><td colspan="6" class="empty">${LBL('No visits in this selection.', 'لا توجد زيارات في هذا الاختيار.')}</td></tr>`}</tbody></table></div>
+      <div class="tiny muted ru2-vn2">${V.length > 300 ? `${LBL('The latest 300 visits are shown; Excel holds all of them.', 'تظهر آخر 300 زيارة؛ ملف Excel يحتوي الكل.')} · ` : ''}* ${LBL('no sign-out: time to the last activity', 'بدون تسجيل خروج: المدة حتى آخر نشاط')}</div></section>
+      <section class="ru2-vr"><div class="xc ru2-c"><div class="xc-t">${LBL('Most viewed pages', 'الصفحات الأكثر مشاهدة')}</div><div class="ru2-bars">${top.slice(0, 10).map(o => `<div class="ru2-br" title="${h(`${ruName(o.k)} · ${fmtN(o.n)} ${LBL('views', 'مشاهدة')} · ${o.u.size} ${LBL('users', 'مستخدم')} · ${ruDur(o.s)}`)}"><span>${ruNo(o.k) ? `<i dir="ltr">${ruNo(o.k)}</i>` : ''}${h(ruName(o.k))}</span><div><i style="width:${(o.n / mx * 100).toFixed(1)}%"></i></div><b>${fmtN(o.n)}</b><em dir="ltr">${ruDur(o.s)}</em></div>`).join('') || `<div class="muted small">—</div>`}</div></div>
+        <div class="xc ru2-c ru2-cu"><div class="xc-t">${LBL('By user', 'حسب المستخدم')}</div><div class="tw"><table class="t"><thead><tr><th>${LBL('User', 'المستخدم')}</th><th>${LBL('Visits', 'زيارات')}</th><th>${LBL('Pages', 'صفحات')}</th><th>${LBL('Time', 'المدة')}</th><th>${LBL('Last', 'آخر')}</th></tr></thead><tbody>${Object.values(byU).sort((a, b) => b.v - a.v || b.last.localeCompare(a.last)).map(b => `<tr class="cl ${st.fu === b.k ? 'sel' : ''}" data-bu="${h(b.k)}"><td><b>${h(b.n)}</b></td><td>${fmtN(b.v)}</td><td>${fmtN(b.p)}</td><td>${ruDur(b.s)}</td><td class="tiny">${D.fmt(b.last.slice(0, 10))}</td></tr>`).join('') || `<tr><td colspan="5" class="empty">—</td></tr>`}</tbody></table></div></div></section></div>`;
+  const re = () => RP.P.rusers(el);
+  el.querySelectorAll('[data-per]').forEach(b => b.onclick = () => { st.per = b.dataset.per; re(); });
+  el.querySelector('[data-fu]').onchange = e => { st.fu = e.target.value; re(); };
+  el.querySelector('[data-fp]').onchange = e => { st.fp = e.target.value; re(); };
+  const fx = el.querySelector('[data-fx]'); if (fx) fx.onclick = () => { st.fu = ''; st.fp = ''; re(); };
+  el.querySelectorAll('[data-bu]').forEach(tr => tr.onclick = () => { const k = tr.dataset.bu; if (users.some(u => u._id === k) || k === '_e') { st.fu = st.fu === k ? '' : k; re(); } });
+  el.querySelector('[data-vx]').onclick = async () => {
+    const pn = k => `${ruNo(k) ? ruNo(k) + ' ' : ''}${ruName(k)}`, mm = s => s == null ? '' : Math.round(s / 6) / 10;
+    saveOutput(`${S.db.id}_Report_Visits_${todayISO()}.xlsx`, await XLSXW.build([
+      { name: 'Visits', rows: [['User', 'Title', 'Signed in', 'Signed out / last activity', 'Minutes', 'Device', 'Pages viewed', 'Page views', 'Pages printed'], ...V.map(v => [v.e && !v.u ? 'Emergency access' : v.n, v.t || '', TS(v.in, 16), TS(v.out || v.end, 16), mm(v.dur), v.dev || '', v.pages ? v.pages.map(p => `${pn(p.k)} (${mm(p.d)} min)`).join(' → ') : 'not recorded', v.pages ? v.pages.length : '', v.pr.map(x => x[0].split(' ').map(pn).join(', ')).join(' | ')])], styles: { headerRows: [0] }, widths: [24, 24, 18, 18, 9, 18, 90, 10, 40], freeze: 'A2', autoFilter: 1 },
+      { name: 'Page views', rows: [['User', 'Signed in', 'Page', 'Opened at (min from sign-in)', 'Minutes on the page', 'Presentation'], ...V.flatMap(v => (v.pages || []).map(p => [v.n, TS(v.in, 16), pn(p.k), mm(p.s), mm(p.d), p.f ? 'yes' : '']))], styles: { headerRows: [0] }, widths: [24, 18, 34, 14, 14, 12], freeze: 'A2', autoFilter: 1 }]), 'Exports');
+  };
+}
 
 /* ---------- installable app (PWA) – online copy only (https) ----------
    The online tool (GitHub Pages) can be installed as an app from Edge / Chrome (desktop and Android) or Safari (iPhone / iPad: Share → Add to Home Screen).
